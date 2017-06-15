@@ -71,6 +71,8 @@ Page({
     wx.request({
       url: 'https://devopsx.coffeelandcn.cn/register.php',
       data: {
+        'openid': '',
+        'countrycode': '',
         'mobile': e.detail.value.mobile,
         'verification_code': e.detail.value.verification_code
       },
@@ -101,7 +103,10 @@ Page({
     //对接SMS服务器获取短信验证码
     wx.request({
       url: 'https://devopsx.coffeelandcn.cn/getSMSCode.php',
-      data: {},
+      data: {
+        'countrycode': '',
+        'mobile': ''
+      },
       method: 'POST',
       success: function (res) {
         console.log(res.data.status);
