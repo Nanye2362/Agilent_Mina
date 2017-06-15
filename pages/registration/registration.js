@@ -69,7 +69,7 @@ Page({
 
     console.log(e.detail.value);
     wx.request({
-      url: 'https://devopsx.coffeelandcn.cn/verifySMSCode.php',
+      url: 'https://devopsx.coffeelandcn.cn/register.php',
       data: {
         'mobile': e.detail.value.mobile,
         'verification_code': e.detail.value.verification_code
