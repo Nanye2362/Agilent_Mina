@@ -97,6 +97,11 @@ Page({
         console.log(res.data.status);
         if (res.data.status == 1) {
           //验证码发送成功
+          wx.showToast({
+            title: '验证码发送成功',
+            icon: 'success',
+            duration: 2000
+          })
         }
       },
       fail: function (err) {
