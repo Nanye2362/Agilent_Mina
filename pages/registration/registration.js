@@ -69,7 +69,7 @@ Page({
 
     console.log(e.detail.value);
     wx.request({
-      url: 'https://devopsx.coffeelandcn.cn',
+      url: 'https://devopsx.coffeelandcn.cn/verifySMSCode.php',
       data: {
         'mobile': e.detail.value.mobile,
         'verification_code': e.detail.value.verification_code
@@ -77,9 +77,19 @@ Page({
       method: 'POST',
       success: function (res) {
         console.log(res);
-        wx.redirectTo({
-          url: '../service_request/service_request'
-        })
+        if (res.data.status == 1) {
+          //短信验证码正确
+          wx.redirectTo({
+            url: '../service_request/service_request'
+          })
+        }else{
+          //短信验证码错误
+          wx.showToast({
+            title: '验证码错误',
+            icon: 'success',
+            duration: 2000
+          })
+        }
       },
       fail: function (err) {
         console.log(err);

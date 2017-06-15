@@ -64,9 +64,10 @@ Page({
 
   },
 
-  srSubmit: function () {
+  srSubmit: function (e) {
+    console.log(e.detail.value);
     wx.request({
-      url: 'https://devopsx.coffeelandcn.cn',
+      url: 'https://devopsx.coffeelandcn.cn/srConfirm.php',
       data: {},
       method: 'POST',
       success: function (res) {
