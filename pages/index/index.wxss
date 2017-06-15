@@ -1,0 +1,90 @@
+/**index.wxss**/
+.userinfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.userinfo-avatar {
+  width: 128rpx;
+  height: 128rpx;
+  margin: 20rpx;
+  border-radius: 50%;
+}
+
+.userinfo-nickname {
+  color: #aaa;
+}
+
+.usermotto {
+  margin-top: 200px;
+}
+
+.slide-image{  
+    width: 100%;
+}
+
+.pages-container { 
+ height: 100%; 
+ display: flex; 
+ flex-direction: column; 
+ box-sizing: border-box;
+} 
+  
+.pages-title-bg { 
+ width: 100%; 
+} 
+  
+.pages-wrapper { 
+   
+} 
+
+.pages-row { 
+ width: 100%; 
+ display: flex; 
+ flex-direction: row; 
+ justify-content: space-around; 
+} 
+  
+.pages-item { 
+ position: relative; 
+ padding: 10rpx; 
+ width: 50%; 
+ background-color: #fff; 
+ border: #ddd solid 1px; 
+} 
+  
+.pages-icon-wrapper { 
+ display: flex; 
+ justify-content: space-around; 
+ align-items: center; 
+ margin: 10rpx; 
+ border-radius: 50%; 
+ height: 75%; 
+} 
+  
+.pages-icon-wrapper-no-bg { 
+ display: flex; 
+ justify-content: space-around; 
+ align-items: center; 
+ margin: 10rpx; 
+ height: 75%; 
+} 
+  
+.pages-icon { 
+ width: 100rpx; 
+ height: 100rpx; 
+} 
+  
+.pages-text-wrapper { 
+ text-align: center; 
+} 
+  
+.pages-text { 
+ font-weight: bolder; 
+} 
+
+.line {
+  background-color: #e5e5e5;
+  height: 10px;
+}

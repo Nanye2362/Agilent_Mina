@@ -1,0 +1,37 @@
+<!--index.wxml-->
+<swiper indicator-dots="{{indicatorDots}}" indicator-active-color="blue" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" style="height: 200px">
+  <block wx:for="{{imgUrls}}" wx:key="{{img}}">
+    <swiper-item>
+      <navigator url="{{item.link}}" hover-class="navigator-hover">
+        <image src="{{item.url}}" class="slide-image" height="250" />
+      </navigator>
+    </swiper-item>
+  </block>
+</swiper>
+<view class="line"></view>
+
+<view class="pages-container">
+  <scroll-view scroll-y="true" class="pages-wrapper">
+    <view wx:for="{{pageItems}}" wx:key="{{text}}">
+      <view class="pages-row">
+        <view bindtap="srOnclick" class="pages-item" style="height:{{cellHeight}}">
+          <view class="{{text==null||text.length==0?'pages-icon-wrapper-no-bg':'pages-icon-wrapper'}}">
+            <image src="{{item[0].icon}}" class="pages-icon"></image>
+          </view>
+          <view class="pages-text-wrapper">
+            <text class="pages-text">{{item[0].text}}</text>
+          </view>
+        </view>
+
+        <view bindtap="" class="pages-item" style="height:{{cellHeight}}">
+          <view class="{{text==null||text.length==0?'pages-icon-wrapper-no-bg':'pages-icon-wrapper'}}">
+            <image src="{{item[1].icon}}" class="pages-icon"></image>
+          </view>
+          <view class="pages-text-wrapper">
+            <text class="pages-text">{{item[1].text}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+</view>

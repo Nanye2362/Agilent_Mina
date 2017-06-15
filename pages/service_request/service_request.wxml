@@ -1,0 +1,7 @@
+<view class="sr_content">
+  <form report-submit bindsubmit="srSubmit" class="">
+    <view class="">仪器序列号</view>
+    <input type="text" name="serial_number" placeholder="例：RS-PRO-WE2352340014" />
+    <button formType="submit">确定</button>
+  </form>
+</view>

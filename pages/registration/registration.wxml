@@ -1,0 +1,12 @@
+<view class="reminder">温馨提示：首次服务请求需要先进行身份验证，下次将直接进入序列号输入页面，进入咨询流程。</view>
+
+<view class="registration_content">
+  <form report-submit bindsubmit="registrationSubmit" class="">
+    <view class="">手机号</view>
+    <input type="text" name="mobile" placeholder="请输入手机号" />
+    <view class="">验证码</view>
+    <input type="text" name="verification_code" placeholder="请输入验证码" />
+    <button bindtap="getSMSCode">免费获取</button>
+    <button formType="submit">下一步</button>
+  </form>
+</view>
