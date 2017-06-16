@@ -43,7 +43,7 @@
 .item {
   position: absolute;
   top: 0;
-  width: 40rpx;
+  width: 80rpx;
   height: 80rpx;
 }
 
@@ -67,7 +67,6 @@
   display: inline-block;
   width: 40%;
   text-align: center;
-  vertical-align: middle;
   border-radius: 20px;
   border: 1px solid gray;
   margin: 2% 4.5%;

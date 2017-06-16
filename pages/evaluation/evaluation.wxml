@@ -20,8 +20,8 @@
   <view class="starScore">
     <block wx:for="{{stars}}" wx:key="{{starScore}}">
       <image class="star-image" style="left: {{item*110}}rpx" src="{{key > item ?(key-item == 0.5?halfSrc:selectedSrc) : normalSrc}}">
-        <view class="item" style="left:0rpx" data-key="{{item+0.5}}" bindtap="selectLeft"></view>
-        <view class="item" style="left:40rpx" data-key="{{item+1}}" bindtap="selectRight"></view>
+        
+        <view class="item" style="" data-key="{{item+1}}" bindtap="selectStar"></view>
       </image>
     </block>
   </view>
