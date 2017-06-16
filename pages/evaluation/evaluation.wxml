@@ -11,7 +11,7 @@
   </view>
 </view>
 
-<view class="eva_line" style="height: 1px;background-color: grey"></view>
+<view class="eva_line" style="height: 1px;background-color: #e5e5e5"></view>
 
 <view class="" style="height:{{scoreHeight}}">
   <view class="content_title">
@@ -29,7 +29,7 @@
 </view>
 
 <view class="" style="height:{{checkboxesHeight}}">
-  <view class="checkbox"><text>业务不熟</text></view>
+  <view class="checkbox" bindtap="check"><text>业务不熟</text></view>
   <view class="checkbox"><text>回复速度慢</text></view>
   <view class="checkbox"><text>服务态度不好</text></view>
   <view class="checkbox"><text>没有解决问题</text></view>

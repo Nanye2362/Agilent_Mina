@@ -68,13 +68,13 @@
   width: 40%;
   text-align: center;
   border-radius: 20px;
-  border: 1px solid gray;
+  border: 1px solid #e5e5e5;
   margin: 2% 4.5%;
   height: 20%;
 }
 
 textarea {
-  border: 1px solid grey;
+  border: 1px solid #e5e5e5;
   height: 80px;
   width: 90%;
   display: inline-block;
