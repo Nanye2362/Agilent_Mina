@@ -1,0 +1,46 @@
+<view class="eva_head" style="height:{{headHeight}}">
+  <view class="logo">
+    <image src="../../images/logo.png" style="width:30%;height:{{headHeight}};"></image>
+    <view class="title">小安 · 安捷伦售后服务</view>
+    <view class="srCount">
+      累计服务：1523次
+    </view>
+    <view class="average">
+      总体评分：★ ★ ★ ★ ★ 4.5分
+    </view>
+  </view>
+</view>
+
+<view class="eva_line" style="height: 1px;background-color: grey"></view>
+
+<view class="" style="height:{{scoreHeight}}">
+  <view class="content_title">
+    <text>综合评价</text>
+  </view>
+  <view class="starScore">
+    <block wx:for="{{stars}}" wx:key="{{starScore}}">
+      <image class="star-image" style="left: {{item*110}}rpx" src="{{key > item ?(key-item == 0.5?halfSrc:selectedSrc) : normalSrc}}">
+        <view class="item" style="left:0rpx" data-key="{{item+0.5}}" bindtap="selectLeft"></view>
+        <view class="item" style="left:40rpx" data-key="{{item+1}}" bindtap="selectRight"></view>
+      </image>
+    </block>
+  </view>
+  <view class="suggest"><text>较满意，仍需改进</text></view>
+</view>
+
+<view class="" style="height:{{checkboxesHeight}}">
+  <view class="checkbox"><text>业务不熟</text></view>
+  <view class="checkbox"><text>回复速度慢</text></view>
+  <view class="checkbox"><text>服务态度不好</text></view>
+  <view class="checkbox"><text>没有解决问题</text></view>
+  <view class="checkbox"><text>其他，请补充</text></view>
+  <view class="checkbox"><text>其他，请补充</text></view>
+</view>
+
+<view class="" style="height:{{textareaHeight}};text-align:center;">
+  <textarea placeholder="补充意见或建议（50字以内）" />
+</view>
+
+<view class="">
+  <button>提交评价</button>
+</view>

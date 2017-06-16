@@ -1,0 +1,88 @@
+.logo {
+  padding-left: 2px;
+  padding-right: 2px;
+  height: 100%;
+}
+
+.title {
+  display: inline-block;
+  position: absolute;
+  top: 20px;
+}
+
+.srCount {
+  display: inline-block;
+  position: absolute;
+  top: 55px;
+  font-size: 15px;
+}
+
+.average {
+  display: inline-block;
+  position: absolute;
+  top: 80px;
+  font-size: 15px;
+}
+
+.starScore {
+  width: 80%;
+  height: 50%;
+  display: inline-block;
+  position: relative;
+  top: 20px;
+  left: 15%;
+}
+
+.star-image {
+  position: absolute;
+  width: 80rpx;
+  height: 80rpx;
+  src: "../../images/normal.png";
+}
+
+.item {
+  position: absolute;
+  top: 0;
+  width: 40rpx;
+  height: 80rpx;
+}
+
+.content_title {
+  display: inline-block;
+  position: relative;
+  top: 10px;
+  left: 30%;
+  width: 40%;
+  text-align: center;
+}
+
+.suggest {
+  display: inline-block;
+  position: relative;
+  top: 5%;
+  left: 30%;
+}
+
+.checkbox {
+  display: inline-block;
+  width: 40%;
+  text-align: center;
+  vertical-align: middle;
+  border-radius: 20px;
+  border: 1px solid gray;
+  margin: 2% 4.5%;
+  height: 20%;
+}
+
+textarea {
+  border: 1px solid grey;
+  height: 80px;
+  width: 90%;
+  display: inline-block;
+  top: 2px;
+}
+
+button {
+  background-color: #3385ff;
+  width: 70%;
+}
