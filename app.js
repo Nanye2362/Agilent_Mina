@@ -51,13 +51,16 @@ App({
               obj.openid = res.data.openid;
               obj.expires_in = Date.now() + res.data.expires_in;
               console.log(obj);
-              
+
               //需要从SAP服务器查询该用户是否注册
               wx.request({
-                url: 'https://devopsx.coffeelandcn.cn/authentication.php',
-                data: { 'openid': obj.openid },
+                url: 'https://devopsx.coffeelandcn.cn/Agilent/web/auth/userbind',
+                data: {
+                  'openid': obj.openid
+                },
                 success: function (res) {
-                  if(res.data == 1){
+                  console.log('response');
+                  if (res.data == 1) {
                     //验证成功，用户信息添加到缓存
                     // wx.setStorageSync('user', obj);
                   }

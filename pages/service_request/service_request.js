@@ -67,7 +67,7 @@ Page({
   srSubmit: function (e) {
     console.log(e.detail.value);
     wx.request({
-      url: 'https://devopsx.coffeelandcn.cn/srConfirm.php',
+      url: 'https://devopsx.coffeelandcn.cn/Agilent/web/sr/confirm',
       data: {},
       method: 'POST',
       success: function (res) {

@@ -69,18 +69,17 @@ Page({
 
     console.log(e.detail.value);
     wx.request({
-      url: 'https://devopsx.coffeelandcn.cn/register.php',
+      url: 'https://devopsx.coffeelandcn.cn/Agilent/web/auth/register',
       data: {
         'openid': '',
         'countrycode': '',
         'mobile': e.detail.value.mobile,
         'verification_code': e.detail.value.verification_code
       },
-      method: 'POST',
       success: function (res) {
         console.log(res);
         if (res.data.status == 1) {
-          //短信验证码正确
+          //短信验证码正确，需要在AWS中关联wechat&SAP信息
           wx.redirectTo({
             url: '../service_request/service_request'
           })
@@ -102,12 +101,11 @@ Page({
   getSMSCode: function () {
     //对接SMS服务器获取短信验证码
     wx.request({
-      url: 'https://devopsx.coffeelandcn.cn/getSMSCode.php',
+      url: 'https://devopsx.coffeelandcn.cn/Agilent/web/auth/get-smscode',
       data: {
         'countrycode': '',
         'mobile': ''
       },
-      method: 'POST',
       success: function (res) {
         console.log(res.data.status);
         if (res.data.status == 1) {

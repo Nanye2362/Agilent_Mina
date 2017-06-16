@@ -5,6 +5,7 @@
     "pages/service_request/service_request",
     "pages/activity/activity",
     "pages/myhome/myhome",
+    "pages/evaluation/evaluation",
     "pages/logs/logs"
   ],
   "window":{
@@ -26,8 +27,8 @@
         "selectedIconPath": "images/首页.png"
       },
       {
-        "pagePath": "pages/activity/activity",
-        "text": "活动",
+        "pagePath": "pages/evaluation/evaluation",
+        "text": "评价",
         "iconPath": "images/活动.png",
         "selectedIconPath": "images/活动.png"
       },
