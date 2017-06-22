@@ -3,7 +3,7 @@
 <view class="registration_content">
   <form report-submit bindsubmit="registrationSubmit" class="">
     <view class="">手机号</view>
-    <input type="text" name="mobile" placeholder="请输入手机号" />
+    <input type="text" bindblur="getmobile" name="mobile" placeholder="请输入手机号" />
     <view class="">验证码</view>
     <input type="text" name="verification_code" placeholder="请输入验证码" />
     <button bindtap="getSMSCode">免费获取</button>

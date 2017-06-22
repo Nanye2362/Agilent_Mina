@@ -89,6 +89,19 @@ Page({
     this.setData({
       key: key
     })
+  },
+
+  check: function () {
+
+  },
+
+  submit: function () {
+    wx.request({
+      url: 'https://devopsx.coffeelandcn.cn/agilent/web/',
+      success: function (res) {
+        console.log(res);
+      }
+    })
   }
 
 })

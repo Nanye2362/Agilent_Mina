@@ -54,7 +54,7 @@ App({
 
               //需要从SAP服务器查询该用户是否注册
               wx.request({
-                url: 'https://devopsx.coffeelandcn.cn/Agilent/web/auth/userbind',
+                url: 'https://devopsx.coffeelandcn.cn/agilent/web/auth/userbind',
                 data: {
                   'openid': obj.openid
                 },
@@ -62,7 +62,7 @@ App({
                   console.log('response');
                   if (res.data == 1) {
                     //验证成功，用户信息添加到缓存
-                    // wx.setStorageSync('user', obj);
+                    //wx.setStorageSync('user', obj);
                   }
                 },
                 fail: function (err) {

@@ -5,7 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    mobile: {}
   },
 
   /**
@@ -66,28 +66,26 @@ Page({
 
   registrationSubmit: function (e) {
     //验证手机号与短信验证码
-
-    console.log(e.detail.value);
+    console.log();
     wx.request({
-      url: 'https://devopsx.coffeelandcn.cn/Agilent/web/auth/register',
+      url: 'https://devopsx.coffeelandcn.cn/agilent/web/auth/register',
       data: {
-        'openid': '',
-        'countrycode': '',
+        'openid': 'oVpgL0YIl_OobwRZsAgrhKQ2FHjA',
         'mobile': e.detail.value.mobile,
         'verification_code': e.detail.value.verification_code
       },
       success: function (res) {
         console.log(res);
-        if (res.data.status == 1) {
+        if (res.data.success == true) {
           //短信验证码正确，需要在AWS中关联wechat&SAP信息
           wx.redirectTo({
             url: '../service_request/service_request'
           })
-        }else{
+        } else {
           //短信验证码错误
           wx.showToast({
             title: '验证码错误',
-            icon: 'success',
+            icon: 'fail',
             duration: 2000
           })
         }
@@ -99,12 +97,14 @@ Page({
   },
 
   getSMSCode: function () {
+    var that = this;
+    console.log(that.data.mobile);
     //对接SMS服务器获取短信验证码
     wx.request({
-      url: 'https://devopsx.coffeelandcn.cn/Agilent/web/auth/get-smscode',
+      url: 'https://devopsx.coffeelandcn.cn/agilent/web/auth/get-smscode',
       data: {
         'countrycode': '',
-        'mobile': ''
+        'mobile': that.data.mobile
       },
       success: function (res) {
         console.log(res.data.status);
@@ -121,5 +121,11 @@ Page({
         console.log(err);
       }
     });
+  },
+
+  getmobile: function (e) {
+    this.setData({
+      mobile: e.detail.value
+    })
   }
 })
