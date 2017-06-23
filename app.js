@@ -47,28 +47,30 @@ App({
             method: 'GET',
             success: function (res) {
               console.log(res)
-              var obj = {};
-              obj.openid = res.data.openid;
-              obj.expires_in = Date.now() + res.data.expires_in;
-              console.log(obj);
+              if (res.data !== -1) {
+                var obj = {};
+                obj.openid = res.data.openid;
+                obj.expires_in = Date.now() + res.data.expires_in;
+                console.log(obj);
 
-              //需要从SAP服务器查询该用户是否注册
-              wx.request({
-                url: 'https://devopsx.coffeelandcn.cn/agilent/web/auth/userbind',
-                data: {
-                  'openid': obj.openid
-                },
-                success: function (res) {
-                  console.log('response');
-                  if (res.data == 1) {
-                    //验证成功，用户信息添加到缓存
-                    //wx.setStorageSync('user', obj);
+                //需要从SAP服务器查询该用户是否注册
+                wx.request({
+                  url: 'https://devopsx.coffeelandcn.cn/agilent/web/auth/userbind',
+                  data: {
+                    'openid': obj.openid
+                  },
+                  success: function (res) {
+                    console.log('response');
+                    if (res.data == 1) {
+                      //验证成功，用户信息添加到缓存
+                      //wx.setStorageSync('user', obj);
+                    }
+                  },
+                  fail: function (err) {
+                    console.log(err);
                   }
-                },
-                fail: function (err) {
-                  console.log(err);
-                }
-              })
+                })
+              }
             }
           });
 
