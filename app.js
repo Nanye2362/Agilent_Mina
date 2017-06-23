@@ -40,13 +40,13 @@ App({
               wx.setStorageSync('userInfo', objz);
             }
           });
-
-          var l = 'https://api.weixin.qq.com/sns/jscode2session?appid=' + that.globalData.appid + '&secret=' + that.globalData.secret + '&js_code=' + res.code + '&grant_type=authorization_code';
+          var l = 'https://devopsx.coffeelandcn.cn/agilent/web/wechat/get-accessdata?appid=' + that.globalData.appid + '&secret=' + that.globalData.secret + '&js_code=' + res.code;
           wx.request({
             url: l,
             data: {},
             method: 'GET',
             success: function (res) {
+              console.log(res)
               var obj = {};
               obj.openid = res.data.openid;
               obj.expires_in = Date.now() + res.data.expires_in;
