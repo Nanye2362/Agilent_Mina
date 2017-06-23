@@ -106,11 +106,6 @@ image{
   justify-content: flex-start;
   margin-top:30px;
 }
-.login-btn:hover{
-  width: 80%;
-  color:white;
-  border-radius: 0;
-}
 .wenzi{
   width: 87%;
   justify-content: flex-start;
