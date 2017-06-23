@@ -5,7 +5,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    mobile: {}
+    mobile: {},
+    verification_code: {}
   },
 
   /**
@@ -66,7 +67,7 @@ Page({
 
   registrationSubmit: function (e) {
     //验证手机号与短信验证码
-    console.log();
+    console.log(e.detail.value);
     wx.request({
       url: 'https://devopsx.coffeelandcn.cn/agilent/web/auth/register',
       data: {
@@ -126,6 +127,12 @@ Page({
   getmobile: function (e) {
     this.setData({
       mobile: e.detail.value
+    })
+  },
+
+  getcode: function (e) {
+    this.setData({
+      verification_code: e.detail.value
     })
   }
 })
