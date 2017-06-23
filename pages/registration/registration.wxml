@@ -9,24 +9,26 @@
       <view class="login-item">
         <view class="login-pwd1">
           <view class="login-item-info1">+86</view>
-          <input bindblur="getmobile" name="mobile" placeholder="请输入手机号" />
+          <input bindblur="getmobile" name="mobile" placeholder="请输入手机号" type="number" />
         </view>
       </view>
 
       <view class="login-item">
         <view class="login-pwd2">
           <view class="login-item-info2">验证码</view>
-          <input bindblur="getcode" name="verification_code" placeholder="请输入验证码" />
-          <button bindtap="getSMSCode" class="code">获取验证码</button>
+          <input bindblur="getcode" name="verification_code" placeholder="请输入验证码" type="number"/>
+          <button bindtap="getSMSCode" class="code" disabled="{{disabled1}}"><text>{{code}}</text></button>
         </view>
       </view>
 
 
       <view class="wenzi">
         <view class="checkboxarea">
+        <checkbox-group bindchange="checkboxChange">
           <checkbox value="value" />
           <text class="text1">我已阅读并同意</text>
           <text class="xieyi">《安捷伦用户注册绑定协议》</text>
+          </checkbox-group>
         </view>
 
         <text class="text1">
@@ -34,7 +36,7 @@
         </text>
       </view>
 
-      <button formType="submit" class="login-btn">身份认证</button>
+      <button formType="submit" class="login-btn" disabled="{{disabled}}">身份认证</button>
     </view>
   </form>
 </view>

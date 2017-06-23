@@ -1,12 +1,20 @@
 // pages/authentication/authentication.js
+var clock='';
+var nums=60;
 Page({
-
+  
   /**
    * 页面的初始数据
    */
   data: {
     mobile: {},
-    verification_code: {}
+    verification_code: {},
+    disabled:true,
+    disabled1:false,
+    code:"获取验证码",
+    // clock:'',
+    // nums :60,
+    
   },
 
   /**
@@ -73,7 +81,8 @@ Page({
       data: {
         'openid': 'oVpgL0YIl_OobwRZsAgrhKQ2FHjA',
         'mobile': e.detail.value.mobile,
-        'verification_code': e.detail.value.verification_code
+        'verification_code': e.detail.value.verification_code,
+        disabled:true,
       },
       success: function (res) {
         console.log(res);
@@ -99,6 +108,9 @@ Page({
 
   getSMSCode: function () {
     var that = this;
+    // var clock='';
+    // var nums = 60;
+    
     console.log(that.data.mobile);
     //对接SMS服务器获取短信验证码
     wx.request({
@@ -116,12 +128,30 @@ Page({
             icon: 'success',
             duration: 2000
           })
+          that.setData({ disabled1: true})
+          that.setData({code:nums+'秒'})
+          clock = setInterval(that.doLoop,1000);
+     
         }
       },
       fail: function (err) {
         console.log(err);
       }
     });
+  },
+  doLoop() {
+    var that = this;
+    nums--;
+    if(nums>0)
+    {
+      that.setData({ code: nums + '秒' })
+    }
+    else{
+      clearInterval(clock);
+      that.setData({ disabled1:false })
+      that.setData({ code:'重新获取' })
+      nums=60;
+    }
   },
 
   getmobile: function (e) {
@@ -134,5 +164,8 @@ Page({
     this.setData({
       verification_code: e.detail.value
     })
+  },
+  checkboxChange:function(){
+    this.setData({ disabled: !this.data.disabled})
   }
 })
