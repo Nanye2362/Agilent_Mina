@@ -1,0 +1,11 @@
+/* pages/contact_us/contact_us.wxss */
+
+.qrcode{ padding: 70rpx; background: #fff; margin-bottom: 40rpx; }
+.qr{ width: 222rpx; height: 222rpx; margin-bottom: 50rpx;}
+.scan_remind{ margin-bottom: 70rpx; }
+
+.s-list{ padding: 0 13px; background: #fff; }
+.s-item{ border-bottom: 1px solid #dfdfdf; padding: 40rpx 8rpx; }
+.s-item:last-child{ border: none; }
+.item-t{ width: 200rpx; }
+

@@ -1,0 +1,11 @@
+/* pages/confirm_info/confirm_info.wxss */
+.product_info{ background: #fff; }
+.t-logo{ width: 38rpx; height: 34rpx;  vertical-align:sub; margin: 0 10px 0 15px;}
+.p-title{ padding: 8px; background: #eee; }
+.p-list{ padding: 0 13px; }
+.p-item{ border-bottom: 1px solid #dfdfdf; padding: 14px 16px; }
+.p-item:last-child{ border: none; }
+.item-t{ width: 200rpx; }
+
+
+

@@ -1,0 +1,23 @@
+/* pages/service_list/service_list.wxss */
+.swiper-tab{ width: 100%; border-bottom: 2rpx solid #eee; text-align: center; line-height: 80rpx; background: #fff; }  
+.swiper-tab-list{ font-size: 30rpx; display: inline-block; width: 33.3%; }  
+.on{ color: #0185d7; border-bottom: 6rpx solid #0185d7;}
+
+ .filter{ padding: 30rpx; background: #fff; margin-bottom: 30rpx; }
+ .request_no{ width: 60%; }
+ .filter_list{ width: 40%; }
+
+.swiper-box{ display: block; height: 100%; width: 100%; overflow: hidden;  }  
+
+swiper-item{ height: auto!important; }
+.re_detail{ background: #fff; padding: 0 20rpx; width:90%; margin: 0 auto; margin-bottom: 30rpx; box-shadow: 2px 2px 2px #dfdfdf; } 
+.de_title{ padding: 30rpx 0; border-bottom: 1px solid #eee; }
+.re_status{ margin-right: 5px; }
+
+.ti_l{ width: 85%; }
+.ti_r{ width: 15%; }
+
+.de_con{ padding: 50rpx 14rpx; }
+.con_l{ width: 70%;  }
+.con_l text{ margin-bottom: 14rpx;  }
+.con_r{ width: 30%; }

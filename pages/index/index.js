@@ -23,7 +23,7 @@ Page({
     duration: 1000,
     userInfo: {},
     cellHeight: '120px',
-    pageItems: []
+    pageItems: [],
   },
   //事件处理函数
   bindViewTap: function () {

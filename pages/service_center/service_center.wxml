@@ -1,0 +1,31 @@
+<!-- poster -->
+<view class="poster">
+    <image src="/images/service.jpg" class="s_poster"></image>
+</view>
+<!-- service_list -->
+<view class="service_list">
+    <view class="s_items flex justify-center">
+        <image src="/images/contact.png" class="s_icon"></image>
+        <view class="flex directionC s_con">
+            <text class="fcT fw con_title">联系客服</text>
+            <text class="fc-g fs14 fw">周一至周日09：00-12：00</text>
+        </view>
+        <image src="/images/arrow-r.png" class="arrow-r"></image>
+    </view>
+    <view class="s_items flex justify-center">
+        <image src="/images/hotline.png" class="s_icon"></image>
+        <view class="flex directionC s_con">
+            <text class="fcT fw con_title">热线电话</text>
+            <text class="fc-g fs14 fw">800-600-400</text>
+        </view>
+        <image src="/images/arrow-r.png" class="arrow-r"></image>
+    </view>
+    <view class="s_items flex justify-center">
+        <image src="/images/selfservice.png" class="s_icon"></image>
+        <view class="flex directionC s_con">
+            <text class="fcT fw con_title">自助服务</text>
+            <text class="fc-g fs14 fw">周一至周日09：00-12：00</text>
+        </view>
+        <image src="/images/arrow-r.png" class="arrow-r"></image>
+    </view>
+</view>

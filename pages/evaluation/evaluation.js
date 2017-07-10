@@ -89,6 +89,10 @@ Page({
     this.setData({
       key: key
     })
+  },
+
+  check: function(){
+    
   }
 
 })

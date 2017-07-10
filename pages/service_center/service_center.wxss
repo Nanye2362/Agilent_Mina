@@ -1,0 +1,8 @@
+/* pages/welcome/welcome.wxss */
+.s_poster{ width: 100%; }
+.service_list{ background: #fff; }
+.s_items{ border-bottom: 1px solid #ebebeb; padding: 35rpx; }
+.s_icon{ width: 130rpx; height: 130rpx; }
+.s_con{ width: 470rpx; padding: 16rpx 0 0 60rpx;}
+.con_title{ margin-bottom: 7px; }
+.arrow-r{ margin-top: 25px; }

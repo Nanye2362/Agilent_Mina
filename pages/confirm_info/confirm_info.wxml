@@ -1,0 +1,98 @@
+<!--pages/confirm_info/confirm_info.wxml-->
+<!-- info-product -->
+<view class="product_info">
+    <view class="flex directionC">
+        <!-- title -->
+        <view class="p-title">
+            <image class="t-logo" src="/images/icon-pro.png"></image>
+            <text class="fc-b fs16">产品信息</text>
+        </view>
+        <!-- list -->
+        <view class="p-list flex directionC">
+            <view class="p-item flex alignc">
+                <view class="item-t fc-g fs15">仪器名称：</view>
+                <view class="item-c fs15">490-PRO 微阵列扫描仪</view>
+            </view>
+            <view class="p-item flex alignc">
+                <view class="item-t fc-g fs15">仪器序列号：</view>
+                <view class="item-c fs15">RS-PRO-WE2352340014</view>
+            </view>
+            <view class="p-item flex alignc">
+                <view class="item-t fc-g fs15">出厂日期：</view>
+                <view class="item-c fs15">03/06/2016</view>
+            </view>
+            <view class="p-item flex alignc">
+                <view class="item-t fc-g fs15">保修期限：</view>
+                <view class="item-c fs15">03/06/2016</view>
+            </view>
+            <view class="p-item flex alignc">
+                <view class="item-t fc-g fs15">是否延保：</view>
+                <view class="item-c fs15">1年</view>
+            </view>
+        </view>
+    </view>
+    <!-- info-user -->
+    <view class="flex directionC">
+        <!-- title -->
+        <view class="p-title">
+            <image class="t-logo" src="/images/icon-user.png"></image>
+            <text class="fc-b fs16">用户信息</text>
+        </view>
+        <!-- list -->
+        <view class="p-list flex directionC">
+            <view class="p-item flex alignc">
+                <view class="item-t fc-g fs15">姓名：</view>
+                <view class="item-c fs15">张三</view>
+            </view>
+            <view class="p-item flex alignc">
+                <view class="item-t fc-g fs15">联系电话：</view>
+                <view class="item-c fs15">15532689875</view>
+            </view>
+            <view class="p-item flex alignc">
+                <view class="item-t fc-g fs15">单位：</view>
+                <view class="item-c fs15">上海市XXXXXX</view>
+            </view>
+            <view class="p-item flex alignc">
+                <view class="item-t fc-g fs15">地址：</view>
+                <view class="item-c fs15">上海市浦东新区金桥路</view>
+            </view>
+            <view class="p-item flex alignc">
+                <view class="item-t fc-g fs15">邮编：</view>
+                <view class="item-c fs15">200156</view>
+            </view>
+        </view>
+    </view>
+    <!-- info-other -->
+    <view class="flex directionC">
+        <!-- title -->
+        <view class="p-title">
+            <image class="t-logo" src="/images/icon-other.png"></image>
+            <text class="fc-b fs16">其他信息</text>
+        </view>
+        <!-- list -->
+        <view class="p-list flex directionC">
+            <view class="p-item flex alignc">
+                <view class="item-t fc-g fs15">姓名：</view>
+                <view class="item-c fs15">张三</view>
+            </view>
+            <view class="p-item flex alignc">
+                <view class="item-t fc-g fs15">联系电话：</view>
+                <view class="item-c fs15">15532689875</view>
+            </view>
+            <view class="p-item flex alignc">
+                <view class="item-t fc-g fs15">单位：</view>
+                <view class="item-c fs15">上海市XXXXXX</view>
+            </view>
+            <view class="p-item flex alignc">
+                <view class="item-t fc-g fs15">地址：</view>
+                <view class="item-c fs15">上海市浦东新区金桥路</view>
+            </view>
+            <view class="p-item flex alignc">
+                <view class="item-t fc-g fs15">邮编：</view>
+                <view class="item-c fs15">200156</view>
+            </view>
+        </view>
+    </view>
+    <!-- button -->
+    <view class="btn btn-primary">确定</view>
+</view>
