@@ -91,8 +91,17 @@ Page({
     })
   },
 
-  check: function(){
-    
+  check: function () {
+
+  },
+
+  submit: function () {
+    wx.request({
+      url: 'https://devopsx.coffeelandcn.cn/agilent/web/',
+      success: function (res) {
+        console.log(res);
+      }
+    })
   }
 
 })

@@ -42,5 +42,5 @@
 </view>
 
 <view class="">
-  <button>提交评价</button>
+  <button bindtap="submit">提交评价</button>
 </view>

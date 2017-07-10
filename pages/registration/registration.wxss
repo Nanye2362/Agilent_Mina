@@ -1,1 +1,138 @@
 /* pages/authentication/authentication.wxss */
+image{
+  width: 100%;
+  height:170px;
+}
+/*text{
+  font-size: 14px;
+  color: grey;
+  margin-top:15px;
+  width: 87%;
+}*/
+.text1{
+  font-size: 14px;
+  color: black;
+}
+.mcontainer{
+  height:100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content:center;
+  /*margin-top:60px;*/
+  
+}
+.item{
+  flex-grow: 1;
+  height: 30%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 96%;
+  padding: 0 2%;
+}
+.mcontainer image{
+  width: 500rpx;
+  height: 150rpx;
+}
+.login-item{
+  width: 90%;
+  margin-top:30rpx;
+  border-bottom: 1px solid #eee;
+  flex-grow: 1;
+  flex-direction: row;
+  justify-content:space-between;
+  padding-bottom: 20rpx;
+  align-items: baseline;
+  position: relative;
+  
+}
+.bottom{
+  border-bottom: 0px;
+}
+.login-item-info1{
+  font-size: 15px;
+  padding-bottom:10rpx;
+  width: 61px;
+  /*font-weight: bold;*/
+  height: 22px;
+  justify-content: center;
+  position: relative;
+  
+  align-items:baseline;
+}
+.login-item-info2{
+  font-size: 16px;
+  padding-bottom:10rpx;
+  width: 61px;
+  /*font-weight: bold;*/
+  height: 22px;
+  justify-content: center;
+  position: relative;
+  margin-bottom: 5px;
+  align-items:baseline;
+}
+.login-pwd1{
+  display: flex;
+  justify-content: space-betweens;
+  flex-grow: 1;
+  align-items:baseline;
+   position: relative;
+}
+.login-pwd2{
+  display: flex;
+  justify-content: space-between;
+  flex-grow: 1;
+  align-items:baseline;
+  position: relative;
+}
+.login-pwd text{
+  height: 100%;
+  font-size: 14px;
+  color: #888;
+  
+  /*display: flex;*/
+}
+.login-btn{
+  width: 90%;
+  height:40px;
+  color: white;
+  background-color: rgb(0, 133, 213);
+  border-radius: 5px;
+  font-size: 14px;
+  flex-direction: row;
+  justify-content: flex-start;
+  margin-top:30px;
+}
+.wenzi{
+  width: 87%;
+  justify-content: flex-start;
+}
+.code{
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: bold;
+  color: rgb(0, 133, 213);
+  border: 1px solid rgb(0, 133, 213);
+  width: 100px;
+  position: relative;
+  margin-right: 0px;
+}
+.xieyi{
+  color: rgb(0, 133, 213);
+  font-size: 14px;
+}
+input{
+  font-size: 16px;
+  position: absolute;
+  margin-left: 80px;
+}
+.num{
+  margin-bottom: 5rpx;
+}
+.checkboxarea{
+  margin-top: 30px;
+  margin-bottom: 10px;
+}

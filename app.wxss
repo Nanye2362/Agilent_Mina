@@ -8,3 +8,52 @@
   padding: 200rpx 0;
   box-sizing: border-box;
 } 
+page{ height: 100%; background: #eee; }
+
+/* ======================= font ===================== */
+view, text, a{ font-size: 36rpx; font-family: "MicroSoft Yahei"}
+.fw{ font-weight: bold; }
+/* font-size */
+.fs14{ font-size: 0.7rem; }
+.fs16{ font-size: 0.85rem; }
+.fs15{ font-size: 0.78rem; }
+/* font-color */
+.fcT{ color: #404040; }
+.fc-g{ color: #757575; }
+.fc-b{ color: #0988d4; }
+.fc-r{ color: #df0002; }
+
+
+/* ====================== flex ====================== */
+.flex{ display: flex; }
+.alignc{ align-items: center; }
+.alignl{ align-content: left; }
+.alignr{ align-content: right; }
+.text-alignC{ text-align: center; }
+.text-alignL{ text-align: left; }
+.text-alignR{ text-align: right; }
+
+/*top-to-bottom*/
+.directionC{ flex-direction: column; }
+/* rank-average */
+.justify-space{ justify-content:space-between; }
+/* rank-center */
+.justify-center{ justify-content:center; }
+
+/* ===================== items ===================== */
+.arrow-r{ width: 20rpx; height: 40rpx; }
+
+
+
+/* ======================  button ================== */
+.btn{ border-radius: 20rpx; text-align: center; margin: 20px auto; }
+.btn-primary{ height: 100rpx; width: 90%; background: #0084d6; color: #fff; line-height: 100rpx; }
+.btn-mini{ height: 70rpx; line-height: 70rpx; }
+.btn-mini-normal{ background: #fff; border: 1px solid #cdcdcd; }
+.btn-mini-primary{ background: #0084d6; color: #fff; }
+
+
+
+
+
+

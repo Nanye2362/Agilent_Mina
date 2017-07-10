@@ -40,35 +40,37 @@ App({
               wx.setStorageSync('userInfo', objz);
             }
           });
-
-          var l = 'https://api.weixin.qq.com/sns/jscode2session?appid=' + that.globalData.appid + '&secret=' + that.globalData.secret + '&js_code=' + res.code + '&grant_type=authorization_code';
+          var l = 'https://devopsx.coffeelandcn.cn/agilent/web/wechat/get-accessdata?appid=' + that.globalData.appid + '&secret=' + that.globalData.secret + '&js_code=' + res.code;
           wx.request({
             url: l,
             data: {},
             method: 'GET',
             success: function (res) {
-              var obj = {};
-              obj.openid = res.data.openid;
-              obj.expires_in = Date.now() + res.data.expires_in;
-              console.log(obj);
+              console.log(res)
+              if (res.data !== -1) {
+                var obj = {};
+                obj.openid = res.data.openid;
+                obj.expires_in = Date.now() + res.data.expires_in;
+                console.log(obj);
 
-              //需要从SAP服务器查询该用户是否注册
-              wx.request({
-                url: 'https://devopsx.coffeelandcn.cn/Agilent/web/auth/userbind',
-                data: {
-                  'openid': obj.openid
-                },
-                success: function (res) {
-                  console.log('response');
-                  if (res.data == 1) {
-                    //验证成功，用户信息添加到缓存
-                    // wx.setStorageSync('user', obj);
+                //需要从SAP服务器查询该用户是否注册
+                wx.request({
+                  url: 'https://devopsx.coffeelandcn.cn/agilent/web/auth/userbind',
+                  data: {
+                    'openid': obj.openid
+                  },
+                  success: function (res) {
+                    console.log('response');
+                    if (res.data == 1) {
+                      //验证成功，用户信息添加到缓存
+                      //wx.setStorageSync('user', obj);
+                    }
+                  },
+                  fail: function (err) {
+                    console.log(err);
                   }
-                },
-                fail: function (err) {
-                  console.log(err);
-                }
-              })
+                })
+              }
             }
           });
 

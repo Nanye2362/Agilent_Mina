@@ -67,14 +67,22 @@ Page({
   srSubmit: function (e) {
     console.log(e.detail.value);
     wx.request({
-      url: 'https://devopsx.coffeelandcn.cn/Agilent/web/sr/confirm',
-      data: {},
-      method: 'POST',
+      url: 'https://devopsx.coffeelandcn.cn/agilent/web/sr/confirm',
+      data: {
+        'openid': 'oVpgL0YIl_OobwRZsAgrhKQ2FHjA',
+        'mobile': '13482641158',
+        'serial_number': e.detail.value.serial_number
+      },
       success: function (res) {
-        console.log(res);
-        // wx.redirectTo({
-        //   url: '..//'
-        // })
+        console.log(res.data.success);
+        if (res.data.success === true) {
+          wx.navigateTo({
+            url: '../service_center/service_center',
+          })
+        } else {
+          console.log('error');
+        }
+
       },
       fail: function (err) {
         console.log(err);
