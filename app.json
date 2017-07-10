@@ -2,6 +2,9 @@
   "pages":[
     "pages/index/index",
     "pages/registration/registration",
+    "pages/confirm_info/confirm_info",
+    "pages/contact_us/contact_us",
+    "pages/service_list/service_list",
     "pages/service_request/service_request",
     "pages/service_center/service_center",
     "pages/activity/activity",
