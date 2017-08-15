@@ -1,4 +1,3 @@
-/*
 var app = getApp()
 Page({
     data: {
@@ -29,4 +28,4 @@ Page({
             index: e.detail.value
         })
     }
-}) */
+}) 
