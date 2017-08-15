@@ -1,4 +1,9 @@
 /* pages/service_list/service_list.wxss */
+.search_area{ width: 90%; margin: 20rpx auto; height: 80rpx; border: 1px solid #d9d9d9; border-radius: 3px; padding: 10rpx 20rpx; box-sizing: border-box; }
+.search_img{ width: 40rpx; height: 40rpx; vertical-align: sub; }
+.search_btn{ width: 60rpx; height: 60rpx; line-height: 60rpx; margin-right: 5px; }
+.search_input{ height: 60rpx; }
+
 .swiper-tab{ width: 100%; border-bottom: 2rpx solid #eee; text-align: center; line-height: 80rpx; background: #fff; }  
 .swiper-tab-list{ font-size: 30rpx; display: inline-block; width: 33.3%; }  
 .on{ color: #0185d7; border-bottom: 6rpx solid #0185d7;}
@@ -14,10 +19,15 @@ swiper-item{ height: auto!important; }
 .de_title{ padding: 30rpx 0; border-bottom: 1px solid #eee; }
 .re_status{ margin-right: 5px; }
 
-.ti_l{ width: 85%; }
-.ti_r{ width: 15%; }
 
-.de_con{ padding: 50rpx 14rpx; }
-.con_l{ width: 70%;  }
-.con_l text{ margin-bottom: 14rpx;  }
-.con_r{ width: 30%; }
+.ti_l{ flex: .7; }
+.ti_l text:not(:first-child){ margin-top: 20rpx; }
+.ti_r{ flex: .3; }
+
+.state_btn{ display: block; width: 90px; height: 35px; transform: skew(-15deg); line-height: 35px; border-radius: 3px; border: 3px solid #fff; margin-top: 30rpx;}
+.state_btn .state_text{ transform: skew(15deg);}  
+
+.de_con{ padding: 0; }
+.con_l{ flex: .7;  }
+.con_r{ flex: .3; }
+.btn_img{ width: 20px; height: 20px; vertical-align: middle; }

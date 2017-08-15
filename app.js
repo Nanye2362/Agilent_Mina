@@ -2,18 +2,8 @@
 var util = require('/utils/util.js');
 App({
   onLaunch: function () {
-    //测试用，清除缓存
-    wx.clearStorageSync()
-    wx.request({
-      url: 'https://devopsx.coffeelandcn.cn/getAccessToken.php',
-      success: function (res) {
-        var access_token = res.data;
-        wx.setStorageSync('token', access_token);
-      },
-      fail: function (err) {
-        console.log(err);
-      }
-    })
+    
+    
     //调用API从本地缓存中获取数据
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())

@@ -1,0 +1,31 @@
+<!--pages/fill_info/fill_info.wxml-->
+<!-- remind -->
+<view class="remind">
+    <image src="/images/remind.png" class="remind_img"></image>
+    <text class="fs15">温馨提示：您的手机在系统里还没有建档。请填写以下资料，我们会尽快为您建档。</text>
+</view>
+<!-- service-infomation -->
+<view class="s-list flex directionC">
+    <view class="s-item flex alignc">
+        <view class="item-t fc-g fs15">姓名：</view>
+        <input class="fs15 userNam" type="text" placeholder="请输入姓名" />
+    </view>
+    <view class="s-item flex alignc">
+        <view class="item-t fc-g fs15">手机号：</view>
+        <input type="text" pattern="^1[345678][0-9]{9}$" class="fs15 telNo" placeholder="请输入您的电话" />
+    </view>
+    <view class="s-item flex alignc">
+        <view class="item-t fc-g fs15">单位名称：</view>
+        <input type="text" class="fs15 companyNam" placeholder="请输入单位名称"/>
+    </view>
+    <view class="s-item flex alignc">
+        <view class="item-t fc-g fs15">序列号：</view>
+        <input type="text" class="fs15 serialNo" placeholder="例：RS-PRO-SE3948478"/>
+    </view>
+    <view class="s-item flex alignc">
+        <view class="item-t fc-g fs15">备注：</view>
+        <input type="text" class="fs15 serialNo" placeholder="添加备注（可选）"/>
+    </view>
+</view>
+<!-- btn -->
+<view class="btn btn-primary">确定</view>

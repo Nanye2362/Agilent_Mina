@@ -1,0 +1,4 @@
+/* pages/serial_number/serial_number.wxss */
+.sn_bg{ width: 100%; height: 200px; }
+.sn_title{ padding: 10px 20px; }
+.sn_num{ padding: 10px 20px; }

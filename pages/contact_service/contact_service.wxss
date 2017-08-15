@@ -1,0 +1,4 @@
+/* pages/contact_service/contact_service.wxss */
+.contact_service{ padding: 60rpx; }
+.contact_service image{ width: 487rpx; height: 437rpx; margin-top: 60rpx; }
+.clickToService{ display: block; margin: 150rpx 0; }

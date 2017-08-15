@@ -1,3 +1,2 @@
-<button bindtap="uploadImg">上传文件</button>
-
-<button bindtap="downloadFile">下载文件</button>
+<!--pages/myhome/myhome.wxml-->
+<text>pages/myhome/myhome.wxml</text>

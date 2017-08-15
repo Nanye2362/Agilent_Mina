@@ -5,7 +5,9 @@
 .scan_remind{ margin-bottom: 70rpx; }
 
 .s-list{ padding: 0 13px; background: #fff; }
-.s-item{ border-bottom: 1px solid #dfdfdf; padding: 40rpx 8rpx; }
+.s-item{ border-bottom: 1px solid #dfdfdf; padding: 30rpx 8rpx; }
 .s-item:last-child{ border: none; }
-.item-t{ width: 200rpx; }
+.item-t{ width: 80rpx; }
+.item_img{ width: 20px; height: 20px; }
+.item_time{ margin-bottom: 20rpx; }
 

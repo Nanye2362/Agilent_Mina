@@ -1,4 +1,5 @@
 /**app.wxss**/
+
 .container {
   height: 100%;
   display: flex;
@@ -10,18 +11,20 @@
 } 
 page{ height: 100%; background: #eee; }
 
+
 /* ======================= font ===================== */
-view, text, a{ font-size: 36rpx; font-family: "MicroSoft Yahei"}
+view, text, a, input, button{ font-size: 36rpx; font-family: "MicroSoft Yahei"; color: #404040;}
 .fw{ font-weight: bold; }
 /* font-size */
 .fs14{ font-size: 0.7rem; }
 .fs16{ font-size: 0.85rem; }
 .fs15{ font-size: 0.78rem; }
 /* font-color */
-.fcT{ color: #404040; }
-.fc-g{ color: #757575; }
+.fc-g{ color: #8f8f8f; }
 .fc-b{ color: #0988d4; }
 .fc-r{ color: #df0002; }
+.fc-fff{ color: #fff; }
+
 
 
 /* ====================== flex ====================== */
@@ -32,6 +35,7 @@ view, text, a{ font-size: 36rpx; font-family: "MicroSoft Yahei"}
 .text-alignC{ text-align: center; }
 .text-alignL{ text-align: left; }
 .text-alignR{ text-align: right; }
+.align-center{ align-self: center; }
 
 /*top-to-bottom*/
 .directionC{ flex-direction: column; }
@@ -39,20 +43,30 @@ view, text, a{ font-size: 36rpx; font-family: "MicroSoft Yahei"}
 .justify-space{ justify-content:space-between; }
 /* rank-center */
 .justify-center{ justify-content:center; }
+/* rank-middle */
+.self-center{ align-self: center; }
 
 /* ===================== items ===================== */
 .arrow-r{ width: 20rpx; height: 40rpx; }
 
-
+/* ===================== bg ===================== */
+.bg-primary{ background: #fff; }
 
 /* ======================  button ================== */
 .btn{ border-radius: 20rpx; text-align: center; margin: 20px auto; }
 .btn-primary{ height: 100rpx; width: 90%; background: #0084d6; color: #fff; line-height: 100rpx; }
-.btn-mini{ height: 70rpx; line-height: 70rpx; }
 .btn-mini-normal{ background: #fff; border: 1px solid #cdcdcd; }
 .btn-mini-primary{ background: #0084d6; color: #fff; }
+.bg-mini-btn{ background: #8bafe0; box-shadow: 0px 0px 2px #8bafe0;}
+.bg-mini-btn-green{ background: #92d999;box-shadow: 0 0 2px #92d999;}
+.btn-circle{ margin: 30rpx 0; text-align: center; border-radius: 20px; height: 34px; line-height: 34px; font-size: 0.7rem; }
+
+/* ================remind================= */
+.remind{ padding: 40rpx; }
 
 
+/* =================text================== */
+.text-center{ text-align: center; }
 
 
 

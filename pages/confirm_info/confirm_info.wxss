@@ -1,9 +1,9 @@
 /* pages/confirm_info/confirm_info.wxss */
-.product_info{ background: #fff; }
+.poster_img{ width: 100%; height: 450rpx; }
 .t-logo{ width: 38rpx; height: 34rpx;  vertical-align:sub; margin: 0 10px 0 15px;}
-.p-title{ padding: 8px; background: #eee; }
-.p-list{ padding: 0 13px; }
-.p-item{ border-bottom: 1px solid #dfdfdf; padding: 14px 16px; }
+.p-title{ padding: 26rpx 60rpx; }
+.p-list{ padding: 0 30rpx; background: #fff; }
+.p-item{ border-bottom: 1px solid #dfdfdf; padding: 18px 30rpx; }
 .p-item:last-child{ border: none; }
 .item-t{ width: 200rpx; }
 

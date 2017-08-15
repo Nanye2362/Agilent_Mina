@@ -1,4 +1,11 @@
 <view class="service_list">
+    <!-- search -->
+    <view class="search_area bg-primary flex">
+        <view class="search_btn text-center">
+            <image class="search_img" src="/images/search.png"></image>
+        </view>
+        <input type="text" class="search_input fs15" id="search_input" placeholder="气相色谱 液相色谱"/>
+    </view>
     <!-- tab -->
     <view class="swiper-tab">    
         <view class="swiper-tab-list {{currentTab==0 ? 'on' : ''}}" circular="true" data-current="0" bindtap="swichNav">全部</view>    
@@ -7,7 +14,7 @@
     </view>
     <!--filter-->
     <view class="filter flex alignC">
-      <view class="request_no fc-g fs15">共<text class="fs15">9</text>条服务请求</view>
+      <view class="request_no fc-g fs15">共<text class="fs15 fc-g">9</text>条服务请求</view>
       <view class="filter_list fs15 text-alignR">默认排序</view>
     </view>
     <!-- content -->
@@ -17,44 +24,54 @@
             <!-- item -->     
             <view class="re_detail">
                 <view class="de_title flex ">
-                    <view class="ti_l text_alignL  ">
-                        <text class="fc-r  fs15 re_status">[维修]</text>
-                        <text class="fs15">bk233323232323  </text>
+                    <view class="ti_l text_alignL flex directionC">
+                        <text class="fs15">
+                            <text class="fc-b  fs15 re_status">[报修]</text>bk233323232323
+                        </text>
+                        <text class="fs15">安捷伦-气象色谱系统</text>
+                        <text class="fs15">序列号：RS-PRO-EA2939485755</text>
                     </view>
-                    <view class="ti_r ">
-                        <text class="unread fc-g fs14 text_alignR">进行中</text>
+                    <view class="ti_r">
+                        <view class="bg-mini-btn state_btn text-center">
+                            <view class="fs14 state_text fc-fff">报价已确认</view>
+                        </view>
                     </view>
                 </view>
                 <view class="de_con flex">
-                    <view class="con_l flex directionC">
-                        <text class="fs16">安捷伦-气象色谱系统</text>
-                        <text class="fs14 fc-g">创建时间：2016-02-03 09：35</text>
-                        <text class="fs14 fc-g">服务状态：进行中</text>
+                    <view class="con_l self-center">               
+                        <text class="fs14 fc-g">创建时间：2017年8月9日 19：00</text>
                     </view>
                     <view class="con_r">
-                        <view class="btn fs15 btn-mini-normal btn-mini">联系客服</view>
+                        <view class="btn-circle fs15 btn-mini-normal">
+                            <image class="btn_img" src="/images/wechat.png"></image>
+                        联系客服</view>
                     </view>
                 </view>
             </view>
             <!-- item -->     
             <view class="re_detail">
                 <view class="de_title flex ">
-                    <view class="ti_l text_alignL  ">
-                        <text class="fc-r  fs15 re_status">[维修]</text>
-                        <text class="fs15">bk233323232323  </text>
+                    <view class="ti_l text_alignL flex directionC">
+                        <text class="fs15">
+                            <text class="fc-b  fs15 re_status">[报修]</text>bk233323232323
+                        </text>
+                        <text class="fs15">安捷伦-气象色谱系统</text>
+                        <text class="fs15">序列号：RS-PRO-EA2939485755</text>
                     </view>
-                    <view class="ti_r ">
-                        <text class="unread fc-g fs14 text_alignR">待评价</text>
+                    <view class="ti_r">
+                        <view class="bg-mini-btn-green state_btn text-center">
+                            <view class="fs14 state_text fc-fff">待评价</view>
+                        </view>
                     </view>
                 </view>
                 <view class="de_con flex">
-                    <view class="con_l flex directionC">
-                        <text class="fs16">安捷伦-气象色谱系统</text>
-                        <text class="fs14 fc-g">创建时间：2016-02-03 09：35</text>
-                        <text class="fs14 fc-g">服务状态：进行中</text>
+                    <view class="con_l self-center">               
+                        <text class="fs14 fc-g">创建时间：2017年8月9日 19：00</text>
                     </view>
                     <view class="con_r">
-                        <view class="btn fs15 btn-mini-primary btn-mini">联系客服</view>
+                        <view class="btn-circle fs15 btn-mini-normal">
+                            <image class="btn_img" src="/images/good.png"></image>
+                        联系客服</view>
                     </view>
                 </view>
             </view>

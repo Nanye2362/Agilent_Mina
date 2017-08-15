@@ -1,42 +1,34 @@
-<view class="imageview">
-  <image src="{{url}}"></image>
+<!-- poster -->
+<view class="poster">
+  <image class="img_bg" src="/images/my_bg.png"></image>
+  <image class="img_2" src="/images/bg_logo.png"></image>
 </view>
 
-<view class="mcontainer">
-
-  <form bindsubmit="registrationSubmit">
-    <view class="item">
-      <view class="login-item">
-        <view class="login-pwd1">
-          <view class="login-item-info1">+86</view>
-          <input bindblur="getmobile" name="mobile" placeholder="请输入手机号" type="number" />
+<!-- form -->
+<form bindsubmit="registrationSubmit" class="regist_form" id="regist_form">
+    <view class="regist_con">
+        <!-- phone_num -->
+        <view class="regist_item phone_no flex align-center">
+            <view class="item_title align-center fs16">+86</view>
+            <input class="input_phone align-center fs16" bindblur="getmobile" name="mobile" placeholder="请输入手机号" type="number" />
         </view>
-      </view>
-
-      <view class="login-item">
-        <view class="login-pwd2">
-          <view class="login-item-info2">验证码</view>
-          <input bindblur="getcode" name="verification_code" placeholder="请输入验证码" type="number"/>
-          <button bindtap="getSMSCode" class="code" disabled="{{disabled1}}"><text>{{code}}</text></button>
+        <!-- verification_code -->
+        <view class="regist_item verification_code flex">
+            <view class="item_title align-center fs16">验证码</view>
+            <input class="input_verification align-center fs16" bindblur="" name="verification_code" placeholder="请输入验证码" type="number"/>
+            <button class="verification_btn align-center fs16" bindtap="getSMSCode" disabled="{{disabled1}}">{{code}}</button>
         </view>
-      </view>
-
-
-      <view class="wenzi">
-        <view class="checkboxarea">
-        <checkbox-group bindchange="checkboxChange">
-          <checkbox value="value" />
-          <text class="text1">我已阅读并同意</text>
-          <text class="xieyi">《安捷伦用户注册绑定协议》</text>
-          </checkbox-group>
+        <!-- remind -->
+        <view class="regist_remind">
+            <view class="checkboxarea">
+                <checkbox-group bindchange="checkboxChange">
+                    <checkbox value="value" class="regist_checkbox" id="regist_checkbox"/>
+                    <text class="fs15">我已阅读并同意</text>
+                    <text class="fs15 fc-b">《安捷伦用户注册绑定协议》</text>
+                </checkbox-group>
+            </view>
+            <text class="gentle_remind fs15">温馨提示：首次提服务请求需要先进行身份验证，下次将直接进入序列号输入页面，进入咨询流程。</text>
         </view>
-
-        <text class="text1">
-          温馨提示：首次提服务请求需要先进行身份验证，下次将直接进入序列号输入页面，进入咨询流程。
-        </text>
-      </view>
-
-      <button formType="submit" class="login-btn" disabled="{{disabled}}">身份认证</button>
     </view>
-  </form>
-</view>
+    <button formType="submit"  class="btn btn-primary">身份认证</button>
+</form>

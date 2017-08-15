@@ -1,0 +1,37 @@
+<!--pages/personal_info/personal_info.wxml-->
+<!-- avatar -->
+<view class="personal_avatar flex bg-primary">
+    <view class="p_left fs15 self-center">头像</view>
+    <view class="p_right flex justify-right">
+        <image class="p_avatar" src="/images/avatar.png"></image>
+    </view>       
+</view>
+
+
+<!-- information -->
+<!-- name -->
+<view class="p_item bg-primary flex">
+    <view class="p_left fs15 self-center">姓名</view>
+    <view class="p_right text-right self-center fc-g fs15">张三</view> 
+</view>
+<!-- gender -->
+<view class="p_item bg-primary flex">
+    <view class="p_left fs15 self-center">称呼</view>
+    <view class="p_right text-right self-center">
+        <radio-group class="radio-group" bindchange="radioChange">
+            <label class="radio fs15 fc-g" wx:for="{{items}}">
+                <radio value="{{item.name}}" color="#0988d4" checked="{{item.checked}}"/>{{item.value}}
+            </label>
+        </radio-group>
+    </view> 
+</view>
+<!-- phone -->
+<view class="p_item bg-primary flex">
+    <view class="p_left fs15 self-center">手机号</view>
+    <view class="p_right text-right self-center fc-g fs15">13849543547</view> 
+</view>
+<!-- company -->
+<view class="p_item bg-primary flex">
+    <view class="p_left fs15 self-center">单位名称</view>
+    <view class="p_right text-right self-center fc-g fs15">上海高知特</view> 
+</view>

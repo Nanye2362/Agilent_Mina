@@ -1,0 +1,7 @@
+<!--pages/serial_number/serial_number.wxml-->
+<image src="/images/sn_bg.png" class="sn_bg"></image>
+<view class="sn_title">产品序列号</view>
+<view class="sn_num bg-primary">
+    <input class="" type="text" placeholder="例：RS-PRO-N3187365B"/>
+</view>
+<view class="sn_btn btn btn-primary">确定</view>

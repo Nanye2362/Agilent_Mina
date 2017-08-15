@@ -1,0 +1,71 @@
+<view class="service_list">
+    <!-- addInstrument -->
+    <view class="add_new flex directionC justify-center">
+        <view class="add_btn text-center">
+            <image src="/images/add_btn.png"></image>
+        </view>
+        <view class="add_word fc-b fs16 text-center">添加仪器</view>
+    </view>
+
+    <!-- list -->     
+    <view class="re_detail">
+        <view class="de_title flex ">
+            <view class="ti_l text_alignL flex directionC">
+                <view class="ti_l_item flex">
+                    <view class="item_l fs15 fc-g">分类：</view>
+                    <view class="item_r fs15">气相色谱</view>
+                </view>
+                <view class="ti_l_item flex">
+                    <view class="item_l fs15 fc-g">型号：</view>
+                    <view class="item_r fs15">490-PRO 气相色谱</view>
+                </view>
+                <view class="ti_l_item flex">
+                    <view class="item_l fs15 fc-g">序列号：</view>
+                    <view class="item_r fs15">RS-PRO-ES19394958</view>
+                </view>
+            </view>
+            <view class="ti_r text-right">
+                <image class="instru_img" src="/images/instrument.png"></image>
+                <text class="fc-b fs15">报修历史</text>
+            </view>
+        </view>
+        <view class="de_con flex justify-right">
+            <view class="btn-circle fs15 btn-mini-normal">
+                <image class="btn_img" src="/images/instr_delete.png"></image>
+            删除</view>
+            <view class="btn-circle fs15 btn-mini-normal">
+                <image class="btn_img" src="/images/instr_fix.png"></image>
+            报修</view>
+        </view>
+    </view>
+    <view class="re_detail">
+        <view class="de_title flex ">
+            <view class="ti_l text_alignL flex directionC">
+                <view class="ti_l_item flex">
+                    <view class="item_l fs15 fc-g">分类：</view>
+                    <view class="item_r fs15">气相色谱</view>
+                </view>
+                <view class="ti_l_item flex">
+                    <view class="item_l fs15 fc-g">型号：</view>
+                    <view class="item_r fs15">490-PRO 气相色谱</view>
+                </view>
+                <view class="ti_l_item flex">
+                    <view class="item_l fs15 fc-g">序列号：</view>
+                    <view class="item_r fs15">RS-PRO-ES19394958</view>
+                </view>
+            </view>
+            <view class="ti_r text-right">
+                <image class="instru_img" src="/images/instrument.png"></image>
+                <text class="fc-b fs15">报修历史</text>
+            </view>
+        </view>
+        <view class="de_con flex justify-right">
+            <view class="btn-circle fs15 btn-mini-normal">
+                <image class="btn_img" src="/images/instr_delete.png"></image>
+            删除</view>
+            <view class="btn-circle fs15 btn-mini-normal">
+                <image class="btn_img" src="/images/instr_fix.png"></image>
+            报修</view>
+        </view>
+    </view>
+</view>

@@ -1,0 +1,8 @@
+/* pages/personal_info/personal_info.wxss */
+.personal_avatar{ padding: 30rpx 40rpx; margin-bottom: 30rpx;}
+.p_left{ flex: .3; }
+.p_right{ flex: .7; } 
+.p_avatar{ width: 100rpx; height: 100rpx; }
+
+.p_item{ padding: 40rpx 40rpx; border-bottom: 1px solid #e6e7e6; }
+

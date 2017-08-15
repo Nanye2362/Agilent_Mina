@@ -3,25 +3,42 @@
     <view class="qrcode flex directionC alignc">
         <text class="fs16 scan_remind">扫描以下二维码即可通过微信与我们联系</text>
         <image class="qr" src="/images/qrcode.jpg"></image>
-        <text class="fc-g fs16 wechatNo">微信号：A08125369</text>
+        <text class="fc-g fs16 wechatNo">安捷伦售后服务 官方服务号</text>
     </view>
     <!-- service-infomation -->
     <view class="s-list flex directionC">
         <view class="s-item flex alignc">
-            <view class="item-t fc-g fs15">服务时间：</view>
-            <view class="item-c fs15">09：00-21：00(法定节假日除外)</view>
+            <view class="flex item-t">
+                <image class="item_img" src="/images/c_time.png"></image>
+            </view>
+            <view class="flex item-c directionC">
+                <view class="fs15 item_time">09：00-21：00(法定节假日除外)</view>
+                <view class="fs15">09：00-21：00(法定节假日除外)</view>
+            </view>
         </view>
         <view class="s-item flex alignc">
-            <view class="item-t fc-g fs15">客服电话：</view>
-            <view class="item-c fs15 fc-b">400-820-3278</view>
+            <view class="flex item-t">
+                <image class="item_img" src="/images/c_phone.png"></image>
+            </view>
+            <view class="fc-b item-c fs15">400-820-3278(手机) 800-820-3289(座机)</view>
         </view>
         <view class="s-item flex alignc">
-            <view class="item-t fc-g fs15">邮箱地址：</view>
-            <view class="item-c fs15">contactus@agilent.com</view>
+            <view class="flex item-t">
+                <image class="item_img" src="/images/c_world.png"></image>
+            </view>
+            <view class="item-c fs15">www.lsca-china.com.cn</view>
         </view>
         <view class="s-item flex alignc">
-            <view class="item-t fc-g fs15">公司地址：</view>
-            <view class="item-c fs15">北京市朝阳区望京北路3号100102</view>
+            <view class="flex item-t">
+                <image class="item_img" src="/images/c_email.png"></image>
+            </view>
+            <view class="item-c fs15">lsca-china_800@agilent.com</view>
+        </view>
+        <view class="s-item flex alignc">
+            <view class="flex item-t">
+                <image class="item_img" src="/images/c_address.png"></image>
+            </view>
+            <view class="item-c fs15">北京市朝阳区望京北路</view>
         </view>
     </view>
 </view>

@@ -1,0 +1,9 @@
+<!--pages/contact_service/contact_service.wxml-->
+<view class="contact_service text-center">
+    <image src="/images/contact_service.png"></image>
+    <text class="clickToService fs15">客服正在为您建档，您可以</text>
+    <view class="btn btn-primary">联系客服</view>
+</view>
+<!-- btn -->
+
+
