@@ -1,8 +1,10 @@
 {
   "pages":[
+    "pages/evaluation/evaluation",
+    "pages/my/my",
     "pages/index/index",
     "pages/my_instrument/my_instrument",
-    "pages/my/my",
+    
     "pages/registration/registration",
   	"pages/personal_info/personal_info",
     "pages/contact_us/contact_us",
@@ -15,9 +17,10 @@
     "pages/service_request/service_request",  
     "pages/activity/activity",
     "pages/myhome/myhome",
-    "pages/evaluation/evaluation",
+    
     "pages/logs/logs"
   ],
+  
   "window":{
     "backgroundTextStyle":"light",
     "navigationBarBackgroundColor": "#444",
@@ -26,7 +29,7 @@
   },
   "tabBar": {
     "color": "#a9b7b7",
-    "selectedColor": "#80bd01",
+    "selectedColor": "#0085d5",
     "backgroundColor": "#fff",
     "borderStyle": "black",
     "list": [
@@ -45,8 +48,8 @@
       {
         "pagePath": "pages/myhome/myhome",
         "text": "我的",
-        "iconPath": "/images/contact.png",
-        "selectedIconPath": "/images/contact_c.png"
+        "iconPath": "images/contact.png",
+        "selectedIconPath": "images/contact_c.png"
       }
     ]
   }

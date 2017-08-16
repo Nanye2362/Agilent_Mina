@@ -10,64 +10,133 @@
   box-sizing: border-box;
 } 
 page{ height: 100%; background: #eee; }
+view{ box-sizing: border-box; }
+.padding {
+    padding: 30rpx;
+}
+
+
+
+/* ====================== flex ====================== */
+/* flex */
+.flex { display: flex; }
+.alignc { align-items: center;}
+.alignl { align-content: left;}
+.alignr { align-content: right;}
+.text-alignC { text-align: center;}
+.text-alignL { text-align: left;}
+.text-alignR { text-align: right;}
+.align-center { align-self: center;}
+/*top-to-bottom*/
+.directionC { flex-direction: column;}
+/* rank-average */
+.justify-space {  justify-content: space-between;}
+/* rank-center */
+.justify-center { justify-content: center;}
+.justify-end { justify-content: flex-end;}
+/* rank-middle */
+.self-center { align-self: center;}
+
+/* ===================== items ===================== */
+.arrow-r{ width: 20rpx; height: 40rpx; }
+
+/* ================background=================== */
+.bg-primary {
+    background: #fff;
+}
+.bg-gb {
+    background: #ecedef;
+}
+.bg-lb {
+    background: #f0f4f6;
+}
+.bg-blue {
+    background: #0085d5;
+}
+.bg-green {
+    background: #84bd00;
+}
+.bg-orange {
+    background: #f2a900;
+}
+
+/* ======================  button ================== */
+.btn{ border-radius: 12rpx; text-align: center; margin: 20px auto; }
+.btn-primary{ height: 90rpx; width: 90%; background: #0084d6; color: #fff; line-height: 90rpx; }
+
 
 
 /* ======================= font ===================== */
-view, text, a, input, button{ font-size: 36rpx; font-family: "MicroSoft Yahei"; color: #404040;}
+view, text, input, button{ font-size: 32rpx; font-family: "MicroSoft Yahei"; color: #333;}
 .fw{ font-weight: bold; }
 /* font-size */
 .fs14{ font-size: 0.7rem; }
 .fs16{ font-size: 0.85rem; }
 .fs15{ font-size: 0.78rem; }
 /* font-color */
-.fc-g{ color: #8f8f8f; }
-.fc-b{ color: #0988d4; }
-.fc-r{ color: #df0002; }
-.fc-fff{ color: #fff; }
+.fc-333 {
+    color: #333;
+}
+.fc-aaa {
+    color: #aaa;
+}
+.fc-blue {
+    color: #0085d5!important;
+}
+.fc-fff {
+    color: #fff;
+}
+.fc-666 {
+    color: #666;
+}
+.fc-777 {
+    color: #777;
+}
+.fc-orange {
+    color: #ff961a;
+}
 
+.fc-red {
+    color: #dd7e7b;
+}
 
-
-/* ====================== flex ====================== */
-.flex{ display: flex; }
-.alignc{ align-items: center; }
-.alignl{ align-content: left; }
-.alignr{ align-content: right; }
-.text-alignC{ text-align: center; }
-.text-alignL{ text-align: left; }
-.text-alignR{ text-align: right; }
-.align-center{ align-self: center; }
-
-/*top-to-bottom*/
-.directionC{ flex-direction: column; }
-/* rank-average */
-.justify-space{ justify-content:space-between; }
-/* rank-center */
-.justify-center{ justify-content:center; }
-/* rank-middle */
-.self-center{ align-self: center; }
-
-/* ===================== items ===================== */
-.arrow-r{ width: 20rpx; height: 40rpx; }
-
-/* ===================== bg ===================== */
-.bg-primary{ background: #fff; }
-
-/* ======================  button ================== */
-.btn{ border-radius: 20rpx; text-align: center; margin: 20px auto; }
-.btn-primary{ height: 100rpx; width: 90%; background: #0084d6; color: #fff; line-height: 100rpx; }
-.btn-mini-normal{ background: #fff; border: 1px solid #cdcdcd; }
-.btn-mini-primary{ background: #0084d6; color: #fff; }
-.bg-mini-btn{ background: #8bafe0; box-shadow: 0px 0px 2px #8bafe0;}
-.bg-mini-btn-green{ background: #92d999;box-shadow: 0 0 2px #92d999;}
-.btn-circle{ margin: 30rpx 0; text-align: center; border-radius: 20px; height: 34px; line-height: 34px; font-size: 0.7rem; }
-
-/* ================remind================= */
-.remind{ padding: 40rpx; }
-
+.fc-green {
+    color: #84bd00;
+}
 
 /* =================text================== */
-.text-center{ text-align: center; }
+.text-center {
+    text-align: center;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.text-right {
+    text-align: right;
+}
+/* =============text-overflow=============== */
+.text-overflow {
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 
 
+/* ================divider=================== */
+
+.divider-primary {
+    height: 1px;
+    width: 100%;
+    background: #d9d9d9;
+}
+
+.divider {
+    height: 1px;
+    width: 100%;
+    background: #eaeaea;
+}
 
 
