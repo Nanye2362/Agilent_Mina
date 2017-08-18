@@ -8,10 +8,10 @@ Page({
     winHeight: 0,
     // tab切换  
     currentTab: 0,
+    dropdown: false
   },
   onLoad: function () {
     var that = this;
-
     /** 
      * 获取系统信息 
      */
@@ -45,5 +45,14 @@ Page({
         currentTab: e.target.dataset.current
       })
     }
+  },
+  tagShow: function(){
+    var that = this;
+    this.setData({dropdown: !that.data.dropdown});
+  },
+
+  clickToHide:function(){
+    console.log(this);
+    this.setData({dropdown: false});
   }
 })  

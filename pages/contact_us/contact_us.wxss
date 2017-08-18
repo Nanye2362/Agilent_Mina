@@ -1,13 +1,52 @@
 /* pages/contact_us/contact_us.wxss */
+/* ====================contact_us====================== */
+.img_bg{
+    width: 750rpx;
+    height: 300rpx;
+}
+.cu_header {
+    padding: 20px;
+}
 
-.qrcode{ padding: 70rpx; background: #fff; margin-bottom: 40rpx; }
-.qr{ width: 222rpx; height: 222rpx; margin-bottom: 50rpx;}
-.scan_remind{ margin-bottom: 70rpx; }
+.cu-qrcode {
+    width: 130px;
+    margin: 20px 0;
+}
 
-.s-list{ padding: 0 13px; background: #fff; }
-.s-item{ border-bottom: 1px solid #dfdfdf; padding: 30rpx 8rpx; }
-.s-item:last-child{ border: none; }
-.item-t{ width: 80rpx; }
-.item_img{ width: 20px; height: 20px; }
-.item_time{ margin-bottom: 20rpx; }
+.cu_list {
+    padding: 0 15px;
+    background: #fff;
+    margin-top: 10px;
+}
 
+.cu_item {
+    border-bottom: 1px solid #dfdfdf;
+    padding: 15px 4px;
+}
+
+.cu_item:last-child {
+    border: none;
+}
+
+.cu-item-t {
+    width: 40px;
+}
+
+.cu-item_img {
+    width: 20px;
+    height: 20px;
+}
+
+.cu-item_time {
+    margin-bottom: 10px;
+}
+
+.cu_tel {
+    display: block;
+}
+text{
+  line-height: 50rpx;
+}
+.marginB-8{
+  margin-bottom: 16rpx;
+}

@@ -1,31 +1,29 @@
 {
-  "pages":[
-    "pages/evaluation/evaluation",
-    "pages/my/my",
-    "pages/index/index",
+  "pages": [
     "pages/my_instrument/my_instrument",
-    
-    "pages/registration/registration",
-  	"pages/personal_info/personal_info",
+    "pages/serial_number/serial_number",
+    "pages/evaluation/evaluation",
     "pages/contact_us/contact_us",
-    "pages/service_list/service_list",
+    "pages/install/install",
+    "pages/faq_details/faq_details",
+    "pages/faq/faq",
+    "pages/myhome/myhome",
+    "pages/my/my",
     "pages/confirm_info/confirm_info",
+    "pages/index/index",
+    "pages/registration/registration",
+    "pages/personal_info/personal_info",
     "pages/contact_service/contact_service",
     "pages/fill_info/fill_info",
-    "pages/serial_number/serial_number",        
-  
-    "pages/service_request/service_request",  
+    "pages/service_request/service_request",
     "pages/activity/activity",
-    "pages/myhome/myhome",
-    
     "pages/logs/logs"
   ],
-  
-  "window":{
-    "backgroundTextStyle":"light",
+  "window": {
+    "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#444",
     "navigationBarTitleText": "安捷伦售后服务",
-    "navigationBarTextStyle":"light"
+    "navigationBarTextStyle": "light"
   },
   "tabBar": {
     "color": "#a9b7b7",

@@ -1,11 +1,119 @@
 /* pages/confirm_info/confirm_info.wxss */
-.poster_img{ width: 100%; height: 450rpx; }
-.t-logo{ width: 38rpx; height: 34rpx;  vertical-align:sub; margin: 0 10px 0 15px;}
-.p-title{ padding: 26rpx 60rpx; }
-.p-list{ padding: 0 30rpx; background: #fff; }
-.p-item{ border-bottom: 1px solid #dfdfdf; padding: 18px 30rpx; }
-.p-item:last-child{ border: none; }
-.item-t{ width: 200rpx; }
+/* ====================product_details====================== */
 
+#MEIQIA-BTN-HOLDER {
+    display: none!important;
+}
 
+.pd_camera {
+    flex: 1;
+    position: relative;
+}
 
+.pd_camera::before {
+    content: "";
+    background: url(../../images/camera.png) no-repeat;
+    position: absolute;
+    top: 10%;
+    right: 32%;
+    width: 1.3rem;
+    height: 1.05rem;
+    z-index: 0;
+    background-size: cover;
+}
+
+@media screen and (min-width: 400px) {
+    .pd_camera::before {
+        content: "";
+        background: url(../../images/camera.png) no-repeat;
+        position: absolute;
+        top: 10%;
+        right: 144rpx;
+        width: 1.5rem;
+        height: 1.3125rem;
+        z-index: 0;
+        background-size: cover;
+    }
+}
+
+.pd_input_img {
+    width: 100%;
+    opacity: 0;
+    z-index: 1;
+    position: absolute;
+    right: 0;
+}
+
+.pd_wechat {
+    width: 100%;
+}
+
+.pd_wechat_btn {
+    text-decoration: underline;
+}
+
+.pd_wechat_btn image {
+    width: 50rpx;
+    height: 44rpx;
+    vertical-align: sub;
+    margin: 0 10rpx 0 16rpx;
+}
+
+.pd_btn {
+    position: relative;
+}
+
+.pd_unread {
+    position: absolute;
+    top: 0;
+    right: 26rpx;
+    display: block;
+    width: 52rpx;
+    height: 52rpx;
+    text-align: center;
+    line-height: 52rpx;
+    font-size: 28rpx;
+    color: #fff;
+    border-radius: 30rpx;
+    background-color: #ff3b30;
+}
+
+.pd_cell {
+    padding: 30rpx 30rpx;
+    position: relative;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+}
+
+.pd_cell:before {
+    content: " ";
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    height: 2rpx;
+    border-top: 2rpx solid #e5e5e5;
+    color: #e5e5e5;
+    -webkit-transform-origin: 0 0;
+    transform-origin: 0 0;
+    -webkit-transform: scaleY(0.5);
+    transform: scaleY(0.5);
+    left: 30rpx;
+    z-index: 2;
+    margin-right: 30rpx;
+}
+
+.pd_cell:first-child:before {
+    display: none;
+}
+.pd_label {
+    display: block;
+    width: 210rpx;
+    word-wrap: break-word;
+    word-break: break-all;
+    padding-left: 20rpx;
+}

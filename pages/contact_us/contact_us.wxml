@@ -1,45 +1,43 @@
-<!--pages/contact_us/contact_us.wxml-->
-<view class="contact_us">
-    <view class="qrcode flex directionC alignc">
-        <text class="fs16 scan_remind">扫描以下二维码即可通过微信与我们联系</text>
-        <image class="qr" src="/images/qrcode.jpg"></image>
-        <text class="fc-g fs16 wechatNo">安捷伦售后服务 官方服务号</text>
+<!-- poster -->
+<view class="auth-poster">
+    <image class="img_bg" src="/images/auth_bg.png"></image>
+</view>
+
+
+<!-- notification -->
+<view class="cu_noti bg-primary padding">
+    <view class="marginB-8">亲爱的用户：</view>
+    <text>感谢您一直以来对我们工作的关注和支持。我们的工作时间是周一至周五的 8:30-17:30，双休日（除节假日外）仅提供紧急电话技术支持，服务时间为：9:00-17:00。</text>
+</view>
+
+
+<!-- service-infomation -->
+<view class="cu_list flex directionC">
+    <view class="cu_item flex alignc">
+        <view class="flex cu-item-t">
+            <image class="cu-item_img" src="/images/c_phone.png"></image>
+        </view>
+        <view class="flex directionC">
+            <a href="tel:400-820-3278" class="fc-blue fs15 cu_tel">400-820-3278(手机)</a>
+            <a href="tel:400-820-3278"  class="fc-blue fs15 cu_tel"> 800-820-3289(座机)</a>
+        </view>
     </view>
-    <!-- service-infomation -->
-    <view class="s-list flex directionC">
-        <view class="s-item flex alignc">
-            <view class="flex item-t">
-                <image class="item_img" src="/images/c_time.png"></image>
-            </view>
-            <view class="flex item-c directionC">
-                <view class="fs15 item_time">09：00-21：00(法定节假日除外)</view>
-                <view class="fs15">09：00-21：00(法定节假日除外)</view>
-            </view>
+    <view class="cu_item flex alignc">
+        <view class="flex cu-item-t">
+            <image class="cu-item_img" src="/images/c_world.png"></image>
         </view>
-        <view class="s-item flex alignc">
-            <view class="flex item-t">
-                <image class="item_img" src="/images/c_phone.png"></image>
-            </view>
-            <view class="fc-b item-c fs15">400-820-3278(手机) 800-820-3289(座机)</view>
+        <view class="item-c fs15">www.lsca-china.com.cn</view>
+    </view>
+    <view class="cu_item flex alignc">
+        <view class="flex cu-item-t">
+            <image class="cu-item_img" src="/images/c_email.png"></image>
         </view>
-        <view class="s-item flex alignc">
-            <view class="flex item-t">
-                <image class="item_img" src="/images/c_world.png"></image>
-            </view>
-            <view class="item-c fs15">www.lsca-china.com.cn</view>
+        <view class="cu-item-c fs15">lsca-china_800@agilent.com</view>
+    </view>
+    <view class="cu_item flex alignc">
+        <view class="flex cu-item-t">
+            <image class="cu-item_img" src="/images/c_address.png"></image>
         </view>
-        <view class="s-item flex alignc">
-            <view class="flex item-t">
-                <image class="item_img" src="/images/c_email.png"></image>
-            </view>
-            <view class="item-c fs15">lsca-china_800@agilent.com</view>
-        </view>
-        <view class="s-item flex alignc">
-            <view class="flex item-t">
-                <image class="item_img" src="/images/c_address.png"></image>
-            </view>
-            <view class="item-c fs15">北京市朝阳区望京北路</view>
-        </view>
+        <view class="item-c fs15">北京市朝阳区望京北路</view>
     </view>
 </view>
-<!-- service-info -->

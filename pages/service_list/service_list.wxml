@@ -1,89 +1,202 @@
-<view class="service_list">
-    <!-- search -->
-    <view class="search_area bg-primary flex">
-        <view class="search_btn text-center">
-            <image class="search_img" src="/images/search.png"></image>
+<view  wx:if="{{dropdown}}"  class="faq_mask" bindtap="clickToHide"></view>
+<!-- tab_filter -->
+ <view class="sl_tab flex bg-primary">    
+        <view class="sl_tab_item  {{currentTab==0 ? 'on' : ''}}" circular="true" data-current="0" bindtap="swichNav">进行中</view>  
+        <view class="sl_tab_item {{currentTab==1 ? 'on' : ''}}" circular="true" data-current="1" bindtap="swichNav">已完成</view>  
+</view> 
+<!-- filter_head -->
+
+<view class="sl_filter bg-primary">
+    <view class=" flex" style="padding: 0 20px;">
+        <view class="flex_item">
+            <view class="placeholder fc-aaa">共<span>1</span>条记录</view>
         </view>
-        <input type="text" class="search_input fs15" id="search_input" placeholder="气相色谱 液相色谱"/>
+        <view class="text-right fc-blue" style="display: inline; position: relative; z-index: 1000;" bindtap="tagShow">
+              <view class="sl_dropdown text-right fc-blue">进样器</view>
+                <view wx:if="{{dropdown}}" class="faq_select">
+                    <view class="text-overflow" >
+                        1
+                    </view>
+                    <view class="text-overflow">
+                        2
+                    </view>
+                    <view class="text-overflow" >
+                        3
+                    </view>
+                    <view class="text-overflow">
+                        3
+                    </view>
+                </view>                
+        </view>
     </view>
-    <!-- tab -->
-    <view class="swiper-tab">    
-        <view class="swiper-tab-list {{currentTab==0 ? 'on' : ''}}" circular="true" data-current="0" bindtap="swichNav">全部</view>    
-        <view class="swiper-tab-list {{currentTab==1 ? 'on' : ''}}" circular="true" data-current="1" bindtap="swichNav">进行中</view>    
-        <view class="swiper-tab-list {{currentTab==2 ? 'on' : ''}}" circular="true" data-current="2" bindtap="swichNav">已完成</view>  
-    </view>
-    <!--filter-->
-    <view class="filter flex alignC">
-      <view class="request_no fc-g fs15">共<text class="fs15 fc-g">9</text>条服务请求</view>
-      <view class="filter_list fs15 text-alignR">默认排序</view>
-    </view>
-    <!-- content -->
+</view>
+
+<!-- notification -->
+<view class="fc-aaa text-center fs14 sl_notifi">以下显示最近三个月记录</view>
+
+<!-- content -->
     <swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:{{winHeight - 31}}px" bindchange="bindChange">    
         <!-- 全部 -->   
         <swiper-item class="flex directionC">
-            <!-- item -->     
-            <view class="re_detail">
-                <view class="de_title flex ">
-                    <view class="ti_l text_alignL flex directionC">
-                        <text class="fs15">
-                            <text class="fc-b  fs15 re_status">[报修]</text>bk233323232323
-                        </text>
-                        <text class="fs15">安捷伦-气象色谱系统</text>
-                        <text class="fs15">序列号：RS-PRO-EA2939485755</text>
-                    </view>
-                    <view class="ti_r">
-                        <view class="bg-mini-btn state_btn text-center">
-                            <view class="fs14 state_text fc-fff">报价已确认</view>
-                        </view>
-                    </view>
+              <!-- service_list_item -->
+              <view class="sl_list_item bg-primary "> 
+                  <!-- state -->
+                  <view class="sl_tab_con_state bg-blue"></view>
+                  <!-- btn -->
+                  <view class="sl_list_item_down flex">
+                      <view class="sl_list_item_left">
+                          <view class="fs14">服务单号：SR80109394845432</view>
+                      </view>
+                      <view class="fs14 sl_list_item_right fc-blue">等待报价确认</view>
+                  </view>
+                  <!-- viewider -->
+                  <view class="divider"></view>
+                  <!-- info -->
+                  <view class="sl_list_item_up flex">
+                      <view class="sl_list_item_info sl_list_item_left">
+                          <view class="placeholder">
+                              <view class="fs15 marginb-9">1280固定进样针的地方松动</view>
+                              <view class="fs13 marginb-6 fc-777">序列号：RS-PRO-z0290384848</view>
+                              <view class="fs13 marginb-6 fc-777">创建时间: 2017年6月18日09:00</view>
+                          </view>
+                      </view>
+                      <view class="sl_list_item_right flex directionC justify-center">
+                          <view href="javascript:;" class="sl_chat_btn self-center fs14" onclick="_MEIQIA('showPanel')">发起会话</view>
+                          <view href="javascript:;" class="sl_pdf fc-blue fs13 text-right" >
+                              <image class="" src="../../images/pdf1.png"/>服务报告
+                          </view>
+                      </view>
+                  </view>
                 </view>
-                <view class="de_con flex">
-                    <view class="con_l self-center">               
-                        <text class="fs14 fc-g">创建时间：2017年8月9日 19：00</text>
-                    </view>
-                    <view class="con_r">
-                        <view class="btn-circle fs15 btn-mini-normal">
-                            <image class="btn_img" src="/images/wechat.png"></image>
-                        联系客服</view>
-                    </view>
-                </view>
-            </view>
-            <!-- item -->     
-            <view class="re_detail">
-                <view class="de_title flex ">
-                    <view class="ti_l text_alignL flex directionC">
-                        <text class="fs15">
-                            <text class="fc-b  fs15 re_status">[报修]</text>bk233323232323
-                        </text>
-                        <text class="fs15">安捷伦-气象色谱系统</text>
-                        <text class="fs15">序列号：RS-PRO-EA2939485755</text>
-                    </view>
-                    <view class="ti_r">
-                        <view class="bg-mini-btn-green state_btn text-center">
-                            <view class="fs14 state_text fc-fff">待评价</view>
-                        </view>
-                    </view>
-                </view>
-                <view class="de_con flex">
-                    <view class="con_l self-center">               
-                        <text class="fs14 fc-g">创建时间：2017年8月9日 19：00</text>
-                    </view>
-                    <view class="con_r">
-                        <view class="btn-circle fs15 btn-mini-normal">
-                            <image class="btn_img" src="/images/good.png"></image>
-                        联系客服</view>
-                    </view>
-                </view>
-            </view>
+              <!-- service_list_item -->
+              <view class="sl_list_item bg-primary "> 
+                  <!-- state -->
+                  <view class="sl_tab_con_state bg-orange"></view>
+                  <!-- btn -->
+                  <view class="sl_list_item_down flex">
+                      <view class="sl_list_item_left">
+                          <view class="fs14">服务单号：8100000711</view>
+                      </view>
+                      <view class="fs14 sl_list_item_right fc-orange">待评价</view>
+                  </view>
+                  <!-- viewider -->
+                  <view class="divider"></view>
+                  <!-- info -->
+                  <view class="sl_list_item_up flex">
+                      <view class="sl_list_item_info sl_list_item_left">
+                          <view class="placeholder">
+                              <view class="fs15 marginb-9">1280固定进样针的地方松动</view>
+                              <view class="fs13 marginb-6 fc-777">序列号：RS-PRO-z0290384848</view>
+                              <view class="fs13 marginb-6 fc-777">创建时间: 2017年6月18日09:00</view>
+                          </view>
+                      </view>
+                      <view class="sl_list_item_right flex directionC justify-center">
+                          <view href="../site/evaluation" class="sl_chat_btn self-center fs14 evaluation" srid="8100000711">评价</view>
+                          <view href="javascript:;" class="sl_pdf fc-blue fs13 text-right" >
+                              <image class="" src="../../images/pdf1.png"/>服务报告
+                          </view>
+                      </view>
+                  </view>
 
-        </swiper-item>        
-        <!-- 进行中 -->   
-        <swiper-item>     
-            <view>ing</view>    
-        </swiper-item>        
-        <!-- 已完成 -->   
-        <swiper-item>     
-            <view>ed</view>    
+                </view>
+              <!-- service_list_item -->
+              <view class="sl_list_item bg-primary ">
+                      <!-- state -->
+                      <view class="sl_tab_con_state bg-green"></view>
+                      <!-- btn -->
+                      <view class="sl_list_item_down flex">
+                          <view class="sl_list_item_left">
+                              <view class="fs14">服务单号：SR80109394845432</view>
+                          </view>
+                          <view class="fs14 sl_list_item_right fc-green">已完成</view>
+                      </view>
+                      <!-- viewider -->
+                      <view class="divider"></view>
+                      <!-- info -->
+                      <view class="sl_list_item_up flex">
+                          <view class="sl_list_item_info sl_list_item_left">
+                              <view class="placeholder">
+                                  <view class="fs15 marginb-9">1280固定进样针的地方松动</view>
+                                  <view class="fs13 marginb-6 fc-777">序列号：RS-PRO-z0290384848</view>
+                                  <view class="fs13 marginb-6 fc-777">创建时间: 2017年6月18日09:00</view>
+                              </view>
+                          </view>
+                          <view class="sl_list_item_right flex directionC justify-center">
+                              <view href="javascript:;" class="sl_chat_btn self-center fs14" onclick="_MEIQIA('showPanel')">发起会话</view>
+                              <view href="javascript:;" class="sl_pdf fc-blue fs13 text-right" >
+                                  <image class="" src="../../images/pdf1.png"/>服务报告
+                              </view>
+                          </view>
+                      </view>
+               </view>
+
         </swiper-item>  
+        
+        <!-- 已完成 -->   
+        <swiper-item class="flex directionC">     
+            <!-- service_list_item -->
+              <view class="sl_list_item bg-primary "> 
+                  <!-- state -->
+                  <view class="sl_tab_con_state bg-blue"></view>
+                  <!-- btn -->
+                  <view class="sl_list_item_down flex">
+                      <view class="sl_list_item_left">
+                          <view class="fs14">服务单号：SR80109394845432</view>
+                      </view>
+                      <view class="fs14 sl_list_item_right fc-blue">等待报价确认</view>
+                  </view>
+                  <!-- viewider -->
+                  <view class="divider"></view>
+                  <!-- info -->
+                  <view class="sl_list_item_up flex">
+                      <view class="sl_list_item_info sl_list_item_left">
+                          <view class="placeholder">
+                              <view class="fs15 marginb-9">1280固定进样针的地方松动</view>
+                              <view class="fs13 marginb-6 fc-777">序列号：RS-PRO-z0290384848</view>
+                              <view class="fs13 marginb-6 fc-777">创建时间: 2017年6月18日09:00</view>
+                          </view>
+                      </view>
+                      <view class="sl_list_item_right flex directionC justify-center">
+                          <view href="javascript:;" class="sl_chat_btn self-center fs14" onclick="_MEIQIA('showPanel')">发起会话</view>
+                          <view href="javascript:;" class="sl_pdf fc-blue fs13 text-right" >
+                              <image class="" src="../../images/pdf1.png"/>服务报告
+                          </view>
+                      </view>
+                  </view>
+                </view>
+              <!-- service_list_item -->
+              <view class="sl_list_item bg-primary "> 
+                  <!-- state -->
+                  <view class="sl_tab_con_state bg-orange"></view>
+                  <!-- btn -->
+                  <view class="sl_list_item_down flex">
+                      <view class="sl_list_item_left">
+                          <view class="fs14">服务单号：8100000711</view>
+                      </view>
+                      <view class="fs14 sl_list_item_right fc-orange">待评价</view>
+                  </view>
+                  <!-- viewider -->
+                  <view class="divider"></view>
+                  <!-- info -->
+                  <view class="sl_list_item_up flex">
+                      <view class="sl_list_item_info sl_list_item_left">
+                          <view class="placeholder">
+                              <view class="fs15 marginb-9">1280固定进样针的地方松动</view>
+                              <view class="fs13 marginb-6 fc-777">序列号：RS-PRO-z0290384848</view>
+                              <view class="fs13 marginb-6 fc-777">创建时间: 2017年6月18日09:00</view>
+                          </view>
+                      </view>
+                      <view class="sl_list_item_right flex directionC justify-center">
+                          <view href="../site/evaluation" class="sl_chat_btn self-center fs14 evaluation" srid="8100000711">评价</view>
+                          <view href="javascript:;" class="sl_pdf fc-blue fs13 text-right" >
+                              <image class="" src="../../images/pdf1.png"/>服务报告
+                          </view>
+                      </view>
+                  </view>
+
+                </view>
+        </swiper-item>  
+        
     </swiper>
-</view>
+
+
