@@ -4,5 +4,5 @@
 .p_right{ flex: .7; } 
 .p_avatar{ width: 100rpx; height: 100rpx; }
 
-.p_item{ padding: 40rpx 40rpx; border-bottom: 1px solid #e6e7e6; }
+.p_item{ padding: 30rpx 40rpx; border-bottom: 1px solid #e6e7e6; }
 

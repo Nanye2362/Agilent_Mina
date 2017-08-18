@@ -1,0 +1,48 @@
+<!--pages/leave_message/leave_message.wxml-->
+<!-- notification -->
+<view class="lm_remind padding">
+    <view class="fs13 fc-red">抱歉！非工作时间我们暂时无法为您提供服务。如需帮助，可申请离线报修，我们将尽快联系并解决您的问题。您也可以通过<text class="fc-blue">自助服务</text>了解仪器保养、维护及故障排除的知识。</view>
+</view>
+
+<!-- form -->
+<form class="lm_form" id="lm_form" method="">
+    <view class="s-list flex directionC">
+        <view class="s-item flex alignc">
+            <view class="item-t fc-g fs14">姓名：</view>
+            <input class="fs14 item-r userNam" type="text" placeholder="请输入姓名" />
+        </view>
+        <view class="s-item flex alignc">
+            <view class="item-t fc-g fs14">手机号：</view>
+            <view class="item-r s-phone fs14">12345</view>
+        </view>
+        <view class="s-item flex alignc">
+            <view class="item-t fc-g fs14">单位名称：</view>
+            <input type="text" class="item-r fs14 companyNam" placeholder="请输入单位名称"/>
+        </view>
+        <view class="s-item flex alignc">
+            <view class="item-t fc-g fs14">序列号：</view>
+            <input type="text" class="item-r fs14 serialNo" placeholder="例：RS-PRO-SE3948478"/>
+        </view>
+        <!-- 故障描述 -->
+        <view class=" s-repair fc-g fs14 padding">
+            <text class="fs14">故障描述：</text>
+            <textarea class="s-textarea fs13" maxlength="80" bindblur="bindTextAreaBlur" bindinput="desNo" />
+            <view class="text-right fc-aaa">{{describeNo}}/80</view>
+        </view>
+        <!-- 图片上传 -->
+        <view class="s-item">
+            <view class="item-t fc-g fs14">故障照片：</view>
+            <view class="s-upload flex justify-space">
+                <view class="s-upload-item">
+                    <button bindtap="chooseimage" class="lm_photobtn" style="display: {{btnDisplay}}"></button>
+                    <image src="{{tempFilePaths }}" mode="aspecFill" style="width: 100%; height: 100%; display:{{uploadedDisplay}}"/> 
+                </view>
+                <view class="s-upload-item"></view>
+                <view class="s-upload-item"></view>
+                <view class="s-upload-item"></view>
+            </view>
+        </view>
+    </view>
+    <view class="btn btn-primary">确定</view>
+</form>
+

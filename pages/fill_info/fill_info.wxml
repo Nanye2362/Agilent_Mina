@@ -1,31 +1,30 @@
 <!--pages/fill_info/fill_info.wxml-->
 <!-- remind -->
-<view class="remind">
-    <image src="/images/remind.png" class="remind_img"></image>
-    <text class="fs15">温馨提示：您的手机在系统里还没有建档。请填写以下资料，我们会尽快为您建档。</text>
+<view class="padding">
+    <text class="fs12 fc-red ">温馨提示：您的手机在系统里还没有建档。请填写以下资料，我们会尽快为您建档。</text>
 </view>
 <!-- service-infomation -->
 <view class="s-list flex directionC">
     <view class="s-item flex alignc">
-        <view class="item-t fc-g fs15">姓名：</view>
-        <input class="fs15 userNam" type="text" placeholder="请输入姓名" />
+        <view class="item-t fc-g fs14">姓名：</view>
+        <input class="fs14 item-r userNam" type="text" placeholder="请输入姓名" />
     </view>
     <view class="s-item flex alignc">
-        <view class="item-t fc-g fs15">手机号：</view>
-        <input type="text" pattern="^1[345678][0-9]{9}$" class="fs15 telNo" placeholder="请输入您的电话" />
+        <view class="item-t fc-g fs14">手机号：</view>
+        <view class="item-r s-phone fs14">12345</view>
     </view>
     <view class="s-item flex alignc">
-        <view class="item-t fc-g fs15">单位名称：</view>
-        <input type="text" class="fs15 companyNam" placeholder="请输入单位名称"/>
+        <view class="item-t fc-g fs14">单位名称：</view>
+        <input type="text" class="item-r fs14 companyNam" placeholder="请输入单位名称"/>
     </view>
     <view class="s-item flex alignc">
-        <view class="item-t fc-g fs15">序列号：</view>
-        <input type="text" class="fs15 serialNo" placeholder="例：RS-PRO-SE3948478"/>
+        <view class="item-t fc-g fs14">序列号：</view>
+        <input type="text" class="item-r fs14 serialNo" placeholder="例：RS-PRO-SE3948478"/>
     </view>
     <view class="s-item flex alignc">
-        <view class="item-t fc-g fs15">备注：</view>
-        <input type="text" class="fs15 serialNo" placeholder="添加备注（可选）"/>
+        <view class="item-t fc-g fs14">备注：</view>
+        <input type="text" class="item-r fs14 serialNo" placeholder="添加备注（可选）"/>
     </view>
 </view>
 <!-- btn -->
-<view class="btn btn-primary">确定</view>
+<button class="btn btn-primary">确定</button>

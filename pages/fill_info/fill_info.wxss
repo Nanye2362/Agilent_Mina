@@ -1,8 +1,7 @@
 /* pages/fill_info/fill_info.wxss */
-.s-list{ padding: 0 13px; background: #fff; }
+.s-list{ padding: 0 40rpx; background: #fff; }
 .s-item{ border-bottom: 1px solid #dfdfdf; padding: 0rpx 8rpx; }
 .s-item:last-child{ border: none; }
-.item-t{ width: 200rpx; height: 45px; line-height: 45px; }
-.s-item input{ height: 45px; }
-input{ min-width: 400rpx; }
-.remind_img{ width: 20px; height: 20px; vertical-align: middle; margin-right: 8px; }
+.item-t{ flex: .3; height: 100rpx; line-height: 100rpx; }
+.s-item input{ height: 100rpx; }
+.item-r{ flex: .7; }

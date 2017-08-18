@@ -1,4 +1,5 @@
 /* pages/contact_service/contact_service.wxss */
 .contact_service{ padding: 60rpx; }
-.contact_service image{ width: 487rpx; height: 437rpx; margin-top: 60rpx; }
-.clickToService{ display: block; margin: 150rpx 0; }
+.contact_service image{ width: 547rpx; height: 542rpx; margin-top: 40rpx; }
+.chatimg{ width: 50rpx; height: 38rpx; vertical-align: sub;margin-right: 6rpx; margin-left: 10rpx;}
+.contactS{ padding: 60rpx; line-height: 50rpx; }

@@ -1,0 +1,33 @@
+<!-- poster -->
+<view class="poster">
+  <image class="img_bg" src="/images/auth_bg.png"></image>
+</view>
+
+<!-- form -->
+<form bindsubmit="registrationSubmit" class="regist_form" id="regist_form">
+    <view class="regist_con">
+        <!-- phone_num -->
+        <view class="regist_item phone_no flex align-center">
+            <view class="item_title align-center fs13">+86</view>
+            <input class="input_phone align-center fs13" bindblur="getmobile" name="mobile" placeholder="请输入手机号" type="number" />
+        </view>
+        <!-- verification_code -->
+        <view class="regist_item verification_code flex">
+            <view class="item_title align-center fs13">验证码</view>
+            <input class="input_verification align-center fs13" bindblur="" name="verification_code" placeholder="请输入验证码" type="number"/>
+            <button class="verification_btn align-center fs12 fc-blue bg-primary" bindtap="getSMSCode" disabled="{{disabled1}}">{{code}}</button>
+        </view>
+        <!-- remind -->
+        <view class="regist_remind">
+            <view class="checkboxarea">
+                <checkbox-group bindchange="checkboxChange">
+                    <checkbox value="value" class="regist_checkbox" id="regist_checkbox"/>
+                    <text class="fs12">我已阅读并同意</text>
+                    <text class="fs12 fc-blue">《安捷伦用户注册绑定协议》</text>
+                </checkbox-group>
+            </view>
+            <text class="gentle_remind fs12">温馨提示：首次提服务请求需要先进行身份验证，下次将直接进入序列号输入页面，进入咨询流程。</text>
+        </view>
+    </view>
+    <button formType="submit"  class="btn btn-primary">身份认证</button>
+</form>

@@ -70,9 +70,34 @@ view{ box-sizing: border-box; }
 view, text, input, button{ font-size: 32rpx; font-family: "MicroSoft Yahei"; color: #333;}
 .fw{ font-weight: bold; }
 /* font-size */
-.fs14{ font-size: 0.7rem; }
-.fs16{ font-size: 0.85rem; }
-.fs15{ font-size: 0.78rem; }
+.fs12 {
+    font-size: 0.75rem;
+}
+
+.fs13 {
+    font-size: 0.8rem;
+}
+
+.fs14 {
+    font-size: 0.875rem;
+}
+
+.fs15 {
+    font-size: 0.94rem;
+}
+
+.fs18 {
+    font-size: 1.13rem;
+}
+
+.fs20 {
+    font-size: 1.25rem;
+}
+
+.fs24 {
+    font-size: 1.5rem;
+}
+
 /* font-color */
 .fc-333 {
     color: #333;
