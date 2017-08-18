@@ -1,11 +1,11 @@
-// pages/service_request/service_request.js
+// pages/faq/faq.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-  
+      dropdown: false
   },
 
   /**
@@ -62,5 +62,14 @@ Page({
    */
   onShareAppMessage: function () {
   
+  },
+
+  tagShow: function () {
+    var that = this;
+    this.setData({ dropdown: !that.data.dropdown });
+  },
+
+  clickToHide: function () {
+    this.setData({ dropdown: false });
   }
 })

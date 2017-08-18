@@ -1,9 +1,11 @@
 <!--pages/contact_service/contact_service.wxml-->
 <view class="contact_service text-center">
     <image src="/images/contact_service.png"></image>
-    <text class="clickToService fs15">客服正在为您建档，您可以</text>
-    <view class="btn btn-primary">联系客服</view>
+    
 </view>
-<!-- btn -->
+
+<view class="contactS fs14">客服将在15分钟内为您建档，稍后我们将以消息通知的形式告知您。您也可以直接<image class="chatimg" src="/images/wechat_b.png"></image><text class="fc-blue fs14">发起会话</text>
+</view>
+
 
 

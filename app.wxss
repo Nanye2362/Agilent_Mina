@@ -74,7 +74,7 @@ view, text, input, button{ font-size: 32rpx; font-family: "MicroSoft Yahei"; col
 }
 
 .fs13 {
-    font-size: 0.81rem;
+    font-size: 0.8rem;
 }
 
 .fs14 {

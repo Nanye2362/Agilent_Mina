@@ -1,0 +1,76 @@
+<!--pages/faq/faq.wxml-->
+<view  wx:if="{{dropdown}}"  class="faq_mask" bindtap="clickToHide"></view>
+<view class="faq">
+    <view class="faq_con bg-primary">
+        <!-- title -->
+        <view class="faq_item faq_title bg-gb flex">
+            <view class="faq_title_l">
+                <image src="../../images/species.png" class="ss_img_ques"/>常见问题
+            </view>
+            <view class="text-right flex_item fc-blue" style="display: inline; position: relative; z-index: 1000;" bindtap="tagShow">
+              <view class="sl_dropdown text-right fc-blue">进样器</view>
+                <view wx:if="{{dropdown}}" class="faq_select">
+                    <view class="text-overflow" >
+                        1
+                    </view>
+                    <view class="text-overflow">
+                        2
+                    </view>
+                    <view class="text-overflow" >
+                        3
+                    </view>
+                    <view class="text-overflow">
+                        3
+                    </view>
+                </view>                
+        </view>
+        </view>
+        <!-- questions -->
+        <view class="faq_item faq_ques">
+            <view class="faq_item_con flex">
+                <view class="faq_item_l fc-blue text-overflow">
+                    进样口流量达不到设定值asdfadfadfadfadfadfadf
+                </view>
+                <view class="faq_item_r text-right"  >
+                    <image src="../../images/arrow-r.png"/>
+                </view>
+            </view>
+        </view>
+         <view class="faq_item faq_ques">
+            <view class="faq_item_con flex">
+                <view class="faq_item_l fc-blue text-overflow">
+                    进样口流量达不到设定值asdfadfadfadfadfadfadf
+                </view>
+                <view class="faq_item_r text-right"  >
+                    <image src="../../images/arrow-r.png"/>
+                </view>
+            </view>
+        </view>
+         <view class="faq_item faq_ques">
+            <view class="faq_item_con flex">
+                <view class="faq_item_l fc-blue text-overflow">
+                    进样口流量达不到设定值asdfadfadfadfadfadfadf
+                </view>
+                <view class="faq_item_r text-right"  >
+                    <image src="../../images/arrow-r.png"/>
+                </view>
+            </view>
+        </view>
+         <view class="faq_item faq_ques">
+            <view class="faq_item_con flex">
+                <view class="faq_item_l fc-blue text-overflow">
+                    进样口流量达不到设定值asdfadfadfadfadfadfadf
+                </view>
+                <view class="faq_item_r text-right"  >
+                    <image src="../../images/arrow-r.png"/>
+                </view>
+            </view>
+        </view>
+        
+    </view>
+</view>
+<!-- notification -->
+<view class="faq_notification text-center bg-primary">
+    <view>如有其他疑问，您可以提交<text class="fc-blue service_repair">故障反馈</text></view>
+</view>
+

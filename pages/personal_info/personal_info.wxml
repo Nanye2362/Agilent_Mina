@@ -2,8 +2,8 @@
 <!-- avatar -->
 <view class="personal_avatar flex bg-primary">
     <view class="p_left fs15 self-center">头像</view>
-    <view class="p_right flex justify-right">
-        <image class="p_avatar" src="/images/avatar.png"></image>
+    <view class="p_right flex justify-end self-center">
+        <image class="p_avatar" src="/images/cat.png"></image>
     </view>       
 </view>
 
@@ -11,15 +11,15 @@
 <!-- information -->
 <!-- name -->
 <view class="p_item bg-primary flex">
-    <view class="p_left fs15 self-center">姓名</view>
-    <view class="p_right text-right self-center fc-g fs15">张三</view> 
+    <view class="p_left fs14 self-center">姓名</view>
+    <view class="p_right text-right self-center fc-aaa fs14">张三</view> 
 </view>
 <!-- gender -->
 <view class="p_item bg-primary flex">
-    <view class="p_left fs15 self-center">称呼</view>
+    <view class="p_left fs14 self-center">称呼</view>
     <view class="p_right text-right self-center">
         <radio-group class="radio-group" bindchange="radioChange">
-            <label class="radio fs15 fc-g" wx:for="{{items}}">
+            <label class="radio fs14 fc-aaa" wx:for="{{items}}">
                 <radio value="{{item.name}}" color="#0988d4" checked="{{item.checked}}"/>{{item.value}}
             </label>
         </radio-group>
@@ -27,11 +27,11 @@
 </view>
 <!-- phone -->
 <view class="p_item bg-primary flex">
-    <view class="p_left fs15 self-center">手机号</view>
-    <view class="p_right text-right self-center fc-g fs15">13849543547</view> 
+    <view class="p_left fs14 self-center">手机号</view>
+    <view class="p_right text-right self-center fc-aaa fs14">13849543547</view> 
 </view>
 <!-- company -->
 <view class="p_item bg-primary flex">
-    <view class="p_left fs15 self-center">单位名称</view>
-    <view class="p_right text-right self-center fc-g fs15">上海高知特</view> 
+    <view class="p_left fs14 self-center">单位名称</view>
+    <view class="p_right text-right self-center fc-aaa fs14">上海高知特</view> 
 </view>

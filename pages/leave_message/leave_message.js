@@ -1,11 +1,13 @@
-// pages/service_request/service_request.js
+// pages/leave_message/leave_message.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-  
+    describeNo: "0",
+    uploadedDisplay : "none",
+    btnDisplay : 'block'
   },
 
   /**
@@ -14,12 +16,30 @@ Page({
   onLoad: function (options) {
   
   },
-
+  desNo: function(e){
+    this.setData({describeNo:(e.detail.value).length});
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
   
+  },
+
+  chooseimage: function () {
+    var _this = this;
+    wx.chooseImage({
+      count: 1, // 默认9  
+      sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有  
+      sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有  
+      success: function (res) {
+        // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片  
+        _this.setData({
+          tempFilePaths: res.tempFilePaths,
+          btnDisplay : 'none'
+        })
+      }
+    })
   },
 
   /**

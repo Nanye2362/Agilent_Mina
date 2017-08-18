@@ -1,25 +1,85 @@
-.add_new{ height: 100rpx; padding: 80rpx; }
-.add_btn image{ width: 140rpx; height: 140rpx; }
+.mi_num {
+    padding: 15px;
+}
 
-.re_detail{ background: #fff; padding: 0 20rpx; width:90%; margin: 0 auto; margin-bottom: 30rpx; box-shadow: 2px 2px 2px #dfdfdf; } 
-.de_title{ padding: 30rpx 0; border-bottom: 1px solid #eee; }
-.re_status{ margin-right: 5px; }
+.mi_add_new {
+    padding: 20rpx;
+    width: 100%;
+    line-height: 50rpx;
+}
 
-.item_l{ flex: .3; }
-.item_r{ flex: .7; }
-.ti_l_item:not(:last-child){ margin-bottom: 16rpx; }
+.mi_add_new image {
+    width: 37rpx;
+    height: 37rpx;
+    vertical-align: sub;
+    margin-right: 10rpx;
+}
 
-.instru_img{ width: 40rpx; height: 40rpx; vertical-align: middle; margin-right: 10rpx;  }
+.mi_re_detail {
+    background: #fff;
+    margin-bottom: 15px;
+    box-shadow: 2px 2px 2px #dfdfdf;
+}
+
+.mi_de_title {
+    padding: 30rpx;
+    border-bottom: 1px solid #eee;
+    position: relative;
+}
 
 
-.ti_l{ flex: .7; }
-.ti_l text:not(:first-child){ margin-top: 20rpx; }
-.ti_r{ flex: .3; }
+.mi_item_l {
+    flex: .2
+}
 
-.state_btn{ display: block; width: 90px; height: 35px; transform: skew(-15deg); line-height: 35px; border-radius: 3px; border: 3px solid #fff; margin-top: 30rpx;}
-.state_btn .state_text{ transform: skew(15deg);}  
+.mi_item_r {
+    flex: .8;
+}
 
-.de_con{ padding: 0; }
-.btn-circle{ width: 200rpx; }
-.btn-circle:first-child{ margin-right: 20rpx; }
-.btn_img{ width: 34rpx; height: 34rpx; vertical-align: middle; }
+.mi_ti_l_item:not(:last-child) {
+    margin-bottom: 8rpx;
+}
+
+.mi_instru_img {
+    width: 45rpx;
+    height: 45rpx;
+    vertical-align: middle;
+    margin-right: 10rpx;
+}
+
+.mi_ti_l {
+    width: 100%;
+}
+
+.mi_ti_l text:not(:first-child) {
+    margin-top: 10px;
+}
+
+.mi_ti_r {
+    position: absolute;
+    right: 0;
+    top: 24rpx;
+    width: 240rpx;
+    height: 80rpx;
+}
+.mi_de_con {
+    padding: 10px 15px;
+}
+
+.mi_btn-circle {
+    width: 200rpx;
+    border-radius: 10rpx;
+    text-align: center;
+    line-height: 70rpx;
+    border: 1px solid #0085d5;
+    color: #0085d5;
+}
+
+.mi_btn_active {
+    background: #0085d5;
+    color: #fff;
+}
+
+.mi_btn-circle:first-child {
+    margin-right: 20rpx;
+}

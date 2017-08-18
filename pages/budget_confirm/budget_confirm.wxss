@@ -1,0 +1,40 @@
+/* pages/budget_confirm/budget_confirm.wxss */
+.budget_confirm {
+    width: 100%;
+}
+
+.bc_title {
+    margin-bottom: 40rpx;
+}
+
+.bc_remind {
+    margin-bottom: 80rpx;
+}
+
+.bc_order_icon {
+    width: 44rpx;
+    height: 38rpx;
+    vertical-align: sub;
+    margin-right: 8rpx;
+}
+
+.bc_order {
+    display: block;
+    height: 70rpx;
+}
+
+
+.bc_confirm {
+    margin-bottom: 60rpx;
+}
+
+.bc_chat {
+    width: 100%;
+    height: 80rpx;
+    line-height: 80rpx;
+}
+
+.bc_chat_btn {
+    text-decoration: underline;
+}
+.chatimg{ width: 50rpx; height: 38rpx; vertical-align: sub;margin-right: 6rpx; margin-left: 10rpx;}

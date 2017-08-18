@@ -1,11 +1,12 @@
-// pages/service_request/service_request.js
+// pages/faq_details/faq_details.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-  
+    usefulFlag: false,
+    unusefulFlag: false
   },
 
   /**
@@ -62,5 +63,13 @@ Page({
    */
   onShareAppMessage: function () {
   
+  },
+  usefulClick: function(){
+    this.setData({ usefulFlag: true});
+
+  },
+  unusefulClick:function(){
+    this.setData({ unusefulFlag: true });
   }
+
 })

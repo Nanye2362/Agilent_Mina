@@ -1,0 +1,135 @@
+/* pages/faq/faq.wxss */
+/* ====================faq====================== */
+page{
+  background: #fff;
+}
+.faq_item {
+    padding: 30rpx 40rpx;
+    border-bottom: 2rpx solid #e6e7e6;
+    position: relative;
+}
+
+.faq_item a {
+    display: flex;
+}
+
+.faq_item_l {
+    margin-left: 36rpx;
+    flex: 1;
+}
+
+.faq_title_l,
+.faq_title_r {
+    flex: .5;
+}
+.faq_title_l image{
+    width: 28rpx;
+    height:28rpx; 
+    margin-right: 10rpx;
+}
+.faq_title_right {
+    position: relative;
+    margin-right: 28rpx;
+}
+
+.sl_dropdown{
+    padding-right: 50rpx; 
+    background: url("/images/down.png") no-repeat right;
+    background-size: 28rpx ;
+}
+
+.faq_item_con:before {
+    content: "";
+    position: absolute;
+    width: 12rpx;
+    height: 12rpx;
+    border-radius: 50%;
+    background: #0085d5;
+    top: 50%;
+    left: 40rpx;
+    margin-top:-6rpx;
+}
+
+.faq_item_l >view {
+    list-style: disc;
+}
+
+.faq_item_r {
+    width: 60rpx;
+    position: relative;
+}
+
+.faq_item_r image {
+    width: 20rpx;
+    height: 32rpx;
+    vertical-align: sub;
+}
+
+.faq_notification {
+    position: fixed;
+    height: 100rpx;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    line-height: 100rpx;
+    border-top: 2rpx solid #e7e7e7;
+}
+
+.faq_select {
+    position: absolute;
+    right: -28rpx;
+    border: 2rpx solid #aaa;
+    border-radius: 12rpx;
+    z-index: 999;
+    text-align: center;
+}
+
+.faq_select > view{
+    height: 80rpx;
+    line-height: 80rpx;
+    min-width: 600rpx;
+}
+
+@media screen and (max-width: 320px) {
+    .faq_select > view {
+        max-width: 600rpx;
+    }
+}
+
+@media screen and (min-width: 321px) and (max-width: 400px) {
+    .faq_select > view {
+        max-width: 640rpx;
+    }
+}
+
+@media screen and (min-width: 401px) {
+    .faq_select > view {
+        max-width: 760rpx;
+    }
+}
+
+.faq_select > view:not(:last-child) {
+    border-bottom: 2rpx solid #e7e7e7;
+}
+
+.faq_select > view:nth-child(2n) {
+    background: #eaeaea;
+}
+
+.faq_select > view:nth-child(2n-1) {
+    background: #fff;
+}
+.faq_select > view:first-child{
+  border-top-left-radius: 12rpx;
+  border-top-right-radius: 12rpx;
+}
+.faq_select > view:last-child{
+  border-bottom-left-radius: 12rpx;
+  border-bottom-right-radius: 12rpx;
+}
+.faq_mask {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: 900;
+}

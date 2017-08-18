@@ -1,4 +1,4 @@
-// pages/service_request/service_request.js
+// pages/install/install.js
 Page({
 
   /**

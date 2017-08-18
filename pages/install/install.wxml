@@ -1,0 +1,76 @@
+<!--pages/install/install.wxml-->
+<!-- poster -->
+<view class="ins-poster">
+    <image class="img_bg" src="../../images/install_bg.png"></image>
+</view>
+
+
+
+<!-- form -->
+<form class="install_form" id="insth_form" action="">
+    <!-- basic_info -->
+    <view class="ins_form bg-primary">
+        <!-- name -->
+        <view class="ins_item flex">
+            <view class="ins_title self-center">姓名:</view>
+            <label class="ins_con" for="ins_phone">
+                <input name="ins_phone" type="text" placeholder="请输入姓名" id="ins_phone" required="" />
+            </label>
+        </view>
+        <!-- phone -->
+        <view class="ins_item flex">
+            <view class="ins_title self-center">手机号:</view>
+            <label class="ins_con" for="ins_phone">
+                <!--input name="ins_phone" type="tel" placeholder="请输入手机号" id="ins_phone" required=""-->
+                <span>13109876543</span>
+            </label>
+        </view>
+        <!-- company -->
+        <view class="ins_item flex">
+            <view class="ins_title self-center">单位名称:</view>
+            <label class="ins_con" for="ins_phone">
+                <input name="ins_phone" type="text" placeholder="请输入单位全称" id="ins_phone" required="" />
+            </label>
+        </view>
+    </view>
+
+    <!-- upload_pic -->
+    <view class="ins_form bg-primary" style="margin: 10px 0;">
+        <!-- 照片上传 -->
+        <view class="ins_pic_title">
+            <view class="weui-cell__hd">添加照片<span class="fs14 fc-aaa">(订单信息，订单场地等)</span></view>
+        </view>
+        <view class="lm_upload ins_upload">
+            <view class="weui-uploader__bd lm_upload_pic">
+                <view class="weui-uploader__files flex justify-space" id="uploaderFiles">
+                    <view class="weui-uploader__file lm_upload_item">
+                        <image class="lm_upload_img" src="../../images/pic.png" ></image>
+                        <view class="lm_img_delete">删除</view>
+                    </view>
+                    <view class="weui-uploader__file lm_upload_item lm_no_upload">
+                        <input id="uploaderInput" class="weui-uploader__input lm_upload_input" type="file" accept="image/*" multiple="" />
+                    </view>
+                    <view class="weui-uploader__file lm_upload_item lm_no_upload">
+                        <input id="uploaderInput" class="weui-uploader__input lm_upload_input" type="file" accept="image/*" multiple="" />
+                    </view>
+                    <view class="weui-uploader__file lm_upload_item lm_no_upload">
+                        <input id="uploaderInput" class="weui-uploader__input lm_upload_input" type="file" accept="image/*" multiple="" />
+                    </view>
+                </view>
+            </view>
+        </view>       
+    </view>
+
+
+    <!-- btn -->
+    <view class="ins_btn">
+        <button class="btn btn-primary submit_insth" id="gotoAuth" disabled="">确定</button>
+    </view>
+
+    <!-- gotoChat -->
+    <view class="cs_con ">
+        <view class="text-center fs12">如需查看安装申请的安排进度，请
+            <a onclick="_MEIQIA('showPanel')" class="fc-blue bc_chat_btn"><image src="/images/wechat_b.png"></image>
+        发起会话</a></view>
+    </view>
+</form>

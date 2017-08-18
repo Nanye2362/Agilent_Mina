@@ -1,17 +1,2 @@
-<view class="main">
-
-  <view class="imageview">
-    <image src="{{url}}"></image>
-  </view>
-  <form report-submit bindsubmit="srSubmit">
-    <view class="title">
-      <text>产品序列号</text>
-    </view>
-
-    <view class="content">
-      <input type="text" name="serial_number" placeholder="例：RS-PRO-WE2352340014" />
-    </view>
-
-    <button formType="submit">确定</button>
-  </form>
-</view>
+<!--pages/service_request/service_request.wxml-->
+<text>pages/service_request/service_request.wxml</text>

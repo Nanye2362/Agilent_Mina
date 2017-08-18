@@ -1,10 +1,10 @@
 {
   "pages": [
+    "pages/install/install",
     "pages/my_instrument/my_instrument",
     "pages/serial_number/serial_number",
     "pages/evaluation/evaluation",
     "pages/contact_us/contact_us",
-    "pages/install/install",
     "pages/faq_details/faq_details",
     "pages/faq/faq",
     "pages/myhome/myhome",
@@ -14,9 +14,13 @@
     "pages/registration/registration",
     "pages/personal_info/personal_info",
     "pages/contact_service/contact_service",
+    "pages/contact_us/contact_us",
+    "pages/budget_confirm/budget_confirm",
     "pages/fill_info/fill_info",
     "pages/service_request/service_request",
     "pages/activity/activity",
+    "pages/auth/auth",
+    "pages/service_list/service_list", 
     "pages/logs/logs"
   ],
   "window": {

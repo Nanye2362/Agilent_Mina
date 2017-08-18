@@ -1,0 +1,122 @@
+/* pages/install/install.wxss */
+/* ====================install====================== */
+
+.ins-poster .img_bg {
+    width: 100%;
+    display: block;
+}
+.ins-poster image {
+    width: 750rpx;
+    height:402rpx;
+}
+
+.ins_form {
+    padding: 0 40rpx;
+}
+
+.ins_item {
+    padding: 20rpx 10rpx;
+    border-bottom: 2rpx solid #e7e6e7;
+}
+
+.ins_title {
+    flex: .3;
+}
+
+.ins_con {
+    flex: .7;
+}
+
+.ins_con input {
+    height: 60rpx;
+    width: 100%;
+    background: none;
+    border: none;
+    outline: none;
+}
+
+.ins_pic_title {
+    padding: 20rpx 0;
+}
+
+.ins_upload {
+    padding-bottom: 20rpx;
+}
+
+.ins_btn {
+    padding: 0 40rpx;
+    margin-top: 40rpx;
+}
+
+.cs_con {
+    padding: 20rpx 40rpx 120rpx;
+}
+
+.cs_con image {
+    width: 44rpx;
+    height: 39rpx;
+    vertical-align: sub;
+}
+
+.cs_con > view {
+    line-height: 60rpx;
+}
+
+.lm_upload {
+    width: 100%;
+}
+
+.lm_pic_title {
+    padding: 0 40rpx;
+}
+
+.lm_upload_img {
+    width: 100%;
+    height: 100%;
+}
+
+.lm_upload_item {
+    position: relative;
+    
+}
+
+.lm_img_delete {
+    width: 100%;
+    height: 40rpx;
+    line-height: 40rpx;
+    background: #000;
+    opacity: .4;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    color: #fff;
+    text-align: center;
+    font-size: 0.75rem;
+}
+
+
+.lm_no_upload{
+   background: url(../../images/upload.png) no-repeat center;
+   background-size: 64rpx 52rpx; 
+    z-index: 0;
+}
+/* .lm_no_upload:before {
+    content: "";
+    background: url(../../images/upload.png) no-repeat;
+    position: absolute;
+    top: 44rpx;
+    left: 36rpx;
+    width: 64rpx;
+    height: 52rpx;
+    z-index: 0;
+    background-size: cover;
+} */
+
+.weui-uploader__file {
+    float: left;
+    margin-right: 18rpx;
+    margin-bottom: 18rpx;
+    width: 158rpx;
+    height: 158rpx;
+    border:2rpx dashed #e7e6e7;
+}

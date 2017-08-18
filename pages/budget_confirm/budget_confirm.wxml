@@ -1,0 +1,17 @@
+<!--pages/budget_confirm/budget_confirm.wxml-->
+<view class="budget_confirm padding">
+    <view class="bc_title fs20 text-center">预算确认</view>
+    <view class="bc_remind">您的问题需要现场工程师的支持，当前报价已经生成，BQ编号为：<span>XXXXX</span>，请确保您已知晓并接受，
+        以便我们安排工程师为您服务。</view>
+    <view class="bc_order fc-blue">
+        <image class="bc_order_icon" src="/images/pdf.png"></image> 
+        安捷伦维修收费标准说明书-报价单
+    </view>
+</view>
+<button class="btn btn-primary" id="confirm" disabled>确认并接受</button>
+<view class="bc_chat padding text-center">如果对报价有任何问题，请<image class="chatimg" src="/images/wechat_b.png"></image>
+    <text class="fc-blue bc_chat_btn">发起会话</text>
+</view>
+
+
+

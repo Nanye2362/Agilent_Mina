@@ -1,71 +1,35 @@
-<view class="service_list">
-    <!-- addInstrument -->
-    <view class="add_new flex directionC justify-center">
-        <view class="add_btn text-center">
-            <image src="/images/add_btn.png"></image>
-        </view>
-        <view class="add_word fc-b fs16 text-center">添加仪器</view>
-    </view>
+<view class="mi_num fs13 padding fc-aaa">共 <text class="fc-aaa">2</text> 台仪器</view>
 
-    <!-- list -->     
-    <view class="re_detail">
-        <view class="de_title flex ">
-            <view class="ti_l text_alignL flex directionC">
-                <view class="ti_l_item flex">
-                    <view class="item_l fs15 fc-g">分类：</view>
-                    <view class="item_r fs15">气相色谱</view>
-                </view>
-                <view class="ti_l_item flex">
-                    <view class="item_l fs15 fc-g">型号：</view>
-                    <view class="item_r fs15">490-PRO 气相色谱</view>
-                </view>
-                <view class="ti_l_item flex">
-                    <view class="item_l fs15 fc-g">序列号：</view>
-                    <view class="item_r fs15">RS-PRO-ES19394958</view>
-                </view>
+<!-- instrument_list -->
+<view class="mi_re_detail">
+    <view class="mi_de_title flex ">
+        <view class="mi_ti_l text_alignL flex directionC">
+            <view class="mi_ti_l_item flex">
+                <view class="mi_item_l fs14 fc-aaa">产品号：</view>
+                <view class="mi_item_r fs14">气象色谱</view>
             </view>
-            <view class="ti_r text-right">
-                <image class="instru_img" src="/images/instrument.png"></image>
-                <text class="fc-b fs15">报修历史</text>
+            <view class="mi_ti_l_item flex">
+                <view class="mi_item_l fs14 fc-aaa">描述：</view>
+                <view class="mi_item_r fs14">490-PRO气相色谱仪</view>
+            </view>
+            <view class="mi_ti_l_item flex">
+                <view class="mi_item_l fs14 fc-aaa">序列号：</view>
+                <view class="mi_item_r fs14">US1727636</view>
             </view>
         </view>
-        <view class="de_con flex justify-right">
-            <view class="btn-circle fs15 btn-mini-normal">
-                <image class="btn_img" src="/images/instr_delete.png"></image>
-            删除</view>
-            <view class="btn-circle fs15 btn-mini-normal">
-                <image class="btn_img" src="/images/instr_fix.png"></image>
-            报修</view>
+        <view class="mi_ti_r text-center repair_history" >
+            <image class="mi_instru_img" src="/images/instrument.png"></image>
+            <text class="fc-blue fs14">报修历史</text>
         </view>
     </view>
-    <view class="re_detail">
-        <view class="de_title flex ">
-            <view class="ti_l text_alignL flex directionC">
-                <view class="ti_l_item flex">
-                    <view class="item_l fs15 fc-g">分类：</view>
-                    <view class="item_r fs15">气相色谱</view>
-                </view>
-                <view class="ti_l_item flex">
-                    <view class="item_l fs15 fc-g">型号：</view>
-                    <view class="item_r fs15">490-PRO 气相色谱</view>
-                </view>
-                <view class="ti_l_item flex">
-                    <view class="item_l fs15 fc-g">序列号：</view>
-                    <view class="item_r fs15">RS-PRO-ES19394958</view>
-                </view>
-            </view>
-            <view class="ti_r text-right">
-                <image class="instru_img" src="/images/instrument.png"></image>
-                <text class="fc-b fs15">报修历史</text>
-            </view>
-        </view>
-        <view class="de_con flex justify-right">
-            <view class="btn-circle fs15 btn-mini-normal">
-                <image class="btn_img" src="/images/instr_delete.png"></image>
-            删除</view>
-            <view class="btn-circle fs15 btn-mini-normal">
-                <image class="btn_img" src="/images/instr_fix.png"></image>
-            报修</view>
-        </view>
+    <view class="mi_de_con flex">
+        <button class="mi_btn-circle fs14 bg-primary">删除</button>
+        <button class="mi_btn-circle mi_btn_active fs14">报修</button>
     </view>
+</view>
+
+
+<!-- addNew -->
+<view class="mi_add_new text-center bg-primary">
+    <image class="mi_add_btn" src="/images/add.png"></image>     <text class="mi_add_word fc-blue">添加仪器</text>
 </view>
