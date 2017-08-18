@@ -162,3 +162,8 @@ view, text, input, button{ font-size: 32rpx; font-family: "MicroSoft Yahei"; col
     width: 100%;
     background: #eaeaea;
 }
+/* ===================margin====================== */
+  
+.marginB-20{
+  margin-bottom: 40rpx;
+}

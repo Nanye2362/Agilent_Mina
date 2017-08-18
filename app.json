@@ -1,8 +1,8 @@
 {
   "pages": [
+    "pages/serial_number/serial_number",
     "pages/install/install",
     "pages/my_instrument/my_instrument",
-    "pages/serial_number/serial_number",
     "pages/evaluation/evaluation",
     "pages/contact_us/contact_us",
     "pages/faq_details/faq_details",
