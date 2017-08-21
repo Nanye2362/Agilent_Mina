@@ -1,42 +1,55 @@
 // pages/evaluate/evaluate.js
-Page({
+var initData = {
+  //评论计数
+  describeNo: "0",
+  stars:[]
+}
+var arrTitle = ["流程顺序1", "流程顺序2", "流程顺序3", "流程顺序4", "流程顺序5"];
 
+for (var i = 0; i < 5; i++) {
+  var tempObj = {
+  title: arrTitle[i],
+  currentCount:3,
+  data:[{
+    count: 0,
+    src: 'star_1'
+  }, {
+    count: 1,
+    src: 'star_1'
+  }, {
+    count: 2,
+    src: 'star_1'
+  }, {
+    count: 3,
+    src: 'star_0'
+  }, {
+    count: 4,
+    src: 'star_0'
+  }]
+  }
+  initData.stars.push(tempObj);
+} 
+
+
+Page({
   /**
    * 页面的初始数据
    */
-  data: {
-    //评论计数
-    describeNo: "0",
-    currentCount: "3",
-    stars: [{
-      count: 0,
-      src: 'star_1'
-    }, {
-      count: 1,
-      src: 'star_1'
-    }, {
-      count: 2,
-      src: 'star_1'
-    }, {
-      count: 3,
-      src: 'star_0'
-    }, {
-      count: 4,
-      src: 'star_0'
-    }],
-  },
+  data: initData,
   
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+   
   },
   //星星评价
   markStarSelect: function (e) {
     var that = this
 
     var num = Number(e.currentTarget.id) + 1
+    var index = e.currentTarget.dataset.index;
+    console.log(index);
     var arr = []
 
     for (var k in that.data.stars) {
@@ -52,9 +65,13 @@ Page({
       }
     }
 
+    var thisstars=that.data.stars;
+    console.log(thisstars[index]);
+    thisstars[index].currentCount = num;
+    thisstars[index].data = arr;
+    
     that.setData({
-      currentCount: num,
-      stars: arr
+      stars: thisstars
     })
   },
 

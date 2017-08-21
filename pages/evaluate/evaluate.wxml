@@ -17,65 +17,17 @@
     </view>
 </view>
 <view class="evaluate-list flex padding directionC bg-primary">
-    <view class="flex evaluate-item">
-      <view class="e-title">流程顺畅： </view>
-      <view class="flex e-stars">
-        <block wx:for="{{stars}}" wx:for-item="star">
-          <view class="stars" id="{{index}}" bindtap="markStarSelect">
-            <image class="e_star" src="/images/{{star.src}}.png"></image>
-          </view>
-        </block>
-        
-      </view>
-      <view wx:if="{{currentCount > 0}}" class="e-count">{{currentCount}}星</view>
-    </view>
-    <view class="flex evaluate-item">
-      <view class="e-title">流程顺畅： </view>
-      <view class="flex e-stars">
-        <block wx:for="{{stars}}" wx:for-item="star">
-          <view class="stars" id="{{index}}" bindtap="markStarSelect">
+    <view wx:for="{{stars}}" wx:for-index="i" class="flex evaluate-item" >
+       <view class="e-title">{{item.title}}</view>
+       <view class="flex e-stars">
+        <block wx:for="{{item.data}}" wx:for-item="star">
+          <view class="stars" id="{{index}}" data-index="{{i}}" bindtap="markStarSelect">
             <image class="e_star" src="../../../images/{{star.src}}.png"></image>
           </view>
         </block>
         
       </view>
-      <view wx:if="{{currentCount > 0}}" class="e-count">{{currentCount}}星</view>
-    </view>
-    <view class="flex evaluate-item">
-      <view class="e-title">流程顺畅： </view>
-      <view class="flex e-stars">
-        <block wx:for="{{stars}}" wx:for-item="star">
-          <view class="stars" id="{{index}}" bindtap="markStarSelect">
-            <image class="e_star" src="../../../images/{{star.src}}.png"></image>
-          </view>
-        </block>
-        
-      </view>
-      <view wx:if="{{currentCount > 0}}" class="e-count">{{currentCount}}星</view>
-    </view>
-    <view class="flex evaluate-item">
-      <view class="e-title">流程顺畅： </view>
-      <view class="flex e-stars">
-        <block wx:for="{{stars}}" wx:for-item="star">
-          <view class="stars" id="{{index}}" bindtap="markStarSelect">
-            <image class="e_star" src="../../../images/{{star.src}}.png"></image>
-          </view>
-        </block>
-        
-      </view>
-      <view wx:if="{{currentCount > 0}}" class="e-count">{{currentCount}}星</view>
-    </view>
-    <view class="flex evaluate-item">
-      <view class="e-title">流程顺畅： </view>
-      <view class="flex e-stars">
-        <block wx:for="{{stars}}" wx:for-item="star">
-          <view class="stars" id="{{index}}" bindtap="markStarSelect">
-            <image class="e_star" src="../../../images/{{star.src}}.png"></image>
-          </view>
-        </block>
-        
-      </view>
-      <view wx:if="{{currentCount > 0}}" class="e-count">{{currentCount}}星</view>
+      <view wx:if="{{item.currentCount > 0}}" class="e-count">{{item.currentCount}}星</view>
     </view>
 </view>
 
