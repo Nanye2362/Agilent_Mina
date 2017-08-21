@@ -1,0 +1,91 @@
+<!-- grade_result -->
+<view class="ev_grade flex">
+    <!-- avatar -->
+    <view class="ev_grade_avatar self-center">
+        <image class="self-center" src="/images/avatar.png"></image>
+    </view>
+    <!-- information -->
+    <view class="ev_grade_info">
+        <text class="fs-15">安捷伦售后服务在中国</text>
+        <view class="fs13 fc-aaa">累计服务：
+            <text>-</text>次
+        </view>
+        <view class="fs13 fc-aaa">
+            总体评分：           
+            <span class="fc-orange fs12">4.5分</span>
+        </view>
+    </view>
+</view>
+<view class="evaluate-list flex padding directionC bg-primary">
+    <view class="flex evaluate-item">
+      <view class="e-title">流程顺畅： </view>
+      <view class="flex e-stars">
+        <block wx:for="{{stars}}" wx:for-item="star">
+          <view class="stars" id="{{index}}" bindtap="markStarSelect">
+            <image class="e_star" src="/images/{{star.src}}.png"></image>
+          </view>
+        </block>
+        
+      </view>
+      <view wx:if="{{currentCount > 0}}" class="e-count">{{currentCount}}星</view>
+    </view>
+    <view class="flex evaluate-item">
+      <view class="e-title">流程顺畅： </view>
+      <view class="flex e-stars">
+        <block wx:for="{{stars}}" wx:for-item="star">
+          <view class="stars" id="{{index}}" bindtap="markStarSelect">
+            <image class="e_star" src="../../../images/{{star.src}}.png"></image>
+          </view>
+        </block>
+        
+      </view>
+      <view wx:if="{{currentCount > 0}}" class="e-count">{{currentCount}}星</view>
+    </view>
+    <view class="flex evaluate-item">
+      <view class="e-title">流程顺畅： </view>
+      <view class="flex e-stars">
+        <block wx:for="{{stars}}" wx:for-item="star">
+          <view class="stars" id="{{index}}" bindtap="markStarSelect">
+            <image class="e_star" src="../../../images/{{star.src}}.png"></image>
+          </view>
+        </block>
+        
+      </view>
+      <view wx:if="{{currentCount > 0}}" class="e-count">{{currentCount}}星</view>
+    </view>
+    <view class="flex evaluate-item">
+      <view class="e-title">流程顺畅： </view>
+      <view class="flex e-stars">
+        <block wx:for="{{stars}}" wx:for-item="star">
+          <view class="stars" id="{{index}}" bindtap="markStarSelect">
+            <image class="e_star" src="../../../images/{{star.src}}.png"></image>
+          </view>
+        </block>
+        
+      </view>
+      <view wx:if="{{currentCount > 0}}" class="e-count">{{currentCount}}星</view>
+    </view>
+    <view class="flex evaluate-item">
+      <view class="e-title">流程顺畅： </view>
+      <view class="flex e-stars">
+        <block wx:for="{{stars}}" wx:for-item="star">
+          <view class="stars" id="{{index}}" bindtap="markStarSelect">
+            <image class="e_star" src="../../../images/{{star.src}}.png"></image>
+          </view>
+        </block>
+        
+      </view>
+      <view wx:if="{{currentCount > 0}}" class="e-count">{{currentCount}}星</view>
+    </view>
+</view>
+
+
+
+<!-- other_suggestion -->
+<view class="s-repair fs14 padding bg-primary">
+    <textarea class="s-textarea fs13" maxlength="80" bindblur="bindTextAreaBlur" bindinput="desNo" placeholder="请详细说说您对本次服务的体验吧！您的反馈将成为我们不断改进的动力。"/>
+    <view class="text-right fc-aaa">{{describeNo}}/80</view>
+</view>
+<!-- button -->
+<button class="btn btn-primary submit_evaluation">提交评论</button>
+
