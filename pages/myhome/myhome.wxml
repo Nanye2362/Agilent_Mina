@@ -6,7 +6,7 @@
     <view class="mc_avatar">
             <image src="../../images/cat.png"></image>
     </view>
-    <a class="mc_id_btn mc_id_state fs16 fc-fff">身份认证</a>
+    <view class="mc_id_btn mc_id_state fs16 fc-fff">身份认证</view>
     <text class="mc_id_btn fs16 fc-fff"></text>
 </view>
 

@@ -4,21 +4,21 @@ var initData = {
   describeNo: "0",
   stars:[]
 }
-var arrTitle = ["流程顺序1", "流程顺序2", "流程顺序3", "流程顺序4", "流程顺序5"];
+var arrTitle = ["流程顺畅", "技术能力", "响应速度", "服务态度", "着装工整","服务进度更新"];
 
 for (var i = 0; i < 5; i++) {
   var tempObj = {
   title: arrTitle[i],
-  currentCount:3,
+  currentCount:0,
   data:[{
     count: 0,
-    src: 'star_1'
+    src: 'star_0'
   }, {
     count: 1,
-    src: 'star_1'
+    src: 'star_0'
   }, {
     count: 2,
-    src: 'star_1'
+    src: 'star_0'
   }, {
     count: 3,
     src: 'star_0'

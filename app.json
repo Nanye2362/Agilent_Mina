@@ -1,7 +1,8 @@
 {
   "pages": [
-    "pages/index/index",
     "pages/evaluate/evaluate",
+    "pages/auth/auth",
+    "pages/index/index",
     "pages/evaluation/evaluation",
     "pages/leave_message/leave_message",
     "pages/serial_number/serial_number",
@@ -20,7 +21,6 @@
     "pages/fill_info/fill_info",
     "pages/service_request/service_request",
     "pages/activity/activity",
-    "pages/auth/auth",
     "pages/service_list/service_list", 
     "pages/logs/logs"
   ],
@@ -43,7 +43,7 @@
         "selectedIconPath": "images/home_c.png"
       },
       {
-        "pagePath": "pages/evaluation/evaluation",
+        "pagePath": "pages/evaluate/evaluate",
         "text": "联系安捷伦",
         "iconPath": "/images/my.png",
         "selectedIconPath": "/images/my_c.png"
