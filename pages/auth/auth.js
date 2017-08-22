@@ -108,8 +108,8 @@ Page({
 
   getSMSCode: function () {
     var that = this;
-    // var clock='';
-    // var nums = 60;
+    var clock='';
+    var nums = 60;
     
     console.log(that.data.mobile);
     //对接SMS服务器获取短信验证码

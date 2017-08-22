@@ -12,8 +12,25 @@ image{
 .mc_poster_bg {
     width: 100%;
     display: block;
-    height: 480rpx;
+    
 }
+@media screen and (max-width: 330px){
+  .mc_poster_bg{
+    height: 400rpx;
+  }
+}
+@media screen and (min-width: 331px) and (max-width: 480px){
+  .mc_poster_bg{
+    height: 440rpx;
+  }
+}
+
+@media screen and (min-width: 481px) and (max-width: 760px){
+  .mc_poster_bg{
+    height: 500rpx;
+  }
+}
+
 
 .mc_avatar {
     width: 200rpx;

@@ -3,18 +3,20 @@
     "pages/self_service/self_service",
     "pages/service_list/service_list",
     "pages/test/test",
+    "pages/evaluate/evaluate",
+    "pages/auth/auth",
+    "pages/index/index",
+    "pages/evaluation/evaluation",
     "pages/leave_message/leave_message",
     "pages/serial_number/serial_number",
     "pages/install/install",
-    "pages/my_instrument/my_instrument",
-    "pages/evaluation/evaluation",
+    "pages/my_instrument/my_instrument",   
     "pages/contact_us/contact_us",
     "pages/faq_details/faq_details",
     "pages/faq/faq",
     "pages/myhome/myhome",
     "pages/my/my",
     "pages/confirm_info/confirm_info",
-    "pages/index/index",
     "pages/registration/registration",
     "pages/personal_info/personal_info",
     "pages/contact_service/contact_service",
@@ -22,7 +24,6 @@
     "pages/fill_info/fill_info",
     "pages/service_request/service_request",
     "pages/activity/activity",
-    "pages/auth/auth",
     "pages/logs/logs"
   ],
   "window": {
@@ -44,7 +45,7 @@
         "selectedIconPath": "images/home_c.png"
       },
       {
-        "pagePath": "pages/evaluation/evaluation",
+        "pagePath": "pages/evaluate/evaluate",
         "text": "联系安捷伦",
         "iconPath": "/images/my.png",
         "selectedIconPath": "/images/my_c.png"

@@ -25,21 +25,26 @@
         </view>
         <!-- 故障描述 -->
         <view class=" s-repair fc-g fs14 padding">
-            <text class="fs14">故障描述：</text>
+            <view class="fs14">故障描述：</view>
             <textarea class="s-textarea fs13" maxlength="80" bindblur="bindTextAreaBlur" bindinput="desNo" />
             <view class="text-right fc-aaa">{{describeNo}}/80</view>
         </view>
         <!-- 图片上传 -->
         <view class="s-item">
-            <view class="item-t fc-g fs14">故障照片：</view>
-            <view class="s-upload flex justify-space">
+            <!-- title -->
+            <view class="item-t fc-g fs14">故障照片
+                <text class="fc-aaa fs12">(您可以上传4张照片)</text>
+            </view>
+            <view class="s-upload flex">
+                <!-- 拍照按钮 -->
                 <view class="s-upload-item">
                     <button bindtap="chooseimage" class="lm_photobtn" style="display: {{btnDisplay}}"></button>
-                    <image src="{{tempFilePaths }}" mode="aspecFill" style="width: 100%; height: 100%; display:{{uploadedDisplay}}"/> 
+                    
                 </view>
-                <view class="s-upload-item"></view>
-                <view class="s-upload-item"></view>
-                <view class="s-upload-item"></view>
+                <!-- 上传图片 -->
+                <view class="s-upload-img">
+                    <image src="{{tempFilePaths }}" mode="aspecFill" style="width: 100%; height: 100%; }"></image> 
+                </view>
             </view>
         </view>
     </view>
