@@ -12,7 +12,7 @@
             <view class="placeholder fc-aaa">共<span>1</span>条记录</view>
         </view>
         <view class="text-right fc-blue" style="display: inline; position: relative; z-index: 1000;" bindtap="tagShow">
-              <view class="sl_dropdown text-right fc-blue">进样器</view>
+              <view class="sl_dropdown text-right fc-blue">进样器<image src="/images/down.png"></image></view>
                 <view wx:if="{{dropdown}}" class="faq_select">
                     <view class="text-overflow" >
                         1

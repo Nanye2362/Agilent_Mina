@@ -167,3 +167,6 @@ view, text, input, button{ font-size: 32rpx; font-family: "MicroSoft Yahei"; col
 .marginB-20{
   margin-bottom: 40rpx;
 }
+.marginB-40{
+  margin-bottom: 80rpx;
+}

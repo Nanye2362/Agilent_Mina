@@ -1,0 +1,191 @@
+<!--pages/self_service/self_service.wxml-->
+<!-- search -->
+<view class="weui-search-bar " id="searchBar">
+    <!-- <a href="javascript:" class="weui-search-bar__cancel-btn" id="searchCancel">取消</a>
+    <view class="weui-search-bar__form">
+        <view class="weui-search-bar__box">
+            <i class="weui-icon-search"></i>
+            <input type="search" class="weui-search-bar__input" id="searchInput" placeholder="搜索常见问题" required="" />
+            <a href="javascript:" class="weui-icon-clear" id="searchClear"></a>
+        </view>
+
+        <label class="weui-search-bar__label" id="searchText" style="transform-origin: 0px 0px 0px; opacity: 1; transform: scale(1, 1);">
+            <i class="weui-icon-search"></i>
+            <span>搜索常见问题</span>
+        </label>
+    </view>
+    
+    <a id="sub" class="weui-search-bar__cancel-btn ss-btn-right">确定</a>  -->
+
+      <view class="" style="padding:20rpx; position: relative;">
+            <input class="nosearchIcon" placeholder=" 搜索常见问题" 
+            bindinput="bindInput"  bindchange="bindchange" value="{{inputValue}}"/>
+            <image wx:if="{{searchIconFlag}}"src="/images/search.png"></image>
+      </view>
+</view>
+
+
+
+<!-- tab -->
+<movable-area class="ss_tab_content">
+   <movable-view class="ss_tab bg-primary" x="{{x}}" y="{{y}}" direction="horizontal" inertia="true"	out-of-bounds="false" damping="50">       
+        <view class="ss_tab_item {{currentTab==0 ? 'ss_tab_item_active' : ''}}" data-current="0" bindtap="swichNav">气相色谱</view>
+        <view class="ss_tab_item {{currentTab==1 ? 'ss_tab_item_active' : ''}}" data-current="1" bindtap="swichNav">液相色谱</view>
+        <view class="ss_tab_item {{currentTab==2 ? 'ss_tab_item_active' : ''}}" data-current="2" bindtap="swichNav">气质联用</view>
+        <view class="ss_tab_item {{currentTab==3 ? 'ss_tab_item_active' : ''}}" data-current="3" bindtap="swichNav">液质联用</view>
+        <view class="ss_tab_item {{currentTab==4 ? 'ss_tab_item_active' : ''}}" data-current="4" bindtap="swichNav">气相色谱2</view>
+        <view class="ss_tab_item {{currentTab==5 ? 'ss_tab_item_active' : ''}}" data-current="5" bindtap="swichNav">气相色谱3</view>
+        <view class="ss_tab_item {{currentTab==6 ? 'ss_tab_item_active' : ''}}" data-current="6" bindtap="swichNav">气相色谱4</view>
+        <view class="ss_tab_item {{currentTab==7 ? 'ss_tab_item_active' : ''}}" data-current="7" bindtap="swichNav">气相色谱5</view>
+        <view class="ss_tab_item {{currentTab==8 ? 'ss_tab_item_active' : ''}}" data-current="8" bindtap="swichNav">气相色谱6</view> 
+    </movable-view> 
+
+    <view class="ss_tab_right ss_tab_btn">
+        <image src="/images/arrowr.png"></image>
+    </view>
+</movable-area>
+
+<!-- tab_content -->
+<!-- content -->
+    <swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:{{winHeight - 31}}px" bindchange="bindChange">    
+        <!-- 全部 -->   
+        <swiper-item class="flex directionC">
+              <!-- service_list_item -->
+               <view class="ss_tab_con">
+                      <!-- title -->
+                      <view class="ss_title bg-gb">
+                          <image src="/images/question.png" class="ss_img_ques"></image>热点问题
+                      </view>
+                      <!-- hot_issue -->
+                      <view class="ss_hot_issue bg-primary">
+                          <!-- question -->
+                          <view class="ss_hi_con fc-blue fs14">
+                              <view>
+                                  <view class="faq_item_con">进样口流量压力达不到设计值?</view>
+                              </view>
+                              <view>
+                                  <view class="faq_item_con">进样口流量压力达不到设计值?</view>
+                              </view>
+                              <view>
+                                  <view class="faq_item_con">进样口流量压力达不到设计值?</view>
+                              </view>
+                              <view>
+                                  <view class="faq_item_con" >进样口流量压力达不到设计值?</view>
+                              </view>
+                              <view>
+                                  <view class="faq_item_con">进样口流量压力达不到设计值?</view>
+                              </view>
+                          </view>
+                      </view>
+                      <!-- question_classificastion -->
+                      <view class="ss_ques_class">
+                          <!-- title -->
+                          <view class="ss_title ss_qc_title bg-gb">
+                              <image src="/images/species.png" class="ss_img_ques"></image>问题分类
+                          </view>
+                          <!-- species -->
+                          <view class="ss_qc_con bg-primary marginB-40">
+                              <view class="ss_qc_inside flex">
+                                  <view class="directionC">
+                                      <image class="ss_qc_icon" src="/images/pump.jpg"></image>
+                                      <view>泵</view>
+                                  </view>
+                                  <view>
+                                      <image class="ss_qc_icon" src="/images/ss.jpg"></image>
+                                      <view>进样器</view>
+                                  </view>
+                                  <view>
+                                      <image class="ss_qc_icon" src="/images/co.jpg"></image>
+                                      <view>柱温箱</view>
+                                  </view>
+                              </view>
+                              <view class="ss_qc_inside flex">
+                                  <view>
+                                      <image class="ss_qc_icon" src="/images/check.jpg"></image>
+                                      <view>检测器</view>
+                                  </view>
+                                  <view>
+                                      <image class="ss_qc_icon" src="/images/software.jpg"></image>
+                                      <view>软件</view>
+                                  </view>
+                                  <view>
+                                      <image class="ss_qc_icon" src="/images/other.jpg"></image>
+                                      <view>其他</view>
+                                  </view>
+                              </view>
+                          </view>
+                      </view>
+              </view>
+        </swiper-item>  
+        
+        <!-- next page -->   
+        <swiper-item class="flex directionC">     
+            <!-- service_list_item -->
+              <view class="ss_tab_con">
+                      <!-- title -->
+                      <view class="ss_title bg-gb">
+                          <image src="/images/question.png" class="ss_img_ques"></image>热点问题
+                      </view>
+                      <!-- hot_issue -->
+                      <view class="ss_hot_issue bg-primary">
+                          <!-- question -->
+                          <view class="ss_hi_con fc-blue fs14">
+                              <view>
+                                  <view class="faq_item_con">进样口流量压力达不到设计值?</view>
+                              </view>
+                              <view>
+                                  <view class="faq_item_con">进样口流量压力达不到设计值?</view>
+                              </view>
+                              <view>
+                                  <view class="faq_item_con">进样口流量压力达不到设计值?</view>
+                              </view>
+                             
+                          </view>
+                      </view>
+                      <!-- question_classificastion -->
+                      <view class="ss_ques_class">
+                          <!-- title -->
+                          <view class="ss_title ss_qc_title bg-gb">
+                              <image src="/images/species.png" class="ss_img_ques"></image>问题分类
+                          </view>
+                          <!-- species -->
+                          <view class="ss_qc_con bg-primary marginB-40">
+                              <view class="ss_qc_inside flex">
+                                  <view class="directionC">
+                                      <image class="ss_qc_icon" src="/images/pump.jpg"></image>
+                                      <view>泵</view>
+                                  </view>
+                                  <view>
+                                      <image class="ss_qc_icon" src="/images/ss.jpg"></image>
+                                      <view>进样器</view>
+                                  </view>
+                                  <view>
+                                      <image class="ss_qc_icon" src="/images/co.jpg"></image>
+                                      <view>柱温箱</view>
+                                  </view>
+                              </view>
+                              <view class="ss_qc_inside flex">
+                                  <view>
+                                      <image class="ss_qc_icon" src="/images/check.jpg"></image>
+                                      <view>检测器</view>
+                                  </view>
+                                  <view>
+                                      <image class="ss_qc_icon" src="/images/software.jpg"></image>
+                                      <view>软件</view>
+                                  </view>
+                                  <view>
+                                      <image class="ss_qc_icon" src="/images/other.jpg"></image>
+                                      <view>其他</view>
+                                  </view>
+                              </view>
+                          </view>
+                      </view>
+              </view>
+        </swiper-item>  
+        
+    </swiper>
+
+
+<view class="faq_notification text-center bg-primary marginB-20">
+    <view>如有其他疑问，您可以提交<text class="fc-blue service_repair">故障反馈</text></view>
+</view>

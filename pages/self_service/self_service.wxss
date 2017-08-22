@@ -1,0 +1,195 @@
+/* pages/self_service/self_service.wxss */
+/* ====================self_service====================== */
+
+page{
+  background: #fff;
+}
+.swiper-box{
+  min-height:100%;
+}
+.weui-search-bar__cancel-btn {
+    margin-left: 0;
+    margin-right: 20rpx;
+    color: #fff;
+}
+
+.ss-btn-right {
+    margin-right: 0;
+    margin-left: 20rpx;
+    color: #fff;
+}
+
+.weui-search-bar {
+    background: #0085d5;
+}
+
+.weui-search-bar__label span {
+    vertical-align: text-top;
+}
+#searchBar .nosearchIcon{
+    width: 650rpx;
+    height: 30rpx;
+    text-align: center;
+    margin: 0 auto;
+    background: #fff;
+     padding: 15rpx;
+}
+
+#searchBar image{
+    width: 30rpx;
+    height:30rpx;
+    position: absolute;
+    top:37%;
+    left:230rpx;
+    z-index: 2;
+}
+
+.ss_tab_content {
+    width: 100%;
+    position: relative;
+    height: 120rpx;
+    overflow: hidden;
+}
+
+.ss_tab {
+    height: 120rpx;
+    padding: 0 25rpx;
+    box-sizing: border-box;
+    position: absolute;
+    width:1100rpx;
+    top:0;
+}
+
+.ss_tab_item {
+    width: 150rpx;
+    float: left;
+    height: 90rpx;
+    line-height: 90rpx;
+    text-align: center;
+    padding: 0 10rpx;
+    margin: 15rpx 15rpx;
+    border-radius: 10rpx;
+}
+
+.ss_tab_item_active {
+    background-color: #8BAFE1;
+}
+
+.ss_tab_btn {
+    position: absolute;
+    top: 0;
+    width: 40rpx;
+    height: 100%;
+    background: #fff;
+    line-height: 128rpx;
+    text-align: center;
+}
+
+.ss_tab_btn image {
+    width: 10px;
+    height: 20px;
+}
+
+.ss_tab_right {
+    right: 0;
+    box-shadow: -6rpx 0 10rpx 6rpx #eee;
+}
+
+.ss_tab_left {
+    left: 0;
+    box-shadow: 6rpx 0 10rpx 6rpx #eee;
+}
+
+.ss_hot_issue {
+    padding: 10rpx 40rpx;
+}
+
+.ss_title {
+    height: 80rpx;
+    line-height: 80rpx;
+    padding: 0 40rpx;
+}
+
+.ss_img_ques {
+    width: 36rpx;
+    height: 36rpx;
+    vertical-align: sub;
+    margin-right: 20rpx;
+}
+
+.ss_hi_con {
+    padding: 30rpx 20rpx 0;
+}
+
+.ss_hi_con > view {
+    list-style: disc;
+    height: 80rpx;
+    position: relative;
+    padding: 0 20rpx ;
+}
+
+.ss_hi_con > view view {
+    color: #0085d5;
+    display: block;
+    height: 80rpx;
+}
+
+.ss_qc_con > view {
+    width: 100%;
+}
+
+.ss_qc_inside > view {
+    flex: .33;
+    text-align: center;
+}
+
+.ss_qc_inside > view:not(:last-child) {
+    border-right: 2rpx solid #e7e6e7;
+}
+
+.ss_qc_inside > view {
+    border-bottom: 2rpx solid #e7e7e7;
+}
+
+@media screen and (max-width: 340px) {
+    .ss_qc_inside > view {
+        padding: 20rpx;
+    }
+}
+
+@media screen and (min-width: 341px) and (max-width: 600px) {
+    .ss_qc_inside > view {
+        padding: 30rpx;
+    }
+}
+
+@media screen and (min-width: 601px) {
+    .ss_qc_inside > view {
+        padding: 50rpx;
+    }
+}
+
+.ss_qc_icon {
+    width: 80rpx;
+    height: 80rpx;
+    margin: 20rpx auto; 
+}
+/* .ss_swiper {
+  width:200%;
+}
+#ss_swiper .swiper-item{
+  flex: 1;
+  width:20%;
+} */
+
+.faq_item_con:before {
+    content: "";
+    position: absolute;
+    width: 12rpx;
+    height: 12rpx;
+    border-radius: 50%;
+    background: #0085d5;
+    top: 20%;
+    left:-10rpx;
+    margin-top:-6rpx;
+}

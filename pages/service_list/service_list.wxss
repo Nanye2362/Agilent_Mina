@@ -16,10 +16,11 @@
     z-index: 900;
 }
 
-.sl_dropdown{
-    padding-right: 50rpx; 
-    background: url("/images/down.png") no-repeat right;
-    background-size: 28rpx ;
+.sl_dropdown image{
+    width: 28rpx;
+    height:14rpx;
+    margin-left:40rpx;
+    margin-bottom: 5rpx;
 }
 .sl_tab {
     width: 100%;
