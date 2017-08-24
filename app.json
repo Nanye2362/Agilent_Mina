@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/leave_message/leave_message",
     "pages/self_service/self_service",
     "pages/service_list/service_list",
     "pages/test/test",
@@ -7,7 +8,6 @@
     "pages/auth/auth",
     "pages/index/index",
     "pages/evaluation/evaluation",
-    "pages/leave_message/leave_message",
     "pages/serial_number/serial_number",
     "pages/install/install",
     "pages/my_instrument/my_instrument",   
