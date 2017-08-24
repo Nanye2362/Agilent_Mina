@@ -36,14 +36,15 @@
                 <text class="fc-aaa fs12">(您可以上传4张照片)</text>
             </view>
             <view class="s-upload flex">
+                 <!-- 上传图片 -->
+                <view class="s-upload-img"  wx:for="{{photoURL}}">
+                    <image src="{{item}}" mode="aspecFill" style="width: 100%; height: 100%; }"></image> 
+                    <view class="lm_img_delete" bindtap="clickToDelete" data-index="{{index}}">删除</view>
+                </view> 
+
                 <!-- 拍照按钮 -->
-                <view class="s-upload-item">
-                    <button bindtap="chooseimage" class="lm_photobtn" style="display: {{btnDisplay}}"></button>
-                    
-                </view>
-                <!-- 上传图片 -->
-                <view class="s-upload-img">
-                    <image src="{{tempFilePaths }}" mode="aspecFill" style="width: 100%; height: 100%; }"></image> 
+                <view class="s-upload-item" wx:if="{{uploadBtn}}">
+                    <image src="/images/upload.png" bindtap="chooseimage" class="lm_photobtn" style="display: {{btnDisplay}}"></image>
                 </view>
             </view>
         </view>

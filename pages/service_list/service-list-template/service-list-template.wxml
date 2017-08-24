@@ -1,0 +1,32 @@
+
+<template name="sl-template"  >
+    <view class="sl_list_item bg-primary "> 
+        <!-- state -->
+        <view class="sl_tab_con_state {{item.slState == '等待报价确认' ? 'bg-blue' : 'bg-green'}}" ></view>
+        <!-- btn -->
+        <view class="sl_list_item_down flex">
+            <view class="sl_list_item_left">
+                <view class="fs14">服务单号：{{item.slNo}}</view>
+            </view>
+            <view class="fs14 sl_list_item_right fc-blue">{{item.slState}}</view>
+        </view>
+        <!-- viewider -->
+        <view class="divider"></view>
+        <!-- info -->
+        <view class="sl_list_item_up flex">
+            <view class="sl_list_item_info sl_list_item_left">
+                <view class="placeholder">
+                    <view class="fs15 marginb-9">{{item.slReason}}</view>
+                    <view class="fs13 marginb-6 fc-777">序列号：{{item.slSN}}</view>
+                    <view class="fs13 marginb-6 fc-777">创建时间: {{item.slDate}}</view>
+                </view>
+            </view>
+            <view class="sl_list_item_right flex directionC justify-center">
+                <view href="javascript:;" class="sl_chat_btn self-center fs14" onclick="_MEIQIA('showPanel')">发起会话</view>
+                <view href="javascript:;" class="sl_pdf fc-blue fs13 text-right" >
+                    <image class="" src="../../images/pdf1.png"/>服务报告
+                </view>
+            </view>
+        </view>
+    </view>
+</template>

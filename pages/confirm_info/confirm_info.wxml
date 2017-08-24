@@ -3,12 +3,10 @@
 <view class="pd_form" id="pd_form">
     <view class="pd_cell flex">
         <view class="pd_cells_title ">产品及用户信息</view>
-        <a href="javascript:history.go(-1)" class="pd_camera text-right">
-            <!--label for="pd_upload" class="fc-blue">
-                <input id="uploaderInput" class="pd_input_img" name="pd_upload" type="file" accept="image/*" multiple="">重新拍照
-            </label-->
-            <span class="fc-blue">重新拍照</span>
-        </a>
+        <view class="pd_camera flex justify-end">
+            <image src="/images/camera.png"></image>
+            <view class="fc-blue">重新拍照</view>
+        </view>
     </view>
     <view class="pd_con bg-primary">
         <view class="pd_cell">

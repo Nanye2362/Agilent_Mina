@@ -1,20 +1,20 @@
 <view class="mi_num fs13 padding fc-aaa">共 <text class="fc-aaa">2</text> 台仪器</view>
 
 <!-- instrument_list -->
-<view class="mi_re_detail">
+<view class="mi_re_detail" wx:for="{{myInstrument}}" >
     <view class="mi_de_title flex ">
         <view class="mi_ti_l text_alignL flex directionC">
             <view class="mi_ti_l_item flex">
                 <view class="mi_item_l fs14 fc-aaa">产品号：</view>
-                <view class="mi_item_r fs14">气象色谱</view>
+                <view class="mi_item_r fs14">{{item.product}}</view>
             </view>
             <view class="mi_ti_l_item flex">
                 <view class="mi_item_l fs14 fc-aaa">描述：</view>
-                <view class="mi_item_r fs14">490-PRO气相色谱仪</view>
+                <view class="mi_item_r fs14">{{item.desc}}</view>
             </view>
             <view class="mi_ti_l_item flex">
                 <view class="mi_item_l fs14 fc-aaa">序列号：</view>
-                <view class="mi_item_r fs14">US1727636</view>
+                <view class="mi_item_r fs14">{{item.seriNo}}</view>
             </view>
         </view>
         <view class="mi_ti_r text-center repair_history" >
@@ -23,7 +23,7 @@
         </view>
     </view>
     <view class="mi_de_con flex">
-        <button class="mi_btn-circle fs14 bg-primary">删除</button>
+        <button class="mi_btn-circle fs14 bg-primary" bindtap="clickToRemove" data-index="{{index}}">删除</button>
         <button class="mi_btn-circle mi_btn_active fs14">报修</button>
     </view>
 </view>
