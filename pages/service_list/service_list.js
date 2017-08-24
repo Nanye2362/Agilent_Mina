@@ -8,7 +8,8 @@ Page({
     winHeight: 0,
     // tab切换  
     currentTab: 0,
-    dropdown: false
+    dropdown: false,
+    serviceList: [{ 'slNo': 'SR80109394845432', 'slState': '等待报价确认', 'slReason': 'SR80109394845432', 'slSN': 'RS-PRO-z0290384848', 'slDate': '2017年6月18日09:00 ' }, { 'slNo': 'SR80109394845432', 'slState': '完成确认', 'slReason': 'SR80109394845432', 'slSN': 'RS-PRO-z0290384848', 'slDate': '2017年6月18日09:00 ' }, { 'slNo': 'SR80109394845432', 'slState': '等待报价确认', 'slReason': 'SR80109394845432', 'slSN': 'RS-PRO-z0290384848', 'slDate': '2017年6月18日09:00 ' }, { 'slNo': 'SR80109394845432', 'slState': '完成确认', 'slReason': 'SR80109394845432', 'slSN': 'RS-PRO-z0290384848', 'slDate': '2017年6月18日09:00 ' }]
   },
   onLoad: function () {
     var that = this;

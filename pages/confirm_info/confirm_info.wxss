@@ -6,20 +6,16 @@
 }
 
 .pd_camera {
-    flex: 1;
     position: relative;
+    flex: .5;
 }
-
-.pd_camera::before {
-    content: "";
-    background: url(../../images/camera.png) no-repeat;
-    position: absolute;
-    top: 10%;
-    right: 32%;
-    width: 1.3rem;
+.pd_cells_title{ 
+    flex: .5;
+ }
+.pd_camera image{
+     width: 1.3rem;
     height: 1.05rem;
-    z-index: 0;
-    background-size: cover;
+    margin-right:10rpx;
 }
 
 @media screen and (min-width: 400px) {

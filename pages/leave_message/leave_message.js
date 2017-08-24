@@ -9,20 +9,50 @@ Page({
    */
   data: {
     describeNo: "0",
-    pitempFilePathscs: ''
+    photoURL: [],
+    uploadBtn: true
   },
-  
-  chooseimage: function () {
+  clickToDelete: function(event){
+    console.log(event);
+    var URLArr = this.data.photoURL;
+    var index = event.target.dataset.index;
+    URLArr.splice(index,1);
+    if (URLArr.length < 4){
+      this.setData({ uploadBtn: true})
+    }
+    this.setData({ photoURL: URLArr});
+
+  },
+  chooseimage: function (event) {
     var _this = this;
+   
+    var URLArr = this.data.photoURL;
+    console.log(URLArr);
     wx.chooseImage({
-      count: 1, // 默认9
+      count: 4, // 默认9
       sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
       sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
       success: function (res) {
         // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
+        console.log(URLArr);
+        URLArr =  URLArr.concat(res.tempFilePaths);
+        console.log(URLArr);
+        if (URLArr.length == 4){
+          _this.setData({ uploadBtn: false })
+        }
+       if (URLArr.length > 4){
+            wx.showToast({
+              title: '图片大于4张，请重新上传',
+              icon: 'loading',
+              duration: 2000,
+              mask: 'true'
+            })
+            return false;
+        }
         _this.setData({
-          tempFilePaths: res.tempFilePaths
-        })
+          photoURL: URLArr
+        });
+        console.log(_this.data.photoURL)
       }
     })
   },

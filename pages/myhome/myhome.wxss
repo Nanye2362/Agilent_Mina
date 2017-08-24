@@ -101,3 +101,7 @@ image{
     width: 20rpx;
     height: 36rpx;
 }
+
+.mc_con_title{
+    margin-bottom: 10rpx;
+}

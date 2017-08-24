@@ -12,37 +12,37 @@
 
 <!-- service_list -->
 <view class="mc_service_list bg-primary">
-    <a class="mc_items flex selfinfo">
-        <image src="../../images/mc-user.png" class="mc_icon  self-center"></image>
-        <view class="flex directionC mc_con">
+    <view class="mc_items flex selfinfo">
+        <image src="/images/mc-user.png" class="mc_icon  self-center"></image>
+        <view class="flex directionC mc_con self-center">
             <text class="fw mc_con_title">个人信息</text>
             <text class="fc-aaa fs14 fw">去完善</text>
         </view>
-        <image src="../../images/arrow-r.png" class="mc_arrow-r self-center"></image>
-    </a>
-    <a class="mc_items flex">
-        <image src="../../images/mc-instrument.png" class="mc_icon self-center"></image>
-        <view class="flex directionC mc_con">
+        <image src="/images/arrow-r.png" class="mc_arrow-r self-center"></image>
+    </view>
+    <view class="mc_items flex">
+        <image src="/images/mc-instrument.png" class="mc_icon self-center"></image>
+        <view class="flex directionC mc_con self-center">
             <text class="fw mc_con_title">我的仪器</text>
             <text class="fc-aaa fs14 fw">当前仪器：<text class="fc-orange fs14">2</text>台</text>
         </view>
-        <image src="../../images/arrow-r.png" class="mc_arrow-r self-center"></image>
-    </a>
-    <a class="mc_items flex service_guide" href="{Yii::getAlias('@web')}/site/service-guide">
-        <image src="../../images/mc-guide.png" class="mc_icon self-center"></image>
-        <div class="flex directionC mc_con">
+        <image src="/images/arrow-r.png" class="mc_arrow-r self-center"></image>
+    </view>
+    <view class="mc_items flex service_guide" href="{Yii::getAlias('@web')}/site/service-guide">
+        <image src="/images/mc-guide.png" class="mc_icon self-center"></image>
+        <view class="flex directionC mc_con self-center">
             <text class="fw mc_con_title">报修指南</text>
             <text class="fc-aaa fs14 fw">小程序报修服务指南</text>
-        </div>
-        <image src="../../images/arrow-r.png" class="mc_arrow-r self-center"></image>
-    </a>
-    <div class="mc_items flex user_unbind" >
-        <image src="../../images/mc-unbind.png" class="mc_icon self-center"></image>
-        <div class="flex directionC mc_con">
+        </view>
+        <image src="/images/arrow-r.png" class="mc_arrow-r self-center"></image>
+    </view>
+    <view class="mc_items flex user_unbind" >
+        <image src="/images/mc-unbind.png" class="mc_icon self-center"></image>
+        <view class="flex directionC mc_con self-center">
             <text class="fw mc_con_title">绑定解绑</text>
             <text class="fc-aaa fs14 fw">切换认证账号 </text>
-        </div>
-        <image src="../../images/arrow-r.png" class="mc_arrow-r self-center"></image>
-    </div>
+        </view>
+        <image src="/images/arrow-r.png" class="mc_arrow-r self-center"></image>
+    </view>
 </view>
 

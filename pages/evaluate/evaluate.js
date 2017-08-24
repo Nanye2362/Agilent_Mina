@@ -57,11 +57,11 @@ Page({
       if (k < num) {
         obj.count = that.data.stars[k].count
         obj.src = 'star_1'
-        arr.push(obj)
+        arr.push(obj);
       } else {
         obj.count = that.data.stars[k].count
         obj.src = 'star_0'
-        arr.push(obj)
+        arr.push(obj);
       }
     }
 

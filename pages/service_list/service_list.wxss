@@ -1,4 +1,8 @@
 /* ====================service_list====================== */
+page{
+  margin-bottom: -30rpx;
+}
+
 .on{
     border-bottom: 4rpx solid #0F70CB;
     color: #0f70cb;
