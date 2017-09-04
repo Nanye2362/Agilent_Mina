@@ -5,7 +5,14 @@ Page({
    * 页面的初始数据
    */
   data: {
-  
+    instruNum: 2
+  },
+  clickToNext: function(event){
+    console.log(event)
+        var url = event.currentTarget.dataset.url;
+        wx.navigateTo({
+          url: url,
+        })
   },
 
   /**

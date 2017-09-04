@@ -42,20 +42,15 @@
         </view>
         <view class="lm_upload ins_upload">
             <view class="weui-uploader__bd lm_upload_pic">
-                <view class="weui-uploader__files flex justify-space" id="uploaderFiles">
-                    <view class="weui-uploader__file lm_upload_item">
+                <view class="weui-uploader__files flex " id="uploaderFiles">
+                    <view class="weui-uploader__file lm_upload_item" wx:for="{{uploadUrlArr}}">
                         <image class="lm_upload_img" src="../../images/pic.png" ></image>
-                        <view class="lm_img_delete">删除</view>
+                        <view class="lm_img_delete"  bindtap="clickToDelete" data-index="{{index}}">删除</view>
                     </view>
-                    <view class="weui-uploader__file lm_upload_item lm_no_upload">
-                        <input id="uploaderInput" class="weui-uploader__input lm_upload_input" type="file" accept="image/*" multiple="" />
-                    </view>
-                    <view class="weui-uploader__file lm_upload_item lm_no_upload">
-                        <input id="uploaderInput" class="weui-uploader__input lm_upload_input" type="file" accept="image/*" multiple="" />
-                    </view>
-                    <view class="weui-uploader__file lm_upload_item lm_no_upload">
-                        <input id="uploaderInput" class="weui-uploader__input lm_upload_input" type="file" accept="image/*" multiple="" />
-                    </view>
+                    <!-- 拍照按钮 -->
+                  <view class="s-upload-item" wx:if="{{uploadBtn}}">
+                      <image src="/images/upload.png" bindtap="chooseimage" class="lm_photobtn" style="display: {{btnDisplay}}"></image>
+                  </view>
                 </view>
             </view>
         </view>       

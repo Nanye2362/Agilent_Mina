@@ -1,0 +1,72 @@
+<!--pages/service_guide/service_guide.wxml-->
+<view class="sg_wrapper">
+    <!-- Swiper -->
+    <view class="sg_titile">安捷伦小程序使用指南</view>
+
+    <view class="sg_video">
+            <video src="{{src}}"  poster="/images/fake-guide.jpg" controls ></video>
+    </view>
+
+    <view class="sg_bar">
+            <view class="sg_bar_blue"></view>
+            <image class="sg_bar_img" src="/images/repari.png"></image>
+            <view class="sg_bar_title">报修服务指南</view>
+    </view>
+
+    <view class="sg_repair">
+        <view class="sg_repair_item alignc">
+            <view class="sg_repair_image"><image src="../../images/gulidence01.png"></image></view>
+            <view class="sg_repair_content flex alignc">点击首页"我要保修"，进入保修申请流程。</view>
+        </view>
+        <view class="sg_repair_item alignc">
+            <view class="sg_repair_image"><image src="../../images/gulidence02.png"></image></view>
+            <view class="sg_repair_content flex alignc">首次提报修先身份验证，验证手机号码有效性。</view>
+        </view>
+        <view class="sg_repair_item alignc">
+            <view class="sg_repair_image"><image src="../../images/gulidence03.png" ></image></view>
+            <view class="sg_repair_content flex alignc">如果该手机号码在系统没有存储，则需要提交相关信息，客户人员会在后台帮助建档。</view>
+        </view>
+        <view class="sg_repair_item alignc">
+            <view class="sg_repair_image"><image src="/images/gulidence04.png"></image></view>
+            <view class="sg_repair_content flex alignc">输入要报修仪器的序列号，或者直接扫描仪器序列号。</view>
+        </view>
+        <view class="sg_repair_item alignc">
+            <view class="sg_repair_image"><image src="/images/gulidence05.png"></image></view>
+            <view class="sg_repair_content flex alignc">确认对应的仪器信息及用户信息是否匹配，信息无误则进入与客服聊天咨询页面。</view>
+        </view>
+        <view class="sg_repair_item alignc">
+            <view class="sg_repair_image"><image src="/images/gulidence06.png"></image></view>
+            <view class="sg_repair_content flex alignc">客服会根据您的问题描述判断是否提交报修服务请求（SR）,您可以在服务历史中查看。</view>
+        </view>
+    </view>
+
+    <view class="sg_bar" style="width: 55%;">
+        <view class="sg_bar_blue"></view>
+        <image class="sg_bar_img" src="/images/anzhuang.png"></image>
+        <view class="sg_bar_title2">安装申请服务指南</view>
+    </view>
+
+    <view>
+        <view class="sg_text">点击首页“安装申请”进入申请表单页面</view>
+        <view class="sg_text">完善个人信息并上传订单信息和场地准备的附件，确认并提交表单，稍后安捷伦工程师会与您取得联系，确认安装详情。</view>
+        <view>
+            <image width="345px" height="180px" src="/images/tu01.jpg" alt=""></image>
+        </view>
+    </view>
+
+    <view class="sg_bar">
+        <view class="sg_bar_blue"></view>
+        <image class="sg_bar_img" src="/images/self-service.png"></image>
+        <view class="sg_bar_title3">自助服务指南</view>
+    </view>
+
+    <view>
+        <view class="sg_text">“常见问题”为您准备了气相色谱、液相色谱、气质联用的常见问题，您可以在线预览，如果问题仍未解决，您可以选择下方的“故障反馈”联系我们。</view>
+        <view>
+            <image width="345px" height="180px" src="/images/tu02.jpg" alt=""></image>
+        </view>
+    </view>
+
+</view>
+<footer class="footer">
+</footer>

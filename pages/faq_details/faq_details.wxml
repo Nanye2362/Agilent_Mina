@@ -30,16 +30,20 @@
 <!-- notification -->
 <view class="fd_notification">
     <view class="fd_not text-center">
-        <sviewan>如有其他疑问，您可以提交<a class="fc-blue service_reviewair">故障反馈</a></sviewan>
+        <view>如有其他疑问，您可以提交<text class="fc-blue service_reviewair" data-url="../leave_message/leave_message" bindtap="clickToNext">故障反馈</text></view>
     </view>
 
     <view class="fd_useful flex">
-        <view class="fd_useful_item text-center" bindtap="usefulClick">
+
+        <view class="fd_useful_item text-center" bindtap="usefulClick" data-useful="1">
                 <image src="{{usefulFlag == false ? '../../images/great.png' : '../../images/good-b.png'}}"></image>有帮助
         </view>
 
-        <view class="fd_useful_item text-center" bindtap="unusefulClick">
+        <view class="fd_useful_item text-center" bindtap="unusefulClick" data-useful="2">
             <image src="{{unusefulFlag ? '../../images/bad-b.png':'../../images/bad.png'}}"></image>没帮助
         </view>
+        
+         <view class="{{maskFlag == true ? '': 'fd_mask' }}"></view>
     </view>
+   
 </view>
