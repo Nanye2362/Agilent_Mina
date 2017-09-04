@@ -6,7 +6,8 @@ Page({
    */
   data: {
     usefulFlag: false,
-    unusefulFlag: false
+    unusefulFlag: false,
+    maskFlag: true
   },
 
   /**
@@ -64,12 +65,20 @@ Page({
   onShareAppMessage: function () {
   
   },
-  usefulClick: function(){
-    this.setData({ usefulFlag: true});
+  usefulClick: function(e){
+    console.log(e)
+    this.setData({ usefulFlag: true, maskFlag: false });
 
   },
   unusefulClick:function(){
-    this.setData({ unusefulFlag: true });
-  }
+    this.setData({ unusefulFlag: true, maskFlag: false });
+  },
+  clickToNext: function (event) {
+    console.log(event)
+    var url = event.currentTarget.dataset.url;
+    wx.navigateTo({
+      url: url,
+    })
+  },
 
 })

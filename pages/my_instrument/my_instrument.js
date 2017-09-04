@@ -1,3 +1,4 @@
+var common = require("../../utils/common.js");
 var app = getApp()
 Page({
   data: {
@@ -9,6 +10,9 @@ Page({
     // tab切换  
     currentTab: 0,
     myInstrument: [{ 'product': '气象色谱', 'desc': '490-PRO气相色谱仪', 'seriNo': 'US1727636' }, { 'product': '液相色谱', 'desc': '490-PRO气相色谱仪', 'seriNo': 'US1727675' }]
+  },
+  clickToNext: function(event){
+    common.clickToNext(event);
   },
   onLoad: function () {
     var that = this;

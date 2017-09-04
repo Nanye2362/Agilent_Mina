@@ -3,7 +3,7 @@ function myfunc() {
 } 
 module.exports.myfunc = myfunc;
 module.exports.uploadimg = uploadimg;
-
+module.exports.clickToNext = clickToNext;
 //图片上传
 function uploadimg(data) {
   var that = this,
@@ -41,4 +41,11 @@ function uploadimg(data) {
 
     }
   });
+}
+
+function clickToNext(event) {
+  var url = event.currentTarget.dataset.url;
+  wx.navigateTo({
+    url: url,
+  })
 }

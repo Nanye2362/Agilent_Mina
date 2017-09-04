@@ -1,5 +1,4 @@
 <!--pages/myhome/myhome.wxml-->
-<!--pages/myhome/myhome.wxml-->
 <!-- poster -->
 <view class="mc_poster">
     <image src="../../images/mc_bg.jpg" class="mc_poster_bg"></image>
@@ -12,7 +11,7 @@
 
 <!-- service_list -->
 <view class="mc_service_list bg-primary">
-    <view class="mc_items flex selfinfo">
+    <view class="mc_items flex selfinfo" data-url="../personal_info/personal_info" bindtap="clickToNext">
         <image src="/images/mc-user.png" class="mc_icon  self-center"></image>
         <view class="flex directionC mc_con self-center">
             <text class="fw mc_con_title">个人信息</text>
@@ -20,15 +19,15 @@
         </view>
         <image src="/images/arrow-r.png" class="mc_arrow-r self-center"></image>
     </view>
-    <view class="mc_items flex">
+    <view class="mc_items flex" data-url="../my_instrument/my_instrument" bindtap="clickToNext">
         <image src="/images/mc-instrument.png" class="mc_icon self-center"></image>
         <view class="flex directionC mc_con self-center">
             <text class="fw mc_con_title">我的仪器</text>
-            <text class="fc-aaa fs14 fw">当前仪器：<text class="fc-orange fs14">2</text>台</text>
+            <text class="fc-aaa fs14 fw">当前仪器：<text class="fc-orange fs14">{{instruNum}}</text> 台</text>
         </view>
         <image src="/images/arrow-r.png" class="mc_arrow-r self-center"></image>
     </view>
-    <view class="mc_items flex service_guide" href="{Yii::getAlias('@web')}/site/service-guide">
+    <view class="mc_items flex service_guide" data-url="../my_instrument/my_instrument" bindtap="clickToNext">
         <image src="/images/mc-guide.png" class="mc_icon self-center"></image>
         <view class="flex directionC mc_con self-center">
             <text class="fw mc_con_title">报修指南</text>
@@ -36,7 +35,7 @@
         </view>
         <image src="/images/arrow-r.png" class="mc_arrow-r self-center"></image>
     </view>
-    <view class="mc_items flex user_unbind" >
+    <view class="mc_items flex user_unbind" data-url="../registration/registration" bindtap="clickToNext">
         <image src="/images/mc-unbind.png" class="mc_icon self-center"></image>
         <view class="flex directionC mc_con self-center">
             <text class="fw mc_con_title">绑定解绑</text>

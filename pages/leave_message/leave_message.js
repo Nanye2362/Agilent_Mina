@@ -21,7 +21,6 @@ Page({
       this.setData({ uploadBtn: true})
     }
     this.setData({ photoURL: URLArr});
-
   },
   chooseimage: function (event) {
     var _this = this;

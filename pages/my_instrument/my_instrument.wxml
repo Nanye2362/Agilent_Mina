@@ -19,7 +19,7 @@
         </view>
         <view class="mi_ti_r text-center repair_history" >
             <image class="mi_instru_img" src="/images/instrument.png"></image>
-            <text class="fc-blue fs14">报修历史</text>
+            <text class="fc-blue fs14" data-url="../service_list/service_list" bindtap="clickToNext">报修历史</text>
         </view>
     </view>
     <view class="mi_de_con flex">

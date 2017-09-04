@@ -5,7 +5,7 @@
         <view class="pd_cells_title ">产品及用户信息</view>
         <view class="pd_camera flex justify-end">
             <image src="/images/camera.png"></image>
-            <view class="fc-blue">重新拍照</view>
+            <view class="fc-blue" data-url="../install/install" bindtap="clickToNext">重新拍照</view>
         </view>
     </view>
     <view class="pd_con bg-primary">
@@ -13,41 +13,41 @@
             <view class="pd_cell__hd ">
                 <label class="pd_label fc-aaa">产 品 ID:</label>
             </view>
-            <view class="weui-cell__hd">G4514A</view>
+            <view class="weui-cell__hd">{{info.ID}}</view>
         </view>
 
         <view class="pd_cell">
             <view class="pd_cell__hd ">
                 <label class="pd_label fc-aaa">产品描述:</label>
             </view>
-            <view class="weui-cell__hd ">7693A Tray,150Vial</view>
+            <view class="weui-cell__hd ">{{info.desc}}</view>
         </view>
         <view class="pd_cell">
             <view class="weui-cell__hd ">
                 <label class="pd_label fc-aaa">序 列 号:</label>
             </view>
-            <view class="weui-cell__hd ">CN15020073</view>
+            <view class="weui-cell__hd ">{{info.seriNo}}</view>
         </view>
 
         <view class="pd_cell">
             <view class="weui-cell__hd ">
                 <label class="pd_label fc-aaa">姓 名:</label>
             </view>
-            <view class="weui-cell__hd ">张三丰</view>
+            <view class="weui-cell__hd ">{{info.name}}</view>
         </view>
 
         <view class="pd_cell">
             <view class="weui-cell__hd ">
                 <label class="pd_label fc-aaa">单位名称:</label>
             </view>
-            <view class="weui-cell__hd ">高知特信息技术(上海)有限公司 高知特信息技术(上海)有限公司</view>
+            <view class="weui-cell__hd ">{{info.company}}</view>
         </view>
 
         <view class="pd_cell">
             <view class="weui-cell__hd ">
                 <label class="pd_label fc-aaa">客户等级:</label>
             </view>
-            <view class="weui-cell__hd ">金牌客户</view>
+            <view class="weui-cell__hd ">{{info.grade}}</view>
         </view>
     </view>
     <view class="pd_btn padding">

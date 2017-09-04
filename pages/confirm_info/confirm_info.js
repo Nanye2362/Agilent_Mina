@@ -1,13 +1,18 @@
 // pages/confirm_info/confirm_info.js
+var common = require("../../utils/common.js");
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    
+    info: { 'ID': 'G4514A', 'desc': '7693A Tray,150Vial', 'seriNo': 'CN15020073', 'name': '张三丰', 'company': '高知特信息技术(上海)有限公司 高知特信息技术(上海)有限公司', 'grade':'金牌客户' }
   },
-
+  clickToNext: function(event){
+    common.clickToNext(event);
+  } ,
+  
   /**
    * 生命周期函数--监听页面加载
    */
