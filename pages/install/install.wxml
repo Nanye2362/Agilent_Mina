@@ -74,3 +74,5 @@
         发起会话</a></view>
     </view>
 </form>
+
+<view class="">{{name}}</view>
