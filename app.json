@@ -1,41 +1,41 @@
 {
   "pages": [
-    "pages/install/install",
-    "pages/leave_message/leave_message",
-    "pages/service_list/service_list",
-    "pages/confirm_info/confirm_info",
-    "pages/my_instrument/my_instrument",
-    "pages/myhome/myhome",
-    "pages/self_service/self_service",
-    "pages/test/test",
-    "pages/evaluate/evaluate",
     "pages/auth/auth",
-    "pages/index/index",
-    "pages/evaluation/evaluation",
-    "pages/serial_number/serial_number",
-    "pages/contact_us/contact_us",
-    "pages/faq_details/faq_details",
+    "pages/myhome/myhome",
     "pages/faq/faq",
-    "pages/my/my",
-    "pages/registration/registration",
-    "pages/personal_info/personal_info",
-    "pages/contact_service/contact_service",
+    "pages/index/index",
+    "pages/service_guide/service_guide",
     "pages/budget_confirm/budget_confirm",
+    "pages/contact_us/contact_us",
+    "pages/evaluate/evaluate",
+    "pages/personal_info/personal_info",
+    "pages/serial_number/serial_number",
+    "pages/service_list/service_list",
+    "pages/install/install",
     "pages/fill_info/fill_info",
-    "pages/service_request/service_request",
+    "pages/logs/logs", 
     "pages/activity/activity",
-    "pages/logs/logs"
+    "pages/registration/registration",
+    "pages/my_instrument/my_instrument",
+    "pages/confirm_info/confirm_info",
+    "pages/faq_details/faq_details",
+    "pages/self_service/self_service",
+    "pages/leave_message/leave_message",
+    "pages/test/test",
+    "pages/evaluation/evaluation",
+    "pages/contact_service/contact_service",
+    "pages/service_request/service_request"
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#444",
     "navigationBarTitleText": "安捷伦售后服务",
-    "navigationBarTextStyle": "light"
+    "navigationBarTextStyle": "white"
   },
   "tabBar": {
     "color": "#a9b7b7",
     "selectedColor": "#0085d5",
-    "backgroundColor": "#fff",
+    "backgroundColor": "#f7f7f7",
     "borderStyle": "black",
     "list": [
       {
@@ -45,16 +45,16 @@
         "selectedIconPath": "images/home_c.png"
       },
       {
-        "pagePath": "pages/evaluate/evaluate",
+        "pagePath": "pages/contact_us/contact_us",
         "text": "联系安捷伦",
-        "iconPath": "/images/my.png",
-        "selectedIconPath": "/images/my_c.png"
+        "iconPath": "/images/contact.png",
+        "selectedIconPath": "/images/contact_c.png"
       },
       {
         "pagePath": "pages/myhome/myhome",
         "text": "我的",
-        "iconPath": "images/contact.png",
-        "selectedIconPath": "images/contact_c.png"
+        "iconPath": "images/my.png",
+        "selectedIconPath": "images/my_c.png"
       }
     ]
   }

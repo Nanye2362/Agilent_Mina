@@ -8,11 +8,18 @@ Page({
     instruNum: 2
   },
   clickToNext: function(event){
-    console.log(event)
-        var url = event.currentTarget.dataset.url;
-        wx.navigateTo({
-          url: url,
-        })
+    wx.showModal({
+      title: '提示',
+      content: '确定要删除吗？',
+      success: function (sm) {
+        if (sm.confirm) {
+          console.log('点击确认')
+          
+        } else if (sm.cancel) {
+          console.log('用户点击取消')
+        }
+      }
+    })
   },
 
   /**

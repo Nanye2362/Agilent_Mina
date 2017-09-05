@@ -5,9 +5,13 @@ Page({
    * 页面的初始数据
    */
   data: {
-      dropdown: false
+      dropdown: false,
+      text: "this is a test",
+      boolean: false
   },
-
+  boolean: function(){
+    this.setData({boolean: true});
+  },
   /**
    * 生命周期函数--监听页面加载
    */
