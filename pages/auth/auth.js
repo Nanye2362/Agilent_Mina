@@ -14,7 +14,8 @@ Page({
     code:"获取验证码",
     clock:'',
     nums :60,
-    
+    mobileV: false,
+    codeV: false, 
   },
 
   /**
@@ -72,10 +73,17 @@ Page({
   onShareAppMessage: function () {
 
   },
-  /*
+  
   registrationSubmit: function (e) {
     //验证手机号与短信验证码
     console.log(e.detail.value);
+    var mobile = e.detail.value.mobile
+    var vfcode = e.detail.value.verification_code
+    /*
+    if(mobile!=null || mobile =="" ){
+      this.setData({submitState:false});
+    }*/
+    /*
     wx.request({
       url: 'https://devopsx.coffeelandcn.cn/agilent/web/auth/register',
       data: {
@@ -103,14 +111,12 @@ Page({
       fail: function (err) {
         console.log(err);
       }
-    });
-  },*/
-
+    });*/
+  },
+   //获取验证码
   getSMSCode: function () {
     console.log('getSMSCode');
     var that = this;
-    var clock='';
-    var nums = 60;
     that.setData({ disabled1: true })
     that.setData({ code: nums + '秒' })
     clock = setInterval(that.doLoop, 100);
@@ -138,31 +144,37 @@ Page({
     });*/
   },
   doLoop() {
-    var that = this;
-    nums--;
+    var that = this;   
     if(nums>0)
     {
       that.setData({ code: nums + '秒' })
+      nums--;
     }
     else{
       clearInterval(clock);
       that.setData({ disabled1:false })
-      that.setData({ code:'获取验证码' })   
+      that.setData({ code:'获取验证码' }) 
+      nums = 60;
     }
   },
 
+  //判断输入框的值是否为空
   getmobile: function (e) {
-    this.setData({
-      mobile: e.detail.value
-    })
+    console.log(e.detail.value)
+    if(e.detail.value == null ||e.detail.value == ""){
+      this.setData({ mobileV: false })      
+    } else{
+      this.setData({ mobileV: true })
+    }
+  },
+   //判断输入框的值是否为空
+  getcode: function (e) {
+    console.log(e.detail.value)
+    if (e.detail.value == null || e.detail.value == "") {
+      this.setData({ codeV: false })     
+    } else{
+      this.setData({ codeV: true })
+    }
   },
 
-  getcode: function (e) {
-    this.setData({
-      verification_code: e.detail.value
-    })
-  },
-  checkboxChange:function(){
-    this.setData({ disabled: !this.data.disabled})
-  }
 })
