@@ -73,4 +73,6 @@
 <view class="faq_notification text-center bg-primary">
     <view>如有其他疑问，您可以提交<text class="fc-blue service_repair">故障反馈</text></view>
 </view>
+<view wx:if="{{boolean}}">{{text}}</view>
+<button bindtap="boolean">click me</button>
 

@@ -12,8 +12,8 @@ Page({
     disabled:true,
     disabled1:false,
     code:"获取验证码",
-    // clock:'',
-    // nums :60,
+    clock:'',
+    nums :60,
     
   },
 
@@ -72,7 +72,7 @@ Page({
   onShareAppMessage: function () {
 
   },
-
+  /*
   registrationSubmit: function (e) {
     //验证手机号与短信验证码
     console.log(e.detail.value);
@@ -104,40 +104,38 @@ Page({
         console.log(err);
       }
     });
-  },
+  },*/
 
   getSMSCode: function () {
+    console.log('getSMSCode');
     var that = this;
     var clock='';
     var nums = 60;
-    
+    that.setData({ disabled1: true })
+    that.setData({ code: nums + '秒' })
+    clock = setInterval(that.doLoop, 100);
     console.log(that.data.mobile);
     //对接SMS服务器获取短信验证码
+    /*
     wx.request({
-      url: 'https://devopsx.coffeelandcn.cn/agilent/web/auth/get-smscode',
+      url: '',
       data: {
         'countrycode': '',
         'mobile': that.data.mobile
       },
+  
       success: function (res) {
         console.log(res.data.status);
         if (res.data.status == 1) {
-          //验证码发送成功
-          wx.showToast({
-            title: '验证码发送成功',
-            icon: 'success',
-            duration: 2000
-          })
           that.setData({ disabled1: true})
           that.setData({code:nums+'秒'})
-          clock = setInterval(that.doLoop,1000);
-     
+          clock = setInterval(that.doLoop,1000);     
         }
       },
       fail: function (err) {
         console.log(err);
       }
-    });
+    });*/
   },
   doLoop() {
     var that = this;
@@ -149,8 +147,7 @@ Page({
     else{
       clearInterval(clock);
       that.setData({ disabled1:false })
-      that.setData({ code:'重新获取' })
-      nums=60;
+      that.setData({ code:'获取验证码' })   
     }
   },
 

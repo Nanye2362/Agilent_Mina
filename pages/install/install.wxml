@@ -1,7 +1,7 @@
 <!--pages/install/install.wxml-->
 <!-- poster -->
 <view class="ins-poster">
-    <image class="img_bg" src="../../images/install_bg.png"></image>
+    <image class="img_bg" src="../../images/install_bg.jpg"></image>
 </view>
 
 
