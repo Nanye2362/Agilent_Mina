@@ -5,7 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-  
+    tempFilePaths:''
   },
 
   /**
@@ -25,6 +25,33 @@ Page({
         // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片  
         _this.setData({
           tempFilePaths: res.tempFilePaths
+        })
+
+        //上传图片
+        var tempFilePaths = res.tempFilePaths
+        wx.uploadFile({
+          url: '', //仅为示例，非真实的接口地址
+          filePath: tempFilePaths[0],
+          name: 'file',
+          success: function (res) {
+            var data = res.data
+            //do something
+          },
+          fail: function(res){
+            console.log(res)
+            wx.showModal({
+              title: '提示',
+              content: '序列号有误',
+              success: function (sm) {
+                if (sm.confirm) {
+                  console.log('点击确认')
+
+                } else if (sm.cancel) {
+                  console.log('用户点击取消')
+                }
+              }
+            })
+          }
         })
       }
     })

@@ -44,7 +44,9 @@ function NetRequest({ url, data, success, fail, complete, method = "POST" }) {
       let data = res.data
       res['statusCode'] === 200 ? success(data) : fail(res)
     },
-    fail: fail,
+    fail: function(e){
+      fail();
+    },
     complete: function(){
       wx.hideLoading()
     }
@@ -52,7 +54,39 @@ function NetRequest({ url, data, success, fail, complete, method = "POST" }) {
 
 }
 
+//判断是否绑定,true为绑定，false为未绑定
+function IsCertificate(success,fail){
+  NetRequest({
+    url: 'auth/check-bind',
+    success: function (res) {
+      if (res.success == true) {
+        success();
+
+      } else {
+        fail();
+      }
+    }
+  })
+}
+
+//判断是否为工作时间,true为是工作时间，false为非工作时间
+function checkWorktime(success,fail) {
+  NetRequest({
+    url: 'util/get-worktime',
+    success: function (res) {
+      if (res.success == true) {
+        success();
+      } else {
+        fail();
+      }
+    }
+  });
+}
+
 module.exports = {
   formatTime: formatTime,
-  NetRequest: NetRequest
+  NetRequest: NetRequest,
+  IsCertificate: IsCertificate,
+  checkWorktime: checkWorktime
+
 }

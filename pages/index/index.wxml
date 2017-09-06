@@ -21,7 +21,7 @@
 <view class="h_icon bg-blue">
     <!-- top -->
     <view class="flex">
-        <view bindtap="" class="h_service_item service_repair">
+        <view bindtap="clickToRepair" class="h_service_item service_repair">
             <image src="/images/repair.png"></image>
             <view class="fs14 fc-fff">我要报修</view>
         </view>
