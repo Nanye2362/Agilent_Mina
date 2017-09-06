@@ -30,7 +30,7 @@
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#444",
     "navigationBarTitleText": "安捷伦售后服务",
-    "navigationBarTextStyle": "white"
+    "navigationBarTextStyle": "white" 
   },
   "tabBar": {
     "color": "#a9b7b7",
