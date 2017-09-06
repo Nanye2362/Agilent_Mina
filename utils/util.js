@@ -19,7 +19,9 @@ function formatNumber(n) {
 let Server = "https://msd.coffeelandcn.cn/agilent_web/web/";
 
 function NetRequest({ url, data, success, fail, complete, method = "POST" }) {
-
+  wx.showLoading({
+    title: '加载中，请稍后',
+  })
   var session_id = wx.getStorageSync('PHPSESSID');//本地取存储的sessionID
   if (session_id != "" && session_id != null) {
     var header = { 'content-type': 'application/x-www-form-urlencoded', 'Cookie': 'PHPSESSID=' + session_id }
@@ -43,7 +45,9 @@ function NetRequest({ url, data, success, fail, complete, method = "POST" }) {
       res['statusCode'] === 200 ? success(data) : fail(res)
     },
     fail: fail,
-    complete: complete
+    complete: function(){
+      wx.hideLoading()
+    }
   })
 
 }
