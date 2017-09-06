@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/auth/auth",
+    "pages/fill_info/fill_info",
     "pages/confirm_info/confirm_info",
     "pages/myhome/myhome",
     "pages/faq/faq",
@@ -13,7 +14,6 @@
     "pages/serial_number/serial_number",
     "pages/service_list/service_list",
     "pages/install/install",
-    "pages/fill_info/fill_info",
     "pages/logs/logs", 
     "pages/activity/activity",
     "pages/registration/registration",
