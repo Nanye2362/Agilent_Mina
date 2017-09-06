@@ -2,14 +2,41 @@
 <template name="sl-template"  >
     <view class="sl_list_item bg-primary "> 
         <!-- state -->
-        <view class="sl_tab_con_state {{item.slState == '等待报价确认' ? 'bg-blue' : 'bg-green'}}" ></view>
-        <!-- btn -->
-        <view class="sl_list_item_down flex">
+        <block wx:if="{{item.slState == '1'}}">
+          <view class="sl_tab_con_state bg-blue" ></view>
+           <view class="sl_list_item_down flex">
             <view class="sl_list_item_left">
                 <view class="fs14">服务单号：{{item.slNo}}</view>
             </view>
-            <view class="fs14 sl_list_item_right fc-blue">{{item.slState}}</view>
+            <view class="fs14 sl_list_item_right fc-blue">{{item.slStateDes}}</view>
         </view>
+        </block>
+        <block wx:elif="{{item.slState == '2'}}">
+          <view class="sl_tab_con_state bg-green" ></view>
+           <view class="sl_list_item_down flex">
+            <view class="sl_list_item_left">
+                <view class="fs14">服务单号：{{item.slNo}}</view>
+            </view>
+            <view class="fs14 sl_list_item_right fc-green"> <image style="width:35rpx; height:35rpx; margin-right:10rpx;" src='/images/evaluate.png'></image>{{item.slStateDes}}</view>
+        </view>
+        </block>
+        <block wx:else>
+          <view class="sl_tab_con_state bg-orange" ></view>
+           <view class="sl_list_item_down flex">
+            <view class="sl_list_item_left">
+                <view class="fs14">服务单号：{{item.slNo}}</view>
+            </view>
+            <view class="fs14 sl_list_item_right fc-orange"> <image style="width:35rpx; height:35rpx; margin-right:10rpx;" src='/images/goeva.png'></image>{{item.slStateDes}}</view>
+        </view>
+        </block>
+
+        <!-- btn -->
+        <!-- <view class="sl_list_item_down flex">
+            <view class="sl_list_item_left">
+                <view class="fs14">服务单号：{{item.slNo}}</view>
+            </view>
+            <view class="fs14 sl_list_item_right fc-blue">{{item.slStateDes}}</view>
+        </view> -->
         <!-- viewider -->
         <view class="divider"></view>
         <!-- info -->
@@ -21,10 +48,26 @@
                     <view class="fs13 marginb-6 fc-777">创建时间: {{item.slDate}}</view>
                 </view>
             </view>
-            <view class="sl_list_item_right flex directionC justify-center">
-                <view href="javascript:;" class="sl_chat_btn self-center fs14" onclick="_MEIQIA('showPanel')">发起会话</view>
-                <view href="javascript:;" class="sl_pdf fc-blue fs13 text-right" >
-                    <image class="" src="../../images/pdf1.png"/>服务报告
+            <view class="sl_list_item_right flex  justify-center directionC">
+                <block wx:if="{{item.slState == '1'}}">
+                    <view href="javascript:;" class="sl_chat_btn self-center fs14" onclick="_MEIQIA('showPanel')">发起会话</view>
+                </block>
+                <block wx:else>
+                    <view href="javascript:;" class="sl_chat_btn self-center fs14" onclick="_MEIQIA('showPanel')">再次维修</view>
+                </block>
+                <wxs module="m1">
+                
+                    var reportShowOrNot = function(slState){
+                        var reportFlag = true;
+                        if(slState == '1'){
+                          reportFlag = false;
+                        }
+                        return reportFlag;
+                    }
+                     module.exports.reportShowOrNot = reportShowOrNot;
+                </wxs>
+                <view href="javascript:;" class="sl_pdf fc-blue fs13 text-right" wx:if="{{m1.reportShowOrNot(item.slState)}}">
+                    下载服务报告
                 </view>
             </view>
         </view>
