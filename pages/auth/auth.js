@@ -1,4 +1,5 @@
 // pages/authentication/authentication.js
+var util = require('../../utils/util.js');
 var clock='';
 var nums=60;
 Page({
@@ -7,8 +8,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    mobile: {},
-    verification_code: {},
+    mobile: '',
+    verification_code: '',
     disabled:true,
     disabled1:false,
     code:"获取验证码",
@@ -22,7 +23,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    console.log(options);
   },
 
   /**
@@ -53,49 +54,29 @@ Page({
 
   },
 
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  },
-  
   registrationSubmit: function (e) {
     //验证手机号与短信验证码
     console.log(e.detail.value);
     var mobile = e.detail.value.mobile
-    var vfcode = e.detail.value.verification_code
-    
-    /*
-    wx.request({
-      url: 'https://devopsx.coffeelandcn.cn/agilent/web/auth/register',
+    var vfcode = e.detail.value.verification_code   
+    util.NetRequest({
+      url: 'auth/auth?mobile=' + mobile,
       data: {
-        'openid': 'oVpgL0YIl_OobwRZsAgrhKQ2FHjA',
         'mobile': mobile,
-        'verification_code': vfcode,
+        'vcode' : verification_code,       
         disabled:true,
       },
       success: function (res) {
         console.log(res);
         if (res.data.success == true) {
-          //短信验证码正确，需要在AWS中关联wechat&SAP信息
-          wx.redirectTo({
-            url: '../service_request/service_request'
+          wx.setStorage({
+            key: "mobile",
+            data: mobile
           })
+          wx.redirectTo({
+            url: '../../'+pageName+'/'+pageName +'' ,
+          })
+          
         } else {
           //短信验证码错误
           wx.showToast({
@@ -108,37 +89,47 @@ Page({
       fail: function (err) {
         console.log(err);
       }
-    });*/
+    })
   }, 
    //获取验证码
-  getSMSCode: function () {
+  getSMSCode: function (e) { 
     console.log('getSMSCode');
     var that = this;
-    that.setData({ disabled1: true })
-    that.setData({ code: nums + '秒' })
-    clock = setInterval(that.doLoop, 1000);
-    console.log(that.data.mobile);
-    //对接SMS服务器获取短信验证码
-    /*
-    wx.request({
-      url: '',
-      data: {
-        'countrycode': '',
-        'mobile': that.data.mobile
-      },
-  
-      success: function (res) {
-        console.log(res.data.status);
-        if (res.data.status == 1) {
-          that.setData({ disabled1: true})
-          that.setData({code:nums+'秒'})
-          clock = setInterval(that.doLoop,1000);     
+    var mobile = that.data.mobile;
+    console.log('mobile'+mobile);
+
+    if (mobile.length == 0) {
+      wx.showToast({
+        title: '手机号不能为空',
+        icon: 'fail',
+        duration: 2000
+      })
+    }else{
+      that.setData({ disabled1: true })
+      that.setData({ code: nums + '秒' })
+      clock = setInterval(that.doLoop, 1000);
+      console.log(that.data.mobile);
+      util.NetRequest({
+        url: 'auth/get-smscode',
+        data: {
+          'mobile': mobile
+        },
+        success: function (res) {
+          console.log(res.data.status);
+          if (res.data.status == 1) {
+            that.setData({ disabled1: true })
+            that.setData({ code: nums + '秒' })
+            clock = setInterval(that.doLoop, 1000);
+          }
+        },
+        fail: function (err) {
+          console.log(err);
         }
-      },
-      fail: function (err) {
-        console.log(err);
-      }
-    });*/
+      });
+    }
+    
+    //对接SMS服务器获取短信验证码
+    
   },
   doLoop() {
     var that = this;   
@@ -163,6 +154,16 @@ Page({
     } else{
       this.setData({ mobileV: true })
     }
+  },
+  //获取输入的值
+  setmobile: function(e){
+    var smobile = e.detail.value
+    this.setData({mobile:smobile});
+  },
+  //获取输入的值
+  setcode: function (e) {
+    var scode = e.detail.value
+    this.setData({ verification_code: scode });
   },
    //判断输入框的值是否为空
   getcode: function (e) {
