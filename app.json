@@ -1,7 +1,7 @@
 {
   "pages": [
-    "pages/serial_number/serial_number",
     "pages/index/index",
+    "pages/serial_number/serial_number",
     "pages/service_list/service_list",
     "pages/auth/auth",
     "pages/myhome/myhome",

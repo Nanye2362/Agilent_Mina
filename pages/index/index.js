@@ -81,5 +81,36 @@ Page({
         url: '../registration/registration'
       })
     }
+  },
+
+  clickToRepair: function (event) {
+    var isWorkTime = this.checkWorktime;
+    var url = event.currentTarget.dataset.url;
+    console.log(isWorkTime);
+
+    if (isWorkTime){
+      wx.navigateTo({
+        url: '',
+      })
+    }else{
+      wx.navigateTo({
+        url: '',
+      })
+    }
+  },
+
+  //检测工作时间
+  checkWorktime: function () {
+    wx.request({
+      url: host + 'util/get-worktime',
+      success: function (res) {
+        console.log(res);
+        if (res.success == true) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+    });
   }
 }) 

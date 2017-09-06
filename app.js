@@ -2,75 +2,63 @@
 var util = require('/utils/util.js');
 App({
   onLaunch: function () {
-    //调用API从本地缓存中获取数据
-    var logs = wx.getStorageSync('logs') || []
-    logs.unshift(Date.now())
-    wx.setStorageSync('logs', logs)
-  },
-  getUserInfo: function (cb) {
-    var that = this
-    if (this.globalData.userInfo) {
-      typeof cb == "function" && cb(this.globalData.userInfo)
-    } else {
-      //调用登录接口
-      wx.login({
-        success: function (res) {
-          console.log(res);
-          wx.getUserInfo({
-            success: function (res) {
-              that.globalData.userInfo = res.userInfo
-              typeof cb == "function" && cb(that.globalData.userInfo);
+    // wx.checkSession({
+    //   success: function () {
+    //     //session 未过期，并且在本生命周期一直有效
+    //   },
+    //   fail: function () {
+    //     //登录态过期
 
-              var objz = {};
-              objz.avatarUrl = res.userInfo.avatarUrl;
-              objz.nickName = res.userInfo.nickName;
-              console.log(objz);
-              wx.setStorageSync('userInfo', objz);
-            }
-          });
-          var l = 'https://devopsx.coffeelandcn.cn/agilent/web/wechat/get-accessdata?appid=' + that.globalData.appid + '&secret=' + that.globalData.secret + '&js_code=' + res.code;
-          wx.request({
-            url: l,
-            data: {},
-            method: 'GET',
-            success: function (res) {
-              console.log(res)
-              if (res.data !== -1) {
-                var obj = {};
-                obj.openid = res.data.openid;
-                obj.expires_in = Date.now() + res.data.expires_in;
-                console.log(obj);
-
-                //需要从SAP服务器查询该用户是否注册
-                wx.request({
-                  url: 'https://devopsx.coffeelandcn.cn/agilent/web/auth/userbind',
-                  data: {
-                    'openid': obj.openid
-                  },
-                  success: function (res) {
-                    console.log('response');
-                    if (res.data == 1) {
-                      //验证成功，用户信息添加到缓存
-                      //wx.setStorageSync('user', obj);
+    //   }
+    // });
+    wx.login({
+      success: function (res) {
+        console.log(res);
+        if (res.code) {
+          //发起网络请求
+          util.NetRequest({
+            url: 'wechat-mini/wx-login',
+            data: {
+              code: res.code
+            },
+            success: function (r) {
+              console.log(r.session3rd);
+              wx.setStorageSync('session3rd', r.session3rd);
+              wx.getUserInfo({
+                success: function (res) {
+                  console.log(res);
+                  console.log(wx.getStorageSync('session3rd'));
+                  util.NetRequest({
+                    url: 'wechat-mini/get-userinfo',
+                    data: {
+                      encryptedData: res.encryptedData,
+                      iv: res.iv,
+                      session3rd: wx.getStorageSync('session3rd'),
+                      userInfo: res.userInfo
+                    },
+                    success: function (m) {
+                      console.log(m);
+                      wx.setStorageSync('MOBILE', m.data);
                     }
-                  },
-                  fail: function (err) {
-                    console.log(err);
-                  }
-                })
-              }
+                  })
+                }
+              })
             }
-          });
-
+          })
+        } else {
+          console.log('获取用户登录态失败！' + res.errMsg)
         }
-      })
-    }
+      }
+    });
+  },
+  onShow: function () {
+    console.log(1111);
   },
   globalData: {
     userInfo: null,
     appid: 'wxdc8257b9f4a04386',
     secret: 'd140b3cd0ad5b4d07f87e081dafb3b8b',
     //token: wx.getStorageSync('token')
-    
+
   }
 })
