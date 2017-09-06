@@ -1,7 +1,7 @@
 {
   "pages": [
-    "pages/confirm_info/confirm_info",
     "pages/auth/auth",
+    "pages/confirm_info/confirm_info",
     "pages/myhome/myhome",
     "pages/faq/faq",
     "pages/index/index",

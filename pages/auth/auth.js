@@ -79,17 +79,14 @@ Page({
     console.log(e.detail.value);
     var mobile = e.detail.value.mobile
     var vfcode = e.detail.value.verification_code
-    /*
-    if(mobile!=null || mobile =="" ){
-      this.setData({submitState:false});
-    }*/
+    
     /*
     wx.request({
       url: 'https://devopsx.coffeelandcn.cn/agilent/web/auth/register',
       data: {
         'openid': 'oVpgL0YIl_OobwRZsAgrhKQ2FHjA',
-        'mobile': e.detail.value.mobile,
-        'verification_code': e.detail.value.verification_code,
+        'mobile': mobile,
+        'verification_code': vfcode,
         disabled:true,
       },
       success: function (res) {
@@ -112,14 +109,14 @@ Page({
         console.log(err);
       }
     });*/
-  },
+  }, 
    //获取验证码
   getSMSCode: function () {
     console.log('getSMSCode');
     var that = this;
     that.setData({ disabled1: true })
     that.setData({ code: nums + '秒' })
-    clock = setInterval(that.doLoop, 100);
+    clock = setInterval(that.doLoop, 1000);
     console.log(that.data.mobile);
     //对接SMS服务器获取短信验证码
     /*
