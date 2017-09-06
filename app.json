@@ -1,8 +1,8 @@
 {
   "pages": [
+    "pages/index/index",
     "pages/auth/auth",
     "pages/serial_number/serial_number",
-    "pages/index/index",
     "pages/service_list/service_list",
     "pages/myhome/myhome",
     "pages/faq/faq",
