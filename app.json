@@ -1,23 +1,23 @@
 {
   "pages": [
+    "pages/serial_number/serial_number",
+    "pages/index/index",
+    "pages/service_list/service_list",
     "pages/auth/auth",
-    "pages/fill_info/fill_info",
-    "pages/confirm_info/confirm_info",
     "pages/myhome/myhome",
     "pages/faq/faq",
-    "pages/index/index",
     "pages/service_guide/service_guide",
     "pages/budget_confirm/budget_confirm",
     "pages/contact_us/contact_us",
     "pages/evaluate/evaluate",
     "pages/personal_info/personal_info",
-    "pages/serial_number/serial_number",
-    "pages/service_list/service_list",
     "pages/install/install",
+    "pages/fill_info/fill_info",
     "pages/logs/logs", 
     "pages/activity/activity",
     "pages/registration/registration",
     "pages/my_instrument/my_instrument",
+    "pages/confirm_info/confirm_info",
     "pages/faq_details/faq_details",
     "pages/self_service/self_service",
     "pages/leave_message/leave_message",
@@ -30,7 +30,7 @@
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#444",
     "navigationBarTitleText": "安捷伦售后服务",
-    "navigationBarTextStyle": "white"
+    "navigationBarTextStyle": "white" 
   },
   "tabBar": {
     "color": "#a9b7b7",

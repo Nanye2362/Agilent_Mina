@@ -1,6 +1,6 @@
 <!-- poster -->
 <view class="auth-poster">
-    <image class="img_bg" src="/images/auth_bg.png"></image>
+    <image class="img_bg" src="/images/auth_bg.jpg"></image>
 </view>
 
 
@@ -32,7 +32,7 @@
         <view class="flex cu-item-t">
             <image class="cu-item_img" src="/images/c_email.png"></image>
         </view>
-        <view class="cu-item-c fs15">lsca-china_800@agilent.com</view>
+        <view class="cu-item-c fs15">lsca-china_800@agilent.com</view> 
     </view>
     <view class="cu_item flex alignc">
         <view class="flex cu-item-t">

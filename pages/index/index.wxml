@@ -2,9 +2,7 @@
 <swiper indicator-dots="{{indicatorDots}}" indicator-active-color="blue" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" style="width: 750rpx; height: 450rpx;" circular="{{true}}">
   <block wx:for="{{imgUrls}}" wx:key="{{img}}">
     <swiper-item>
-      <navigator url="{{item.link}}" hover-class="navigator-hover">
         <image src="{{item.url}}" class="slide-image" style="width: 750rpx; height: 450rpx;"></image>
-      </navigator>
     </swiper-item>
   </block>
   <!-- notification -->
@@ -13,7 +11,7 @@
         <view class="h_alert_img">
             <image src="/images/info_alert.png"></image>
         </view>
-        <view class="flex__item h_alert_con  ">
+        <view class="flex__item h_alert_con">
             <view class="fc-fff fs14 text-overflow" style="width: 90%;">关于安捷伦(上海) 2017年中秋节放假通知</view>
         </view>
     </view>

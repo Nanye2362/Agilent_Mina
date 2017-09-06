@@ -7,15 +7,12 @@ Page({
   data: {
     imgUrls:
     [{
-      link: '/pages/index/index',
       url: '/images/slider1.jpg'
     },
     {
-      link: '/pages/logs/logs',
       url: '/images/slider2.jpg'
     },
     {
-      link: '/pages/test/test',
       url: '/images/slider3.jpg'
     }],
     indicatorDots: true,
