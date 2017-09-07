@@ -1,13 +1,9 @@
 {
   "pages": [
-<<<<<<< HEAD
-=======
-    "pages/auth/auth",
     "pages/serial_number/serial_number",
->>>>>>> 0e2d68e1f7c74fc2b323a308fd3d11f5426fb9d3
     "pages/index/index",
-    "pages/serial_number/serial_number",
     "pages/service_list/service_list",
+    "pages/auth/auth",
     "pages/myhome/myhome",
     "pages/faq/faq",
     "pages/service_guide/service_guide",

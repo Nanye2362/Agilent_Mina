@@ -29,7 +29,7 @@ function NetRequest({ url, data, success, fail, complete, method = "POST" }) {
     var header = { 'content-type': 'application/x-www-form-urlencoded' }
   }
 
-  //console.log(session_id);
+  console.log(session_id);
   url = Server + url;
   wx.request({
     url: url,
@@ -40,7 +40,7 @@ function NetRequest({ url, data, success, fail, complete, method = "POST" }) {
       if (session_id == "" || session_id == null) {
         wx.setStorageSync('PHPSESSID', res.data.session_id) //如果本地没有就说明第一次请求 把返回的session id 存入本地
       }
-      //console.log(res);
+      console.log(res);
       let data = res.data
       res['statusCode'] === 200 ? success(data) : fail(res)
     },
@@ -55,13 +55,12 @@ function NetRequest({ url, data, success, fail, complete, method = "POST" }) {
 }
 
 //判断是否绑定,true为绑定，false为未绑定
-function IsCertificate(success,fail){
+function IsCertificate(succ,fail){
   NetRequest({
     url: 'auth/check-bind',
     success: function (res) {
       if (res.success == true) {
-        success();
-
+        succ();
       } else {
         fail();
       }
@@ -70,12 +69,12 @@ function IsCertificate(success,fail){
 }
 
 //判断是否为工作时间,true为是工作时间，false为非工作时间
-function checkWorktime(success,fail) {
+function checkWorktime(succ,fail) {
   NetRequest({
     url: 'util/get-worktime',
     success: function (res) {
       if (res.success == true) {
-        success();
+        succ();
       } else {
         fail();
       }
@@ -87,6 +86,7 @@ module.exports = {
   formatTime: formatTime,
   NetRequest: NetRequest,
   IsCertificate: IsCertificate,
-  checkWorktime: checkWorktime
+  checkWorktime: checkWorktime,
+  Server: Server
 
 }
