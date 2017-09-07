@@ -1,47 +1,93 @@
 <!--pages/myhome/myhome.wxml-->
 <!-- poster -->
 <view class="mc_poster">
-    <image src="../../images/mc_bg.jpg" class="mc_poster_bg"></image>
+  <image src="../../images/mc_bg.jpg" class="mc_poster_bg"></image>
+  <!-- 已认证 -->
+  <block wx:if="{{is_auth == 1}}">
     <view class="mc_avatar">
-            <image src="../../images/cat.png"></image>
+      <image src="{{head_img_url}}"></image>
     </view>
-    <view class="mc_id_btn mc_id_state fs16 fc-fff">身份认证</view>
-    <text class="mc_id_btn fs16 fc-fff"></text>
+    <view class="mc_id_btn fs16 fc-fff">{{mobile}}</view>
+  </block>
+  <!-- 未认证 -->
+  <block wx:elif="{{is_auth == 0}}">
+    <view class="mc_avatar">
+      <image src="../../images/cat.png"></image>
+    </view>
+    <view class="mc_id_btn mc_id_state fs16 fc-fff" bindtap="Auth" data-url="../auth/auth">身份认证</view>
+  </block>
 </view>
 
 <!-- service_list -->
 <view class="mc_service_list bg-primary">
-    <view class="mc_items flex selfinfo" data-url="../personal_info/personal_info" bindtap="clickToNext">
-        <image src="/images/mc-user.png" class="mc_icon  self-center"></image>
-        <view class="flex directionC mc_con self-center">
-            <text class="fw mc_con_title">个人信息</text>
-            <text class="fc-aaa fs14 fw">去完善</text>
-        </view>
-        <image src="/images/arrow-r.png" class="mc_arrow-r self-center"></image>
+  <!-- 已认证 -->
+  <block wx:if="{{is_auth == 1}}">
+    <view class="mc_items flex selfinfo" bindtap="SelfInfo" data-url="../personal_info/personal_info?head_img_url={{head_img_url}}&name={{name}}&sex=1&mobile={{mobile}}&company={{company}}&email={{email}}">
+      <image src="/images/mc-user.png" class="mc_icon  self-center"></image>
+      <view class="flex directionC mc_con self-center">
+        <text class="fw mc_con_title">个人信息</text>
+        <text class="fc-aaa fs14 fw">已认证</text>
+      </view>
+      <image src="/images/arrow-r.png" class="mc_arrow-r self-center"></image>
     </view>
-    <view class="mc_items flex" data-url="../my_instrument/my_instrument" bindtap="clickToNext">
-        <image src="/images/mc-instrument.png" class="mc_icon self-center"></image>
-        <view class="flex directionC mc_con self-center">
-            <text class="fw mc_con_title">我的仪器</text>
-            <text class="fc-aaa fs14 fw">当前仪器：<text class="fc-orange fs14">{{instruNum}}</text> 台</text>
-        </view>
-        <image src="/images/arrow-r.png" class="mc_arrow-r self-center"></image>
+    <view class="mc_items flex" bindtap="MyInstrument" data-url="../my_instrument/my_instrument">
+      <image src="/images/mc-instrument.png" class="mc_icon self-center"></image>
+      <view class="flex directionC mc_con self-center">
+        <text class="fw mc_con_title">我的仪器</text>
+        <text class="fc-aaa fs14 fw">当前仪器：<text class="fc-orange fs14">{{InstrumentCount}}</text> 台</text>
+      </view>
+      <image src="/images/arrow-r.png" class="mc_arrow-r self-center"></image>
     </view>
-    <view class="mc_items flex service_guide" data-url="../my_instrument/my_instrument" bindtap="clickToNext">
-        <image src="/images/mc-guide.png" class="mc_icon self-center"></image>
-        <view class="flex directionC mc_con self-center">
-            <text class="fw mc_con_title">报修指南</text>
-            <text class="fc-aaa fs14 fw">小程序报修服务指南</text>
-        </view>
-        <image src="/images/arrow-r.png" class="mc_arrow-r self-center"></image>
+    <view class="mc_items flex service_guide" bindtap="ServiceGuide" data-url="../service_guide/service_guide">
+      <image src="/images/mc-guide.png" class="mc_icon self-center"></image>
+      <view class="flex directionC mc_con self-center">
+        <text class="fw mc_con_title">报修指南</text>
+        <text class="fc-aaa fs14 fw">小程序报修服务指南</text>
+      </view>
+      <image src="/images/arrow-r.png" class="mc_arrow-r self-center"></image>
     </view>
-    <view class="mc_items flex user_unbind" data-url="../registration/registration" bindtap="clickToNext">
-        <image src="/images/mc-unbind.png" class="mc_icon self-center"></image>
-        <view class="flex directionC mc_con self-center">
-            <text class="fw mc_con_title">绑定解绑</text>
-            <text class="fc-aaa fs14 fw">切换认证账号 </text>
-        </view>
-        <image src="/images/arrow-r.png" class="mc_arrow-r self-center"></image>
+    <view class="mc_items flex user_unbind" data-ContactGuid="{{ContactGuid}}" bindtap="Unbind">
+      <image src="/images/mc-unbind.png" class="mc_icon self-center"></image>
+      <view class="flex directionC mc_con self-center">
+        <text class="fw mc_con_title">绑定解绑</text>
+        <text class="fc-aaa fs14 fw">切换认证账号 </text>
+      </view>
+      <image src="/images/arrow-r.png" class="mc_arrow-r self-center"></image>
     </view>
+  </block>
+  <!-- 未认证 -->
+  <block wx:elif="{{is_auth == 0}}">
+    <view class="mc_items flex selfinfo" bindtap="Auth" data-url="../auth/auth">
+      <image src="/images/mc-user.png" class="mc_icon  self-center"></image>
+      <view class="flex directionC mc_con self-center">
+        <text class="fw mc_con_title">个人信息</text>
+        <text class="fc-aaa fs14 fw">去完善</text>
+      </view>
+      <image src="/images/arrow-r.png" class="mc_arrow-r self-center"></image>
+    </view>
+    <view class="mc_items flex" bindtap="Auth" data-url="../auth/auth">
+      <image src="/images/mc-instrument.png" class="mc_icon self-center"></image>
+      <view class="flex directionC mc_con self-center">
+        <text class="fw mc_con_title">我的仪器</text>
+        <text class="fc-aaa fs14 fw">当前仪器：<text class="fc-orange fs14">{{instruNum}}</text> 台</text>
+      </view>
+      <image src="/images/arrow-r.png" class="mc_arrow-r self-center"></image>
+    </view>
+    <view class="mc_items flex service_guide" bindtap="ServiceGuide" data-url="../service_guide/service_guide">
+      <image src="/images/mc-guide.png" class="mc_icon self-center"></image>
+      <view class="flex directionC mc_con self-center">
+        <text class="fw mc_con_title">报修指南</text>
+        <text class="fc-aaa fs14 fw">小程序报修服务指南</text>
+      </view>
+      <image src="/images/arrow-r.png" class="mc_arrow-r self-center"></image>
+    </view>
+    <view class="mc_items flex user_unbind" bindtap="Auth" data-url="../auth/auth">
+      <image src="/images/mc-unbind.png" class="mc_icon self-center"></image>
+      <view class="flex directionC mc_con self-center">
+        <text class="fw mc_con_title">绑定解绑</text>
+        <text class="fc-aaa fs14 fw">切换认证账号 </text>
+      </view>
+      <image src="/images/arrow-r.png" class="mc_arrow-r self-center"></image>
+    </view>
+  </block>
 </view>
-
