@@ -21,6 +21,7 @@ let Server = "https://msd.coffeelandcn.cn/agilent_web/web/";
 function NetRequest({ url, data, success, fail, complete, method = "POST" }) {
   wx.showLoading({
     title: '加载中，请稍后',
+    mask: true
   })
   var session_id = wx.getStorageSync('PHPSESSID');//本地取存储的sessionID
   if (session_id != "" && session_id != null) {
@@ -54,6 +55,46 @@ function NetRequest({ url, data, success, fail, complete, method = "POST" }) {
 
 }
 
+function uploadImg(urlList,callback){
+  var session_id = wx.getStorageSync('PHPSESSID');//本地取存储的sessionID
+  if (session_id != "" && session_id != null) {
+    var header = { 'content-type': 'application/x-www-form-urlencoded', 'Cookie': 'PHPSESSID=' + session_id }
+  } else {
+    var header = { 'content-type': 'application/x-www-form-urlencoded' }
+  }
+
+  //console.log(session_id);
+  var url = Server + "api/upload-img";
+  var completeNum=0;
+  var returnUrlList=[];
+  for (var i in urlList){
+    wx.uploadFile({
+      url: url,
+      filePath: urlList[i],
+      name: 'img',
+      formData:{
+          key:i
+      },
+      header: header,
+      success:function(res){
+        completeNum++;
+        var obj = JSON.parse(res.data);
+        returnUrlList[obj.key] = obj.url;
+        if (urlList.length == completeNum) {
+          callback(returnUrlList);
+        }
+      },
+      fail: function (e) {
+        fail();
+      },
+      complete: function () {
+        wx.hideLoading()
+      }
+    })
+  }
+}
+
+
 //判断是否绑定,true为绑定，false为未绑定
 function IsCertificate(success,fail){
   NetRequest({
@@ -61,7 +102,6 @@ function IsCertificate(success,fail){
     success: function (res) {
       if (res.success == true) {
         success();
-
       } else {
         fail();
       }
@@ -83,10 +123,11 @@ function checkWorktime(success,fail) {
   });
 }
 
+
 module.exports = {
   formatTime: formatTime,
   NetRequest: NetRequest,
   IsCertificate: IsCertificate,
-  checkWorktime: checkWorktime
-
+  checkWorktime: checkWorktime,
+  uploadImg: uploadImg
 }

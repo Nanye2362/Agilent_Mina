@@ -9,24 +9,24 @@
     <view class="s-list flex directionC">
         <view class="s-item flex alignc">
             <view class="item-t fc-g fs14">姓名：</view>
-            <input class="fs14 item-r userNam" type="text" placeholder="请输入姓名" />
+            <input bindblur="blurfun" data-name="name" value="{{ name }}" class="fs14 item-r userNam" type="text" placeholder="请输入姓名" />
         </view>
         <view class="s-item flex alignc">
             <view class="item-t fc-g fs14">手机号：</view>
-            <view class="item-r s-phone fs14">12345</view>
+            <view class="item-r s-phone fs14">{{mobile}}</view>
         </view>
         <view class="s-item flex alignc">
             <view class="item-t fc-g fs14">单位名称：</view>
-            <input type="text" class="item-r fs14 companyNam" placeholder="请输入单位名称"/>
+            <input bindblur="blurfun" data-name="company"  value="{{ company }}" type="text" class="item-r fs14 companyNam" placeholder="请输入单位名称"/>
         </view>
         <view class="s-item flex alignc">
             <view class="item-t fc-g fs14">序列号：</view>
-            <input type="text" class="item-r fs14 serialNo" placeholder="例：RS-PRO-SE3948478"/>
+            <input bindblur="blurfun" data-name="sn"  value="{{ sn }}" type="text" class="item-r fs14 serialNo" placeholder="例：RS-PRO-SE3948478"/>
         </view>
         <!-- 故障描述 -->
         <view class=" s-repair fc-g fs14 padding">
             <view class="fs14">故障描述：</view>
-            <textarea class="s-textarea fs13" maxlength="80" bindblur="bindTextAreaBlur" bindinput="desNo" />
+            <textarea class="s-textarea fs13" maxlength="80"  bindinput="desNo" value="{{ desc }}"/>
             <view class="text-right fc-aaa">{{describeNo}}/80</view>
         </view>
         <!-- 图片上传 -->
@@ -49,6 +49,6 @@
             </view>
         </view>
     </view>
-    <view class="btn btn-primary">确定</view>
+    <view class="btn btn-primary" bindtap="submit">确定</view>
 </form>
 
