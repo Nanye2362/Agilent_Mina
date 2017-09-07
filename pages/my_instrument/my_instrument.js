@@ -9,6 +9,7 @@ Page({
     winHeight: 0,
     // tab切换  
     currentTab: 0,
+    InstrumentCount: 7,
     myInstrument: [{ 'product': '气象色谱', 'desc': '490-PRO气相色谱仪', 'seriNo': 'US1727636' }, { 'product': '液相色谱', 'desc': '490-PRO气相色谱仪', 'seriNo': 'US1727675' }]
   },
   clickToNext: function(event){

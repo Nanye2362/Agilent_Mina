@@ -78,11 +78,13 @@ Page({
           })
           
         } else {
-          //短信验证码错误
-          wx.showToast({
-            title: '验证码错误',
-            icon: 'fail',
-            duration: 2000
+          wx.showModal({
+            title: '提交失败',
+            content: '验证码错误',
+            success: function (res) {
+              if (res.confirm) {
+              }
+            }
           })
         }
       },

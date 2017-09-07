@@ -1,8 +1,9 @@
 {
   "pages": [
+    "pages/my_instrument/my_instrument",
     "pages/confirm_info/confirm_info",
-    "pages/auth/auth",
     "pages/fill_info/fill_info",
+    "pages/serial_number/serial_number",
     "pages/index/index",
     "pages/service_list/service_list",
     "pages/auth/auth",
@@ -17,7 +18,6 @@
     "pages/logs/logs", 
     "pages/activity/activity",
     "pages/registration/registration",
-    "pages/my_instrument/my_instrument",
     "pages/faq_details/faq_details",
     "pages/self_service/self_service",
     "pages/leave_message/leave_message",

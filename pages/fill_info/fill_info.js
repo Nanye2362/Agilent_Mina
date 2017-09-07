@@ -33,7 +33,7 @@ Page({
         },
         success: function (res) {
           console.log(res);
-          if (res.data.success == true) {
+          if (res.success == true) {
             wx.showModal({
               title: '提交成功',
               content: '您已提交，客服即将为你处理，请稍后……',
@@ -44,20 +44,24 @@ Page({
               }
             })
           } else {
-            wx.showToast({
-              title: '您已提交过信息，客服正在为您建档',
-              image: '../../images/hint.png',
-              duration: 2000,
-              mask: true
+            wx.showModal({
+              title: '提交失败',
+              content: '您已提交信息，客服正在为您建档',
+              success: function (res) {
+                if (res.confirm) {
+                }
+              }
             })
           }
         },
         fail: function (err) {
-          wx.showToast({
-            title: '您已提交过信息，客服正在为您建档',
-            image: '../../images/hint.png',
-            duration: 2000,
-            mask: true
+          wx.showModal({
+            title: '提交失败',
+            content: '您已提交过信息，客服正在为您建档',
+            success: function (res) {
+              if (res.confirm) {
+              }
+            }
           })
         }
       })

@@ -1,13 +1,16 @@
 // pages/confirm_info/confirm_info.js
 var common = require("../../utils/common.js");
-var util = require('../../utils/util.js');
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    info: {},
+    ProductId:'',
+    ProductDesc:'',
+    SerialNo: '',
+    CpName: '',
+    ShipToName: ''
   },
   clickToNext: function(event){
     common.clickToNext(event);
@@ -17,44 +20,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    util.NetRequest({
-      url: 'sr/sr-confirm',
-      data: {
-      },
-      header: {
-        'content-type': 'application/json' // 默认值
-      },
-      success: function (res) {
-        if (res.success == true) {
-          this.setData({
-            ProductId: res.ProductId,
-            ProductDesc: res.ProductDesc,
-            SerialNo: res.SerialNo,
-            CpName: 
-          })
-          'site/product-details?ProductId=' + res.ProductId + '&ProductDesc=' + res.ProductDesc + '&SerialNo=' + res.SerialNo + '&CpName=' + res.CpName + '&ShipToName=' + res.ShipToName + '&CustomerRating=' + res.CustomerRating;
-        } else {
-          /*
-          window.location.href = host + 'site/info-setup?mobile=' + mobile;*/
-          $.modal({
-            title: "错误",
-            text: "序列号解析有误",
-            buttons: [
-              { text: "重新输入", onClick: function () { hideConfirm(); } },
-              {
-                text: "联系客服", onClick: function () {
-                  _MEIQIA('showPanel');
-                  hideConfirm();
-                }
-              },
-            ]
-          });
-        }
-      },
-      fail: function (err) {
-        console.log(err);
-      }
-    })
+    this.setData({
+      ProductId: options.ProductId,
+      ProductDesc: options.ProductDesc,
+      SerialNo: options.SerialNo,
+      CpName: options.CpName,
+      ShipToName: options.ShipToName
+    })    
   },
 
   /**
