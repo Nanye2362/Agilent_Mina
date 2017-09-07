@@ -84,6 +84,9 @@ Page({
     }
   },
 
+/*
+**  我要报修跳转
+*/
   clickToRepair: function (event) {
     util.IsCertificate(function(){
         //绑定的话，检测是否为工作时间
@@ -126,5 +129,38 @@ Page({
     //     }
     //   });
     // }
+  },
+/*
+** 安装申请、服务历史 点击跳转
+*/
+  nevigateToNext: function(e){
+    console.log(e)
+      var url = e.target.dataset.url;
+      util.IsCertificate(function () {
+        //绑定的话,跳转相应页面
+        wx.navigateTo({
+          url: url,
+        })
+      
+        //未绑定，则跳转认证页面
+      }, function () {
+        wx.navigateTo({
+          url: '../auth/auth?pageName=index',
+
+        })
+      });
+
+  },
+
+  /*
+**  自助服务点击弹出框
+*/
+  clickToHint:function(){
+    wx.showToast({
+      title: '自助服务暂未开通',
+      image: '../../images/hint.png',
+      duration: 2000,
+    })
   }
+  
 }) 

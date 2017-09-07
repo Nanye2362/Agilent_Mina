@@ -25,18 +25,18 @@
             <image src="/images/repair.png"></image>
             <view class="fs14 fc-fff">我要报修</view>
         </view>
-        <view class="h_service_item">
+        <view bindtap="nevigateToNext" class="h_service_item" data-url='../../install/install'>
             <image src="/images/install.png"></image>
             <view class="fs14 fc-fff">安装申请</view>
         </view>
     </view>
     <!-- bottom -->
     <view class="flex">
-        <view class="h_service_item">
+        <view bindtap="clickToHint" class="h_service_item" >
             <image src="/images/self.png"></image>
             <view class="fs14 fc-fff">自助服务</view>
         </view>      
-        <view class="h_service_item service_history">
+        <view bindtap="nevigateToNext" class="h_service_item service_history" data-url='../../service_list/service_list'>
             <image src="/images/history.png"></image>
             <view class="fs14 fc-fff">服务历史</view>
         </view>
