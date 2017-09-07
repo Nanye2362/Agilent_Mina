@@ -46,7 +46,7 @@
       </view>
       <image src="/images/arrow-r.png" class="mc_arrow-r self-center"></image>
     </view>
-    <view class="mc_items flex user_unbind" data-ContactGuid="{{ContactGuid}}" bindtap="Unbind">
+    <view class="mc_items flex user_unbind" data-contact_guid="{{ContactGuid}}" bindtap="Unbind">
       <image src="/images/mc-unbind.png" class="mc_icon self-center"></image>
       <view class="flex directionC mc_con self-center">
         <text class="fw mc_con_title">绑定解绑</text>

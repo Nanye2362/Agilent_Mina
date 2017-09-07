@@ -8,20 +8,6 @@ Page({
   data: {
 
   },
-  clickToNext: function (event) {
-    wx.showModal({
-      title: '提示',
-      content: '确定要删除吗？',
-      success: function (sm) {
-        if (sm.confirm) {
-          console.log('点击确认')
-
-        } else if (sm.cancel) {
-          console.log('用户点击取消')
-        }
-      }
-    })
-  },
 
   SelfInfo: function (e) {
     wx.navigateTo({
@@ -41,8 +27,43 @@ Page({
     })
   },
 
-  Unbind: function () {
-    console.log('unbind');
+  Unbind: function (e) {
+    wx.showModal({
+      title: '解除绑定',
+      content: '请注意，所有的记录都将被删除，您确认要解除绑定吗？',
+      success: function (sm) {
+        if (sm.confirm) {
+          console.log('点击确认')
+          //请求后台接口
+          util.NetRequest({
+            url: 'auth/user-unbind',
+            data: {
+              wxopenid: wx.getStorageSync('OPENID'),
+              ContactGuid: e.currentTarget.dataset.contact_guid
+            },
+            success: function (res) {
+              console.log(res);
+              if (res.success == true) {
+                wx.removeStorageSync('mobile');
+                wx.showToast({
+                  title: '解绑成功',
+                  icon: '您已解绑',
+                  duration: 2000
+                });
+              } else {
+                wx.showToast({
+                  title: '解绑失败',
+                  icon: res.error_msg,
+                  duration: 2000
+                });
+              }
+            }
+          });
+        } else if (sm.cancel) {
+          console.log('用户点击取消')
+        }
+      }
+    })
   },
 
   Auth: function (e) {
