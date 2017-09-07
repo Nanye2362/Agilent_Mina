@@ -8,7 +8,7 @@
     <view class="s-list flex directionC">
         <view class="s-item flex alignc">
             <view class="item-t fc-g fs14">姓名：</view>
-            <input class="fs14 item-r userNam" type="text" placeholder="请输入姓名" bindinput="getname" />
+            <input class="fs14 item-r userNam" type="text" placeholder="请输入姓名" bindinput="getname" bindblur='setname'/>
         </view>
         <view class="s-item flex alignc">
             <view class="item-t fc-g fs14">手机号：</view>
@@ -16,17 +16,17 @@
         </view>
         <view class="s-item flex alignc">
             <view class="item-t fc-g fs14">单位名称：</view>
-            <input type="text" class="item-r fs14 companyNam" placeholder="请输入单位名称" bindinput='getcompany'/>
+            <input type="text" class="item-r fs14 companyNam" placeholder="请输入单位名称" bindinput='getcompany' bindblur='setcompany'/>
         </view>
         <view class="s-item flex alignc">
             <view class="item-t fc-g fs14">序列号：</view>
-            <input type="text" class="item-r fs14 serialNo" placeholder="例：RS-PRO-SE3948478" bindinput='getsn'/>
+            <input type="text" class="item-r fs14 serialNo" placeholder="例：RS-PRO-SE3948478" bindinput='getsn' bindblur='setsn'/>
         </view>
         <view class="s-item flex alignc">
             <view class="item-t fc-g fs14">备注：</view>
-            <input type="text" class="item-r fs14 serialNo" placeholder="添加备注（可选）"/>
+            <input type="text" class="item-r fs14 serialNo" placeholder="添加备注（可选）" bindblur='setother'/>
         </view>
     </view>
     <!-- btn -->
-    <button class="btn btn-primary"  formType="submit" disabled="{{mobileV && codeV? false:true}}">确定</button>
+    <button class="btn btn-primary"  formType="submit" disabled="{{nameV && companyV && snV? false:true}}">确定</button>
 </form>
