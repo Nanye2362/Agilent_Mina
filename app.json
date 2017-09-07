@@ -1,13 +1,11 @@
 {
   "pages": [
-<<<<<<< HEAD
-=======
+    "pages/confirm_info/confirm_info",
     "pages/auth/auth",
-    "pages/serial_number/serial_number",
->>>>>>> 0e2d68e1f7c74fc2b323a308fd3d11f5426fb9d3
+    "pages/fill_info/fill_info",
     "pages/index/index",
-    "pages/serial_number/serial_number",
     "pages/service_list/service_list",
+    "pages/auth/auth",
     "pages/myhome/myhome",
     "pages/faq/faq",
     "pages/service_guide/service_guide",
@@ -16,12 +14,10 @@
     "pages/evaluate/evaluate",
     "pages/personal_info/personal_info",
     "pages/install/install",
-    "pages/fill_info/fill_info",
     "pages/logs/logs", 
     "pages/activity/activity",
     "pages/registration/registration",
     "pages/my_instrument/my_instrument",
-    "pages/confirm_info/confirm_info",
     "pages/faq_details/faq_details",
     "pages/self_service/self_service",
     "pages/leave_message/leave_message",
