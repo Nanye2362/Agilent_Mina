@@ -17,16 +17,14 @@ Page({
     nums :60,
     mobileV: false,
     codeV: false, 
-    pageName:'',
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options,e) {
-    console.log(options.pageName);
-    var pageName = options.pageName;
-    this.setData({pageName: pageName});
+  onLoad: function (options) {
+    console.log(options);
+    console.log(e.pageName);
   },
 
   /**
@@ -66,25 +64,26 @@ Page({
       url: 'auth/auth?mobile=' + mobile,
       data: {
         'mobile': mobile,
-        'vcode': vfcode,       
+        'vcode' : verification_code,       
         disabled:true,
       },
       success: function (res) {
         console.log(res);
         if (res.data.success == true) {
-          wx.setStorageSync('mobile', mobile)
+          wx.setStorage({
+            key: "mobile",
+            data: mobile
+          })
           wx.redirectTo({
-            url: '../../'+pageName+'/'+pageName +'?mobile='+mobile ,
+            url: '../../'+pageName+'/'+pageName +'' ,
           })
           
         } else {
-          wx.showModal({
-            title: '提交失败',
-            content: '验证码错误',
-            success: function (res) {
-              if (res.confirm) {
-              }
-            }
+          //短信验证码错误
+          wx.showToast({
+            title: '验证码错误',
+            icon: 'fail',
+            duration: 2000
           })
         }
       },

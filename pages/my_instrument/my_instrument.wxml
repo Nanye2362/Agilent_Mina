@@ -1,4 +1,4 @@
-<view class="mi_num fs13 padding fc-aaa">共 <text class="fc-aaa">{{InstrumentCount}}</text> 台仪器</view>
+<view class="mi_num fs13 padding fc-aaa">共 <text class="fc-aaa">2</text> 台仪器</view>
 
 <!-- instrument_list -->
 <block wx:if="{{displayState}}">

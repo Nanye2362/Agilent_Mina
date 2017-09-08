@@ -5,4 +5,3 @@
 .item-t{ flex: .3; height: 100rpx; line-height: 100rpx; }
 .s-item input{ height: 100rpx; }
 .item-r{ flex: .7; }
-.serialNo{ text-transform: uppercase; }

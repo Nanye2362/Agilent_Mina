@@ -13,34 +13,41 @@
             <view class="pd_cell__hd ">
                 <label class="pd_label fc-aaa">产 品 ID:</label>
             </view>
-            <view class="weui-cell__hd">{{ProductId}}</view>
+            <view class="weui-cell__hd">{{info.ID}}</view>
         </view>
 
         <view class="pd_cell">
             <view class="pd_cell__hd ">
                 <label class="pd_label fc-aaa">产品描述:</label>
             </view>
-            <view class="weui-cell__hd ">{{ProductDesc}}</view>
+            <view class="weui-cell__hd ">{{info.desc}}</view>
         </view>
         <view class="pd_cell">
             <view class="weui-cell__hd ">
                 <label class="pd_label fc-aaa">序 列 号:</label>
             </view>
-            <view class="weui-cell__hd ">{{SerialNo}}</view>
+            <view class="weui-cell__hd ">{{info.seriNo}}</view>
         </view>
 
         <view class="pd_cell">
             <view class="weui-cell__hd ">
                 <label class="pd_label fc-aaa">姓 名:</label>
             </view>
-            <view class="weui-cell__hd ">{{CpName}}</view>
+            <view class="weui-cell__hd ">{{info.name}}</view>
         </view>
 
         <view class="pd_cell">
             <view class="weui-cell__hd ">
                 <label class="pd_label fc-aaa">单位名称:</label>
             </view>
-            <view class="weui-cell__hd ">{{ShipToName}}</view>
+            <view class="weui-cell__hd ">{{info.company}}</view>
+        </view>
+
+        <view class="pd_cell">
+            <view class="weui-cell__hd ">
+                <label class="pd_label fc-aaa">客户等级:</label>
+            </view>
+            <view class="weui-cell__hd ">{{info.grade}}</view>
         </view>
     </view>
     <view class="pd_btn padding">
