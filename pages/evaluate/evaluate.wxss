@@ -1,5 +1,8 @@
  /* pages/evaluate/evaluate.wxss */
 .e_star{ width: 40rpx; height: 40rpx; }
+.stars{ margin: 0 10rpx; }
+.aver_e_star{ width: 30rpx; height: 30rpx; }
+.aver_stars{ margin: 0 5rpx; }
 .ev_grade {
     width: 100%;
     padding: 20px;
@@ -87,4 +90,3 @@
 .e-title{ flex: .3; }
 .e-stars{ flex: .6; }
 .e-count{ flex: .1; }
-.stars{ margin: 0 10rpx; }

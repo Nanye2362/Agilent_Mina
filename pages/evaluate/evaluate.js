@@ -2,7 +2,25 @@
 var initData = {
   //评论计数
   describeNo: "0",
-  stars:[]
+  stars:[],
+  averageList:[],
+  averageNum:0,
+  drawAverageStars: [{
+    count: 0,
+    src: 'star_0'
+  }, {
+    count: 1,
+    src: 'star_0'
+  }, {
+    count: 2,
+    src: 'star_0'
+  }, {
+    count: 3,
+    src: 'star_0'
+  }, {
+    count: 4,
+    src: 'star_0'
+  }]
 }
 var arrTitle = ["流程顺畅", "技术能力", "响应速度", "服务态度", "着装工整","服务进度更新"];
 
@@ -69,62 +87,58 @@ Page({
     console.log(thisstars[index]);
     thisstars[index].currentCount = num;
     thisstars[index].data = arr;
-    
     that.setData({
-      stars: thisstars
+      stars: thisstars,
     })
+    var averageNum = this.averageCalculate();
+    that.setData({
+      averageNum: averageNum,
+    })
+    this.drawAverageStars(averageNum);
   },
 
   //反馈textarea
   desNo: function (e) {
     this.setData({ describeNo: (e.detail.value).length });
   },
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-  
+
+  //平均值星星渲染
+  drawAverageStars: function(averNum){
+    var num = parseInt(averNum);
+    var remainder = (averNum - num);
+    var drawAverageStars = this.data.drawAverageStars;
+    for (var k in drawAverageStars) {
+      if (drawAverageStars[k].count < num) {
+        drawAverageStars[k].src = 'star_1'
+      } else {
+        drawAverageStars[k].src = 'star_0';
+      }
+    }
+    if (remainder) {
+      drawAverageStars[num].src = 'star_half'
+    }
+
+    this.setData({
+      drawAverageStars: drawAverageStars
+    })
   },
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
+  //平均值计算
+  averageCalculate: function(){
+        var averageArr = [];
+        var sum = 0;
+        var starsInfo = this.data.stars;
+        var averageNum = 0;
+        for (var i = 0; i < starsInfo.length; i++){
+          console.log(starsInfo[i].currentCount)
+          var grade = starsInfo[i].currentCount;
+          if (grade != 0){
+            averageArr.push(grade);
+          }
+          sum+=Number(grade);
+        }
+        averageNum = (sum/(averageArr.length)).toFixed(2);
+        return averageNum;
+    }
   
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
-  }
 })
