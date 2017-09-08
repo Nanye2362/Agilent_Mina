@@ -1,6 +1,5 @@
 // pages/confirm_info/confirm_info.js
 var common = require("../../utils/common.js");
-
 var app = getApp()
 Page({
 
@@ -8,11 +7,6 @@ Page({
    * 页面的初始数据
    */
   data: {
-    ProductId:'',
-    ProductDesc:'',
-    SerialNo: '',
-    CpName: '',
-    ShipToName: ''
     ProductId:'',
     ProductDesc:'',
     SerialNo: '',
