@@ -30,7 +30,7 @@ function NetRequest({ url, data, success, fail, complete, method = "POST" }) {
     var header = { 'content-type': 'application/x-www-form-urlencoded' }
   }
 
-  //console.log(session_id);
+  console.log(session_id);
   url = Server + url;
   wx.request({
     url: url,
@@ -41,7 +41,7 @@ function NetRequest({ url, data, success, fail, complete, method = "POST" }) {
       if (session_id == "" || session_id == null) {
         wx.setStorageSync('PHPSESSID', res.data.session_id) //如果本地没有就说明第一次请求 把返回的session id 存入本地
       }
-      //console.log(res);
+      console.log(res);
       let data = res.data
       res['statusCode'] === 200 ? success(data) : fail(res)
     },
@@ -123,11 +123,53 @@ function checkWorktime(success,fail) {
   });
 }
 
+function checkEmpty(obj,arrInput){
+  var isEmpty=false;
+  for (var i in arrInput){
+    if (obj[arrInput[i]].trim().length==0){
+      isEmpty=true;
+      return isEmpty;
+    }
+  }
+  return isEmpty;
+}
+
+function getUserInfo(cb){
+  var user=wx.getStorageSync('userInfo');
+  if (user==""){//user不存在
+    NetRequest({
+      url: "api/get-userinfo", success: function (res) {
+        if (res.success) {
+          user = res.info;
+          wx.setStorageSync('userInfo',user);
+          cb(user);
+        } else {
+          wx.showModal({
+            title: '发生错误',
+            content: '加载失败',
+            showCancel: false
+          })
+        }
+      },
+      fail: function () {
+        wx.showModal({
+          title: '发生错误',
+          content: '加载失败',
+          showCancel: false
+        })
+      }
+    });
+  }else{
+    cb(user);
+  }
+}
 
 module.exports = {
   formatTime: formatTime,
   NetRequest: NetRequest,
   IsCertificate: IsCertificate,
-  checkWorktime: checkWorktime,
-  uploadImg: uploadImg
+  Server: Server,
+  uploadImg: uploadImg,
+  checkEmpty: checkEmpty,
+  getUserInfo: getUserInfo
 }
