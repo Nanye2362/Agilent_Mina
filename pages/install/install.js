@@ -1,5 +1,6 @@
 // pages/install/install.js
 var commondata = require('../../Data/database.js');
+var util = require('../../utils/util.js');
 Page({
 
   /**
@@ -7,22 +8,84 @@ Page({
    */
   data: {
     uploadBtn: true,
-    uploadUrlArr: []
+    photoURL: []
 
   },
+  blurfun: function (event) {
+    this.setData(JSON.parse('{"' + event.target.dataset.name + '":"' + event.detail.value + '"}'));
+  },
+  submit: function (event) {
+    var URLArr = this.data.photoURL;
+    var that = this;
+    
+    if (util.checkEmpty(that.data, ['name', 'company'])) {
+      wx.showModal({
+        title: '提示',
+        content: '请确认信息输入完整',
+        showCancel: false,
+      })
+      return;
+    }
+    
+    if (URLArr.length > 0) {
+      util.uploadImg(URLArr, function (imgUrlList) {
+        this._submit(imgUrlList);
+      })
+    } else {
+      this._submit([]);
+    }
 
+  },
+  _submit: function (imgUrlList) {
+    var that = this;
+    util.NetRequest({
+      url: "sr/sr-instal", data: {
+        username: that.data.name,
+        company: that.data.company,
+        from: 'wechat',
+        img_1: imgUrlList[0],
+        img_2: imgUrlList[1],
+        img_3: imgUrlList[2],
+        img_4: imgUrlList[3]
+      }, fail:function(e){
+        console.log(e);
+      },success: function (res) {
+        console.log(res);
+        if (res.success) {
+          wx.showModal({
+            title: '提交成功',
+            content: '您的安装申请已提交成功，服务调度中心将会与您联系确认服务时间以及工程师安排事宜',
+            showCancel: false,
+            success: function (res) {
+              if (res.confirm) {
+                wx.switchTab({
+                  url: '../index/index',
+                });
+              }
+            }
+          })
+        } else {
+          wx.showModal({
+            title: '提示',
+            content: '发生错误，请联系客服',
+            showCancel: false
+          })
+        }
+      }
+    })
+  },
   /* *
  *   点击删除图片 
   */
   clickToDelete: function (event) {
     console.log(event);
-    var URLArr = this.data.uploadUrlArr;
+    var URLArr = this.data.photoURL;
     var index = event.target.dataset.index;
     URLArr.splice(index, 1);
     if (URLArr.length < 4) {
       this.setData({ uploadBtn: true })
     }
-    this.setData({ uploadUrlArr: URLArr });
+    this.setData({ photoURL: URLArr });
   },
 
   /*
@@ -31,7 +94,8 @@ Page({
   chooseimage: function (event) {
     var _this = this;
 
-    var URLArr = this.data.uploadUrlArr;
+    var URLArr = this.data.photoURL;
+    console.log(URLArr);
     wx.chooseImage({
       count: 4, // 默认9
       sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
@@ -39,7 +103,7 @@ Page({
       success: function (res) {
         // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
         URLArr = URLArr.concat(res.tempFilePaths);
-        //console.log(URLArr);
+        console.log(URLArr);
         if (URLArr.length == 4) {
           _this.setData({ uploadBtn: false })
         }
@@ -53,9 +117,9 @@ Page({
           return false;
         }
         _this.setData({
-          uploadUrlArr: URLArr
+          photoURL: URLArr
         });
-        //console.log(_this.data.uploadUrlArr)
+        console.log(_this.data.photoURL)
       }
     })
   },
@@ -63,8 +127,14 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.setData(commondata);
-    commondata.fun1();
+    var that = this;
+    util.getUserInfo(function (user) {
+      that.setData({
+        name: user.name,
+        company: user.company,
+        mobile: user.mobile
+      })
+    });
   },
 
   /**

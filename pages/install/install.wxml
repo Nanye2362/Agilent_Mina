@@ -14,7 +14,7 @@
         <view class="ins_item flex">
             <view class="ins_title self-center">姓名:</view>
             <label class="ins_con" for="ins_phone">
-                <input name="ins_phone" type="text" placeholder="请输入姓名" id="ins_phone" required="" />
+                <input bindblur="blurfun" data-name="name" value="{{ name }}" name="ins_phone" type="text" placeholder="请输入姓名" id="ins_phone" required="" />
             </label>
         </view>
         <!-- phone -->
@@ -22,14 +22,14 @@
             <view class="ins_title self-center">手机号:</view>
             <label class="ins_con" for="ins_phone">
                 <!--input name="ins_phone" type="tel" placeholder="请输入手机号" id="ins_phone" required=""-->
-                <span>13109876543</span>
+                <span>{{mobile}}</span>
             </label>
         </view>
         <!-- company -->
         <view class="ins_item flex">
             <view class="ins_title self-center">单位名称:</view>
             <label class="ins_con" for="ins_phone">
-                <input name="ins_phone" type="text" placeholder="请输入单位全称" id="ins_phone" required="" />
+                <input bindblur="blurfun" data-name="company" value="{{ company }}" name="ins_phone" type="text" placeholder="请输入单位全称" id="ins_phone" required="" />
             </label>
         </view>
     </view>
@@ -43,8 +43,8 @@
         <view class="lm_upload ins_upload">
             <view class="weui-uploader__bd lm_upload_pic">
                 <view class="weui-uploader__files flex " id="uploaderFiles">
-                    <view class="weui-uploader__file lm_upload_item" wx:for="{{uploadUrlArr}}">
-                        <image class="lm_upload_img" src="../../images/pic.png" ></image>
+                    <view class="weui-uploader__file lm_upload_item" wx:for="{{photoURL}}">
+                       <image src="{{item}}" mode="aspecFill" style="width: 100%; height: 100%; }"></image> 
                         <view class="lm_img_delete"  bindtap="clickToDelete" data-index="{{index}}">删除</view>
                     </view>
                     <!-- 拍照按钮 -->
@@ -59,7 +59,7 @@
 
     <!-- btn -->
     <view class="ins_btn">
-        <button class="btn btn-primary submit_insth" id="gotoAuth" disabled="">确定</button>
+        <button  bindtap="submit" class="btn btn-primary submit_insth" id="gotoAuth" disabled="">确定</button>
     </view>
 
     <!-- gotoChat -->
