@@ -1,5 +1,6 @@
 // pages/confirm_info/confirm_info.js
 var common = require("../../utils/common.js");
+var app = getApp()
 Page({
 
   /**
@@ -10,7 +11,9 @@ Page({
     ProductDesc:'',
     SerialNo: '',
     CpName: '',
-    ShipToName: ''
+    ShipToName: '',
+    userInfo: {},
+    userInfoJson: '',
   },
   clickToNext: function(event){
     common.clickToNext(event);
@@ -27,6 +30,20 @@ Page({
       CpName: options.CpName,
       ShipToName: options.ShipToName
     })    
+
+    wx.getUserInfo({
+      success: function (res) {
+        
+        var userInfo = res.userInfo
+        console.log(userInfo)
+        var nickName = userInfo.nickName
+        var avatarUrl = userInfo.avatarUrl
+        var gender = userInfo.gender //性别 0：未知、1：男、2：女 
+        var province = userInfo.province
+        var city = userInfo.city
+        var country = userInfo.country
+      }
+    })
   },
 
   /**

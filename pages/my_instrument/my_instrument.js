@@ -1,5 +1,6 @@
 var util = require('../../utils/util.js');
 var app = getApp()
+var mobile=''
 Page({
   data: {
     /** 
@@ -10,7 +11,7 @@ Page({
     // tab切换  
     currentTab: 0,
     displayState: false,
-    InstrumentCount: 7,
+    InstrumentCount: 0,
     InstrumentList: [{}],
     ContactGuid:'',
     ContactId:'',
@@ -18,32 +19,10 @@ Page({
     AccountId:'',
   },
 
-  //报修历史
-  clickToNext: function(event){
-    var sn = event.currentTarget.dataset.sn;
-    var contactId = event.currentTarget.dataset.contactid;
-    wx.navigateTo({
-      url: '../service_list/service_list?sn=' + sn + '&contactId=' + contactId,
-    })
-  },
-  //报修
-  clickToRepair: function(event){
-    var sn = event.currentTarget.dataset.sn;
-    var contactId = event.currentTarget.dataset.contactid;
-    var contactGuid = event.currentTarget.dataset.contactguid;
-    var accountGuid = event.currentTarget.dataset.accountguid;
-    var accountId = event.currentTarget.dataset.accountid;
-    wx.navigateTo({
-      url: '../confirm_info/confirm_info?sn=' + sn + '&contactId=' + contactId + '&contactGuid=' + contactGuid + '&accountGuid=' + accountGuid + '&accountId=' + accountId,
-    })
-  },
-  //添加仪器
-  /*
-  clickToAdd: function(){
-
-  },*/
-
+  
   onLoad: function () {
+    mobile = wx.getStorageSync(mobile);
+    console.log('mobile======='+mobile)
     var that = this;
     util.NetRequest({
       url: 'site-mini/my-instrument',
@@ -67,6 +46,32 @@ Page({
       }
     })
   },
+  //报修历史
+  clickToNext: function (event) {
+    var sn = event.currentTarget.dataset.sn;
+    var contactId = event.currentTarget.dataset.contactid;
+    wx.navigateTo({
+      url: '../service_list/service_list?sn=' + sn + '&contactId=' + contactId,
+    })
+  },
+  //报修
+  clickToRepair: function (event) {
+    var sn = event.currentTarget.dataset.sn;
+    var contactId = event.currentTarget.dataset.contactid;
+    var contactGuid = event.currentTarget.dataset.contactguid;
+    var accountGuid = event.currentTarget.dataset.accountguid;
+    var accountId = event.currentTarget.dataset.accountid;
+    wx.navigateTo({
+      url: '../confirm_info/confirm_info?sn=' + sn + '&contactId=' + contactId + '&contactGuid=' + contactGuid + '&accountGuid=' + accountGuid + '&accountId=' + accountId,
+    })
+  },
+  //添加仪器
+  clickToAdd: function () {
+    wx.redirectTo({
+      url: '../serial_number/serial_number?mobile=' + mobile,
+    })
+  },
+
   /** 
      * 滑动切换tab 
      */

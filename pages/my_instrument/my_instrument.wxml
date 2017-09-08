@@ -31,6 +31,6 @@
 </block>
 
 <!-- addNew -->
-<view class="mi_add_new text-center bg-primary">
+<view class="mi_add_new text-center bg-primary" bindtap="clickToAdd">
     <image class="mi_add_btn" src="/images/add.png"></image>     <text class="mi_add_word fc-blue">添加仪器</text>
 </view>

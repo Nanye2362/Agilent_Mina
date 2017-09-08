@@ -47,6 +47,6 @@
         <button class="btn btn-primary" href="javascript:" id="confirm" onclick="_MEIQIA('showPanel')">确定并开始咨询</button>
     </view>
     <view class="pd_wechat padding text-center">
-        信息不正确？您可以<a class="pd_wechat_btn fc-blue" onclick="_MEIQIA('showPanel')"><image src="../../images/wechat_b.png"></image>发起会话</a>
+        信息不正确？您可以<button class="pd_wechat_btn fc-blue" open-type="contact" session-from='{{userInfoJson}}'><image src="../../images/wechat_b.png"></image>发起会话</button>
     </view>
 </view>
