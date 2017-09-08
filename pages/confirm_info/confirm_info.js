@@ -1,6 +1,5 @@
 // pages/confirm_info/confirm_info.js
 var common = require("../../utils/common.js");
-
 var app = getApp()
 Page({
 
@@ -13,17 +12,12 @@ Page({
     SerialNo: '',
     CpName: '',
     ShipToName: '',
-    ProductId:'',
-    ProductDesc:'',
-    SerialNo: '',
-    CpName: '',
-    ShipToName: '',
     userInfo: {},
     //userInfoJson: '',
   },
   clickToNext: function(event){
     common.clickToNext(event);
-  },
+  } ,
   
   /**
    * 生命周期函数--监听页面加载

@@ -72,29 +72,6 @@ Page({
       url: 'sr/sr-confirm',
       data: serNum,
       success: function(res){
-        if (res.success == true) {
-          wx.navigateTo({
-            url: '../confirm_info/confirm_info' + '?ProductId=' + res.ProductId + '&ProductDesc=' + res.ProductDesc + '&SerialNo=' + res.SerialNo + '&CpName=' + res.CpName + '&ShipToName=' + res.ShipToName,
-          })
-        } else {
-          wx.showModal({
-            title: '提示',
-            content: '序列号验证有误',
-            cancelText: '联系客服',
-            cancelColor: '#3CC51F',
-            confirmText: '重新上传',
-            success: function (sm) {
-              if (sm.confirm) {
-                //重新上传
-                console.log('点击确认')
- 
-  clickToSubmit: function (){
-    var serNum = this.data.inputValue;
-      
-    util.NetRequest({
-      url: 'sr/sr-confirm',
-      data: serNum,
-      success: function(res){
         console.log(res);
         if (res.success == true) {
           wx.navigateTo({

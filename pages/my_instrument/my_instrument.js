@@ -1,4 +1,3 @@
-var common = require("../../utils/common.js");
 var util = require('../../utils/util.js');
 var app = getApp()
 var mobile=''
@@ -11,8 +10,6 @@ Page({
     winHeight: 0,
     // tab切换  
     currentTab: 0,
-    InstrumentCount: 7,
-    myInstrument: [{ 'product': '气象色谱', 'desc': '490-PRO气相色谱仪', 'seriNo': 'US1727636' }, { 'product': '液相色谱', 'desc': '490-PRO气相色谱仪', 'seriNo': 'US1727675' }]
     displayState: false,
     InstrumentCount: 0,
     InstrumentList: [{}],
@@ -21,30 +18,18 @@ Page({
     AccountGuid:'',
     AccountId:'',
   },
-  clickToNext: function(event){
-    common.clickToNext(event);
-  },
 
   
   onLoad: function () {
     mobile = wx.getStorageSync(mobile);
     console.log('mobile======='+mobile)
     var that = this;
-
-    /** 
-     * 获取系统信息 
-     */
-    wx.getSystemInfo({
-
     util.NetRequest({
       url: 'site-mini/my-instrument',
       data: {
       },
       success: function (res) {
         that.setData({
-          winWidth: res.windowWidth,
-          winHeight: res.windowHeight
-        });
           displayState: true,
         })
         that.setData({
@@ -87,8 +72,6 @@ Page({
     })
   },
 
-    });
-  },
   /** 
      * 滑动切换tab 
      */
@@ -113,7 +96,6 @@ Page({
     var that = this;
     var index = event.currentTarget.dataset.index;
     console.log(index);
-    var myInstrument = this.data.myInstrument;
     var InstrumentList = this.data.InstrumentList;
     wx.showModal({
       title: '提示',
