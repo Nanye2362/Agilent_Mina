@@ -18,15 +18,15 @@
             <image class="cu-item_img" src="/images/c_phone.png"></image>
         </view>
         <view class="flex directionC">
-            <a href="tel:400-820-3278" class="fc-blue fs15 cu_tel">400-820-3278(手机)</a>
-            <a href="tel:400-820-3278"  class="fc-blue fs15 cu_tel"> 800-820-3289(座机)</a>
+            <view class="fc-blue fs15 cu_tel" type="default" bindtap="calling" data-phone='400-820-3278'>400-820-3278(手机)</view>
+            <view class="fc-blue fs15 cu_tel" bindtap='calling' data-phone="800-820-3289"> 800-820-3289(座机)</view>
         </view>
     </view>
     <view class="cu_item flex alignc">
         <view class="flex cu-item-t">
             <image class="cu-item_img" src="/images/c_world.png"></image>
         </view>
-        <view class="item-c fs15">www.lsca-china.com.cn</view>
+        <view class="item-c fs15">http://www.agilent.com</view>
     </view>
     <view class="cu_item flex alignc">
         <view class="flex cu-item-t">
@@ -38,6 +38,6 @@
         <view class="flex cu-item-t">
             <image class="cu-item_img" src="/images/c_address.png"></image>
         </view>
-        <view class="item-c fs15">北京市朝阳区望京北路</view>
+        <view class="item-c fs15">北京市朝阳区望京北路3号</view>
     </view>
 </view>

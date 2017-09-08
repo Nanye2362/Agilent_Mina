@@ -41,7 +41,7 @@ function NetRequest({ url, data, success, fail, complete, method = "POST" }) {
       if (session_id == "" || session_id == null) {
         wx.setStorageSync('PHPSESSID', res.data.session_id) //如果本地没有就说明第一次请求 把返回的session id 存入本地
       }
-      console.log(res);
+  
       let data = res.data
       res['statusCode'] === 200 ? success(data) : fail(res)
     },
