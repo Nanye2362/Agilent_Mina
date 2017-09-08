@@ -13,7 +13,7 @@ Page({
     CpName: '',
     ShipToName: '',
     userInfo: {},
-    userInfoJson: '',
+    //userInfoJson: '',
   },
   clickToNext: function(event){
     common.clickToNext(event);
@@ -30,20 +30,18 @@ Page({
       CpName: options.CpName,
       ShipToName: options.ShipToName
     })    
-
+    this.setData({
+      userInfoJson: '123'
+    })
+    /*
     wx.getUserInfo({
       success: function (res) {
-        
         var userInfo = res.userInfo
         console.log(userInfo)
-        var nickName = userInfo.nickName
-        var avatarUrl = userInfo.avatarUrl
-        var gender = userInfo.gender //性别 0：未知、1：男、2：女 
-        var province = userInfo.province
-        var city = userInfo.city
-        var country = userInfo.country
+        console.log(JSON.stringify(userInfo))
+        
       }
-    })
+    })*/
   },
 
   /**
