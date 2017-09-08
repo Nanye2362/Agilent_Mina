@@ -15,13 +15,29 @@
             <view class="placeholder fc-aaa">共<span>1</span>条记录</view>
         </view>
         <view class="text-right fc-blue" style="display: inline; position: relative; z-index: 1000;" bindtap="tagShow">
-              <view class="sl_dropdown text-right fc-blue">全部<image src="/images/down.png"></image></view>
+              <wxs module="m1">
+                    var textChange = function(getSn){
+                       var text ='';
+                        if(getSn == ''){
+                            text = "全部";
+                        }else{
+                            text = getSn;
+                        }
+                        return text;
+                    }
+                     module.exports.textChange = textChange;
+                </wxs>
+              
+              <view class="sl_dropdown text-right fc-blue">{{m1.textChange(getSn)}}<image src="/images/down.png"></image></view>
                 <view wx:if="{{dropdown}}" class="faq_select">
                     <block wx:for="{{SerialNo_list}}" wx:for-item="item">
-                        <view class="text-overflow" data-id='{{item[1]}}' data-num='{{item[0]}}' bindtap='clickToChoose'>
-                              {{item[0]}}
+                        <view class="text-overflow" data-id='{{item.ContactId}}' data-num='{{item.SerialNo}}' bindtap='clickToChoose'>
+                              {{item.SerialNo}}
                         </view>
                     </block>
+                     <view class="text-overflow" data-id='{{getContactId}}' data-num='' bindtap='clickToChoose'>
+                              全部
+                        </view>
                 </view>                
         </view>
     </view>

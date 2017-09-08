@@ -1,5 +1,6 @@
 var app = getApp();
 var util = require('../../utils/util.js');
+
 Page({
   data: {
     /** 
@@ -15,12 +16,24 @@ Page({
     HistoryResults: [{}],
     unCompleteList: [{}],
     unsubmmitList: [{}],
-    SerialNo_list:[{}]
+    SerialNo_list:[{}],
+    getSn:'',
+    getContactId:''
   },
 
   onLoad: function (option) {
     console.log(option);
-    console.log('option-sn='+option.sn)
+    var contactId = '';
+    if (option.contactId){
+      contactId = option.contactId;
+    }else{
+      contactId = '';
+    }
+    this.setData({
+      getSn: option.sn,
+      getContactId: contactId
+    })
+    console.log('option-sn============================='+option.sn)
     var that = this;
 
 
@@ -42,8 +55,8 @@ Page({
     util.NetRequest({
       url: 'site-mini/service-list',
       data: {
-        ContactId: 'ContactId',
-        SerialNo: 'SerialNo'
+        ContactId: that.data.getContactId,
+        SerialNo: that.data.getSn
       },
       success: function (res) {
         that.sortHistory(res);
@@ -85,8 +98,8 @@ Page({
   clickToChoose: function(e){
       var ID = e.currentTarget.dataset.id;
       var serialNu = e.currentTarget.dataset.num;
+      console.log("=============+++++++++++++++++++++++=" + serialNu)
       var that = this;
-      console.log(that.data.currentTab);
       util.NetRequest({
         url: 'sr/get-history-formini',
         data: { 
@@ -95,11 +108,14 @@ Page({
           'index': that.data.currentTab
         },
         success: function(res){
-
           //history数据分类
+          console.log('choose'+res)
           that.sortHistory(res);
-          
+
         }
+      })
+      this.setData({
+        getSn: serialNu
       })
   },
   sortHistory: function(res){
@@ -120,7 +136,8 @@ Page({
       HistoryResults: res.HistoryResults,
       unCompleteList: unCompleteList,
       unsubmmitList: unsubmmitList,
-      SerialNo_list: res.SerialNo_list
+      SerialNo_list: res.SerialNo_list,
+      getContactId: res.SerialNo_list[0].ContactId
     });
   }
  
