@@ -29,7 +29,7 @@
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#444",
-    "navigationBarTitleText": "°²½ÝÂ×ÊÛºó·þÎñ",
+    "navigationBarTitleText": "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ûºï¿½ï¿½ï¿½ï¿½",
     "navigationBarTextStyle": "white"
   },
   "tabBar": {
@@ -40,19 +40,19 @@
     "list": [
       {
         "pagePath": "pages/index/index",
-        "text": "Ê×Ò³",
+        "text": "ï¿½ï¿½Ò³",
         "iconPath": "/images/home.png",
         "selectedIconPath": "images/home_c.png"
       },
       {
         "pagePath": "pages/contact_us/contact_us",
-        "text": "ÁªÏµ°²½ÝÂ×",
+        "text": "ï¿½ï¿½Ïµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½",
         "iconPath": "/images/contact.png",
         "selectedIconPath": "/images/contact_c.png"
       },
       {
         "pagePath": "pages/myhome/myhome",
-        "text": "ÎÒµÄ",
+        "text": "ï¿½Òµï¿½",
         "iconPath": "images/my.png",
         "selectedIconPath": "images/my_c.png"
       }

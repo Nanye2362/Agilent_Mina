@@ -12,7 +12,7 @@ Page({
     ProductDesc:'',
     SerialNo: '',
     CpName: '',
-    ShipToName: ''
+    ShipToName: '',
     ProductId:'',
     ProductDesc:'',
     SerialNo: '',
@@ -23,7 +23,7 @@ Page({
   },
   clickToNext: function(event){
     common.clickToNext(event);
-  } ,
+  },
   
   /**
    * 生命周期函数--监听页面加载
