@@ -13,13 +13,17 @@ Page({
     reportFlag: false,
     InstrumentCount: 0,
     HistoryResults: [{}],
-    serviceListAll: [{ 'slNo': 'SR80109394845432', 'slState': '1', 'slStateDes': '等待报价确认', 'slReason': 'SR80109394845432', 'slSN': 'RS-PRO-z0290384848', 'slDate': '2017年6月18日09:00 ' }, { 'slNo': 'SR80109394845432', 'slState': '1', 'slStateDes': '已安排工程师', 'slReason': 'SR80109394845432', 'slSN': 'RS-PRO-z0290384848', 'slDate': '2017年6月18日09:00 ' }, { 'slNo': 'SR80109394845432', 'slState': '2', 'slStateDes': '我的评价', 'slReason': 'SR80109394845432', 'slSN': 'RS-PRO-z0290384848', 'slDate': '2017年6月18日09:00 ' }, { 'slNo': 'SR80109394845432', 'slState': '3', 'slStateDes': '前往评价', 'slReason': 'SR80109394845432', 'slSN': 'RS-PRO-z0290384848', 'slDate': '2017年6月18日09:00 ' }],
-    serviceListUnderEvaluate:[{}]
-
+    unCompleteList: [{}],
+    unsubmmitList: [{}],
+    SerialNo_list:[{}]
   },
 
-  onLoad: function (options) {
+  onLoad: function (option) {
+    console.log(option);
+    console.log('option-sn='+option.sn)
     var that = this;
+
+
     /** 
      * 获取系统信息 
      */
@@ -42,11 +46,7 @@ Page({
         SerialNo: 'SerialNo'
       },
       success: function (res) {
-        console.log(res); //后台获取到的history数据
-        that.setData({
-          InstrumentCount: res.InstrumentCount,
-          HistoryResults: res.HistoryResults
-        });
+        that.sortHistory(res);
       }
     });
   },
@@ -70,6 +70,7 @@ Page({
       })
     }
   },
+
   tagShow: function(){
     var that = this;
     this.setData({dropdown: !that.data.dropdown});
@@ -78,5 +79,49 @@ Page({
   clickToHide:function(){
     console.log(this);
     this.setData({dropdown: false});
+  },
+
+  //序列号选择
+  clickToChoose: function(e){
+      var ID = e.currentTarget.dataset.id;
+      var serialNu = e.currentTarget.dataset.num;
+      var that = this;
+      console.log(that.data.currentTab);
+      util.NetRequest({
+        url: 'sr/get-history-formini',
+        data: { 
+          'ContactId': ID,
+          'SerialNo': serialNu,
+          'index': that.data.currentTab
+        },
+        success: function(res){
+
+          //history数据分类
+          that.sortHistory(res);
+          
+        }
+      })
+  },
+  sortHistory: function(res){
+    //history数据分类
+    var ListAll = res.HistoryResults;
+    var unCompleteList = [];
+    var unsubmmitList = [];
+    for (var i = 0; i < ListAll.length; i++) {
+      if (ListAll[i].SrStatus == 'WIP') {
+        unCompleteList.push(ListAll[i]);
+      }
+      if (ListAll[i].SrStatus == 'CPLT' && ListAll[i].SurveySubmitted == 'N') {
+        unsubmmitList.push(ListAll[i]);
+      }
+    }
+    this.setData({
+      InstrumentCount: res.InstrumentCount,
+      HistoryResults: res.HistoryResults,
+      unCompleteList: unCompleteList,
+      unsubmmitList: unsubmmitList,
+      SerialNo_list: res.SerialNo_list
+    });
   }
+ 
 })  

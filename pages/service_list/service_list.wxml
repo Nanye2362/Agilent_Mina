@@ -3,9 +3,9 @@
 <view  wx:if="{{dropdown}}"  class="faq_mask" bindtap="clickToHide"></view>
 <!-- tab_filter -->
  <view class="sl_tab flex bg-primary">    
-        <view class="sl_tab_item  {{currentTab==0 ? 'on' : ''}}" circular="true" data-current="0" bindtap="swichNav">全部</view>  
+        <view class="sl_tab_item  {{currentTab==0 ? 'on' : ''}}" circular="true" data-current="0" bindtap="swichNav">进行中</view>  
          <view class="sl_tab_item  {{currentTab==1 ? 'on' : ''}}" circular="true" data-current="1" bindtap="swichNav">待评价</view>  
-        <view class="sl_tab_item {{currentTab==2 ? 'on' : ''}}" circular="true" data-current="2" bindtap="swichNav">已完成</view>  
+        <view class="sl_tab_item {{currentTab==2 ? 'on' : ''}}" circular="true" data-current="2" bindtap="swichNav">全部</view>  
 </view> 
 <!-- filter_head -->
 
@@ -17,18 +17,11 @@
         <view class="text-right fc-blue" style="display: inline; position: relative; z-index: 1000;" bindtap="tagShow">
               <view class="sl_dropdown text-right fc-blue">全部<image src="/images/down.png"></image></view>
                 <view wx:if="{{dropdown}}" class="faq_select">
-                    <view class="text-overflow" >
-                        1
-                    </view>
-                    <view class="text-overflow">
-                        2
-                    </view>
-                    <view class="text-overflow">
-                        3
-                    </view>
-                    <view class="text-overflow">
-                        3
-                    </view>
+                    <block wx:for="{{SerialNo_list}}" wx:for-item="item">
+                        <view class="text-overflow" data-id='{{item[1]}}' data-num='{{item[0]}}' bindtap='clickToChoose'>
+                              {{item[0]}}
+                        </view>
+                    </block>
                 </view>                
         </view>
     </view>
@@ -38,144 +31,26 @@
 <view class="fc-aaa text-center fs14 sl_notifi">以下显示最近三个月记录</view>
 
 <!-- content -->
-    <swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:{{winHeight - 31}}px;" bindchange="bindChange" >    
-        <!-- 全部 -->   
-        <swiper-item class="flex directionC" style=" overflow: scroll;">
-              <block wx:for="{{serviceListAll}}" wx:for-item="item">
+    <swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:{{winHeight - 31}}px;" bindchange="bindChange" >      <!-- 进行中 -->   
+        <swiper-item class="flex directionC" style="overflow: scroll;">     
+               <block wx:for="{{unCompleteList}}" wx:for-item="item">
+                  <template is="sl-template" data="{{item}}"/>
+              </block>
+        </swiper-item> 
+
+        <!-- 待评价 -->   
+        <swiper-item class="flex directionC" style="overflow: scroll;">     
+                <block wx:for="{{unsubmmitList}}" wx:for-item="item">
+                  <template is="sl-template" data="{{item}}"/>
+              </block>
+        </swiper-item> 
+
+         <!-- 全部 -->   
+        <swiper-item class="flex directionC" style="overflow: scroll;">
+              <block wx:for="{{HistoryResults}}" wx:for-item="item">
                   <template is="sl-template" data="{{item}}"/>
               </block>
         </swiper-item>  
-        
-        <!-- 进行中 -->   
-        <swiper-item class="flex directionC">     
-            <!-- service_list_item -->
-              <view class="sl_list_item bg-primary "> 
-                  <!-- state -->
-                  <view class="sl_tab_con_state bg-blue"></view>
-                  <!-- btn -->
-                  <view class="sl_list_item_down flex">
-                      <view class="sl_list_item_left">
-                          <view class="fs14">服务单号：SR80109394845432</view>
-                      </view>
-                      <view class="fs14 sl_list_item_right fc-blue">等待报价确认</view>
-                  </view>
-                  <!-- viewider -->
-                  <view class="divider"></view>
-                  <!-- info -->
-                  <view class="sl_list_item_up flex">
-                      <view class="sl_list_item_info sl_list_item_left">
-                          <view class="placeholder">
-                              <view class="fs15 marginb-9">1280固定进样针的地方松动</view>
-                              <view class="fs13 marginb-6 fc-777">序列号：RS-PRO-z0290384848</view>
-                              <view class="fs13 marginb-6 fc-777">创建时间: 2017年6月18日09:00</view>
-                          </view>
-                      </view>
-                      <view class="sl_list_item_right flex directionC justify-center">
-                          <view href="javascript:;" class="sl_chat_btn self-center fs14" onclick="_MEIQIA('showPanel')">发起会话</view>
-                          <view href="javascript:;" class="sl_pdf fc-blue fs13 text-right" >
-                              <image class="" src="../../images/pdf1.png"/>服务报告
-                          </view>
-                      </view>
-                  </view>
-                </view>
-              <!-- service_list_item -->
-              <view class="sl_list_item bg-primary "> 
-                  <!-- state -->
-                  <view class="sl_tab_con_state bg-orange"></view>
-                  <!-- btn -->
-                  <view class="sl_list_item_down flex">
-                      <view class="sl_list_item_left">
-                          <view class="fs14">服务单号：8100000711</view>
-                      </view>
-                      <view class="fs14 sl_list_item_right fc-orange">待评价</view>
-                  </view>
-                  <!-- viewider -->
-                  <view class="divider"></view>
-                  <!-- info -->
-                  <view class="sl_list_item_up flex">
-                      <view class="sl_list_item_info sl_list_item_left">
-                          <view class="placeholder">
-                              <view class="fs15 marginb-9">1280固定进样针的地方松动</view>
-                              <view class="fs13 marginb-6 fc-777">序列号：RS-PRO-z0290384848</view>
-                              <view class="fs13 marginb-6 fc-777">创建时间: 2017年6月18日09:00</view>
-                          </view>
-                      </view>
-                      <view class="sl_list_item_right flex directionC justify-center">
-                          <view href="../site/evaluation" class="sl_chat_btn self-center fs14 evaluation" srid="8100000711">评价</view>
-                          <view href="javascript:;" class="sl_pdf fc-blue fs13 text-right" >
-                              <image class="" src="../../images/pdf1.png"/>服务报告
-                          </view>
-                      </view>
-                  </view>
-
-                </view>
-        </swiper-item>  
-
-        <!-- 已完成 -->   
-        <swiper-item class="flex directionC">     
-            <!-- service_list_item -->
-              <view class="sl_list_item bg-primary "> 
-                  <!-- state -->
-                  <view class="sl_tab_con_state bg-blue"></view>
-                  <!-- btn -->
-                  <view class="sl_list_item_down flex">
-                      <view class="sl_list_item_left">
-                          <view class="fs14">服务单号：SR80109394845432</view>
-                      </view>
-                      <view class="fs14 sl_list_item_right fc-blue">等待报价确认</view>
-                  </view>
-                  <!-- viewider -->
-                  <view class="divider"></view>
-                  <!-- info -->
-                  <view class="sl_list_item_up flex">
-                      <view class="sl_list_item_info sl_list_item_left">
-                          <view class="placeholder">
-                              <view class="fs15 marginb-9">1280固定进样针的地方松动</view>
-                              <view class="fs13 marginb-6 fc-777">序列号：RS-PRO-z0290384848</view>
-                              <view class="fs13 marginb-6 fc-777">创建时间: 2017年6月18日09:00</view>
-                          </view>
-                      </view>
-                      <view class="sl_list_item_right flex directionC justify-center">
-                          <view href="javascript:;" class="sl_chat_btn self-center fs14" onclick="_MEIQIA('showPanel')">发起会话</view>
-                          <view href="javascript:;" class="sl_pdf fc-blue fs13 text-right" >
-                              <image class="" src="../../images/pdf1.png"/>服务报告
-                          </view>
-                      </view>
-                  </view>
-                </view>
-              <!-- service_list_item -->
-              <view class="sl_list_item bg-primary "> 
-                  <!-- state -->
-                  <view class="sl_tab_con_state bg-orange"></view>
-                  <!-- btn -->
-                  <view class="sl_list_item_down flex">
-                      <view class="sl_list_item_left">
-                          <view class="fs14">服务单号：8100000711</view>
-                      </view>
-                      <view class="fs14 sl_list_item_right fc-orange">待评价</view>
-                  </view>
-                  <!-- viewider -->
-                  <view class="divider"></view>
-                  <!-- info -->
-                  <view class="sl_list_item_up flex">
-                      <view class="sl_list_item_info sl_list_item_left">
-                          <view class="placeholder">
-                              <view class="fs15 marginb-9">1280固定进样针的地方松动</view>
-                              <view class="fs13 marginb-6 fc-777">序列号：RS-PRO-z0290384848</view>
-                              <view class="fs13 marginb-6 fc-777">创建时间: 2017年6月18日09:00</view>
-                          </view>
-                      </view>
-                      <view class="sl_list_item_right flex directionC justify-center">
-                          <view href="../site/evaluation" class="sl_chat_btn self-center fs14 evaluation" srid="8100000711">评价</view>
-                          <view href="javascript:;" class="sl_pdf fc-blue fs13 text-right" >
-                              <image class="" src="../../images/pdf1.png"/>服务报告
-                          </view>
-                      </view>
-                  </view>
-
-                </view>
-        </swiper-item> 
-        
     </swiper>
 
 

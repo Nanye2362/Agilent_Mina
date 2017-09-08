@@ -2,31 +2,31 @@
 <template name="sl-template"  >
     <view class="sl_list_item bg-primary "> 
         <!-- state -->
-        <block wx:if="{{item.slState == '1'}}">
+        <block wx:if="{{item.SrStatus =='WIP'}}">
           <view class="sl_tab_con_state bg-blue" ></view>
            <view class="sl_list_item_down flex">
             <view class="sl_list_item_left">
-                <view class="fs14">服务单号：{{item.slNo}}</view>
+                <view class="fs14">服务单号：{{item.SrId}}</view>
             </view>
-            <view class="fs14 sl_list_item_right fc-blue">{{item.slStateDes}}</view>
+            <view class="fs14 sl_list_item_right fc-blue">进行中</view>
         </view>
         </block>
-        <block wx:elif="{{item.slState == '2'}}">
+        <block wx:elif="{{item.SrStatus =='CPLT' && item.SurveySubmitted=='Y'}}">
           <view class="sl_tab_con_state bg-green" ></view>
            <view class="sl_list_item_down flex">
             <view class="sl_list_item_left">
-                <view class="fs14">服务单号：{{item.slNo}}</view>
+                <view class="fs14">服务单号：{{item.SrId}}</view>
             </view>
-            <view class="fs14 sl_list_item_right fc-green"> <image style="width:35rpx; height:35rpx; margin-right:10rpx;" src='/images/evaluate.png'></image>{{item.slStateDes}}</view>
+            <view class="fs14 sl_list_item_right fc-green"> <image style="width:35rpx; height:35rpx; margin-right:10rpx;" src='/images/evaluate.png'></image>我的评价</view>
         </view>
         </block>
-        <block wx:else>
+        <block wx:elif="{{item.SrStatus =='CPLT' && item.SurveySubmitted=='N'}}">
           <view class="sl_tab_con_state bg-orange" ></view>
            <view class="sl_list_item_down flex">
             <view class="sl_list_item_left">
-                <view class="fs14">服务单号：{{item.slNo}}</view>
+                <view class="fs14">服务单号：{{item.SrId}}</view>
             </view>
-            <view class="fs14 sl_list_item_right fc-orange"> <image style="width:35rpx; height:35rpx; margin-right:10rpx;" src='/images/goeva.png'></image>{{item.slStateDes}}</view>
+            <view class="fs14 sl_list_item_right fc-orange"> <image style="width:35rpx; height:35rpx; margin-right:10rpx;" src='/images/goeva.png'></image>前往评价</view>
         </view>
         </block>
 
@@ -43,13 +43,13 @@
         <view class="sl_list_item_up flex">
             <view class="sl_list_item_info sl_list_item_left">
                 <view class="placeholder">
-                    <view class="fs15 marginb-9">{{item.slReason}}</view>
-                    <view class="fs13 marginb-6 fc-777">序列号：{{item.slSN}}</view>
-                    <view class="fs13 marginb-6 fc-777">创建时间: {{item.slDate}}</view>
+                    <view class="fs15 marginb-9">故障描述： {{item.SrDesc}}</view>
+                    <view class="fs13 marginb-6 fc-777">序列号：{{item.SerialNo}}</view>
+                    <view class="fs13 marginb-6 fc-777">创建时间: {{item.CreationDate}}</view>
                 </view>
             </view>
             <view class="sl_list_item_right flex  justify-center directionC">
-                <block wx:if="{{item.slState == '1'}}">
+                <block wx:if="{{item.SrStatus == 'WIP'}}">
                     <view href="javascript:;" class="sl_chat_btn self-center fs14" onclick="_MEIQIA('showPanel')">发起会话</view>
                 </block>
                 <block wx:else>
