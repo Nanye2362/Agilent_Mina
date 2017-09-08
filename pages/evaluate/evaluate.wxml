@@ -6,13 +6,13 @@
     </view>
     <!-- information -->
     <view class="ev_grade_info">
-        <text class="fs-15">安捷伦售后服务在中国</text>
+        <view class="fs-15 marginB-6">安捷伦售后服务在中国</view>
           <view class="fs13 fc-aaa flex">
               总体评分： 
               <view class="flex e-stars">
                   <block wx:for="{{drawAverageStars}}" wx:for-item="star">
                     <view class="aver_stars" data-index="{{i}}" >
-                      <image class="aver_e_star" src="../../../images/{{star.src}}.png"></image>
+                      <image class="aver_e_star" src="../../images/{{star.src}}.png"></image>
                     </view>
                   </block>
               </view>          
@@ -26,7 +26,7 @@
        <view class="flex e-stars">
         <block wx:for="{{item.data}}" wx:for-item="star">
           <view class="stars" id="{{index}}" data-index="{{i}}" bindtap="markStarSelect">
-            <image class="e_star" src="../../../images/{{star.src}}.png"></image>
+            <image class="e_star" src="../../images/{{star.src}}.png"></image>
           </view>
         </block>
         
