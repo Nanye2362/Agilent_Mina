@@ -21,6 +21,7 @@ let Server = "https://msd.coffeelandcn.cn/agilent_web/web/";
 function NetRequest({ url, data, success, fail, complete, method = "POST" }) {
   wx.showLoading({
     title: '加载中，请稍后',
+    mask: true,
   })
   var session_id = wx.getStorageSync('PHPSESSID');//本地取存储的sessionID
   if (session_id != "" && session_id != null) {
