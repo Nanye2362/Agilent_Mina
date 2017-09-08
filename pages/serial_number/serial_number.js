@@ -72,6 +72,7 @@ Page({
       url: 'sr/sr-confirm',
       data: serNum,
       success: function(res){
+        console.log(res);
         if (res.success == true) {
           wx.navigateTo({
             url: '../confirm_info/confirm_info' + '?ProductId=' + res.ProductId + '&ProductDesc=' + res.ProductDesc + '&SerialNo=' + res.SerialNo + '&CpName=' + res.CpName + '&ShipToName=' + res.ShipToName,

@@ -225,3 +225,7 @@ page{
   border-bottom-left-radius: 12rpx;
   border-bottom-right-radius: 12rpx;
 }
+.dropdown_Seleted{
+  background: #0085d5;
+  color:#fff;
+}
