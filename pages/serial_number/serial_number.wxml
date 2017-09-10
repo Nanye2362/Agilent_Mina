@@ -1,13 +1,13 @@
-<!--pages/serial_number/serial_number.wxml-->
+ <!--pages/serial_number/serial_number.wxml-->
 <image src="/images/sn_bg.jpg" class="sn_bg"></image>
 <view class="sn_title">产品序列号</view>
 <view class="sn_num bg-primary">
-    <input class="" type="text" placeholder="例：RS-PRO-N3187365B"/>
+    <input class="" type="text" placeholder="例：RS-PRO-N3187365B" bindinput='saveTheValue'/>
     <!-- 拍照按钮 -->
     <button bindtap="chooseimage" class="sn_photobtn"></button>
     <image class="sn_photoimg" src="/images/camera-p.png"></image>
 </view>
-<button class="sn_btn btn btn-primary">确定</button>
+<button class="sn_btn btn btn-primary" bindtap='clickToSubmit'>确定</button>
 
 <!-- 上传了的图片 --> 
 <image src="{{tempFilePaths }}" mode="aspecFill" style="width: 100%; height: 450rpx"/> 

@@ -21,6 +21,7 @@ App({
             data: {
               code: res.code
             },
+            showload:false,
             success: function (r) {
               console.log(r.session3rd);
               wx.setStorageSync('session3rd', r.session3rd);
@@ -30,6 +31,7 @@ App({
                   console.log(wx.getStorageSync('session3rd'));
                   util.NetRequest({
                     url: 'wechat-mini/get-userinfo',
+                    showload: false,
                     data: {
                       encryptedData: res.encryptedData,
                       iv: res.iv,

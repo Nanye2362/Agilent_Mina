@@ -16,13 +16,16 @@ function formatNumber(n) {
   return n[1] ? n : '0' + n
 }
 
-let Server = "https://msd.coffeelandcn.cn/agilent_web/web/";
+let Server = "https://devopsx.coffeelandcn.cn/";
 
-function NetRequest({ url, data, success, fail, complete, method = "POST" }) {
-  wx.showLoading({
-    title: '加载中，请稍后',
-    mask: true
-  })
+function NetRequest({ url, data, success, fail, complete, method = "POST" ,showload=true}) {
+  if (showload){
+    wx.showLoading({
+      title: '加载中，请稍后',
+      mask: true
+    })
+  }
+ 
   var session_id = wx.getStorageSync('PHPSESSID');//本地取存储的sessionID
   if (session_id != "" && session_id != null) {
     var header = { 'content-type': 'application/x-www-form-urlencoded', 'Cookie': 'PHPSESSID=' + session_id }
