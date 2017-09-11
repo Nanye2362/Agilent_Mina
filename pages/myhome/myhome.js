@@ -9,21 +9,9 @@ Page({
 
   },
 
-  SelfInfo: function (e) {
+  gotoNext: function(event){
     wx.navigateTo({
-      url: e.currentTarget.dataset.url
-    })
-  },
-
-  MyInstrument: function (e) {
-    wx.navigateTo({
-      url: e.currentTarget.dataset.url
-    })
-  },
-
-  ServiceGuide: function (e) {
-    wx.navigateTo({
-      url: e.currentTarget.dataset.url
+      url: event.currentTarget.dataset.url
     })
   },
 
@@ -44,7 +32,7 @@ Page({
             success: function (res) {
               console.log(res);
               if (res.success == true) {
-                wx.removeStorageSync('mobile');
+                wx.removeStorageSync('MOBILE');
                 wx.showToast({
                   title: '解绑成功',
                   icon: '您已解绑',
@@ -63,12 +51,6 @@ Page({
           console.log('用户点击取消')
         }
       }
-    })
-  },
-
-  Auth: function (e) {
-    wx.navigateTo({
-      url: e.currentTarget.dataset.url
     })
   },
 
