@@ -50,10 +50,10 @@
             </view>
             <view class="sl_list_item_right flex  justify-center directionC">
                 <block wx:if="{{item.SrStatus == 'WIP'}}">
-                    <view href="javascript:;" class="sl_chat_btn self-center fs14" onclick="_MEIQIA('showPanel')">发起会话</view>
+                    <view class="sl_chat_btn self-center fs14" bindtap="clickToChat">发起会话</view>
                 </block>
                 <block wx:else>
-                    <view href="javascript:;" class="sl_chat_btn self-center fs14" onclick="_MEIQIA('showPanel')">再次维修</view>
+                    <view class="sl_chat_btn self-center fs14" bindtap="clickToRepairAgain">再次维修</view>
                 </block>
                 <wxs module="m1">
                 

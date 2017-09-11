@@ -139,6 +139,13 @@ Page({
       SerialNo_list: res.SerialNo_list,
       getContactId: res.SerialNo_list[0].ContactId
     });
-  }
+  },
+
+  //再次保修
+  clickToRepairAgain: function(){
+    wx.navigateTo({
+      url: '../confirm_info/confirm_info?contactId=&&sn='
+    })
+  } 
  
 })  
