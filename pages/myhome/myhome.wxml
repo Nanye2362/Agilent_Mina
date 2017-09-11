@@ -10,11 +10,11 @@
     <view class="mc_id_btn fs16 fc-fff">{{mobile}}</view>
   </block>
   <!-- 未认证 -->
-  <block wx:elif="{{is_auth == 0}}">
+  <block wx:elif="{{is_auth == 0 || is_auth == null}}">
     <view class="mc_avatar">
       <image src="../../images/cat.png"></image>
     </view>
-    <view class="mc_id_btn mc_id_state fs16 fc-fff" bindtap="Auth" data-url="../auth/auth">身份认证</view>
+    <view class="mc_id_btn mc_id_state fs16 fc-fff" bindtap="gotoNext" data-url="../auth/auth">身份认证</view>
   </block>
 </view>
 
@@ -56,7 +56,7 @@
     </view>
   </block>
   <!-- 未认证 -->
-  <block wx:elif="{{is_auth == 0}}">
+  <block wx:elif="{{is_auth == 0 || is_auth == null}}">
     <view class="mc_items flex selfinfo" bindtap="gotoNext" data-url="../auth/auth">
       <image src="/images/mc-user.png" class="mc_icon  self-center"></image>
       <view class="flex directionC mc_con self-center">
