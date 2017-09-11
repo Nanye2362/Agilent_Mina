@@ -26,8 +26,8 @@
         <!-- 故障描述 -->
         <view class=" s-repair fc-g fs14 padding">
             <view class="fs14">故障描述：</view>
-            <textarea class="s-textarea fs13" maxlength="80"  bindinput="desNo" value="{{ desc }}"/>
-            <view class="text-right fc-aaa">{{describeNo}}/80</view>
+            <textarea class="s-textarea fs13" maxlength="20"  bindinput="desNo" value="{{ desc }}"/>
+            <view class="text-right fc-aaa">{{describeNo}}/20</view>
         </view>
         <!-- 图片上传 -->
         <view class="s-item">

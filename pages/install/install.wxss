@@ -138,3 +138,24 @@
     position: relative;  
     margin-right: 10rpx;
   } 
+
+  
+.ins_error{
+        position: relative;
+}
+.ins_error:before{
+    content:'请输入以03开头的10位数字';
+    width: 100%;
+    height: 85rpx;
+    background: #ebebeb;
+    color: orangered;
+    position: absolute;
+    bottom: -93rpx;
+    z-index:3;
+    left:0;
+    line-height: 85rpx;
+    padding-left: 40rpx;
+    padding-right: 40rpx;
+    border: 1px solid #e7e6e7;
+    box-sizing: border-box; 
+}
