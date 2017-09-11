@@ -9,9 +9,19 @@ Page({
   data: {
     uploadBtn: true,
     photoURL: [],
-    hasError:false
-
+    hasError:false,
+    displayTips: false
   },
+
+  showTips: function(){
+    var displayTips = this.data.displayTips
+    console.log('showtips')
+    this.setData({
+      displayTips: !displayTips
+    })
+  },
+
+
   blurfun: function (event) {
     this.setData(JSON.parse('{"' + event.target.dataset.name + '":"' + event.detail.value + '"}'));
   },

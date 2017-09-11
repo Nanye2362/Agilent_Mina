@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/install/install",
     "pages/my_instrument/my_instrument",
     "pages/index/index",
     "pages/myhome/myhome",
@@ -14,7 +15,6 @@
     "pages/budget_confirm/budget_confirm",
     "pages/evaluate/evaluate",
     "pages/personal_info/personal_info",
-    "pages/install/install",
     "pages/logs/logs",
     "pages/activity/activity",
     "pages/registration/registration",
