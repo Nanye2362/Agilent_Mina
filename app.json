@@ -1,9 +1,9 @@
 {
   "pages": [
+    "pages/my_instrument/my_instrument",
     "pages/index/index",
     "pages/myhome/myhome",
     "pages/contact_us/contact_us",
-    "pages/my_instrument/my_instrument",
     "pages/confirm_info/confirm_info",
     "pages/auth/auth",
     "pages/fill_info/fill_info",
