@@ -90,7 +90,7 @@ Page({
   clickToRepair: function (event) {
     util.IsCertificate(function(){
         //绑定的话，检测是否为工作时间
-      checkWorktime(function(){
+      util.checkWorktime(function(){
         //绑定 且 是工作时间
         wx.navigateTo({
           url: '../serial_number/serial_number',
@@ -135,7 +135,7 @@ Page({
 */
   nevigateToNext: function(e){
     console.log(e)
-      var url = e.target.dataset.url;
+    var url = e.currentTarget.dataset.url;
       util.IsCertificate(function () {
         //绑定的话,跳转相应页面
         wx.navigateTo({

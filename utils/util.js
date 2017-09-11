@@ -16,7 +16,7 @@ function formatNumber(n) {
   return n[1] ? n : '0' + n
 }
 
-let Server = "https://devopsx.coffeelandcn.cn/";
+let Server = "https://msd.coffeelandcn.cn/agilent_web/web/";
 
 function NetRequest({ url, data, success, fail, complete, method = "POST" ,showload=true}) {
   if (showload){
@@ -174,5 +174,6 @@ module.exports = {
   Server: Server,
   uploadImg: uploadImg,
   checkEmpty: checkEmpty,
-  getUserInfo: getUserInfo
+  getUserInfo: getUserInfo,
+  checkWorktime: checkWorktime
 }
