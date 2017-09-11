@@ -14,24 +14,6 @@ Page({
       url: event.currentTarget.dataset.url
     })
   },
-  /*
-  SelfInfo: function (e) {
-    wx.navigateTo({
-      url: e.currentTarget.dataset.url
-    })
-  },
-
-  MyInstrument: function (e) {
-    wx.navigateTo({
-      url: e.currentTarget.dataset.url
-    })
-  },
-
-  ServiceGuide: function (e) {
-    wx.navigateTo({
-      url: e.currentTarget.dataset.url
-    })
-  },*/
 
   Unbind: function (e) {
     wx.showModal({
@@ -50,7 +32,7 @@ Page({
             success: function (res) {
               console.log(res);
               if (res.success == true) {
-                wx.removeStorageSync('mobile');
+                wx.removeStorageSync('MOBILE');
                 wx.showToast({
                   title: '解绑成功',
                   icon: '您已解绑',
@@ -71,12 +53,6 @@ Page({
       }
     })
   },
-/*
-  Auth: function (e) {
-    wx.navigateTo({
-      url: e.currentTarget.dataset.url
-    })
-  },*/
 
   /**
    * 生命周期函数--监听页面加载

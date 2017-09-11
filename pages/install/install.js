@@ -8,11 +8,32 @@ Page({
    */
   data: {
     uploadBtn: true,
-    photoURL: []
+    photoURL: [],
+    hasError:false
 
   },
   blurfun: function (event) {
     this.setData(JSON.parse('{"' + event.target.dataset.name + '":"' + event.detail.value + '"}'));
+  },
+  ordercheck:function(event){
+    var reStart = /^03/;
+    var _orderno=event.detail.value
+
+    if (_orderno != '' && reStart.test(_orderno) == false) {
+      console.log(1);
+      this.setData({ hasError: true })
+      if (_orderno.length == 1) {
+        if (_orderno == '0') {
+          this.setData({ hasError: false })
+        }
+      }
+
+
+    }
+    if (_orderno == '' || reStart.test(_orderno) == true) {
+      console.log(2);
+      this.setData({ hasError: false })
+    }
   },
   submit: function (event) {
     var URLArr = this.data.photoURL;
