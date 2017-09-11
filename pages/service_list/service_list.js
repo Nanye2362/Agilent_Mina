@@ -16,23 +16,25 @@ Page({
     HistoryResults: [{}],
     unCompleteList: [{}],
     unsubmmitList: [{}],
-    SerialNo_list:[{}],
+    SerialNo_list: [{ }],
     getSn:'',
     getContactId:''
   },
 
   onLoad: function (option) {
     console.log(option);
-    var contactId = '';
-    if (option.contactId){
-      contactId = option.contactId;
-    }else{
-      contactId = '';
+    if(option){
+      var contactId = '';
+      if (option.contactId) {
+        contactId = option.contactId;
+      } else {
+        contactId = '';
+      }
+      this.setData({
+        getSn: option.sn,
+        getContactId: contactId
+      })
     }
-    this.setData({
-      getSn: option.sn,
-      getContactId: contactId
-    })
     console.log('option-sn============================='+option.sn)
     var that = this;
 
@@ -54,10 +56,6 @@ Page({
     //请求后台接口
     util.NetRequest({
       url: 'site-mini/service-list',
-      data: {
-        ContactId: that.data.getContactId,
-        SerialNo: that.data.getSn
-      },
       success: function (res) {
         that.sortHistory(res);
       }
@@ -119,6 +117,7 @@ Page({
       })
   },
   sortHistory: function(res){
+    console.log('sortHistory++++++++++++++++'+res);
     //history数据分类
     var ListAll = res.HistoryResults;
     var unCompleteList = [];

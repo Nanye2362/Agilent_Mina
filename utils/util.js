@@ -16,7 +16,7 @@ function formatNumber(n) {
   return n[1] ? n : '0' + n
 }
 
-let Server = "https://msd.coffeelandcn.cn/agilent_web/web/";
+let Server = "https://devopsx.coffeelandcn.cn/";
 
 function NetRequest({ url, data, success, fail, complete, method = "POST" ,showload=true}) {
   if (showload){
@@ -117,7 +117,7 @@ function checkWorktime(success,fail) {
   NetRequest({
     url: 'util/get-worktime',
     success: function (res) {
-      if (res.success == true) {
+      if (res == 1) {
         success();
       } else {
         fail();

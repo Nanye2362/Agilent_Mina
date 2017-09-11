@@ -50,10 +50,10 @@
             </view>
             <view class="sl_list_item_right flex  justify-center directionC">
                 <block wx:if="{{item.SrStatus == 'WIP'}}">
-                    <view class="sl_chat_btn self-center fs14" bindtap="clickToChat">发起会话</view>
+                    <button class="sl_chat_btn self-center fs14" bindtap="clickToChat" open-type='contact' session-from=''>发起会话</button>
                 </block>
                 <block wx:else>
-                    <view class="sl_chat_btn self-center fs14" bindtap="clickToRepairAgain">再次维修</view>
+                    <view class="sl_chat_btn self-center fs14" bindtap="clickToRepairAgain" data-index="{{index}}">再次维修</view>
                 </block>
                 <wxs module="m1">
                 
