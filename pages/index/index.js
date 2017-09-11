@@ -161,6 +161,10 @@ Page({
       image: '../../images/hint.png',
       duration: 2000,
     })
+  },
+
+  clearStorage: function(){
+    wx.clearStorageSync();
   }
   
 }) 

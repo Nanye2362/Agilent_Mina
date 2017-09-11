@@ -9,6 +9,12 @@ Page({
 
   },
 
+  gotoNext: function(event){
+    wx.navigateTo({
+      url: event.currentTarget.dataset.url
+    })
+  },
+  /*
   SelfInfo: function (e) {
     wx.navigateTo({
       url: e.currentTarget.dataset.url
@@ -25,7 +31,7 @@ Page({
     wx.navigateTo({
       url: e.currentTarget.dataset.url
     })
-  },
+  },*/
 
   Unbind: function (e) {
     wx.showModal({
@@ -65,12 +71,12 @@ Page({
       }
     })
   },
-
+/*
   Auth: function (e) {
     wx.navigateTo({
       url: e.currentTarget.dataset.url
     })
-  },
+  },*/
 
   /**
    * 生命周期函数--监听页面加载

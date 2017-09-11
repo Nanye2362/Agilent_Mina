@@ -29,6 +29,7 @@ Page({
       data: {
       },
       success: function (res) {
+        console.log('res============'+res)
         that.setData({
           displayState: true,
         })
