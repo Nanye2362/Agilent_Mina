@@ -105,11 +105,7 @@ Page({
           'index': that.data.currentTab
         },
         success: function(res){
-          var getSerialNo_list = res.SerialNo_list;
-          var SerialNo_list = this.data.SerialNo_list;
-          if (getSerialNo_list.length < SerialNo_list.length){
-              return false;
-          }
+         
           //history数据分类
           console.log('choose'+res)
           that.sortHistory(res);
@@ -126,6 +122,11 @@ Page({
     var ListAll = res.HistoryResults;
     var unCompleteList = [];
     var unsubmmitList = [];
+    var getSerialNo_list = res.SerialNo_list;
+    var SerialNo_list = this.data.SerialNo_list;
+    if (getSerialNo_list.length < SerialNo_list.length) {
+      getSerialNo_list = SerialNo_list;
+    }
     for (var i = 0; i < ListAll.length; i++) {
       if (ListAll[i].SrStatus == 'WIP') {
         unCompleteList.push(ListAll[i]);
@@ -139,7 +140,7 @@ Page({
       HistoryResults: res.HistoryResults,
       unCompleteList: unCompleteList,
       unsubmmitList: unsubmmitList,
-      SerialNo_list: res.SerialNo_list,
+      SerialNo_list: getSerialNo_list,
       getContactId: res.SerialNo_list[0].ContactId
     });
   },
@@ -149,6 +150,43 @@ Page({
     wx.navigateTo({
       url: '../confirm_info/confirm_info?contactId=&&sn='
     })
-  } 
+  } ,
+
+  //前往评价
+  clickToEvaluate: function(e){
+    var Surveyid = e.currentTarget.dataset.surveyid;
+    var SerialID = e.currentTarget.dataset.srid;
+    wx.navigateTo({
+      url: '../evaluate/evaluate?Surveyid=' + Surveyid + '&&SerialNo=' + SerialID
+    })
+  },
+
+  //打开PDF
+  clickToReport: function(e){
+
+      //window.location.href = host + 'file/open-file?ServconfId=' + ServconfId;
+
+
+    var url = util.Server + 'file/open-file?ServconfId=' + e.currentTarget.dataset.servconfId;
+    wx.downloadFile({
+      url: url,
+      success: function (res) {
+        var filePath = res.tempFilePath;
+        console.log('filePath= '+filePath);
+        wx.openDocument({
+          filePath: filePath,
+          success: function (res) {
+            console.log('打开文档成功')
+          },
+          fail: function(res){
+            console.log(res)
+          }
+        })
+      },
+      fail: function(){
+        console.log('PDF下载失败')
+      },
+    })
+  }
  
 })  

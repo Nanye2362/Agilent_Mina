@@ -26,7 +26,7 @@
             <view class="sl_list_item_left">
                 <view class="fs14">服务单号：{{item.SrId}}</view>
             </view>
-            <view class="fs14 sl_list_item_right fc-orange"> <image style="width:35rpx; height:35rpx; margin-right:10rpx;" src='/images/goeva.png'></image>前往评价</view>
+            <view class="fs14 sl_list_item_right fc-orange" data-Surveyid='{{item.Surveyid}}' data-SrId='{{item.SrId}}' bindtap='clickToEvaluate'> <image style="width:35rpx; height:35rpx; margin-right:10rpx;" src='/images/goeva.png'></image>前往评价</view>
         </view>
         </block>
 
@@ -66,7 +66,7 @@
                     }
                      module.exports.reportShowOrNot = reportShowOrNot;
                 </wxs>
-                <view href="javascript:;" class="sl_pdf fc-blue fs13 text-right" wx:if="{{m1.reportShowOrNot(item.ServconfId)}}">
+                <view href="javascript:;" class="sl_pdf fc-blue fs13 text-right" wx:if="{{m1.reportShowOrNot(item.ServconfId)}}" data-Servconf-id='{{item.ServconfId}}' bindtap='clickToReport'>
                     下载服务报告
                 </view>
             </view>

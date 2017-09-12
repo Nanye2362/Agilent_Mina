@@ -116,7 +116,7 @@ Page({
             url: 'sr/delete-instrument',
             data: {
               'SerialNo': InstrumentList[index].SerialNo,
-              'ProductId': InstrumentLIst[index].ProductId,
+              'ProductId': InstrumentList[index].ProductId,
             },
             success: function (res) {
               console.log('用户点击确定');
@@ -138,20 +138,5 @@ Page({
       }
     })
     
-   
-    wx.showModal({
-      title: '提示',
-      content: '确定要删除么',
-      success: function (res) {
-        if (res.confirm) {
-          console.log('用户点击确定');
-          InstrumentList.splice(index, 1);
-          that.setData({ 'InstrumentList': InstrumentList });
-        } else if (res.cancel) {
-          console.log('用户点击取消');
-          return;
-        }
-      }
-    })
   }
 })  

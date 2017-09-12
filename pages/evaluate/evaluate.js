@@ -58,8 +58,8 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-   
+  onLoad: function (option) {
+      console.log(option);
   },
   //星星评价
   markStarSelect: function (e) {
