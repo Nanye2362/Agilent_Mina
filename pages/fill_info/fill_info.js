@@ -13,7 +13,10 @@ Page({
     },
     //submit form
     submitConfirm: function(e){
-      console.log(e.detail.value);
+      console.log(e.detail.value)
+      //获取手机
+      var mobile = this.data.mobile
+      console.log('mobile==========='+mobile)
       var name = e.detail.value.name
       var company = e.detail.value.company
       var sn = e.detail.value.sn

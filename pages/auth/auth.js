@@ -71,7 +71,7 @@ Page({
       },
       success: function (res) {
         console.log(res);
-        if (res.data.success == true) {
+        if (res.success == true) {
           wx.setStorageSync('mobile', mobile)
           wx.redirectTo({
             url: '../../'+pageName+'/'+pageName +'?mobile='+mobile ,

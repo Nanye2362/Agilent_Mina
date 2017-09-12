@@ -1,6 +1,6 @@
 var util = require('../../utils/util.js');
 var app = getApp()
-var mobile=''
+var mobile = ''
 Page({
   data: {
     /** 
@@ -13,22 +13,24 @@ Page({
     displayState: false,
     InstrumentCount: 0,
     InstrumentList: [{}],
-    ContactGuid:'',
-    ContactId:'',
-    AccountGuid:'',
-    AccountId:'',
+    ContactGuid: '',
+    ContactId: '',
+    AccountGuid: '',
+    AccountId: '',
   },
 
-  
+
   onLoad: function () {
+
     mobile = wx.getStorageSync(mobile);
-    console.log('mobile======='+mobile)
+    console.log('mobile=======' + mobile)
     var that = this;
     util.NetRequest({
       url: 'site-mini/my-instrument',
       data: {
       },
       success: function (res) {
+        console.log(res)
         that.setData({
           displayState: true,
         })
@@ -39,7 +41,7 @@ Page({
           ContactId: res.ContactId,
           AccountGuid: res.AccountGuid,
           AccountId: res.AccountId,
-        }) 
+        })
       },
       fail: function (err) {
         console.log(err);
@@ -49,10 +51,36 @@ Page({
   //报修历史
   clickToNext: function (event) {
     var sn = event.currentTarget.dataset.sn;
+    this.setData({'sn': sn})
     var contactId = event.currentTarget.dataset.contactid;
-    wx.navigateTo({
-      url: '../service_list/service_list?sn=' + sn + '&contactId=' + contactId,
-    })
+    var that = this;
+    util.NetRequest({
+      url: 'sr/history',
+      data: {
+        ContactId: contactId,
+        SerialNo: sn
+      },
+      success: function (res) {
+        if (res.success == true) {
+          wx.navigateTo({
+            url: '../service_list/service_list?sn=' + sn + '&contactId=' + contactId,
+          })
+        } else {
+          wx.showModal({
+            title: '提示',
+            content: '您暂无报修历史',
+            showCancel: false,
+            success: function (res) {
+              if (res.confirm) {
+                console.log('用户点击确定')
+              }
+            }
+          })
+        }
+      }
+    });
+    
+    
   },
   //报修
   clickToRepair: function (event) {
@@ -61,6 +89,7 @@ Page({
     var contactGuid = event.currentTarget.dataset.contactguid;
     var accountGuid = event.currentTarget.dataset.accountguid;
     var accountId = event.currentTarget.dataset.accountid;
+    console.log(contactGuid)
     wx.navigateTo({
       url: '../confirm_info/confirm_info?sn=' + sn + '&contactId=' + contactId + '&contactGuid=' + contactGuid + '&accountGuid=' + accountGuid + '&accountId=' + accountId,
     })
@@ -72,28 +101,9 @@ Page({
     })
   },
 
-  /** 
-     * 滑动切换tab 
-     */
-  bindChange: function (e) {
-    var that = this;
-    that.setData({ currentTab: e.detail.current });
-  },
-  /** 
-   * 点击tab切换 
-   */
-  swichNav: function (e) {
-    var that = this;
-    if (this.data.currentTab === e.target.dataset.current) {
-      return false;
-    } else {
-      that.setData({
-        currentTab: e.target.dataset.current
-      })
-    }
-  },
-  clickToRemove: function(event){
-    var that = this;
+  //删除仪器
+  clickToRemove: function (event) {
+    var that = this
     var index = event.currentTarget.dataset.index;
     console.log(index);
     var InstrumentList = this.data.InstrumentList;
@@ -102,9 +112,41 @@ Page({
       content: '确定要删除么',
       success: function (res) {
         if (res.confirm) {
+          util.NetRequest({
+            url: 'sr/delete-instrument',
+            data: {
+              'SerialNo': InstrumentList[index].SerialNo,
+              'ProductId': InstrumentLIst[index].ProductId,
+            },
+            success: function (res) {
+              console.log('用户点击确定');
+              InstrumentList.splice(index, 1);
+              that.setData({ 'InstrumentList': InstrumentList });
+            },
+            fail: function (err) {
+              wx.showToast({
+                title: '删除失败',
+                icon: 'fail',
+                duration: 2000
+              })
+            }
+          })
+        } else if (res.cancel) {
+          console.log('用户点击取消');
+          return;
+        }
+      }
+    })
+    
+   
+    wx.showModal({
+      title: '提示',
+      content: '确定要删除么',
+      success: function (res) {
+        if (res.confirm) {
           console.log('用户点击确定');
-          myInstrument.splice(index,1);
-          that.setData({ 'myInstrument': myInstrument});
+          InstrumentList.splice(index, 1);
+          that.setData({ 'InstrumentList': InstrumentList });
         } else if (res.cancel) {
           console.log('用户点击取消');
           return;

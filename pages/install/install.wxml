@@ -10,11 +10,18 @@
 <form class="install_form" id="insth_form" action="">
     <!-- basic_info -->
     <view class="ins_form bg-primary">
+       <!-- order -->
+        <view class="ins_item flex {{hasError?'ins_error':''}}">
+            <view class="ins_title self-center">订单号:</view>
+            <label class="ins_con" for="ins_orderno">
+                <input bindinput='ordercheck' bindblur="blurfun" data-name="orderno" value="{{ orderno }}" name="ins_phone" maxlength="10" type="text" placeholder="请输入以03开头的订单号" id="ins_orderno" required="" />
+            </label>
+        </view>
         <!-- name -->
         <view class="ins_item flex">
             <view class="ins_title self-center">姓名:</view>
-            <label class="ins_con" for="ins_phone">
-                <input bindblur="blurfun" data-name="name" value="{{ name }}" name="ins_phone" type="text" placeholder="请输入姓名" id="ins_phone" required="" />
+            <label class="ins_con" for="ins_name">
+                <input bindblur="blurfun" data-name="name" value="{{ name }}" name="ins_phone" type="text" placeholder="请输入姓名" id="ins_name" required="" />
             </label>
         </view>
         <!-- phone -->
@@ -28,8 +35,8 @@
         <!-- company -->
         <view class="ins_item flex">
             <view class="ins_title self-center">单位名称:</view>
-            <label class="ins_con" for="ins_phone">
-                <input bindblur="blurfun" data-name="company" value="{{ company }}" name="ins_phone" type="text" placeholder="请输入单位全称" id="ins_phone" required="" />
+            <label class="ins_con" for="ins_company">
+                <input bindblur="blurfun" data-name="company" value="{{ company }}" name="ins_phone" type="text" placeholder="请输入单位全称" id="ins_company" required="" />
             </label>
         </view>
     </view>
@@ -70,4 +77,3 @@
     </view>
 </form>
 
-<view class="">{{name}}</view>
