@@ -86,7 +86,7 @@ Page({
             showCancel: false,
             success: function (res) {
               if (res.confirm) {
-                if (noskip == 1) {
+                if (res.noskip == 1) {
                 } else {
                   wx.navigateTo({
                     url: '../fill_info/fill_info?mobile=' + mobile,
