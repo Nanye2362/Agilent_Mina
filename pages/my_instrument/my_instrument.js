@@ -96,7 +96,7 @@ Page({
   },
   //添加仪器
   clickToAdd: function () {
-    wx.redirectTo({
+    wx.navigateTo({
       url: '../serial_number/serial_number?mobile=' + mobile,
     })
   },
@@ -116,7 +116,7 @@ Page({
             url: 'sr/delete-instrument',
             data: {
               'SerialNo': InstrumentList[index].SerialNo,
-              'ProductId': InstrumentLIst[index].ProductId,
+              'ProductId': InstrumentList[index].ProductId,
             },
             success: function (res) {
               console.log('用户点击确定');

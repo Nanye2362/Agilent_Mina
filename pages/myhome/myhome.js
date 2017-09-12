@@ -6,12 +6,12 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    head_img_url: '../../images / no - avatar.png',
   },
 
   gotoNext: function(event){
     wx.navigateTo({
-      url: event.currentTarget.dataset.url
+      url: event.currentTarget.dataset.url+'?myhome=myhome'
     })
   },
 
@@ -59,7 +59,7 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
-    //请求后台接口
+    //请求后台接口   
     util.NetRequest({
       url: 'site-mini/my-count',
       data: {},
@@ -90,7 +90,24 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    var that = this;
+    util.NetRequest({
+      url: 'site-mini/my-count',
+      data: {},
+      success: function (res) {
+        console.log(res); //后台获取到的mycount数据
+        that.setData({
+          ContactGuid: res.ContactGuid,
+          InstrumentCount: res.InstrumentCount,
+          company: res.company,
+          email: res.email,
+          head_img_url: res.head_img_url,
+          is_auth: res.is_auth,
+          mobile: res.mobile,
+          name: res.name
+        });
+      }
+    });
   },
 
   /**
