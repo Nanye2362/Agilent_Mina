@@ -13,10 +13,10 @@ Page({
     dropdown: false,
     reportFlag: false,
     InstrumentCount: 0,
-    HistoryResults: [{}],
-    unCompleteList: [{}],
-    unsubmmitList: [{}],
-    SerialNo_list: [{}],
+    HistoryResults: [],
+    unCompleteList: [],
+    unsubmmitList: [],
+    SerialNo_listFlag: [],
     getSn:'',
     getContactId:''
   },
@@ -96,7 +96,10 @@ Page({
   clickToChoose: function(e){
       var ID = e.currentTarget.dataset.id;
       var serialNu = e.currentTarget.dataset.num;
+      var index = e.currentTarget.dataset.index;
       var that = this;
+      var SerialNo_list = that.data.SerialNo_listFlag;
+      SerialNo_list[index].changeColor = true;
       util.NetRequest({
         url: 'sr/get-history-formini',
         data: { 
@@ -113,9 +116,12 @@ Page({
         }
       })
       this.setData({
-        getSn: serialNu
+        getSn: serialNu,
+        SerialNo_listFlag: SerialNo_list
       })
   },
+
+  //将数据根据不同状态分类
   sortHistory: function(res){
     console.log('sortHistory++++++++++++++++'+res);
     //history数据分类
@@ -124,9 +130,12 @@ Page({
     var unsubmmitList = [];
     var getSerialNo_list = res.SerialNo_list;
     var SerialNo_list = this.data.SerialNo_list;
+
     if (getSerialNo_list.length < SerialNo_list.length) {
       getSerialNo_list = SerialNo_list;
     }
+    var SerialNo_listFlag = this.addcolorFlag(getSerialNo_list);
+
     for (var i = 0; i < ListAll.length; i++) {
       if (ListAll[i].SrStatus == 'WIP') {
         unCompleteList.push(ListAll[i]);
@@ -140,20 +149,36 @@ Page({
       HistoryResults: res.HistoryResults,
       unCompleteList: unCompleteList,
       unsubmmitList: unsubmmitList,
-      SerialNo_list: getSerialNo_list,
+      SerialNo_listFlag: SerialNo_listFlag,
       getContactId: res.SerialNo_list[0].ContactId
     });
   },
 
   //序列号列表加入changecolor标识
   addcolorFlag: function(list){
-    var SerialNo_list_flag
+    var SerialNo_list_flag = list;
       for(var i=0; i<list.length; i++){
-
+        SerialNo_list_flag[i].changeColor = false;
       }
+      console.log(SerialNo_list_flag)
+      return SerialNo_list_flag;
   },
 
-  //再次保修
+  //查找列表中与所传数据相同的index
+  findSameIndex: function(serN,list){
+      var index = 0;
+      if (list.length){
+        for (var i = 0; i < list.length; i++){
+          if (serN == list[i].SerialNo){
+              index = i;
+            }
+        }
+      }
+     
+      return index
+  },
+
+  //再次报修
   clickToRepairAgain: function(){
     wx.navigateTo({
       url: '../confirm_info/confirm_info?contactId=&&sn='
