@@ -229,3 +229,7 @@ page{
   background: #0085d5;
   color:#fff;
 }
+.faq_select >view.selected{
+    background: #0085d5;
+    color: white
+}

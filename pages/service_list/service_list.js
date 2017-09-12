@@ -145,6 +145,14 @@ Page({
     });
   },
 
+  //序列号列表加入changecolor标识
+  addcolorFlag: function(list){
+    var SerialNo_list_flag
+      for(var i=0; i<list.length; i++){
+
+      }
+  },
+
   //再次保修
   clickToRepairAgain: function(){
     wx.navigateTo({
