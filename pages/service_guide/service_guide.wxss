@@ -87,3 +87,7 @@ view{
     color: #fff;
     padding-left: 10px;
 }
+.sg_img{
+  width: 690rpx;
+  height: 360rpx;
+}

@@ -1,14 +1,14 @@
 {
   "pages": [
+    "pages/index/index",
+    "pages/service_list/service_list",
     "pages/install/install",
     "pages/my_instrument/my_instrument",
-    "pages/index/index",
     "pages/myhome/myhome",
     "pages/contact_us/contact_us",
     "pages/confirm_info/confirm_info",
     "pages/auth/auth",
     "pages/fill_info/fill_info",
-    "pages/service_list/service_list",
     "pages/serial_number/serial_number",
     "pages/faq/faq",
     "pages/service_guide/service_guide",

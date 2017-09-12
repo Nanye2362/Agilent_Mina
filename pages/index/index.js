@@ -157,7 +157,7 @@ Page({
 */
   clickToHint:function(){
     wx.showToast({
-      title: '自助服务暂未开通',
+      title: '敬请期待',
       image: '../../images/hint.png',
       duration: 2000,
     })
