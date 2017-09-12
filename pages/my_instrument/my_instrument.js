@@ -96,7 +96,7 @@ Page({
   },
   //添加仪器
   clickToAdd: function () {
-    wx.redirectTo({
+    wx.navigateTo({
       url: '../serial_number/serial_number?mobile=' + mobile,
     })
   },

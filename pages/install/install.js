@@ -26,30 +26,35 @@ Page({
     this.setData(JSON.parse('{"' + event.target.dataset.name + '":"' + event.detail.value + '"}'));
   },
   ordercheck:function(event){
-    var reStart = /^03/;
     var _orderno=event.detail.value
-
-    if (_orderno != '' && reStart.test(_orderno) == false) {
-      console.log(1);
+    if (!this._ordercheck(_orderno)){
       this.setData({ hasError: true })
-      if (_orderno.length == 1) {
-        if (_orderno == '0') {
-          this.setData({ hasError: false })
-        }
-      }
-
-
-    }
-    if (_orderno == '' || reStart.test(_orderno) == true) {
-      console.log(2);
+    }else{
       this.setData({ hasError: false })
     }
+  },
+  _ordercheck: function (_orderno){
+    var reStart = /^03(\d*)$/;
+    if (_orderno != '' &&(_orderno.length!=10 || !reStart.test(_orderno))) {
+          return false;
+    }
+    return true;
   },
   submit: function (event) {
     var URLArr = this.data.photoURL;
     var that = this;
     
-    if (util.checkEmpty(that.data, ['name', 'company'])) {
+    if (!this._ordercheck(this.data.orderno)){
+      wx.showModal({
+        title: '提示',
+        content: '请确认信息输入完整',
+        showCancel: false,
+      })
+      return;
+    }
+
+
+    if (util.checkEmpty(that.data, ['name', 'company','orderno'])) {
       wx.showModal({
         title: '提示',
         content: '请确认信息输入完整',

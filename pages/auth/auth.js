@@ -74,15 +74,24 @@ Page({
         if (res.success == true) {
           wx.setStorageSync('mobile', mobile)
           wx.redirectTo({
-            url: '../../'+pageName+'/'+pageName +'?mobile='+mobile ,
+            url: '../'+pageName+'/'+pageName +'?mobile='+mobile ,
           })
           
         } else {
+          console.log(res.noskip)
+          console.log(res.error_msg)
           wx.showModal({
-            title: '提交失败',
-            content: '验证码错误',
+            title: '认证失败',
+            content: res.error_msg,
+            showCancel: false,
             success: function (res) {
               if (res.confirm) {
+                if (noskip == 1) {
+                } else {
+                  wx.navigateTo({
+                    url: '../fill_info/fill_info?mobile=' + mobile,
+                  })
+                }
               }
             }
           })

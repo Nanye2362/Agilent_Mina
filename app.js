@@ -23,7 +23,7 @@ App({
             },
             showload: false,
             success: function (r) {
-              console.log(r.session3rd);
+              console.log(r);
               wx.setStorageSync('session3rd', r.session3rd);
               wx.getUserInfo({
                 success: function (res) {
@@ -36,7 +36,7 @@ App({
                       encryptedData: res.encryptedData,
                       iv: res.iv,
                       session3rd: wx.getStorageSync('session3rd'),
-                      userInfo: res.userInfo
+                      userInfo: JSON.stringify(res.userInfo)
                     },
                     success: function (m) {
                       console.log(m);
