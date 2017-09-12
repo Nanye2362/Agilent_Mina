@@ -33,11 +33,18 @@ Page({
               console.log(res);
               if (res.success == true) {
                 wx.removeStorageSync('MOBILE');
-                wx.showToast({
+                wx.showModal({
                   title: '解绑成功',
-                  icon: '您已解绑',
-                  duration: 2000
-                });
+                  content: '您已解绑成功',
+                  showCancel: false,
+                  success: function (res) {
+                    if (res.confirm) {
+                      wx.switchTab({
+                        url: '../myhome/myhome'
+                      })
+                    }
+                  }
+                })
               } else {
                 wx.showToast({
                   title: '解绑失败',
