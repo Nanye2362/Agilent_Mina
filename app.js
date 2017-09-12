@@ -21,7 +21,7 @@ App({
             data: {
               code: res.code
             },
-            showload:false,
+            showload: false,
             success: function (r) {
               console.log(r.session3rd);
               wx.setStorageSync('session3rd', r.session3rd);
@@ -40,12 +40,12 @@ App({
                     },
                     success: function (m) {
                       console.log(m);
-					  if(m.success == true){
-						wx.setStorageSync('MOBILE', m.mobile);
-						wx.setStorageSync('OPENID', m.openid);
-					  }else{
-						console.log(m.error_msg);  
-					  }
+                      if (m.success == true) {
+                        wx.setStorageSync('MOBILE', m.mobile);
+                        wx.setStorageSync('OPENID', m.openid);
+                      } else {
+                        console.log(m.error_msg);
+                      }
                     }
                   })
                 }
