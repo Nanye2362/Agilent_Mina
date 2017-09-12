@@ -40,7 +40,12 @@ App({
                     },
                     success: function (m) {
                       console.log(m);
-                      wx.setStorageSync('MOBILE', m.data);
+					  if(m.success == true){
+						wx.setStorageSync('MOBILE', m.mobile);
+						wx.setStorageSync('OPENID', m.openid);
+					  }else{
+						console.log(m.error_msg);  
+					  }
                     }
                   })
                 }
