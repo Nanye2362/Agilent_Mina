@@ -29,35 +29,9 @@ Page({
     this.setData({pageName: pageName});
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
 
   registrationSubmit: function (e) {
+    var pageName = this.data.pageName;
     //验证手机号与短信验证码
     console.log(e.detail.value);
     var mobile = e.detail.value.mobile
