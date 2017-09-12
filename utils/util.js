@@ -117,6 +117,7 @@ function checkWorktime(success,fail) {
   NetRequest({
     url: 'util/get-worktime',
     success: function (res) {
+      res = 0;
       if (res == 1) {
         success();
       } else {
