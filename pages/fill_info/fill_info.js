@@ -40,18 +40,23 @@ Page({
             wx.showModal({
               title: '提交成功',
               content: '您已提交，客服即将为你处理，请稍后……',
+              showCancel: false,
               success: function () {
-                  wx.redirectTo({
-                    url: 'site/index' + '?mobile=' + mobile+'&username=' + name + '&company=' + company + '&serial_no=' + sn
+                wx.switchTab({
+                    url: '../index/index'
                   })
               }
             })
           } else {
             wx.showModal({
-              title: '提交失败',
+              title: '重复提交',
               content: '您已提交信息，客服正在为您建档',
+              showCancel: false,
               success: function (res) {
                 if (res.confirm) {
+                  wx.switchTab({
+                    url: '../index/index'
+                  })
                 }
               }
             })

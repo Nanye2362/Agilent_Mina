@@ -39,7 +39,6 @@ Page({
         var userInfo = res.userInfo
         console.log(userInfo)
         console.log(JSON.stringify(userInfo))
-        
       }
     })*/
   },

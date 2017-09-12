@@ -12,7 +12,7 @@
   <!-- 未认证 -->
   <block wx:elif="{{is_auth == 0 || is_auth == null}}">
     <view class="mc_avatar">
-      <image src="../../images/cat.png"></image>
+      <image src="../../images/no-avatar.png"></image>
     </view>
     <view class="mc_id_btn mc_id_state fs16 fc-fff" bindtap="gotoNext" data-url="../auth/auth">身份认证</view>
   </block>
