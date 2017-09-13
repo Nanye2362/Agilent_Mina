@@ -13,6 +13,7 @@ App({
     // });
     wx.login({
       success: function (res) {
+        var that = this
         console.log(res);
         if (res.code) {
           //发起网络请求
@@ -44,6 +45,16 @@ App({
                         wx.setStorageSync('MOBILE', m.mobile);
                         wx.setStorageSync('OPENID', m.openid);
                       } else {
+                        wx.showModal({
+                          title: '温馨提示',
+                          content: '请先关注安捷伦公众账号',
+                          showCancel: false,
+                          success: function (res) {
+                            if (res.confirm) {
+                              
+                            }
+                          }
+                        })
                         console.log(m.error_msg);
                       }
                     }
@@ -62,10 +73,19 @@ App({
     console.log(1111);
   },
   globalData: {
+    
     userInfo: null,
     appid: 'wxdc8257b9f4a04386',
     secret: 'd140b3cd0ad5b4d07f87e081dafb3b8b',
     //token: wx.getStorageSync('token')
 
-  }
+  },
+  /*
+  showTips: function () {
+    var displayTips = this.data.displayTips
+    console.log('showtips')
+    this.setData({
+      displayTips: !displayTips
+    })
+  },*/
 })

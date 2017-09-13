@@ -6,3 +6,16 @@
 .s-item input{ height: 100rpx; }
 .item-r{ flex: .7; }
 .serialNo{ text-transform: uppercase; }
+.cs_con {
+    padding: 20rpx 40rpx 120rpx;
+}
+
+.cs_con image {
+    width: 44rpx;
+    height: 39rpx;
+    vertical-align: sub;
+}
+
+.cs_con > view {
+    line-height: 60rpx;
+}

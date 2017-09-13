@@ -1,6 +1,7 @@
 // pages/install/install.js
 var commondata = require('../../Data/database.js');
 var util = require('../../utils/util.js');
+
 Page({
 
   /**

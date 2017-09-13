@@ -22,7 +22,7 @@ var initData = {
     src: 'star_0'
   }]
 }
-var arrTitle = ["流程顺畅", "技术能力", "响应速度", "服务态度", "着装工整","服务进度更新"];
+var arrTitle = ["流程顺畅", "技术能力", "响应速度", "服务态度", "着装工整","进度更新"];
 
 for (var i = 0; i < 5; i++) {
   var tempObj = {
