@@ -10,6 +10,7 @@ Page({
   },
 
   gotoNext: function(event){
+    console.log(event.currentTarget.dataset.url + '?pageName=myhome');
     wx.navigateTo({
       url: event.currentTarget.dataset.url+'?pageName=myhome'
     })
@@ -40,7 +41,7 @@ Page({
                   success: function (res) {
                     if (res.confirm) {
                       wx.switchTab({
-                        url: '../myhome/myhome'
+                        url: '../index/index'
                       })
                     }
                   }
