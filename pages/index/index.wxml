@@ -1,4 +1,3 @@
-
 <!--index.wxml-->
 <swiper indicator-dots="{{indicatorDots}}" indicator-active-color="blue" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" style="width: 750rpx; height: 450rpx;" circular="{{true}}">
   <block wx:for="{{imgUrls}}" wx:key="{{img}}">
@@ -13,7 +12,7 @@
             <image src="/images/info_alert.png"></image>
         </view>
         <view class="flex__item h_alert_con">
-            <view class="fc-fff fs14 text-overflow" style="width: 90%;">{{message}}</view>
+            <view class="fc-fff fs14 text-overflow" style="width: 90%;">关于安捷伦(上海) 2017年中秋节放假通知</view>
         </view>
     </view>
 </swiper>

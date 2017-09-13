@@ -12,7 +12,7 @@ Page({
   gotoNext: function(event){
     console.log(event.currentTarget.dataset.url + '?pageName=myhome');
     wx.navigateTo({
-      url: event.currentTarget.dataset.url+'?pageName=myhome'
+      url: event.currentTarget.dataset.url+'?myhome=myhome'
     })
   },
 

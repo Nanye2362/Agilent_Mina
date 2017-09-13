@@ -1,14 +1,10 @@
 // pages/evaluate/evaluate.js
-var util = require('../../utils/util.js');
 var initData = {
   //评论计数
   describeNo: "0",
-  describe: "",
   stars:[],
   averageList:[],
   averageNum:0,
-  Surveyid:'',
-  SerialNo:'',
   drawAverageStars: [{
     count: 0,
     src: 'star_0'
@@ -26,7 +22,7 @@ var initData = {
     src: 'star_0'
   }]
 }
-var arrTitle = ["流程顺畅", "技术能力", "响应速度", "服务态度", "着装工整","进度更新"];
+var arrTitle = ["流程顺畅", "技术能力", "响应速度", "服务态度", "着装工整","服务进度更新"];
 
 for (var i = 0; i < 5; i++) {
   var tempObj = {
@@ -62,17 +58,13 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (option) {
-      this.setData({
-        Surveyid: option.Surveyid,
-        SerialNo: option.SerialNo,
-      })
-     
-
+  onLoad: function (options) {
+   
   },
   //星星评价
   markStarSelect: function (e) {
     var that = this
+
     var num = Number(e.currentTarget.id) + 1
     var index = e.currentTarget.dataset.index;
     console.log(index);
@@ -107,11 +99,7 @@ Page({
 
   //反馈textarea
   desNo: function (e) {
-
-    this.setData({ 
-      describeNo: (e.detail.value).length,
-      describe: e.detail.value
-     });
+    this.setData({ describeNo: (e.detail.value).length });
   },
 
   //平均值星星渲染
@@ -151,19 +139,6 @@ Page({
         }
         averageNum = (sum/(averageArr.length)).toFixed(2);
         return averageNum;
-    },
-
-    //提交评论
-  clickToSubmmit: function(){
-    util.NetRequest({
-      url: 'sr/submit-evaluation',
-      data:{
-
-      },
-      success:function(){
-
-      }
-    })
-  }
+    }
   
 })

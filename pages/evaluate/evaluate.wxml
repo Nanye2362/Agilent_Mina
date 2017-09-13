@@ -43,5 +43,5 @@
     <view class="text-right fc-aaa">{{describeNo}}/20</view>
 </view>
 <!-- button -->
-<button class="btn btn-primary submit_evaluation" bindtap='clickToSubmmit'>提交评论</button>
+<button class="btn btn-primary submit_evaluation">提交评论</button>
 

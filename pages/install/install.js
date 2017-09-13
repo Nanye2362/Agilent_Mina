@@ -1,7 +1,6 @@
 // pages/install/install.js
 var commondata = require('../../Data/database.js');
 var util = require('../../utils/util.js');
-
 Page({
 
   /**
@@ -66,10 +65,10 @@ Page({
     
     if (URLArr.length > 0) {
       util.uploadImg(URLArr, function (imgUrlList) {
-        that._submit(imgUrlList);
+        this._submit(imgUrlList);
       })
     } else {
-      that._submit([]);
+      this._submit([]);
     }
 
   },

@@ -2,17 +2,14 @@ var app = getApp()
 var util = require('../../utils/util.js');
 Page({
     data: {
-      mobile: '',
+      mobile: 13800009999,
       nameV: false,
       companyV: false,
       snV: false,
     },
 
-    onLoad: function (options) {
-      var mobile = options.mobile
-      this.setData({
-        'mobile': mobile,
-      })
+    onLoad: function () {
+
     },
     //submit form
     submitConfirm: function(e){
