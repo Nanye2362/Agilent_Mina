@@ -20,7 +20,7 @@
         </view>
         <view class="s-item flex alignc">
             <view class="item-t fc-g fs14">序列号：</view>
-            <input type="text" class="item-r fs14 serialNo" placeholder="例：RS-PRO-SE3948478" bindinput='getsn' bindblur='setsn'/>
+            <input type="text" class="item-r fs14 serialNo" placeholder="例：DEBAX00783" bindinput='getsn' bindblur='setsn'/>
         </view>
         <view class="s-item flex alignc">
             <view class="item-t fc-g fs14">备注：</view>
@@ -37,6 +37,4 @@
             <button class="fc-blue bc_chat_btn btn-meiqia" open-type='contact' session-from=''><image src="/images/wechat_b.png"></image>
         发起会话</button></view>
     </view>
-    <contact-button  type="default-light"  size="20" session-from="weapp">
-    </contact-button>
 </form>

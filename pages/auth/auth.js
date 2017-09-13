@@ -32,6 +32,7 @@ Page({
 
   registrationSubmit: function (e) {
     var pageName = this.data.pageName;
+    console.log(pageName)
     //验证手机号与短信验证码
     console.log(e.detail.value);
     var mobile = e.detail.value.mobile
@@ -47,9 +48,16 @@ Page({
         console.log(res);
         if (res.success == true) {
           wx.setStorageSync('mobile', mobile)
-          wx.redirectTo({
-            url: '../'+pageName+'/'+pageName +'?mobile='+mobile ,
-          })
+          if(pageName =='myhome' || pageName == 'index'){
+            wx.switchTab({
+              url: '../' + pageName + '/' + pageName + '?mobile=' + mobile,
+            })
+          } else{
+            wx.redirectTo({
+              url: '../' + pageName + '/' + pageName + '?mobile=' + mobile,
+            })
+          }
+          
           
         } else {
           console.log(res.noskip)

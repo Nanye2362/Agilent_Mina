@@ -7,11 +7,7 @@
     <view class="ins_o_details">
         <view class="ins_o_title fs24 text-center padding h5">订单号</view>
         <view class="ins_o_con padding">
-            <view class="fc-blue fs18 h5">1. 什么是订单号？</view>
-            <text>订单号的定义订单号的定义订单号的定义订单号的定义订单号的定义订单号的定义。</text>
-            <view class="fc-blue fs18 h5">2. 订单号在哪里找？</view>
-            <text>合同文件内以0300打头的10位数字编号 包装箱上特定区域（如上图所示）
-            </text>
+            <text class="fs13">参照以上图片，在到货的外包装箱上 SO 或 Sales Order后面以03开头的一串数字即为订单号，填入即可。</text>
         </view>
     </view>
 </view>
@@ -89,12 +85,16 @@
     <view class="ins_btn">
         <button  bindtap="submit" class="btn btn-primary submit_insth" id="gotoAuth" disabled="">确定</button>
     </view>
-
     <!-- gotoChat -->
-    <view class="cs_con ">
-        <view class="text-center fs12">如需查看安装申请的安排进度，请
-            <button class="fc-blue bc_chat_btn btn-meiqia" open-type='contact' session-from=''><image src="/images/wechat_b.png"></image>
-        发起会话</button></view>
+<view class="cs_con ">
+    <view class="text-center fs12">如需查看安装申请的安排进度，请
+        <button class="fc-blue bc_chat_btn btn-meiqia" open-type="contact"  session-from='weapp'>
+          <image src="/images/wechat_b.png"></image>发起会话
+        </button>
     </view>
+</view>
+    
 </form>
+
+
 
