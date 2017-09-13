@@ -66,10 +66,10 @@ Page({
     
     if (URLArr.length > 0) {
       util.uploadImg(URLArr, function (imgUrlList) {
-        this._submit(imgUrlList);
+        that._submit(imgUrlList);
       })
     } else {
-      this._submit([]);
+      that._submit([]);
     }
 
   },
