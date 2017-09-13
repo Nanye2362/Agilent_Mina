@@ -35,7 +35,7 @@
                               {{item.SerialNo}}
                         </view>
                     </block>
-                     <view class="text-overflow" data-id='{{getContactId}}' data-num='' bindtap='clickToChoose'>
+                     <view class="text-overflow" data-id='{{getContactId}}'  bindtap='clickToChoose'>
                               全部
                         </view>
                 </view>                

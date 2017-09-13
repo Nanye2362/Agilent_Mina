@@ -22,22 +22,9 @@ Page({
   },
 
   onLoad: function (option) {
-    console.log(option);
-    if(option){
-      var contactId = '';
-      if (option.contactId) {
-        contactId = option.contactId;
-      } else {
-        contactId = '';
-      }
-      this.setData({
-        getSn: option.sn,
-        getContactId: contactId
-      })
-    }
+    
     console.log('option-sn============================='+option.sn)
     var that = this;
-
 
     /** 
      * 获取系统信息 
@@ -58,8 +45,28 @@ Page({
       url: 'site-mini/service-list',
       success: function (res) {
         that.sortHistory(res);
+        that.setData({
+          getContactId: res.SerialNo_list[0].ContactId
+        });
       }
     });
+    if (option){
+      var serList = this.data.SerialNo_listFlag;
+      var serNGet = this.data.getSn;
+      for (var i = 0; i < serList.length; i++) {
+        if (serNGet == serList[i].SerialNo) {
+          index = i;
+        }
+      }
+
+        this.setData({
+          getSn: option.sn
+        });
+
+      
+    }
+    
+
   },
   /** 
      * 滑动切换tab 
@@ -98,8 +105,7 @@ Page({
       var serialNu = e.currentTarget.dataset.num;
       var index = e.currentTarget.dataset.index;
       var that = this;
-      var SerialNo_list = that.data.SerialNo_listFlag;
-      SerialNo_list[index].changeColor = true;
+      
       util.NetRequest({
         url: 'sr/get-history-formini',
         data: { 
@@ -108,32 +114,39 @@ Page({
           'index': that.data.currentTab
         },
         success: function(res){
-         
           //history数据分类
           console.log('choose'+res)
           that.sortHistory(res);
 
+          var SerialNo_list = that.data.SerialNo_listFlag;
+          if(index != undefined){
+            SerialNo_list[index].changeColor = true;
+          }
+          that.setData({
+            getSn: serialNu,
+            SerialNo_listFlag: SerialNo_list
+          })
         }
       })
-      this.setData({
-        getSn: serialNu,
-        SerialNo_listFlag: SerialNo_list
-      })
+
+    
   },
 
   //将数据根据不同状态分类
   sortHistory: function(res){
-    console.log('sortHistory++++++++++++++++'+res);
+    console.log(res);
     //history数据分类
     var ListAll = res.HistoryResults;
     var unCompleteList = [];
     var unsubmmitList = [];
     var getSerialNo_list = res.SerialNo_list;
-    var SerialNo_list = this.data.SerialNo_list;
-
-    if (getSerialNo_list.length < SerialNo_list.length) {
-      getSerialNo_list = SerialNo_list;
-    }
+    var SerialNo_list = this.data.SerialNo_listFlag;
+    
+    if (getSerialNo_list == null || getSerialNo_list.length < SerialNo_list.length) {
+        getSerialNo_list = SerialNo_list;
+      }
+   
+   
     var SerialNo_listFlag = this.addcolorFlag(getSerialNo_list);
 
     for (var i = 0; i < ListAll.length; i++) {
@@ -149,8 +162,7 @@ Page({
       HistoryResults: res.HistoryResults,
       unCompleteList: unCompleteList,
       unsubmmitList: unsubmmitList,
-      SerialNo_listFlag: SerialNo_listFlag,
-      getContactId: res.SerialNo_list[0].ContactId
+      SerialNo_listFlag: SerialNo_listFlag
     });
   },
 
