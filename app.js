@@ -12,7 +12,8 @@ App({
     // });
     wx.login({
       success: function (res) {
-	  var that = this		var app=getApp();
+	  var that = this;
+    var app=getApp();
         app.globalData.isLoading = true;        console.log(res);
         if (res.code) {
           //发起网络请求
