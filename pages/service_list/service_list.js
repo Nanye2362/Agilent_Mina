@@ -13,31 +13,18 @@ Page({
     dropdown: false,
     reportFlag: false,
     InstrumentCount: 0,
-    HistoryResults: [{}],
-    unCompleteList: [{}],
-    unsubmmitList: [{}],
-    SerialNo_list: [{}],
+    HistoryResults: [],
+    unCompleteList: [],
+    unsubmmitList: [],
+    SerialNo_listFlag: [],
     getSn:'',
     getContactId:''
   },
 
   onLoad: function (option) {
-    console.log(option);
-    if(option){
-      var contactId = '';
-      if (option.contactId) {
-        contactId = option.contactId;
-      } else {
-        contactId = '';
-      }
-      this.setData({
-        getSn: option.sn,
-        getContactId: contactId
-      })
-    }
+    
     console.log('option-sn============================='+option.sn)
     var that = this;
-
 
     /** 
      * 获取系统信息 
@@ -58,8 +45,28 @@ Page({
       url: 'site-mini/service-list',
       success: function (res) {
         that.sortHistory(res);
+        that.setData({
+          getContactId: res.SerialNo_list[0].ContactId
+        });
       }
     });
+    if (option){
+      var serList = this.data.SerialNo_listFlag;
+      var serNGet = this.data.getSn;
+      for (var i = 0; i < serList.length; i++) {
+        if (serNGet == serList[i].SerialNo) {
+          index = i;
+        }
+      }
+
+        this.setData({
+          getSn: option.sn
+        });
+
+      
+    }
+    
+
   },
   /** 
      * 滑动切换tab 
@@ -96,7 +103,9 @@ Page({
   clickToChoose: function(e){
       var ID = e.currentTarget.dataset.id;
       var serialNu = e.currentTarget.dataset.num;
+      var index = e.currentTarget.dataset.index;
       var that = this;
+      
       util.NetRequest({
         url: 'sr/get-history-formini',
         data: { 
@@ -105,27 +114,41 @@ Page({
           'index': that.data.currentTab
         },
         success: function(res){
-          var getSerialNo_list = res.SerialNo_list;
-          var SerialNo_list = this.data.SerialNo_list;
-          if (getSerialNo_list.length < SerialNo_list.length){
-              return false;
-          }
           //history数据分类
           console.log('choose'+res)
           that.sortHistory(res);
 
+          var SerialNo_list = that.data.SerialNo_listFlag;
+          if(index != undefined){
+            SerialNo_list[index].changeColor = true;
+          }
+          that.setData({
+            getSn: serialNu,
+            SerialNo_listFlag: SerialNo_list
+          })
         }
       })
-      this.setData({
-        getSn: serialNu
-      })
+
+    
   },
+
+  //将数据根据不同状态分类
   sortHistory: function(res){
-    console.log('sortHistory++++++++++++++++'+res);
+    console.log(res);
     //history数据分类
     var ListAll = res.HistoryResults;
     var unCompleteList = [];
     var unsubmmitList = [];
+    var getSerialNo_list = res.SerialNo_list;
+    var SerialNo_list = this.data.SerialNo_listFlag;
+    
+    if (getSerialNo_list == null || getSerialNo_list.length < SerialNo_list.length) {
+        getSerialNo_list = SerialNo_list;
+      }
+   
+   
+    var SerialNo_listFlag = this.addcolorFlag(getSerialNo_list);
+
     for (var i = 0; i < ListAll.length; i++) {
       if (ListAll[i].SrStatus == 'WIP') {
         unCompleteList.push(ListAll[i]);
@@ -139,16 +162,76 @@ Page({
       HistoryResults: res.HistoryResults,
       unCompleteList: unCompleteList,
       unsubmmitList: unsubmmitList,
-      SerialNo_list: res.SerialNo_list,
-      getContactId: res.SerialNo_list[0].ContactId
+      SerialNo_listFlag: SerialNo_listFlag
     });
   },
 
-  //再次保修
+  //序列号列表加入changecolor标识
+  addcolorFlag: function(list){
+    var SerialNo_list_flag = list;
+      for(var i=0; i<list.length; i++){
+        SerialNo_list_flag[i].changeColor = false;
+      }
+      console.log(SerialNo_list_flag)
+      return SerialNo_list_flag;
+  },
+
+  //查找列表中与所传数据相同的index
+  findSameIndex: function(serN,list){
+      var index = 0;
+      if (list.length){
+        for (var i = 0; i < list.length; i++){
+          if (serN == list[i].SerialNo){
+              index = i;
+            }
+        }
+      }
+     
+      return index
+  },
+
+  //再次报修
   clickToRepairAgain: function(){
     wx.navigateTo({
       url: '../confirm_info/confirm_info?contactId=&&sn='
     })
-  } 
+  } ,
+
+  //前往评价
+  clickToEvaluate: function(e){
+    var Surveyid = e.currentTarget.dataset.surveyid;
+    var SerialID = e.currentTarget.dataset.srid;
+    wx.navigateTo({
+      url: '../evaluate/evaluate?Surveyid=' + Surveyid + '&&SerialNo=' + SerialID
+    })
+  },
+
+  //打开PDF
+  clickToReport: function(e){
+
+      //window.location.href = host + 'file/open-file?ServconfId=' + ServconfId;
+
+
+    var url = util.Server + 'file/open-file?ServconfId=' + e.currentTarget.dataset.servconfId;
+    wx.downloadFile({
+      url: url,
+      success: function (res) {
+        var filePath = res.tempFilePath;
+        console.log('filePath= '+filePath);
+        wx.openDocument({
+          filePath: filePath,
+          success: function (res) {
+            console.log('打开文档成功')
+          },
+          fail: function(res){
+            console.log(res)
+          }
+        })
+      },
+      fail: function(){
+        console.log('PDF下载失败')
+      },
+    })
+  }
  
 })  

@@ -29,4 +29,14 @@
     </view>
     <!-- btn -->
     <button class="btn btn-primary"  formType="submit" disabled="{{nameV && companyV && snV? false:true}}">确定</button>
+
+
+    <!-- gotoChat -->
+    <view class="cs_con ">
+        <view class="text-center fs12">如需查看安装申请的安排进度，请
+            <button class="fc-blue bc_chat_btn btn-meiqia" open-type='contact' session-from=''><image src="/images/wechat_b.png"></image>
+        发起会话</button></view>
+    </view>
+    <contact-button  type="default-light"  size="20" session-from="weapp">
+    </contact-button>
 </form>

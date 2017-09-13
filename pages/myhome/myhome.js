@@ -11,7 +11,7 @@ Page({
 
   gotoNext: function(event){
     wx.navigateTo({
-      url: event.currentTarget.dataset.url+'?myhome=myhome'
+      url: event.currentTarget.dataset.url+'?pageName=myhome'
     })
   },
 

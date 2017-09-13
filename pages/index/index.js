@@ -5,6 +5,7 @@ var app = getApp()
 var routes = require('../../utils/routes');
 Page({
   data: {
+    message: 'Welcome to Chengdu for China 5-year plan review meeting',
     imgUrls:
     [{
       url: '/images/slider1.jpg'
