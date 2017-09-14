@@ -7,15 +7,31 @@ Page({
    * 页面的初始数据
    */
   data: {
-    tempFilePaths:'',
-    inputValue:''
+    tempFilePaths: '',
+    inputValue: '',
+    ContactGuid: '',
+    ContactId: '',
+    AccountGuid: '',
+    AccountId: ''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
+    util.NetRequest({
+      url: 'site-mini/serial-no',
+      data: '',
+      success: function (res) {
+        console.log(res);
+        this.setData({
+          ContactGuid: res.ContactGuid,
+          ContactId: res.ContactId,
+          AccountGuid: res.AccountGuid,
+          AccountId: res.AccountId
+        })
+      }
+    })
   },
 
   chooseimage: function () {
@@ -25,22 +41,22 @@ Page({
       sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有  
       sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有  
       success: function (res) {
-        
+
 
         //上传图片
         var tempFilePaths = res.tempFilePaths
         wx.uploadFile({
-          url: util.Server +'test/ocr-test', 
+          url: util.Server + 'test/ocr-test',
           filePath: tempFilePaths[0],
           name: 'file',
           success: function (res) {
             var data = res.data;
             // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片  
             _this.setData({
-              tempFilePaths:tempFilePaths
+              tempFilePaths: tempFilePaths
             })
           },
-          fail: function(res){
+          fail: function (res) {
             console.log(res)
             wx.showModal({
               title: '提示',
@@ -60,18 +76,28 @@ Page({
     })
   },
 
-  saveTheValue: function(e){
+  saveTheValue: function (e) {
     console.log(e.detail.value)
-      this.setData({ inputValue: e.detail.value })
+    this.setData({ inputValue: e.detail.value })
   },
- 
-  clickToSubmit: function (){
+
+  clickToSubmit: function (event) {
     var serNum = this.data.inputValue;
-      
+    var contactguid = event.currentTarget.dataset.contactguid;
+    var contactid = event.currentTarget.dataset.contactid;
+    var accountguid = event.currentTarget.dataset.accountguid;
+    var accountid = event.currentTarget.dataset.accountid;
+
     util.NetRequest({
       url: 'sr/sr-confirm',
-      data: serNum,
-      success: function(res){
+      data: {
+        contact_guid: contactguid,
+        contact_id: contactid,
+        account_guid: accountguid,
+        account_id: accountid,
+        serial_number: serNum
+      },
+      success: function (res) {
         console.log(res);
         if (res.success == true) {
           wx.navigateTo({
