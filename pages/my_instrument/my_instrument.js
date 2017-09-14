@@ -89,9 +89,24 @@ Page({
     var contactGuid = event.currentTarget.dataset.contactguid;
     var accountGuid = event.currentTarget.dataset.accountguid;
     var accountId = event.currentTarget.dataset.accountid;
-    console.log(contactGuid)
-    wx.navigateTo({
-      url: '../confirm_info/confirm_info?sn=' + sn + '&contactId=' + contactId + '&contactGuid=' + contactGuid + '&accountGuid=' + accountGuid + '&accountId=' + accountId,
+
+    util.NetRequest({
+      url: 'sr/sr-confirm',
+      data: {
+        contact_guid: contactGuid,
+        contact_id: contactId,
+        account_guid: accountGuid,
+        account_id: accountId,
+        serial_number: sn
+      },
+      success: function (res) {
+        console.log(res);
+        if (res.success == true) {
+          wx.navigateTo({
+            url: '../confirm_info/confirm_info' + '?ProductId=' + res.ProductId + '&ProductDesc=' + res.ProductDesc + '&SerialNo=' + res.SerialNo + '&CpName=' + res.CpName + '&ShipToName=' + res.ShipToName,
+          })
+        }
+      }
     })
   },
   //添加仪器
