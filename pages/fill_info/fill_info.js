@@ -6,6 +6,10 @@ Page({
       nameV: false,
       companyV: false,
       snV: false,
+      name:'',
+      company:'',
+      other:'',
+      sn:'',
     },
 
     onLoad: function (options) {
@@ -20,10 +24,14 @@ Page({
       //获取手机
       var mobile = this.data.mobile
       console.log('mobile==========='+mobile)
-      var name = e.detail.value.name
-      var company = e.detail.value.company
-      var sn = e.detail.value.sn
-      var other = e.detail.value.other
+      var name = this.data.name
+      console.log('name======'+name)
+      var company = this.data.company
+      console.log('company======' + company)
+      var sn = this.data.sn
+      console.log('sn======' + sn)
+      var other = this.data.other
+      console.log('other======' + other)
       var isupload = false;
       if (isupload) {
         return false;
@@ -86,7 +94,10 @@ Page({
       if (e.detail.value == null || e.detail.value == "") {
         this.setData({ nameV: false })
       } else {
-        this.setData({ nameV: true })
+        this.setData({ 
+          nameV: true,
+          name: e.detail.value
+         })
       }
     },
     getcompany: function (e) {
@@ -94,33 +105,28 @@ Page({
       if (e.detail.value == null || e.detail.value == "") {
         this.setData({ companyV: false })
       } else {
-        this.setData({ companyV: true })
+        this.setData({ 
+          companyV: true,
+          company: e.detail.value
+         })
       }
     },
     getsn: function (e) {
-      //console.log(e.detail.value)
+      console.log(e.detail.value)
+      var sn = e.detail.value.toUpperCase()
       if (e.detail.value == null || e.detail.value == "") {
         this.setData({ snV: false })
       } else {
-        this.setData({ snV: true })
+        this.setData({ 
+          snV: true,
+          sn: sn
+         })
       }
     },   
-    //获取输入的值
-    setname: function (e) {
-      var sname = e.detail.value
-      this.setData({ 'name': sname });
-    },
-    setcompany: function (e) {
-      var scompany = e.detail.value
-      this.setData({ 'company': scompany });
-    },
-    setsn: function (e) {
-      var ssn = e.detail.value
-      this.setData({ 'sn': ssn });
-    },
-    setother: function (e) {
-      var sother = e.detail.value
-      this.setData({ 'other': sother });
+    getother: function (e) {
+      this.setData({
+        other: e.detail.value
+      })
     },
 
 }) 
