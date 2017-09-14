@@ -208,10 +208,6 @@ Page({
 
   //打开PDF
   clickToReport: function(e){
-
-      //window.location.href = host + 'file/open-file?ServconfId=' + ServconfId;
-
-
     var url = util.Server + 'file/open-file?ServconfId=' + e.currentTarget.dataset.servconfId;
     wx.downloadFile({
       url: url,
@@ -231,6 +227,15 @@ Page({
       fail: function(){
         console.log('PDF下载失败')
       },
+    })
+  },
+
+  //跳转我的评价
+  clickToMyComment: function(e){
+    var Surveyid = e.currentTarget.dataset.surveyid;
+    var SerialID = e.currentTarget.dataset.srid;
+    wx.navigateTo({
+      url: '../evaluation/evaluation?Surveyid=' + Surveyid + '&&SerialNo=' + SerialID
     })
   }
  

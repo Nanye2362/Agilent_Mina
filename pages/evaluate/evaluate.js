@@ -33,29 +33,6 @@ var initData = {
 
 
 Page({
-
-
-  //提交评论
-  clickToSubmmit: function () {
-    var QuestionsSet = [];
-    var questionSet_result = this.data.questionSet_result;
-    var QuestionsSet_Comments = this.data.QuestionsSet_Comments;
-
-    for (var i = 0; i < questionSet_result.length; i++ ){
-        
-    }
-
-      util.NetRequest({
-        url: 'sr/submit-evaluation',
-        data: {
-
-        },
-        success: function () {
-
-        }
-      })
-  },
-
   /**
    * 页面的初始数据
    */
@@ -180,7 +157,6 @@ Page({
 
   //反馈textarea
   desNo: function (e) {
-
     this.setData({ 
       describeNo: (e.detail.value).length,
       describe: e.detail.value
@@ -226,9 +202,85 @@ Page({
         return averageNum;
     },
 
-  //整理评论后的数据格式
-  sortCommentList: function(){
+  //提交评论
+  clickToSubmmit: function () {
+    var QuestionsSet = [];
+    var questionSet_result = this.data.questionSet_result;
+    var QuestionsSet_Comments = this.data.QuestionsSet_Comments;
+    var openID = wx.getStorageSync('OPENID');
+    var that = this;
+    for (var i = 0; i < questionSet_result.length; i++) {
+      var a = {
+        "QuestionId": questionSet_result[i].question_id,
+        "QuestionDesc": questionSet_result[i].QuestionDesc,
+        "AnswerId": questionSet_result[i].AnswerId,
+        "AnswervaluesSet": [{
+          "AnswerId": questionSet_result[i].AnswerId,
+          "Value": questionSet_result[i].currentCount + " Star",
+          "Valueid": questionSet_result[i].answer_value_id,
+          "ValueSelected": "X"
+        }]
+      };
+      QuestionsSet.push(a);
+    }
 
-  }
+    var textarea_answer = {
+      "QuestionId": QuestionsSet_Comments.QuestionId,
+      "QuestionDesc": QuestionsSet_Comments.QuestionDesc,
+      "AnswerId": QuestionsSet_Comments.AnswerId,
+      "AnswervaluesSet": [{
+        "AnswerId": QuestionsSet_Comments.AnswerId,
+        "Value": that.data.describe,
+        "Valueid": QuestionsSet_Comments.AnswervaluesSet.results[0].Valueid,
+      }]
+    };
+    QuestionsSet.push(textarea_answer);
+
+    var data1 = {
+      "SurveyId": that.data.Surveyid,
+      "ServicereqId": that.data.SerialNo,
+      "SurveyVersion": '',
+      "QuestionsSet": QuestionsSet
+    }
+
+    var data = JSON.stringify(data1)
+    util.NetRequest({
+      url: 'sr/submit-evaluation?openid=' + openID,
+      data: {
+        "d": data,
+        "from": 'mini'
+      },
+      success: function (res) {
+        console.log(res);
+        if (res.success == true) {
+          //提示用户：评价成功
+          wx.showModal({
+            title: '评价成功',
+            content: '感谢您的评价',
+            showCancel: false,
+            success: function (res) {
+              if (res.confirm) {
+                wx.switchTab({
+                  url: '../index/index',
+                })
+              }
+            }
+          })
+        } else {
+          //提示用户：评价失败
+          wx.showModal({
+            title: '评价失败',
+            content: '系统错误，请稍后再试',
+            showCancel: false,
+            success: function (res) {
+              if (res.confirm) {
+                console.log('用户点击确定')
+              }
+            }
+          })
+        }
+      }
+    })
+  },
   
 })
