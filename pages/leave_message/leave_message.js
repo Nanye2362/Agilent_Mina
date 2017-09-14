@@ -14,6 +14,13 @@ Page({
   blurfun:function(event){
     this.setData(JSON.parse('{"' + event.target.dataset.name + '":"' + event.detail.value+'"}'));
   },
+
+  getSn: function(e){
+    this.setData({
+      sn: e.detail.value.toUpperCase()
+    })
+  },
+
   submit:function(event){
     var URLArr = this.data.photoURL;
     var that = this;

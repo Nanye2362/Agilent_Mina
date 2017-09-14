@@ -19,12 +19,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var that = this;
     util.NetRequest({
       url: 'site-mini/serial-no',
       data: '',
       success: function (res) {
         console.log(res);
-        this.setData({
+        that.setData({
           ContactGuid: res.ContactGuid,
           ContactId: res.ContactId,
           AccountGuid: res.AccountGuid,
@@ -77,8 +78,10 @@ Page({
   },
 
   saveTheValue: function (e) {
-    console.log(e.detail.value)
-    this.setData({ inputValue: e.detail.value })
+    
+    var inputValue = e.detail.value.toUpperCase()
+    console.log(inputValue)
+    this.setData({ inputValue: inputValue })
   },
 
   clickToSubmit: function (event) {
