@@ -8,13 +8,13 @@ App({
     //   },
     //   fail: function () {
     //     //登录态过期
-
     //   }
     // });
     wx.login({
       success: function (res) {
-        var that = this
-        console.log(res);
+	  var that = this;
+    var app=getApp();
+        app.globalData.isLoading = true;        console.log(res);
         if (res.code) {
           //发起网络请求
           util.NetRequest({
@@ -22,8 +22,7 @@ App({
             data: {
               code: res.code
             },
-            showload: false,
-            success: function (r) {
+            success: function (r) {           
               console.log(r);
               wx.setStorageSync('session3rd', r.session3rd);
               wx.getUserInfo({
@@ -32,7 +31,6 @@ App({
                   console.log(wx.getStorageSync('session3rd'));
                   util.NetRequest({
                     url: 'wechat-mini/get-userinfo',
-                    showload: false,
                     data: {
                       encryptedData: res.encryptedData,
                       iv: res.iv,
@@ -40,6 +38,7 @@ App({
                       userInfo: JSON.stringify(res.userInfo)
                     },
                     success: function (m) {
+                      app.globalData.isLoading=false;
                       console.log(m);
                       if (m.success == true) {
                         wx.setStorageSync('MOBILE', m.mobile);
@@ -77,6 +76,8 @@ App({
     userInfo: null,
     appid: 'wxdc8257b9f4a04386',
     secret: 'd140b3cd0ad5b4d07f87e081dafb3b8b',
+    requestList:[],
+    isLoading:false
     //token: wx.getStorageSync('token')
 
   },
