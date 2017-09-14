@@ -37,6 +37,4 @@
             <button class="fc-blue bc_chat_btn btn-meiqia" open-type='contact' session-from=''><image src="/images/wechat_b.png"></image>
         发起会话</button></view>
     </view>
-    <contact-button  type="default-light"  size="20" session-from="weapp">
-    </contact-button>
 </form>

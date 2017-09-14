@@ -15,7 +15,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    
   },
 
   chooseimage: function () {
@@ -81,7 +81,7 @@ Page({
           wx.showModal({
             title: '提示',
             content: '序列号验证有误',
-            cancelText: '联系客服',
+            cancelText: '取消',
             cancelColor: '#3CC51F',
             confirmText: '重新上传',
             success: function (sm) {
@@ -90,7 +90,6 @@ Page({
                 console.log('点击确认')
 
               } else if (sm.cancel) {
-                //联系客服，调用美洽
                 console.log('用户点击取消')
               }
             }
