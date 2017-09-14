@@ -9,6 +9,10 @@ var initData = {
   averageNum:0,
   Surveyid:'',
   SerialNo:'',
+  arrTitle:[],
+  questionSet_result:[],
+  QuestionsSet_Comments: {},
+  QuestionsSet:[], // 存储评论后的信息
   drawAverageStars: [{
     count: 0,
     src: 'star_0'
@@ -26,34 +30,32 @@ var initData = {
     src: 'star_0'
   }]
 }
-var arrTitle = ["流程顺畅", "技术能力", "响应速度", "服务态度", "着装工整","进度更新"];
-
-for (var i = 0; i < 5; i++) {
-  var tempObj = {
-  title: arrTitle[i],
-  currentCount:0,
-  data:[{
-    count: 0,
-    src: 'star_0'
-  }, {
-    count: 1,
-    src: 'star_0'
-  }, {
-    count: 2,
-    src: 'star_0'
-  }, {
-    count: 3,
-    src: 'star_0'
-  }, {
-    count: 4,
-    src: 'star_0'
-  }]
-  }
-  initData.stars.push(tempObj);
-} 
 
 
 Page({
+
+
+  //提交评论
+  clickToSubmmit: function () {
+    var QuestionsSet = [];
+    var questionSet_result = this.data.questionSet_result;
+    var QuestionsSet_Comments = this.data.QuestionsSet_Comments;
+
+    for (var i = 0; i < questionSet_result.length; i++ ){
+        
+    }
+
+      util.NetRequest({
+        url: 'sr/submit-evaluation',
+        data: {
+
+        },
+        success: function () {
+
+        }
+      })
+  },
+
   /**
    * 页面的初始数据
    */
@@ -63,29 +65,99 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (option) {
+    var that = this;
       this.setData({
         Surveyid: option.Surveyid,
         SerialNo: option.SerialNo,
       })
      
+      util.NetRequest({
+        url: 'site-mini/evaluation?survey_id=' + option.Surveyid + '&servicereq_id=' + option.SerialNo,
+        success:function(res){
+          console.log(res);
+          var questionSet_result = res.QuestionsSet_results;
+          var QuestionsSet_Comments = res.QuestionsSet_Comments;
+          var questionList = that.sortQuestionDesc(questionSet_result);
+          that.setData({
+             arrTitle: questionList,
+             questionSet_result: questionSet_result,
+             QuestionsSet_Comments: QuestionsSet_Comments
+          })
+         that.sortStarList();
+        }
+      })
+  },
 
+//生成stars
+  sortStarList: function (){
+    var arrTitle = this.data.arrTitle;
+    var arrTitleL = arrTitle.length;
+    var questionSet_result = this.data.questionSet_result;
+    var stars = [];
+    for (var i = 0; i < arrTitleL; i++) {
+      var tempObj = {
+        title: arrTitle[i],
+        currentCount: 0,
+        QuestionId: questionSet_result[i].QuestionId,
+        AnswerId: questionSet_result[i].AnswerId,
+        QuestionDesc: questionSet_result[i].AnswerId,
+        answer_value_id: '',
+        data: [{
+          count: 0,
+          Valueid: questionSet_result[i].AnswervaluesSet.results[0].Valueid,
+          src: 'star_0'
+        }, {
+          count: 1,
+          Valueid: questionSet_result[i].AnswervaluesSet.results[1].Valueid,
+          src: 'star_0'
+        }, {
+          count: 2,
+          Valueid: questionSet_result[i].AnswervaluesSet.results[2].Valueid,
+          src: 'star_0'
+        }, {
+          count: 3,
+          Valueid: questionSet_result[i].AnswervaluesSet.results[3].Valueid,
+          src: 'star_0'
+        }, {
+          count: 4,
+          Valueid: questionSet_result[i].AnswervaluesSet.results[4].Valueid,
+          src: 'star_0'
+        }]
+      }
+      stars.push(tempObj);
+    }
+   
+   this.setData({
+     stars: stars
+   })
+},
+  //提取question_description
+  sortQuestionDesc: function(list){
+      var questionList = [];
+      for(var i=0; i<list.length; i++){
+        questionList.push(list[i].QuestionDesc);
+      }
+      return questionList;
   },
   //星星评价
   markStarSelect: function (e) {
     var that = this
-    var num = Number(e.currentTarget.id) + 1
+    var num = Number(e.currentTarget.id)+1; 
     var index = e.currentTarget.dataset.index;
+    var answerValueID = e.currentTarget.dataset.Valueid;
     console.log(index);
     var arr = []
 
-    for (var k in that.data.stars) {
+    for (var k in that.data.stars[index].data) {
       var obj = {}
       if (k < num) {
-        obj.count = that.data.stars[k].count
+        obj.count = that.data.stars[index].data[k].count;
+        obj.Valueid = that.data.stars[index].data[k].Valueid;
         obj.src = 'star_1'
         arr.push(obj);
       } else {
-        obj.count = that.data.stars[k].count
+        obj.count = that.data.stars[index].data[k].count;
+        obj.Valueid = that.data.stars[index].data[k].Valueid;
         obj.src = 'star_0'
         arr.push(obj);
       }
@@ -94,6 +166,7 @@ Page({
     var thisstars=that.data.stars;
     console.log(thisstars[index]);
     thisstars[index].currentCount = num;
+    thisstars[index].answer_value_id = answerValueID;
     thisstars[index].data = arr;
     that.setData({
       stars: thisstars,
@@ -153,17 +226,9 @@ Page({
         return averageNum;
     },
 
-    //提交评论
-  clickToSubmmit: function(){
-    util.NetRequest({
-      url: 'sr/submit-evaluation',
-      data:{
+  //整理评论后的数据格式
+  sortCommentList: function(){
 
-      },
-      success:function(){
-
-      }
-    })
   }
   
 })

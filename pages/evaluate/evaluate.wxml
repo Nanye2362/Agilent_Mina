@@ -9,7 +9,7 @@
         <view class="fs-15 marginB-6">安捷伦售后服务在中国</view>
           <view class="fs13 fc-aaa flex">
               总体评分： 
-              <view class="flex e-stars">
+              <view class="flex e-stars" >
                   <block wx:for="{{drawAverageStars}}" wx:for-item="star">
                     <view class="aver_stars" data-index="{{i}}" >
                       <image class="aver_e_star" src="../../images/{{star.src}}.png"></image>
@@ -25,7 +25,7 @@
        <view class="e-title">{{item.title}}</view>
        <view class="flex e-stars">
         <block wx:for="{{item.data}}" wx:for-item="star">
-          <view class="stars" id="{{index}}" data-index="{{i}}" bindtap="markStarSelect">
+          <view class="stars" id="{{index}}" data-index="{{i}}" data-valueid="{{star.Valueid}}" bindtap="markStarSelect">
             <image class="e_star" src="../../images/{{star.src}}.png"></image>
           </view>
         </block>
@@ -39,7 +39,8 @@
 
 <!-- other_suggestion -->
 <view class="s-repair fs14 padding bg-primary">
-    <textarea class="s-textarea fs13" maxlength="20" bindblur="bindTextAreaBlur" bindinput="desNo" placeholder="请详细说说您对本次服务的体验吧！您的反馈将成为我们不断改进的动力。"/>
+    <textarea class="s-textarea fs13" maxlength="20" bindblur="bindTextAreaBlur" bindinput="desNo" placeholder="请详细说说您对本次服务的体验吧！您的反馈将成为我们不断改进的动力。" data-question_id='{{QuestionsSet_Comments.QuestionId}}' data-questionDesc='{{QuestionsSet_Comments.QuestionDesc}}' data-answerId='{{QuestionsSet_Comments.AnswerId}}' data-value="{{QuestionsSet_Comments.AnswervaluesSet.results[0].Value}}"
+                data-value_id="{{QuestionsSet_Comments.AnswervaluesSet.results[0].Valueid}}"  data-value_selected="{{QuestionsSet_Comments.AnswervaluesSet.results[0].ValueSelected}}"/>
     <view class="text-right fc-aaa">{{describeNo}}/20</view>
 </view>
 <!-- button -->
