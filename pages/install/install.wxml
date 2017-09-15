@@ -7,11 +7,7 @@
     <view class="ins_o_details">
         <view class="ins_o_title fs24 text-center padding h5">订单号</view>
         <view class="ins_o_con padding">
-            <view class="fc-blue fs18 h5">1. 什么是订单号？</view>
-            <text>订单号的定义订单号的定义订单号的定义订单号的定义订单号的定义订单号的定义。</text>
-            <view class="fc-blue fs18 h5">2. 订单号在哪里找？</view>
-            <text>合同文件内以0300打头的10位数字编号 包装箱上特定区域（如上图所示）
-            </text>
+            <text>参照以上图片，在到货的外包装箱上 SO 或Sales Order 后面以03开头的一串数字即为订单号，填入即可。</text>
         </view>
     </view>
 </view>

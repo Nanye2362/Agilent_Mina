@@ -26,7 +26,7 @@
                     <text class="fs12 fc-blue">《安捷伦用户注册绑定协议》</text>
                 </checkbox-group>
             </view-->
-            <text class="gentle_remind fs12">温馨提示：首次提服务请求需要先进行身份验证，下次将直接进入序列号输入页面，进入咨询流程。</text>
+            <text class="gentle_remind fs12">温馨提示：首次提服务请求需要先进行身份验证。</text>
         </view>
     </view>
     <button formType="submit"  class="btn btn-primary" disabled="{{mobileV && codeV? false:true}}">身份认证</button>

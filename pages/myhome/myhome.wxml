@@ -26,7 +26,7 @@
       <image src="/images/mc-user.png" class="mc_icon  self-center"></image>
       <view class="flex directionC mc_con self-center">
         <text class="fw mc_con_title">个人信息</text>
-        <text class="fc-aaa fs14 fw">已认证</text>
+        <text class="fc-aaa fs12">已认证</text>
       </view>
       <image src="/images/arrow-r.png" class="mc_arrow-r self-center"></image>
     </view>
@@ -34,7 +34,7 @@
       <image src="/images/mc-instrument.png" class="mc_icon self-center"></image>
       <view class="flex directionC mc_con self-center">
         <text class="fw mc_con_title">我的仪器</text>
-        <text class="fc-aaa fs14 fw">当前仪器：<text class="fc-orange fs14">{{InstrumentCount}}</text> 台</text>
+        <text class="fc-aaa fs12">当前仪器：<text class="fc-orange fs14">{{InstrumentCount}}</text> 台</text>
       </view>
       <image src="/images/arrow-r.png" class="mc_arrow-r self-center"></image>
     </view>
@@ -42,7 +42,7 @@
       <image src="/images/mc-guide.png" class="mc_icon self-center"></image>
       <view class="flex directionC mc_con self-center">
         <text class="fw mc_con_title">报修指南</text>
-        <text class="fc-aaa fs14 fw">小程序报修服务指南</text>
+        <text class="fc-aaa fs12">小程序报修服务指南</text>
       </view>
       <image src="/images/arrow-r.png" class="mc_arrow-r self-center"></image>
     </view>
@@ -50,7 +50,7 @@
       <image src="/images/mc-unbind.png" class="mc_icon self-center"></image>
       <view class="flex directionC mc_con self-center">
         <text class="fw mc_con_title">绑定解绑</text>
-        <text class="fc-aaa fs14 fw">切换认证账号 </text>
+        <text class="fc-aaa fs12">切换认证账号 </text>
       </view>
       <image src="/images/arrow-r.png" class="mc_arrow-r self-center"></image>
     </view>
@@ -61,7 +61,7 @@
       <image src="/images/mc-user.png" class="mc_icon  self-center"></image>
       <view class="flex directionC mc_con self-center">
         <text class="fw mc_con_title">个人信息</text>
-        <text class="fc-aaa fs14 fw">去完善</text>
+        <text class="fc-aaa fs12">去完善</text>
       </view>
       <image src="/images/arrow-r.png" class="mc_arrow-r self-center"></image>
     </view>
@@ -69,7 +69,7 @@
       <image src="/images/mc-instrument.png" class="mc_icon self-center"></image>
       <view class="flex directionC mc_con self-center">
         <text class="fw mc_con_title">我的仪器</text>
-        <text class="fc-aaa fs14 fw">当前仪器：<text class="fc-orange fs14">{{instruNum}}</text> 台</text>
+        <text class="fc-aaa fs12">当前仪器：<text class="fc-orange fs14">{{InstrumentCount}}</text> 台</text>
       </view>
       <image src="/images/arrow-r.png" class="mc_arrow-r self-center"></image>
     </view>
@@ -77,7 +77,7 @@
       <image src="/images/mc-guide.png" class="mc_icon self-center"></image>
       <view class="flex directionC mc_con self-center">
         <text class="fw mc_con_title">报修指南</text>
-        <text class="fc-aaa fs14 fw">小程序报修服务指南</text>
+        <text class="fc-aaa fs12">小程序报修服务指南</text>
       </view>
       <image src="/images/arrow-r.png" class="mc_arrow-r self-center"></image>
     </view>
@@ -85,7 +85,7 @@
       <image src="/images/mc-unbind.png" class="mc_icon self-center"></image>
       <view class="flex directionC mc_con self-center">
         <text class="fw mc_con_title">绑定解绑</text>
-        <text class="fc-aaa fs14 fw">切换认证账号 </text>
+        <text class="fc-aaa fs12">切换认证账号 </text>
       </view>
       <image src="/images/arrow-r.png" class="mc_arrow-r self-center"></image>
     </view>
