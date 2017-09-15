@@ -44,7 +44,6 @@
 }
 
 .ins_btn {
-    padding: 0 40rpx;
     margin-top: 40rpx;
 }
 

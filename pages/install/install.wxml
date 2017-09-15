@@ -45,8 +45,8 @@
         <view class="ins_item flex">
             <view class="ins_title self-center">手机号:</view>
             <label class="ins_con" for="ins_phone">
-                <!--input name="ins_phone" type="tel" placeholder="请输入手机号" id="ins_phone" required=""-->
-                <span>{{mobile}}</span>
+                <input name="ins_phone" type="tel" placeholder="请输入手机号" id="ins_phone" required="" value="{{mobile}}" disabled/>
+                <!--span>{{mobile}}</span-->
             </label>
         </view>
         <!-- company -->
