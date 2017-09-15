@@ -5,7 +5,10 @@
 .sn_photobtn{ position: absolute; width: 160rpx; height: 100%; bottom: 0; right: 0; opacity:0; z-index: 100; border: none;}
 .sn_photoimg{ width: 40rpx; height: 40rpx; position: absolute; bottom: 30rpx; right: 30rpx; z-index:90; }
 .cs_con {
-    padding: 20rpx 40rpx 120rpx;
+    width: 100%;
+    position: fixed;
+    bottom: 20rpx;
+    left: 0;
 }
 
 .cs_con image {

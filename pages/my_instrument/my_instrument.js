@@ -134,6 +134,10 @@ Page({
               'ProductId': InstrumentList[index].ProductId,
             },
             success: function (res) {
+              var InstrumentCount = that.data.InstrumentCount;
+              that.setData({
+                InstrumentCount: InstrumentCount-1,
+              })
               console.log('用户点击确定');
               InstrumentList.splice(index, 1);
               that.setData({ 'InstrumentList': InstrumentList });
