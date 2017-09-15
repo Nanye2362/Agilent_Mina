@@ -79,6 +79,7 @@ Page({
         AnswerId: questionSet_result[i].AnswerId,
         QuestionDesc: questionSet_result[i].AnswerId,
         answer_value_id: '',
+        ValueSelectedF: false,
         data: [{
           count: 0,
           Valueid: questionSet_result[i].AnswervaluesSet.results[0].Valueid,
@@ -116,6 +117,7 @@ Page({
       }
       return questionList;
   },
+
   //星星评价
   markStarSelect: function (e) {
     var that = this
@@ -144,6 +146,7 @@ Page({
     console.log(thisstars[index]);
     thisstars[index].currentCount = num;
     thisstars[index].answer_value_id = answerValueID;
+    thisstars[index].ValueSelectedF = true;
     thisstars[index].data = arr;
     that.setData({
       stars: thisstars,
@@ -204,6 +207,18 @@ Page({
 
   //提交评论
   clickToSubmmit: function () {
+    var stars = this.data.stars;
+    for(var i in stars){
+      if (stars[i].ValueSelectedF == false){
+          wx.showToast({
+            title: '评价未完成',
+            icon: 'loading',
+            duration: 2000
+          })
+          return false;
+      }
+      
+    }
     var QuestionsSet = [];
     var questionSet_result = this.data.questionSet_result;
     var QuestionsSet_Comments = this.data.QuestionsSet_Comments;

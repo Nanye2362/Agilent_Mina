@@ -13,9 +13,12 @@ Page({
     dropdown: false,
     reportFlag: false,
     InstrumentCount: 0,
-    HistoryResults: [],
-    unCompleteList: [],
-    unsubmmitList: [],
+    HistoryResults: [],  //全部
+    HistoryResultsL: 0,
+    unCompleteList: [],  //进行中
+    unCompleteListL: 0,
+    unsubmmitList: [],   //待评价
+    unsubmmitListL: 0,
     SerialNo_listFlag: [],
     getSn:'',
     getContactId:''
@@ -157,12 +160,20 @@ Page({
         unsubmmitList.push(ListAll[i]);
       }
     }
+
+    var HistoryResultsL = ListAll.length;
+    var unCompleteListL = unCompleteList.length;
+    var unsubmmitListL = unsubmmitList.length;
+
     this.setData({
       InstrumentCount: res.InstrumentCount,
       HistoryResults: res.HistoryResults,
       unCompleteList: unCompleteList,
       unsubmmitList: unsubmmitList,
-      SerialNo_listFlag: SerialNo_listFlag
+      SerialNo_listFlag: SerialNo_listFlag,
+      HistoryResultsL: HistoryResultsL,
+      unCompleteListL: unCompleteListL,
+      unsubmmitListL: unsubmmitListL
     });
   },
 
