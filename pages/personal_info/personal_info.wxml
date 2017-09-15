@@ -35,8 +35,8 @@
   <view class="p_left fs14 self-center">单位名称</view>
   <view class="p_right text-right self-center fc-aaa fs14">{{company}}</view>
 </view>
-<!-- email -->
+<!-- email >
 <view class="p_item bg-primary flex">
   <view class="p_left fs14 self-center">个人邮箱</view>
   <view class="p_right text-right self-center fc-aaa fs14">{{email}}</view>
-</view>
+</view-- >

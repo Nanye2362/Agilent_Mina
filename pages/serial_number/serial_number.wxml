@@ -14,7 +14,7 @@
 
 
 <!-- gotoChat -->
-<view class="cs_con ">
+<view class="cs_con" wx:if="{{chat}}">
     <view class="text-center fs12">如果您有任何问题，请
         <button class="fc-blue bc_chat_btn btn-meiqia" open-type='contact' session-from=''><image src="/images/wechat_b.png"></image>
     发起会话</button></view>

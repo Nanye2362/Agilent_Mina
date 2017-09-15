@@ -12,7 +12,8 @@ Page({
     ContactGuid: '',
     ContactId: '',
     AccountGuid: '',
-    AccountId: ''
+    AccountId: '',
+    chat: false,
   },
 
   /**
@@ -83,6 +84,7 @@ Page({
   },
 
   clickToSubmit: function (event) {
+    var that = this;
     var serNum = this.data.inputValue;
     var contactguid = event.currentTarget.dataset.contactguid;
     var contactid = event.currentTarget.dataset.contactid;
@@ -105,9 +107,12 @@ Page({
             url: '../confirm_info/confirm_info' + '?ProductId=' + res.ProductId + '&ProductDesc=' + res.ProductDesc + '&SerialNo=' + res.SerialNo + '&CpName=' + res.CpName + '&ShipToName=' + res.ShipToName,
           })
         } else {
+          that.setData({
+            chat: true,
+          })
           wx.showModal({
             title: '提示',
-            content: '序列号验证有误',
+            content: '序列号验证有误, 如有任何疑问，您可以点击页面下方的发起会话',
             cancelText: '取消',
             cancelColor: '#3CC51F',
             confirmText: '重新上传',
@@ -115,9 +120,9 @@ Page({
               if (sm.confirm) {
                 //重新上传
                 console.log('点击确认')
-
               } else if (sm.cancel) {
                 console.log('用户点击取消')
+                
               }
             }
           })

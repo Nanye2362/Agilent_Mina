@@ -7,6 +7,7 @@ Page({
    */
   data: {
     head_img_url: '../../images / no - avatar.png',
+    InstrumentCount: 0,
   },
 
   gotoNext: function(event){
