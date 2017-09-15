@@ -12,7 +12,12 @@
 <view class="sl_filter bg-primary">
     <view class=" flex" style="padding: 0 20px;">
         <view class="flex_item">
-            <view class="placeholder fc-aaa">共<span>1</span>条记录</view>
+            <view class="placeholder fc-aaa">共
+                <span wx:if="{{currentTab == 0}}">{{unCompleteListL}}</span>
+                 <span wx:elif="{{currentTab == 1}}">{{unsubmmitListL}}</span>
+                 <span wx:elif="{{currentTab == 2}}">{{HistoryResultsL}}</span>
+                条记录
+            </view>
         </view>
         <view class="text-right fc-blue" style="display: inline; position: relative; z-index: 1000;" bindtap="tagShow">
               <wxs module="m1">

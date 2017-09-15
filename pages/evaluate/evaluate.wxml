@@ -25,7 +25,7 @@
        <view class="e-title">{{item.title}}</view>
        <view class="flex e-stars">
         <block wx:for="{{item.data}}" wx:for-item="star">
-          <view class="stars" id="{{index}}" data-index="{{i}}" data-valueid="{{star.Valueid}}">
+          <view class="stars" id="{{index}}" data-index="{{i}}" data-valueid="{{star.Valueid}}" bindtap='markStarSelect'>
             <image class="e_star" src="../../images/{{star.src}}.png"></image>
           </view>
         </block>

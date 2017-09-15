@@ -13,9 +13,12 @@ Page({
     dropdown: false,
     reportFlag: false,
     InstrumentCount: 0,
-    HistoryResults: [],
-    unCompleteList: [],
-    unsubmmitList: [],
+    HistoryResults: [],  //全部
+    HistoryResultsL: 0,
+    unCompleteList: [],  //进行中
+    unCompleteListL: 0,
+    unsubmmitList: [],   //待评价
+    unsubmmitListL: 0,
     SerialNo_listFlag: [],
     getSn:'',
     getContactId:''
@@ -39,31 +42,51 @@ Page({
       }
 
     });
-
-    //请求后台接口
-    util.NetRequest({
-      url: 'site-mini/service-list',
-      success: function (res) {
-        that.sortHistory(res);
-        that.setData({
-          getContactId: res.SerialNo_list[0].ContactId
-        });
-      }
-    });
-    if (option){
-      var serList = this.data.SerialNo_listFlag;
-      var serNGet = this.data.getSn;
-      for (var i = 0; i < serList.length; i++) {
-        if (serNGet == serList[i].SerialNo) {
-          index = i;
-        }
-      }
-
+    
+    //若有传参，则调取gethistory接口， 若没有传参，调取server-list接口
+    if (option.length){
+      console.log(option.length)
         this.setData({
-          getSn: option.sn
+          getSn: option.sn,
+          getContactId: option.contactId,
         });
+        //请求后台接口
 
-      
+        util.NetRequest({
+          url: 'sr/get-history-formini',
+          data: {
+            'ContactId': option.contactId,
+            'SerialNo': option.sn,
+          },
+          success: function (res) {
+            //history数据分类
+            console.log('choose' + res)
+            that.sortHistory(res);
+
+            var SerialNo_list = that.data.SerialNo_listFlag;
+            for (var i = 0; i < SerialNo_list.length; i++){
+              if (option.sn == SerialNo_list[i].SerialNo){
+                SerialNo_list[i].changeColor = true;
+                }
+            }
+
+            that.setData({
+              getSn: option.sn,
+              SerialNo_listFlag: SerialNo_list
+            })
+          }
+        })
+    }else{
+      //请求后台接口
+      util.NetRequest({
+        url: 'site-mini/service-list',
+        success: function (res) {
+          that.sortHistory(res);
+          that.setData({
+            getContactId: res.SerialNo_list[0].ContactId
+          });
+        }
+      });
     }
     
 
@@ -157,12 +180,20 @@ Page({
         unsubmmitList.push(ListAll[i]);
       }
     }
+
+    var HistoryResultsL = ListAll.length;
+    var unCompleteListL = unCompleteList.length;
+    var unsubmmitListL = unsubmmitList.length;
+
     this.setData({
       InstrumentCount: res.InstrumentCount,
       HistoryResults: res.HistoryResults,
       unCompleteList: unCompleteList,
       unsubmmitList: unsubmmitList,
-      SerialNo_listFlag: SerialNo_listFlag
+      SerialNo_listFlag: SerialNo_listFlag,
+      HistoryResultsL: HistoryResultsL,
+      unCompleteListL: unCompleteListL,
+      unsubmmitListL: unsubmmitListL
     });
   },
 
@@ -176,19 +207,19 @@ Page({
       return SerialNo_list_flag;
   },
 
-  //查找列表中与所传数据相同的index
-  findSameIndex: function(serN,list){
-      var index = 0;
-      if (list.length){
-        for (var i = 0; i < list.length; i++){
-          if (serN == list[i].SerialNo){
-              index = i;
-            }
-        }
-      }
+  // //查找列表中与所传数据相同的index
+  // findSameIndex: function(serN,list){
+  //     var index = 0;
+  //     if (list.length){
+  //       for (var i = 0; i < list.length; i++){
+  //         if (serN == list[i].SerialNo){
+  //             index = i;
+  //           }
+  //       }
+  //     }
      
-      return index
-  },
+  //     return index
+  // },
 
   //再次报修
   clickToRepairAgain: function(){

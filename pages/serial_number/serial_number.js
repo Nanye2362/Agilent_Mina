@@ -43,8 +43,6 @@ Page({
       sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有  
       sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有  
       success: function (res) {
-
-
         //上传图片
         var tempFilePaths = res.tempFilePaths
         wx.uploadFile({
@@ -52,23 +50,23 @@ Page({
           filePath: tempFilePaths[0],
           name: 'file',
           success: function (res) {
-            var data = res.data;
+            console.log(res);
             // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片  
             _this.setData({
-              tempFilePaths: tempFilePaths
-            })
+              tempFilePaths: tempFilePaths,
+              inputValue: res
+            });
+
           },
           fail: function (res) {
             console.log(res)
             wx.showModal({
               title: '提示',
               content: '上传失败，请检查网络后重试',
+              showCancel: false,
               success: function (sm) {
                 if (sm.confirm) {
                   console.log('点击确认')
-
-                } else if (sm.cancel) {
-                  console.log('用户点击取消')
                 }
               }
             })

@@ -1,6 +1,6 @@
  <!--pages/serial_number/serial_number.wxml-->
 <image src="/images/sn_bg.jpg" class="sn_bg"></image>
-<view class="sn_title">产品序列号</view>
+<view class="sn_title">产品序列号 (Serial No.)</view>
 <view class="sn_num bg-primary">
     <input class="" type="text" placeholder="请手动输入或通过照片识别" bindinput='saveTheValue' value='{{inputValue}}'/>
     <!-- 拍照按钮 -->
