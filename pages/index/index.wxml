@@ -1,6 +1,6 @@
 
 <!--index.wxml-->
-<swiper indicator-dots="{{indicatorDots}}" indicator-active-color="blue" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" style="width: 750rpx; height: 450rpx;" circular="{{true}}">
+<swiper indicator-dots="{{indicatorDots}}" indicator-active-color="{{indicatorActiveColor}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" style="width: 750rpx; height: 450rpx;" circular="{{true}}">
   <block wx:for="{{imgUrls}}" wx:key="{{img}}">
     <swiper-item>
         <image src="{{item.url}}" class="slide-image" style="width: 750rpx; height: 450rpx;"></image>

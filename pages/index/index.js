@@ -23,6 +23,7 @@ Page({
     userInfo: {},
     cellHeight: '120px',
     pageItems: [],
+    indicatorActiveColor: '#0085d5',
   },
   //事件处理函数
   bindViewTap: function () {
