@@ -31,5 +31,11 @@ Page({
       x: 30,
       y: 30
     });
-  }
+  },
+  onLoad: function(){
+    var meiqia = wx.getStorageSync('meiqia')
+    this.setData({
+      WLA: meiqia.WLA
+    })
+  },
 })

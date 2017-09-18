@@ -50,7 +50,7 @@
             </view>
             <view class="sl_list_item_right flex  justify-center directionC">
                 <block wx:if="{{item.SrStatus == 'WIP'}}">
-                    <button class="sl_chat_btn self-center fs14" open-type='contact' session-from=''>发起会话</button>
+                    <button class="sl_chat_btn self-center fs14" open-type='contact' session-from='{{TECH}}'>发起会话</button>
                 </block>
                 <block wx:else>
                     <view class="sl_chat_btn self-center fs14"  open-type='contact' session-from='' data-index="{{index}}" >联系客服</view>

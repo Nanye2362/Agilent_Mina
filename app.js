@@ -10,6 +10,7 @@ App({
     //     //登录态过期
     //   }
     // });
+    
     wx.login({
       success: function (res) {
 	  var that = this;
@@ -69,6 +70,13 @@ App({
     });
   },
   onShow: function () {
+    
+    wx.setStorageSync('meiqia',{
+      'WLA': "f78d058fe6b848ddf4d6d2f7560eb243",
+      'TECH': "02c543de336fbe2b223a920acf3c7fef",
+      'NONTECH': 'badbfa2338c8a960f55f6fc6e1f2279e',
+    })
+    //wx.setStorageSync('WLA', "f78d058fe6b848ddf4d6d2f7560eb243")
     console.log(1111);
   },
   globalData: {

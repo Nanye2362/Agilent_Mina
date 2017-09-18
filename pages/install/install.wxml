@@ -89,7 +89,7 @@
     <!-- gotoChat -->
     <view class="cs_con ">
         <view class="text-center fs12">如需查看安装申请的安排进度，请
-            <button class="fc-blue bc_chat_btn btn-meiqia" open-type='contact' session-from=''><image src="/images/wechat_b.png"></image>
+            <button class="fc-blue bc_chat_btn btn-meiqia" open-type='contact' session-from='{{WLA}}'><image src="/images/wechat_b.png"></image>
         发起会话</button></view>
     </view>
 </form>

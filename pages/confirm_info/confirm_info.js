@@ -23,6 +23,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var meiqia = wx.getStorageSync('meiqia')
+    this.setData({
+      TECH: meiqia.TECH
+    })
     this.setData({
       ProductId: options.ProductId,
       ProductDesc: options.ProductDesc,

@@ -25,6 +25,11 @@ Page({
   },
 
   onLoad: function (option) {
+    var meiqia = wx.getStorageSync('meiqia')
+    this.setData({
+      TECH: meiqia.TECH,
+      NONTECH: meiqia.NONTECH
+    })
     
     console.log('option-sn============================='+option.sn)
     var that = this;

@@ -15,3 +15,4 @@
     </movable-view>
   </movable-area>
 </view>
+<button>{{WLA}}</button>

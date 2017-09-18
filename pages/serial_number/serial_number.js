@@ -20,6 +20,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var meiqia = wx.getStorageSync('meiqia')
+    this.setData({
+      NONTECH: meiqia.NONTECH
+    })
     var that = this;
     util.NetRequest({
       url: 'site-mini/serial-no',

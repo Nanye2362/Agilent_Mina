@@ -34,7 +34,7 @@
     <!-- gotoChat -->
     <view class="cs_con ">
         <view class="text-center fs12">如有疑问，您可以
-            <button class="fc-blue bc_chat_btn btn-meiqia" open-type='contact' session-from=''><image src="/images/wechat_b.png"></image>
+            <button class="fc-blue bc_chat_btn btn-meiqia" open-type='contact' session-from='{{NONTECH}}'><image src="/images/wechat_b.png"></image>
         发起会话</button></view>
     </view>
 </form>
