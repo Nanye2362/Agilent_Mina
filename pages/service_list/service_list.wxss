@@ -162,7 +162,13 @@ page{
 
 .sl_list_item_right {
     flex: .3;
-    text-align: right;
+    display: flex;
+  
+    /* flex-direction: row;
+    align-items: center; */
+}
+.sl_list_item_right image{
+    align-self: center;
 }
 
 .sl_chat_btn {

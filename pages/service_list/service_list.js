@@ -88,8 +88,6 @@ Page({
         }
       });
     }
-    
-
   },
   /** 
      * 滑动切换tab 
@@ -270,5 +268,4 @@ Page({
       url: '../evaluation/evaluation?Surveyid=' + Surveyid + '&&SerialNo=' + SerialID
     })
   }
- 
 })  
