@@ -98,6 +98,7 @@ Page({
     var that = this;
     that.setData({ currentTab: e.detail.current });
   },
+   
   /** 
    * 点击tab切换 
    */
