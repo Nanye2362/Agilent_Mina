@@ -43,4 +43,4 @@
         </view>
     </view>
 </view>
-<button bindtap='clearStorage'>清缓存</button>
+<!-- <button bindtap='clearStorage'>清缓存</button> -->
