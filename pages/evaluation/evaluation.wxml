@@ -1,0 +1,37 @@
+<!--pages/evaluation/evaluation.wxml-->
+<!-- grade_result -->
+<view class="ev_grade flex">
+    <!-- avatar -->
+    <view class="ev_grade_avatar self-center">
+        <image class="self-center" src="/images/avatar.png"></image>
+    </view>
+    <!-- information -->
+    <view class="ev_grade_info self-center">
+        <view class="fs-15">安捷伦售后服务在中国</view>
+    </view>
+</view>
+
+<view class="evaluate-list flex padding directionC bg-primary">
+    <view wx:for="{{stars}}" wx:for-index="i" class="flex evaluate-item" >
+       <view class="e-title">{{item.QuestionDesc}}</view>
+       <view class="flex e-stars">
+        <block wx:for="{{item.data}}" wx:for-item="star">
+          <view class="stars" id="{{index}}" data-index="{{i}}" >
+            <image class="e_star" src="../../images/{{star.src}}.png"></image>
+          </view>
+        </block>
+        
+      </view>
+      <view wx:if="{{item.currentCount > 0}}" class="e-count">{{item.currentCount}}星</view>
+    </view>
+</view>
+
+
+
+<!-- other_suggestion -->
+<view class="s-repair fs14 padding bg-primary">
+    <textarea class="s-textarea fs13" maxlength="20" >{{QuestionsSet_Comments.AnswervaluesSet.results[0].Value}}</textarea>
+    <view class="text-right fc-aaa">{{describeNo}}/20</view>
+</view>
+
+

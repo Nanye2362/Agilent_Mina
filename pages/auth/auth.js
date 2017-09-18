@@ -62,13 +62,14 @@ Page({
         } else {
           console.log(res.noskip)
           console.log(res.error_msg)
+          var skipFlag = res.noskip;
           wx.showModal({
             title: '认证失败',
             content: res.error_msg,
             showCancel: false,
             success: function (res) {
               if (res.confirm) {
-                if (res.noskip == 1) {
+                if (skipFlag == 1) {
                 } else {
                   wx.navigateTo({
                     url: '../fill_info/fill_info?mobile=' + mobile,

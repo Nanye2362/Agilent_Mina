@@ -49,7 +49,7 @@ Page({
     });
     
     //若有传参，则调取gethistory接口， 若没有传参，调取server-list接口
-    if (option.length){
+    if (option.sn){
       console.log(option.length)
         this.setData({
           getSn: option.sn,
@@ -243,10 +243,14 @@ Page({
 
   //打开PDF
   clickToReport: function(e){
-    var url = util.Server + 'file/open-file?ServconfId=' + e.currentTarget.dataset.servconfId;
+    var url = util.Server + 'site/open-file?ServconfId=' + e.currentTarget.dataset.servconfId;
     wx.downloadFile({
       url: url,
       success: function (res) {
+        wx.showLoading({
+          title: '下载中，请稍后',
+          mask: true
+        })
         var filePath = res.tempFilePath;
         console.log('filePath= '+filePath);
         wx.openDocument({
@@ -256,8 +260,16 @@ Page({
           },
           fail: function(res){
             console.log(res)
+            wx.showModal({
+              title: '提示',
+              content: '打开文档失败',
+              showCancel: false,
+            })
           }
         })
+      },
+      complete: function(){
+        wx.hideLoading();
       },
       fail: function(){
         console.log('PDF下载失败')
