@@ -43,19 +43,37 @@ Page({
       sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有  
       success: function (res) {
         //上传图片
+        wx.showLoading({
+          title: '上传中，请稍后',
+          mask: true
+        })
         var tempFilePaths = res.tempFilePaths
         wx.uploadFile({
-          url: util.Server + 'test/ocr-test',
+          url: util.Server + 'api/ocr-scan',
           filePath: tempFilePaths[0],
           name: 'file',
           success: function (res) {
-            console.log(res);
+            var value = JSON.parse(res.data).result;
             // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片  
-            _this.setData({
-              tempFilePaths: tempFilePaths,
-              inputValue: res
-            });
-
+            if (value){
+              _this.setData({
+                inputValue: value
+              });
+            }else{
+              wx.showModal({
+                title: '提示',
+                content: '解析失败，请上传正确图片',
+                showCancel: false,
+                success: function (sm) {
+                  if (sm.confirm) {
+                    console.log('点击确认')
+                  }
+                }
+              })
+            }
+          },
+          complete: function(){
+            wx.hideLoading();
           },
           fail: function (res) {
             console.log(res)

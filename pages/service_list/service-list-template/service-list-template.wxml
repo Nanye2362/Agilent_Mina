@@ -56,7 +56,6 @@
                     <view class="sl_chat_btn self-center fs14"  open-type='contact' session-from='' data-index="{{index}}" >联系客服</view>
                 </block>
                 <wxs module="m1">
-                
                     var reportShowOrNot = function(ServconfId){
                         var reportFlag = true;
                         if(ServconfId == ''){
