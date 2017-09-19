@@ -25,7 +25,8 @@ Page({
   onLoad: function (options) {
     var meiqia = wx.getStorageSync('meiqia')
     this.setData({
-      TECH: meiqia.TECH
+      TECH: meiqia.TECH,
+      NONTECH: meiqia.NONTECH
     })
     this.setData({
       ProductId: options.ProductId,
