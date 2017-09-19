@@ -68,7 +68,7 @@ Page({
         } else {
           wx.showModal({
             title: '提示',
-            content: '您暂无报修历史',
+            content: '该仪器暂无报修历史',
             showCancel: false,
             success: function (res) {
               if (res.confirm) {
