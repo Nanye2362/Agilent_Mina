@@ -21,7 +21,8 @@ Page({
     unsubmmitListL: 0,
     SerialNo_listFlag: [],
     getSn:'',
-    getContactId:''
+    getContactId:'',
+    TECH:''
   },
 
   onLoad: function (option) {
@@ -154,8 +155,6 @@ Page({
           })
         }
       })
-
-    
   },
 
   //将数据根据不同状态分类
@@ -167,7 +166,7 @@ Page({
     var unsubmmitList = [];
     var getSerialNo_list = res.SerialNo_list;
     var SerialNo_list = this.data.SerialNo_listFlag;
-    
+    var TECH = this.data.TECH;
     if (getSerialNo_list == null || getSerialNo_list.length < SerialNo_list.length) {
         getSerialNo_list = SerialNo_list;
       }
@@ -176,6 +175,7 @@ Page({
     var SerialNo_listFlag = this.addcolorFlag(getSerialNo_list);
 
     for (var i = 0; i < ListAll.length; i++) {
+      ListAll[i].TECH = TECH;
       if (ListAll[i].SrStatus == 'WIP') {
         unCompleteList.push(ListAll[i]);
       }
@@ -187,7 +187,6 @@ Page({
     var HistoryResultsL = ListAll.length;
     var unCompleteListL = unCompleteList.length;
     var unsubmmitListL = unsubmmitList.length;
-
     this.setData({
       InstrumentCount: res.InstrumentCount,
       HistoryResults: res.HistoryResults,
@@ -209,20 +208,6 @@ Page({
       console.log(SerialNo_list_flag)
       return SerialNo_list_flag;
   },
-
-  // //查找列表中与所传数据相同的index
-  // findSameIndex: function(serN,list){
-  //     var index = 0;
-  //     if (list.length){
-  //       for (var i = 0; i < list.length; i++){
-  //         if (serN == list[i].SerialNo){
-  //             index = i;
-  //           }
-  //       }
-  //     }
-     
-  //     return index
-  // },
 
   //再次报修
   clickToRepairAgain: function(){

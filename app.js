@@ -17,7 +17,8 @@ App({
             success: function (res) {
               var that = this;
               var app = getApp();
-              app.globalData.isLoading = true; console.log(res);
+              app.globalData.isLoading = true; 
+              console.log(res);
               if (res.code) {
                 //发起网络请求
                 util.NetRequest({
@@ -41,7 +42,6 @@ App({
                             userInfo: JSON.stringify(res.userInfo)
                           },
                           success: function (m) {
-                            app.globalData.isLoading = false;
                             console.log(m);
                             if (m.success == true) {
                               wx.setStorageSync('MOBILE', m.mobile);
@@ -59,6 +59,9 @@ App({
                               })
                               console.log(m.error_msg);
                             }
+                          },
+                          complete:function(){
+                            app.globalData.isLoading = false;
                           }
                         })
                       }
