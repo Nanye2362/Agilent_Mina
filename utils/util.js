@@ -20,6 +20,7 @@ function formatNumber(n) {
 let Server = "https://devops.coffeelandcn.cn/"; //UAT
 
 function NetRequest({ url, data, success, fail, complete, method = "POST" ,showload=true}) {
+  var app=getApp();
   if (showload){
     wx.showLoading({
       title: '加载中，请稍后',
@@ -53,7 +54,12 @@ function NetRequest({ url, data, success, fail, complete, method = "POST" ,showl
       fail();
     },
     complete: function(){
-      wx.hideLoading()
+      if(typeof(complete)=='function'){
+        complete();
+      }
+      if (!app.globalData.isLoading){
+        wx.hideLoading()
+      }  
     }
   })
 
