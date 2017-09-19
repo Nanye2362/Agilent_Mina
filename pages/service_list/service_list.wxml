@@ -35,14 +35,15 @@
               
               <view class="sl_dropdown text-right fc-blue">{{m1.textChange(getSn)}}<image src="/images/down.png"></image></view>
                 <view wx:if="{{dropdown}}" class="faq_select">
+                  <view class="text-overflow" data-id='{{getContactId}}' data-num='' bindtap='clickToChoose'>
+                              全部
+                        </view>
                     <block wx:for="{{SerialNo_listFlag}}" wx:for-item="item">
                         <view class="text-overflow {{item.changeColor?'selected':''}}" data-index="{{index}}" data-id='{{item.ContactId}}' data-num='{{item.SerialNo}}' bindtap='clickToChoose'>
                               {{item.SerialNo}}
                         </view>
                     </block>
-                     <view class="text-overflow" data-id='{{getContactId}}' data-num='' bindtap='clickToChoose'>
-                              全部
-                        </view>
+                   
                 </view>                
         </view>
     </view>
