@@ -1,0 +1,8 @@
+<view class="welcome">
+    <image class="avatar" src="/images/bg_logo.png"></image>
+    <text class="motto" wx:if="{{ready}}">安捷伦售后服务小程序</text>
+    <text class="notReady fc-fff" wx:elif="{{ready}}">服务即将开启，敬请期待</text>
+    <view class="enter" bindtap='gotoIndex'>进入首页</view>
+    <image class="bg" src="/images/welcome.png"></image>
+    <text class="right fs12">www.agilent.com</text> 
+</view>

@@ -43,7 +43,7 @@
         <view class="sl_list_item_up flex">
             <view class="sl_list_item_info sl_list_item_left">
                 <view class="placeholder">
-                    <view class="fs15 marginb-9">故障描述： {{item.SrDesc}}</view>
+                    <view class="fs15 marginb-9" style="width: 500rpx;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">故障描述： {{item.SrDesc}}</view>
                     <view class="fs13 marginb-6 fc-777">序列号：{{item.SerialNo}}</view>
                     <view class="fs13 marginb-6 fc-777">创建时间: {{item.CreationDate}}</view>
                 </view>
