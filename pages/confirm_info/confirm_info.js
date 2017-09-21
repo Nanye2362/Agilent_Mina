@@ -13,7 +13,8 @@ Page({
     CpName: '',
     ShipToName: '',
     userInfo: {},
-    //userInfoJson: '',
+    TECH:'',
+    NONTECH:''
   },
   clickToNext: function(event){
     common.clickToNext(event);
@@ -23,21 +24,16 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var meiqia = wx.getStorageSync('meiqia')
-    this.setData({
-      TECH: meiqia.TECH,
-      NONTECH: meiqia.NONTECH
-    })
     this.setData({
       ProductId: options.ProductId,
       ProductDesc: options.ProductDesc,
       SerialNo: options.SerialNo,
       CpName: options.CpName,
-      ShipToName: options.ShipToName
-    })    
-    this.setData({
-      userInfoJson: '123'
+      ShipToName: options.ShipToName,
+      TECH: 'T#psn:'+options.SerialNo,
+      NONTECH: 'N#psn:'+options.SerialNo,
     })
+    
     /*
     wx.getUserInfo({
       success: function (res) {
@@ -47,7 +43,6 @@ Page({
       }
     })*/
   },
-
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

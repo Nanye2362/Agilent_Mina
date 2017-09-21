@@ -32,6 +32,7 @@ Page({
     })
   },
   onLoad: function (option) {
+    /*
     //获取美洽分组token
     util.NetRequest({
       url: 'wechat-mini/meiqia-group',
@@ -41,7 +42,7 @@ Page({
         console.log(res);
         wx.setStorageSync('meiqia',res)
       },
-    })
+    })*/
     
     console.log('onload' + option);
     var that = this

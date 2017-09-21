@@ -50,10 +50,10 @@
             </view>
             <view class="sl_list_item_right flex  justify-center directionC">
                 <block wx:if="{{item.SrStatus == 'WIP'}}">
-                    <button class="sl_chat_btn self-center fs14" open-type='contact' session-from='{{item.TECH}}'>发起会话</button>
+                    <button class="sl_chat_btn self-center fs14" open-type='contact' session-from='{{item.TECH+item.SrId}}'>发起会话</button>
                 </block>
                 <block wx:else>
-                    <button class="sl_chat_btn self-center fs14"  open-type='contact' session-from='{{item.TECH}}' data-index="{{index}}" >联系客服</button>
+                    <button class="sl_chat_btn self-center fs14"  open-type='contact' session-from='{{item.TECH+item.SrId}}' data-index="{{index}}" >联系客服</button>
                 </block>
                 <wxs module="m1">
                     var reportShowOrNot = function(ServconfId){

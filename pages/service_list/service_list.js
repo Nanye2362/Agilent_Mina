@@ -22,15 +22,10 @@ Page({
     SerialNo_listFlag: [],
     getSn:'',
     getContactId:'',
-    TECH:''
+    TECH:'T#srid:'
   },
 
-  onLoad: function (option) {
-    var meiqia = wx.getStorageSync('meiqia')
-    this.setData({
-      TECH: meiqia.TECH
-    })
-    
+  onLoad: function (option) {   
     console.log('option-sn============================='+option.sn)
     var that = this;
 
@@ -38,7 +33,6 @@ Page({
      * 获取系统信息 
      */
     wx.getSystemInfo({
-
       success: function (res) {
         that.setData({
           winWidth: res.windowWidth,
