@@ -1,3 +1,5 @@
+//index.js
+var util = require('../../utils/util.js');
 // pages/welcome/welcome.js
 Page({
 
@@ -6,13 +8,43 @@ Page({
    */
   data: {
     ready: true,
+    welcomeWord: '安捷伦售后服务小程序',
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    util.NetRequest({
+      url: 'api/check-lunch',
+      data: {
+      },
+      success: function (res) {
+        if(res.success){
+          setTimeout(function(){
+            wx.switchTab({ url: '../index/index', })
+          },2000)
+          
+        }else{
+          this.setData({
+            welcomeWord: '服务即将开启，敬请期待'
+          })        
+        }
+        
+      },
+      fail: function(){
+        wx.showModal({
+          title: '请求失败',
+          content: '请检查您的网络',
+          showCancel: false,
+          success: function (res) {
+            if (res.confirm) {
+              console.log('用户点击确定')
+            }
+          }
+        })
+      }
+    })
   },
 
   /**

@@ -165,6 +165,7 @@ Page({
    */
   onLoad: function (options) {
     var meiqia = wx.getStorageSync('meiqia')
+    console.log(meiqia.WLA)
     this.setData({
       WLA: meiqia.WLA
     })

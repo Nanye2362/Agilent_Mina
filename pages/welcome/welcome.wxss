@@ -23,9 +23,13 @@ page{
   height: 381rpx;
  }
  .right{
+   width: 400rpx;
    position: absolute;
    bottom: 60rpx;
    color: #AED1EE;
+   left: 50%;
+   margin-left: -200rpx;
+   text-align: center;
  }
  .notReady{
    margin-top: 50rpx;
@@ -40,5 +44,6 @@ page{
    text-align: center;
    line-height: 80rpx;
    color: #eee;
-   z-index: 999;
+   left: 50%;
+   margin-left: -150rpx;
  }
