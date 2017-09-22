@@ -70,7 +70,10 @@ Page({
       return false;
     }
     isSend = true;
-    
+    wx.showLoading({
+      title: '提交中，请稍后',
+      mask: true
+    })
     if (URLArr.length > 0) {
       util.uploadImg(URLArr, function (imgUrlList) {
         that._submit(imgUrlList);
@@ -83,6 +86,7 @@ Page({
   _submit: function (imgUrlList) {
     var that = this;
     util.NetRequest({
+      showload: false,
       url: "sr/sr-instal", data: {
         orderno: that.data.orderno,
         username: that.data.name,

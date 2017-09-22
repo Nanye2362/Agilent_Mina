@@ -111,7 +111,7 @@ function uploadImg(urlList,callback){
         fail();
       },
       complete: function () {
-        wx.hideLoading()
+        //wx.hideLoading()
       }
     })
   }
