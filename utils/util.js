@@ -27,10 +27,14 @@ function NetRequest({ url, data, success, fail, complete, method = "POST" ,showl
       mask: true
     })
   }
- 
+  var _csrf = wx.getStorageSync('csrf');
+  var csrfToken = wx.getStorageSync('csrfCookie')
+  if (typeof (data) !='undefined'){
+    data._csrf = _csrf;
+  }
   var session_id = wx.getStorageSync('PHPSESSID');//本地取存储的sessionID
   if (session_id != "" && session_id != null) {
-    var header = { 'content-type': 'application/x-www-form-urlencoded', 'Cookie': 'PHPSESSID=' + session_id }
+    var header = { 'content-type': 'application/x-www-form-urlencoded', 'Cookie': 'PHPSESSID=' + session_id + ";" + csrfToken}
   } else {
     var header = { 'content-type': 'application/x-www-form-urlencoded' }
   }
@@ -44,7 +48,16 @@ function NetRequest({ url, data, success, fail, complete, method = "POST" ,showl
     header: header,
     success: res => {
       if (session_id == "" || session_id == null) {
-        wx.setStorageSync('PHPSESSID', res.data.session_id) //如果本地没有就说明第一次请求 把返回的session id 存入本地
+        wx.setStorageSync('PHPSESSID', res.data.session_id); //如果本地没有就说明第一次请求 把返回的session id 存入本地
+        var str =res.header['Set-Cookie'];
+        console.log(str);
+        if (typeof (str) !='undefined'){
+          var m = str.match(/_csrf=(.)*?;/);
+          if (m != null) {
+            wx.setStorageSync('csrfCookie', m[0]);
+          }  
+          wx.setStorageSync('csrf', res.data.csrfToken);
+        }       
       }
   
       let data = res.data
@@ -98,7 +111,7 @@ function uploadImg(urlList,callback){
         fail();
       },
       complete: function () {
-        wx.hideLoading()
+        //wx.hideLoading()
       }
     })
   }

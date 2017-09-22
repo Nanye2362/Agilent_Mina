@@ -31,8 +31,8 @@ Page({
       SerialNo: options.SerialNo,
       CpName: options.CpName,
       ShipToName: options.ShipToName,
-      TECH: 'T#psn:'+options.SerialNo,
-      NONTECH: 'N#psn:'+options.SerialNo,
+      TECH: 'T_psn:'+options.SerialNo,
+      NONTECH: 'N_psn:'+options.SerialNo,
     })
     
     /*

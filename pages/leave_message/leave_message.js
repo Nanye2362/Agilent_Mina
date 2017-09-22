@@ -3,6 +3,7 @@
 var app;
 var common = require("../../utils/common.js");
 var util = require('../../utils/util.js');
+var isSend = false;
 Page({
   data: {
     describeNo: "0",
@@ -34,6 +35,15 @@ Page({
         return;
     }
     console.log(222);
+
+    if (isSend) {
+      return false;
+    }
+    isSend = true;
+    wx.showLoading({
+      title: '提交中，请稍后',
+      mask: true
+    })
     if (URLArr.length>0){
       util.uploadImg(URLArr, function (imgUrlList) {
         that._submit(imgUrlList);
@@ -46,6 +56,7 @@ Page({
   _submit: function (imgUrlList){
     var that=this;
     util.NetRequest({
+      showload:false,
       url: "sr/submit-leavemsg", data: {
         username: that.data.name,
         company: that.data.company,
@@ -56,7 +67,11 @@ Page({
         img_2: imgUrlList[1],
         img_3: imgUrlList[2],
         img_4: imgUrlList[3]
+      }, fail: function (e) {
+        console.log(e);
+        isSend = false;
       }, success: function (res) {
+        isSend=false;
         console.log(res);
         if (res.success) {
           wx.showModal({

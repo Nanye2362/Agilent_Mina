@@ -1,6 +1,7 @@
 // pages/install/install.js
 var commondata = require('../../Data/database.js');
 var util = require('../../utils/util.js');
+var isSend=false;
 
 Page({
 
@@ -45,7 +46,7 @@ Page({
   submit: function (event) {
     var URLArr = this.data.photoURL;
     var that = this;
-    
+   
     if (!this._ordercheck(this.data.orderno)){
       wx.showModal({
         title: '提示',
@@ -64,7 +65,15 @@ Page({
       })
       return;
     }
-    
+
+    if (isSend) {
+      return false;
+    }
+    isSend = true;
+    wx.showLoading({
+      title: '提交中，请稍后',
+      mask: true
+    })
     if (URLArr.length > 0) {
       util.uploadImg(URLArr, function (imgUrlList) {
         that._submit(imgUrlList);
@@ -77,7 +86,9 @@ Page({
   _submit: function (imgUrlList) {
     var that = this;
     util.NetRequest({
+      showload: false,
       url: "sr/sr-instal", data: {
+        orderno: that.data.orderno,
         username: that.data.name,
         company: that.data.company,
         from: 'wechat',
@@ -87,7 +98,9 @@ Page({
         img_4: imgUrlList[3]
       }, fail:function(e){
         console.log(e);
+        isSend=false;
       },success: function (res) {
+        isSend=false;
         console.log(res);
         if (res.success) {
           wx.showModal({
