@@ -4,15 +4,15 @@ var initData = {
   //评论计数
   describeNo: "0",
   describe: "",
-  stars:[],
-  averageList:[],
-  averageNum:0,
-  Surveyid:'',
-  SerialNo:'',
-  arrTitle:[],
-  questionSet_result:[],
+  stars: [],
+  averageList: [],
+  averageNum: 0,
+  Surveyid: '',
+  SerialNo: '',
+  arrTitle: [],
+  questionSet_result: [],
   QuestionsSet_Comments: {},
-  QuestionsSet:[], // 存储评论后的信息
+  QuestionsSet: [], // 存储评论后的信息
   drawAverageStars: [{
     count: 0,
     src: 'star_0'
@@ -37,36 +37,36 @@ Page({
    * 页面的初始数据
    */
   data: initData,
-  
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (option) {
     var that = this;
-      this.setData({
-        Surveyid: option.Surveyid,
-        SerialNo: option.SerialNo,
-      })
-     
-      util.NetRequest({
-        url: 'site-mini/evaluation?survey_id=' + option.Surveyid + '&servicereq_id=' + option.SerialNo,
-        success:function(res){
-          console.log(res);
-          var questionSet_result = res.QuestionsSet_results;
-          var QuestionsSet_Comments = res.QuestionsSet_Comments;
-          var questionList = that.sortQuestionDesc(questionSet_result);
-          that.setData({
-             arrTitle: questionList,
-             questionSet_result: questionSet_result,
-             QuestionsSet_Comments: QuestionsSet_Comments
-          })
-         that.sortStarList();
-        }
-      })
+    this.setData({
+      Surveyid: option.Surveyid,
+      SerialNo: option.SerialNo,
+    })
+
+    util.NetRequest({
+      url: 'site-mini/evaluation?survey_id=' + option.Surveyid + '&servicereq_id=' + option.SerialNo,
+      success: function (res) {
+        console.log(res);
+        var questionSet_result = res.QuestionsSet_results;
+        var QuestionsSet_Comments = res.QuestionsSet_Comments;
+        var questionList = that.sortQuestionDesc(questionSet_result);
+        that.setData({
+          arrTitle: questionList,
+          questionSet_result: questionSet_result,
+          QuestionsSet_Comments: QuestionsSet_Comments
+        })
+        that.sortStarList();
+      }
+    })
   },
 
-//生成stars
-  sortStarList: function (){
+  //生成stars
+  sortStarList: function () {
     var arrTitle = this.data.arrTitle;
     var arrTitleL = arrTitle.length;
     var questionSet_result = this.data.questionSet_result;
@@ -104,27 +104,27 @@ Page({
       }
       stars.push(tempObj);
     }
-   
-   this.setData({
-     stars: stars
-   })
-},
+
+    this.setData({
+      stars: stars
+    })
+  },
   //提取question_description
-  sortQuestionDesc: function(list){
-      var questionList = [];
-      for(var i=0; i<list.length; i++){
-        questionList.push(list[i].QuestionDesc);
-      }
-      return questionList;
+  sortQuestionDesc: function (list) {
+    var questionList = [];
+    for (var i = 0; i < list.length; i++) {
+      questionList.push(list[i].QuestionDesc);
+    }
+    return questionList;
   },
 
   //星星评价
   markStarSelect: function (e) {
     var that = this
-    var num = Number(e.currentTarget.id)+1; 
+    var num = Number(e.currentTarget.id) + 1;
     var index = e.currentTarget.dataset.index;
-    var answerValueID = e.currentTarget.dataset.Valueid;
-    console.log(index);
+    var answerValueID = e.currentTarget.dataset.valueid;
+    console.log('here' + answerValueID);
     var arr = []
 
     for (var k in that.data.stars[index].data) {
@@ -132,17 +132,17 @@ Page({
       if (k < num) {
         obj.count = that.data.stars[index].data[k].count;
         obj.Valueid = that.data.stars[index].data[k].Valueid;
-        obj.src = 'star_1'
+        obj.src = 'star_1';
         arr.push(obj);
       } else {
         obj.count = that.data.stars[index].data[k].count;
         obj.Valueid = that.data.stars[index].data[k].Valueid;
-        obj.src = 'star_0'
+        obj.src = 'star_0';
         arr.push(obj);
       }
     }
 
-    var thisstars=that.data.stars;
+    var thisstars = that.data.stars;
     console.log(thisstars[index]);
     thisstars[index].currentCount = num;
     thisstars[index].answer_value_id = answerValueID;
@@ -160,14 +160,15 @@ Page({
 
   //反馈textarea
   desNo: function (e) {
-    this.setData({ 
-      describeNo: (e.detail.value).length,
+    console.log(e);
+    this.setData({
+      describeNo: e.detail.cursor,
       describe: e.detail.value
-     });
+    });
   },
 
   //平均值星星渲染
-  drawAverageStars: function(averNum){
+  drawAverageStars: function (averNum) {
     var num = parseInt(averNum);
     var remainder = (averNum - num);
     var drawAverageStars = this.data.drawAverageStars;
@@ -188,39 +189,41 @@ Page({
   },
 
   //平均值计算
-  averageCalculate: function(){
-        var averageArr = [];
-        var sum = 0;
-        var starsInfo = this.data.stars;
-        var averageNum = 0;
-        for (var i = 0; i < starsInfo.length; i++){
-          console.log(starsInfo[i].currentCount)
-          var grade = starsInfo[i].currentCount;
-          if (grade != 0){
-            averageArr.push(grade);
-          }
-          sum+=Number(grade);
-        }
-        averageNum = (sum/(averageArr.length)).toFixed(2);
-        return averageNum;
-    },
+  averageCalculate: function () {
+    var averageArr = [];
+    var sum = 0;
+    var starsInfo = this.data.stars;
+    var averageNum = 0;
+    for (var i = 0; i < starsInfo.length; i++) {
+      console.log(starsInfo[i].currentCount)
+      var grade = starsInfo[i].currentCount;
+      if (grade != 0) {
+        averageArr.push(grade);
+      }
+      sum += Number(grade);
+    }
+    averageNum = (sum / (averageArr.length)).toFixed(2);
+    return averageNum;
+  },
 
   //提交评论
   clickToSubmmit: function () {
     var stars = this.data.stars;
-    for(var i in stars){
-      if (stars[i].ValueSelectedF == false){
-          wx.showToast({
-            title: '评价未完成',
-            icon: 'loading',
-            duration: 2000
-          })
-          return false;
+    console.log(stars);
+    for (var i in stars) {
+      if (stars[i].ValueSelectedF == false) {
+        wx.showToast({
+          title: '评价未完成',
+          icon: 'loading',
+          duration: 2000
+        })
+        return false;
       }
-      
+
     }
     var QuestionsSet = [];
     var questionSet_result = this.data.questionSet_result;
+    console.log(questionSet_result);
     var QuestionsSet_Comments = this.data.QuestionsSet_Comments;
     var openID = wx.getStorageSync('OPENID');
     var that = this;
@@ -231,8 +234,8 @@ Page({
         "AnswerId": questionSet_result[i].AnswerId,
         "AnswervaluesSet": [{
           "AnswerId": questionSet_result[i].AnswerId,
-          "Value": questionSet_result[i].currentCount + " Star",
-          "Valueid": questionSet_result[i].answer_value_id,
+          "Value": stars[i].currentCount + " Star",
+          "Valueid": stars[i].answer_value_id,
           "ValueSelected": "X"
         }]
       };
@@ -250,7 +253,7 @@ Page({
       }]
     };
     QuestionsSet.push(textarea_answer);
-
+    console.log(QuestionsSet);
     var data1 = {
       "SurveyId": that.data.Surveyid,
       "ServicereqId": that.data.SerialNo,
@@ -297,5 +300,5 @@ Page({
       }
     })
   },
-  
+
 })

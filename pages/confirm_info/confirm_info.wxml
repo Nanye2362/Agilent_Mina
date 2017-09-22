@@ -44,7 +44,7 @@
         </view>
     </view>
     <view class="pd_btn">
-        <button class="btn btn-primary" open-type='contact' session-from='{{TECH}}' id="confirm">确定并开始咨询</button>
+        <button class="btn btn-primary" open-type='contact' session-from='{{TECH}}' id="confirm" bindtap='click'>确定并开始咨询</button>
     </view>
     <view class="pd_wechat padding text-center">
         信息不正确？您可以<button class="pd_wechat_btn fc-blue btn-meiqia" open-type="contact" session-from='{{NONTECH}}'><image src="../../images/wechat_b.png"></image>发起会话</button>

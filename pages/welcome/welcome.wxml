@@ -1,0 +1,7 @@
+<view class="welcome">
+    <image class="avatar" src="/images/bg_logo.png"></image>
+    <text class="motto">{{welcomeWord}}</text>
+    <image class="bg" src="/images/welcome.png"></image>
+    <!--view class="enter" bindtap='gotoIndex'>进入首页</view-->
+    <view class="right fs12">www.agilent.com</view> 
+</view>

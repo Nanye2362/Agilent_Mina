@@ -10,12 +10,12 @@
 <button class="sn_btn btn btn-primary" data-contactguid="{{ContactGuid}}" data-contactid="{{ContactId}}" data-accountguid="{{AccountGuid}}" data-accountid="{{AccountId}}" bindtap='clickToSubmit'>确定</button>
 
 <!-- 上传了的图片 --> 
-<image src="{{tempFilePaths }}" mode="aspecFill" style="width: 100%; height: 450rpx; display: none"/> 
+<image src="{{tempFilePaths }}" mode="aspecFill" style="width: 100%; height: 450rpx; display: none"></image> 
 
 
 <!-- gotoChat -->
 <view class="cs_con" wx:if="{{chat}}">
     <view class="text-center fs12">如果您有任何问题，请
-        <button class="fc-blue bc_chat_btn btn-meiqia" open-type='contact' session-from='{{NONTECH}}'><image src="/images/wechat_b.png"></image>
+        <button class="fc-blue bc_chat_btn btn-meiqia" open-type='contact' session-from='{{NONTECH+inputValue}}'><image src="/images/wechat_b.png"></image>
     发起会话</button></view>
 </view>
