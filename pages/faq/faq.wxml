@@ -13,7 +13,7 @@
         </view>
         <view wx:if="{{dropdown}}" class="faq_select">
           <block wx:for="{{dropDownlist}}" >
-            <view class="text-overflow {{item.changeColor == 'true'?'selected':''}}" data-id='{{item.id}}' bindtap='changeChoose'>
+            <view class="text-overflow {{item.changeColor?'selected':''}}" data-id='{{item.id}}' bindtap='changeChoose'>
               {{item.name}}
             </view>
           </block>
@@ -35,9 +35,6 @@
         </view>
       </view>
     </block>
-
-
-
 
   </view>
 </view>

@@ -52,7 +52,7 @@ Page({
             chooseCont: listFlag[i].name
           })
         }else{
-          listFlag[i].changeColor = 'false';
+          listFlag[i].changeColor = false;
         }
       };
       return listFlag;
@@ -83,9 +83,16 @@ Page({
         for (var i = 0; i < dropList.length; i++){
           if (id == dropList[i].id){
             chooseCont = dropList[i].name;
+            dropList[i].changeColor = true;
+            }else{
+            dropList[i].changeColor = false;
             }
         }
+
+
+
         that.setData({
+          dropDownlist: dropList,
           questionsList: res.data,
           chooseCont: chooseCont
         })

@@ -278,8 +278,8 @@ Page({
             showCancel: false,
             success: function (res) {
               if (res.confirm) {
-                wx.switchTab({
-                  url: '../index/index',
+                wx.navigateBack({
+                  delta: 1
                 })
               }
             }
