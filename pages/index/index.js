@@ -103,7 +103,7 @@ Page({
 */
   clickToRepair: function (event) {
     util.IsCertificate(function(){
-        //绑定的话，检测是否为工作时间
+        //已绑定
       util.checkWorktime(function(){
         //绑定 且 是工作时间
         wx.navigateTo({
@@ -115,13 +115,21 @@ Page({
           url: '../leave_message/leave_message',
         })
       }
-      ) 
-      //未绑定，则跳转认证页面
-    }, function(){
-      wx.navigateTo({
-        url: '../auth/auth?pageName=index',
-
-      })
+      )       
+    }, 
+    //未绑定
+    function(){
+      util.checkWorktime(function(){
+        //未绑定， 且不是工作时间
+        wx.navigateTo({
+          url: '../auth/auth?pageName=serial_number',
+        })       
+      },function(){
+        //未绑定，是工作时间
+        wx.navigateTo({
+          url: '../auth/auth?pageName=leave_message',
+        })
+      })     
     });
     
       //检测工作时间

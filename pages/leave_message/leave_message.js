@@ -9,30 +9,35 @@ Page({
     describeNo: "0",
     photoURL: [],
     uploadBtn: true,
-    desc:"",
-    sn:""
+    desc: "",
+    sn: ""
   },
-  blurfun:function(event){
-    this.setData(JSON.parse('{"' + event.target.dataset.name + '":"' + event.detail.value+'"}'));
+  blurfun: function (event) {
+    this.setData(JSON.parse('{"' + event.target.dataset.name + '":"' + event.detail.value + '"}'));
   },
-
-  getSn: function(e){
+  //跳转到自助服务
+  gotoSS: function (e) {
+    wx.navigateTo({
+      url: '../self_service/self_service',
+    })
+  },
+  getSn: function (e) {
     this.setData({
       sn: e.detail.value.toUpperCase()
     })
   },
 
-  submit:function(event){
+  submit: function (event) {
     var URLArr = this.data.photoURL;
     var that = this;
     console.log(13434314);
-    if (util.checkEmpty(that.data,['name','company','sn','desc'])){
-        wx.showModal({
-          title: '提示',
-          content: '请确认信息输入完整',
-          showCancel:false,
-        })
-        return;
+    if (util.checkEmpty(that.data, ['name', 'company', 'sn', 'desc'])) {
+      wx.showModal({
+        title: '提示',
+        content: '请确认信息输入完整',
+        showCancel: false,
+      })
+      return;
     }
     console.log(222);
 
@@ -48,13 +53,13 @@ Page({
       util.uploadImg(URLArr, function (imgUrlList) {
         that._submit(imgUrlList);
       })
-    }else{
+    } else {
       that._submit([]);
     }
-    
+
   },
-  _submit: function (imgUrlList){
-    var that=this;
+  _submit: function (imgUrlList) {
+    var that = this;
     util.NetRequest({
       showload:false,
       url: "sr/submit-leavemsg", data: {
@@ -76,7 +81,7 @@ Page({
         if (res.success) {
           wx.showModal({
             title: '提交成功',
-            content: '您的服务申请已提交成功，服务调度中心将会与您联系确认服务时间以及工程师安排事宜',
+            content: '您的服务申请已提交成功，我们将在下一个工作日优先与您取得联系。',
             showCancel: false,
             success: function (res) {
               if (res.confirm) {
@@ -89,26 +94,26 @@ Page({
         } else {
           wx.showModal({
             title: '提示',
-            content: '发生错误，请联系客服',
+            content: '提交失败，请稍后再试！',
             showCancel: false
           })
         }
       }
     })
   },
-  clickToDelete: function(event){
+  clickToDelete: function (event) {
     console.log(event);
     var URLArr = this.data.photoURL;
     var index = event.target.dataset.index;
-    URLArr.splice(index,1);
-    if (URLArr.length < 4){
-      this.setData({ uploadBtn: true})
+    URLArr.splice(index, 1);
+    if (URLArr.length < 4) {
+      this.setData({ uploadBtn: true })
     }
-    this.setData({ photoURL: URLArr});
+    this.setData({ photoURL: URLArr });
   },
   chooseimage: function (event) {
     var _this = this;
-   
+
     var URLArr = this.data.photoURL;
     console.log(URLArr);
     wx.chooseImage({
@@ -117,19 +122,19 @@ Page({
       sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
       success: function (res) {
         // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
-        URLArr =  URLArr.concat(res.tempFilePaths);
+        URLArr = URLArr.concat(res.tempFilePaths);
         console.log(URLArr);
-        if (URLArr.length == 4){
+        if (URLArr.length == 4) {
           _this.setData({ uploadBtn: false })
         }
-       if (URLArr.length > 4){
-            wx.showToast({
-              title: '图片大于4张，请重新上传',
-              icon: 'loading',
-              duration: 2000,
-              mask: 'true'
-            })
-            return false;
+        if (URLArr.length > 4) {
+          wx.showToast({
+            title: '图片大于4张，请重新上传',
+            icon: 'loading',
+            duration: 2000,
+            mask: 'true'
+          })
+          return false;
         }
         _this.setData({
           photoURL: URLArr
@@ -142,7 +147,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var that=this;
+    var that = this;
     util.getUserInfo(function (user) {
       that.setData({
         name: user.name,
@@ -151,56 +156,56 @@ Page({
       })
     });
   },
-  desNo: function(e){
-    this.setData({ describeNo: (e.detail.value).length, desc: e.detail.value});
+  desNo: function (e) {
+    this.setData({ describeNo: (e.detail.value).length, desc: e.detail.value });
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    
+
   },
-  
+
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-  
+
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-  
+
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-  
+
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-  
+
   },
 
   /**
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-  
+
   }
 })

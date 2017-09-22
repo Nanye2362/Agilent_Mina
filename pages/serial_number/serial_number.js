@@ -126,15 +126,19 @@ Page({
         } else {
          
           if(res.check_sn == false){
+            that.setData({
+              chat: true,
+            })
             wx.showModal({
               title: '提示',
               content: '序列号解析有误',
-              showCancel:false,
               confirmText: '重新上传',
               success: function (sm) {
                 if (sm.confirm) {
                   //重新上传
                   console.log('点击确认')
+                } else if (sm.cancel) {
+                  console.log('用户点击取消')
                 }
               }
             })
@@ -144,7 +148,7 @@ Page({
             })
             wx.showModal({
               title: '提示',
-              content: '系列号与单位关联失败。',
+              content: '序列号与单位关联失败。',
               cancelText: '取消',
               cancelColor: '#3CC51F',
               confirmText: '重新上传',
