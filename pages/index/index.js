@@ -163,7 +163,6 @@ Page({
         wx.navigateTo({
           url: url,
         })
-      
         //未绑定，则跳转认证页面
       }, function () {
         wx.navigateTo({
@@ -173,7 +172,7 @@ Page({
       });
 
   },
-
+ 
   /*
 **  自助服务点击弹出框
 */

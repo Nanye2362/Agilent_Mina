@@ -52,8 +52,8 @@
                 <block wx:if="{{item.SrStatus == 'WIP'}}">
                     <button class="sl_chat_btn self-center fs14" open-type='contact' session-from='{{item.TECH+item.SrId+item.SN+item.SerialNo}}'>发起会话</button>
                 </block>
-                <block wx:else>
-                    <view class="sl_chat_btn self-center fs14"  data-index="{{index}}" >再次报修</view>
+                <block wx:else> 
+                    <view class="sl_chat_btn self-center fs14" data-index="{{index}}" data-sn="{{item.SerialNo}}" bindtap='clickToRepairAgain' >再次保修</view>
                 </block>
                 <wxs module="m1">
                     var reportShowOrNot = function(ServconfId){

@@ -7,11 +7,13 @@ Page({
    * 页面的初始数据
    */
   data: {
-    searchIconFlag: true,
     currentTab: 0,
     instrumentList: ["气相色谱", "液相色谱", "气质联用", "液质联用","气相色谱2"],
     dataList: [],
-    TECH:'T'
+    TECH:'T',
+    searchFlag: false,
+    searchFake: true,
+    searchValue: ''
   },
   
   /**
@@ -56,14 +58,43 @@ sortList: function(list){
     })
 
   },
-  
+  bindblur:function(){
+    this.setData({
+      searchFlag: false,
+      searchFake: true,
+      searchValue: ''
+    })
+  },
+  clickToHide: function(){
+      this.setData({
+        searchFlag: true,
+        searchFake: false
+      })
+  },
+
+  clickToCancel:function(){
+    console.log(1)
+    this.setData({
+      searchFlag: false,
+      searchFake: true,
+      searchValue: ''
+    })
+  },
+
+  clickToSearch:function(e){
+    console.log('确定');
+    var value = this.data.searchValue;
+      wx:wx.navigateTo({
+        url: '../search-list/search-list?value='+value,
+      })
+  },
   bindInput:function(e){
+    console.log(e);
+    var value = e.detail.value;
     var inputLength = e.detail.value.length;
-    if (inputLength){
-      this.setData({ searchIconFlag: false });
-    }else{
-      this.setData({ searchIconFlag: true });
-    }
+    this.setData({
+      searchValue: value
+    })
   },
 
   /** 

@@ -29,21 +29,49 @@ page{
 #searchBar .nosearchIcon{
     width: 650rpx;
     height: 30rpx;
-    text-align: center;
     margin: 0 auto;
+    text-align: center;
     background: #fff;
-     padding: 15rpx;
+    padding:10rpx 30rpx;
 }
-
 #searchBar image{
     width: 30rpx;
     height:30rpx;
     position: absolute;
     top:37%;
-    left:230rpx;
+    left:250rpx;
     z-index: 2;
 }
-
+#searchBar .search-bar-icon{
+    width: 30rpx;
+    height:30rpx;
+    position: absolute;
+    top:37%;
+    left:144rpx;
+    z-index: 2;
+}
+.search-bar-top{
+  position:relative;
+  padding: 28rpx; 
+}
+.search-bar_cancel-btn{
+  flex: .15;
+  color:white;
+  margin-top:10rpx;
+  text-align: center;
+}
+.nosearchIconTop{
+    flex:.7;
+    height: 30rpx;
+    background: #fff;
+    padding:8rpx 0 8rpx 50rpx;
+}
+.search-bar_submit-btn{
+  flex: .15;
+  color:white;
+   margin-top:10rpx;
+   text-align: center;
+}
 .ss_tab_content {
     width: 100%;
     position: relative;

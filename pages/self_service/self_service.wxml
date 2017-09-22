@@ -1,30 +1,19 @@
 <!--pages/self_service/self_service.wxml-->
 <!-- search -->
 <view class="weui-search-bar " id="searchBar">
-    <!-- <a href="javascript:" class="weui-search-bar__cancel-btn" id="searchCancel">取消</a>
-    <view class="weui-search-bar__form">
-        <view class="weui-search-bar__box">
-            <i class="weui-icon-search"></i>
-            <input type="search" class="weui-search-bar__input" id="searchInput" placeholder="搜索常见问题" required="" />
-            <a href="javascript:" class="weui-icon-clear" id="searchClear"></a>
-        </view>
-
-        <label class="weui-search-bar__label" id="searchText" style="transform-origin: 0px 0px 0px; opacity: 1; transform: scale(1, 1);">
-            <i class="weui-icon-search"></i>
-            <span>搜索常见问题</span>
-        </label>
-    </view>
-    
-    <a id="sub" class="weui-search-bar__cancel-btn ss-btn-right">确定</a>  -->
-
-      <view class="" style="padding:20rpx; position: relative;">
-            <input class="nosearchIcon" placeholder=" 搜索常见问题" 
-            bindinput="bindInput"  bindchange="bindchange" value="{{inputValue}}" />
-            <image wx:if="{{searchIconFlag}}"src="/images/search.png"></image>
+      <view class="" style="padding:20rpx; position: relative;" wx:if="{{searchFake}}">
+            <input class="nosearchIcon" placeholder="搜索常见问题" 
+            bindtap='clickToHide' />
+            <image src="/images/search.png"></image>
+      </view> 
+       <view class="search-bar-top flex" wx:if="{{searchFlag}}">
+            <view class='search-bar_cancel-btn' bindtap='clickToCancel'>取消</view>
+            <input class="nosearchIconTop" placeholder="搜索常见问题" 
+            bindinput="bindInput" value="{{inputValue}}" />
+            <view class='search-bar_submit-btn' bindtap='clickToSearch'>确定</view>
+            <image class="search-bar-icon" src="/images/search.png"></image> 
       </view>
 </view>
-
-
 
 <!-- tab -->
 <movable-area class="ss_tab_content">
@@ -37,6 +26,7 @@
     <view class="ss_tab_right ss_tab_btn">
         <image src="/images/arrowr.png"></image>
     </view>
+
 </movable-area>
 
 <!-- tab_content -->
@@ -91,9 +81,7 @@
 </view>
         </swiper-item>
         </block>
-
          <!-- next page     -->
-       
     </swiper>
 
 

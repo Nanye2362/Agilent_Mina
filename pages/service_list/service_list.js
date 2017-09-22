@@ -89,6 +89,8 @@ Page({
         }
       });
     }
+
+
   },
   /** 
      * 滑动切换tab 
@@ -208,11 +210,24 @@ Page({
   },
 
   //再次报修
-  clickToRepairAgain: function(){
-    wx.navigateTo({
-      url: '../confirm_info/confirm_info?contactId=&&sn='
+  clickToRepairAgain: function(e){
+    var sn = e.currentTarget.dataset.sn;
+    util.NetRequest({
+      url: 'sr/sr-confirm',
+      data: {
+        serial_number: sn
+      },
+      success: function (res) {
+        console.log(res);
+        // if (res.success == true) {
+        //   wx.navigateTo({
+        //     url: '../confirm_info/confirm_info' + '?ProductId=' + res.ProductId + '&ProductDesc=' + res.ProductDesc + '&SerialNo=' + res.SerialNo + '&CpName=' + res.CpName + '&ShipToName=' + res.ShipToName,
+        //   })
+        // } 
+      }
     })
-  } ,
+
+  },
 
   //前往评价
   clickToEvaluate: function(e){
