@@ -48,7 +48,7 @@ Page({
       success: function (res) {
         //上传图片
         wx.showLoading({
-          title: '上传中，请稍后',
+          title: '上传中...',
           mask: true
         })
         var tempFilePaths = res.tempFilePaths
@@ -128,25 +128,42 @@ Page({
             url: '../confirm_info/confirm_info' + '?ProductId=' + res.ProductId + '&ProductDesc=' + res.ProductDesc + '&SerialNo=' + res.SerialNo + '&CpName=' + res.CpName + '&ShipToName=' + res.ShipToName,
           })
         } else {
-          that.setData({
-            chat: true,
-          })
-          wx.showModal({
-            title: '提示',
-            content: '序列号验证有误, 如有任何疑问，您可以点击页面下方的发起会话',
-            cancelText: '取消',
-            cancelColor: '#3CC51F',
-            confirmText: '重新上传',
-            success: function (sm) {
-              if (sm.confirm) {
-                //重新上传
-                console.log('点击确认')
-              } else if (sm.cancel) {
-                console.log('用户点击取消')
-                
+         
+          if(res.check_sn == false){
+            wx.showModal({
+              title: '提示',
+              content: '序列号解析有误',
+              showCancel:false,
+              confirmText: '重新上传',
+              success: function (sm) {
+                if (sm.confirm) {
+                  //重新上传
+                  console.log('点击确认')
+                }
               }
-            }
-          })
+            })
+          }else{
+            that.setData({
+              chat: true,
+            })
+            wx.showModal({
+              title: '提示',
+              content: '系列号与单位关联失败。',
+              cancelText: '取消',
+              cancelColor: '#3CC51F',
+              confirmText: '重新上传',
+              success: function (sm) {
+                if (sm.confirm) {
+                  //重新上传
+                  console.log('点击确认')
+                } else if (sm.cancel) {
+                  console.log('用户点击取消')
+                }
+              }
+            })
+
+          }
+          
         }
       }
     })

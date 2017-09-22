@@ -54,6 +54,7 @@ Page({
         this.setData({
           getSn: option.sn,
           getContactId: option.contactId,
+          currentTab:2
         });
         //请求后台接口
 

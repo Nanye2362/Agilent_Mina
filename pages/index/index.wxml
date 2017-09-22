@@ -33,7 +33,7 @@
     </view>
     <!-- bottom -->
     <view class="flex">
-        <view bindtap="clickToHint" class="h_service_item" >
+        <view bindtap="nevigateToNext" class="h_service_item"  data-url='../self_service/self_service'>
             <image src="/images/self.png"></image>
             <view class="fs14 fc-fff">自助服务</view>
         </view>      

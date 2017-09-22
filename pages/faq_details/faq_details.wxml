@@ -1,22 +1,16 @@
 <view class="fd">
     <!-- question -->
     <view class="fd_ques">
-        <sviewan class="fd_ques_con fc-blue fs18">进样口流量超过设定值</sviewan>
+        <view class="fd_ques_con fc-blue fs18">
+          <rich-text nodes="{{questions}}">
+          </rich-text>
+        </view>
     </view>
     <!-- answer -->
-    <view class="fd_ans viewadding">
-        <view class="marginB-20">
-            1、检查色谱柱的类型及载气的类型是否配置正确。
-        </view>
-        <view class="marginB-20">
-            2、如果配置正确，检查色谱柱进样端是否堵塞，重新切割色谱柱安装。
-        </view>
-        <view class="marginB-20">
-          3、如果问题依然存在，将进样口设定为不分流模式，单机仪器键盘上viewrerun，如果进样口压力正常，则分流平板或者分流出口捕集阱污染，需更换分流平板。
-        </view>
-        
-        
-        
+    <view class="fd_ans">
+    <video src='http://video.coffeelandcn.cn/0473f6bd08ed448e8febf4278cf8aba7/a1da215afada4c8ebbdd8d129318a77c-4b6ffae84f2e1d243955ecaedcf11a3e.m3u8'  controls='true'  poster='../../images / fake - guide.jpg' ></video>
+        <rich-text nodes="{{answers}}">
+        </rich-text>
     </view>
     <!-- reminder -->
     <view class="fd_reminder">
@@ -30,10 +24,10 @@
 <!-- notification -->
 <view class="fd_notification">
     <view class="fd_not text-center">
-        <view>如有其他疑问，您可以提交<text class="fc-blue service_reviewair" data-url="../leave_message/leave_message" bindtap="clickToNext">故障反馈</text></view>
+        <view>如有其他疑问，您可以提交<button class="fc-blue btn-meiqia service_reviewair" open-type='contact' session-from='{{TECH}}'>故障反馈</button></view>
     </view>
 
-    <view class="fd_useful flex">
+    <!-- <view class="fd_useful flex">
 
         <view class="fd_useful_item text-center" bindtap="usefulClick" data-useful="1">
                 <image src="{{usefulFlag == false ? '../../images/great.png' : '../../images/good-b.png'}}"></image>有帮助
@@ -44,6 +38,6 @@
         </view>
         
          <view class="{{maskFlag == true ? '': 'fd_mask' }}"></view>
-    </view>
+    </view> -->
    
 </view>

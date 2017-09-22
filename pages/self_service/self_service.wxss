@@ -73,6 +73,7 @@ page{
 
 .ss_tab_item_active {
     background-color: #8BAFE1;
+    color: white
 }
 
 .ss_tab_btn {
@@ -123,7 +124,7 @@ page{
 
 .ss_hi_con > view {
     list-style: disc;
-    height: 80rpx;
+    margin-bottom: 40rpx;
     position: relative;
     padding: 0 20rpx ;
 }
@@ -131,7 +132,6 @@ page{
 .ss_hi_con > view view {
     color: #0085d5;
     display: block;
-    height: 80rpx;
 }
 
 .ss_qc_con > view {
@@ -139,11 +139,12 @@ page{
 }
 
 .ss_qc_inside > view {
-    flex: .33;
+    float: left;
+    width: 33.3%;
     text-align: center;
 }
 
-.ss_qc_inside > view:not(:last-child) {
+.ss_qc_inside > view{
     border-right: 2rpx solid #e7e6e7;
 }
 
@@ -191,5 +192,4 @@ page{
     background: #0085d5;
     top: 20%;
     left:-10rpx;
-    margin-top:-6rpx;
 }

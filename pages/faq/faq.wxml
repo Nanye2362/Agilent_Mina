@@ -1,78 +1,49 @@
 <!--pages/faq/faq.wxml-->
-<view  wx:if="{{dropdown}}"  class="faq_mask" bindtap="clickToHide"></view>
+<view wx:if="{{dropdown}}" class="faq_mask" bindtap="clickToHide"></view>
 <view class="faq">
-    <view class="faq_con bg-primary">
-        <!-- title -->
-        <view class="faq_item faq_title bg-gb flex">
-            <view class="faq_title_l">
-                <image src="../../images/species.png" class="ss_img_ques"/>常见问题
+  <view class="faq_con bg-primary">
+    <!-- title -->
+    <view class="faq_item faq_title bg-gb flex">
+      <view class="faq_title_l">
+        <image src="../../images/species.png" class="ss_img_ques" />常见问题
+      </view>
+      <view class="text-right flex_item fc-blue" style="display: inline; position: relative; z-index: 1000;" bindtap="tagShow">
+        <view class="sl_dropdown text-right fc-blue">{{chooseCont}}
+          <image src="/images/down.png"></image>
+        </view>
+        <view wx:if="{{dropdown}}" class="faq_select">
+          <block wx:for="{{dropDownlist}}" >
+            <view class="text-overflow {{item.changeColor == 'true'?'selected':''}}" data-id='{{item.id}}' bindtap='changeChoose'>
+              {{item.name}}
             </view>
-            <view class="text-right flex_item fc-blue" style="display: inline; position: relative; z-index: 1000;" bindtap="tagShow">
-              <view class="sl_dropdown text-right fc-blue">进样器</view>
-                <view wx:if="{{dropdown}}" class="faq_select">
-                    <view class="text-overflow" >
-                        1
-                    </view>
-                    <view class="text-overflow">
-                        2
-                    </view>
-                    <view class="text-overflow" >
-                        3
-                    </view>
-                    <view class="text-overflow">
-                        3
-                    </view>
-                </view>                
+          </block>
+
         </view>
-        </view>
-        <!-- questions -->
-        <view class="faq_item faq_ques">
-            <view class="faq_item_con flex">
-                <view class="faq_item_l fc-blue text-overflow">
-                    进样口流量达不到设定值asdfadfadfadfadfadfadf
-                </view>
-                <view class="faq_item_r text-right"  >
-                    <image src="../../images/arrow-r.png"/>
-                </view>
-            </view>
-        </view>
-         <view class="faq_item faq_ques">
-            <view class="faq_item_con flex">
-                <view class="faq_item_l fc-blue text-overflow">
-                    进样口流量达不到设定值asdfadfadfadfadfadfadf
-                </view>
-                <view class="faq_item_r text-right"  >
-                    <image src="../../images/arrow-r.png"/>
-                </view>
-            </view>
-        </view>
-         <view class="faq_item faq_ques">
-            <view class="faq_item_con flex">
-                <view class="faq_item_l fc-blue text-overflow">
-                    进样口流量达不到设定值asdfadfadfadfadfadfadf
-                </view>
-                <view class="faq_item_r text-right"  >
-                    <image src="../../images/arrow-r.png"/>
-                </view>
-            </view>
-        </view>
-         <view class="faq_item faq_ques">
-            <view class="faq_item_con flex">
-                <view class="faq_item_l fc-blue text-overflow">
-                    进样口流量达不到设定值asdfadfadfadfadfadfadf
-                </view>
-                <view class="faq_item_r text-right"  >
-                    <image src="../../images/arrow-r.png"/>
-                </view>
-            </view>
-        </view>
-        
+      </view>
     </view>
+    <!-- questions -->
+
+    <block wx:for="{{questionsList}}">
+      <view class="faq_item faq_ques" data-id='{{item.id}}' bindtap='clickTodetails'>
+        <view class="faq_item_con flex">
+          <view class="faq_item_l fc-blue text-overflow">
+            {{item.questions}}
+          </view>
+          <view class="faq_item_r text-right">
+            <image src="../../images/arrow-r.png" />
+          </view>
+        </view>
+      </view>
+    </block>
+
+
+
+
+  </view>
 </view>
 <!-- notification -->
 <view class="faq_notification text-center bg-primary">
-    <view>如有其他疑问，您可以提交<text class="fc-blue service_repair">故障反馈</text></view>
+  <view>如有其他疑问，您可以提交
+    <text class="fc-blue service_repair btn-meiqia" open-type='contact' session-from='{{TECH}}'>故障反馈</text>
+  </view>
 </view>
-<view wx:if="{{boolean}}">{{text}}</view>
-<button bindtap="boolean">click me</button>
-

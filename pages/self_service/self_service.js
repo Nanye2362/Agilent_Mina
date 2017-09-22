@@ -1,4 +1,7 @@
 // pages/self_service/self_service.js
+
+var util = require('../../utils/util.js');
+
 Page({
   /**
    * 页面的初始数据
@@ -6,64 +9,54 @@ Page({
   data: {
     searchIconFlag: true,
     currentTab: 0,
-   
+    instrumentList: ["气相色谱", "液相色谱", "气质联用", "液质联用","气相色谱2"],
+    dataList: [],
+    TECH:'T'
   },
   
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(this.data.searchIconFlag);
+   var that  = this;
+
+    util.NetRequest({
+      url: 'site-mini/self-service',
+      success: function (res) {
+        console.log(res);
+        var data = that.sortList(res);
+         that.setData({
+           dataList: data
+         })
+      }
+    });
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
+sortList: function(list){
+  var data = list.data;
+  var dataL = list.data.length;
+  var hots = list.hots;
+  for (var i = 0; i < dataL; i++){
+    for (var key in hots){
+      if (data[i].id == key){
+        data[i].category = hots[key];
+        }
+     }
+  }
+ return data;
+},
+ /**
+   * 热点问题跳转
    */
-  onReady: function () {
-  
-  },
+  clickToFaqDetails:function(e){
+    console.log(e)
+    var id = e.currentTarget.dataset.id; 
+    wx.navigateTo({
+      url: '../faq_details/faq_details?id='+id,
+    })
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-  
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
   
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
-  },
   bindInput:function(e){
     var inputLength = e.detail.value.length;
     if (inputLength){
@@ -72,6 +65,7 @@ Page({
       this.setData({ searchIconFlag: true });
     }
   },
+
   /** 
    * 点击tab切换 
    */
@@ -85,6 +79,7 @@ Page({
       })
     }
   },
+
   /** 
      * 滑动切换tab 
      */
@@ -92,5 +87,15 @@ Page({
     var that = this;
     that.setData({ currentTab: e.detail.current });
   },
- 
+
+   /** 
+     * 点击问题分类进入faq页面
+     */
+  clickToFaq: function(e){
+    console.log(e);
+      var id = e.currentTarget.dataset.id;
+      wx.navigateTo({
+        url: '../faq/faq?id='+id,
+      })
+  }
 })
