@@ -18,19 +18,7 @@
     margin-right:10rpx;
 }
 
-@media screen and (min-width: 400px) {
-    .pd_camera::before {
-        content: "";
-        background: url(../../images/camera.png) no-repeat;
-        position: absolute;
-        top: 10%;
-        right: 144rpx;
-        width: 1.5rem;
-        height: 1.3125rem;
-        z-index: 0;
-        background-size: cover;
-    }
-}
+
 
 .pd_input_img {
     width: 100%;
