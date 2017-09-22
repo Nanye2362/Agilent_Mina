@@ -50,11 +50,14 @@ function NetRequest({ url, data, success, fail, complete, method = "POST" ,showl
       if (session_id == "" || session_id == null) {
         wx.setStorageSync('PHPSESSID', res.data.session_id); //如果本地没有就说明第一次请求 把返回的session id 存入本地
         var str =res.header['Set-Cookie'];
-        var m=str.match(/_csrf=(.)*?;/);
-        if(m!=null){
-          wx.setStorageSync('csrfCookie', m[0]);
-        }  
-        wx.setStorageSync('csrf', res.data.csrfToken)
+        console.log(str);
+        if (typeof (str) !='undefined'){
+          var m = str.match(/_csrf=(.)*?;/);
+          if (m != null) {
+            wx.setStorageSync('csrfCookie', m[0]);
+          }  
+          wx.setStorageSync('csrf', res.data.csrfToken);
+        }       
       }
   
       let data = res.data
