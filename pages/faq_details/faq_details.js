@@ -29,6 +29,7 @@ Page({
       },
       success: function (res) {
         console.log(res);
+
         that.setData({
           TECH: meiqiaInfo.TECH,
           answers: res.detail.answers,
@@ -86,16 +87,15 @@ Page({
     this.setData({ usefulFlag: true, maskFlag: false });
 
   },
+
   unusefulClick:function(){
     this.setData({ unusefulFlag: true, maskFlag: false });
   },
 
-  clickToNext: function (event) {
-    console.log(event)
-    var url = event.currentTarget.dataset.url;
+  clickToRepair: function () {
     wx.navigateTo({
-      url: url,
+      url: '../serial_number/serial_number',
     })
-  },
+  }
 
 })

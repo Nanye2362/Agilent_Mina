@@ -29,9 +29,12 @@ function NetRequest({ url, data, success, fail, complete, method = "POST" ,showl
   }
   var _csrf = wx.getStorageSync('csrf');
   var csrfToken = wx.getStorageSync('csrfCookie')
-  if (typeof (data) !='undefined'){
+  if (typeof (data) =='object'){
     data._csrf = _csrf;
+  }else{
+    data = { '_csrf': _csrf};
   }
+  
   var session_id = wx.getStorageSync('PHPSESSID');//本地取存储的sessionID
   if (session_id != "" && session_id != null) {
     var header = { 'content-type': 'application/x-www-form-urlencoded', 'Cookie': 'PHPSESSID=' + session_id + ";" + csrfToken}

@@ -128,5 +128,11 @@ sortList: function(list){
       wx.navigateTo({
         url: '../faq/faq?id='+id,
       })
+  },
+
+  clickToRepair:function(){
+    wx.navigateTo({
+      url: '../serial_number/serial_number',
+    })
   }
 })
