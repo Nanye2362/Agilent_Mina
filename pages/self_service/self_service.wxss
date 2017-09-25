@@ -46,13 +46,13 @@ page{
     width: 30rpx;
     height:30rpx;
     position: absolute;
-    top:37%;
-    left:144rpx;
+    top:35%;
+    left:130rpx;
     z-index: 2;
 }
 .search-bar-top{
   position:relative;
-  padding: 28rpx; 
+  padding: 24rpx 22rpx; 
 }
 .search-bar_cancel-btn{
   flex: .15;

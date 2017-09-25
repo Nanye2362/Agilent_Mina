@@ -21,7 +21,7 @@
 <!-- notification -->
 <view class="fd_notification">
     <view class="fd_not text-center">
-        <view>如有其他疑问，您可以提交<view class="fc-blue btn-meiqia service_reviewair" bindtap=''>故障反馈</view></view>
+        <view>如有其他疑问，您可以提交<view class="fc-blue btn-meiqia service_reviewair" bindtap='clickToRepair'>故障反馈</view></view>
     </view>
     <!-- <view class="fd_useful flex">
 
