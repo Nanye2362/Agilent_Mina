@@ -67,14 +67,10 @@ App({
     console.log(1111);
   },
   globalData: {
-
     userInfo: null,
-    appid: 'wxdc8257b9f4a04386',
-    secret: 'd140b3cd0ad5b4d07f87e081dafb3b8b',
     requestList: [],
     isLoading: false
     //token: wx.getStorageSync('token')
-
   },
   /*
   showTips: function () {
