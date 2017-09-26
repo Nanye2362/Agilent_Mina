@@ -29,13 +29,19 @@ Page({
       },
       success: function (res) {
         console.log(res);
-
+        wx.showLoading({
+          title: '下载中，请稍候',
+          mask: true
+        })
         that.setData({
           TECH: meiqiaInfo.TECH,
           answers: res.detail.answers,
           questions: res.detail.questions
         })
-      }
+      },
+      complete: function () {
+        wx.hideLoading();
+      },
     });
   
   },
