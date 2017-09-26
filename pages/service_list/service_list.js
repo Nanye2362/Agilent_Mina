@@ -22,7 +22,8 @@ Page({
     SerialNo_listFlag: [],
     getSn: '',
     getContactId: '',
-    TECH: 'T_srid:'
+    TECH: 'T_srid:',
+    SN:';sn:'
   },
 
   onLoad: function (option) {
@@ -164,6 +165,7 @@ Page({
     var getSerialNo_list = res.SerialNo_list;
     var SerialNo_list = this.data.SerialNo_listFlag;
     var TECH = this.data.TECH;
+    var SN = this.data.SN;
     if (getSerialNo_list == null || getSerialNo_list.length < SerialNo_list.length) {
       getSerialNo_list = SerialNo_list;
     }
@@ -173,6 +175,7 @@ Page({
 
     for (var i = 0; i < ListAll.length; i++) {
       ListAll[i].TECH = TECH;
+      ListAll[i].SN = SN;
       if (ListAll[i].SrStatus == 'WIP') {
         unCompleteList.push(ListAll[i]);
       }
