@@ -16,7 +16,7 @@
     <view class="sg_repair">
         <view class="sg_repair_item alignc">
             <view class="sg_repair_image"><image src="../../images/gulidence01.png"></image></view>
-            <view class="sg_repair_content flex alignc">点击首页"我要保修"，进入保修申请流程。</view>
+            <view class="sg_repair_content flex alignc">点击首页"我要报修"，进入报修申请流程。</view>
         </view>
         <view class="sg_repair_item alignc">
             <view class="sg_repair_image"><image src="../../images/gulidence02.png"></image></view>

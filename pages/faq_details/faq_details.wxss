@@ -2,6 +2,7 @@
 page{
   background: #fff;
 }
+.fd{padding-bottom:102rpx;}
 .fd_ans{
     padding: 40rpx 40rpx;
     line-height: 50rpx;
@@ -37,7 +38,14 @@ rich-text img{
 }
 
 .fd_notification {
-   margin: 30rpx 0;
+     position: fixed;
+    height: 100rpx;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    line-height: 100rpx;
+    border-top: 2rpx solid #e7e7e7;
+    background: white;
 } 
 
 .fd_not {

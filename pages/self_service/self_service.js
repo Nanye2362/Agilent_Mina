@@ -65,11 +65,16 @@ sortList: function(list){
       searchValue: ''
     })
   },
+
   clickToHide: function(){
+    console.log(2)
       this.setData({
         searchFlag: true,
         searchFake: false
       })
+
+      console.log('searchFake=' + this.data.searchFake);
+      console.log('searchFlag=' + this.data.searchFlag);
   },
 
   clickToCancel:function(){
@@ -131,8 +136,16 @@ sortList: function(list){
   },
 
   clickToRepair:function(){
-    wx.navigateTo({
-      url: '../serial_number/serial_number',
+    util.checkWorktime(function(){
+        //是工作时间跳转serial number页面
+          wx.navigateTo({
+            url: '../serial_number/serial_number',
+          })
+    },function(){
+         //是工作时间跳转leave-message页面
+            wx.navigateTo({
+              url: '../leave_message/leave_message',
+            })
     })
   }
 })

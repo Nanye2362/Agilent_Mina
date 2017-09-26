@@ -28,17 +28,18 @@ page{
 }
 #searchBar .nosearchIcon{
     width: 650rpx;
-    height: 30rpx;
+    height: 66rpx;
     margin: 0 auto;
+    line-height: 66rpx;
     text-align: center;
     background: #fff;
-    padding:10rpx 30rpx;
 }
 #searchBar image{
     width: 30rpx;
     height:30rpx;
     position: absolute;
-    top:37%;
+    top:50%;
+    margin-top:-15rpx;
     left:250rpx;
     z-index: 2;
 }
@@ -46,7 +47,8 @@ page{
     width: 30rpx;
     height:30rpx;
     position: absolute;
-    top:35%;
+    top:50%;
+    margin-top:-15rpx;
     left:130rpx;
     z-index: 2;
 }
