@@ -31,19 +31,7 @@ Page({
       url: '../logs/logs'
     })
   },
-  onLoad: function (option) {
-    /*
-    //获取美洽分组token
-    util.NetRequest({
-      url: 'wechat-mini/meiqia-group',
-      data: {
-      },
-      success: function (res) {
-        console.log(res);
-        wx.setStorageSync('meiqia',res)
-      },
-    })*/
-    
+  onLoad: function (option) {   
     console.log('onload' + option);
     var that = this
     console.log(app);
@@ -131,26 +119,6 @@ Page({
         })
       })     
     });
-    
-      //检测工作时间
-    // function checkWorktime() {
-    //   console.log(2)
-    //   util.NetRequest({
-    //     url: 'util/get-worktime',
-    //     success: function (res) {
-    //       console.log(res)
-    //       if (res.success == true) {
-    //         wx.navigateTo({
-    //           url: '../serial_number/serial_number',
-    //         })
-    //       } else {
-    //         wx.navigateTo({
-    //           url: '../leave_message/leave_message',
-    //         })
-    //       }
-    //     }
-    //   });
-    // }
   },
 /*
 ** 安装申请、服务历史 点击跳转
