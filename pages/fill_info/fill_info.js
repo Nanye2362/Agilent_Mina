@@ -41,10 +41,11 @@ Page({
       util.NetRequest({
         url: 'auth/info-setup',
         data: {
-          'name': name,
+          'username': name,
+          'mobile': mobile,
           'company': company,
-          'sn': sn,
-          'otherInfo':other,
+          'serial_no': sn,
+          'remark':other,
         },
         success: function (res) {
           console.log(res);
