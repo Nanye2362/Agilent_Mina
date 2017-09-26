@@ -10,13 +10,10 @@ Page({
       company:'',
       other:'',
       sn:'',
+      NONTECH:'N'
     },
 
     onLoad: function (options) {
-      var meiqia = wx.getStorageSync('meiqia')
-      this.setData({
-        NONTECH: meiqia.NONTECH
-      })
       var mobile = options.mobile
       this.setData({
         'mobile': mobile,

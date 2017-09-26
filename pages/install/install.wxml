@@ -38,7 +38,7 @@
         <view class="ins_item flex">
             <view class="ins_title self-center">姓名:</view>
             <label class="ins_con" for="ins_name">
-                <input bindblur="blurfun" data-name="name" value="{{ name }}" name="ins_phone" type="text" placeholder="请输入姓名" id="ins_name" required="" />
+                <input bindblur="blurfun" data-name="name" value="{{ name }}" name="ins_phone" type="text" placeholder="请输入姓名" id="ins_name" maxlength="10" required="" />
             </label>
         </view>
         <!-- phone -->

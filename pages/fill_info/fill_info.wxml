@@ -20,7 +20,7 @@
         </view>
         <view class="s-item flex alignc">
             <view class="item-t fc-g fs14">序列号：</view>
-            <input type="text" class="item-r fs14 serialNo" placeholder="例：RS-PRO-SE3948478" bindinput='getsn' value='{{sn}}'/>
+            <input type="text" class="item-r fs14 serialNo" placeholder="例：US00000000" bindinput='getsn' value='{{sn}}'/>
         </view>
         <view class="s-item flex alignc">
             <view class="item-t fc-g fs14">备注：</view>
