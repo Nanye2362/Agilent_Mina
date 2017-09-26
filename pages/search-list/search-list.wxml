@@ -9,8 +9,8 @@
 <block wx:for="{{resultList}}">
   <view class="faq_item faq_ques" data-id='{{item.id}}' bindtap='clickToFaqDetails'>
     <view class="faq_item_con flex">
-      <view class="faq_item_l text-overflow">
-          <rich-text nodes="{{item.questions}}">
+      <view class="faq_item_l ">
+          <rich-text class="" nodes="{{item.questions}}">
           </rich-text>
       </view>
       <view class="faq_item_r text-right">
