@@ -8,7 +8,6 @@ Page({
    */
   data: {
     currentTab: 0,
-    instrumentList: ["气相色谱", "液相色谱", "气质联用", "液质联用","气相色谱2"],
     dataList: [],
     TECH:'T',
     searchFlag: false,
