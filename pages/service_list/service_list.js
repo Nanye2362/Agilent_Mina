@@ -245,7 +245,7 @@ Page({
       url: url,
       success: function (res) {
         wx.showLoading({
-          title: '下载中，请稍后',
+          title: '下载中，请稍候',
           mask: true
         })
         var filePath = res.tempFilePath;

@@ -2,8 +2,8 @@
 <!-- search -->
 <view class="weui-search-bar " id="searchBar">
       <view class="" style="padding:20rpx; position: relative;" wx:if="{{searchFake}}">
-            <input class="nosearchIcon" placeholder="搜索常见问题" 
-            bindtap='clickToHide' />
+            <view class="nosearchIcon"
+            bindtap='clickToHide'>搜索常见问题</view>
             <image src="/images/search.png"></image>
       </view> 
        <view class="search-bar-top flex" wx:if="{{searchFlag}}">

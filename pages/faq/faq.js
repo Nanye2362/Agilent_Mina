@@ -107,5 +107,20 @@ Page({
 
   clickToHide: function () {
     this.setData({ dropdown: false });
-  }
+  },
+
+  clickToRepair: function () {
+    util.checkWorktime(function () {
+      //是工作时间跳转serial number页面
+      wx.navigateTo({
+        url: '../serial_number/serial_number',
+      })
+    }, function () {
+      //是工作时间跳转leave-message页面
+      wx.navigateTo({
+        url: '../leave_message/leave_message',
+      })
+    })
+  },
+  
 })

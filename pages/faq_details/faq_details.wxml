@@ -14,16 +14,17 @@
     <!-- reminder -->
     <view class="fd_reminder">
         <view class="fc-blue">温馨提示</view>
-        <view>如果问题依然存在，则请与安捷伦科技公司联系。可拨打800-820-3278 (座机), 400-820-3278 (手机)。</view>
+        <view>如果问题依然存在，请点击<view class="fc-blue btn-meiqia service_reviewair" bindtap='clickToRepair'>故障反馈</view>，或者您也可以拨打电话 <text class="fc-blue cu_tel" type="default" bindtap="calling" data-phone='400-820-3278'>400-820-3278(手机),</text>
+            <text class="fc-blue cu_tel" bindtap='calling' data-phone="800-820-3289"> 800-820-3289(座机)。</text></view>
     </view>
 </view>
 
 <!-- notification -->
-<view class="fd_notification">
+<!-- <view class="fd_notification">
     <view class="fd_not text-center">
-        <view>如有其他疑问，您可以提交<view class="fc-blue btn-meiqia service_reviewair" bindtap=''>故障反馈</view></view>
+        <view>如有其他疑问，您可以提交<view class="fc-blue btn-meiqia service_reviewair" bindtap='clickToRepair'>故障反馈</view></view>
     </view>
-    <!-- <view class="fd_useful flex">
+   <view class="fd_useful flex">
 
         <view class="fd_useful_item text-center" bindtap="usefulClick" data-useful="1">
                 <image src="{{usefulFlag == false ? '../../images/great.png' : '../../images/good-b.png'}}"></image>有帮助
@@ -34,6 +35,6 @@
         </view>
         
          <view class="{{maskFlag == true ? '': 'fd_mask' }}"></view>
-    </view> -->
+    </view>
    
-</view>
+</view>  -->

@@ -12,7 +12,7 @@
           <image src="/images/down.png"></image>
         </view>
         <view wx:if="{{dropdown}}" class="faq_select">
-          <block wx:for="{{dropDownlist}}" >
+          <block wx:for="{{dropDownlist}}">
             <view class="text-overflow {{item.changeColor?'selected':''}}" data-id='{{item.id}}' bindtap='changeChoose'>
               {{item.name}}
             </view>
@@ -22,25 +22,27 @@
       </view>
     </view>
     <!-- questions -->
-
-    <block wx:for="{{questionsList}}">
-      <view class="faq_item faq_ques" data-id='{{item.id}}' bindtap='clickTodetails'>
-        <view class="faq_item_con flex">
-          <view class="faq_item_l fc-blue text-overflow">
-            {{item.questions}}
-          </view>
-          <view class="faq_item_r text-right">
-            <image src="../../images/arrow-r.png" />
+    <view style="overflow: scroll; padding-bottom:102rpx;">
+      <block wx:for="{{questionsList}}">
+        <view class="faq_item faq_ques" data-id='{{item.id}}' bindtap='clickTodetails'>
+          <view class="faq_item_con flex">
+            <view class="faq_item_l fc-blue text-overflow">
+              {{item.questions}}
+            </view>
+            <view class="faq_item_r text-right">
+              <image src="../../images/arrow-r.png" />
+            </view>
           </view>
         </view>
-      </view>
-    </block>
+      </block>
+    </view>
+
 
   </view>
 </view>
 <!-- notification -->
 <view class="faq_notification text-center bg-primary">
   <view>如有其他疑问，您可以提交
-    <text class="fc-blue service_repair btn-meiqia" open-type='contact' session-from='{{TECH}}'>故障反馈</text>
+    <text class="fc-blue service_repair btn-meiqia" bindtap='clickToRepair'>故障反馈</text>
   </view>
 </view>

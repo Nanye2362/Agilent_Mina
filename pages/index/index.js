@@ -166,7 +166,7 @@ Page({
         //未绑定，则跳转认证页面
       }, function () {
         wx.navigateTo({
-          url: '../auth/auth?pageName=index',
+          url: '../auth/auth?pageName=self_service',
 
         })
       });

@@ -40,48 +40,6 @@ Page({
   
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
-  },
-
   usefulClick: function(e){
     console.log(e)
     this.setData({ usefulFlag: true, maskFlag: false });
@@ -93,9 +51,30 @@ Page({
   },
 
   clickToRepair: function () {
-    wx.navigateTo({
-      url: '../serial_number/serial_number',
+    util.checkWorktime(function () {
+      //是工作时间跳转serial number页面
+      wx.navigateTo({
+        url: '../serial_number/serial_number',
+      })
+    }, function () {
+      //是工作时间跳转leave-message页面
+      wx.navigateTo({
+        url: '../leave_message/leave_message',
+      })
     })
-  }
+  },
+  //拨打电话
+  calling: function (event) {
+    var phone = event.currentTarget.dataset.phone
+    wx.makePhoneCall({
+      phoneNumber: phone,
+      success: function () {
+        console.log("拨打电话成功！")
+      },
+      fail: function () {
+        console.log("拨打电话失败！")
+      }
+    })
+  },
 
 })
