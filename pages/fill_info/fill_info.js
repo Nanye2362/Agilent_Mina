@@ -6,6 +6,7 @@ Page({
       nameV: false,
       companyV: false,
       snV: false,
+      mobileV: false,
       name:'',
       company:'',
       other:'',
@@ -124,7 +125,19 @@ Page({
           sn: sn
          })
       }
-    },   
+    },
+    getmobile: function (e) {
+      console.log(e.detail.value)
+      var mobile = e.detail.value
+      if (e.detail.value == null || e.detail.value == "") {
+        this.setData({ mobileV: false })
+      } else {
+        this.setData({
+          mobileV: true,
+          mobile: mobile
+        })
+      }
+    },    
     getother: function (e) {
       this.setData({
         other: e.detail.value

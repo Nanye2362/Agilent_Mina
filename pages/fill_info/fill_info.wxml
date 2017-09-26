@@ -12,7 +12,7 @@
         </view>
         <view class="s-item flex alignc">
             <view class="item-t fc-g fs14">手机号：</view>
-            <view class="item-r s-phone fs14">{{mobile}}</view>
+            <input class="fs14 item-r" type="number" maxlength="11"  placeholder="" bindinput="getmobile" value="{{mobile}}"/>
         </view>
         <view class="s-item flex alignc">
             <view class="item-t fc-g fs14">单位名称：</view>

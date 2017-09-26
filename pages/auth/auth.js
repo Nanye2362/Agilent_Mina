@@ -79,7 +79,7 @@ Page({
               error_msg = '(UB004)您已经通过身份认证';
               break;
             case 'UB005':
-              error_msg = '(UB005)您的手机在系统中未关联任何联系人，请体统相关信息，我们尽快为您建档';
+              error_msg = '(UB005)您的手机在系统中未关联任何联系人，请提供相关信息，我们尽快为您建档';
               break;
             case 'UB006':
               error_msg = '(UB006)UB006';
