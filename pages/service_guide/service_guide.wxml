@@ -43,7 +43,7 @@
     <view class="sg_bar" style="width: 55%;">
         <view class="sg_bar_blue"></view>
         <image class="sg_bar_img" src="/images/anzhuang.png"></image>
-        <view class="sg_bar_title2">安装申请服务指南</view>
+        <view class="sg_bar_title">安装申请服务指南</view>
     </view>
 
     <view>
@@ -57,7 +57,7 @@
     <view class="sg_bar">
         <view class="sg_bar_blue"></view>
         <image class="sg_bar_img" src="/images/self-service.png"></image>
-        <view class="sg_bar_title3">自助服务指南</view>
+        <view class="sg_bar_title">自助服务指南</view>
     </view>
 
     <view>

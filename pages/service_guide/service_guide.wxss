@@ -8,53 +8,56 @@ image{
 }
 video{
     width:100%; 
-    height:180px;
+    height:360rpx;
 }
 view{
-    line-height: 22px;
+    line-height: 44rpx;
 }
 .sg_video{
     border:1px solid #000000;
     width:100%;
-    height:180px;
+    height:360rpx;
     text-align: center;
-    line-height: 180px;
+    line-height: 360rpx;
 }
 
 .sg_titile{
-    margin-bottom: 18px;
+    margin-bottom: 36rpx;
     font-weight: 600;
 }
 
 .sg_wrapper{
     background: #fff;
-    padding:18px 15px;
+    padding:36rpx 30rpx;
 }
 .sg_bar{
     width: 45%;
-    height: 30px;
+    height: 60rpx;
     border: 2px solid #202022;
     display: flex;
     background: #202022;
-    margin-top:30px;
+    margin-top:60rpx;
 }
 .sg_bar_img{
     width:42rpx;
     height: 46rpx;
-    margin-left:10px;
+    margin-left:20rpx;
+    margin-top:6rpx;
 }
 .sg_bar_blue{
-    width: 12px;
+    width: 24rpx;
     background-color: #0084d6;
     height:100%;
 }
 .sg_bar_title{
     color: #fff;
-    padding-left: 10px;
+    padding-left: 20rpx;
+    height:44rpx;
+     margin-top:7rpx;
 }
 .sg_repair_item{
     display: flex;
-    height: 111px;
+    height: 222rpx;
 }
 .sg_repair_image{
     width:70px;
@@ -65,7 +68,7 @@ view{
 .sg_repair_image image{
     width: 100%;
     height: 100%;
-    margin-left:6px;
+    margin-left:12rpx;
     align-self: center;
     flex:1;
 }
@@ -74,19 +77,12 @@ view{
     height:100%;
     border-bottom: 1px dashed #d3d3d3;
     align-self: center;
-    padding:30px 0;
+    padding:60rpx 0;
 }
 .sg_text{
-    margin:24px 0;
+    margin:48rpx 0;
 }
-.sg_bar_title2{
-    color: #fff;
-    padding-left: 10px;
-}
-.sg_bar_title3{
-    color: #fff;
-    padding-left: 10px;
-}
+
 .sg_img{
   width: 690rpx;
   height: 360rpx;
