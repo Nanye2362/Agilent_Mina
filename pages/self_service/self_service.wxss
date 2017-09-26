@@ -77,13 +77,13 @@ page{
 .ss_tab_content {
     width: 100%;
     position: relative;
-    height: 120rpx;
+    height: 112rpx;
     overflow: hidden;
 }
 
 .ss_tab {
     height: 120rpx;
-    padding: 0 25rpx;
+    padding: 0 40rpx;
     box-sizing: border-box;
     position: absolute;
     width:1100rpx;
@@ -91,13 +91,12 @@ page{
 }
 
 .ss_tab_item {
-    width: 150rpx;
+    width: 140rpx;
     float: left;
-    height: 90rpx;
-    line-height: 90rpx;
+    height: 75rpx;
+    line-height: 75rpx;
     text-align: center;
-    padding: 0 10rpx;
-    margin: 15rpx 15rpx;
+    margin: 18rpx 15rpx;
     border-radius: 10rpx;
 }
 

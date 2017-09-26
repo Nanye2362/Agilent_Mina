@@ -10,6 +10,17 @@
     <view class="fd_ans">
         <rich-text nodes="{{answers}}">
         </rich-text>
+
+        <!-- <block wx:for="{{}}">
+              <block wx:if="{{item.type == 'text'}} ">
+                    <view>text</view>
+              </block>
+               <block wx:elif="{{item.type == 'img'}}">
+                  <image src='{{}}'></image>
+               </block>
+               <block wx:else> <video src="{{src}}"></video> </block>
+        </block> -->
+
     </view>
     <!-- reminder -->
     <view class="fd_reminder">
