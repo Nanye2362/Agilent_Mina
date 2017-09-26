@@ -24,7 +24,8 @@ rich-text img{
     height: 12rpx;
     border-radius: 50%;
     background: #0085d5;
-    top: 54rpx;
+    top: 50%;
+    margin-top:-6rpx;
     left: 40rpx;
 }
 

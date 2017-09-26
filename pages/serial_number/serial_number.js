@@ -132,7 +132,7 @@ Page({
             })
             wx.showModal({
               title: '提示',
-              content: '序列号解析有误',
+              content: '序列号解析有误，如果您有任何疑问，可以点击页面下方的发起会话按钮',
               confirmText: '重新上传',
               success: function (sm) {
                 if (sm.confirm) {
@@ -149,7 +149,7 @@ Page({
             })
             wx.showModal({
               title: '提示',
-              content: '序列号与单位关联失败。',
+              content: '序列号与单位关联失败，如果您有任何疑问，可以点击页面下方的发起会话按钮',
               cancelText: '取消',
               cancelColor: '#3CC51F',
               confirmText: '重新上传',
