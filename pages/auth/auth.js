@@ -41,7 +41,7 @@ Page({
       url: 'auth/auth?mobile=' + mobile,
       data: {
         'mobile': mobile,
-        'vcode': vfcode,       
+        'verification_code': vfcode,       
         disabled:true,
       },
       success: function (res) {
