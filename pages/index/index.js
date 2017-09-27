@@ -79,7 +79,7 @@ Page({
     //   })
     // })
   },
-
+  /*
   onShow: function () {
       // 页面显示
     var vm = this;
@@ -134,7 +134,7 @@ Page({
         }
       }
     }, vm.data.interval2);
-  },
+  },*/
 
   srOnclick: function () {
     var user = wx.getStorageSync('user');

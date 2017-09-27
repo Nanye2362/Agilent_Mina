@@ -12,11 +12,17 @@
         <view class="h_alert_img">
             <image src="/images/info_alert.png"></image>
         </view>
-        <view class="example">
+        <view class="wrapper">
+            <view class="flex__item h_alert_con">
+                <text class="fc-fff fs14">{{text}}</text>
+            </view>
+        </view>
+        
+        <!--view class="example">
             <view class="flex__item h_alert_con marquee_box">
                 <view class="fc-fff fs14 marquee_text" style="{{orientation}}:{{marqueeDistance}}px;font-size: {{size}}px;">{{text}}</view>
             </view>
-        </view>
+        </view-->
         
     </view>
 </swiper>
