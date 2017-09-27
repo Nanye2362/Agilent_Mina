@@ -67,7 +67,9 @@ function NetRequest({ url, data, success, fail, complete, method = "POST" ,showl
       res['statusCode'] === 200 ? success(data) : fail(res)
     },
     fail: function(e){
-      fail();
+      if (typeof (fail) == 'function') {
+        fail(e);
+      }
     },
     complete: function(){
       if(typeof(complete)=='function'){
