@@ -241,13 +241,14 @@ Page({
   //打开PDF
   clickToReport: function (e) {
     var url = util.Server + 'site/open-file?ServconfId=' + e.currentTarget.dataset.servconfId;
+    wx.showLoading({
+      title: '下载中，请稍候',
+      mask: true
+    })
     wx.downloadFile({
       url: url,
       success: function (res) {
-        wx.showLoading({
-          title: '下载中，请稍候',
-          mask: true
-        })
+       
         var filePath = res.tempFilePath;
         console.log('filePath= ' + filePath);
         wx.openDocument({
