@@ -1,18 +1,17 @@
-<view id="id" class = "ball" bindtap = "handletap" bindtouchstart = "handletouchtart" bindtouchmove="handletouchmove" bindtouchend="handletouchend" style="left:{{left}};">
-</view>
-<view class="section">
-  <view class="section__title">movable-view区域小于movable-area</view>
-  <movable-area style="height: 200px;width: 200px;background: red;">
-    <movable-view style="height: 50px; width: 50px; background: blue;" x="{{x}}" y="{{y}}" direction="vertical">
-    </movable-view>
-  </movable-area>
-  <view class="btn-area">
-    <button size="mini" bindtap="tap">click me to move to (30px, 30px)</button>
+<view>1 显示完后再显示</view>
+<view class="example">
+  <view class="marquee_box">
+    <view class="marquee_text" style="{{orientation}}:{{marqueeDistance}}px;font-size: {{size}}px;">
+      {{text}}
+    </view>
   </view>
-  <view class="section__title">movable-view区域大于movable-area</view>
-  <movable-area style="height: 100px;width: 100px;background: red;" direction="all">
-    <movable-view style="height: 200px; width: 200px; background: blue;">dsjk
-    </movable-view>
-  </movable-area>
 </view>
-<button>{{WLA}}</button>
+<view>2 出现白边后即显示</view>
+<view class="example">
+  <view class="marquee_box">
+    <view class="marquee_text" style="{{orientation}}:{{marqueeDistance2}}px;font-size: {{size}}px;">
+      <text>{{text}}</text>
+      <text wx:if="{{marquee2copy_status}}" style="margin-left:{{marquee2_margin}}px;">{{text}}</text>
+    </view>
+  </view>
+</view>
