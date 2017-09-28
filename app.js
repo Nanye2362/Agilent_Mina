@@ -15,6 +15,7 @@ App({
             data: {
               code: res.code
             },
+            showload:false,
             success: function (r) {
               console.log(r);
               wx.setStorageSync('session3rd', r.session3rd);
@@ -24,6 +25,7 @@ App({
                   console.log(wx.getStorageSync('session3rd'));
                   util.NetRequest({
                     url: 'wechat-mini/get-userinfo',
+                    showload: false,
                     data: {
                       encryptedData: res.encryptedData,
                       iv: res.iv,
@@ -35,22 +37,19 @@ App({
                       if (m.success == true) {
                         wx.setStorageSync('MOBILE', m.mobile);
                         wx.setStorageSync('OPENID', m.openid);
+                        app.globalData.isLogin=true;
+                        app.gotoIndex();
                       } else {
                         wx.showModal({
                           title: '温馨提示',
                           content: '请先关注安捷伦公众账号',
                           showCancel: false,
                           success: function (res) {
-                            if (res.confirm) {
 
-                            }
                           }
                         })
                         console.log(m.error_msg);
                       }
-                    },
-                    complete: function () {
-                      app.globalData.isLoading = false;
                     }
                   })
                 }
@@ -64,13 +63,23 @@ App({
     });
   },
   onShow: function () {
-    console.log(1111);
+    console.log("index show");
   },
   globalData: {
     userInfo: null,
     requestList: [],
-    isLoading: false
+    isLoading: false,
+    isLogin:false,
+    isWelcomeAuth:false
     //token: wx.getStorageSync('token')
+  },
+  gotoIndex: function () {
+    console.log('enter');
+    if (this.globalData.isWelcomeAuth && this.globalData.isLogin){    
+      wx.switchTab({
+        url: '../index/index',
+      })
+    }
   },
   /*
   showTips: function () {
