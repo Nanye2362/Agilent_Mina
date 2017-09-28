@@ -27,7 +27,7 @@
     <view class="fd_reminder">
         <view class="fc-blue">温馨提示</view>
         <view>如果问题依然存在，请点击<view class="fc-blue btn-meiqia service_reviewair" bindtap='clickToRepair'>故障反馈</view>，或者您也可以拨打电话 <text class="fc-blue cu_tel" type="default" bindtap="calling" data-phone='400-820-3278'>400-820-3278(手机),</text>
-            <text class="fc-blue cu_tel" bindtap='calling' data-phone="800-820-3289"> 800-820-3289(座机)。</text></view>
+            <text class="fc-blue cu_tel" bindtap='calling' data-phone="800-820-3278"> 800-820-3278(座机)。</text></view>
     </view>
 </view>
 

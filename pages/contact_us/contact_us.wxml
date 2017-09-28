@@ -19,7 +19,7 @@
         </view>
         <view class="flex directionC">
             <view class="fc-blue fs15 cu_tel" type="default" bindtap="calling" data-phone='400-820-3278'>400-820-3278(手机)</view>
-            <view class="fc-blue fs15 cu_tel" bindtap='calling' data-phone="800-820-3289"> 800-820-3278(座机)</view>
+            <view class="fc-blue fs15 cu_tel" bindtap='calling' data-phone="800-820-3278"> 800-820-3278(座机)</view>
         </view>
     </view>
     <view class="cu_item flex alignc">
