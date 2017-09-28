@@ -7,14 +7,14 @@ Page({
    * 页面的初始数据
    */
   data: {
-    ProductId:'',
-    ProductDesc:'',
+    ProductId: '',
+    ProductDesc: '',
     SerialNo: '',
     CpName: '',
     ShipToName: '',
     userInfo: {},
-    TECH:'',
-    NONTECH:''
+    TECH: '',
+    NONTECH: ''
   },
   clickToNext: function(){
     wx.redirectTo({
@@ -26,17 +26,17 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
+
     this.setData({
       ProductId: options.ProductId,
       ProductDesc: options.ProductDesc,
       SerialNo: options.SerialNo,
       CpName: options.CpName,
       ShipToName: options.ShipToName,
-      TECH: 'T_psn:'+options.SerialNo,
-      NONTECH: 'N_psn:'+options.SerialNo,
+      TECH: 'T_psn:' + options.SerialNo,
+      NONTECH: 'N_psn:' + options.SerialNo,
     })
-    
+
     /*
     wx.getUserInfo({
       success: function (res) {
@@ -46,7 +46,7 @@ Page({
       }
     })*/
   },
- 
 
- 
+
+
 })
