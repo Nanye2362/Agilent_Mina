@@ -50,7 +50,8 @@ function NetRequest({ url, data, success, fail, complete, method = "POST" ,showl
     data: data,
     header: header,
     success: res => {
-      if (session_id == "" || session_id == null) {
+      if ((session_id == "" || session_id == null) && typeof (res.data.session_id) !="undefined") {
+        console.log(res.data.session_id);
         wx.setStorageSync('PHPSESSID', res.data.session_id); //如果本地没有就说明第一次请求 把返回的session id 存入本地
         var str =res.header['Set-Cookie'];
         console.log(str);
