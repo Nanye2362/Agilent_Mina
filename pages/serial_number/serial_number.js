@@ -169,5 +169,8 @@ Page({
         }
       }
     })
+  },
+  backHome: function(){
+    util.backHome()
   }
 })

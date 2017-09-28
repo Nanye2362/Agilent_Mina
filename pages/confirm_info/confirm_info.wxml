@@ -5,7 +5,7 @@
         <view class="pd_cells_title ">产品及用户信息</view>
         <view class="pd_camera flex justify-end">
             <image src="/images/camera.png"></image>
-            <view class="fc-blue" data-url="../serial_number/serial_number" bindtap="clickToNext">重新拍照</view>
+            <view class="fc-blue" bindtap="clickToNext">重新拍照</view>
         </view>
     </view>
     <view class="pd_con bg-primary">

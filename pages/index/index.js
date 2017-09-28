@@ -5,7 +5,7 @@ var app = getApp()
 var routes = require('../../utils/routes');
 Page({
   data: {
-    text: '敬请关注“安捷伦售后服务”公众号接收服务进度通知',
+    text: '',
     marqueePace: 1,//滚动速度
     marqueeDistance: 200,//初始滚动距离
     marqueeDistance2: 0,
@@ -39,7 +39,11 @@ Page({
       url: '../logs/logs'
     })
   },
-  onLoad: function (option) {   
+  onLoad: function (option) {
+    var text = wx.getStorageSync('wrapper_text')
+    this.setData({
+      text: text
+    })   
     console.log('onload' + option);
     var that = this
     console.log(app);

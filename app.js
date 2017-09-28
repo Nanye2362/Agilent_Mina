@@ -66,6 +66,7 @@ App({
   onShow: function () {
     console.log(1111);
   },
+  
   globalData: {
     userInfo: null,
     requestList: [],

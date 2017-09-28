@@ -179,3 +179,25 @@ view, text, input, button{ font-size: 32rpx; font-family: "MicroSoft Yahei"; col
 .marginB-40{
   margin-bottom: 80rpx;
 }
+
+
+/* ==================backHome===================== */
+.backHome{ 
+  position: fixed;
+  right: 0;
+  bottom: 20%;
+  width: 200rpx;
+  height: 70rpx;
+  background: #0085d5;
+  opacity: .5;
+  border-top-left-radius: 40rpx;
+  border-bottom-left-radius: 40rpx;
+  line-height: 70rpx;
+ }
+ .bH_img{
+   width: 40rpx;
+   height: 40rpx;
+   vertical-align: sub;
+   margin-left: 20rpx;
+   margin-right: 5px;
+ }

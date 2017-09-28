@@ -192,6 +192,12 @@ function getUserInfo(cb){
   }
 }
 
+function backHome(){
+  console.log('backHome')
+  wx.switchTab({
+    url: '../index/index',
+  })
+}
 module.exports = {
   formatTime: formatTime,
   NetRequest: NetRequest,
@@ -200,5 +206,6 @@ module.exports = {
   uploadImg: uploadImg,
   checkEmpty: checkEmpty,
   getUserInfo: getUserInfo,
-  checkWorktime: checkWorktime
+  checkWorktime: checkWorktime,
+  backHome: backHome
 }

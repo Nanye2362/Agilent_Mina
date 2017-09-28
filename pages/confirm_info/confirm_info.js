@@ -16,9 +16,11 @@ Page({
     TECH:'',
     NONTECH:''
   },
-  clickToNext: function(event){
-    common.clickToNext(event);
-  } ,
+  clickToNext: function(){
+    wx.redirectTo({
+      url: '../serial_number/serial_number',
+    })
+  }, 
   
   /**
    * 生命周期函数--监听页面加载

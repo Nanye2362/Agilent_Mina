@@ -1,3 +1,7 @@
+<import  src="../template/template"/>
+<template is="backHome" bindtap="backHome"/>
+
+
  <!--pages/serial_number/serial_number.wxml-->
 <image src="/images/sn_bg.jpg" class="sn_bg"></image>
 <view class="sn_title">产品序列号 (Serial No.)</view>
