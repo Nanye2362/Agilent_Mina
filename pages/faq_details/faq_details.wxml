@@ -8,19 +8,20 @@
     </view>
     <!-- answer -->
     <view class="fd_ans">
-        <rich-text nodes="{{answers}}">
-        </rich-text>
-
-        <!-- <block wx:for="{{}}">
-              <block wx:if="{{item.type == 'text'}} ">
-                    <view>text</view>
+       <block wx:for="{{answersList}}">
+              <block wx:if="{{item.type == 'text'}}">
+                  <view >
+                      <rich-text nodes="{{item.content}}"></rich-text>
+                  </view>
+                    
               </block>
-               <block wx:elif="{{item.type == 'img'}}">
-                  <image src='{{}}'></image>
+               <block wx:elif="{{item.type == 'video'}}">
+                <view style='position:relative'>
+                    <video src="{{item.content}}" controls="true"></video> 
+                </view>
+                  
                </block>
-               <block wx:else> <video src="{{src}}"></video> </block>
-        </block> -->
-
+        </block> 
     </view>
     <!-- reminder -->
     <view class="fd_reminder">

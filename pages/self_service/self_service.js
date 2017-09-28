@@ -12,7 +12,8 @@ Page({
     TECH:'T',
     searchFlag: false,
     searchFake: true,
-    searchValue: ''
+    searchValue: '',
+    autofocus: false   //搜索框内自动聚焦Flag
   },
   
   /**
@@ -69,7 +70,8 @@ sortList: function(list){
     console.log(2)
       this.setData({
         searchFlag: true,
-        searchFake: false
+        searchFake: false,
+        autofocus: true
       })
 
       console.log('searchFake=' + this.data.searchFake);
@@ -81,7 +83,8 @@ sortList: function(list){
     this.setData({
       searchFlag: false,
       searchFake: true,
-      searchValue: ''
+      searchValue: '',
+      autofocus: false
     })
   },
 

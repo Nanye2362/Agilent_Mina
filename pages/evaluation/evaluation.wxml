@@ -20,9 +20,9 @@
             <image class="e_star" src="../../images/{{star.src}}.png"></image>
           </view>
         </block>
-        
+      
       </view>
-      <view wx:if="{{item.currentCount > 0}}" class="e-count">{{item.currentCount}}星</view>
+      <view wx:if="{{item.currentCount >= 0}}" class="e-count">{{item.currentCount+1}}星</view>
     </view>
 </view>
 
@@ -30,7 +30,7 @@
 
 <!-- other_suggestion -->
 <view class="s-repair fs14 padding bg-primary">
-    <textarea class="s-textarea fs13" maxlength="20" >{{QuestionsSet_Comments.AnswervaluesSet.results[0].Value}}</textarea>
+    <textarea class="s-textarea fs13" maxlength="20" disabled='disabled'>{{QuestionsSet_Comments.AnswervaluesSet.results[0].Value}}</textarea>
     <view class="text-right fc-aaa">{{describeNo}}/20</view>
 </view>
 

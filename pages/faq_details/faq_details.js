@@ -10,10 +10,10 @@ Page({
     unusefulFlag: false,
     maskFlag: true,
     TECH:'',
-    answers:'',
+    answersList:'',
     questions:''
   },
-
+  
   /**
    * 生命周期函数--监听页面加载
    */
@@ -35,8 +35,9 @@ Page({
         })
         that.setData({
           TECH: meiqiaInfo.TECH,
-          answers: res.detail.answers,
-          questions: res.detail.questions
+          answersList: res.detail.answers,
+          questions: res.detail.questions,
+
         })
       },
       complete: function () {

@@ -29,9 +29,8 @@
           <image class="e_star" src="../../images/{{star.src}}.png"></image>
         </view>
       </block>
-
     </view>
-    <view wx:if="{{item.currentCount > 0}}" class="e-count">{{item.currentCount}}星</view>
+    <view  wx:if="{{item.currentCount >= 0}}" class="e-count">{{item.currentCount}}星</view>
   </view>
 </view>
 

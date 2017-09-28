@@ -25,7 +25,19 @@ Page({
     TECH: 'T_srid:',
     SN:';sn:'
   },
-
+onShow:function(){
+  var that = this;
+    //请求后台接口
+    util.NetRequest({
+      url: 'site-mini/service-list',
+      success: function (res) {
+        that.sortHistory(res);
+        that.setData({
+          getContactId: res.SerialNo_list[0].ContactId
+        });
+      }
+    });
+},
   onLoad: function (option) {
     console.log('option-sn=============================' + option.sn)
     var that = this;
@@ -242,13 +254,13 @@ Page({
   clickToReport: function (e) {
     var url = util.Server + 'site/open-file?ServconfId=' + e.currentTarget.dataset.servconfId;
     wx.showLoading({
-      title: '下载中，请稍候',
+      title: '下载中...',
       mask: true
     })
     wx.downloadFile({
       url: url,
       success: function (res) {
-       
+        console.log(res);
         var filePath = res.tempFilePath;
         console.log('filePath= ' + filePath);
         wx.openDocument({
@@ -270,7 +282,11 @@ Page({
         wx.hideLoading();
       },
       fail: function () {
-        console.log('PDF下载失败')
+        wx.showModal({
+          title: '提示',
+          content: '报告下载失败，请检测网络。',
+          showCancel: false,
+        })
       },
     })
   },
@@ -283,4 +299,4 @@ Page({
       url: '../evaluation/evaluation?Surveyid=' + Surveyid + '&&SerialNo=' + SerialID
     })
   }
-})
+}) 

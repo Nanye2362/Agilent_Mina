@@ -9,7 +9,7 @@
        <view class="search-bar-top flex" wx:if="{{searchFlag}}">
             <view class='search-bar_cancel-btn' bindtap='clickToCancel'>取消</view>
             <input class="nosearchIconTop" placeholder="搜索常见问题" 
-            bindinput="bindInput" value="{{inputValue}}" />
+            bindinput="bindInput" value="{{inputValue}}" focus="{{autofocus}}" />
             <view class='search-bar_submit-btn' bindtap='clickToSearch'>确定</view>
             <image class="search-bar-icon" src="/images/search.png"></image> 
       </view>
@@ -75,7 +75,7 @@
                       </view>
               </view>
 
-              <view class="faq_notification text-center bg-primary marginB-20" style='margin-top:20rpx;'>
+              <view class="faq_notification text-center bg-primary marginB-20" style='margin-top:40rpx;'>
     <view>如有其他疑问，您可以提交<view class="fc-blue service_repair btn-meiqia" bindtap='clickToRepair'>故障反馈</view>
     </view>
 </view>
