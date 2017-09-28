@@ -64,30 +64,30 @@ Page({
           console.log(res.error_msg)
           var skipFlag = res.noskip;
           var err_msg = res.error_msg;
-          var error_msg = '';
+          var e_msg = '';
           switch (err_msg){
             case 'UB001':
-              error_msg = '(UB001)身份认证通过';
+              e_msg = '(UB001)身份认证通过';
                 break;
             case 'UB002':
-              error_msg = '(UB002)身份认证通过，您的联系信息关联多家单位，我们将根据您第一次报修的仪器序列号为您关联单位名称';
+              e_msg = '(UB002)身份认证通过，您的联系信息关联多家单位，我们将根据您第一次报修的仪器序列号为您关联单位名称';
                 break;
             case 'UB003':
-              error_msg = '(UB003)身份认证失败，您的手机号在系统中关联了多个联系人，请点击下方发起会话确认';
+              e_msg = '(UB003)身份认证失败，您的手机号在系统中关联了多个联系人，请点击下方发起会话确认';
               break;
             case 'UB004':
-              error_msg = '(UB004)您已经通过身份认证';
+              e_msg = '(UB004)您已经通过身份认证';
               break;
             case 'UB005':
-              error_msg = '(UB005)您的手机在系统中未关联任何联系人，请提供相关信息，我们尽快为您建档';
+              e_msg = '(UB005)您的手机在系统中未关联任何联系人，请提供相关信息，我们尽快为您建档';
               break;
             case 'UB006':
-              error_msg = '(UB006)UB006';
+              e_msg = '(UB006)UB006';
               break;
           }
           wx.showModal({
             title: '认证失败',
-            content: error_msg,
+            content: e_msg,
             showCancel: false,
             success: function (res) {
               if (res.confirm) {
