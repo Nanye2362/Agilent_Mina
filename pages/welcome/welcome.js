@@ -16,6 +16,8 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
+    var app = getApp();
+    app.globalData.isLoading = true;
     util.NetRequest({
       url: 'api/check-lunch',
       data: {
@@ -23,18 +25,17 @@ Page({
       success: function (res) {
         if (res.success) {
           wx.setStorageSync('wrapper_text', res.text);
-          setTimeout(function () {
-            wx.switchTab({ url: '../index/index', })
-          }, 2000)
-
+          app.globalData.isWelcomeAuth=true;
+          app.gotoIndex();
         } else {
           that.setData({
             welcomeWord: '服务即将开启，敬请期待'
           })
+          wx.hideLoading();
         }
-
       },
-      fail: function () {
+      fail: function (res) {
+        console.log(res);
         wx.showModal({
           title: '请求失败',
           content: '请检查您的网络',
@@ -48,20 +49,11 @@ Page({
       }
     })
   },
-
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
 
-  },
-  gotoIndex: function () {
-    console.log('enter')
-    wx.switchTab({
-      url: '../index/index',
-    })
-  },
-
-
+  }
 
 })
