@@ -21,19 +21,20 @@ Page({
       data: {
       },
       success: function (res) {
-        if(res.success){
-          setTimeout(function(){
+        if (res.success) {
+          wx.setStorageSync('wrapper_text', res.text);
+          setTimeout(function () {
             wx.switchTab({ url: '../index/index', })
-          },2000)
-          
-        }else{
+          }, 2000)
+
+        } else {
           that.setData({
             welcomeWord: '服务即将开启，敬请期待'
-          })        
+          })
         }
-        
+
       },
-      fail: function(){
+      fail: function () {
         wx.showModal({
           title: '请求失败',
           content: '请检查您的网络',
@@ -52,15 +53,15 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-  
+
   },
-  gotoIndex: function(){
+  gotoIndex: function () {
     console.log('enter')
     wx.switchTab({
       url: '../index/index',
     })
   },
-  
+
 
 
 })
