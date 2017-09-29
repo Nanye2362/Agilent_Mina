@@ -194,6 +194,7 @@ view, text, input, button{ font-size: 32rpx; font-family: "MicroSoft Yahei"; col
   border-bottom-left-radius: 80rpx;
   line-height: 80rpx;
   box-shadow:  0px 2px 6px 0px rgba(0, 0, 0, 0.5);
+  z-index: 5999;
  }
  .bH_img{
    width: 34rpx;
