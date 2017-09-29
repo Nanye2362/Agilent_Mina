@@ -18,6 +18,9 @@ Page({
     AccountGuid: '',
     AccountId: '',
   },
+  backHome: function () {
+    util.backHome()
+  },
 
 
   onLoad: function () {

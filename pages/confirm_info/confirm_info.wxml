@@ -1,4 +1,7 @@
 <!--pages/confirm_info/confirm_info.wxml-->
+<!-- 回到首页 -->
+<import  src="../template/template"/>
+<template is="backHome" bindtap="backHome"/>
 
 <view class="pd_form" id="pd_form">
     <view class="pd_cell flex">

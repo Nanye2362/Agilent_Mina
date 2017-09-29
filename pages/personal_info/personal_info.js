@@ -1,4 +1,5 @@
 // pages/personal_info/personal_info.js
+var util = require('../../utils/util.js');
 Page({
 
   /**
@@ -12,6 +13,9 @@ Page({
   },
   radioChange: function (e) {
     console.log('radioClick');
+  },
+  backHome: function () {
+    util.backHome()
   },
 
   /**

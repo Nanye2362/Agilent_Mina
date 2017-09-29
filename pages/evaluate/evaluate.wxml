@@ -1,3 +1,6 @@
+<!-- 回到首页 -->
+<import  src="../template/template"/>
+<template is="backHome" bindtap="backHome"/>
 <!-- grade_result -->
 <view class="ev_grade flex">
   <!-- avatar -->
@@ -38,7 +41,7 @@
 
 <!-- other_suggestion -->
 <view class="s-repair fs14 padding bg-primary">
-  <textarea class="s-textarea fs13" bindinput="desNo" maxlength="20" placeholder="请详细说说您对本次服务的体验吧！您的反馈将成为我们不断改进的动力。" data-question_id='{{QuestionsSet_Comments.QuestionId}}' data-questionDesc='{{QuestionsSet_Comments.QuestionDesc}}' data-answerId='{{QuestionsSet_Comments.AnswerId}}'
+  <textarea class="s-textarea fs13" bindinput="desNo" maxlength="20" placeholder="请说说您对本次服务的体验吧！您的反馈将成为我们不断改进的动力。" data-question_id='{{QuestionsSet_Comments.QuestionId}}' data-questionDesc='{{QuestionsSet_Comments.QuestionDesc}}' data-answerId='{{QuestionsSet_Comments.AnswerId}}'
     data-value="{{QuestionsSet_Comments.AnswervaluesSet.results[0].Value}}" data-value_id="{{QuestionsSet_Comments.AnswervaluesSet.results[0].Valueid}}" data-value_selected="{{QuestionsSet_Comments.AnswervaluesSet.results[0].ValueSelected}}" />
   <view class="text-right fc-aaa">{{describeNo}}/20</view>
 </view>

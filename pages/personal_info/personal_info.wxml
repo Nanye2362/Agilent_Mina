@@ -1,3 +1,7 @@
+<!-- 回到首页 -->
+<import  src="../template/template"/>
+<template is="backHome" bindtap="backHome"/>
+
 <!--pages/personal_info/personal_info.wxml-->
 <!-- avatar -->
 <view class="personal_avatar flex bg-primary">

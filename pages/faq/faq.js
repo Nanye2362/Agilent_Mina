@@ -41,6 +41,10 @@ Page({
     });
   },
 
+  backHome: function () {
+    util.backHome()
+  },
+
   addSelectedFlag: function(list){
       var listFlag = list;
       var getid = this.data.getid;

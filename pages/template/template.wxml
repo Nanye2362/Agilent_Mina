@@ -1,0 +1,6 @@
+<template name="backHome">
+    <view class="backHome" bindtap='backHome'>
+        <image src='/images/h.png' class="bH_img"></image>
+        <text class="fc-fff fs13">回到首页</text>
+    </view>  
+</template>

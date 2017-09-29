@@ -52,6 +52,9 @@ Page({
     this.setData({ usefulFlag: true, maskFlag: false });
 
   },
+  backHome: function () {
+    util.backHome()
+  },
 
   unusefulClick:function(){
     this.setData({ unusefulFlag: true, maskFlag: false });

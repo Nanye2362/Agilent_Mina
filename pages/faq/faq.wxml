@@ -1,3 +1,7 @@
+<!-- 回到首页 -->
+<import  src="../template/template"/>
+<template is="backHome" bindtap="backHome"/>
+
 <!--pages/faq/faq.wxml-->
 <view wx:if="{{dropdown}}" class="faq_mask" bindtap="clickToHide"></view>
 <view class="faq">

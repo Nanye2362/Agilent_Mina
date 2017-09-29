@@ -20,6 +20,9 @@ Page({
         'mobile': mobile,
       })
     },
+    backHome: function () {
+      util.backHome()
+    },
     //submit form
     submitConfirm: function(e){
       console.log(e.detail.value)
@@ -64,7 +67,7 @@ Page({
           } else {
             wx.showModal({
               title: '重复提交',
-              content: '您已提交信息，客服正在为您建档',
+              content: '您已提交信息，客服正在为您建档，建档成功后将通过电话或短信通知您',
               showCancel: false,
               success: function (res) {
                 if (res.confirm) {
@@ -79,7 +82,7 @@ Page({
         fail: function (err) {
           wx.showModal({
             title: '提交失败',
-            content: '您已提交过信息，客服正在为您建档',
+            content: '您已提交过信息，客服正在为您建档，建档成功后将通过电话或短信通知您',
             success: function (res) {
               if (res.confirm) {
               }

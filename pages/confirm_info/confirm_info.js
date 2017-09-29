@@ -1,5 +1,6 @@
 // pages/confirm_info/confirm_info.js
 var common = require("../../utils/common.js");
+var util = require('../../utils/util.js');
 var app = getApp()
 Page({
 
@@ -36,17 +37,10 @@ Page({
       TECH: 'T_psn:'+options.SerialNo,
       NONTECH: 'N_psn:'+options.SerialNo,
     })
-    
-    /*
-    wx.getUserInfo({
-      success: function (res) {
-        var userInfo = res.userInfo
-        console.log(userInfo)
-        console.log(JSON.stringify(userInfo))
-      }
-    })*/
   },
- 
+  backHome: function () {
+    util.backHome()
+  },
 
  
 })

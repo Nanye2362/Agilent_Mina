@@ -43,6 +43,10 @@ Page({
       }
     })
   },
+
+  backHome: function () {
+    util.backHome()
+  },
  
 
   //生成stars
