@@ -23,10 +23,10 @@ Page({
     getSn: '',
     getContactId: '',
     TECH: 'T_srid:',
-    SN:';sn:'
+    SN: ';sn:',
   },
-onShow:function(){
-  var that = this;
+  onShow: function () {
+    var that = this;
     //请求后台接口
     util.NetRequest({
       url: 'site-mini/service-list',
@@ -37,7 +37,7 @@ onShow:function(){
         });
       }
     });
-},
+  },
   onLoad: function (option) {
     console.log('option-sn=============================' + option.sn)
     var that = this;
@@ -257,7 +257,8 @@ onShow:function(){
       title: '下载中...',
       mask: true
     })
-    wx.downloadFile({
+
+    var downloadTask = wx.downloadFile({
       url: url,
       success: function (res) {
         console.log(res);

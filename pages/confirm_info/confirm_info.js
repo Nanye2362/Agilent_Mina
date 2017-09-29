@@ -8,14 +8,10 @@ Page({
    * 页面的初始数据
    */
   data: {
-    ProductId:'',
-    ProductDesc:'',
     SerialNo: '',
     CpName: '',
     ShipToName: '',
     userInfo: {},
-    TECH:'',
-    NONTECH:''
   },
   clickToNext: function(){
     wx.redirectTo({
@@ -34,13 +30,12 @@ Page({
       SerialNo: options.SerialNo,
       CpName: options.CpName,
       ShipToName: options.ShipToName,
-      TECH: 'T_psn:'+options.SerialNo,
-      NONTECH: 'N_psn:'+options.SerialNo,
     })
   },
   backHome: function () {
     util.backHome()
   },
 
- 
+
+
 })
