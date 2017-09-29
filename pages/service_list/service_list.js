@@ -273,7 +273,7 @@ Page({
             console.log(res)
             wx.showModal({
               title: '提示',
-              content: '报告显示错误。如果需要此报告，请联系客服索取。',
+              content: '报告显示错误。如果需要此报告，请返回，点击发起会话向客服索取。',
               showCancel: false,
             })
           }

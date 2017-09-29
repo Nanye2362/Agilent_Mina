@@ -1,6 +1,6 @@
 <template name="backHome">
-    <view class="backHome" bindtap='backHome'>
+    <view class="backHome flex alignc" bindtap='backHome'>
         <image src='/images/h.png' class="bH_img"></image>
-        <text class="fc-fff fs13">回到首页</text>
+        <text class="fs13 self-center" class="bh_text">回到首页</text>
     </view>  
 </template>
