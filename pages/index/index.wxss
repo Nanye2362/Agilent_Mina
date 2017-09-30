@@ -90,9 +90,9 @@
 } 
 @keyframes horse  
 {  
-    0%   {left:100px;top:0px;}  
-    47%  {left:-400px;top:0px;}  
-    48%  {left:400px;top:300px;}
-    49%  {left:400px;top:0px;}  
-    100% {left:100px;top:0px;}  
+    0%   {left:250rpx;top:0px;}  
+    66%  {left:-750rpx;top:0px;}  
+    66.5%{left:750rpx;top:600rpx;}
+    67%  {left:750rpx;top:0px;}  
+    100% {left:250rpx;top:0px;}  
 }
