@@ -113,7 +113,6 @@ Page({
     var that = this;
     var mobile = that.data.mobile;
     console.log('mobile'+mobile);
-    console.log('mobile length = ' + mobile.length);
     if (mobile.length == 0) {
       wx.showToast({
         title: '手机号不能为空',
