@@ -5,8 +5,10 @@ page{ background: #fff; }
 .regist_item{ padding:30rpx 30rpx; border-bottom: 1px solid #e6e7e6; position: relative;}
 .item_title{ flex: .3; }
 .input_phone{ flex: .8; }
-.input_verification{ flex: .8;  }
-.verification_btn{ position: absolute; margin: 0; right: 30rpx; top: 20rpx; z-index: 10; border: 1px solid #0085d5;}
+/*.input_verification{ flex: .8;  }*/
+.input_verification{ flex: .4; }
+/*.verification_btn{ position: absolute; margin: 0; right: 30rpx; top: 20rpx; z-index: 10; border: 1px solid #0085d5;}*/
+.verification_btn{ flex: .3; border: 1px solid #0085d5;}
 .regist_remind{ margin-top: 60rpx; }
 .regist_checkbox{ margin-right: 10rpx; }
 .gentle_remind{ margin-top: 20rpx; }

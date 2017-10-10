@@ -169,10 +169,13 @@ Page({
       this.setData({ mobileV: false })      
     } else{
       this.setData({ mobileV: true })
+      var smobile = e.detail.value
+      this.setData({ mobile: smobile });
     }
   },
 
   //获取输入的值
+  /*
   setmobile: function(e){
     var smobile = e.detail.value
     this.setData({mobile:smobile});
@@ -181,7 +184,7 @@ Page({
   setcode: function (e) {
     var scode = e.detail.value
     this.setData({ verification_code: scode });
-  },
+  },*/
    //判断输入框的值是否为空
   getcode: function (e) {
     console.log(e.detail.value)
@@ -189,6 +192,8 @@ Page({
       this.setData({ codeV: false })     
     } else{
       this.setData({ codeV: true })
+      var scode = e.detail.value
+      this.setData({ verification_code: scode });
     }
   },
 

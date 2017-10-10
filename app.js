@@ -45,7 +45,7 @@ App({
                         app.globalData.needCheck=true;
                         wx.showModal({
                           title: '温馨提示',
-                          content: '请先关注安捷伦公众账号',
+                          content: '为了更好的体验，请关注“安捷伦售后服务”公众号后再使用小程序。',
                           showCancel: false,
                           success: function (res) {
 
@@ -93,7 +93,7 @@ App({
                 wx.hideLoading();
                 wx.showModal({
                   title: '温馨提示',
-                  content: '请先关注安捷伦公众账号',
+                  content: '为了更好的体验，请关注“安捷伦售后服务”公众号后再使用小程序。',
                   showCancel: false,
                   success: function (res) {
                   }
