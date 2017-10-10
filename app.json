@@ -1,0 +1,59 @@
+{
+  "pages": [
+    "pages/welcome/welcome",
+    "pages/contact_us/contact_us",
+    "pages/evaluate/evaluate",
+    "pages/index/index",
+    "pages/self_service/self_service",
+    "pages/search-list/search-list",
+    "pages/auth/auth",
+    "pages/faq/faq",
+    "pages/faq_details/faq_details",
+    "pages/service_list/service_list",
+    "pages/evaluation/evaluation",
+    "pages/myhome/myhome",
+    "pages/fill_info/fill_info",
+    "pages/install/install",
+    "pages/my_instrument/my_instrument",
+    "pages/confirm_info/confirm_info",
+    "pages/serial_number/serial_number",
+    "pages/service_guide/service_guide",
+    "pages/budget_confirm/budget_confirm",
+    "pages/personal_info/personal_info",
+    "pages/logs/logs",
+    "pages/leave_message/leave_message",
+    "pages/contact_service/contact_service"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#444",
+    "navigationBarTitleText": "安捷伦售后服务",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "color": "#a9b7b7",
+    "selectedColor": "#0085d5",
+    "backgroundColor": "#f7f7f7",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "/images/home.png",
+        "selectedIconPath": "images/home_c.png"
+      },
+      {
+        "pagePath": "pages/contact_us/contact_us",
+        "text": "联系安捷伦",
+        "iconPath": "/images/contact.png",
+        "selectedIconPath": "/images/contact_c.png"
+      },
+      {
+        "pagePath": "pages/myhome/myhome",
+        "text": "我的",
+        "iconPath": "images/my.png",
+        "selectedIconPath": "images/my_c.png"
+      }
+    ]
+  }
+}

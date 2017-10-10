@@ -48,6 +48,7 @@ App({
                           content: '请先关注安捷伦公众账号',
                           showCancel: false,
                           success: function (res) {
+
                           }
                         })
                         console.log(m.error_msg);
@@ -118,7 +119,7 @@ App({
   gotoIndex: function () {
     console.log('enter');
     if (this.globalData.isWelcomeAuth && this.globalData.isLogin){ 
-      this.globalData.isLoading=false;
+      this.globalData.isLoading = false;
       wx.switchTab({
         url: '../index/index',
       })

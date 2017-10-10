@@ -113,7 +113,7 @@ Page({
     var that = this;
     var mobile = that.data.mobile;
     console.log('mobile'+mobile);
-
+    console.log('mobile length = ' + mobile.length);
     if (mobile.length == 0) {
       wx.showToast({
         title: '手机号不能为空',
@@ -131,7 +131,7 @@ Page({
           'mobile': mobile
         },
         success: function (res) {
-          console.log(res.data.status);
+          console.log(res);
           if (res.data.status == 1) {
             that.setData({ disabled1: true })
             that.setData({ code: nums + '秒' })
@@ -171,6 +171,7 @@ Page({
       this.setData({ mobileV: true })
     }
   },
+
   //获取输入的值
   setmobile: function(e){
     var smobile = e.detail.value
