@@ -9,12 +9,12 @@
         <!-- phone_num -->
         <view class="regist_item phone_no flex align-center">
             <view class="item_title align-center fs13">+86</view>
-            <input class="input_phone align-center fs13" bindinput="getmobile" name="mobile" bindblur='setmobile' placeholder="请输入手机号" type="number" />
+            <input class="input_phone align-center fs13" bindinput="getmobile" name="mobile" placeholder="请输入手机号" type="number" />
         </view>
         <!-- verification_code -->
         <view class="regist_item verification_code flex">
             <view class="item_title align-center fs13">验证码</view>
-            <input class="input_verification align-center fs13" bindinput="getcode" name="verification_code" bindblur='setcode' placeholder="请输入验证码" type="number"/>
+            <input class="input_verification align-center fs13" bindinput="getcode" name="verification_code" placeholder="请输入验证码" type="number"/>
             <button class="verification_btn align-center fs12 fc-blue bg-primary" bindtap="getSMSCode" disabled="{{disabled1}}">{{code}}</button>
         </view>
         <!-- remind -->
