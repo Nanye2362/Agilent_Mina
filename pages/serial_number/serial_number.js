@@ -14,7 +14,7 @@ Page({
     AccountGuid: '',
     AccountId: '',
     chat: false,
-    NONTECH: 'N_ssn:',
+    NONTECH: 'W_ssn:',
   },
 
   /**
