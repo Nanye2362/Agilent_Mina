@@ -44,7 +44,7 @@
                       <!-- hot_issue -->
                       <view class="ss_hot_issue bg-primary">
                           <!-- question -->
-                          <view class="ss_hi_con fc-blue fs14">
+                          <view class="ss_hi_con fc-blue fs12">
                               <block wx:for="{{item.category}}">
                                   <view >
                                         <view class="faq_item_con" data-id='{{item.id}}' bindtap='clickToFaqDetails'>{{item.questions}}</view>

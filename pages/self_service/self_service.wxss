@@ -131,7 +131,7 @@ page{
 }
 
 .ss_hot_issue {
-    padding: 10rpx 40rpx;
+    padding: 10rpx 30rpx;
 }
 
 .ss_title {
@@ -148,19 +148,20 @@ page{
 }
 
 .ss_hi_con {
-    padding: 30rpx 20rpx 0;
+    padding: 30rpx 0rpx 0 20rpx;
 }
 
 .ss_hi_con > view {
     list-style: disc;
     margin-bottom: 40rpx;
     position: relative;
-    padding: 0 20rpx ;
+    padding: 0 0 0 20rpx ;
 }
 
 .ss_hi_con > view view {
     color: #0085d5;
     display: block;
+    font-size: 31rpx;
 }
 
 .ss_qc_con > view {
