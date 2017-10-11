@@ -8,7 +8,7 @@
     <view class="sg_titile">安捷伦小程序使用指南</view>
 
     <view class="sg_video">
-            <video src="{{src}}" controls="true"  poster="../../images/fake-guide.jpg" ></video>
+            <video src="{{src}}" controls="true"  poster="https://prd.wechat.service.agilent.com/images/video-fake.jpg" ></video>
     </view>
 
     <view class="sg_bar">
