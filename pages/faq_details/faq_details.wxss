@@ -80,3 +80,12 @@ rich-text img{
     background: red;
     z-index: 999;
 }
+.fd_video{
+  width: 300px;
+  height: 225px;
+}
+.fd_video video{
+  position: absolute;
+  top:0;
+  left:0;
+}

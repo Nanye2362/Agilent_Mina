@@ -20,7 +20,7 @@
                     
               </block>
                <block wx:elif="{{item.type == 'video'}}">
-                <view style='position:relative'>
+                <view class='fd_video' style='position:relative;'>
                     <video src="{{item.content}}" controls="true"></video> 
                 </view>
                   
