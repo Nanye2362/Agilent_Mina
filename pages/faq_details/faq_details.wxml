@@ -13,17 +13,21 @@
     <!-- answer -->
     <view class="fd_ans">
        <block wx:for="{{answersList}}">
-              <block wx:if="{{item.type == 'text'}}">
+              <!-- <image style="width:100%"  src='https://prd.wechat.service.agilent.com/admin/uploads/15076834101.bmp'></image> -->
+                <block wx:if="{{item.type == 'text'}}">
                   <view >
                       <rich-text nodes="{{item.content}}"></rich-text>
                   </view>
-                    
-              </block>
+              </block>  
+               <block wx:elif="{{item.type == 'img'}}">
+                  <view>
+                      <image style="width:100%; max-width:100%;"  src='{{item.content}}'></image>
+                  </view>
+               </block>
                <block wx:elif="{{item.type == 'video'}}">
                 <view class='fd_video' style='position:relative;'>
                     <video src="{{item.content}}" controls="true"></video> 
                 </view>
-                  
                </block>
         </block> 
     </view>
