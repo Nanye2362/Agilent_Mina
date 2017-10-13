@@ -95,10 +95,23 @@ Page({
     })
   },
 
-  saveTheValue: function (e) {    
+  saveTheValue: function (e) {
+    var value = e.detail.value
+    var pos = e.detail.cursor
+    this.setData({ inputValue: value })
+    //直接返回对象，可以对输入进行过滤处理，同时可以控制光标的位置
+    return {
+      value: value.replace(value, value.toUpperCase()),
+      cursor: pos
+    }
+     
+    
+    /*
     var inputValue = e.detail.value.toUpperCase()
     console.log(inputValue)
     this.setData({ inputValue: inputValue })
+    console.log(e);
+    */
   },
 
   clickToSubmit: function (event) {

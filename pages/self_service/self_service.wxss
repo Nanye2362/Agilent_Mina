@@ -153,7 +153,7 @@ page{
 
 .ss_hi_con > view {
     list-style: disc;
-    margin-bottom: 40rpx;
+    margin-bottom: 30rpx;
     position: relative;
     padding: 0 0 0 20rpx ;
 }
@@ -161,7 +161,7 @@ page{
 .ss_hi_con > view view {
     color: #0085d5;
     display: block;
-    font-size: 31rpx;
+    font-size: 30rpx;
 }
 
 .ss_qc_con > view {
