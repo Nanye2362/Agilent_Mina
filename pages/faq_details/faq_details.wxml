@@ -21,7 +21,7 @@
               </block>  
                <block wx:elif="{{item.type == 'img'}}">
                   <view>
-                      <image style="max-width:100%;" mode="widthFix" src='{{item.content}}'></image>
+                      <image style="max-width:100%;" mode="aspectFit" src='{{item.content}}'></image>
                   </view>
                </block>
                <block wx:elif="{{item.type == 'video'}}">
