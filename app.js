@@ -55,6 +55,18 @@ App({
                       }
                     }
                   })
+                },
+                fail: function () {
+                  wx.showModal({
+                    title: '警告',
+                    content: '必须允许才可以继续使用小程序。重试可以微信-发现-小程序-左滑删除这个小程序-重新进入-允许开始使用小程序',
+                    showCancel: false,
+                    success: function (res) {
+                      // that.getUserInfo();
+                    }
+                  })
+                  console.log('拒绝getuserinfo');
+                  wx.hideLoading();
                 }
               })
             }
