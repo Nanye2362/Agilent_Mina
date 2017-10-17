@@ -15,6 +15,7 @@ Page({
     AccountId: '',
     chat: false,
     NONTECH: 'W_ssn:',
+    cameraValue: ''
   },
 
   /**
@@ -59,6 +60,7 @@ Page({
             // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片  
             if (value){
               _this.setData({
+                cameraValue: value,
                 inputValue: value
               });
             }else{
