@@ -31,9 +31,9 @@ App({
   },
   onShow: function (res) {
     console.log(res);
-    var app = getApp();
-    if (!app.globalData.isSetOption){
-      app.getUserInformation();
+    //var app = getApp();
+    if (!this.globalData.isSetOption){
+      this.getUserInformation();
     }
   },
 
@@ -75,14 +75,14 @@ App({
           success: function (m) {
             console.log(m);
             if (m.success == true) {
-              app.globalData.needCheck = false;
+              that.globalData.needCheck = false;
               wx.setStorageSync('MOBILE', m.mobile);
               wx.setStorageSync('OPENID', m.openid);
-              app.globalData.isLogin = true;
-              app.gotoIndex();
+              that.globalData.isLogin = true;
+              that.gotoIndex();
             } else {
               wx.hideLoading();
-              app.globalData.needCheck = true;
+              that.globalData.needCheck = true;
               wx.showModal({
                 title: '温馨提示',
                 content: '为了更好的体验，请关注“安捷伦售后服务”公众号后再使用小程序。',
