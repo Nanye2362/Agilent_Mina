@@ -1,7 +1,15 @@
 //app.js
 var util = require('/utils/util.js');
+//var aldstat = require("./utils/ald-stat.js");
+//var mta = require('/utils/mta_analysis.js');
 App({
   onLaunch: function () {
+/*    mta.App.init({
+      "appID": "500539156",
+      "eventID": "500539161",
+    });
+    this.mta = mta;
+*/
     wx.login({
       success: function (res) {
         var that = this;
@@ -31,12 +39,12 @@ App({
   },
   onShow: function (res) {
     console.log(res);
-    var app = getApp();
-    if (!app.globalData.isSetOption){
-      app.getUserInformation();
+    var that=this;
+    if (!that.globalData.isSetOption && !that.globalData.isFirstLunch){
+      that.getUserInformation();
     }
+    that.globalData.isFirstLunch=false;
   },
-
   globalData: {
     userInfo: null,
     requestList: [],
@@ -44,7 +52,8 @@ App({
     isLogin: false,
     isWelcomeAuth: false,
     needCheck: false,
-    isSetOption:false
+    isSetOption:false,
+    isFirstLunch:true
     //token: wx.getStorageSync('token')
   },
   gotoIndex: function () {
@@ -75,14 +84,15 @@ App({
           success: function (m) {
             console.log(m);
             if (m.success == true) {
-              app.globalData.needCheck = false;
+              console.log(that);
+              that.globalData.needCheck = false;
               wx.setStorageSync('MOBILE', m.mobile);
               wx.setStorageSync('OPENID', m.openid);
-              app.globalData.isLogin = true;
-              app.gotoIndex();
+              that.globalData.isLogin = true;
+              that.gotoIndex();
             } else {
               wx.hideLoading();
-              app.globalData.needCheck = true;
+              that.globalData.needCheck = true;
               wx.showModal({
                 title: '温馨提示',
                 content: '为了更好的体验，请关注“安捷伦售后服务”公众号后再使用小程序。',
