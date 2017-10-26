@@ -40,10 +40,47 @@ Page({
     })
   },
   onLoad: function (option) {
-    var text = wx.getStorageSync('wrapper_text')
-    this.setData({
-      text: text
-    })   
+    var that = this;
+    var text='';
+    util.NetRequest({
+      url: 'api/check-lunch',
+      data: {
+      },
+      success: function (res) {
+        if (res.success) {
+          wx.setStorageSync('wrapper_text', res.text);
+          that.setData({
+            text: res.text
+          })
+          wx.hideLoading();
+        } else {
+          wx.showModal({
+            title: '温馨提示',
+            content: '服务器维护中，请稍后尝试',
+            showCancel: false,
+            success: function (res) {
+              if (res.confirm) {
+                console.log('用户点击确定')
+              }
+            }
+          })
+          wx.hideLoading();
+        }
+      },
+      fail: function (res) {
+        console.log(res);
+        wx.showModal({
+          title: '请求失败',
+          content: '请检查您的网络',
+          showCancel: false,
+          success: function (res) {
+            if (res.confirm) {
+              console.log('用户点击确定')
+            }
+          }
+        })
+      }
+    })  
     console.log('onload' + option);
     var that = this
     console.log(app);

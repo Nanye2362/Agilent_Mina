@@ -31,6 +31,7 @@ Page({
     util.NetRequest({
       url: 'site-mini/service-list',
       success: function (res) {
+        console.log(res);
         that.sortHistory(res);
         that.setData({
           getContactId: res.SerialNo_list[0].ContactId

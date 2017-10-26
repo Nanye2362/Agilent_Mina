@@ -10,11 +10,11 @@ App({
     });
     this.mta = mta;
 */
+    this.globalData.isLoading = true;
     wx.login({
       success: function (res) {
         var that = this;
         var app = getApp();
-        app.globalData.isLoading = true;
         console.log(res);
         if (res.code) {
           //发起网络请求
@@ -23,7 +23,7 @@ App({
             data: {
               code: res.code
             },
-            showload: false,
+            showload: true,
             success: function (r) {
               console.log(r);
               wx.setStorageSync('session3rd', r.session3rd);
@@ -53,9 +53,11 @@ App({
     isWelcomeAuth: false,
     needCheck: false,
     isSetOption:false,
-    isFirstLunch:true
+    isFirstLunch:true,
+    isUploading:false
     //token: wx.getStorageSync('token')
   },
+  /*
   gotoIndex: function () {
     console.log('enter');
     if (this.globalData.isWelcomeAuth && this.globalData.isLogin) {
@@ -64,7 +66,7 @@ App({
         url: '../index/index',
       })
     }
-  },
+  },*/
   getUserInformation: function () {
     var app = getApp();
     var that = this;
@@ -89,9 +91,8 @@ App({
               wx.setStorageSync('MOBILE', m.mobile);
               wx.setStorageSync('OPENID', m.openid);
               that.globalData.isLogin = true;
-              that.gotoIndex();
+              //that.gotoIndex();
             } else {
-              wx.hideLoading();
               that.globalData.needCheck = true;
               wx.showModal({
                 title: '温馨提示',
@@ -127,7 +128,9 @@ App({
           }
         })
         console.log('拒绝getuserinfo');
-        wx.hideLoading();
+      },
+      complete:function(){
+        app.globalData.isLoading = false;
       }
     })
   }

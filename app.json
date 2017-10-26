@@ -1,9 +1,9 @@
 {
   "pages": [
-    "pages/welcome/welcome",
+    "pages/index/index",
     "pages/contact_us/contact_us",
     "pages/evaluate/evaluate",
-    "pages/index/index",
+    "pages/welcome/welcome",
     "pages/self_service/self_service",
     "pages/search-list/search-list",
     "pages/auth/auth",
@@ -27,7 +27,7 @@
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#444",
-    "navigationBarTitleText": "安捷伦售后服务",
+    "navigationBarTitleText": "安捷伦售后服务小程序",
     "navigationBarTextStyle": "white"
   },
   "tabBar": {

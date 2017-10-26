@@ -76,12 +76,12 @@ function NetRequest({ url, data, success, fail, complete, method = "POST" ,showl
       if(typeof(complete)=='function'){
         complete();
       }
-      if (!app.globalData.isLoading){
+      if (!app.globalData.isLoading && !app.globalData.isUploading){
         wx.hideLoading()
       }  
     }
   })
-
+ 
 }
 
 function uploadImg(urlList,callback){

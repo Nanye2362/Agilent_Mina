@@ -30,6 +30,9 @@
 
 .pd_wechat {
     width: 100%;
+    position: fixed;
+    bottom: 10px;
+    left: 0;
 }
 
 .pd_wechat_btn {
