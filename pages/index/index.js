@@ -42,6 +42,7 @@ Page({
   onLoad: function (option) {
     var that = this;
     var text='';
+    
     util.NetRequest({
       url: 'api/check-lunch',
       data: {
@@ -52,7 +53,7 @@ Page({
           that.setData({
             text: res.text
           })
-          wx.hideLoading();
+          //wx.hideLoading();
         } else {
           wx.showModal({
             title: '温馨提示',
@@ -64,7 +65,7 @@ Page({
               }
             }
           })
-          wx.hideLoading();
+          //wx.hideLoading();
         }
       },
       fail: function (res) {
@@ -80,7 +81,7 @@ Page({
           }
         })
       }
-    })  
+    }) 
     console.log('onload' + option);
     var that = this
     console.log(app);

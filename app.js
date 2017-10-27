@@ -10,6 +10,10 @@ App({
     });
     this.mta = mta;
 */
+    wx.showLoading({
+      title: '加载中，请稍后',
+      mask: true
+    })
     this.globalData.isLoading = true;
     wx.login({
       success: function (res) {
@@ -23,7 +27,7 @@ App({
             data: {
               code: res.code
             },
-            showload: true,
+            showload: false,
             success: function (r) {
               console.log(r);
               wx.setStorageSync('session3rd', r.session3rd);
