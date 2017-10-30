@@ -1,6 +1,7 @@
 //app.js
 var util = require('/utils/util.js');
 //var aldstat = require("./utils/ald-stat.js");
+
 var mta = require('/utils/mta_analysis.js');
 App({
   onLaunch: function (options) {
@@ -11,6 +12,11 @@ App({
     });
     this.mta = mta;
 
+
+    wx.showLoading({
+      title: '加载中，请稍后',
+      mask: true
+    })
     this.globalData.isLoading = true;
     wx.login({
       success: function (res) {
@@ -24,7 +30,7 @@ App({
             data: {
               code: res.code
             },
-            showload: true,
+            showload: false,
             success: function (r) {
               console.log(r);
               wx.setStorageSync('session3rd', r.session3rd);
