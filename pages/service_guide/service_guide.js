@@ -8,4 +8,10 @@ Page({
     backHome: function () {
       util.backHome()
     },
+    onload:function(){
+      //腾讯mat统计开始
+      var app = getApp();
+      app.mta.Page.init();
+    //腾讯mat统计结束
+    }
 })

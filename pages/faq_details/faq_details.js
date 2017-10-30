@@ -18,6 +18,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    //腾讯mta统计开始
+    var app = getApp();
+    app.mta.Page.init();
+    //腾讯mta统计结束
     console.log(options.id)
     var that = this;
     var meiqiaInfo = wx.getStorageSync('meiqia');

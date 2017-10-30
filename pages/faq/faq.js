@@ -19,6 +19,10 @@ Page({
   },
 
   onLoad: function (option) {
+    //腾讯mta统计开始
+    var app = getApp();
+    app.mta.Page.init();
+    //腾讯mta统计结束
     console.log(option);
     var id = option.id;
     var that = this;

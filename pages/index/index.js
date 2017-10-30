@@ -40,6 +40,11 @@ Page({
     })
   },
   onLoad: function (option) {
+    //腾讯mta统计开始
+    var app = getApp();
+    app.mta.Page.init();
+    //腾讯mta统计结束
+
     var that = this;
     var text='';
     util.NetRequest({
@@ -195,6 +200,9 @@ Page({
 **  我要报修跳转
 */
   clickToRepair: function (event) {
+    var app = getApp();
+    app.mta.Event.stat(event.currentTarget.dataset.info, {});
+
     util.IsCertificate(function(){
         //已绑定
       util.checkWorktime(function(){
@@ -229,6 +237,10 @@ Page({
 ** 安装申请、服务历史 点击跳转
 */
   nevigateToNext: function(e){
+    console.log(e.currentTarget.dataset.info);
+    var app=getApp();
+    app.mta.Event.stat(e.currentTarget.dataset.info, {});
+    
     console.log(e)
     var url = e.currentTarget.dataset.url;
       util.IsCertificate(function () {

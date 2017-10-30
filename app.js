@@ -1,15 +1,16 @@
 //app.js
 var util = require('/utils/util.js');
 //var aldstat = require("./utils/ald-stat.js");
-//var mta = require('/utils/mta_analysis.js');
+var mta = require('/utils/mta_analysis.js');
 App({
-  onLaunch: function () {
-/*    mta.App.init({
+  onLaunch: function (options) {
+    mta.App.init({
       "appID": "500539156",
       "eventID": "500539161",
+      "lauchOpts": options, 
     });
     this.mta = mta;
-*/
+
     this.globalData.isLoading = true;
     wx.login({
       success: function (res) {

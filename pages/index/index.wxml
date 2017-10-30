@@ -31,22 +31,22 @@
 <view class="h_icon bg-blue">
     <!-- top -->
     <view class="flex">
-        <view bindtap="clickToRepair" class="h_service_item service_repair">
+        <view bindtap="clickToRepair" class="h_service_item service_repair" data-info="serial_number">
             <image src="/images/repair.png"></image>
             <view class="fs14 fc-fff">我要报修</view>
         </view>
-        <view bindtap="nevigateToNext" class="h_service_item" data-url='../install/install'>
+        <view bindtap="nevigateToNext" class="h_service_item" data-url='../install/install' data-info="install">
             <image src="/images/install.png"></image>
             <view class="fs14 fc-fff">安装申请</view>
         </view>
     </view>
     <!-- bottom -->
     <view class="flex">
-        <view bindtap="nevigateToNext" class="h_service_item"  data-url='../self_service/self_service'>
+        <view bindtap="nevigateToNext" class="h_service_item"  data-url='../self_service/self_service'  data-info="self_service">
             <image src="/images/self.png"></image>
             <view class="fs14 fc-fff">自助服务</view>
         </view>      
-        <view bindtap="nevigateToNext" class="h_service_item service_history" data-url='../service_list/service_list'>
+        <view bindtap="nevigateToNext" class="h_service_item service_history" data-url='../service_list/service_list' data-info="service_list">
             <image src="/images/history.png"></image>
             <view class="fs14 fc-fff">服务历史</view>
         </view>

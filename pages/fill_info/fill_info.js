@@ -15,6 +15,10 @@ Page({
     },
 
     onLoad: function (options) {
+      //腾讯mta统计开始
+      var app = getApp();
+      app.mta.Page.init();
+    //腾讯mta统计结束
       var mobile = options.mobile
       this.setData({
         'mobile': mobile,
