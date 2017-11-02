@@ -230,9 +230,10 @@ Page({
     var QuestionsSet_Comments = this.data.QuestionsSet_Comments;
     var openID = wx.getStorageSync('OPENID');
     var that = this;
+    console.log('questionSet_result.length'+questionSet_result.length)
     for (var i = 0; i < questionSet_result.length; i++) {
       var a = {
-        "QuestionId": questionSet_result[i].question_id,
+        "QuestionId": questionSet_result[i].QuestionId,
         "QuestionDesc": questionSet_result[i].QuestionDesc,
         "AnswerId": questionSet_result[i].AnswerId,
         "AnswervaluesSet": [{
@@ -242,6 +243,7 @@ Page({
           "ValueSelected": "X"
         }]
       };
+      console.log("a的QuestionId:"+a.QuestionId);
       QuestionsSet.push(a);
     }
 
@@ -263,7 +265,7 @@ Page({
       "SurveyVersion": '',
       "QuestionsSet": QuestionsSet
     }
-
+    console.log(data1);
     var data = JSON.stringify(data1)
     util.NetRequest({
       url: 'sr/submit-evaluation?openid=' + openID,
