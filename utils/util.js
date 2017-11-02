@@ -28,11 +28,13 @@ function NetRequest({ url, data, success, fail, complete, method = "POST" ,showl
     })
   }
   var _csrf = wx.getStorageSync('csrf');
+  var version = "1.1.0";
   var csrfToken = wx.getStorageSync('csrfCookie')
   if (typeof (data) =='object'){
     data._csrf = _csrf;
+    data.version = version;
   }else{
-    data = { '_csrf': _csrf};
+    data = { '_csrf': _csrf, 'version': version };
   }
 
   var session_id = wx.getStorageSync('PHPSESSID');//本地取存储的sessionID
