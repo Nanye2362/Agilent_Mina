@@ -10,10 +10,6 @@ App({
         });
         this.mta = mta;
     
-    wx.showLoading({
-      title: '加载中，请稍后',
-      mask: true
-    })
     this.globalData.isLoading = true;
     this.wxlogin();
   },
@@ -50,6 +46,10 @@ App({
   wxlogin: function () {
     var that = this;
     var app = getApp();
+    wx.showLoading({
+      title: '加载中，请稍后',
+      mask: true
+    })
     wx.login({
       success: function (res) {
         console.log(res);
@@ -77,7 +77,7 @@ App({
                   content: '为了更好的体验，请关注“安捷伦售后服务”公众号后再使用小程序。',
                   showCancel: false,
                   success: function (res) {
-
+                    that.wxlogin();
                   }
                 })
                 console.log(r.error_msg);

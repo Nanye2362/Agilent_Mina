@@ -28,7 +28,7 @@ function NetRequest({ url, data, success, fail, complete, method = "POST" ,showl
     })
   }
   var _csrf = wx.getStorageSync('csrf');
-  var version = "1.11.1";
+  var version = "1.11.3";
   var csrfToken = wx.getStorageSync('csrfCookie')
   if (typeof (data) =='object'){
     data._csrf = _csrf;
@@ -201,6 +201,8 @@ function backHome(){
     url: '../index/index',
   })
 }
+
+
 module.exports = {
   formatTime: formatTime,
   NetRequest: NetRequest,
