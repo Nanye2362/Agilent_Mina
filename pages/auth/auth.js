@@ -135,11 +135,11 @@ Page({
         },
         success: function (res) {
           console.log(res);
-          if (res.data.status == 1) {
-            that.setData({ disabled1: true })
-            that.setData({ code: nums + '秒' })
-            clock = setInterval(that.doLoop, 1000);
-          }
+          // if (res.status == 1) {
+          //   that.setData({ disabled1: true })
+          //   that.setData({ code: nums + '秒' })
+          //   clock = setInterval(that.doLoop, 1000);
+          // }
         },
         fail: function (err) {
           console.log(err);
