@@ -1,3 +1,4 @@
+<!-- 回到首页 -->
 <template name="backHome">
     <view class="backHome flex alignc" bindtap='backHome'>
         <image src='/images/h.png' class="bH_img"></image>

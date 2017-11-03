@@ -201,6 +201,8 @@ function backHome(){
     url: '../index/index',
   })
 }
+
+
 module.exports = {
   formatTime: formatTime,
   NetRequest: NetRequest,

@@ -15,7 +15,8 @@ Page({
     AccountId: '',
     chat: false,
     NONTECH: 'W_ssn:',
-    cameraValue: ''
+    cameraValue: '',
+    shLoading: false,
   },
 
   /**
@@ -47,9 +48,13 @@ Page({
       sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有  
       success: function (res) {
         //上传图片
+        /*
         wx.showLoading({
           title: '上传中...',
           mask: true
+        })*/
+        _this.setData({
+          shLoading: true,
         })
         var tempFilePaths = res.tempFilePaths;
         app.globalData.isUploading = true;
@@ -58,7 +63,6 @@ Page({
           filePath: tempFilePaths[0],
           name: 'file',
           success: function (res) {
-            console.log('下面是志豪想要的值');
             console.log(res)
             var value = JSON.parse(res.data).result;
             // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片  
@@ -81,7 +85,10 @@ Page({
             }
           },
           complete: function(){
-            wx.hideLoading();
+            _this.setData({
+              shLoading: false,
+            })
+            //wx.hideLoading();
             app.globalData.isUploading = false;
           },
           fail: function (res) {

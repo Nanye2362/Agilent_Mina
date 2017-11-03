@@ -1,4 +1,12 @@
-
+<!-- showLoading -->
+<view class="shLoading" wx:if="{{shLoading}}">
+  <view class="shLoading-mask">
+  </view>
+  <view class="shLoading-con flex alignc directionC">
+    <image src="/images/uploading.png" class="shLoading-img"></image>
+    <text class="shLoading-text">上传中...</text>
+  </view>
+</view>
  <!--pages/serial_number/serial_number.wxml-->
 <image src="/images/sn_bg.jpg" class="sn_bg"></image>
 <view class="sn_title">产品序列号 (Serial No.)</view>
