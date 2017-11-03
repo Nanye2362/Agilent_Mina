@@ -40,6 +40,10 @@ Page({
     });
   },
   onLoad: function (option) {
+    //腾讯mat统计开始
+    var app = getApp();
+    app.mta.Page.init();
+    //腾讯mat统计结束
     console.log('option-sn=============================' + option.sn)
     var that = this;
 

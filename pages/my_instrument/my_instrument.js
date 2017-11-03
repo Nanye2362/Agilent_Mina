@@ -24,7 +24,10 @@ Page({
 
 
   onLoad: function () {
-
+    //腾讯mta统计开始
+    var app = getApp();
+    app.mta.Page.init();
+    //腾讯mta统计结束
     mobile = wx.getStorageSync(mobile);
     console.log('mobile=======' + mobile)
     var that = this;

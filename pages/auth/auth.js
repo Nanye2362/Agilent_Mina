@@ -24,6 +24,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options,e) {
+    //腾讯mat统计开始
+    var app = getApp();
+    app.mta.Page.init();
+    //腾讯mat统计结束
     console.log(options.pageName);
     var pageName = options.pageName;
     this.setData({pageName: pageName});
@@ -131,11 +135,11 @@ Page({
         },
         success: function (res) {
           console.log(res);
-          if (res.data.status == 1) {
-            that.setData({ disabled1: true })
-            that.setData({ code: nums + '秒' })
-            clock = setInterval(that.doLoop, 1000);
-          }
+          // if (res.status == 1) {
+          //   that.setData({ disabled1: true })
+          //   that.setData({ code: nums + '秒' })
+          //   clock = setInterval(that.doLoop, 1000);
+          // }
         },
         fail: function (err) {
           console.log(err);

@@ -19,6 +19,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (option) {
+    //腾讯mta统计开始
+    var app = getApp();
+    app.mta.Page.init();
+    //腾讯mta统计结束
     console.log(option);
     var that = this;
     this.setData({

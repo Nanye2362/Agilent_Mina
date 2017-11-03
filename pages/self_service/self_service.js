@@ -20,6 +20,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    //腾讯mat统计开始
+    var app = getApp();
+    app.mta.Page.init();
+    //腾讯mat统计结束
    var that  = this;
 
     util.NetRequest({
@@ -89,6 +93,11 @@ sortList: function(list){
   },
 
   clickToSearch:function(e){
+    //腾讯mta记录搜索事件开始
+    var app = getApp();
+    app.mta.Event.stat("self_service_search", { "query": this.data.searchValue });
+    //腾讯mta记录搜索事件结束
+
     console.log('确定');
     var value = this.data.searchValue;
       wx:wx.navigateTo({
