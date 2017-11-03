@@ -1,56 +1,29 @@
 //app.js
 var util = require('/utils/util.js');
 //var aldstat = require("./utils/ald-stat.js");
-
 var mta = require('/utils/mta_analysis.js');
 App({
-  onLaunch: function (options) {
-    mta.App.init({
-      "appID": "500539156",
-      "eventID": "500539161",
-      "lauchOpts": options, 
-    });
-    this.mta = mta;
-
-
+  onLaunch: function () {
+        mta.App.init({
+          "appID": "500539156",
+          "eventID": "500539161",
+        });
+        this.mta = mta;
+    
     wx.showLoading({
       title: '加载中，请稍后',
       mask: true
     })
     this.globalData.isLoading = true;
-    wx.login({
-      success: function (res) {
-        var that = this;
-        var app = getApp();
-        console.log(res);
-        if (res.code) {
-          //发起网络请求
-          util.NetRequest({
-            url: 'wechat-mini/wx-login',
-            data: {
-              code: res.code
-            },
-            showload: false,
-            success: function (r) {
-              console.log(r);
-              wx.setStorageSync('session3rd', r.session3rd);
-              
-              app.getUserInformation();
-            }
-          })
-        } else {
-          console.log('获取用户登录态失败！' + res.errMsg)
-        }
-      }
-    });
+    this.wxlogin();
   },
   onShow: function (res) {
     console.log(res);
-    var that=this;
-    if (!that.globalData.isSetOption && !that.globalData.isFirstLunch){
-      that.getUserInformation();
+    var that = this;
+    if (!that.globalData.isSetOption && !that.globalData.isFirstLunch) {
+      that.wxlogin();
     }
-    that.globalData.isFirstLunch=false;
+    that.globalData.isFirstLunch = false;
   },
   globalData: {
     userInfo: null,
@@ -59,9 +32,9 @@ App({
     isLogin: false,
     isWelcomeAuth: false,
     needCheck: false,
-    isSetOption:false,
-    isFirstLunch:true,
-    isUploading:false
+    isSetOption: false,
+    isFirstLunch: true,
+    isUploading: false
     //token: wx.getStorageSync('token')
   },
   /*
@@ -74,72 +47,51 @@ App({
       })
     }
   },*/
-  getUserInformation: function () {
-    var app = getApp();
+  wxlogin: function () {
     var that = this;
-    wx.getUserInfo({
+    var app = getApp();
+    wx.login({
       success: function (res) {
         console.log(res);
-        console.log(wx.getStorageSync('session3rd'));
-        util.NetRequest({
-          url: 'wechat-mini/get-userinfo',
-          showload: false,
-          data: {
-            encryptedData: res.encryptedData,
-            iv: res.iv,
-            session3rd: wx.getStorageSync('session3rd'),
-            userInfo: JSON.stringify(res.userInfo)
-          },
-          success: function (m) {
-            console.log(m);
-            if (m.success == true) {
-              console.log(that);
-              that.globalData.needCheck = false;
-              wx.setStorageSync('MOBILE', m.mobile);
-              wx.setStorageSync('OPENID', m.openid);
-              that.globalData.isLogin = true;
-              //that.gotoIndex();
-            } else {
-              that.globalData.needCheck = true;
-              wx.showModal({
-                title: '温馨提示',
-                content: '为了更好的体验，请关注“安捷伦售后服务”公众号后再使用小程序。',
-                showCancel: false,
-                success: function (res) {
-                  
-                }
-              })
-              console.log(m.error_msg);
-            }
-          }
-        })
-      },
-      fail: function () {
-        app.globalData.isSetOption = true;
-        wx.showModal({
-          title: '警告',
-          content: '必须允许才可以继续使用小程序。重试可以微信-发现-小程序-左滑删除这个小程序-重新进入-允许开始使用小程序',
-          showCancel: false,
-          success: function (res) {
-            // that.getUserInfo();
-            wx.openSetting({
-              success: (res) => {
-                app.getUserInformation();
-                app.globalData.isSetOption=false;
-                // res.authSetting = {
-                //   "scope.userInfo": true,
-                //   "scope.userLocation": true
-                // }
+        if (res.code) {
+          //发起网络请求
+          util.NetRequest({
+            url: 'wechat-mini/wx-login',
+            data: {
+              code: res.code
+            },
+            showload: false,
+            success: function (r) {
+              console.log(r);
+              if (r.success == true) {
+                console.log(that);
+                that.globalData.needCheck = false;
+                wx.setStorageSync('MOBILE', r.mobile);
+                wx.setStorageSync('OPENID', r.openid);
+                that.globalData.isLogin = true;
+                //that.gotoIndex();
+              } else {
+                that.globalData.needCheck = true;
+                wx.showModal({
+                  title: '温馨提示',
+                  content: '为了更好的体验，请关注“安捷伦售后服务”公众号后再使用小程序。',
+                  showCancel: false,
+                  success: function (res) {
+
+                  }
+                })
+                console.log(r.error_msg);
               }
-            })
-          }
-        })
-        console.log('拒绝getuserinfo');
-      },
-      complete:function(){
-        app.globalData.isLoading = false;
+            },
+            complete: function () {
+              that.globalData.isLoading = false;
+            }
+          })
+        } else {
+          console.log('获取用户登录态失败！' + res.errMsg)
+        }
       }
-    })
+    });
   }
   /*
   showTips: function () {
