@@ -45,11 +45,13 @@ App({
   },*/
   wxlogin: function () {
     var that = this;
-    var app = getApp();
-    wx.showLoading({
-      title: '加载中，请稍后',
-      mask: true
-    })
+
+    if (!that.globalData.isUploading){
+      wx.showLoading({
+        title: '加载中，请稍后',
+        mask: true
+      })
+    }
     wx.login({
       success: function (res) {
         console.log(res);
