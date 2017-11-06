@@ -211,5 +211,5 @@ view, text, input, button{ font-size: 32rpx; font-family: "MicroSoft Yahei"; col
 /* ==================shLoading===================== */
 .shLoading-mask{ position: fixed; width: 100%; height: 100%; z-index: 9990;}
 .shLoading-con{ width: 210rpx; height: 210rpx;  top: 236rpx; left: 50%; margin-left: -105rpx; background: #000; opacity: .6; position: fixed; z-index: 9999; border-radius: 12rpx; padding-top: 50rpx; }
-.shLoading-img{ width: 81rpx; height: 64rpx; margin-bottom: 20rpx;}
+.shLoading-img{ width: 79rpx; height: 64rpx; margin-bottom: 20rpx;}
 .shLoading-text{ color: #fff; }

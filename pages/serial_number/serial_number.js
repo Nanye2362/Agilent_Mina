@@ -67,8 +67,11 @@ Page({
           filePath: tempFilePaths[0],
           name: 'file',
           success: function (res) {
+			
             console.log(res)
             var value = JSON.parse(res.data).result;
+			      var app = getApp();
+			      app.mta.Event.stat("sn_ocr", { "sn": value });
             // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片  
             if (value){
               _this.setData({
@@ -133,6 +136,7 @@ Page({
   },
 
   clickToSubmit: function (event) {
+	
     var that = this;
     var serNum = this.data.inputValue;
     var contactguid = event.currentTarget.dataset.contactguid;

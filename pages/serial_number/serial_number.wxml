@@ -4,7 +4,7 @@
   </view>
   <view class="shLoading-con flex alignc directionC">
     <image src="/images/uploading.png" class="shLoading-img"></image>
-    <text class="shLoading-text">上传中...</text>
+    <text class="shLoading-text">识别中...</text>
   </view>
 </view>
  <!--pages/serial_number/serial_number.wxml-->
