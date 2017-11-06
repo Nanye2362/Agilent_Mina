@@ -46,6 +46,7 @@ Page({
   chooseimage: function () {
     var _this = this;
     var app=getApp();
+    app.globalData.isUploading = true;
     wx.chooseImage({
       count: 1, // 默认9  
       sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有  
@@ -61,7 +62,7 @@ Page({
           shLoading: true,
         })
         var tempFilePaths = res.tempFilePaths;
-        app.globalData.isUploading = true;
+       
         wx.uploadFile({
           url: util.Server + 'api/ocr-scan',
           filePath: tempFilePaths[0],
