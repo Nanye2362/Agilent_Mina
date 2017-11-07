@@ -23,12 +23,12 @@ function NetRequest({ url, data, success, fail, complete, method = "POST" ,showl
   var app=getApp();
   if (showload){
     wx.showLoading({
-      title: '加载中，请稍后',
+      title: '加载中，请稍候',
       mask: true
     })
   }
   var _csrf = wx.getStorageSync('csrf');
-  var version = "1.11.3";
+  var version = "1.11.6.1";
   var csrfToken = wx.getStorageSync('csrfCookie')
   if (typeof (data) =='object'){
     data._csrf = _csrf;

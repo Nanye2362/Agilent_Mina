@@ -71,7 +71,7 @@ Page({
     }
     isSend = true;
     wx.showLoading({
-      title: '提交中，请稍后',
+      title: '提交中，请稍候',
       mask: true
     })
     if (URLArr.length > 0) {

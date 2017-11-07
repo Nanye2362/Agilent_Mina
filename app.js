@@ -30,7 +30,7 @@ App({
     needCheck: false,
     isSetOption: false,
     isFirstLunch: true,
-    isUploading: false
+    isUploading: false,
     //token: wx.getStorageSync('token')
   },
   /*
@@ -48,7 +48,7 @@ App({
 
     if (!that.globalData.isUploading){
       wx.showLoading({
-        title: '加载中，请稍后',
+        title: '加载中，请稍候',
         mask: true
       })
     }
@@ -74,14 +74,7 @@ App({
                 //that.gotoIndex();
               } else {
                 that.globalData.needCheck = true;
-                wx.showModal({
-                  title: '温馨提示',
-                  content: '为了更好的体验，请关注“安捷伦售后服务”公众号后再使用小程序。',
-                  showCancel: false,
-                  success: function (res) {
-                    that.wxlogin();
-                  }
-                })
+                that.alertInfo();
                 console.log(r.error_msg);
               }
             },
@@ -94,7 +87,21 @@ App({
         }
       }
     });
+  },
+  alertInfo: function(){
+    var that=this;
+    wx.showModal({
+      title: '温馨提示',
+      content: '为了更好的体验，请关注“安捷伦售后服务”公众号后再使用小程序。',
+      showCancel: false,
+      success: function (res) {
+        if (!that.globalData.isLogin){
+          that.alertInfo();
+        }
+      }
+    })
   }
+
   /*
   showTips: function () {
     var displayTips = this.data.displayTips

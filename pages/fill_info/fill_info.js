@@ -60,7 +60,7 @@ Page({
           if (res.success == true) {
             wx.showModal({
               title: '提交成功',
-              content: '您已提交，客服即将为你处理，请稍后……',
+              content: '您已提交，客服即将为你处理，请稍候……',
               showCancel: false,
               success: function () {
                 wx.switchTab({
