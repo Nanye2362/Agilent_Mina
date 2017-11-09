@@ -96,7 +96,10 @@ Page({
       })
     },
 
-
+    MtaReport: function () {
+      var app = getApp();
+      app.mta.Event.stat("meqia", { "group": 'NONTECH' });
+    },
 
     //判断输入框的值是否为空
     getname: function (e) {

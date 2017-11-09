@@ -42,6 +42,11 @@ Page({
       }
     })
   },
+
+  MtaReport: function () {
+    var app = getApp();
+    app.mta.Event.stat("meqia", { "group": 'WLA' });
+  },
   
   chooseimage: function () {
     
