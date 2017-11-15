@@ -42,8 +42,14 @@ Page({
       }
     })
   },
+
+  MtaReport: function () {
+    var app = getApp();
+    app.mta.Event.stat("meqia", { "group": 'WLA' });
+  },
   
   chooseimage: function () {
+    
     var _this = this;
     var app=getApp();
     app.globalData.isUploading = true;
@@ -61,15 +67,34 @@ Page({
         _this.setData({
           shLoading: true,
         })
+        var startTime = new Date();
         var tempFilePaths = res.tempFilePaths;
-       
+        var session_id = wx.getStorageSync('PHPSESSID');
+        if (session_id != "" && session_id != null) {
+          var header = { 'content-type': 'application/x-www-form-urlencoded', 'Cookie': 'PHPSESSID=' + session_id }
+        } else {
+          var header = { 'content-type': 'application/x-www-form-urlencoded' }
+        }
         wx.uploadFile({
           url: util.Server + 'api/ocr-scan',
           filePath: tempFilePaths[0],
           name: 'file',
-          success: function (res) {
-			
+          header: header,
+          success: function (res) {			
             console.log(res)
+            var endTime = new Date();
+            var ocrSpend = endTime-startTime;
+            console.log(ocrSpend);
+            
+            util.NetRequest({
+              url: 'api/ocr-spend',
+              data: {
+                ocrSpend: ocrSpend
+              },
+              success: function (res) {
+              }
+            })
+            
             var value = JSON.parse(res.data).result;
 			      var app = getApp();
 			      app.mta.Event.stat("sn_ocr", { "sn": value });

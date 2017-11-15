@@ -117,6 +117,11 @@ Page({
     that.setData({ currentTab: e.detail.current });
   },
 
+  MtaReport: function(){
+    var app = getApp();
+    app.mta.Event.stat("meqia", { "group": 'TECH' });
+  },
+
   /**
    * 点击tab切换
    */

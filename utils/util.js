@@ -42,7 +42,7 @@ function _NetRequest({ url, data, success, fail, complete, method = "POST", show
   }
 
   var _csrf = wx.getStorageSync('csrf');
-  var version = "1.11.6.1";
+  var version = "1.11.9.1";
   var csrfToken = wx.getStorageSync('csrfCookie')
   if (typeof (data) == 'object') {
     data._csrf = _csrf;

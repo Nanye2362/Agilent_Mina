@@ -22,6 +22,15 @@ Page({
       url: '../serial_number/serial_number',
     })
   }, 
+
+  MtaReport: function () {
+    var app = getApp();
+    app.mta.Event.stat("meqia", { "group": 'TECH' });
+  },
+  MtaReportt: function () {
+    var app = getApp();
+    app.mta.Event.stat("meqia", { "group": 'NONTECH' });
+  },
   
   /**
    * 生命周期函数--监听页面加载

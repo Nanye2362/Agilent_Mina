@@ -24,6 +24,11 @@ Page({
     })
   },
 
+  MtaReport: function () {
+    var app = getApp();
+    app.mta.Event.stat("meqia", { "group": 'WLA' });
+    console.log('大神要的MTA');
+  },
 
   blurfun: function (event) {
     this.setData(JSON.parse('{"' + event.target.dataset.name + '":"' + event.detail.value + '"}'));
