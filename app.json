@@ -1,7 +1,7 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/openId/openId",
+    "pages/user_guidelines/user_guidelines",
     "pages/contact_us/contact_us",
     "pages/evaluate/evaluate",
     "pages/welcome/welcome",
@@ -25,6 +25,9 @@
     "pages/leave_message/leave_message",
     "pages/contact_service/contact_service"
   ],
+  "networkTimeout": {
+    "request": 10000
+  },
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#444",

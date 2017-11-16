@@ -16,13 +16,13 @@ function formatNumber(n) {
   return n[1] ? n : '0' + n
 }
 
-let ocrServer ="https://msd.coffeelandcn.cn";
+let ocrServer ="https://msd.coffeelandcn.cn/";
 //let Server = "https://devopsx.coffeelandcn.cn/"; //DEV
 let Server = "https://devops.coffeelandcn.cn/"; //UAT
 //let Server = "https://prd.wechat.service.agilent.com/"; //PRO
 var arrRequest=[],isRequesting=false;
-function NetRequest({ url, data, success, fail, complete, method = "POST" ,showload=true}) {
-   var obj={url:url,data:data,success:success,fail:fail,complete:complete,method:method,showload:showload}; 
+function NetRequest({ url, data, success, fail, complete, method = "POST", showload = true, host = Server}) {
+  var obj = { url: url, data: data, success: success, fail: fail, complete: complete, method: method, showload: showload, host: host}; 
    if (isRequesting){
       arrRequest.push(obj);
       return;
@@ -32,7 +32,7 @@ function NetRequest({ url, data, success, fail, complete, method = "POST" ,showl
 }
 
 
-function _NetRequest({ url, data, success, fail, complete, method = "POST", showload = true }){
+function _NetRequest({ url, data, success, fail, complete, method = "POST", showload = true, host = Server}){
   var app = getApp();
   if (showload) {
     wx.showLoading({
@@ -59,7 +59,7 @@ function _NetRequest({ url, data, success, fail, complete, method = "POST", show
   }
 
   console.log(session_id);
-  url = Server + url;
+  url = host + url;
   wx.request({
     url: url,
     method: method,
@@ -92,11 +92,11 @@ function _NetRequest({ url, data, success, fail, complete, method = "POST", show
       if (typeof (complete) == 'function') {
         complete();
       }
-      if (!app.globalData.isLoading && !app.globalData.isUploading) {
-        wx.hideLoading()
-      }
-
+      
       if (arrRequest.length == 0) {
+        if (!app.globalData.isLoading && !app.globalData.isUploading) {
+          wx.hideLoading()
+        }
         isRequesting = false;
       } else {
         var obj = arrRequest.shift();
@@ -229,6 +229,7 @@ module.exports = {
   NetRequest: NetRequest,
   IsCertificate: IsCertificate,
   Server: Server,
+  ocrServer: ocrServer,
   uploadImg: uploadImg,
   checkEmpty: checkEmpty,
   getUserInfo: getUserInfo,

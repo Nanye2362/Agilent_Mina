@@ -2,13 +2,15 @@
 var util = require('/utils/util.js');
 //var aldstat = require("./utils/ald-stat.js");
 var mta = require('/utils/mta_analysis.js');
+var miniApp_env = "prod";// prod或uat
 App({
   onLaunch: function () {
-       mta.App.init({
-          "appID": "500539156",
-          "eventID": "500539161",
-        });
-        this.mta = mta;
+      mta.App.init({
+        "appID": "500539156",
+        "eventID": "500539161",
+      });
+   
+    this.mta = mta;
     
     this.globalData.isLoading = true;
     this.wxlogin();
@@ -22,6 +24,7 @@ App({
     that.globalData.isFirstLunch = false;
   },
   globalData: {
+    miniApp_env: miniApp_env,// prod或uat 
     userInfo: null,
     requestList: [],
     isLoading: false,
@@ -74,7 +77,13 @@ App({
                 //that.gotoIndex();
               } else {
                 that.globalData.needCheck = true;
-                that.alertInfo();
+                if (wx.canIUse('web-view')){
+                  wx.navigateTo({
+                    url: '../user_guidelines/user_guidelines' 
+                  });
+                }else{
+                  that.alertInfo();
+                }  
                 console.log(r.error_msg);
               }
             },
@@ -92,7 +101,7 @@ App({
     var that=this;
     wx.showModal({
       title: '温馨提示',
-      content: '为了更好的体验，请关注“安捷伦售后服务”公众号后再使用小程序。',
+      content: '为了更好的体验，请更新微信到最新版本后使用。',
       showCancel: false,
       success: function (res) {
         if (!that.globalData.isLogin){
