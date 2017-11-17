@@ -23,6 +23,12 @@ let Server = "https://devops.coffeelandcn.cn/"; //UAT
 var arrRequest=[],isRequesting=false;
 function NetRequest({ url, data, success, fail, complete, method = "POST", showload = true, host = Server}) {
   var obj = { url: url, data: data, success: success, fail: fail, complete: complete, method: method, showload: showload, host: host}; 
+  if (showload) {
+    wx.showLoading({
+      title: '加载中，请稍候',
+      mask: true
+    })
+  }
    if (isRequesting){
       arrRequest.push(obj);
       return;
@@ -34,12 +40,7 @@ function NetRequest({ url, data, success, fail, complete, method = "POST", showl
 
 function _NetRequest({ url, data, success, fail, complete, method = "POST", showload = true, host = Server}){
   var app = getApp();
-  if (showload) {
-    wx.showLoading({
-      title: '加载中，请稍候',
-      mask: true
-    })
-  }
+  
 
   var _csrf = wx.getStorageSync('csrf');
   var version = "1.11.9.1";
@@ -86,6 +87,19 @@ function _NetRequest({ url, data, success, fail, complete, method = "POST", show
     fail: function (e) {
       if (typeof (fail) == 'function') {
         fail(e);
+      }else{
+        wx.showModal({
+          title: '请求失败',
+          content: '请检查您的网络',
+          showCancel: false,
+          success: function (res) {
+            if (res.confirm) {
+              wx.switchTab({
+                url: '../index/index',
+              })
+            }
+          }
+        })
       }
     },
     complete: function () {

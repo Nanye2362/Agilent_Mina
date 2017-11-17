@@ -16,12 +16,21 @@ App({
     this.wxlogin();
   },
   onShow: function (res) {
-    console.log(res);
+    var nowDate = new Date();
+    var lastDate=wx.getStorageSync("sessionDate");
     var that = this;
-    if (!that.globalData.isSetOption && !that.globalData.isFirstLunch) {
-      that.wxlogin();
+    console.log(nowDate - lastDate);
+    if (lastDate && nowDate - lastDate>=60*60*1000){//毫秒  1小时   
+      if (!that.globalData.isSetOption && !that.globalData.isFirstLunch) {
+        that.wxlogin();
+      }
     }
     that.globalData.isFirstLunch = false;
+  },
+  onHide:function () {
+    
+    var nowDate = new Date();
+    wx.setStorageSync("sessionDate", nowDate);
   },
   globalData: {
     miniApp_env: miniApp_env,// prod或uat 
