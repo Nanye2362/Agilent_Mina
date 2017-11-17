@@ -95,6 +95,7 @@ App({
             },
             showload: false,
             success: function (r) {
+              that.globalData.isLoading = false;
               console.log(r);
               if (r.success == true) {
                 console.log(that);
@@ -115,8 +116,9 @@ App({
                 console.log(r.error_msg);
               }
             },
-            complete: function () {
-              that.globalData.isLoading = false;
+            fail:function(){
+
+              that.wxlogin();
             }
           })
         } else {
