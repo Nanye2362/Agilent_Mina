@@ -3,6 +3,9 @@ var util = require('/utils/util.js');
 //var aldstat = require("./utils/ald-stat.js");
 var mta = require('/utils/mta_analysis.js');
 var miniApp_env = "prod";// prod或uat
+var userMobile={};
+
+
 console.log(userMobile);
 App({
   onLaunch: function () {
@@ -15,7 +18,7 @@ App({
     
     this.globalData.isLoading = true;
     try {
-      var res = wx.getSystemInfoSync()
+      var res = wx.getSystemInfoSync();
       userMobile.brand = res.brand;
       userMobile.model = res.model;
       userMobile.language = res.language;
@@ -26,6 +29,7 @@ App({
     } catch (e) {
       // Do something when catch error
     }
+    console.log(userMobile);
     this.wxlogin();
 
   },
