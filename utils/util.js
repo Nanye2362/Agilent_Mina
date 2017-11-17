@@ -16,75 +16,96 @@ function formatNumber(n) {
   return n[1] ? n : '0' + n
 }
 
+let ocrServer ="https://msd.coffeelandcn.cn/";
 //let Server = "https://devopsx.coffeelandcn.cn/"; //DEV
 let Server = "https://devops.coffeelandcn.cn/"; //UAT
 //let Server = "https://prd.wechat.service.agilent.com/"; //PRO
-function NetRequest({ url, data, success, fail, complete, method = "POST" ,showload=true}) {
-  var app=getApp();
-  if (showload){
+var arrRequest=[],isRequesting=false;
+function NetRequest({ url, data, success, fail, complete, method = "POST", showload = true, host = Server}) {
+  var obj = { url: url, data: data, success: success, fail: fail, complete: complete, method: method, showload: showload, host: host}; 
+   if (isRequesting){
+      arrRequest.push(obj);
+      return;
+   }
+  isRequesting=true;
+  _NetRequest(obj);
+}
+
+
+function _NetRequest({ url, data, success, fail, complete, method = "POST", showload = true, host = Server}){
+  var app = getApp();
+  if (showload) {
     wx.showLoading({
       title: '加载中，请稍候',
       mask: true
     })
   }
+
   var _csrf = wx.getStorageSync('csrf');
-  var version = "1.11.13.1";
+  var version = "1.11.9.1";
   var csrfToken = wx.getStorageSync('csrfCookie')
-  if (typeof (data) =='object'){
+  if (typeof (data) == 'object') {
     data._csrf = _csrf;
     data.version = version;
-  }else{
+  } else {
     data = { '_csrf': _csrf, 'version': version };
   }
 
   var session_id = wx.getStorageSync('PHPSESSID');//本地取存储的sessionID
   if (session_id != "" && session_id != null) {
-    var header = { 'content-type': 'application/x-www-form-urlencoded', 'Cookie': 'PHPSESSID=' + session_id + ";" + csrfToken}
+    var header = { 'content-type': 'application/x-www-form-urlencoded', 'Cookie': 'PHPSESSID=' + session_id + ";" + csrfToken }
   } else {
     var header = { 'content-type': 'application/x-www-form-urlencoded' }
   }
 
   console.log(session_id);
-  url = Server + url;
+  url = host + url;
   wx.request({
     url: url,
     method: method,
     data: data,
     header: header,
     success: res => {
-      if ((session_id == "" || session_id == null) && typeof (res.data.session_id) !="undefined") {
+      if ((session_id == "" || session_id == null) && typeof (res.data.session_id) != "undefined") {
         console.log(res.data.session_id);
         wx.setStorageSync('PHPSESSID', res.data.session_id); //如果本地没有就说明第一次请求 把返回的session id 存入本地
-        var str =res.header['Set-Cookie'];
+        var str = res.header['Set-Cookie'];
         console.log(str);
-        if (typeof (str) !='undefined'){
+        if (typeof (str) != 'undefined') {
           var m = str.match(/_csrf=(.)*?;/);
           if (m != null) {
             wx.setStorageSync('csrfCookie', m[0]);
-          }  
+          }
           wx.setStorageSync('csrf', res.data.csrfToken);
-        }       
+        }
       }
-  
+
       let data = res.data
       res['statusCode'] === 200 ? success(data) : fail(res)
     },
-    fail: function(e){
+    fail: function (e) {
       if (typeof (fail) == 'function') {
         fail(e);
       }
     },
-    complete: function(){
-      if(typeof(complete)=='function'){
+    complete: function () {
+      if (typeof (complete) == 'function') {
         complete();
       }
-      if (!app.globalData.isLoading && !app.globalData.isUploading){
-        wx.hideLoading()
-      }  
+      
+      if (arrRequest.length == 0) {
+        if (!app.globalData.isLoading && !app.globalData.isUploading) {
+          wx.hideLoading()
+        }
+        isRequesting = false;
+      } else {
+        var obj = arrRequest.shift();
+        _NetRequest(obj); 
+      }
     }
   })
- 
 }
+
 
 function uploadImg(urlList,callback){
   var session_id = wx.getStorageSync('PHPSESSID');//本地取存储的sessionID
@@ -208,6 +229,7 @@ module.exports = {
   NetRequest: NetRequest,
   IsCertificate: IsCertificate,
   Server: Server,
+  ocrServer: ocrServer,
   uploadImg: uploadImg,
   checkEmpty: checkEmpty,
   getUserInfo: getUserInfo,

@@ -75,8 +75,9 @@ Page({
         } else {
           var header = { 'content-type': 'application/x-www-form-urlencoded' }
         }
+        console.log(util.ocrServer + 'api/ocr-scan');
         wx.uploadFile({
-          url: util.Server + 'api/ocr-scan',
+          url: util.ocrServer + 'api/ocr-scan',
           filePath: tempFilePaths[0],
           name: 'file',
           header: header,
@@ -87,9 +88,13 @@ Page({
             console.log(ocrSpend);
             
             util.NetRequest({
+              host: util.ocrServer,
               url: 'api/ocr-spend',
+              showload:false,
               data: {
-                ocrSpend: ocrSpend
+                ocrSpend: ocrSpend,
+                serverStart: JSON.parse(res.data).serverStart,
+                serverEnd: JSON.parse(res.data).serverEnd,
               },
               success: function (res) {
               }

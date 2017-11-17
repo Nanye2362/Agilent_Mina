@@ -67,30 +67,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log("onload.......");
     //腾讯mat统计开始
     var app = getApp();
     app.mta.Page.init();
     //腾讯mat统计结束
 
-    var that = this;
-    //请求后台接口   
-    util.NetRequest({
-      url: 'site-mini/my-count',
-      data: {},
-      success: function (res) {
-        console.log(res); //后台获取到的mycount数据
-        that.setData({
-          ContactGuid: res.ContactGuid,
-          InstrumentCount: res.InstrumentCount,
-          company: res.company,
-          email: res.email,
-          head_img_url: res.head_img_url,
-          is_auth: res.is_auth,
-          mobile: res.mobile,
-          name: res.name
-        });
-      }
-    });
+
   },
 
   /**

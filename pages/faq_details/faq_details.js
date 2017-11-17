@@ -1,5 +1,8 @@
 // pages/faq_details/faq_details.js
 var util = require('../../utils/util.js');
+
+
+
 Page({
 
   /**
@@ -32,6 +35,8 @@ Page({
         'id': options.id
       },
       success: function (res) {
+        var app = getApp();
+        app.mta.Event.stat("self_service_question", { "title": res.detail.questions });
         console.log(res);
         wx.showLoading({
           title: '下载中，请稍候',
@@ -41,8 +46,7 @@ Page({
           TECH: meiqiaInfo.TECH,
           answersList: res.detail.answers,
           questions: res.detail.questions,
-
-        })
+        })   
       },
       complete: function () {
         wx.hideLoading();
