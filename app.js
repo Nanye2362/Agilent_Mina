@@ -2,6 +2,8 @@
 var util = require('/utils/util.js');
 //var aldstat = require("./utils/ald-stat.js");
 var mta = require('/utils/mta_analysis.js');
+var userMobile = {};
+console.log(userMobile);
 App({
   onLaunch: function () {
        mta.App.init({
@@ -11,7 +13,20 @@ App({
         this.mta = mta;
     
     this.globalData.isLoading = true;
+    try {
+      var res = wx.getSystemInfoSync()
+      userMobile.brand = res.brand;
+      userMobile.model = res.model;
+      userMobile.language = res.language;
+      userMobile.version = res.version;
+      userMobile.platform = res.platform;
+      userMobile.SDKVersion = res.SDKVersion;
+      userMobile.system = res.system;
+    } catch (e) {
+      // Do something when catch error
+    }
     this.wxlogin();
+
   },
   onShow: function (res) {
     console.log(res);
@@ -60,7 +75,8 @@ App({
           util.NetRequest({
             url: 'wechat-mini/wx-login',
             data: {
-              code: res.code
+              code: res.code,
+              userMobile: JSON.stringify(userMobile)
             },
             showload: false,
             success: function (r) {

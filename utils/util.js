@@ -17,8 +17,8 @@ function formatNumber(n) {
 }
 
 //let Server = "https://devopsx.coffeelandcn.cn/"; //DEV
-//let Server = "https://devops.coffeelandcn.cn/"; //UAT
-let Server = "https://prd.wechat.service.agilent.com/"; //PRO
+let Server = "https://devops.coffeelandcn.cn/"; //UAT
+//let Server = "https://prd.wechat.service.agilent.com/"; //PRO
 function NetRequest({ url, data, success, fail, complete, method = "POST" ,showload=true}) {
   var app=getApp();
   if (showload){
@@ -28,7 +28,7 @@ function NetRequest({ url, data, success, fail, complete, method = "POST" ,showl
     })
   }
   var _csrf = wx.getStorageSync('csrf');
-  var version = "1.11.9.1";
+  var version = "1.11.13.1";
   var csrfToken = wx.getStorageSync('csrfCookie')
   if (typeof (data) =='object'){
     data._csrf = _csrf;
