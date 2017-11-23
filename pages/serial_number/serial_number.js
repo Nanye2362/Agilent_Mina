@@ -143,6 +143,9 @@ Page({
             })
           }
         })
+      },
+      fail:function(){
+        app.globalData.isUploading=false;
       }
     })
   },
