@@ -58,10 +58,11 @@ App({
     isLoading: false,
     isLogin: false,
     isWelcomeAuth: false,
-    needCheck: false,
-    isSetOption: false,
-    isFirstLunch: true,
-    isUploading: false,
+    needCheck: false,    //是否需要检测
+    isSetOption: false, //是否正在配置
+    isFirstLunch: true, //是否第一次打开
+    isUploading: false, //是否正在上传
+
     //token: wx.getStorageSync('token')
   },
   /*
@@ -130,14 +131,13 @@ App({
   },
   alertInfo: function(){
     var that=this;
+    wx.hideLoading();
     wx.showModal({
       title: '温馨提示',
       content: '为了更好的体验，请更新微信到最新版本后使用。',
       showCancel: false,
       success: function (res) {
-        if (!that.globalData.isLogin){
-          that.alertInfo();
-        }
+
       }
     })
   }

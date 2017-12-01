@@ -17,9 +17,10 @@ function formatNumber(n) {
 }
 
 let ocrServer ="https://msd.coffeelandcn.cn/";
+//let ocrServer = "https://devopsx.coffeelandcn.cn/";
 //let Server = "https://devopsx.coffeelandcn.cn/"; //DEV
-let Server = "https://devops.coffeelandcn.cn/"; //UAT
-//let Server = "https://prd.wechat.service.agilent.com/"; //PRO
+//let Server = "https://devops.coffeelandcn.cn/"; //UAT
+let Server = "https://prd.wechat.service.agilent.com/"; //PRO
 var arrRequest=[],isRequesting=false;
 function NetRequest({ url, data, success, fail, complete, method = "POST", showload = true, host = Server}) {
   var obj = { url: url, data: data, success: success, fail: fail, complete: complete, method: method, showload: showload, host: host}; 
@@ -37,13 +38,29 @@ function NetRequest({ url, data, success, fail, complete, method = "POST", showl
   _NetRequest(obj);
 }
 
+function in_array(stringToSearch, arrayToSearch) {
+  for (var s = 0; s < arrayToSearch.length; s++) {
+    var thisEntry = arrayToSearch[s].toString();
+    if (thisEntry == stringToSearch) {
+      return true;
+    }
+  }
+  return false;
+}
 
 function _NetRequest({ url, data, success, fail, complete, method = "POST", showload = true, host = Server}){
   var app = getApp();
-  
+  var urlArr = ["wechat-mini/wx-login","api/check-lunch"];//未登录可以使用的url
+
+  if (!in_array(url,urlArr)&&app.globalData.needCheck){     
+     isRequesting = false;
+     app.alertInfo();
+     arrRequest=[];
+     return false;
+  }
 
   var _csrf = wx.getStorageSync('csrf');
-  var version = "1.11.9.1";
+  var version = "1.12.1.1";
   var csrfToken = wx.getStorageSync('csrfCookie')
   if (typeof (data) == 'object') {
     data._csrf = _csrf;
@@ -85,6 +102,8 @@ function _NetRequest({ url, data, success, fail, complete, method = "POST", show
       res['statusCode'] === 200 ? success(data) : fail(res)
     },
     fail: function (e) {
+      isRequesting = false; 
+      arrRequest = [];
       if (typeof (fail) == 'function') {
         fail(e);
       }else{
