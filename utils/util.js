@@ -49,6 +49,7 @@ function in_array(stringToSearch, arrayToSearch) {
 }
 
 function _NetRequest({ url, data, success, fail, complete, method = "POST", showload = true, host = Server}){
+  var tempUrl = url;
   var app = getApp();
   var urlArr = ["wechat-mini/wx-login","api/check-lunch"];//未登录可以使用的url
 
@@ -104,6 +105,24 @@ function _NetRequest({ url, data, success, fail, complete, method = "POST", show
     fail: function (e) {
       isRequesting = false; 
       arrRequest = [];
+      
+      if (tempUrl !="wechat-mini/wx-login"&&e.errMsg =="request:fail timeout"){
+        wx.hideLoading();
+        wx.showModal({
+          title: '请求失败',
+          content: '请检查您的网络',
+          showCancel: false,
+          success: function (res) {
+            if (res.confirm) {
+              wx.switchTab({
+                url: '../index/index',
+              })
+            }
+          }
+        })
+        return;
+      }
+
       if (typeof (fail) == 'function') {
         fail(e);
       }else{
