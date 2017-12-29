@@ -62,7 +62,7 @@ App({
     isSetOption: false, //是否正在配置
     isFirstLunch: true, //是否第一次打开
     isUploading: false, //是否正在上传
-
+    loginText:''
     //token: wx.getStorageSync('token')
   },
   /*
@@ -106,6 +106,9 @@ App({
                 wx.setStorageSync('OPENID', r.openid);
                 that.globalData.isLogin = true;
                 //that.gotoIndex();
+              } else if (typeof (r.error_msg) !="undefined"){
+                that.globalData.needCheck = true;
+                that.alertInfo(r.error_msg);
               } else {
                 that.globalData.needCheck = true;
                 if (wx.canIUse('web-view')){
@@ -113,7 +116,7 @@ App({
                     url: '../user_guidelines/user_guidelines' 
                   });
                 }else{
-                  that.alertInfo();
+                  that.alertInfo('为了更好的体验，请更新微信到最新版本后使用。');
                 }  
                 console.log(r.error_msg);
               }
@@ -129,12 +132,15 @@ App({
       }
     });
   },
-  alertInfo: function(){
+  alertInfo: function(text){
     var that=this;
+    if (typeof (text) !="undefined"){
+      that.globalData.loginText = text;
+    }
     wx.hideLoading();
     wx.showModal({
       title: '温馨提示',
-      content: '为了更好的体验，请更新微信到最新版本后使用。',
+      content: that.globalData.loginText,
       showCancel: false,
       success: function (res) {
 
