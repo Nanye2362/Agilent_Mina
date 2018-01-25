@@ -3,6 +3,7 @@ var util = require('/utils/util.js');
 //var aldstat = require("./utils/ald-stat.js");
 var mta = require('/utils/mta_analysis.js');
 var miniApp_env = "prod";// prod或uat
+var userMobile = {};
 console.log(userMobile);
 App({
   onLaunch: function () {
