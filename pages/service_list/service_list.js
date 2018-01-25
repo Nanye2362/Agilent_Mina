@@ -24,20 +24,25 @@ Page({
     getContactId: '',
     TECH: 'T_srid:',
     SN: ';sn:',
+    isFirst:true
   },
   onShow: function () {
     var that = this;
-    //请求后台接口
-    util.NetRequest({
-      url: 'site-mini/service-list',
-      success: function (res) {
-        console.log(res);
-        that.sortHistory(res);
-        that.setData({
-          getContactId: res.SerialNo_list[0].ContactId
-        });
-      }
-    });
+    console.log(this.data.isFirst);
+    if (!this.data.isFirst){
+      //请求后台接口
+      util.NetRequest({
+        url: 'site-mini/service-list',
+        success: function (res) {
+          console.log(res);
+          that.sortHistory(res);
+          that.setData({
+            getContactId: res.SerialNo_list[0].ContactId
+          });
+        }
+      });
+    }
+    this.data.isFirst = false;
   },
   onLoad: function (option) {
     //腾讯mat统计开始
@@ -106,8 +111,6 @@ Page({
         }
       });
     }
-
-
   },
   /**
    * 滑动切换tab

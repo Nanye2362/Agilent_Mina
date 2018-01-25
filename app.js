@@ -3,7 +3,9 @@ var util = require('/utils/util.js');
 //var aldstat = require("./utils/ald-stat.js");
 var mta = require('/utils/mta_analysis.js');
 var miniApp_env = "prod";// prod或uat
-var userMobile = {};
+var userMobile={};
+
+
 console.log(userMobile);
 App({
   onLaunch: function () {
@@ -16,7 +18,7 @@ App({
     
     this.globalData.isLoading = true;
     try {
-      var res = wx.getSystemInfoSync()
+      var res = wx.getSystemInfoSync();
       userMobile.brand = res.brand;
       userMobile.model = res.model;
       userMobile.language = res.language;
@@ -27,16 +29,27 @@ App({
     } catch (e) {
       // Do something when catch error
     }
+    console.log(userMobile);
     this.wxlogin();
 
   },
   onShow: function (res) {
-    console.log(res);
+    var nowDate = new Date();
+    var lastDate=wx.getStorageSync("sessionDate");
     var that = this;
-    if (!that.globalData.isSetOption && !that.globalData.isFirstLunch) {
-      that.wxlogin();
+    console.log(nowDate - lastDate);
+    console.log(nowDate - lastDate >= 60 * 60 * 1000);
+    if (lastDate && nowDate - lastDate>=60*60*1000){//毫秒  1小时   
+      if (!that.globalData.isSetOption && !that.globalData.isFirstLunch) {
+        that.wxlogin();
+      }
     }
     that.globalData.isFirstLunch = false;
+  },
+  onHide:function () {
+    
+    var nowDate = new Date();
+    wx.setStorageSync("sessionDate", nowDate);
   },
   globalData: {
     miniApp_env: miniApp_env,// prod或uat 
@@ -45,10 +58,11 @@ App({
     isLoading: false,
     isLogin: false,
     isWelcomeAuth: false,
-    needCheck: false,
-    isSetOption: false,
-    isFirstLunch: true,
-    isUploading: false,
+    needCheck: false,    //是否需要检测
+    isSetOption: false, //是否正在配置
+    isFirstLunch: true, //是否第一次打开
+    isUploading: false, //是否正在上传
+    loginText:''
     //token: wx.getStorageSync('token')
   },
   /*
@@ -83,6 +97,7 @@ App({
             },
             showload: false,
             success: function (r) {
+              that.globalData.isLoading = false;
               console.log(r);
               if (r.success == true) {
                 console.log(that);
@@ -91,6 +106,9 @@ App({
                 wx.setStorageSync('OPENID', r.openid);
                 that.globalData.isLogin = true;
                 //that.gotoIndex();
+              } else if (typeof (r.error_msg) !="undefined"){
+                that.globalData.needCheck = true;
+                that.alertInfo(r.error_msg);
               } else {
                 that.globalData.needCheck = true;
                 if (wx.canIUse('web-view')){
@@ -98,13 +116,14 @@ App({
                     url: '../user_guidelines/user_guidelines' 
                   });
                 }else{
-                  that.alertInfo();
+                  that.alertInfo('为了更好的体验，请更新微信到最新版本后使用。');
                 }  
                 console.log(r.error_msg);
               }
             },
-            complete: function () {
-              that.globalData.isLoading = false;
+            fail:function(){
+
+              that.wxlogin();
             }
           })
         } else {
@@ -113,16 +132,18 @@ App({
       }
     });
   },
-  alertInfo: function(){
+  alertInfo: function(text){
     var that=this;
+    if (typeof (text) !="undefined"){
+      that.globalData.loginText = text;
+    }
+    wx.hideLoading();
     wx.showModal({
       title: '温馨提示',
-      content: '为了更好的体验，请更新微信到最新版本后使用。',
+      content: that.globalData.loginText,
       showCancel: false,
       success: function (res) {
-        if (!that.globalData.isLogin){
-          that.alertInfo();
-        }
+
       }
     })
   }
