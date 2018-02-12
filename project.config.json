@@ -9,8 +9,8 @@
 	},
 	"compileType": "miniprogram",
 	"libVersion": "1.6.4",
-	"appid": "wxd73c4d1bcd0db4c2",
-	"projectname": "%E5%B0%8F%E7%A8%8B%E5%BA%8Fproduct",
+	"appid": "wx23a698601f1f3786",
+	"projectname": "%E5%B0%8F%E7%A8%8B%E5%BA%8Fdev",
 	"condition": {
 		"search": {
 			"current": -1,
@@ -20,9 +20,20 @@
 			"current": -1,
 			"list": []
 		},
-		"miniprogram": {
+		"game": {
 			"current": -1,
 			"list": []
+		},
+		"miniprogram": {
+			"current": -1,
+			"list": [
+				{
+					"id": -1,
+					"name": "demo_hanyan",
+					"pathName": "pages/mechat_list/mechat_list",
+					"query": "scene=id_1"
+				}
+			]
 		}
 	}
 }

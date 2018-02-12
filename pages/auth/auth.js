@@ -56,7 +56,9 @@ Page({
             wx.switchTab({
               url: '../' + pageName + '/' + pageName + '?mobile=' + mobile,
             })
-          } else{
+          }else if (pageName=="mechat_list"){
+			wx.navigateBack();
+		  } else{
             wx.redirectTo({
               url: '../' + pageName + '/' + pageName + '?mobile=' + mobile,
             })
@@ -142,6 +144,19 @@ Page({
           // }
         },
         fail: function (err) {
+          wx.hideLoading();
+          wx.showModal({
+            title: '请求失败',
+            content: '请检查您的网络',
+            showCancel: false,
+            success: function (res) {
+              if (res.confirm) {
+                wx.switchTab({
+                  url: '../index/index',
+                })
+              }
+            }
+          })
           console.log(err);
         }
       });

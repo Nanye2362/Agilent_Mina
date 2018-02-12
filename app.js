@@ -51,6 +51,20 @@ App({
     var nowDate = new Date();
     wx.setStorageSync("sessionDate", nowDate);
   },
+  editTabBar: function () {
+    var tabbar = this.globalData.tabbar,
+      currentPages = getCurrentPages(),
+      _this = currentPages[currentPages.length - 1],
+      pagePath = _this.__route__;
+    (pagePath.indexOf('/') != 0) && (pagePath = '/' + pagePath);
+    for (var i in tabbar.list) {
+      tabbar.list[i].selected = false;
+      (tabbar.list[i].pagePath == pagePath) && (tabbar.list[i].selected = true);
+    }
+    _this.setData({
+      tabbar: tabbar
+    });
+  },
   globalData: {
     miniApp_env: miniApp_env,// prod或uat 
     userInfo: null,
@@ -62,7 +76,34 @@ App({
     isSetOption: false, //是否正在配置
     isFirstLunch: true, //是否第一次打开
     isUploading: false, //是否正在上传
-    loginText:''
+    loginText:'',
+    tabbar: {
+      "color": "#a9b7b7",
+      "selectedColor": "#0085d5",
+      "backgroundColor": "#f7f7f7",
+      "borderStyle": "#aaa",
+      "list": [
+        {
+          "pagePath": "../index/index",
+          "text": "首页",
+          "iconPath": "/images/home.png",
+          "selectedIconPath": "images/home_c.png"
+        },
+        {
+          "pagePath": "pages/contact_us/contact_us",
+          "text": "联系安捷伦",
+          "iconPath": "/images/contact.png",
+          "selectedIconPath": "/images/contact_c.png"
+        },
+        {
+          "pagePath": "/pages/myhome/myhome",
+          "text": "我的",
+          "iconPath": "/images/my.png",
+          "selectedIconPath": "/images/my_c.png"
+        }
+      ],
+      position: "bottom"
+    }  
     //token: wx.getStorageSync('token')
   },
   /*
@@ -79,7 +120,7 @@ App({
     var that = this;
 
     if (!that.globalData.isUploading){
-      wx.showLoading({
+       wx.showLoading({
         title: '加载中，请稍候',
         mask: true
       })
@@ -122,7 +163,6 @@ App({
               }
             },
             fail:function(){
-
               that.wxlogin();
             }
           })

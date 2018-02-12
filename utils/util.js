@@ -61,7 +61,7 @@ function _NetRequest({ url, data, success, fail, complete, method = "POST", show
   }
 
   var _csrf = wx.getStorageSync('csrf');
-  var version = "1.12.26.1";
+  var version = "2.2.9.1";
   var csrfToken = wx.getStorageSync('csrfCookie')
   if (typeof (data) == 'object') {
     data._csrf = _csrf;
@@ -103,10 +103,11 @@ function _NetRequest({ url, data, success, fail, complete, method = "POST", show
       res['statusCode'] === 200 ? success(data) : fail(res)
     },
     fail: function (e) {
+      console.log(e);
       isRequesting = false; 
       arrRequest = [];
       
-      if (tempUrl !="wechat-mini/wx-login"&&e.errMsg =="request:fail timeout"){
+      if (tempUrl != "wechat-mini/wx-login" && (e.errMsg == "request:fail timeout" || e.errMsg == "request:fail ")){
         wx.hideLoading();
         wx.showModal({
           title: '请求失败',
