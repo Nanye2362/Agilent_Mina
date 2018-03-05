@@ -59,7 +59,7 @@ Page({
   headImgTap:function(){
     wx.setStorage({
       key: "openHtmlUrl",
-      data: "https://www.agilent.com/home",
+      data: "https://www.chem.agilent.com/store/",
       success:function(){
         wx.navigateTo({
           url: '../html/openHtml',
@@ -211,7 +211,7 @@ Page({
             showTemplate: e.target.dataset.template,
             checkFun: e.target.dataset.checkfun,
             meqiaGroup: e.target.dataset.meqia,
-            shLoading: true
+            //shLoading: true
           })
         }
       })

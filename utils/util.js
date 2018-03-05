@@ -61,7 +61,7 @@ function _NetRequest({ url, data, success, fail, complete, method = "POST", show
   }
 
   var _csrf = wx.getStorageSync('csrf');
-  var version = "2.2.9.1";
+  var version = "2.3.2.1";
   var csrfToken = wx.getStorageSync('csrfCookie')
   if (typeof (data) == 'object') {
     data._csrf = _csrf;
@@ -85,17 +85,19 @@ function _NetRequest({ url, data, success, fail, complete, method = "POST", show
     data: data,
     header: header,
     success: res => {
+      console.log(url);
+      console.log(res.data.csrfToken);
       if ((session_id == "" || session_id == null) && typeof (res.data.session_id) != "undefined") {
         console.log(res.data.session_id);
         wx.setStorageSync('PHPSESSID', res.data.session_id); //如果本地没有就说明第一次请求 把返回的session id 存入本地
         var str = res.header['Set-Cookie'];
         console.log(str);
-        if (typeof (str) != 'undefined') {
+        if (typeof (res.data.csrfToken) != 'undefined') {
+          wx.setStorageSync('csrf', res.data.csrfToken);
           var m = str.match(/_csrf=(.)*?;/);
           if (m != null) {
             wx.setStorageSync('csrfCookie', m[0]);
           }
-          wx.setStorageSync('csrf', res.data.csrfToken);
         }
       }
 
