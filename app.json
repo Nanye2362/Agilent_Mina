@@ -1,6 +1,8 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/mechat_list/mechat_list",
+    
     "pages/user_guidelines/user_guidelines",
     "pages/contact_us/contact_us",
     "pages/evaluate/evaluate",
@@ -23,7 +25,8 @@
     "pages/personal_info/personal_info",
     "pages/logs/logs",
     "pages/leave_message/leave_message",
-    "pages/contact_service/contact_service"
+    "pages/contact_service/contact_service",
+    "pages/html/openHtml"
   ],
   "networkTimeout": {
     "request": 10000
@@ -47,8 +50,8 @@
         "selectedIconPath": "images/home_c.png"
       },
       {
-        "pagePath": "pages/contact_us/contact_us",
-        "text": "联系安捷伦",
+        "pagePath": "pages/mechat_list/mechat_list",
+        "text": "在线咨询",
         "iconPath": "/images/contact.png",
         "selectedIconPath": "/images/contact_c.png"
       },

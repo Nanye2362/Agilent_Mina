@@ -1,0 +1,116 @@
+<!--pages/mechat_list/mechat_list.wxml-->
+
+  <view class="mechat_panel">
+    <view class="mechat_head_img" bindtap="headImgTap">
+      <image src="../../images/Bitmap.png" class="mc_poster_bg"></image>
+    </view>
+    <view class="mechat_list">
+      <view class="mechat_row">
+        <view class="mechat_text_panel">
+          <text class="mechat_text1">仪器使用</text>
+          <text class="mechat_text2">仪器报修、维护、保养</text>
+        </view>
+        <view class="fc-blue bc_chat_btn btn-meiqia btn-other" bindtap="showInputPanel" data-tapfun="srTap" data-Template="inputTemplate1" data-meqia="T">立即咨询</view>
+      </view>
+    </view>
+
+    <view class="mechat_list">
+      <view class="mechat_row">
+        <view class="mechat_text_panel">
+          <text class="mechat_text1">消耗品购买</text>
+          <text class="mechat_text2">购买相关问题资讯</text>
+        </view>
+        <view class="fc-blue bc_chat_btn btn-meiqia btn-other" bindtap="showInputPanel" data-Template="inputTemplate2" data-checkfun="checkSales" data-tapfun="salesTap" data-meqia="CB">立即咨询</view>
+      </view>
+    </view>
+
+
+    <view class="mechat_list">
+      <view class="mechat_row">
+        <view class="mechat_text_panel">
+          <text class="mechat_text1">消耗品售后</text>
+          <text class="mechat_text2">售后客服为您答疑解惑</text>
+        </view>
+        <view class="fc-blue bc_chat_btn btn-meiqia btn-other" bindtap="showInputPanel" data-Template="inputTemplate2" data-checkfun="checkSales" data-tapfun="salesTap" data-meqia="CA">立即咨询</view>
+      </view>
+    </view>
+
+
+    <view class="mechat_list">
+      <view class="mechat_row">
+        <view class="mechat_text_panel">
+          <text class="mechat_text1">安捷伦大学培训</text>
+          <text class="mechat_text2">培训课程咨询</text>
+        </view>
+        <view class="fc-blue bc_chat_btn btn-meiqia btn-other" bindtap="showInputPanel" data-Template="inputTemplate2" data-checkfun="checkSales" data-tapfun="salesTap" data-meqia="E">立即咨询</view>
+      </view>
+    </view>
+
+    <view class="mechat_list">
+      <view class="mechat_row last_row">
+        <view class="mechat_text_panel">
+          <text class="mechat_text1">上传图片</text>
+          <text class="mechat_text2">已有服务单号快速入口</text>
+        </view>
+        <view class="fc-blue bc_chat_btn btn-meiqia btn-other" bindtap="showInputPanel" data-tapfun="orderTap" data-Template="inputTemplate5" data-checkfun="checkOrder" data-meqia="N">立即咨询</view>
+      </view>
+    </view>
+
+  </view>
+
+
+
+
+
+<!-- showInput -->
+<view class="shLoading" wx:if="{{shLoading}}">
+  <view class="shLoading-mask1">
+  </view>
+  <view class="shLoading-panel flex alignc directionC">
+      <view class="shLoading-head-panel">
+          <template is="{{showTemplate}}"  data="{{hasInputError:hasInputError,inputError:inputError,input5_ordersn:input5_ordersn,input2_name:input2_name,input2_tel:input2_tel,input2_company:input2_company}}"></template>
+      </view>
+      <view class="shLoading-btn-panel">
+          <view class="shLoading-btn-cancel" bindtap="cancelTap">取消</view>
+          <view class="shLoading-btn-ok" bindtap="okTap">提交</view>
+      </view>
+  </view>
+</view>
+
+
+<!-- showInputInfo-->
+<view class="shLoading" wx:if="{{shInputInfo}}">
+  <view class="shLoading-mask1">
+  </view>
+  <view class="shLoading-panel flex alignc directionC">
+      <view class="shLoading-head-panel">
+          <text class="shLoading-head-panel-info">请确认以下信息是否正确\r\n</text>
+          <text>{{showText}}</text>
+      </view>
+      <view class="shLoading-btn-panel">
+          <view class="shLoading-btn-cancel" bindtap="infoCancelTap">返回修改</view>
+          <view class="shLoading-btn-ok">发起咨询
+          <button open-type='contact' bindtap="startChat" class="shLoading-btn-contact" session-from='{{meqiaGroup}}_dataid:{{sessionId}}'></button></view>
+      </view>
+  </view>
+</view>
+
+
+
+<template name="inputTemplate1">
+	 <input class="shLoading-input"   bindinput="bindKeyInput" maxlength="10" placeholder="请输入序列号" data-name="input1_sn" />
+     <text class="shLoading-input-error" wx:if="{{hasInputError}}">{{inputError}}</text>
+</template>
+
+<template name="inputTemplate2">
+	 <input class="shLoading-input"   bindinput="bindKeyInput" placeholder="请输入姓名" data-name="input2_name" value="{{input2_name}}" />
+   <input class="shLoading-input"   bindinput="bindKeyInput" placeholder="请输入手机" data-name="input2_tel" value="{{input2_tel}}" />
+   <input class="shLoading-input"   bindinput="bindKeyInput" placeholder="请输入公司" data-name="input2_company" value="{{input2_company}}" />
+   <text class="shLoading-input-error" wx:if="{{hasInputError}}">{{inputError}}</text>
+</template>
+
+
+<template name="inputTemplate5">
+	 <input class="shLoading-input" bindfocus="bindfocusSrId"  bindinput="bindKeyInput" maxlength="10" placeholder="请输入服务单号" data-name="input5_ordersn" value="{{input5_ordersn}}" />
+   <text class="shLoading-input-error" wx:if="{{hasInputError}}">{{inputError}}</text>
+</template>

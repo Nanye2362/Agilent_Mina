@@ -1,0 +1,60 @@
+/* pages/mechat_list/mechat_list.wxss */
+page{
+  height:auto !important;
+  position: relative;
+}
+
+.mechat_panel{
+  background:#fff;
+  min-height:100%;
+}
+
+.mc_poster_bg{
+  height:416rpx;
+  width:750rpx;
+}
+
+
+
+.mechat_row{
+  padding-top:25rpx;
+  height:145rpx;
+  border-bottom:1px solid #f0f1f1;
+}
+
+.last_row{
+  border:none;
+}
+
+.mechat_text_panel{
+  width:540rpx;
+  padding-left:50rpx;
+  display:inline-block;
+  vertical-align: middle;
+}
+
+.mechat_text_panel .mechat_text1{
+  width:350rpx;
+  font-size:36rpx;
+  display: block;
+  color:#333;
+  padding-bottom:16rpx;
+}
+
+.mechat_text_panel .mechat_text2{
+  width:350rpx;
+  font-size:28rpx;
+  display: block;
+  color:#aaa;
+}
+
+.btn-meiqia{
+  height:80rpx;
+  color:#0085d5;
+  background:#F1F3F4;
+  padding:20rpx;
+  font-size:32rpx;
+  display:inline-block;
+  vertical-align: middle;
+  line-height: 40rpx;
+}

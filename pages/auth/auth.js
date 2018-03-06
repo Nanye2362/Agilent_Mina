@@ -56,13 +56,19 @@ Page({
             wx.switchTab({
               url: '../' + pageName + '/' + pageName + '?mobile=' + mobile,
             })
-          } else{
-            wx.redirectTo({
+      }else if (pageName=="mechat_list"){
+        var allPages = getCurrentPages();
+        allPages[allPages.length - 2].setData({
+          shLoading:true
+        });
+
+			  wx.navigateBack();
+		  } else{
+          wx.redirectTo({
               url: '../' + pageName + '/' + pageName + '?mobile=' + mobile,
             })
           }
-          
-          
+
         } else {
           console.log(res.noskip)
           console.log(res.error_msg)
@@ -83,7 +89,7 @@ Page({
               e_msg = '(UB004)您已经通过身份认证';
               break;
             case 'UB005':
-              e_msg = '(UB005)您的手机在系统中未关联任何联系人，请提供相关信息，我们尽快为您建档';
+              e_msg = '(UB005)您的手机在系统中未关联任何联系人，请提供相关的信息，我们尽快为您建档';
               break;
             case 'UB006':
               e_msg = '(UB006)UB006';
@@ -142,6 +148,19 @@ Page({
           // }
         },
         fail: function (err) {
+          wx.hideLoading();
+          wx.showModal({
+            title: '请求失败',
+            content: '请检查您的网络',
+            showCancel: false,
+            success: function (res) {
+              if (res.confirm) {
+                wx.switchTab({
+                  url: '../index/index',
+                })
+              }
+            }
+          })
           console.log(err);
         }
       });

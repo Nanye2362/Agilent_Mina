@@ -213,3 +213,117 @@ view, text, input, button{ font-size: 32rpx; font-family: "MicroSoft Yahei"; col
 .shLoading-con{ width: 210rpx; height: 210rpx;  top: 236rpx; left: 50%; margin-left: -105rpx; background: #000; opacity: .6; position: fixed; z-index: 9999; border-radius: 12rpx; padding-top: 50rpx; }
 .shLoading-img{ width: 79rpx; height: 64rpx; margin-bottom: 20rpx;}
 .shLoading-text{ color: #fff; }
+
+.shLoading-panel{
+  width: 620rpx; padding-bottom:120rpx;  top: 300rpx; left: 50%; margin-left: -310rpx; background:#fff;border:1px solid #666;position: fixed; z-index: 9999; border-radius: 12rpx; padding-top: 50rpx; 
+}
+
+.shLoading-input{
+  border-bottom:1px solid #eee;
+  width:480rpx;
+  font-size:34rpx;
+  padding-bottom:10rpx;
+  padding-left:5rpx;
+  margin-bottom:15rpx;
+}
+
+.shLoading-mask1{
+   top:0;
+   left:0;
+   background: #000; 
+   opacity: .6;
+   position: fixed; 
+   width: 100%; 
+   height: 100%; 
+   z-index: 9990;
+}
+
+.shLoading-head-panel{
+  min-height:80rpx;
+}
+
+.shLoading-head-panel-info{
+  padding-bottom:10rpx;
+  display:block;
+}
+
+.shLoading-btn-panel{
+  position:absolute;
+  bottom:3rpx;
+  height:100rpx;
+  width:100%;
+  border-top:1px solid #eee;
+}
+
+.shLoading-btn-cancel,.shLoading-btn-ok,.shLoading-btn-contact{
+  display:inline-block;
+  width:50%;
+  line-height:100rpx;
+  text-align: center;
+  font-size:36rpx;
+}
+
+
+.shLoading-btn-cancel{
+  border-right:1px solid #eee;
+}
+
+.shLoading-btn-ok{
+  color:#66CD00;
+  position:relative;
+}
+
+.shLoading-btn-contact{
+    opacity:0;
+    position:absolute;
+    bottom: 0;
+    right:0;
+    background:red;
+    height:100%;
+    width:100%;
+}
+
+.shLoading-input-error{
+  color:red;
+  font-size:30rpx;
+  padding-top:15rpx;
+}
+
+.tabbar_box{  
+    display: flex;  
+    flex-direction: row;  
+    justify-content: space-around;  
+    position: absolute;  
+    bottom: 0;  
+    left: 0;  
+    z-index: 999;  
+    width: 100%;  
+    height: 110rpx;  
+    border-top: 3rpx solid #eee;   
+}  
+  
+.tabbar_nav{  
+    display: flex;  
+    flex-direction: column;  
+    justify-content: center;  
+    align-items: center;  
+    font-size: 28rpx;  
+    height: 100%;
+    
+}  
+
+.tabbar_nav text{
+  font-size:28rpx;
+  color:#aaa;
+}
+  
+.tabbar_icon{  
+    width: 61rpx;  
+    height: 61rpx;  
+} 
+
+.tabbar_page{
+   height:90rpx;
+   display: block;
+   box-sizing:content-box;
+}
