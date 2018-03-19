@@ -1,5 +1,4 @@
 var util = require('../../utils/util.js');
-var newIns = require('../template/newIns.js')
 var app = getApp()
 var mobile = ''
 Page({
@@ -13,90 +12,14 @@ Page({
     currentTab: 0,
     displayState: false,
     InstrumentCount: 0,
-    SerialCount: 0,
     InstrumentList: [{}],
     ContactGuid: '',
     ContactId: '',
     AccountGuid: '',
     AccountId: '',
-    item:{
-      setMask: false,
-    },
-    categoryList: [
-      {
-        categoryName: '不限',
-        filterActive: true,
-      },
-      {
-        categoryName: 'GC',
-        filterActive: false,
-      },
-      {
-        categoryName: 'LC',
-        filterActive: false,
-      },
-      {
-        categoryName: '四字分类',
-        filterActive: false,
-      },
-      {
-        categoryName: 'SC',
-        filterActive: false,
-      },
-    ],
-    showMoreGroup: false,
-    groupList:[
-      {
-        groupName: 'GC11111',
-      },
-      {
-        groupName: 'GC2222',
-      },
-      {
-        groupName: 'GC3333',
-      },
-      {
-        groupName: 'GC4444',
-      },
-    ],
-    labelList:[
-      {
-        labelName: 1111,
-        filterActive: true,
-      },
-      {
-        labelName: 2222,
-        filterActive: false,
-      },
-      {
-        labelName: 3333,
-        filterActive: false,
-      },
-      {
-        labelName: 4444,
-        filterActive: false,
-      },
-    ],
-    showFilter: false,
   },
   backHome: function () {
     util.backHome()
-  },
-
-
-  /* 更多仪器分组 */
-  moreGroup: function(){
-    this.setData({
-      showMoreGroup: !this.data.showMoreGroup
-    })
-  },
-
-
-  /* 筛选框 */
-  clickfilter: function(){
-    this.setData({
-      showFilter: !this.data.showFilter
-    })
   },
 
 
@@ -104,13 +27,11 @@ Page({
     //腾讯mta统计开始
     var app = getApp();
     app.mta.Page.init();
-    newIns.init();
-    
     //腾讯mta统计结束
-    //mobile = wx.getStorageSync(mobile);
-    //console.log('mobile=======' + mobile)
-    //var that = this;
-    /*util.NetRequest({
+    mobile = wx.getStorageSync(mobile);
+    console.log('mobile=======' + mobile)
+    var that = this;
+    util.NetRequest({
       url: 'site-mini/my-instrument',
       data: {
       },
@@ -131,12 +52,12 @@ Page({
       fail: function (err) {
         console.log(err);
       }
-    })*/
+    })
   },
   //报修历史
   clickToNext: function (event) {
     var sn = event.currentTarget.dataset.sn;
-    this.setData({ 'sn': sn })
+    this.setData({'sn': sn})
     var contactId = event.currentTarget.dataset.contactid;
     var that = this;
     util.NetRequest({
@@ -164,8 +85,8 @@ Page({
         }
       }
     });
-
-
+    
+    
   },
   //报修
   clickToRepair: function (event) {
@@ -201,17 +122,6 @@ Page({
     })
   },
 
-  //设置菜单隐藏
-  clickToHideSet: function() {
-    this.data.item.setMask = false
-    this.setData(this.data)
-  },
-  clickToShowSet: function () {
-    this.data.item.setMask = true
-    this.setData(this.data)
-  },
-
-
   //删除仪器
   clickToRemove: function (event) {
     var that = this
@@ -232,7 +142,7 @@ Page({
             success: function (res) {
               var InstrumentCount = that.data.InstrumentCount;
               that.setData({
-                InstrumentCount: InstrumentCount - 1,
+                InstrumentCount: InstrumentCount-1,
               })
               console.log('用户点击确定');
               InstrumentList.splice(index, 1);
@@ -252,6 +162,6 @@ Page({
         }
       }
     })
-
+    
   }
 })  

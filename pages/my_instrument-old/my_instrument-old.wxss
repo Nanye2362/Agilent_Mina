@@ -1,0 +1,85 @@
+.mi_num {
+    padding: 15px;
+}
+
+.mi_add_new {
+    padding: 20rpx;
+    width: 100%;
+    line-height: 50rpx;
+}
+
+.mi_add_new image {
+    width: 37rpx;
+    height: 37rpx;
+    vertical-align: sub;
+    margin-right: 10rpx;
+}
+
+.mi_re_detail {
+    background: #fff;
+    margin-bottom: 15px;
+    box-shadow: 2px 2px 2px #dfdfdf;
+}
+
+.mi_de_title {
+    padding: 30rpx;
+    border-bottom: 1px solid #eee;
+    position: relative;
+}
+
+
+.mi_item_l {
+    flex: .2
+}
+
+.mi_item_r {
+    flex: .8;
+}
+
+.mi_ti_l_item:not(:last-child) {
+    margin-bottom: 8rpx;
+}
+
+.mi_instru_img {
+    width: 45rpx;
+    height: 45rpx;
+    vertical-align: middle;
+    margin-right: 10rpx;
+}
+
+.mi_ti_l {
+    width: 100%;
+}
+
+.mi_ti_l text:not(:first-child) {
+    margin-top: 10px;
+}
+
+.mi_ti_r {
+    position: absolute;
+    right: 0;
+    top: 24rpx;
+    width: 240rpx;
+    height: 80rpx;
+}
+.mi_de_con {
+    padding: 10px 15px;
+}
+
+.mi_btn-circle {
+    width: 200rpx;
+    border-radius: 10rpx;
+    text-align: center;
+    line-height: 70rpx;
+    border: 1px solid #0085d5;
+    color: #0085d5;
+}
+
+.mi_btn_active {
+    background: #0085d5;
+    color: #fff;
+}
+
+.mi_btn-circle:first-child {
+    margin-right: 20rpx;
+}
