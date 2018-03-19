@@ -1,0 +1,31 @@
+@import '../set_group/set_group';
+.colorList{
+  margin: 20rpx 0;
+  flex-wrap:wrap;
+  width: 450rpx;
+}
+.color_item{
+  width: 80rpx;
+  height: 80rpx;
+  box-sizing: border-box;
+  padding: 20rpx; 
+  float: left;
+}
+.color_item_con{
+  width: 40rpx; 
+  height: 40rpx;
+  border-radius: 50%;
+}
+.colorActive{
+  border: 1px solid #ff5c5e;
+  box-shadow: 0 0 2px #ff5c5e;
+}
+
+.label_Color{
+  width: 20rpx;
+  height: 40rpx;
+  margin-right: 20rpx;
+}
+
+
+

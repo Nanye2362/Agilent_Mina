@@ -1,0 +1,146 @@
+.mi_re_detail {
+    background: #fff;
+    margin-bottom: 15px;
+    box-shadow: 2px 2px 2px #dfdfdf;
+}
+
+.mi_de_title {
+    padding: 20rpx 30rpx;
+    border-bottom: 1px solid #eee;
+    position: relative;
+}
+
+
+.mi_item_l {
+    flex: .2
+}
+
+.mi_item_r {
+    flex: .8;
+    margin-left:-35rpx;
+}
+
+.mi_ti_l_item:not(:last-child) {
+    margin-bottom: 8rpx;
+    padding-bottom: 10rpx;
+}
+
+.mi_instru_img {
+    width: 40rpx;
+    height: 40rpx;
+    vertical-align: middle;
+}
+
+.mi_ti_l {
+    width: 100%;
+}
+
+.mi_ti_l text:not(:first-child) {
+    margin-top: 10px;
+}
+
+.mi_ti_r {
+    position: absolute;
+    right: 20rpx;
+    top: 24rpx;
+    width: 50rpx;
+    height: 50rpx;
+}
+
+.mi_ti_right {
+    position: absolute;
+    right: 20rpx;
+    top: 40%;
+    width: 50rpx;
+    height: 50rpx;
+}
+
+.mi_de_con {
+    padding: 6px 15px;
+    height: 90rpx;
+}
+.mi_de_con button{ 
+  float: right;
+ }
+
+.mi_btn-circle {
+    width: 200rpx;
+    border-radius: 10rpx;
+    text-align: center;
+    line-height: 70rpx;
+}
+
+.mi_btn_active {
+    background: #0085d5;
+    color: #fff;
+}
+
+.mi_btn-circle:last-child {
+    margin-right: 20rpx;
+    color: #7f7f7f;
+}
+
+
+.mi_label{ 
+  font-size: 25rpx;
+  padding: 5rpx 10rpx;
+  border-radius: 15rpx;
+  background: #0085d5;
+  color: #fff;
+  margin: 0 10rpx;
+}
+.mi_label:first-child{ margin-left: 20rpx; }
+
+
+
+.mi_add_new {
+    padding: 20rpx;
+    width: 100%;
+    line-height: 50rpx;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+}
+
+.mi_add_new image {
+    width: 37rpx;
+    height: 37rpx;
+    vertical-align: sub;
+    margin-right: 10rpx;
+}
+
+.mi_set{
+  position: relative;
+}
+.mi_set_con{
+  position: absolute;
+  padding: 15rpx;
+  top: 50rpx;
+  right: 0;
+  background: #5c5c5c;
+  border-radius: 25rpx;
+  z-index: 2000;
+}
+.mi_set_image{ 
+  width: 38rpx;
+  height: 34rpx;
+  margin-right: 15rpx;
+  vertical-align: middle;
+ }
+ .mi_set_item{ 
+   width: 200rpx;
+   padding: 15rpx 0;
+}
+.mi_set_item:not(:first-child){
+  border-top: 1px solid #686868;
+}
+.mi_set_mask{
+  opacity:0;
+  position:fixed;
+  bottom: 0;
+  right:0;
+  background:red;
+  height:100%;
+  width:100%;
+  z-index: 1999;
+}

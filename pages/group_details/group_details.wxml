@@ -1,0 +1,22 @@
+<import src='../template/newIns'/>
+<!-- title -->
+<view class='g_title fs12 fc-777'>共5个序列号</view>
+
+
+
+<!-- serial_list -->
+<template is='insTemp'wx:if='{{multiselect==false}}'></template>
+
+<!-- multiSelect_serial_list -->
+<template is='multiTemp' data='{{items}}' wx:else></template>
+
+
+
+<!-- addNew -->
+<view wx:if='{{addConfirm == false}}' class="mi_add_new text-center bg-primary" bindtap="clickToAdd">
+      <image class="mi_add_btn" src="/images/add.png"></image>     <text class="mi_add_word fc-blue">添加序列号</text>
+</view>
+
+<view wx:else class="mi_add_new text-center bg-primary" bindtap="clickToConfirm">
+  <text class="mi_add_word fc-blue">确认添加</text>
+</view>

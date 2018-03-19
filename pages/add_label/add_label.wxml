@@ -1,0 +1,61 @@
+<text class='fs20'>设置标签</text>
+<!-- group_list -->
+<view class='group flex directionC'>
+    <radio-group class="radio-group" bindchange="radioChange">
+        <!-- radio_item -->
+        <block wx:for="{{insGroup}}" wx:for-item='item' wx:key="unique">
+          <label class="radio flex group_item">
+            <view class='group_item_details flex'>
+              <view class='label_Color {{item.colorName}}'></view>
+              <text>{{item.value}}</text>
+            </view>
+            <view class='flex justify-end group_item_details'>
+              <radio value="{{insGroup.name}}" checked="{{insGroup.checked}}" color='#0085d5'/>
+            </view>             
+          </label>
+        </block>
+        <!-- radio_item -->
+    </radio-group>
+</view>
+<!-- group_list -->
+
+<!-- add_group -->
+<view class='add_group' bindtap='showPopup'>
+  <image class='add_image' src='/images/add1.png'></image>
+  <text class='fc-blue'>添加标签</text>
+</view>
+
+  <!-- add_confirm -->
+<view class="shLoading" wx:if='{{popup}}'>
+  <view class="shLoading-mask1"  bindtap="hidePopup">
+  </view>
+  <view class="shLoading-panel flex alignc directionC">
+      <view class="shLoading-head-panel">
+          <view class='fs15 text-alignC'>添加标签</view>
+          <view class='add_input'>
+            <input placeholder="标签名称（1-4个字符）" maxlength='4' class='fs13'></input>
+          </view>
+          <!-- choose_label_color -->
+          <view class='fs12'>选择标签颜色：</view>
+          <view class='colorList flex'>
+            <!-- colorList -->
+            <block wx:for='{{colorList}}' wx:for-item='item' wx:key="unique">
+              <view class='color_item  {{item.colorActive ? "colorActive" : ""}}' bindtap="chooseColor" id="{{index}}">
+                <view class='color_item_con {{item.colorName}}'></view>
+              </view>
+            </block>
+          </view>
+      </view>
+      <view class="shLoading-btn-panel">
+          <view class="shLoading-btn-cancel" bindtap="hidePopup">取消</view>
+          <view class="shLoading-btn-ok" bindtap="confirmPopup">确认</view>
+      </view>
+  </view>
+</view>
+<!-- add_group -->
+
+<!-- btn -->
+<view class="group_btn">
+    <button class="btn btn-primary" id="confirm" bindtap=''>确定</button>
+    <view class='fc-777 text-alignC' bindtap='nolabel'>暂不添加</view>
+</view>

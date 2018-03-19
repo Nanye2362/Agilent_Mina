@@ -1,0 +1,110 @@
+<!-- instrument_list -->
+<template name='insTemp'>
+  <view class="mi_re_detail">
+      <view class="mi_de_title flex ">
+          <view class="mi_ti_l text_alignL flex directionC">
+              <view class="mi_ti_l_item flex">
+                  <view class="mi_item_l fs13 fc-aaa">分类：</view>
+                  <view class="mi_item_r fs13 flex">
+                      <view class="fs13">气象色谱</view>
+                      <!-- label -->
+                      <view class='mi_label'>中药中药</view>
+                      <view class='mi_label'>中药中药</view>
+                      <view class='mi_label'>中药中药</view>
+                      <!-- label -->
+                  </view>
+              </view>
+              <view class="mi_ti_l_item flex">
+                  <view class="mi_item_l fs13 fc-aaa">型号：</view>
+                  <view class="mi_item_r fs13">US9848737282</view>
+              </view>
+              <view class="mi_ti_l_item flex">
+                  <view class="mi_item_l fs13 fc-aaa">序列号：</view>
+                  <view class="mi_item_r fs13">这是一台仪器，一台仪器</view>
+              </view>
+              <view class="mi_ti_l_item flex">
+                  <view class="mi_item_l fs13 fc-aaa">备注：</view>
+                  <view class="mi_item_r fs13">A12345678</view>
+              </view>
+          </view>
+          <!-- set -->
+          <view class="mi_ti_r text-center repair_history" >
+            <view class='mi_set'>
+              <image class="mi_instru_img" src="/images/set.png" bindtap='clickToShowSet'></image>
+              <!-- mask -->
+              <view class='mi_set_mask' bindtap='clickToHideSet' wx:if='{{setMask}}'></view>
+              <view class='mi_set_con flex directionC' bindtap='clickToHideSet' wx:if='{{setMask}}'>
+                <!-- ins_group -->
+                <view class='mi_set_item'>
+                  <image class='mi_set_image' src='/images/group.png'></image>
+                  <text class='fc-fff fs13'>仪器分组</text>
+                </view>
+                <!-- ins_label -->
+                <view class='mi_set_item'>
+                  <image class='mi_set_image' src='/images/label.png'></image>
+                  <text class='fc-fff fs13'>添加标签</text>
+                </view>
+                <!-- ins_remarks -->
+                <view class='mi_set_item'>
+                  <image class='mi_set_image' src='/images/remark.png'></image>
+                  <text class='fc-fff fs13'>修改备注</text>
+                </view>
+                <!-- ins_del -->
+                <view class='mi_set_item' bindtap="clickToRemove" data-index="{{index}}">
+                  <image class='mi_set_image' src='/images/del.png'></image>
+                  <text class='fc-fff fs13'>删除仪器</text>
+                </view>
+              </view>
+            </view>           
+          </view>
+          <!-- set -->
+      </view>
+      <view class="mi_de_con">
+          <button class="mi_btn-circle mi_btn_active fs14" bindtap="clickToRepair" data-contactId="{{Instrument.ContactId}}" data-sn="{{Instrument.SerialNo}}" data-contactGuid="{{Instrument.ContactGuid}}" data-accountGuid="{{Instrument.AccountGuid}}" data-accountId="{{Instrument.AccountId}}">快速报修</button>
+          <button class='mi_btn-circle fs14 bg-primary' bindtap="clickToNext" data-contactId="{{Instrument.ContactId}}" data-sn="{{Instrument.SerialNo}}">报修历史</button>
+      </view>
+  </view>
+</template>
+<!-- instrument_list -->
+
+
+
+
+<!-- multiSelect_list -->
+<template name='multiTemp'>
+  <checkbox-group bindchange="checkboxChange">
+    <label class="checkbox flex mi_de_title mi_re_detail" wx:for="{{items}}">
+      <view class="mi_ti_l text_alignL flex directionC">
+          <view class="mi_ti_l_item flex">
+              <view class="mi_item_l fs13 fc-aaa">分类：</view>
+              <view class="mi_item_r fs13 flex">
+                  <view class="fs13">气象色谱</view>
+                  <!-- label -->
+                  <view class='mi_label'>中药中药</view>
+                  <view class='mi_label'>中药中药</view>
+                  <view class='mi_label'>中药中药</view>
+                  <!-- label -->
+              </view>
+          </view>
+          <view class="mi_ti_l_item flex">
+              <view class="mi_item_l fs13 fc-aaa">型号：</view>
+              <view class="mi_item_r fs13">US9848737282</view>
+          </view>
+          <view class="mi_ti_l_item flex">
+              <view class="mi_item_l fs13 fc-aaa">序列号：</view>
+              <view class="mi_item_r fs13">{{item.value}}</view>
+          </view>
+          <view class="mi_ti_l_item flex">
+              <view class="mi_item_l fs13 fc-aaa">备注：</view>
+              <view class="mi_item_r fs13">A12345678</view>
+          </view>
+      </view>
+      <!-- set -->
+      <view class="mi_ti_right text-center repair_history" >
+        <checkbox color='#0085d5' value="{{item.name}}" checked="{{item.checked}}"/> 
+      </view>
+      <!-- set -->
+    </label >
+  </checkbox-group>
+</template>
+
