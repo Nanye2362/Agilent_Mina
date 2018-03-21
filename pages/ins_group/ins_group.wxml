@@ -1,100 +1,81 @@
 <!-- no_group -->
-<view wx:if='{{group_num <= 0}}' class='ng flex directionC text-alignC'>
+<view wx:if='{{GroupCount <= 0}}' class='ng flex directionC text-alignC'>
   <image src='/images/noIns.png' class='ng_img'></image>
   <view class='fs15 ng_title'>仪器分组</view>
   <view class='fc-777'>将同一台仪器的多个序列号分组管理，便于查找，报修更快捷</view>
 </view>
 
-
+ 
 <!-- group_list -->
 <view wx:else>
   <!-- editBtn -->
-  <view class='gl_title fs12 fc-777'>共3台仪器
+  <view class='gl_title flex choose_state' >
+    <text class=' fs12 fc-777'>共{{GroupCount}}台仪器</text>
     <text class='fc-blue fs12' bindtap='editGroup' wx:if='{{gotoEdit}}'>编辑</text>
-    <text class='fc-blue fs12' bindtap='finishGroup' wx:else>完成</text>
+    <view wx:else class='flex'>
+      <text class='fc-blue fs12' bindtap='cancelGroup'>取消</text>
+      <text class='fc-blue fs12 finishState' bindtap='finishGroup'>完成</text>
+    </view>
   </view>
 
   <!-- group_list -->
   <view wx:if='{{editGroup}}'>
-    <view class='gl flex' bindtap='groupDetails'>
-      <view class='g_item'>GC实验室仪器一</view>
-      <view class='g_item fc-777 fs12 flex justify-end'>6个序列号
-        <image src='/images/rightA.png' class='g_image'></image>
+    <block wx:for='{{GroupList}}' wx:for-item="item" wx:for-index="idx" wx:key='unique'>
+      <view class='gl flex' bindtap='groupDetails' data-id='{{item.GroupID}}'>
+        <view class='g_item'>{{item.GroupName}}</view>
+        <view class='g_item fc-777 fs12 flex justify-end'>{{item.GroupSnCount}}个序列号
+          <image src='/images/rightA.png' class='g_image'></image>
+        </view>
       </view>
-    </view>
-    <view class='gl flex' bindtap='groupDetails'>
-      <view class='g_item'>GC实验室仪器二</view>
-      <view class='g_item fc-777 fs12 flex justify-end'>6个序列号
-        <image src='/images/rightA.png' class='g_image'></image>
-      </view>
-    </view>
-    <view class='gl flex' bindtap='groupDetails'>
-      <view class='g_item'>GC实验室仪器三</view>
-      <view class='g_item fc-777 fs12 flex justify-end'>6个序列号
-        <image src='/images/rightA.png' class='g_image'></image>
-      </view>
-    </view>
+    </block>
   </view>
+
 
   <!-- edit_group -->
   <view wx:else>
-    <view class='gl flex'>
-      <view class='g_item flex alignc'>
-        <image src='/images/edit.png' class='edit_image'></image>
-        <input placeholder="GC实验室仪器一" />
+    <block wx:for='{{GroupList}}' wx:for-item="item" wx:for-index="idx" wx:key='unique'>
+      <view class='gl flex' wx:if='{{item.deleted}}'>
+        <!-- editGroup -->
+        <view class='g_item flex alignc'>
+          <view wx:if='{{item.editting==false}}'>{{item.GroupName}}</view>
+          <input placeholder="{{item.GroupName}}" bindinput="bindKeyInput"   wx:if='{{item.editting}}'/>
+        </view>
+        <!-- edit&deleteGroup -->
+        <view class='g_item flex justify-end alignc'>
+          <image src='/images/edit.png' class='edit_image edit_image1' bindtap='edGroup' wx:if='{{item.editting==false}}' data-idx='{{item.idx}}'></image>
+          <text class='fs12 fc-blue edit_image1' wx:if='{{item.editting}}' bindtap='edConfirm' data-id='{{item.GroupID}}' data-idx='{{item.idx}}'>确定</text>
+          <image src='/images/del1.png' class='edit_image' bindtap='delGroup'  data-id='{{item.GroupID}}' data-idx='{{item.idx}}'></image>
+        </view>
       </view>
-      <view class='g_item flex justify-end alignc'>
-        <view class='g_del fs12 fc-fff' bindtap='delGroup'>一</view>
-      </view>
-    </view>
-    <view class='gl flex'>
-      <view class='g_item flex alignc'>
-        <image src='/images/edit.png' class='edit_image'></image>
-        <input placeholder="GC实验室仪器一" />
-      </view>
-      <view class='g_item flex justify-end alignc'>
-        <view class='g_del fs12 fc-fff' bindtap='delGroup'>一</view>
-      </view>
-    </view>
-    <view class='gl flex'>
-      <view class='g_item flex alignc'>
-        <image src='/images/edit.png' class='edit_image'></image>
-        <input placeholder="GC实验室仪器一" />
-      </view>
-      <view class='g_item flex justify-end alignc'>
-        <view class='g_del fs12 fc-fff' bindtap='delGroup'>一</view>
-      </view>
-    </view>
+    </block>
   </view>
 
 
 
 </view>
-
-
-
 
 
 
 
 <!-- add_group -->
-<view class="mi_add_new text-center bg-primary" bindtap="showPopup">
-    <image class="mi_add_btn" src="/images/add.png"></image>     <text class="mi_add_word fc-blue">新建分组</text>
+<view class='add_new' bindtap='Popup'>
+  <text class='fc-blue'>新建分组</text>
 </view>
-
+  <!-- add_confirm -->
 <view class="shLoading" wx:if='{{popup}}'>
-  <view class="shLoading-mask1"  bindtap="hidePopup">
+  <view class="shLoading-mask1"  bindtap="Popup">
   </view>
   <view class="shLoading-panel flex alignc directionC">
       <view class="shLoading-head-panel">
           <view class='fs15 text-alignC'>新建分组</view>
           <view class='add_input'>
-            <input placeholder="分组名称（1-10个字符）" maxlength='10' class='fs13'></input>
+            <input placeholder="分组名称（1-10个字符）" maxlength='10' class='fs13' bindinput='bindKeyInput'></input>
           </view>
       </view>
       <view class="shLoading-btn-panel">
-          <view class="shLoading-btn-cancel" bindtap="hidePopup">取消</view>
+          <view class="shLoading-btn-cancel" bindtap="Popup">取消</view>
           <view class="shLoading-btn-ok" bindtap="confirmPopup">确认</view>
       </view>
   </view>
 </view>
+<!-- add_group -->

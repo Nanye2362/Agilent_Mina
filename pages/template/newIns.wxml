@@ -6,46 +6,46 @@
               <view class="mi_ti_l_item flex">
                   <view class="mi_item_l fs13 fc-aaa">分类：</view>
                   <view class="mi_item_r fs13 flex">
-                      <view class="fs13">气象色谱</view>
+                      <view class="fs13">{{item.ProductId}}</view>
                       <!-- label -->
-                      <view class='mi_label'>中药中药</view>
-                      <view class='mi_label'>中药中药</view>
-                      <view class='mi_label'>中药中药</view>
+                      <block  wx:for="{{item.LabelList}}" wx:for-item="labelItem">
+                        <view class='mi_label {{labelItem.LabelColor}}'>{{labelItem.LabelName}}</view>
+                      </block>
                       <!-- label -->
                   </view>
               </view>
               <view class="mi_ti_l_item flex">
                   <view class="mi_item_l fs13 fc-aaa">型号：</view>
-                  <view class="mi_item_r fs13">US9848737282</view>
+                  <view class="mi_item_r fs13">{{item.ProductId}}</view>
               </view>
               <view class="mi_ti_l_item flex">
                   <view class="mi_item_l fs13 fc-aaa">序列号：</view>
-                  <view class="mi_item_r fs13">这是一台仪器，一台仪器</view>
+                  <view class="mi_item_r fs13">{{item.SerialNo}}</view>
               </view>
               <view class="mi_ti_l_item flex">
                   <view class="mi_item_l fs13 fc-aaa">备注：</view>
-                  <view class="mi_item_r fs13">A12345678</view>
+                  <view class="mi_item_r fs13">{{item.Remark}}</view>
               </view>
           </view>
           <!-- set -->
           <view class="mi_ti_r text-center repair_history" >
             <view class='mi_set'>
-              <image class="mi_instru_img" src="/images/set.png" bindtap='clickToShowSet'></image>
+              <image class="mi_instru_img" src="/images/set.png" bindtap='clickToSet' data-idx='{{item.idx}}'></image>
               <!-- mask -->
-              <view class='mi_set_mask' bindtap='clickToHideSet' wx:if='{{setMask}}'></view>
-              <view class='mi_set_con flex directionC' bindtap='clickToHideSet' wx:if='{{setMask}}'>
+              <view class='mi_set_mask' bindtap='clickToSet' wx:if='{{item.setMask}}'></view>
+              <view class='mi_set_con flex directionC' bindtap='clickToSet' wx:if='{{item.setMask}}'>
                 <!-- ins_group -->
-                <view class='mi_set_item'>
+                <view class='mi_set_item' bindtap='setGroup' data-sn='{{item.SerialNo}}'>
                   <image class='mi_set_image' src='/images/group.png'></image>
                   <text class='fc-fff fs13'>仪器分组</text>
                 </view>
                 <!-- ins_label -->
-                <view class='mi_set_item'>
+                <view class='mi_set_item' bindtap='addLabel'>
                   <image class='mi_set_image' src='/images/label.png'></image>
                   <text class='fc-fff fs13'>添加标签</text>
                 </view>
                 <!-- ins_remarks -->
-                <view class='mi_set_item'>
+                <view class='mi_set_item' bindtap='editRemark'>
                   <image class='mi_set_image' src='/images/remark.png'></image>
                   <text class='fc-fff fs13'>修改备注</text>
                 </view>
@@ -78,7 +78,7 @@
           <view class="mi_ti_l_item flex">
               <view class="mi_item_l fs13 fc-aaa">分类：</view>
               <view class="mi_item_r fs13 flex">
-                  <view class="fs13">气象色谱</view>
+                  <view class="fs13">{{item.ProductId}}</view>
                   <!-- label -->
                   <view class='mi_label'>中药中药</view>
                   <view class='mi_label'>中药中药</view>
@@ -88,15 +88,15 @@
           </view>
           <view class="mi_ti_l_item flex">
               <view class="mi_item_l fs13 fc-aaa">型号：</view>
-              <view class="mi_item_r fs13">US9848737282</view>
+              <view class="mi_item_r fs13">{{item.ProductId}}</view>
           </view>
           <view class="mi_ti_l_item flex">
               <view class="mi_item_l fs13 fc-aaa">序列号：</view>
-              <view class="mi_item_r fs13">{{item.value}}</view>
+              <view class="mi_item_r fs13">{{item.SerialNo}}</view>
           </view>
           <view class="mi_ti_l_item flex">
               <view class="mi_item_l fs13 fc-aaa">备注：</view>
-              <view class="mi_item_r fs13">A12345678</view>
+              <view class="mi_item_r fs13">{{}}</view>
           </view>
       </view>
       <!-- set -->

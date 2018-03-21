@@ -3,13 +3,13 @@
 <import src='../template/newIns'/>
 <!--template is="backHome" bindtap="backHome"/-->
 <!-- ins_group -->
-<view class='mi_group flex'>
+<view class='mi_group flex' bindtap='gotoGroup'>
   <view class='mi_group_l mi_group_item alignc'>
     <image class='mi_group_img' src='/images/ins.png'></image>
     <text class='fs15'>仪器分组</text>
   </view>
   <view class='mi_group_r mi_group_item alignc flex justify-end'>
-    <text class='fs14 fc-aaa'>{{InstrumentCount}}台仪器</text>
+    <text class='fs14 fc-aaa'>{{GroupCount}}台仪器</text>
     <image class='mi_group_arrow' src='/images/arrowr.png'></image>
   </view>
 </view>
@@ -19,7 +19,7 @@
 <!-- ins_num -->
 <view class='mi_num flex'>
     <view class="mi_num_item fs13 fc-aaa flex alignc">
-      共 <text class="fc-aaa fs13">{{SerialCount}}</text> 个序列号
+      共 <text class="fc-aaa fs13">{{InstrumentCount}}</text> 个序列号
     </view>
     <!-- filter -->
     <view class="mi_num_item flex justify-end alignc">
@@ -102,7 +102,9 @@
 
 
 <!-- instrument_list -->
-<template is='insTemp'  data="{{...item}}"></template>
+<block wx:for="{{InstrumentList}}" wx:for-item="item" wx:for-index="idx">
+  <template is='insTemp'  data="{{item}}"></template>
+</block>
 <!-- instrument_list -->
 
 

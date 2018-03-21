@@ -1,8 +1,8 @@
 {
   "pages": [
+    "pages/ins_group/ins_group",
     "pages/my_instrument/my_instrument",
     "pages/set_group/set_group",
-    "pages/ins_group/ins_group",
     "pages/add_label/add_label",
     "pages/group_details/group_details",
     "pages/index/index",

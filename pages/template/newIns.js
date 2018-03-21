@@ -11,10 +11,7 @@ var insData = [
     age: 10,
   },
 ]
-function clickToHideSet() {
-}
-function clickToShowSet() {
-}
+
 
 
 module.exports = {

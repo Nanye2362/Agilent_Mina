@@ -3,6 +3,9 @@
     margin-bottom: 15px;
     box-shadow: 2px 2px 2px #dfdfdf;
 }
+.mi_re_detail:last-child{
+  margin-bottom: 100rpx;
+}
 
 .mi_de_title {
     padding: 20rpx 30rpx;
@@ -85,7 +88,6 @@
   font-size: 25rpx;
   padding: 5rpx 10rpx;
   border-radius: 15rpx;
-  background: #0085d5;
   color: #fff;
   margin: 0 10rpx;
 }
@@ -97,9 +99,6 @@
     padding: 20rpx;
     width: 100%;
     line-height: 50rpx;
-    position: fixed;
-    bottom: 0;
-    left: 0;
 }
 
 .mi_add_new image {

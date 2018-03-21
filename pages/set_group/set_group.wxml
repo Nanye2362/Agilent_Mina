@@ -3,10 +3,10 @@
 <view class='group flex directionC'>
     <radio-group class="radio-group" bindchange="radioChange">
         <!-- radio_item -->
-        <label class="radio flex group_item" wx:for="{{insGroup}}">
-          <view class='group_item_details'>{{item.value}}</view>
+        <label class="radio flex group_item" wx:for="{{groupList}}">
+          <view class='group_item_details'>{{item.GroupName}}</view>
           <view class='flex justify-end group_item_details'>
-            <radio value="{{insGroup.name}}" checked="{{insGroup.checked}}" color='#0085d5'/>
+            <radio value="{{item.GroupName}}" checked="{{item.checked}}" color='#0085d5'/>
           </view>             
         </label>
         <!-- radio_item -->
@@ -15,24 +15,24 @@
 <!-- group_list -->
 
 <!-- add_group -->
-<view class='add_group' bindtap='showPopup'>
+<view class='add_group' bindtap='Popup'>
   <image class='add_image' src='/images/add1.png'></image>
   <text class='fc-blue'>新建分组</text>
 </view>
 
   <!-- add_confirm -->
 <view class="shLoading" wx:if='{{popup}}'>
-  <view class="shLoading-mask1"  bindtap="hidePopup">
+  <view class="shLoading-mask1"  bindtap="Popup">
   </view>
   <view class="shLoading-panel flex alignc directionC">
       <view class="shLoading-head-panel">
           <view class='fs15 text-alignC'>新建分组</view>
           <view class='add_input'>
-            <input placeholder="分组名称（1-10个字符）" maxlength='10' class='fs13'></input>
+            <input placeholder="分组名称（1-10个字符）" maxlength='10' class='fs13' bindinput='bindKeyInput'></input>
           </view>
       </view>
       <view class="shLoading-btn-panel">
-          <view class="shLoading-btn-cancel" bindtap="hidePopup">取消</view>
+          <view class="shLoading-btn-cancel" bindtap="Popup">取消</view>
           <view class="shLoading-btn-ok" bindtap="confirmPopup">确认</view>
       </view>
   </view>
@@ -41,6 +41,6 @@
 
 <!-- btn -->
 <view class="group_btn">
-    <button class="btn btn-primary" id="confirm" bindtap=''>确定</button>
+    <button class="btn btn-primary" id="confirm" bindtap='submit'>确定</button>
     <view class='fc-777 text-alignC' bindtap='nogroup'>暂不分组</view>
 </view>

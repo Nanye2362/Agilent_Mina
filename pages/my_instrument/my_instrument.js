@@ -19,86 +19,12 @@ Page({
     ContactId: '',
     AccountGuid: '',
     AccountId: '',
-    item:{
-      setMask: false,
-    },
-    categoryList: [
-      {
-        categoryName: '不限',
-        filterActive: true,
-      },
-      {
-        categoryName: 'GC',
-        filterActive: false,
-      },
-      {
-        categoryName: 'LC',
-        filterActive: false,
-      },
-      {
-        categoryName: '四字分类',
-        filterActive: false,
-      },
-      {
-        categoryName: 'SC',
-        filterActive: false,
-      },
-    ],
-    showMoreGroup: false,
-    groupList:[
-      {
-        groupName: 'GC11111',
-      },
-      {
-        groupName: 'GC2222',
-      },
-      {
-        groupName: 'GC3333',
-      },
-      {
-        groupName: 'GC4444',
-      },
-    ],
-    labelList:[
-      {
-        labelName: 1111,
-        filterActive: true,
-      },
-      {
-        labelName: 2222,
-        filterActive: false,
-      },
-      {
-        labelName: 3333,
-        filterActive: false,
-      },
-      {
-        labelName: 4444,
-        filterActive: false,
-      },
-    ],
     showFilter: false,
   },
-  backHome: function () {
-    util.backHome()
-  },
+  
 
 
-  /* 更多仪器分组 */
-  moreGroup: function(){
-    this.setData({
-      showMoreGroup: !this.data.showMoreGroup
-    })
-  },
-
-
-  /* 筛选框 */
-  clickfilter: function(){
-    this.setData({
-      showFilter: !this.data.showFilter
-    })
-  },
-
+  
 
   onLoad: function () {
     //腾讯mta统计开始
@@ -107,10 +33,10 @@ Page({
     newIns.init();
     
     //腾讯mta统计结束
-    //mobile = wx.getStorageSync(mobile);
-    //console.log('mobile=======' + mobile)
-    //var that = this;
-    /*util.NetRequest({
+    mobile = wx.getStorageSync(mobile);
+    console.log('mobile=======' + mobile)
+    var that = this;
+    util.NetRequest({
       url: 'site-mini/my-instrument',
       data: {
       },
@@ -119,20 +45,77 @@ Page({
         that.setData({
           displayState: true,
         })
+
+        var instrumentlist = res.InstrumentList;
+        var instrumentList = [];
+        for (var i in instrumentlist){
+          instrumentlist[i].setMask = false;
+          instrumentlist[i].idx=i;
+          instrumentList.push(instrumentlist[i]);
+        }
+
         that.setData({
           InstrumentCount: res.InstrumentCount,
-          InstrumentList: res.InstrumentList,
+          InstrumentList: instrumentList,
           ContactGuid: res.ContactGuid,
           ContactId: res.ContactId,
           AccountGuid: res.AccountGuid,
           AccountId: res.AccountId,
+          GroupCount: res.GroupCount,
         })
       },
       fail: function (err) {
         console.log(err);
       }
-    })*/
+    })
   },
+
+
+
+  //'设置'菜单隐藏
+  clickToSet: function (e) {
+    for (var i = 0; i < this.data.InstrumentList.length; i++) {
+      if (e.currentTarget.dataset.idx == i) {
+        this.data.InstrumentList[i].setMask = true
+      }
+      else {
+        this.data.InstrumentList[i].setMask = false
+      }
+    }
+    this.setData(this.data)
+  },
+  /* 仪器总分组 */
+  gotoGroup: function() {
+    wx.navigateTo({
+      url: '../ins_group/ins_group'
+    })
+  },
+
+  /* 设置单独仪器分组 */
+  setGroup: function(e){
+    var sn = e.currentTarget.dataset.sn;
+    console.log(e.currentTarget.dataset.sn);
+    wx.navigateTo({
+      url: '../set_group/set_group?sn='+sn
+    })
+  },
+
+
+  /* 添加标签 */
+  addLabel: function () {
+    wx.navigateTo({
+      url: '../add_label/add_label'
+    })
+  },
+
+
+
+  /* 修改备注 */
+  editRemark: function () {
+    
+  },
+
+
   //报修历史
   clickToNext: function (event) {
     var sn = event.currentTarget.dataset.sn;
@@ -194,6 +177,8 @@ Page({
       }
     })
   },
+
+
   //添加仪器
   clickToAdd: function () {
     wx.navigateTo({
@@ -201,15 +186,9 @@ Page({
     })
   },
 
-  //设置菜单隐藏
-  clickToHideSet: function() {
-    this.data.item.setMask = false
-    this.setData(this.data)
-  },
-  clickToShowSet: function () {
-    this.data.item.setMask = true
-    this.setData(this.data)
-  },
+
+
+  
 
 
   //删除仪器
@@ -253,5 +232,26 @@ Page({
       }
     })
 
-  }
+  },
+
+
+  /* 筛选框 */
+  clickfilter: function () {
+    this.setData({
+      showFilter: !this.data.showFilter
+    })
+  },
+  /* 更多仪器分组 */
+  moreGroup: function () {
+    this.setData({
+      showMoreGroup: !this.data.showMoreGroup
+    })
+  },
+
+
+
+
+  backHome: function () {
+    util.backHome()
+  },
 })  

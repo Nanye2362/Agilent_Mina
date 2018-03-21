@@ -1,4 +1,4 @@
-
+@import '../template/newIns';
 /* no_group */
 .ng{
   position: fixed;
@@ -25,9 +25,7 @@
 .gl_title{ 
   padding: 20rpx 30rpx;
  }
-.gl_title text{
-  margin-left: 15rpx;
-}
+
 .gl{
   padding: 35rpx 30rpx;
   background: #fff;
@@ -44,45 +42,32 @@
   margin-left: 10rpx;
 }
 
-
-.g_del{
-  width: 45rpx;
-  height: 45rpx;
-  line-height: 50rpx;
-  text-align: center;
-  background: #ff3b32;
-  border-radius: 50%;
-  margin-left: 60rpx;
-}
 .edit_image{
   width: 40rpx;
   height: 40rpx;
-  margin-right: 15rpx;
+}
+.edit_image1{  
+  margin-right: 80rpx;
 }
 
 
 
 
-
-
-/* add_group */
-.mi_add_new {
-    padding: 20rpx;
-    width: 100%;
-    line-height: 50rpx;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    z-index: 1000;
-    border-top: 1px solid #eaeaea;
+.add_new{
+  width: 100%;
+  background: #fff;
+  padding: 30rpx;
+  text-align: center;
+  border-top: 1px solid #e7e7e7;
+  margin-top: 20rpx;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 1000;
 }
 
-.mi_add_new image {
-    width: 37rpx;
-    height: 37rpx;
-    vertical-align: sub;
-    margin-right: 10rpx;
-}
+
+
 .add_group{
   width: 100%;
   padding: 30rpx 0;
@@ -99,4 +84,13 @@
   margin: 50rpx 0;
   width: 450rpx;
   text-align: center;
+}
+
+
+
+.choose_state{
+  justify-content: space-between;
+}
+.finishState{
+  margin-left: 50rpx!important;
 }

@@ -1,4 +1,7 @@
 @import '../template/newIns';
+page{ 
+  padding-bottom: 100rpx;
+ }
 .mi_num {
     padding: 15rpx;
 }

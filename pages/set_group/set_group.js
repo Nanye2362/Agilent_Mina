@@ -1,60 +1,117 @@
 // pages/ins_group/ins_group.js
+var util = require('../../utils/util.js');
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    /* 分组数据 */
-    insGroup: [
-      { name: 'GC1', value: 'GC实验仪器一', checked: 'true' },
-      { name: 'GC2', value: 'GC实验仪器二'},
-      { name: 'GC3', value: 'GC实验仪器三' },
-    ],
+    
     /* 弹框 */
     popup: false ,
   },
-
-  /*  */
-  radioChange: function (e) {
-    console.log(e.detail.value)
-  },
-
-
-  /* 新建分组 */
-  showPopup: function(){
-    this.setData({
-      popup: true,
-    })
-  },
-  hidePopup: function(){
-    this.setData({
-      popup: false,
-    })
-  },
-  confirmPopup: function(){
-    var that = this;
-    that.hidePopup()
-  },
-
-
-
-
-  /* 暂不分组 */
-  nogroup: function(){
-    wx.navigateTo({
-      url: '/new_instrument/new_instrument'
-    })
-  },
-
-
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    this.setData({
+      sn: options.sn,
+    })
+
+    var that = this;
+    util.NetRequest({
+      url: 'site-mini/show-group',
+      data: {
+      },
+      success: function (res) {
+        console.log(res.GroupList)
+        that.setData({
+          groupList: res.GroupList
+        })
+      },
+      fail: function (err) {
+        console.log(err);
+      }
+    })
   },
+
+
+  /* 单选 */
+  radioChange: function (e) {
+    console.log(e.detail.value)
+    this.setData({
+      GroupName: e.detail.value
+    })
+  },
+
+
+  /* 新建分组 */
+  Popup: function(){
+    var popup = this.data.popup
+    this.setData({
+      popup: !popup,
+    })
+  },
+
+
+  /* 新建分组名称input */
+  bindKeyInput: function (e) {
+    this.setData({
+      inputValue: e.detail.value
+    })
+  },
+  /* 确认添加分组 */
+  confirmPopup: function(){
+    var that = this;
+    console.log(that.data.inputValue)
+    util.NetRequest({
+      url: 'site-mini/create-group',
+      data: {
+        'GroupName' : that.data.inputValue
+      },
+      success: function (res) {
+        console.log(res);
+        var gl = that.data.groupList.concat(res.CurrentGroup);
+        console.log(gl)
+        that.setData({
+          groupList: gl
+        })
+      },
+      fail: function (err) {
+        console.log(err);
+      }
+    })
+    that.Popup()
+  },
+
+
+  /* 暂不分组 */
+  nogroup: function(){
+    wx.navigateBack({
+      delta: 1
+    })
+  },
+
+  submit: function(){
+    util.NetRequest({
+      url: 'site-mini/set-group',
+      data: {
+        'GroupName': this.data.GroupName,
+        'SerialNo': this.data.sn,
+      },
+      success: function (res) {
+        console.log(res);
+        wx.navigateBack({
+          delta: 1
+        })
+      },
+      fail: function (err) {
+        console.log(err);
+      }
+    })
+  },
+ 
 
   /**
    * 生命周期函数--监听页面初次渲染完成
