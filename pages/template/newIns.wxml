@@ -8,7 +8,7 @@
                   <view class="mi_item_r fs13 flex">
                       <view class="fs13">{{item.ProductId}}</view>
                       <!-- label -->
-                      <block  wx:for="{{item.LabelList}}" wx:for-item="labelItem">
+                      <block  wx:for="{{item.LabelList}}" wx:for-item="labelItem" wx:key='unique'>
                         <view class='mi_label {{labelItem.LabelColor}}'>{{labelItem.LabelName}}</view>
                       </block>
                       <!-- label -->
@@ -40,12 +40,12 @@
                   <text class='fc-fff fs13'>仪器分组</text>
                 </view>
                 <!-- ins_label -->
-                <view class='mi_set_item' bindtap='addLabel'>
+                <view class='mi_set_item' bindtap='addLabel' data-sn='{{item.SerialNo}}'>
                   <image class='mi_set_image' src='/images/label.png'></image>
                   <text class='fc-fff fs13'>添加标签</text>
                 </view>
                 <!-- ins_remarks -->
-                <view class='mi_set_item' bindtap='editRemark'>
+                <view class='mi_set_item' bindtap='Popup' data-sn='{{item.SerialNo}}'>
                   <image class='mi_set_image' src='/images/remark.png'></image>
                   <text class='fc-fff fs13'>修改备注</text>
                 </view>
@@ -73,16 +73,16 @@
 <!-- multiSelect_list -->
 <template name='multiTemp'>
   <checkbox-group bindchange="checkboxChange">
-    <label class="checkbox flex mi_de_title mi_re_detail" wx:for="{{items}}">
+    <label class="checkbox flex mi_de_title mi_re_detail" wx:for="{{detailList}}" wx:key='multiple'>
       <view class="mi_ti_l text_alignL flex directionC">
           <view class="mi_ti_l_item flex">
               <view class="mi_item_l fs13 fc-aaa">分类：</view>
               <view class="mi_item_r fs13 flex">
                   <view class="fs13">{{item.ProductId}}</view>
                   <!-- label -->
-                  <view class='mi_label'>中药中药</view>
-                  <view class='mi_label'>中药中药</view>
-                  <view class='mi_label'>中药中药</view>
+                  <block  wx:for="{{item.LabelList}}" wx:for-item="labelItem" wx:key='unique'>
+                    <view class='mi_label {{labelItem.LabelColor}}'>{{labelItem.LabelName}}</view>
+                  </block>
                   <!-- label -->
               </view>
           </view>
@@ -101,7 +101,7 @@
       </view>
       <!-- set -->
       <view class="mi_ti_right text-center repair_history" >
-        <checkbox color='#0085d5' value="{{item.name}}" checked="{{item.checked}}"/> 
+        <checkbox color='#0085d5' value="{{item.SerialNo}}" checked="{{item.checked}}"/> 
       </view>
       <!-- set -->
     </label >

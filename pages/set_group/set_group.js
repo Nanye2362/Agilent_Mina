@@ -39,9 +39,16 @@ Page({
 
   /* 单选 */
   radioChange: function (e) {
-    console.log(e.detail.value)
+    console.log(e.detail.value)  
     this.setData({
       GroupName: e.detail.value
+    })
+  },
+  clickRadio: function(e){
+    var GroupID = e.currentTarget.dataset.id
+    console.log(GroupID)
+    this.setData({
+      GroupID: GroupID
     })
   },
 
@@ -99,6 +106,7 @@ Page({
       data: {
         'GroupName': this.data.GroupName,
         'SerialNo': this.data.sn,
+        'GroupID': this.data.GroupID
       },
       success: function (res) {
         console.log(res);

@@ -1,14 +1,33 @@
 <import src='../template/newIns'/>
 <!-- title -->
-<view class='g_title fs12 fc-777'>共5个序列号</view>
+<view class='g_title fs12 fc-777'>共{{ListCount}}个序列号</view>
 
 
 
 <!-- serial_list -->
-<template is='insTemp'wx:if='{{multiselect==false}}'></template>
+<block wx:for="{{detailList}}" wx:for-item="item" wx:for-index="idx" wx:key='unique'>
+  <template is='insTemp' data='{{item}}'></template>
+</block>
 
-<!-- multiSelect_serial_list -->
-<template is='multiTemp' data='{{items}}' wx:else></template>
+
+<!-- edit_remark -->
+<view class="shLoading" wx:if='{{popup}}'>
+  <view class="shLoading-mask1"  bindtap="Popup">
+  </view>
+  <view class="shLoading-panel flex alignc directionC">
+      <view class="shLoading-head-panel">
+          <view class='fs15 text-alignC'>修改备注</view>
+          <view class='add_input'>
+            <input placeholder="填写备注（1-15个字符）" maxlength='15' class='fs13' bindinput='bindKeyInput'></input>
+          </view>
+      </view>
+      <view class="shLoading-btn-panel">
+          <view class="shLoading-btn-cancel" bindtap="Popup">取消</view>
+          <view class="shLoading-btn-ok" bindtap="confirmRemark">确认</view>
+      </view>
+  </view>
+</view>
+<!-- edit_remark -->
 
 
 

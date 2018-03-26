@@ -32,8 +32,6 @@
         <view class='filter_title fs12 fc-777'>筛选</view>
 
 
-
-
         <!-- category_filter -->
         <view class='category_filter'>
           <view class='sub_title fc-777'>分类</view>
@@ -43,10 +41,6 @@
             </block>
           </view>
         </view>
-
-
-
-
 
 
         <!-- serial_group -->
@@ -73,9 +67,6 @@
             
           </view>
         </view>
-
-
-
 
         <!-- label_filter -->
         <view class='label_filter'>
@@ -109,6 +100,24 @@
 
 
 
+<!-- edit_remark -->
+<view class="shLoading" wx:if='{{popup}}'>
+  <view class="shLoading-mask1"  bindtap="Popup">
+  </view>
+  <view class="shLoading-panel flex alignc directionC">
+      <view class="shLoading-head-panel">
+          <view class='fs15 text-alignC'>修改备注</view>
+          <view class='add_input'>
+            <input placeholder="填写备注（1-15个字符）" maxlength='15' class='fs13' bindinput='bindKeyInput'></input>
+          </view>
+      </view>
+      <view class="shLoading-btn-panel">
+          <view class="shLoading-btn-cancel" bindtap="Popup">取消</view>
+          <view class="shLoading-btn-ok" bindtap="confirmRemark">确认</view>
+      </view>
+  </view>
+</view>
+<!-- edit_remark -->
 
 
 

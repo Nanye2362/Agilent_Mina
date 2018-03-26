@@ -35,6 +35,7 @@ Page({
           gl[i].deleted = true;
           GroupList.push(gl[i]);
         }
+        console.log(GroupList)
         that.setData({
           GroupCount: res.GroupCount,
           GroupList: GroupList
@@ -50,6 +51,7 @@ Page({
 
   /* 编辑 */
   editGroup: function () {
+    console.log(this.data.GroupList);
     this.setData({
       gotoEdit: false,
       editGroup: false,
@@ -172,8 +174,12 @@ Page({
   },
 
   /* 具体分组内容 */
-  groupDetails: function () {
-    console.log('groupDetails');
+  groupDetails: function (e) {
+    var GroupID = e.currentTarget.dataset.id;
+    var GroupName = e.currentTarget.dataset.gn;
+    wx.navigateTo({
+      url: '../group_details/group_details?GroupID='+ GroupID+'&GroupName='+GroupName
+    })
   },
 
   
@@ -203,10 +209,14 @@ Page({
       },
       success: function (res) {
         console.log(res);
-        var gl = that.data.groupList.concat(res.CurrentGroup);
-        console.log(gl)
+        console.log(that.data.GroupList)
+        var curGroup = { GroupID: res.CurrentGroup.ID, GroupName: res.CurrentGroup.GroupName, GroupSnCount: "0", deleted: true, editting: false, idx: that.data.GroupList.length}
+        var gl = that.data.GroupList.concat(curGroup);  
+        console.log(gl)    
+        console.log(gl.length)
         that.setData({
-          groupList: gl
+          GroupList: gl,
+          GroupCount: gl.length
         })
       },
       fail: function (err) {

@@ -1,33 +1,23 @@
-<text class='fs20'>设置标签</text> 
-<!-- group_list -->
-<view class='group flex directionC'>
-    <checkbox-group class='radio-group' bindchange="checkboxChange">
-      <label class="radio flex group_item" wx:for="{{LabelList}}" wx:key='multiple' data-idx='{{item.idx}}'>
-        <view class='group_item_details flex'>
-          <view class='label_Color {{item.LabelColor}}'></view>
-          <text>{{item.LabelName}}</text>
-        </view>
-        <!-- set -->
-        <view class="flex justify-end group_item_details" >
-          <checkbox color='#0085d5' value="{{item.ID}}" checked='{{item.Checked}}'/> 
-        </view>
-        <!-- set -->
-      </label > 
-    </checkbox-group>
+<view class='gl_title flex choose_state' >
+    <text class=' fs12 fc-777'>修改标签</text>
 </view>
-<!-- group_list -->
 
-<!-- add_group -->
-<view class='add_group flex'>
-  <view class='edit_label' bindtap='Popup'>
-    <image class='add_image' src='/images/add1.png'></image>
-    <text class='fc-blue'>添加标签</text>
+
+<block wx:for='{{LabelList}}' wx:for-item="item" wx:for-index="idx" wx:key='unique'>
+  <view class='gl flex' wx:if='{{item.deleted}}'>
+    <!-- editGroup -->
+    <view class='g_item flex alignc'>
+      <view class='label_Color {{item.LabelColor}}'></view>
+      <text>{{item.LabelName}}</text>
+    </view>
+    <!-- edit&deleteGroup -->
+    <view class='g_item flex justify-end alignc'>
+      <image src='/images/edit.png' class='edit_image edit_image1' bindtap='Popup' wx:if='{{item.editting==false}}' data-idx='{{item.idx}}' data-id='{{item.ID}}' ></image>
+      <image src='/images/del1.png' class='edit_image' bindtap='delGroup'  data-id='{{item.ID}}' data-idx='{{item.idx}}'></image>
+    </view>
   </view>
-  <view class='edit_label el_right' bindtap='gotoLabelList'>
-    <text class='fc-777'>编辑标签</text>
-    <image class='add_image' src='/images/rightA.png'></image>
-  </view>
-</view>
+</block>
+
 
   <!-- add_confirm -->
 <view class="shLoading" wx:if='{{popup}}'>
@@ -35,7 +25,7 @@
   </view>
   <view class="shLoading-panel flex alignc directionC">
       <view class="shLoading-head-panel">
-          <view class='fs15 text-alignC'>添加标签</view>
+          <view class='fs15 text-alignC'>设置标签</view>
           <view class='add_input'>
             <input placeholder="标签名称（1-4个字符）" maxlength='4' class='fs13' bindinput='bindKeyInput'></input>
           </view>
@@ -58,8 +48,8 @@
 </view>
 <!-- add_group -->
 
+
 <!-- btn -->
 <view class="group_btn">
     <button class="btn btn-primary" id="confirm" bindtap='submit'>确定</button>
-    <view class='fc-777 text-alignC' bindtap='nolabel'>暂不添加</view>
 </view>

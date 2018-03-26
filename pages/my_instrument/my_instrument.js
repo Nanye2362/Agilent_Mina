@@ -20,6 +20,7 @@ Page({
     AccountGuid: '',
     AccountId: '',
     showFilter: false,
+    popup: false
   },
   
 
@@ -31,10 +32,14 @@ Page({
     var app = getApp();
     app.mta.Page.init();
     newIns.init();
-    
     //腾讯mta统计结束
+
     mobile = wx.getStorageSync(mobile);
     console.log('mobile=======' + mobile)
+    
+  },
+  
+  onShow: function(){
     var that = this;
     util.NetRequest({
       url: 'site-mini/my-instrument',
@@ -48,9 +53,9 @@ Page({
 
         var instrumentlist = res.InstrumentList;
         var instrumentList = [];
-        for (var i in instrumentlist){
+        for (var i in instrumentlist) {
           instrumentlist[i].setMask = false;
-          instrumentlist[i].idx=i;
+          instrumentlist[i].idx = i;
           instrumentList.push(instrumentlist[i]);
         }
 
@@ -99,20 +104,58 @@ Page({
       url: '../set_group/set_group?sn='+sn
     })
   },
-
-
   /* 添加标签 */
-  addLabel: function () {
+  addLabel: function (e) {
+    var sn = e.currentTarget.dataset.sn;
     wx.navigateTo({
-      url: '../add_label/add_label'
+      url: '../add_label/add_label?sn='+sn
     })
   },
 
-
-
+  
   /* 修改备注 */
-  editRemark: function () {
-    
+  confirmRemark: function () {
+    var that = this;
+    util.NetRequest({
+      url: 'site-mini/edit-remark',
+      data: {
+        'Remark': this.data.inputValue,
+        'SerialNo': this.data.remarkSn
+      },
+      success: function (res) {
+        console.log(res)
+        if(res.result){
+          var instrumentlist = that.data.InstrumentList;
+          for (var i in instrumentlist) {
+            if (instrumentlist[i].SerialNo == that.data.remarkSn) {
+              instrumentlist[i].Remark = that.data.inputValue;
+            }
+          }
+          that.setData({
+            InstrumentList: instrumentlist,
+          })
+        }
+        that.setData({
+          popup: !that.data.popup
+        })               
+      },
+      fail: function (err) {
+        console.log(err);
+      }
+    })
+  },
+  bindKeyInput: function (e) {
+    this.setData({
+      inputValue: e.detail.value
+    })
+  },
+  Popup: function (e) {
+    var remarkSn = e.currentTarget.dataset.sn
+    var popup = this.data.popup
+    this.setData({
+      popup: !popup,
+      remarkSn: remarkSn
+    })
   },
 
 
@@ -187,8 +230,6 @@ Page({
   },
 
 
-
-  
 
 
   //删除仪器

@@ -3,7 +3,7 @@
 <view class='group flex directionC'>
     <radio-group class="radio-group" bindchange="radioChange">
         <!-- radio_item -->
-        <label class="radio flex group_item" wx:for="{{groupList}}">
+        <label class="radio flex group_item" wx:for="{{groupList}}" data-id='{{item.ID}}' bindtap='clickRadio'>
           <view class='group_item_details'>{{item.GroupName}}</view>
           <view class='flex justify-end group_item_details'>
             <radio value="{{item.GroupName}}" checked="{{item.checked}}" color='#0085d5'/>
@@ -43,4 +43,4 @@
 <view class="group_btn">
     <button class="btn btn-primary" id="confirm" bindtap='submit'>确定</button>
     <view class='fc-777 text-alignC' bindtap='nogroup'>暂不分组</view>
-</view>
+</view> 

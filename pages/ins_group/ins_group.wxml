@@ -21,14 +21,14 @@
   <!-- group_list -->
   <view wx:if='{{editGroup}}'>
     <block wx:for='{{GroupList}}' wx:for-item="item" wx:for-index="idx" wx:key='unique'>
-      <view class='gl flex' bindtap='groupDetails' data-id='{{item.GroupID}}'>
+      <view class='gl flex' bindtap='groupDetails' data-id='{{item.GroupID}}' data-gn='{{item.GroupName}}'>
         <view class='g_item'>{{item.GroupName}}</view>
         <view class='g_item fc-777 fs12 flex justify-end'>{{item.GroupSnCount}}个序列号
           <image src='/images/rightA.png' class='g_image'></image>
         </view>
       </view>
     </block>
-  </view>
+  </view> 
 
 
   <!-- edit_group -->
@@ -58,7 +58,7 @@
 
 
 <!-- add_group -->
-<view class='add_new' bindtap='Popup'>
+<view class='add_new' bindtap='Popup' wx:if='{{gotoEdit}}'>
   <text class='fc-blue'>新建分组</text>
 </view>
   <!-- add_confirm -->
