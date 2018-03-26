@@ -50,7 +50,7 @@
                   <text class='fc-fff fs13'>修改备注</text>
                 </view>
                 <!-- ins_del -->
-                <view class='mi_set_item' bindtap="clickToRemove" data-index="{{index}}">
+                <view class='mi_set_item' bindtap="clickToRemove" data-sn="{{item.SerialNo}}" data-pi='{{item.ProductId}}' data-idx='{{item.idx}}'>
                   <image class='mi_set_image' src='/images/del.png'></image>
                   <text class='fc-fff fs13'>删除仪器</text>
                 </view>
@@ -60,8 +60,8 @@
           <!-- set -->
       </view>
       <view class="mi_de_con">
-          <button class="mi_btn-circle mi_btn_active fs14" bindtap="clickToRepair" data-contactId="{{Instrument.ContactId}}" data-sn="{{Instrument.SerialNo}}" data-contactGuid="{{Instrument.ContactGuid}}" data-accountGuid="{{Instrument.AccountGuid}}" data-accountId="{{Instrument.AccountId}}">快速报修</button>
-          <button class='mi_btn-circle fs14 bg-primary' bindtap="clickToNext" data-contactId="{{Instrument.ContactId}}" data-sn="{{Instrument.SerialNo}}">报修历史</button>
+          <button class="mi_btn-circle mi_btn_active fs14" bindtap="clickToRepair" data-sn="{{item.SerialNo}}">快速报修</button>
+          <button class='mi_btn-circle fs14 bg-primary' bindtap="clickToNext" data-sn="{{item.SerialNo}}">报修历史</button>
       </view>
   </view>
 </template>

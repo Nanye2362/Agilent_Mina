@@ -45,7 +45,11 @@ Page({
         }
         that.setData({
           detailList: DetailList,
-          ListCount: res.ListCount
+          ListCount: res.ListCount,
+          ContactGuid: res.ContactGuid,
+          ContactId: res.ContactId,
+          AccountGuid: res.AccountGuid,
+          AccountId: res.AccountId,
         })
       },
       fail: function (err) {
@@ -163,12 +167,11 @@ Page({
   clickToNext: function (event) {
     var sn = event.currentTarget.dataset.sn;
     this.setData({ 'sn': sn })
-    var contactId = event.currentTarget.dataset.contactid;
     var that = this;
     util.NetRequest({
       url: 'sr/history',
       data: {
-        ContactId: contactId,
+        ContactId: this.data.ContactId,
         SerialNo: sn
       },
       success: function (res) {
@@ -196,18 +199,15 @@ Page({
   //报修
   clickToRepair: function (event) {
     var sn = event.currentTarget.dataset.sn;
-    var contactId = event.currentTarget.dataset.contactid;
-    var contactGuid = event.currentTarget.dataset.contactguid;
-    var accountGuid = event.currentTarget.dataset.accountguid;
-    var accountId = event.currentTarget.dataset.accountid;
-
+    console.log(this.data.contactGuid)
+    console.log(this.data.contactId)
     util.NetRequest({
       url: 'sr/sr-confirm',
       data: {
-        contact_guid: contactGuid,
-        contact_id: contactId,
-        account_guid: accountGuid,
-        account_id: accountId,
+        contact_guid: this.data.ContactGuid,
+        contact_id: this.data.ContactId,
+        account_guid: this.data.AccountGuid,
+        account_id: this.data.AccountId,
         serial_number: sn
       },
       success: function (res) {
@@ -221,12 +221,15 @@ Page({
     })
   },
 
+
   //删除仪器
   clickToRemove: function (event) {
     var that = this
-    var index = event.currentTarget.dataset.index;
-    console.log(index);
-    var InstrumentList = this.data.InstrumentList;
+    var sn = event.currentTarget.dataset.sn;
+    var pi = event.currentTarget.dataset.pi;
+    var idx = event.currentTarget.dataset.idx;
+    console.log(sn + pi);
+    var detailList = this.data.detailList;
     wx.showModal({
       title: '提示',
       content: '确定要删除么',
@@ -235,17 +238,28 @@ Page({
           util.NetRequest({
             url: 'sr/delete-instrument',
             data: {
-              'SerialNo': InstrumentList[index].SerialNo,
-              'ProductId': InstrumentList[index].ProductId,
+              'SerialNo': sn,
+              'ProductId': pi,
             },
             success: function (res) {
-              var InstrumentCount = that.data.InstrumentCount;
-              that.setData({
-                InstrumentCount: InstrumentCount - 1,
-              })
-              console.log('用户点击确定');
-              InstrumentList.splice(index, 1);
-              that.setData({ 'InstrumentList': InstrumentList });
+              console.log(res);
+              if (res.success) {
+                for (var i in detailList) {
+                  if (detailList[i].SerialNo == sn) {
+                    detailList.splice(i, 1)
+                  }
+                  if (detailList[i].idx > idx) {
+                    detailList[i].idx -= 1;
+                  }
+                }
+                var ListCount = that.data.ListCount;
+                that.setData({
+                  ListCount: ListCount - 1,
+                  detailList: detailList
+                })
+                console.log('用户点击确定');
+              }
+
             },
             fail: function (err) {
               wx.showToast({
