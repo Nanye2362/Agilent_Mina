@@ -6,7 +6,7 @@
 
 <!-- serial_list -->
 <block wx:for="{{detailList}}" wx:for-item="item" wx:for-index="idx" wx:key='unique'>
-  <template is='insTemp' data='{{item}}'></template>
+  <template is='insTemp' data='{{item:item,idx:idx}}'></template>
 </block>
 
 

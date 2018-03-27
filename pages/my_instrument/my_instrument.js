@@ -157,14 +157,14 @@ Page({
       success: function (res) {
         console.log(res)
         if (res.result) {
-          var instrumentlist = that.data.InstrumentList;
+          var instrumentlist = that.data.AllInstrument;
           for (var i in instrumentlist) {
             if (instrumentlist[i].SerialNo == that.data.remarkSn) {
               instrumentlist[i].Remark = that.data.inputValue;
             }
           }
           that.setData({
-            InstrumentList: instrumentlist,
+            AllInstrument: instrumentlist,
           })
         }
         that.setData({
