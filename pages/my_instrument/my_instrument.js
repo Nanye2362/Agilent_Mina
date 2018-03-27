@@ -20,12 +20,15 @@ Page({
     AccountGuid: '',
     AccountId: '',
     showFilter: false,
-    popup: false
+    popup: false,
+    showMoreGroup: false,
+    filterActive: false,
+    selectLabel: '不限',
   },
-  
 
 
-  
+
+
 
   onLoad: function () {
     //腾讯mta统计开始
@@ -36,10 +39,10 @@ Page({
 
     mobile = wx.getStorageSync(mobile);
     console.log('mobile=======' + mobile)
-    
+
   },
-  
-  onShow: function(){
+
+  onShow: function () {
     var that = this;
     util.NetRequest({
       url: 'site-mini/my-instrument',
@@ -59,14 +62,41 @@ Page({
           instrumentList.push(instrumentlist[i]);
         }
 
+        var gl = res.GroupList;
+        var GroupList = [];
+        for (var i in gl) {
+          gl[i].filterActive = false;
+          gl[i].idx = i;
+          GroupList.push(gl[i]);
+        }
+
+        var ll = res.LabelList;
+        var LabelList = [];
+        var object = {
+          ID: '',
+          LabelName: '不限',
+          LabelColor: '',
+          filterActive: true,
+          idx: 0,
+        }
+        LabelList.unshift(object);
+        for (var i in ll) {
+          ll[i].filterActive = false;
+          ll[i].idx = parseInt(i) + 1;
+          LabelList.push(ll[i]);
+        }
+
         that.setData({
           InstrumentCount: res.InstrumentCount,
           InstrumentList: instrumentList,
+          AllInstrument: instrumentList,
           ContactGuid: res.ContactGuid,
           ContactId: res.ContactId,
           AccountGuid: res.AccountGuid,
           AccountId: res.AccountId,
           GroupCount: res.GroupCount,
+          GroupList: GroupList,
+          LabelList: LabelList,
         })
       },
       fail: function (err) {
@@ -91,29 +121,29 @@ Page({
     this.setData(this.data)
   },
   /* 仪器总分组 */
-  gotoGroup: function() {
+  gotoGroup: function () {
     wx.navigateTo({
       url: '../ins_group/ins_group'
     })
   },
 
   /* 设置单独仪器分组 */
-  setGroup: function(e){
+  setGroup: function (e) {
     var sn = e.currentTarget.dataset.sn;
     console.log(e.currentTarget.dataset.sn);
     wx.navigateTo({
-      url: '../set_group/set_group?sn='+sn
+      url: '../set_group/set_group?sn=' + sn
     })
   },
   /* 添加标签 */
   addLabel: function (e) {
     var sn = e.currentTarget.dataset.sn;
     wx.navigateTo({
-      url: '../add_label/add_label?sn='+sn
+      url: '../add_label/add_label?sn=' + sn
     })
   },
 
-  
+
   /* 修改备注 */
   confirmRemark: function () {
     var that = this;
@@ -125,7 +155,7 @@ Page({
       },
       success: function (res) {
         console.log(res)
-        if(res.result){
+        if (res.result) {
           var instrumentlist = that.data.InstrumentList;
           for (var i in instrumentlist) {
             if (instrumentlist[i].SerialNo == that.data.remarkSn) {
@@ -138,7 +168,7 @@ Page({
         }
         that.setData({
           popup: !that.data.popup
-        })               
+        })
       },
       fail: function (err) {
         console.log(err);
@@ -235,7 +265,7 @@ Page({
     var sn = event.currentTarget.dataset.sn;
     var pi = event.currentTarget.dataset.pi;
     var idx = event.currentTarget.dataset.idx;
-    console.log(sn+pi);
+    console.log(sn + pi);
     var InstrumentList = this.data.InstrumentList;
     wx.showModal({
       title: '提示',
@@ -250,23 +280,23 @@ Page({
             },
             success: function (res) {
               console.log(res);
-              if(res.success){
+              if (res.success) {
                 for (var i in InstrumentList) {
                   if (InstrumentList[i].SerialNo == sn) {
                     InstrumentList.splice(i, 1)
                   }
-                  if (InstrumentList[i].idx> idx){
-                    InstrumentList[i].idx -= 1 ;
+                  if (InstrumentList[i].idx > idx) {
+                    InstrumentList[i].idx -= 1;
                   }
                 }
                 var InstrumentCount = that.data.InstrumentCount;
                 that.setData({
                   InstrumentCount: InstrumentCount - 1,
-                  InstrumentList: InstrumentList 
+                  InstrumentList: InstrumentList
                 })
                 console.log('用户点击确定');
               }
-              
+
             },
             fail: function (err) {
               wx.showToast({
@@ -286,12 +316,7 @@ Page({
   },
 
 
-  /* 筛选框 */
-  clickfilter: function () {
-    this.setData({
-      showFilter: !this.data.showFilter
-    })
-  },
+
   /* 更多仪器分组 */
   moreGroup: function () {
     this.setData({
@@ -300,6 +325,102 @@ Page({
   },
 
 
+
+  /* 筛选 */
+  clickfilter: function () {
+    this.setData({
+      showFilter: !this.data.showFilter
+    })
+  },
+
+  /* 筛选仪器分组 */
+  filterGroup: function (e) {
+    var selectGroup = e.currentTarget.dataset.id;
+    this.setData({
+      filterActive: true,
+      selectGroup: selectGroup
+    })
+    console.log(selectGroup)
+    var GroupList = this.data.GroupList;
+    for (var i in GroupList) {
+      if (e.currentTarget.dataset.idx == i) {
+        GroupList[i].filterActive = true;
+      } else {
+        GroupList[i].filterActive = false
+      }
+    }
+    this.setData(this.data);
+    console.log(GroupList)
+  },
+  allGroup: function (e) {
+    var GroupList = this.data.GroupList;
+    for (var i in GroupList) {
+      GroupList[i].filterActive = false;
+    }
+    this.setData({
+      filterActive: !this.data.filterActive,
+      GroupList: GroupList,
+      selectGroup: '',
+    })
+  },
+
+  /* 筛选仪器标签 */
+  filterLabel: function (e) {
+    var selectLabel = e.currentTarget.dataset.labelname;
+    this.setData({
+      //filterActive: true,
+      selectLabel: selectLabel
+    })
+    console.log(selectLabel)
+    var LabelList = this.data.LabelList;
+    for (var i in LabelList) {
+      if (e.currentTarget.dataset.idx == i) {
+        LabelList[i].filterActive = true;
+      } else {
+        LabelList[i].filterActive = false
+      }
+    }
+    this.setData(this.data);
+  },
+
+  /* 确定并筛选 */
+  submitfilter: function () {
+    var str = JSON.stringify(this.data.AllInstrument); //序列化对象
+    var InstrumentList = JSON.parse(str); //还原
+
+    //var instrumentList = this.data.InstrumentList;
+    var selectGroup = this.data.selectGroup;
+    var selectLabel = this.data.selectLabel;
+    var filterList = InstrumentList;
+    for (var i = 0; i < filterList.length; i++) {
+      if (selectGroup != '' && InstrumentList[i].GroupID != selectGroup) {
+        filterList.splice(i, 1);
+        i--;
+      }
+    }
+
+    if (selectLabel != '不限') {
+      for (var i=0;i<filterList.length;i++) {
+        var delLabel = true;
+        for (var j in filterList[i].LabelList) {
+          if (InstrumentList[i].LabelList[j].LabelName == selectLabel) {
+            delLabel = false;
+          }
+        }
+
+        if (delLabel) {
+          filterList.splice(i, 1);
+          i--;
+        }
+      }
+    }
+
+
+    this.setData({
+      InstrumentList: filterList
+    })
+    this.clickfilter();
+  },
 
 
   backHome: function () {

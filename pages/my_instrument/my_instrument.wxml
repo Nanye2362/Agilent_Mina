@@ -47,7 +47,7 @@
         <view class='group_filter'>
           <view class='sub_title fc-777'>仪器分组</view>
           <view class='filter_con'>
-            <view class='group_item filterActive'>不限</view>
+            <view class='group_item {{filterActive? "":"filterActive"}}' bindtap='allGroup'>不限</view>
             <!-- 更多 -->
             <view class='fc-blue fs12 text-alignR' bindtap='moreGroup' wx:if='{{showMoreGroup==false}}'>
               更多
@@ -55,14 +55,13 @@
             </view>
             <!-- group_list -->
             <view class='group_list' wx:if='{{showMoreGroup}}'>
-                <block wx:for='{{groupList}}' wx:for-item="item" wx:for-index="idx" wx:key='unique'>
-                  <view class='group_item'>{{item.groupName}}</view>
+                <block wx:for='{{GroupList}}' wx:for-item="item" wx:for-index="idx" wx:key='unique'>
+                  <view class='group_item {{item.filterActive? "filterActive":""}}' data-id='{{item.ID}}' bindtap='filterGroup' data-idx='{{item.idx}}'>{{item.GroupName}}</view>
                 </block>
             </view>
             <!-- 收起 -->
             <view class='fc-blue fs12 text-alignR' bindtap='moreGroup' wx:if='{{showMoreGroup}}'>
               收起
-              <image src='/images/down.png' class='more_group'></image>
             </view>
             
           </view>
@@ -72,8 +71,8 @@
         <view class='label_filter'>
           <view class='sub_title fc-777'>标签</view>
           <view class='filter_con flex'>
-            <block wx:for='{{labelList}}' wx:for-item="item" wx:for-index="idx" wx:key='unique'>
-              <view class='filter_item {{item.filterActive ? "filterActive" : ""}}' bindtap=''>{{item.labelName}}</view>
+            <block wx:for='{{LabelList}}' wx:for-item="item" wx:for-index="idx" wx:key='unique'>
+              <view class='filter_item {{item.filterActive ? "filterActive" : ""}}' bindtap='filterLabel' data-labelname='{{item.LabelName}}' data-idx='{{item.idx}}'>{{item.LabelName}}</view>
             </block>
           </view>
         </view>
@@ -82,7 +81,8 @@
 
 
         <!-- button -->
-        <view class="btn btn-primary filter_btn" bindtap="clickfilter">确定</view>
+        <view class="btn btn-primary filter_btn" bindtap="submitfilter">确定</view>
+
 
 
       </view>
