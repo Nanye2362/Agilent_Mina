@@ -30,7 +30,7 @@
           <!-- set -->
           <view class="mi_ti_r text-center repair_history" >
             <view class='mi_set'>
-              <image class="mi_instru_img" src="/images/set.png" bindtap='clickToSet' data-idx='{{item.idx}}'></image>
+              <image class="mi_instru_img" src="/images/set.png" bindtap='clickToSet' data-idx='{{idx}}'></image>
               <!-- mask -->
               <view class='mi_set_mask' bindtap='clickToSet' wx:if='{{item.setMask}}'></view>
               <view class='mi_set_con flex directionC' bindtap='clickToSet' wx:if='{{item.setMask}}'>

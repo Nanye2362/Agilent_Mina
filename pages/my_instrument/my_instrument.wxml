@@ -94,7 +94,7 @@
 
 <!-- instrument_list -->
 <block wx:for="{{InstrumentList}}" wx:for-item="item" wx:for-index="idx">
-  <template is='insTemp'  data="{{item}}"></template>
+  <template is='insTemp'  data="{{item:item,idx:idx}}" ></template>
 </block>
 <!-- instrument_list -->
 

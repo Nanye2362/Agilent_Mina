@@ -24,6 +24,7 @@ Page({
     showMoreGroup: false,
     filterActive: false,
     selectLabel: '不限',
+    selectGroup: '',
   },
 
 
