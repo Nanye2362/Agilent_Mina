@@ -157,7 +157,7 @@ Page({
       success: function (res) {
         console.log(res)
         if (res.result) {
-          var instrumentlist = that.data.AllInstrument;
+          var instrumentlist = that.data.InstrumentList;
           for (var i in instrumentlist) {
             if (instrumentlist[i].SerialNo == that.data.remarkSn) {
               instrumentlist[i].Remark = that.data.inputValue;
@@ -165,6 +165,7 @@ Page({
           }
           that.setData({
             AllInstrument: instrumentlist,
+            InstrumentList: instrumentlist
           })
         }
         that.setData({
