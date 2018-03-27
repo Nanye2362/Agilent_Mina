@@ -267,7 +267,7 @@ Page({
     var pi = event.currentTarget.dataset.pi;
     var idx = event.currentTarget.dataset.idx;
     console.log(sn + pi);
-    var InstrumentList = this.data.InstrumentList;
+    var InstrumentList = this.data.AllInstrument;
     wx.showModal({
       title: '提示',
       content: '确定要删除么',
@@ -293,7 +293,7 @@ Page({
                 var InstrumentCount = that.data.InstrumentCount;
                 that.setData({
                   InstrumentCount: InstrumentCount - 1,
-                  InstrumentList: InstrumentList
+                  AllInstrument: InstrumentList,
                 })
                 console.log('用户点击确定');
               }
@@ -359,7 +359,8 @@ Page({
       GroupList[i].filterActive = false;
     }
     this.setData({
-      filterActive: !this.data.filterActive,
+      //filterActive: !this.data.filterActive,
+      filterActive: false,
       GroupList: GroupList,
       selectGroup: '',
     })
