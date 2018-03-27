@@ -295,6 +295,7 @@ Page({
                 that.setData({
                   InstrumentCount: InstrumentCount - 1,
                   AllInstrument: InstrumentList,
+                  InstrumentList: InstrumentList,
                 })
                 console.log('用户点击确定');
               }
