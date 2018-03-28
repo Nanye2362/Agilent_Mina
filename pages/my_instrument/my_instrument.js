@@ -421,7 +421,8 @@ Page({
 
 
     this.setData({
-      InstrumentList: filterList
+      InstrumentList: filterList,
+      InstrumentCount: filterList.length
     })
     this.clickfilter();
   },
