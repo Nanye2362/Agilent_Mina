@@ -74,8 +74,8 @@
           <!-- set -->
       </view>
       <view class="mi_de_con">
-          <button class="mi_btn-circle mi_btn_active fs14" bindtap="clickToRepair" data-sn="{{item.SerialNo}}">咨询/报修</button>
-          <button class='mi_btn-circle fs14 bg-primary' bindtap="clickToNext" data-sn="{{item.SerialNo}}">报修历史</button>
+          <button class="mi_btn-circle mi_btn_active fs13" bindtap="clickToRepair" data-sn="{{item.SerialNo}}">咨询/报修</button>
+          <button class='mi_btn-circle fs13 bg-primary' bindtap="clickToNext" data-sn="{{item.SerialNo}}">报修历史</button>
       </view>
   </view>
 </template>
