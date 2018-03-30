@@ -37,7 +37,7 @@
       <view class="shLoading-head-panel">
           <view class='fs15 text-alignC'>添加标签</view>
           <view class='add_input'>
-            <input placeholder="标签名称（1-4个字符）" maxlength='4' class='fs13' bindinput='bindKeyInput'></input>
+            <input placeholder="标签名称（1-5个字符）" maxlength='5' class='fs13' bindinput='bindKeyInput'></input>
           </view>
           <!-- choose_label_color -->
           <view class='fs12'>选择标签颜色：</view>

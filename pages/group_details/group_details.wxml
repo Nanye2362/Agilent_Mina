@@ -1,13 +1,18 @@
 <import src='../template/newIns'/>
 <!-- title -->
-<view class='g_title fs12 fc-777'>共{{ListCount}}个序列号</view>
+<view class='g_title flex'>
+  <view class='g_title_item fs13'>{{GroupName}}</view>
+  <view class='g_title_item fs12 fc-777 text-alignR'>共{{ListCount}}个序列号</view> 
+</view>
 
 
 
 <!-- serial_list -->
-<block wx:for="{{detailList}}" wx:for-item="item" wx:for-index="idx" wx:key='unique'>
-  <template is='insTemp' data='{{item:item,idx:idx}}'></template>
-</block>
+<view>
+  <block wx:for="{{detailList}}" wx:for-item="item" wx:for-index="idx" wx:key='unique'>
+    <template is='insTemp' data='{{item:item,idx:idx}}'></template>
+  </block>
+</view>
 
 
 <!-- edit_remark -->
@@ -32,7 +37,7 @@
 
 
 <!-- addNew -->
-<view wx:if='{{addConfirm == false}}' class="mi_add_new text-center bg-primary" bindtap="clickToAdd">
+<view wx:if='{{addConfirm == false}}' class="mi_add_new text-center bg-primary {{ListCount>=4 ? 'positionFixed' : ''}}" bindtap="clickToAdd">
       <image class="mi_add_btn" src="/images/add.png"></image>     <text class="mi_add_word fc-blue">添加序列号</text>
 </view>
 

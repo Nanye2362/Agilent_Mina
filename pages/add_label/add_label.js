@@ -6,7 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    selectColor:'',
+    selectColor: '',
     // insGroup: [
     //   { name: 'GC1', colorName: 'yellow', value: 'GC实验仪器一'},
     //   { name: 'GC2', colorName: 'coffee', value: 'GC实验仪器二' },
@@ -15,49 +15,50 @@ Page({
     /* 弹框 */
     popup: false,
     colorList: [
-      { 
+      {
         colorName: 'yellow',
         colorActive: false,
-       },
-      { colorName: 'coffee',
+      },
+      {
+        colorName: 'coffee',
         colorActive: false,
       },
-      { 
+      {
         colorName: 'green',
-        colorActive: false, 
+        colorActive: false,
       },
-      { 
+      {
         colorName: 'purple',
-        colorActive: false, 
-        
+        colorActive: false,
+
       },
-      { 
+      {
         colorName: 'pink',
-        colorActive: false, 
+        colorActive: false,
       },
-      { 
+      {
         colorName: 'orange',
-        colorActive: false, 
+        colorActive: false,
       },
-      { 
+      {
         colorName: 'grass',
-        colorActive: false, 
+        colorActive: false,
       },
-      { 
+      {
         colorName: 'blue',
-        colorActive: false, 
+        colorActive: false,
       },
-      { 
+      {
         colorName: 'red',
-        colorActive: false, 
+        colorActive: false,
       },
-      { 
+      {
         colorName: 'grey',
-        colorActive: false, 
-      },   
+        colorActive: false,
+      },
     ],
-    selectLabel:''
-    
+    selectLabel: ''
+
   },
 
   /**
@@ -68,8 +69,8 @@ Page({
       sn: options.sn,
     })
 
-    
-  
+
+
   },
 
   /* 新建标签名称input */
@@ -87,7 +88,7 @@ Page({
     })
   },
   /* 跳转编辑标签 */
-  gotoLabelList: function(){
+  gotoLabelList: function () {
     wx.navigateTo({
       url: '../edit_label/edit_label'
     })
@@ -95,7 +96,7 @@ Page({
 
 
   /* 确认添加标签 */
-  confirmAddLabel: function(){
+  confirmAddLabel: function () {
     var that = this;
     console.log(that.data.inputValue)
     util.NetRequest({
@@ -111,6 +112,7 @@ Page({
         that.setData({
           LabelList: ll
         })
+        
       },
       fail: function (err) {
         console.log(err);
@@ -125,11 +127,11 @@ Page({
     var that = this;
     console.log(e.detail.value)
     var sl = e.detail.value
-    if (sl.length<=3){
+    if (sl.length <= 3) {
       this.setData({
         selectLabel: sl.toString()
       })
-    }else{
+    } else {
       for (var i = 0; i < that.data.LabelList.length; i++) {
         if (e.currentTarget.dataset.idx == i) {
           that.data.LabelList[i].checked = false;
@@ -145,22 +147,22 @@ Page({
         title: '提示',
         content: '标签的数量不能大于3个',
         showCancel: false,
-        success: function (res) {       
+        success: function (res) {
           if (res.confirm) {
-            
+
           } else if (res.cancel) {
             console.log('用户点击取消')
           }
         }
       })
-      
-    }  
+
+    }
   },
 
 
 
   /* chooseLabelColor */
-  chooseColor: function(e){
+  chooseColor: function (e) {
     for (var i = 0; i < this.data.colorList.length; i++) {
       if (e.currentTarget.id == i) {
         this.data.colorList[i].colorActive = true
@@ -189,29 +191,22 @@ Page({
 
   /* 确认提交 */
   submit: function () {
-    if(this.data.selectLabel != ''){
-      util.NetRequest({
-        url: 'site-mini/set-label',
-        data: {
-          'ID': this.data.selectLabel,
-          'SerialNo': this.data.sn,
-        },
-        success: function (res) {
-          console.log(res);
-          wx.navigateBack({
-            delta: 1
-          })
-        },
-        fail: function (err) {
-          console.log(err);
-        }
-      })
-    }else{
-      wx.navigateBack({
-        delta: 1
-      })
-    }
-    
+    util.NetRequest({
+      url: 'site-mini/set-label',
+      data: {
+        'ID': this.data.selectLabel,
+        'SerialNo': this.data.sn,
+      },
+      success: function (res) {
+        console.log(res);
+        wx.navigateBack({
+          delta: 1
+        })
+      },
+      fail: function (err) {
+        console.log(err);
+      }
+    })
   },
 
 
@@ -219,7 +214,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-  
+
   },
 
   /**
@@ -254,34 +249,34 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-  
+
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-  
+
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-  
+
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-  
+
   },
 
   /**
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-  
+
   }
 })

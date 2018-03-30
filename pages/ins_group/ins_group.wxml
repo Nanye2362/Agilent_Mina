@@ -10,7 +10,8 @@
 <view wx:else>
   <!-- editBtn -->
   <view class='gl_title flex choose_state' >
-    <text class=' fs12 fc-777'>共{{GroupCount}}台仪器</text>
+    <!-- <text class=' fs12 fc-777'>共{{GroupCount}}台仪器</text> -->
+    <text class=' fs12 fc-777'>仪器分组</text>
     <text class='fc-blue fs12' bindtap='editGroup' wx:if='{{gotoEdit}}'>编辑</text>
     <view wx:else class='flex'>
       <text class='fc-blue fs12' bindtap='cancelGroup'>取消</text>

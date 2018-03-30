@@ -4,8 +4,9 @@
     box-shadow: 2px 2px 2px #dfdfdf;
 }
 .mi_re_detail:last-child{
-  margin-bottom: 100rpx;
-}
+  margin-bottom: 100rpx !important;
+} 
+
 
 .mi_de_title {
     padding: 20rpx 30rpx;
@@ -21,6 +22,8 @@
 .mi_item_r {
     flex: .8;
     margin-left:-35rpx;
+    max-width: 600rpx;
+    word-break: break-all;
 }
 
 .mi_ti_l_item:not(:last-child) {
@@ -31,7 +34,7 @@
 .mi_instru_img {
     width: 40rpx;
     height: 40rpx;
-    vertical-align: middle;
+    margin-right: 50rpx;
 }
 
 .mi_ti_l {
@@ -44,7 +47,7 @@
 
 .mi_ti_r {
     position: absolute;
-    right: 20rpx;
+    right: 40rpx;
     top: 24rpx;
     width: 50rpx;
     height: 50rpx;
@@ -99,6 +102,7 @@
     padding: 20rpx;
     width: 100%;
     line-height: 50rpx;
+    border-top: 1px solid #e7e7e7;
 }
 
 .mi_add_new image {
@@ -110,6 +114,11 @@
 
 .mi_set{
   position: relative;
+}
+.mi_set_out{
+  width: 140rpx;
+  height: 80rpx;
+  text-align: center;
 }
 .mi_set_con{
   position: absolute;

@@ -25,6 +25,10 @@ Page({
     filterActive: false,
     selectLabel: '不限',
     selectGroup: '',
+    GroupCount: 0,
+    remarkCon: '',
+    /* 搜索弹框 */
+    searchShow: false,
   },
 
 
@@ -79,11 +83,13 @@ Page({
           LabelColor: '',
           filterActive: true,
           idx: 0,
+          labelView: false,
         }
         LabelList.unshift(object);
         for (var i in ll) {
           ll[i].filterActive = false;
           ll[i].idx = parseInt(i) + 1;
+          ll[i].labelView = true;
           LabelList.push(ll[i]);
         }
 
@@ -110,7 +116,6 @@ Page({
 
   //'设置'菜单隐藏
   clickToSet: function (e) {
-    console.log(e.currentTarget.dataset.index)
     for (var i = 0; i < this.data.InstrumentList.length; i++) {
       if (e.currentTarget.dataset.idx == i) {
         this.data.InstrumentList[i].setMask = true
@@ -147,11 +152,12 @@ Page({
 
   /* 修改备注 */
   confirmRemark: function () {
+    console.log(this.data.inputValue)
     var that = this;
     util.NetRequest({
       url: 'site-mini/edit-remark',
       data: {
-        'Remark': this.data.inputValue,
+        'Remark': this.data.inputValue != '' ? this.data.inputValue :'无',
         'SerialNo': this.data.remarkSn
       },
       success: function (res) {
@@ -160,7 +166,7 @@ Page({
           var instrumentlist = that.data.InstrumentList;
           for (var i in instrumentlist) {
             if (instrumentlist[i].SerialNo == that.data.remarkSn) {
-              instrumentlist[i].Remark = that.data.inputValue;
+              instrumentlist[i].Remark = that.data.inputValue != '' ? that.data.inputValue : '无';
             }
           }
           that.setData({
@@ -182,15 +188,21 @@ Page({
       inputValue: e.detail.value
     })
   },
+  clearRemark: function(){
+    console.log('clear');
+    this.setData({
+      remarkCon:''
+    })
+  },
   Popup: function (e) {
     var remarkSn = e.currentTarget.dataset.sn
     var popup = this.data.popup
     this.setData({
       popup: !popup,
-      remarkSn: remarkSn
+      remarkSn: remarkSn,
+      remarkCon: e.currentTarget.dataset.remark
     })
   },
-
 
   //报修历史
   clickToNext: function (event) {
@@ -222,9 +234,8 @@ Page({
         }
       }
     });
-
-
   },
+
   //报修
   clickToRepair: function (event) {
     var sn = event.currentTarget.dataset.sn;
@@ -250,16 +261,12 @@ Page({
     })
   },
 
-
   //添加仪器
   clickToAdd: function () {
     wx.navigateTo({
       url: '../serial_number/serial_number?mobile=' + mobile,
     })
   },
-
-
-
 
   //删除仪器
   clickToRemove: function (event) {
@@ -287,9 +294,9 @@ Page({
                   if (InstrumentList[i].SerialNo == sn) {
                     InstrumentList.splice(i, 1)
                   }
-                  if (InstrumentList[i].idx > idx) {
-                    InstrumentList[i].idx -= 1;
-                  }
+                  // if (InstrumentList[i].idx > idx) {
+                  //   InstrumentList[i].idx -= 1;
+                  // }
                 }
                 var InstrumentCount = that.data.InstrumentCount;
                 that.setData({
@@ -318,16 +325,12 @@ Page({
 
   },
 
-
-
   /* 更多仪器分组 */
   moreGroup: function () {
     this.setData({
       showMoreGroup: !this.data.showMoreGroup
     })
   },
-
-
 
   /* 筛选 */
   clickfilter: function () {
@@ -427,6 +430,33 @@ Page({
     this.clickfilter();
   },
 
+  /* 搜索 */
+  bindSearchInput: function(e){
+    this.setData({
+      searchValue: e.detail.value,
+    })
+  },
+  Search: function(){
+    this.setData({
+      searchShow: !this.data.searchShow,
+      showFilter: false
+    }) 
+  },
+  gotoSearch: function(){
+    var allInstrument = this.data.AllInstrument;
+    var searchList = [];
+    var searchCon = this.data.searchValue;
+    var reg = new RegExp(searchCon)
+    for (var i in allInstrument){
+      if (allInstrument[i].SerialNo.match(reg) || allInstrument[i].ProductId.match(reg) || allInstrument[i].ProductDesc.match(reg)){
+        searchList.push(allInstrument[i]);
+      }
+    }
+    this.setData({
+      InstrumentList: searchList
+    })
+    this.Search();
+  },
 
   backHome: function () {
     util.backHome()

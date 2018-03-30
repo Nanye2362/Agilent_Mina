@@ -9,7 +9,7 @@
     <text class='fs15'>仪器分组</text>
   </view>
   <view class='mi_group_r mi_group_item alignc flex justify-end'>
-    <text class='fs14 fc-aaa'>{{GroupCount}}台仪器</text>
+    <text class='fs14 fc-aaa'>{{GroupCount}}</text>
     <image class='mi_group_arrow' src='/images/arrowr.png'></image>
   </view>
 </view>
@@ -29,19 +29,13 @@
       <!-- filter_con -->
       <view class='mi_filter' wx:if='{{showFilter}}'>
         <!-- main_title -->
-        <view class='filter_title fs12 fc-777'>筛选</view>
-
-
-        <!-- category_filter -->
-        <view class='category_filter'>
-          <view class='sub_title fc-777'>分类</view>
-          <view class='filter_con flex'>
-            <block wx:for='{{categoryList}}' wx:for-item="item" wx:for-index="idx" wx:key='unique'>
-              <view class='filter_item {{item.filterActive ? "filterActive" : ""}}' bindtap=''>{{item.categoryName}}</view>
-            </block>
+        <view class='filter_title flex'>
+          <text class=' fs12 fc-777'>筛选</text>
+          <view class='search' bindtap='Search'>
+            <image src='/images/search1.png' class='search_img'></image>
           </view>
+          
         </view>
-
 
         <!-- serial_group -->
         <view class='group_filter'>
@@ -56,7 +50,7 @@
             <!-- group_list -->
             <view class='group_list' wx:if='{{showMoreGroup}}'>
                 <block wx:for='{{GroupList}}' wx:for-item="item" wx:for-index="idx" wx:key='unique'>
-                  <view class='group_item {{item.filterActive? "filterActive":""}}' data-id='{{item.ID}}' bindtap='filterGroup' data-idx='{{item.idx}}'>{{item.GroupName}}</view>
+                  <view class='group_item fs12 {{item.filterActive? "filterActive":""}}' data-id='{{item.ID}}' bindtap='filterGroup' data-idx='{{item.idx}}'>{{item.GroupName}}</view>
                 </block>
             </view>
             <!-- 收起 -->
@@ -72,18 +66,16 @@
           <view class='sub_title fc-777'>标签</view>
           <view class='filter_con flex'>
             <block wx:for='{{LabelList}}' wx:for-item="item" wx:for-index="idx" wx:key='unique'>
-              <view class='filter_item {{item.filterActive ? "filterActive" : ""}}' bindtap='filterLabel' data-labelname='{{item.LabelName}}' data-idx='{{item.idx}}'>{{item.LabelName}}</view>
+              <view class='justify-center flex filter_item {{item.filterActive ? "filterActive" : ""}}' bindtap='filterLabel' data-labelname='{{item.LabelName}}' data-idx='{{item.idx}}'>
+                <view class='{{item.labelView? "label_view" : ""}} flex align-center {{item.LabelColor}}'></view>
+                <view class='fs12'>{{item.LabelName}}</view>
+              </view>
             </block>
           </view>
         </view>
 
-
-
-
         <!-- button -->
         <view class="btn btn-primary filter_btn" bindtap="submitfilter">确定</view>
-
-
 
       </view>
     </view>
@@ -91,13 +83,14 @@
 </view>
 <!-- ins_num -->
 
-
+ 
 <!-- instrument_list -->
-<block wx:for="{{InstrumentList}}" wx:for-item="item" wx:for-index="idx">
-  <template is='insTemp'  data="{{item:item,idx:idx}}" ></template>
-</block>
+<view class='ins_container'>
+  <block wx:for="{{InstrumentList}}" wx:for-item="item" wx:for-index="idx">
+    <template is='insTemp'  data="{{item:item,idx:idx}}" ></template>
+  </block>
+</view>
 <!-- instrument_list -->
-
 
 
 <!-- edit_remark -->
@@ -108,7 +101,11 @@
       <view class="shLoading-head-panel">
           <view class='fs15 text-alignC'>修改备注</view>
           <view class='add_input'>
-            <input placeholder="填写备注（1-15个字符）" maxlength='15' class='fs13' bindinput='bindKeyInput'></input>
+            <input placeholder="填写备注"  class='fs13' bindinput='bindKeyInput' value='{{remarkCon=="无"?"":remarkCon}}'></input>
+            <!-- 清除 -->
+            <view class='clear_remark' bindtap='clearRemark'>
+              <image src='/images/delete.png'></image>
+            </view>
           </view>
       </view>
       <view class="shLoading-btn-panel">
@@ -120,8 +117,28 @@
 <!-- edit_remark -->
 
 
+<!-- search -->
+<view class="shLoading" wx:if='{{searchShow}}'>
+  <view class="shLoading-mask1"  bindtap="">
+  </view>
+  <view class="shLoading-panel flex alignc directionC">
+      <view class="shLoading-head-panel">
+          <view class='fs15 text-alignC'>搜索</view>
+          <view class='add_input'>
+            <input placeholder="请输入要搜索的内容"  class='fs13' bindinput='bindSearchInput'></input>
+          </view>
+      </view>
+      <view class="shLoading-btn-panel">
+          <view class="shLoading-btn-cancel" bindtap="Search">取消</view>
+          <view class="shLoading-btn-ok" bindtap="gotoSearch">确认</view>
+      </view>
+  </view>
+</view>
+<!-- search -->
+
+
 
 <!-- addNew -->
-<view class="mi_add_new text-center bg-primary" bindtap="clickToAdd">
+<view class="mi_add_new text-center bg-primary {{InstrumentCount>=4 ? 'positionFixed' : ''}}" bindtap="clickToAdd">
     <image class="mi_add_btn" src="/images/add.png"></image>     <text class="mi_add_word fc-blue">添加序列号</text>
 </view> 

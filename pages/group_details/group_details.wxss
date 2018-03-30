@@ -9,3 +9,6 @@
   width: 450rpx;
   text-align: center;
 }
+.g_title_item{
+  flex: .5;
+}

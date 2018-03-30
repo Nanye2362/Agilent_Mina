@@ -20,6 +20,12 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    
+  },
+  /**
+     * 生命周期函数--监听页面显示
+     */
+  onShow: function () {
     var that = this
     util.NetRequest({
       url: 'site-mini/ins-group',
@@ -46,7 +52,6 @@ Page({
       }
     })
   },
-
 
 
   /* 编辑 */
@@ -249,12 +254,7 @@ Page({
   
   },
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
   
-  },
 
   /**
    * 生命周期函数--监听页面隐藏
