@@ -20,3 +20,11 @@
 .cs_con > view {
     line-height: 60rpx;
 }
+.shLoading-btn-cancel{color:#66CD00;position:relative;}
+
+.shLoading-head-panel .shp_body {
+  padding:25rpx 75rpx;
+}
+.shLoading-head-panel .shp_body text{
+  font-size:28rpx;
+}

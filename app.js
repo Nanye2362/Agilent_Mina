@@ -37,9 +37,10 @@ App({
     var nowDate = new Date();
     var lastDate=wx.getStorageSync("sessionDate");
     var that = this;
-    console.log(nowDate - lastDate);
-    console.log(nowDate - lastDate >= 60 * 60 * 1000);
-    if (lastDate && nowDate - lastDate>=60*60*1000){//毫秒  1小时   
+    
+    if (that.globalData.needcheck){
+      that.wxlogin();
+    }else if (lastDate && nowDate - lastDate>=60*60*1000){//毫秒  1小时   
       if (!that.globalData.isSetOption && !that.globalData.isFirstLunch) {
         that.wxlogin();
       }

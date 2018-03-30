@@ -13,3 +13,4 @@ page{ background: #fff; }
 .regist_checkbox{ margin-right: 10rpx; }
 .gentle_remind{ margin-top: 20rpx; }
 .checkboxarea{ margin-bottom: 40rpx; }
+.shLoading-btn-cancel{color:#66CD00;position:relative;}

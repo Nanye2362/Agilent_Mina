@@ -15,7 +15,8 @@ Page({
     ShipToName: '',
     userInfo: {},
     TECH:'',
-    NONTECH:''
+    NONTECH:'',
+    needChat:true
   },
   clickToNext: function(){
     wx.redirectTo({
@@ -31,7 +32,9 @@ Page({
     var app = getApp();
     app.mta.Event.stat("meqia", { "group": 'NONTECH' });
   },
-  
+  skipReturn:function(){
+    wx.navigateBack();
+  }, 
   /**
    * 生命周期函数--监听页面加载
    */
@@ -39,6 +42,16 @@ Page({
     //腾讯mta统计开始
     var app = getApp();
     app.mta.Page.init();
+
+    var pages=getCurrentPages();
+    for(var i in pages){
+      if(pages[i].route=="pages/my_instrument/my_instrument"){
+        this.setData({
+          needChat:false
+        })
+      }
+    }
+
     //腾讯mta统计结束
     this.setData({
       ProductId: options.ProductId,

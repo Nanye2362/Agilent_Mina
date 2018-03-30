@@ -31,3 +31,20 @@
     </view>
     <button formType="submit"  class="btn btn-primary" disabled="{{mobileV && codeV? false:true}}">身份认证</button>
 </form>
+
+<!-- showInput -->
+<view class="shLoading" wx:if="{{shLoading}}">
+  <view class="shLoading-mask1">
+  </view>
+  <view class="shLoading-panel flex alignc directionC">
+      <view class="shLoading-head-panel">
+          <view class="shp_title">{{shLoading_title}}</view>
+          <view class="shp_body">{{shLoading_body}}</view>
+      </view>
+      <view class="shLoading-btn-panel">
+          <view class="shLoading-btn-cancel" bindtap="">发起会话
+           <button open-type='contact' bindtap="" class="shLoading-btn-contact" session-from='N'></button></view>
+          <view class="shLoading-btn-ok" bindtap="skipFillInfo">申请建档</view>
+      </view>
+  </view>
+</view>

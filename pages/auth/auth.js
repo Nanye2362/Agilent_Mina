@@ -18,8 +18,24 @@ Page({
     mobileV: false,
     codeV: false, 
     pageName:'',
+    shLoading:false,
+    shLoading_title:"",
+    shLoading_body:"",
+    skipFlag:0
   },
-
+  skipFillInfo:function(){
+      if (this.data.skipFlag==1) {
+            this.setData({
+              shLoading:false,
+              shLoading_title: "",
+              shLoading_body: ""
+            })
+      } else {
+             wx.navigateTo({
+               url: '../fill_info/fill_info?mobile=' + this.data.mobile,
+             })
+      }    
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -40,7 +56,8 @@ Page({
     //验证手机号与短信验证码
     console.log(e.detail.value);
     var mobile = e.detail.value.mobile
-    var vfcode = e.detail.value.verification_code   
+    var vfcode = e.detail.value.verification_code  
+    var that=this; 
     util.NetRequest({
       url: 'auth/auth?mobile=' + mobile,
       data: {
@@ -72,44 +89,51 @@ Page({
         } else {
           console.log(res.noskip)
           console.log(res.error_msg)
-          var skipFlag = res.noskip;
+          
           var err_msg = res.error_msg;
-          var e_msg = '';
+
           switch (err_msg){
             case 'UB001':
-              e_msg = '(UB001)身份认证通过';
+              err_msg = '身份认证通过';
                 break;
             case 'UB002':
-              e_msg = '(UB002)身份认证通过，您的联系信息关联多家单位，我们将根据您第一次报修的仪器序列号为您关联单位名称';
+              err_msg = '身份认证通过，您的联系信息关联多家单位，我们将根据您第一次报修的仪器序列号为您关联单位名称';
                 break;
             case 'UB003':
-              e_msg = '(UB003)身份认证失败，您的手机号在系统中关联了多个联系人，请点击下方发起会话确认';
+              err_msg = '身份认证失败，您的手机号在系统中关联了多个联系人，请点击下方发起会话确认';
               break;
             case 'UB004':
-              e_msg = '(UB004)您已经通过身份认证';
+              err_msg = '您已经通过身份认证';
               break;
             case 'UB005':
-              e_msg = '(UB005)您的手机在系统中未关联任何联系人，请提供相关的信息，我们尽快为您建档';
+              err_msg = '您的手机在系统中未关联任何联系人，请提供相关的信息，我们尽快为您建档';
               break;
             case 'UB006':
-              e_msg = '(UB006)UB006';
+              err_msg = 'UB006';
               break;
           }
-          wx.showModal({
-            title: '认证失败',
-            content: e_msg,
-            showCancel: false,
-            success: function (res) {
-              if (res.confirm) {
-                if (skipFlag == 1) {
-                } else {
-                  wx.navigateTo({
-                    url: '../fill_info/fill_info?mobile=' + mobile,
-                  })
-                }
-              }
-            }
+
+          that.setData({
+            shLoading:true,
+            shLoading_title:'认证失败',
+            shLoading_body: err_msg,
+            skipFlag:res.noskip
           })
+          // wx.showModal({
+          //   title: '认证失败',
+          //   content: e_msg,
+          //   showCancel: false,
+          //   success: function (res) {
+          //     if (res.confirm) {
+          //       if (skipFlag == 1) {
+          //       } else {
+          //         wx.navigateTo({
+          //           url: '../fill_info/fill_info?mobile=' + mobile,
+          //         })
+          //       }
+          //     }
+          //   }
+          // })
         }
       },
       fail: function (err) {
