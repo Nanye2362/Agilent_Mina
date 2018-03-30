@@ -222,6 +222,7 @@ Page({
    */
   onShow: function () {
     var that = this;
+    var selectLabel=[];
     util.NetRequest({
       url: 'site-mini/show-label',
       data: {
@@ -234,9 +235,13 @@ Page({
         for (var i in labelList) {
           labelList[i].idx = i;
           LabelList.push(labelList[i]);
+          if (LabelList[i].Checked){
+            selectLabel.push(LabelList[i].ID);
+          }
         }
         that.setData({
-          LabelList: LabelList
+          LabelList: LabelList,
+          selectLabel: selectLabel.toString()
         })
       },
       fail: function (err) {
