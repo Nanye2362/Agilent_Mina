@@ -30,6 +30,7 @@ Page({
     /* 搜索弹框 */
     searchShow: false,
     searched: false,
+    searchValue:'',
   },
 
 
@@ -463,11 +464,12 @@ Page({
         searchValue: '',
       })
     }else{
-      console.log('空')
       this.setData({
         InstrumentCount: allInstrument.length,
         InstrumentList: allInstrument,
         searchValue: '',
+        searched: false,
+        lastSearch:'',
       })
     }
     
