@@ -180,6 +180,7 @@ Page({
           popup: !that.data.popup
         })
         that.submitfilter();
+        that.gotoSearch();
       },
       fail: function (err) {
         console.log(err);
@@ -476,7 +477,10 @@ Page({
       })
     }
     
-    this.Search();
+    this.setData({
+      searchShow: false,
+      showFilter: false
+    }) 
   },
 
   backHome: function () {
