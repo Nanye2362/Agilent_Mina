@@ -455,6 +455,7 @@ Page({
       }
     }
     this.setData({
+      InstrumentCount: searchList.length,
       InstrumentList: searchList,
       lastSearch: '上次搜索：'+ this.data.searchValue,
       searched: true,
