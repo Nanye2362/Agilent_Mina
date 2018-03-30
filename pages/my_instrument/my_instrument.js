@@ -449,17 +449,28 @@ Page({
     var searchList = [];
     var searchCon = this.data.searchValue;
     var reg = new RegExp(searchCon)
-    for (var i in allInstrument){
-      if (allInstrument[i].SerialNo.match(reg) || allInstrument[i].ProductId.match(reg) || allInstrument[i].ProductDesc.match(reg)){
-        searchList.push(allInstrument[i]);
+    if (searchCon!=''){
+      for (var i in allInstrument) {
+        if (allInstrument[i].SerialNo.match(reg) || allInstrument[i].ProductId.match(reg) || allInstrument[i].ProductDesc.match(reg)) {
+          searchList.push(allInstrument[i]);
+        }
       }
+      this.setData({
+        InstrumentCount: searchList.length,
+        InstrumentList: searchList,
+        lastSearch: '上次搜索：' + this.data.searchValue,
+        searched: true,
+        searchValue: '',
+      })
+    }else{
+      console.log('空')
+      this.setData({
+        InstrumentCount: allInstrument.length,
+        InstrumentList: allInstrument,
+        searchValue: '',
+      })
     }
-    this.setData({
-      InstrumentCount: searchList.length,
-      InstrumentList: searchList,
-      lastSearch: '上次搜索：'+ this.data.searchValue,
-      searched: true,
-    })
+    
     this.Search();
   },
 
