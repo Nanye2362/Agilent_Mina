@@ -165,7 +165,7 @@ Page({
       success: function (res) {
         console.log(res)
         if (res.result) {
-          var instrumentlist = that.data.InstrumentList;
+          var instrumentlist = that.data.AllInstrument;
           for (var i in instrumentlist) {
             if (instrumentlist[i].SerialNo == that.data.remarkSn) {
               instrumentlist[i].Remark = that.data.inputValue != '' ? that.data.inputValue : '无';
@@ -173,12 +173,13 @@ Page({
           }
           that.setData({
             AllInstrument: instrumentlist,
-            InstrumentList: instrumentlist
+            //InstrumentList: instrumentlist
           })
         }
         that.setData({
           popup: !that.data.popup
         })
+        that.submitfilter();
       },
       fail: function (err) {
         console.log(err);
@@ -430,7 +431,9 @@ Page({
       InstrumentList: filterList,
       InstrumentCount: filterList.length
     })
-    this.clickfilter();
+    this.setData({
+      showFilter: false
+    })
   },
 
   /* 搜索 */
