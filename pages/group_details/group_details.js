@@ -9,7 +9,8 @@ Page({
   data: {
     setMask: false,
     addConfirm: false,
-    popup: false
+    popup: false,
+    remarkCon: '',
   },
 
   /**
@@ -123,7 +124,7 @@ Page({
     util.NetRequest({
       url: 'site-mini/edit-remark',
       data: {
-        'Remark': this.data.inputValue,
+        'Remark': this.data.inputValue != '' ? this.data.inputValue : '无',
         'SerialNo': this.data.remarkSn
       },
       success: function (res) {
@@ -132,8 +133,9 @@ Page({
           var detaillist = that.data.detailList;
           for (var i in detaillist) {
             if (detaillist[i].SerialNo == that.data.remarkSn) {
-              detaillist[i].Remark = that.data.inputValue;
+              detaillist[i].Remark = that.data.inputValue != '' ? that.data.inputValue : '无';
             }
+            
           }
           that.setData({
             detailList: detaillist,
@@ -158,7 +160,15 @@ Page({
     var popup = this.data.popup
     this.setData({
       popup: !popup,
-      remarkSn: remarkSn
+      remarkSn: remarkSn,
+      remarkCon: e.currentTarget.dataset.remark
+    })
+  }, 
+  clearRemark: function () {
+    console.log('clear');
+    this.setData({
+      remarkCon: '',
+      inputValue: '',
     })
   },
 
@@ -247,9 +257,6 @@ Page({
                 for (var i in detailList) {
                   if (detailList[i].SerialNo == sn) {
                     detailList.splice(i, 1)
-                  }
-                  if (detailList[i].idx > idx) {
-                    detailList[i].idx -= 1;
                   }
                 }
                 var ListCount = that.data.ListCount;

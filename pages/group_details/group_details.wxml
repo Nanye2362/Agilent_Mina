@@ -23,7 +23,11 @@
       <view class="shLoading-head-panel">
           <view class='fs15 text-alignC'>修改备注</view>
           <view class='add_input'>
-            <input placeholder="填写备注（1-15个字符）" maxlength='15' class='fs13' bindinput='bindKeyInput'></input>
+            <input placeholder="填写备注"  class='fs13' bindinput='bindKeyInput' value='{{remarkCon=="无"?"":remarkCon}}'></input>
+            <!-- 清除 -->
+            <view class='clear_remark' bindtap='clearRemark'>
+              <image src='/images/delete.png'></image>
+            </view>
           </view>
       </view>
       <view class="shLoading-btn-panel">

@@ -29,6 +29,7 @@ Page({
     remarkCon: '',
     /* 搜索弹框 */
     searchShow: false,
+    searched: false,
   },
 
 
@@ -191,7 +192,8 @@ Page({
   clearRemark: function(){
     console.log('clear');
     this.setData({
-      remarkCon:''
+      remarkCon:'',
+      inputValue:'',
     })
   },
   Popup: function (e) {
@@ -453,7 +455,9 @@ Page({
       }
     }
     this.setData({
-      InstrumentList: searchList
+      InstrumentList: searchList,
+      lastSearch: '上次搜索：'+ this.data.searchValue,
+      searched: true,
     })
     this.Search();
   },
