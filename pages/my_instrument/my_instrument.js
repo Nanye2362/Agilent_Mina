@@ -31,6 +31,7 @@ Page({
     searchShow: false,
     searched: false,
     searchValue:'',
+    inputValue:''
   },
 
 

@@ -41,7 +41,7 @@
 
 
         <!-- search -->
-        <view class='search_word fs12 fc-blue'>搜索关键字：{{searchCon}}</view>
+        <view class='search_word fs12 fc-blue' bindtap='Search'>搜索关键字：{{searchCon}}</view>
 
 
         <!-- serial_group -->

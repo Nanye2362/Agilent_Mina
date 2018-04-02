@@ -22,7 +22,7 @@
   <!-- group_list -->
   <view wx:if='{{editGroup}}'>
     <block wx:for='{{GroupList}}' wx:for-item="item" wx:for-index="idx" wx:key='unique'>
-      <view class='gl flex' bindtap='groupDetails' data-id='{{item.GroupID}}' data-gn='{{item.GroupName}}'>
+      <view class='gl flex' bindtap='groupDetails' data-id='{{item.GroupID}}' data-gn='{{item.GroupName}}'data-idx='{{idx}}'>
         <view class='g_item'>{{item.GroupName}}</view>
         <view class='g_item fc-777 fs12 flex justify-end'>{{item.GroupSnCount}}个序列号
           <image src='/images/rightA.png' class='g_image'></image>
@@ -35,7 +35,7 @@
   <!-- edit_group -->
   <view wx:else>
     <block wx:for='{{GroupList}}' wx:for-item="item" wx:for-index="idx" wx:key='unique'>
-      <view class='gl flex' wx:if='{{item.deleted}}'>
+      <view class='gl flex' wx:if='{{item.deleted}}' data-idx='{{idx}}'>
         <!-- editGroup -->
         <view class='g_item flex alignc'>
           <view wx:if='{{item.editting==false}}'>{{item.GroupName}}</view>
@@ -49,7 +49,7 @@
         </view>
       </view>
     </block>
-  </view>
+  </view> 
 
 
 
@@ -59,7 +59,7 @@
 
 
 <!-- add_group -->
-<view class='add_new' bindtap='Popup' wx:if='{{gotoEdit}}'>
+<view class='add_new {{GroupCount > 0? "":"positionFixed"}}' bindtap='Popup' wx:if='{{gotoEdit}}'>
   <text class='fc-blue'>新建分组</text>
 </view>
   <!-- add_confirm -->

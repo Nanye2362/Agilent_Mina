@@ -368,4 +368,5 @@ view, text, input, button{ font-size: 32rpx; font-family: "MicroSoft Yahei"; col
   position: fixed;
   left:0;
   bottom:0;
+  z-index: 1000;
 }

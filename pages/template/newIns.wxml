@@ -3,17 +3,6 @@
   <view class="mi_re_detail">
       <view class="mi_de_title flex ">
           <view class="mi_ti_l text_alignL flex directionC">
-              <!-- <view class="mi_ti_l_item flex">
-                  <view class="mi_item_l fs13 fc-aaa">分类：</view>
-                  <view class="mi_item_r fs13 flex">
-                      <view class="fs13">{{item.ProductId}}</view>
-                      <!-- label >
-                      <block  wx:for="{{item.LabelList}}" wx:for-item="labelItem" wx:key='unique'>
-                        <view class='mi_label {{labelItem.LabelColor}}'>{{labelItem.LabelName}}</view>
-                      </block>
-                      <!-- label >
-                  </view>
-              </view> -->
               <view class="mi_ti_l_item flex">
                   <view class="mi_item_l fs13 fc-aaa">型号：</view>
                   <view class="mi_item_r fs13 flex" >
@@ -90,23 +79,23 @@
     <label class="checkbox flex mi_de_title mi_re_detail" wx:for="{{detailList}}" wx:key='multiple'>
       <view class="mi_ti_l text_alignL flex directionC">
           <view class="mi_ti_l_item flex">
-              <view class="mi_item_l fs13 fc-aaa">分类：</view>
-              <view class="mi_item_r fs13 flex">
-                  <view class="fs13">{{item.ProductId}}</view>
-                  <!-- label -->
-                  <block  wx:for="{{item.LabelList}}" wx:for-item="labelItem" wx:key='unique'>
-                    <view class='mi_label {{labelItem.LabelColor}}'>{{labelItem.LabelName}}</view>
-                  </block>
-                  <!-- label -->
-              </view>
-          </view>
-          <view class="mi_ti_l_item flex">
               <view class="mi_item_l fs13 fc-aaa">型号：</view>
               <view class="mi_item_r fs13">{{item.ProductId}}</view>
           </view>
           <view class="mi_ti_l_item flex">
               <view class="mi_item_l fs13 fc-aaa">序列号：</view>
               <view class="mi_item_r fs13">{{item.SerialNo}}</view>
+          </view>         
+          <view class="mi_ti_l_item flex">
+              <view class="mi_item_l fs13 fc-aaa">描述：</view>
+              <view class="mi_item_r fs13 flex">
+                  <view class="fs13">{{item.ProductDesc}}</view>
+                  <!-- label -->
+                  <block  wx:for="{{item.LabelList}}" wx:for-item="labelItem" wx:key='unique'>
+                    <view class='mi_label {{labelItem.LabelColor}}'>{{labelItem.LabelName}}</view>
+                  </block>
+                  <!-- label -->
+              </view>
           </view>
           <view class="mi_ti_l_item flex">
               <view class="mi_item_l fs13 fc-aaa">备注：</view>

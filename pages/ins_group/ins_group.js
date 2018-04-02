@@ -14,6 +14,8 @@ Page({
     /* 编辑数组 */
     delList:[],
     editList:[],
+    inputValue:'',
+    lastGroupName:'',
   },
 
   /**
@@ -82,7 +84,7 @@ Page({
     for (var i = 0; i < this.data.GroupList.length; i++) {
       if (e.currentTarget.dataset.idx == i) {
         this.data.GroupList[i].editting = false;
-        this.data.GroupList[i].GroupName = this.data.inputValue;
+        this.data.GroupList[i].GroupName = this.data.inputValue != '' ? this.data.inputValue : this.data.lastGroupName;
       }
     }
     this.setData(this.data)
@@ -96,6 +98,7 @@ Page({
       editGroup: true,
       delList: [],
       editList: [],
+      lastGroupName:'',
     })
 
   },
@@ -163,7 +166,8 @@ Page({
               }
               that.setData({
                 GroupCount: res.GroupCount,
-                GroupList: GroupList
+                GroupList: GroupList,
+                lastGroupName:''
               })
             },
             fail: function (err) {
@@ -237,10 +241,15 @@ Page({
     for (var i = 0; i < this.data.GroupList.length; i++) {
       if (e.currentTarget.dataset.idx == i) {
         this.data.GroupList[i].editting = true
+        console.log(this.data.GroupList[i].GroupName)
+        this.setData({
+          lastGroupName: this.data.GroupList[i].GroupName
+        })
       }
       else {
         this.data.GroupList[i].editting = false
       }
+      
     }
     this.setData(this.data) 
   },
