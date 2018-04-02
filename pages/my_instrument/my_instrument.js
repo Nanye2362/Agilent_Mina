@@ -280,7 +280,7 @@ Page({
     var idx = event.currentTarget.dataset.idx;
     console.log(sn + pi);
     var InstrumentList = this.data.AllInstrument;
-    wx.showModal({
+    wx.showModal({ 
       title: '提示',
       content: '确定要删除么',
       success: function (res) {
@@ -308,6 +308,8 @@ Page({
                   AllInstrument: InstrumentList,
                   InstrumentList: InstrumentList,
                 })
+
+                that.submitfilter();
                 console.log('用户点击确定');
               }
 
@@ -468,39 +470,7 @@ Page({
       searchCon: this.data.searchValue
     }) 
   },
-  // gotoSearch: function(){
-  //   var allInstrument = this.data.AllInstrument;
-  //   var searchList = [];
-  //   var searchCon = this.data.searchValue;
-  //   var reg = new RegExp(searchCon)
-  //   if (searchCon!=''){
-  //     for (var i in allInstrument) {
-  //       if (allInstrument[i].SerialNo.match(reg) || allInstrument[i].ProductId.match(reg) || allInstrument[i].ProductDesc.match(reg)) {
-  //         searchList.push(allInstrument[i]);
-  //       }
-  //     }
-  //     this.setData({
-  //       InstrumentCount: searchList.length,
-  //       InstrumentList: searchList,
-  //       lastSearch: '上次搜索：' + this.data.searchValue,
-  //       searched: true,
-  //       searchValue: '',
-  //     })
-  //   }else{
-  //     this.setData({
-  //       InstrumentCount: allInstrument.length,
-  //       InstrumentList: allInstrument,
-  //       searchValue: '',
-  //       searched: false,
-  //       lastSearch:'',
-  //     })
-  //   }
-    
-  //   this.setData({
-  //     searchShow: false,
-  //     showFilter: false
-  //   }) 
-  // },
+  
 
   backHome: function () {
     util.backHome()
