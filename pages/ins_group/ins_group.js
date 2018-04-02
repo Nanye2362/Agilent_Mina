@@ -62,6 +62,7 @@ Page({
     this.setData({
       gotoEdit: false,
       editGroup: false,
+      inputValue:'',
     })
   },
 
@@ -74,7 +75,7 @@ Page({
 
   edConfirm: function(e){
     var obj = {};
-    obj.GroupName = this.data.inputValue;
+    obj.GroupName = this.data.inputValue != '' ? this.data.inputValue:this.data.lastGroupName;
     obj.GroupID = e.currentTarget.dataset.id;
     var editlist = this.data.editList
     editlist.push(obj);
@@ -99,6 +100,7 @@ Page({
       delList: [],
       editList: [],
       lastGroupName:'',
+      inputValue:'',
     })
 
   },
@@ -167,7 +169,6 @@ Page({
               that.setData({
                 GroupCount: res.GroupCount,
                 GroupList: GroupList,
-                lastGroupName:''
               })
             },
             fail: function (err) {
