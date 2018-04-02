@@ -152,7 +152,7 @@ Page({
   },
 
 
-  /* 修改备注 */
+  /* 修改备注 remark */
   confirmRemark: function () {
     console.log(this.data.inputValue)
     var that = this;
@@ -180,7 +180,6 @@ Page({
           popup: !that.data.popup
         })
         that.submitfilter();
-        that.gotoSearch();
       },
       fail: function (err) {
         console.log(err);
@@ -397,6 +396,7 @@ Page({
 
   /* 确定并筛选 */
   submitfilter: function () {
+    console.log('begin to filter')
     var str = JSON.stringify(this.data.AllInstrument); //序列化对象
     var InstrumentList = JSON.parse(str); //还原
 
@@ -427,6 +427,18 @@ Page({
       }
     }
 
+    var searchCon = this.data.searchValue;
+    var searchWord = searchCon;
+    if (searchCon!=''){
+      for (var i = 0; i < filterList.length; i++) {
+        console.log(filterList[i])
+        if (filterList[i].SerialNo.indexOf(searchWord) < 0 && filterList[i].ProductId.indexOf(searchWord) < 0 && filterList[i].ProductDesc.indexOf(searchWord) < 0){
+          filterList.splice(i, 1);
+          i--;
+        }
+      }
+    }
+
 
     this.setData({
       InstrumentList: filterList,
@@ -435,6 +447,7 @@ Page({
     this.setData({
       showFilter: false
     })
+    console.log('finish filter')
   },
 
   /* 搜索 */
@@ -446,42 +459,48 @@ Page({
   Search: function(){
     this.setData({
       searchShow: !this.data.searchShow,
-      showFilter: false
+      searchValue:''
     }) 
   },
-  gotoSearch: function(){
-    var allInstrument = this.data.AllInstrument;
-    var searchList = [];
-    var searchCon = this.data.searchValue;
-    var reg = new RegExp(searchCon)
-    if (searchCon!=''){
-      for (var i in allInstrument) {
-        if (allInstrument[i].SerialNo.match(reg) || allInstrument[i].ProductId.match(reg) || allInstrument[i].ProductDesc.match(reg)) {
-          searchList.push(allInstrument[i]);
-        }
-      }
-      this.setData({
-        InstrumentCount: searchList.length,
-        InstrumentList: searchList,
-        lastSearch: '上次搜索：' + this.data.searchValue,
-        searched: true,
-        searchValue: '',
-      })
-    }else{
-      this.setData({
-        InstrumentCount: allInstrument.length,
-        InstrumentList: allInstrument,
-        searchValue: '',
-        searched: false,
-        lastSearch:'',
-      })
-    }
-    
+  gotoSearch: function () {
     this.setData({
       searchShow: false,
-      showFilter: false
+      searchCon: this.data.searchValue
     }) 
   },
+  // gotoSearch: function(){
+  //   var allInstrument = this.data.AllInstrument;
+  //   var searchList = [];
+  //   var searchCon = this.data.searchValue;
+  //   var reg = new RegExp(searchCon)
+  //   if (searchCon!=''){
+  //     for (var i in allInstrument) {
+  //       if (allInstrument[i].SerialNo.match(reg) || allInstrument[i].ProductId.match(reg) || allInstrument[i].ProductDesc.match(reg)) {
+  //         searchList.push(allInstrument[i]);
+  //       }
+  //     }
+  //     this.setData({
+  //       InstrumentCount: searchList.length,
+  //       InstrumentList: searchList,
+  //       lastSearch: '上次搜索：' + this.data.searchValue,
+  //       searched: true,
+  //       searchValue: '',
+  //     })
+  //   }else{
+  //     this.setData({
+  //       InstrumentCount: allInstrument.length,
+  //       InstrumentList: allInstrument,
+  //       searchValue: '',
+  //       searched: false,
+  //       lastSearch:'',
+  //     })
+  //   }
+    
+  //   this.setData({
+  //     searchShow: false,
+  //     showFilter: false
+  //   }) 
+  // },
 
   backHome: function () {
     util.backHome()

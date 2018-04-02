@@ -37,6 +37,13 @@
           
         </view>
 
+
+
+
+        <!-- search -->
+        <view class='search_word fs12 fc-blue'>搜索关键字：{{searchCon}}</view>
+
+
         <!-- serial_group -->
         <view class='group_filter'>
           <view class='sub_title fc-777'>仪器分组</view>
@@ -125,7 +132,6 @@
       <view class="shLoading-head-panel">
           <view class='fs15 text-alignC'>搜索</view>
           <view class='add_input'>
-            <view class='fs12 fc-blue {{searched?"searched":""}}'>{{lastSearch}}</view>
             <input placeholder="搜索关键字(10个字符以内)"  class='fs13' bindinput='bindSearchInput' maxlength='10'></input>
           </view>
       </view>
