@@ -52,6 +52,10 @@ Page({
         colorActive: false,
       },
     ],
+    lastLabel:'',
+    lastColor:'',
+    inputValue:'',
+    LabelColor:'',
   },
 
   /**
@@ -117,13 +121,15 @@ Page({
               'ID': ID
             },
             success: function (res) {
+              console.log(res)
               if (res.result) {
                 var labelList = that.data.LabelList;
                 console.log(labelList)
-                for (var i in labelList) {
+                for(var i =0;i<labelList.length;i++){
                   if (labelList[i].ID == that.data.ID) {
                     labelList.splice(i, 1)
                   }
+                  //i--;
                 }
                 console.log(labelList);
                 that.setData({
@@ -148,9 +154,13 @@ Page({
   Popup: function (e) {
     var eID = e.currentTarget.dataset.id
     var popup = this.data.popup
+    var labelname = e.currentTarget.dataset.labelname
+    var lastcolor = e.currentTarget.dataset.labelcolor
     this.setData({
       popup: !popup,
-      eID : eID
+      eID : eID,
+      lastLabel: labelname, 
+      lastColor: lastcolor  
     })
   },
 
@@ -179,15 +189,15 @@ Page({
   },
 
 
-  /* 确认添加标签 */
+  /* 确认修改标签 */
   confirmAddLabel: function () {
     var that = this;
     console.log(that.data.inputValue)
     util.NetRequest({
       url: 'site-mini/edit-label',
       data: {
-        'LabelName': that.data.inputValue,
-        'LabelColor': that.data.LabelColor,
+        'LabelName': that.data.inputValue != '' ? that.data.inputValue: that.data.lastLabel,
+        'LabelColor': that.data.LabelColor != '' ? that.data.LabelColor : that.data.lastColor,
         'ID': that.data.eID
       },
       success: function (res) {
@@ -196,8 +206,8 @@ Page({
           var labelList = that.data.LabelList;
           for (var i in labelList) {
             if (labelList[i].ID == that.data.eID) {
-              labelList[i].LabelName = that.data.inputValue;
-              labelList[i].LabelColor = that.data.LabelColor;
+              labelList[i].LabelName = that.data.inputValue != '' ? that.data.inputValue : this.data.lastLabel;
+              labelList[i].LabelColor = that.data.LabelColor != '' ? that.data.LabelColor : this.data.lastColor;
             }
           }
           console.log(labelList);

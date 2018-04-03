@@ -12,8 +12,8 @@
     </view>
     <!-- edit&deleteGroup -->
     <view class='g_item flex justify-end alignc'>
-      <image src='/images/edit.png' class='edit_image edit_image1' bindtap='Popup' wx:if='{{item.editting==false}}' data-idx='{{item.idx}}' data-id='{{item.ID}}' ></image>
-      <image src='/images/del1.png' class='edit_image' bindtap='delGroup'  data-id='{{item.ID}}' data-idx='{{item.idx}}'></image>
+      <image src='/images/edit.png' class='edit_image edit_image1' bindtap='Popup' wx:if='{{item.editting==false}}' data-idx='{{idx}}' data-id='{{item.ID}}' data-labelname='{{item.LabelName}}' data-labelcolor='{{item.LabelColor}}'></image>
+      <image src='/images/del1.png' class='edit_image' bindtap='delGroup'  data-id='{{item.ID}}' data-idx='{{idx}}'></image>
     </view>
   </view>
 </block>
@@ -27,7 +27,7 @@
       <view class="shLoading-head-panel">
           <view class='fs15 text-alignC'>设置标签</view>
           <view class='add_input'>
-            <input placeholder="标签名称（1-4个字符）" maxlength='4' class='fs13' bindinput='bindKeyInput'></input>
+            <input placeholder="标签名称（1-5个字符）" maxlength='5' class='fs13' bindinput='bindKeyInput'></input>
           </view>
           <!-- choose_label_color -->
           <view class='fs12'>选择标签颜色：</view>
