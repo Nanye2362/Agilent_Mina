@@ -160,7 +160,8 @@ Page({
       popup: !popup,
       eID : eID,
       lastLabel: labelname, 
-      lastColor: lastcolor  
+      lastColor: lastcolor,
+      inputValue:''  
     })
   },
 
@@ -206,8 +207,8 @@ Page({
           var labelList = that.data.LabelList;
           for (var i in labelList) {
             if (labelList[i].ID == that.data.eID) {
-              labelList[i].LabelName = that.data.inputValue != '' ? that.data.inputValue : this.data.lastLabel;
-              labelList[i].LabelColor = that.data.LabelColor != '' ? that.data.LabelColor : this.data.lastColor;
+              labelList[i].LabelName = that.data.inputValue != '' ? that.data.inputValue : that.data.lastLabel;
+              labelList[i].LabelColor = that.data.LabelColor != '' ? that.data.LabelColor : that.data.lastColor;
             }
           }
           console.log(labelList);
