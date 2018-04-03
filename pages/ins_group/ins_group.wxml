@@ -5,7 +5,7 @@
   <view class='fc-777'>将同一台仪器的多个序列号分组管理，便于查找，报修更快捷</view>
 </view>
 
- 
+  
 <!-- group_list -->
 <view wx:else>
   <!-- editBtn -->
@@ -69,9 +69,10 @@
   <view class="shLoading-panel flex alignc directionC">
       <view class="shLoading-head-panel">
           <view class='fs15 text-alignC'>新建分组</view>
-          <view class='add_input'>
+          <view class='add_input {{error?"error":""}}'>
             <input placeholder="分组名称（1-10个字符）" maxlength='10' class='fs13' bindinput='bindKeyInput'></input>
           </view>
+          <view class='errorMsg fc-red fs13' wx:if='{{error}}'>分组名不能为空</view>
       </view>
       <view class="shLoading-btn-panel">
           <view class="shLoading-btn-cancel" bindtap="Popup">取消</view>

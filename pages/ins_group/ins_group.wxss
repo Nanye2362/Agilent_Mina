@@ -1,6 +1,6 @@
 @import '../template/newIns';
 /* no_group */
-.ng{
+.ng{ 
   position: fixed;
   width: 100%;
   height: 100%;
@@ -89,4 +89,13 @@
 }
 .finishState{
   margin-left: 50rpx!important;
+}
+
+
+.error{
+  border-bottom: 1px solid #ff5c5e!important;
+}
+.errorMsg{
+  margin-top: -30rpx;
+  margin-bottom: 20rpx;
 }

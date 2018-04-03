@@ -1,7 +1,7 @@
 // pages/ins_group/ins_group.js
 var util = require('../../utils/util.js');
 Page({
-
+ 
   /**
    * 页面的初始数据
    */
@@ -16,6 +16,7 @@ Page({
     editList:[],
     inputValue:'',
     lastGroupName:'',
+    error: false,
   },
 
   /**
@@ -199,6 +200,7 @@ Page({
     var popup = this.data.popup
     this.setData({
       popup: !popup,
+      inputValue:'',
     })
   },
 
@@ -212,28 +214,35 @@ Page({
   confirmPopup: function () {
     var that = this;
     console.log(that.data.inputValue)
-    util.NetRequest({
-      url: 'site-mini/create-group',
-      data: {
-        'GroupName': that.data.inputValue
-      },
-      success: function (res) {
-        console.log(res);
-        console.log(that.data.GroupList)
-        var curGroup = { GroupID: res.CurrentGroup.ID, GroupName: res.CurrentGroup.GroupName, GroupSnCount: "0", deleted: true, editting: false, idx: that.data.GroupList.length}
-        var gl = that.data.GroupList.concat(curGroup);  
-        console.log(gl)    
-        console.log(gl.length)
-        that.setData({
-          GroupList: gl,
-          GroupCount: gl.length
-        })
-      },
-      fail: function (err) {
-        console.log(err);
-      }
-    })
-    that.Popup()
+    if (that.data.inputValue!=''){
+      util.NetRequest({
+        url: 'site-mini/create-group',
+        data: {
+          'GroupName': that.data.inputValue
+        },
+        success: function (res) {
+          console.log(res);
+          console.log(that.data.GroupList)
+          var curGroup = { GroupID: res.CurrentGroup.ID, GroupName: res.CurrentGroup.GroupName, GroupSnCount: "0", deleted: true, editting: false, idx: that.data.GroupList.length }
+          var gl = that.data.GroupList.concat(curGroup);
+          console.log(gl)
+          console.log(gl.length)
+          that.setData({
+            GroupList: gl,
+            GroupCount: gl.length
+          })
+        },
+        fail: function (err) {
+          console.log(err);
+        }
+      })
+      that.Popup()
+    }else{
+      that.setData({
+        error: true,
+      })
+    }
+    
   },
 
 
