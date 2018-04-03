@@ -17,7 +17,7 @@ Page({
     colorList: [
       {
         colorName: 'yellow',
-        colorActive: false,
+        colorActive: true,
       },
       {
         colorName: 'coffee',
@@ -57,8 +57,10 @@ Page({
         colorActive: false,
       },
     ],
-    selectLabel: ''
-
+    selectLabel: '',
+    error: false,
+    //selectColor: '',
+    LabelColor:'yellow',
   },
 
   /**
@@ -85,6 +87,7 @@ Page({
     var popup = this.data.popup
     this.setData({
       popup: !popup,
+      inputValue:'',
     })
   },
   /* 跳转编辑标签 */
@@ -99,26 +102,33 @@ Page({
   confirmAddLabel: function () {
     var that = this;
     console.log(that.data.inputValue)
-    util.NetRequest({
-      url: 'site-mini/create-label',
-      data: {
-        'LabelName': that.data.inputValue,
-        'LabelColor': that.data.LabelColor
-      },
-      success: function (res) {
-        console.log(res);
-        var ll = that.data.LabelList.concat(res.CurrentLabel);
-        console.log(ll)
-        that.setData({
-          LabelList: ll
-        })
-        
-      },
-      fail: function (err) {
-        console.log(err);
-      }
-    })
-    that.Popup()
+    if (that.data.inputValue!=''){
+      util.NetRequest({
+        url: 'site-mini/create-label',
+        data: {
+          'LabelName': that.data.inputValue,
+          'LabelColor': that.data.LabelColor
+        },
+        success: function (res) {
+          console.log(res);
+          var ll = that.data.LabelList.concat(res.CurrentLabel);
+          console.log(ll)
+          that.setData({
+            LabelList: ll
+          })
+
+        },
+        fail: function (err) {
+          console.log(err);
+        }
+      })
+      that.Popup()
+    }else{
+      that.setData({
+        error: true
+      })
+    }
+    
   },
 
   /* 选择标签 */

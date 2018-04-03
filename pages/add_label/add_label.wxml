@@ -36,9 +36,10 @@
   <view class="shLoading-panel flex alignc directionC">
       <view class="shLoading-head-panel">
           <view class='fs15 text-alignC'>添加标签</view>
-          <view class='add_input'>
+          <view class='add_input {{error?"error":""}}'>
             <input placeholder="标签名称（1-5个字符）" maxlength='5' class='fs13' bindinput='bindKeyInput'></input>
           </view>
+          <view class='errorMsg fc-red fs13' wx:if='{{error}}'>标签名不能为空</view>
           <!-- choose_label_color -->
           <view class='fs12'>选择标签颜色：</view>
           <view class='colorList flex'>

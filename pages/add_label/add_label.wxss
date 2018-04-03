@@ -29,6 +29,8 @@
 
 
 
+
+
 .edit_label{
   flex: .5;
 }
@@ -43,4 +45,13 @@
   margin-left: 10rpx;
 }
 
+
+
+.error{
+  border-bottom: 1px solid #ff5c5e!important;
+}
+.errorMsg{
+  margin-top: -30rpx;
+  margin-bottom: 20rpx;
+}
 
