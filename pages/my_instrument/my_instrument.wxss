@@ -121,6 +121,7 @@ page{
   text-align: center;
   margin: 15rpx;
   box-sizing: border-box;
+  min-height: 75rpx;
 }
 .more_group{
   width: 22rpx;

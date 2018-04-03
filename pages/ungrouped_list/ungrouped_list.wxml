@@ -11,4 +11,4 @@
 <!-- confirmAdd -->
 <view class="mi_add_new text-center bg-primary" bindtap="submit">
   <text class="mi_add_word fc-blue">确认添加</text>
-</view>
+</view> 
