@@ -20,3 +20,24 @@
 .cs_con > view {
     line-height: 60rpx;
 }
+.shLoading-btn-cancel{color:#66CD00;position:relative;}
+
+.shLoading-head-panel .shp_body {
+  padding:25rpx 75rpx;
+}
+.shLoading-head-panel .shp_body text{
+  font-size:28rpx;
+}
+
+.skipMyInstrment{
+  
+  padding:0 20px;
+  text-align:left;
+  margin-top:30rpx;
+  font-size:28rpx;
+}
+
+.skipMyInstrment navigator{
+  display:inline-block;
+  color:#0085d5;
+}

@@ -17,8 +17,18 @@ Page({
     NONTECH: 'W_ssn:',
     cameraValue: '',
     shLoading: false,
+    shLoading_alert:false,
+    shLoading_title:"",
+    shLoading_body:"",
+    SerialNumber:0
   },
-
+  shClose:function(){
+    this.setData({
+      shLoading_alert: false,
+      shLoading_title: "",
+      shLoading_body: ""
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -41,6 +51,17 @@ Page({
         })
       }
     })
+    
+    util.NetRequest({
+      url: 'site-mini/my-count',
+      data: {},
+      success: function (res) {
+        console.log(res); //后台获取到的mycount数据
+        that.setData({
+          SerialNumber: res.InstrumentCount
+        });
+      }
+    });
   },
 
   MtaReport: function () {
@@ -153,7 +174,7 @@ Page({
   saveTheValue: function (e) {
     var value = e.detail.value
     var pos = e.detail.cursor
-    this.setData({ inputValue: value })
+    this.setData({ inputValue: value.toUpperCase() })
     //直接返回对象，可以对输入进行过滤处理，同时可以控制光标的位置
     return {
       value: value.replace(value, value.toUpperCase()),
@@ -194,43 +215,20 @@ Page({
             url: '../confirm_info/confirm_info' + '?ProductId=' + res.ProductId + '&ProductDesc=' + res.ProductDesc + '&SerialNo=' + res.SerialNo + '&CpName=' + res.CpName + '&ShipToName=' + res.ShipToName,
           })
         } else {
-         
+          var errorInfo = "您输入的序列号为：" + that.data.inputValue+"\n";
           if(res.check_sn == false){
             that.setData({
               chat: true,
-            })
-            wx.showModal({
-              title: '提示',
-              cancelText: '返回',
-              content: '序列号解析有误。您可以重新确认序列号然后上传。如有疑问，请返回点击页面下方发起会话与我们联系。',
-              confirmText: '重新上传',
-              success: function (sm) {
-                if (sm.confirm) {
-                  //重新上传
-                  console.log('点击确认')
-                } else if (sm.cancel) {
-                  console.log('用户点击取消')
-                }
-              }
+              shLoading_alert: true,
+              shLoading_title: "提示",
+              shLoading_body: errorInfo+"序列号解析有误。您可以重新确认序列号然后上传。如有疑问，请返回点击页面下方发起会话与我们联系。"
             })
           }else{
             that.setData({
               chat: true,
-            })
-            wx.showModal({
-              title: '提示',
-              content: '序列号与单位关联失败，如果您有任何疑问，可以点击页面下方的发起会话按钮',
-              cancelText: '返回',
-              cancelColor: '#3CC51F',
-              confirmText: '重新上传',
-              success: function (sm) {
-                if (sm.confirm) {
-                  //重新上传
-                  console.log('点击确认')
-                } else if (sm.cancel) {
-                  console.log('用户点击取消')
-                }
-              }
+              shLoading_alert: true,
+              shLoading_title: "提示",
+              shLoading_body: errorInfo+"序列号与单位关联失败，如果您有任何疑问，可以点击页面下方的发起会话按钮。"
             })
 
           }

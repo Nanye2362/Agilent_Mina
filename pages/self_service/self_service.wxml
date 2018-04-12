@@ -65,7 +65,7 @@
 
                                   <block wx:for="{{item.children}}" wx:for-item="children">
                                            <view data-id='{{children.id}}' data-pid='{{children.pid}}' bindtap='clickToFaq'>
-                                                  <image class="ss_qc_icon" src="/images/{{children.icon}}.jpg"></image>
+                                                  <image class="ss_qc_icon" src="https://prd.wechat.service.agilent.com/images/mini_selfservice_icon/{{children.icon}}.jpg"></image>
                                                    <view>{{children.name}}</view>
                                            </view>
                                   </block>

@@ -21,7 +21,33 @@ Page({
     //消耗品咨询
     input2_name:"",
     input2_tel:"",
-    input2_company:""
+    input2_company:"",
+    showInfo:[false,false,false,false,false,false],
+    list: [{ title: '分析仪器售后服务', desc: '售后仪器操作，故障咨询', color: 'blue', templete: 'inputTemplate1', checkfun: '', tapfun: 'srTap', meqia:'T'},
+      { title: '电话工单补充图片', desc: '已有服务单号快速入口', color: 'blue', templete: 'inputTemplate5', checkfun: 'checkOrder', tapfun: 'orderTap', meqia: 'N' },
+      { title: '消耗品购买', desc: '购买消耗品相关问题咨询', color: 'green', templete: 'inputTemplate2', checkfun: 'checkSales', tapfun: 'salesTap', meqia: 'CB' },
+      { title: '消耗品售后', desc: '消耗品应用相关咨询', color: 'green', templete: 'inputTemplate2', checkfun: 'checkSales', tapfun: 'salesTap', meqia: 'CA' },
+      { title: '实验室解决方案', desc: '实验室企业级服务、整体搬迁、法规认证等', color: 'yellow', templete: 'inputTemplate2', checkfun: 'checkSales', tapfun: 'salesTap', meqia: 'S' },
+      { title: '安捷伦大学培训', desc: '培训课程申请', color: 'yellow', templete: 'inputTemplate2', checkfun: 'checkSales', tapfun: 'salesTap', meqia: 'E' } 
+    ]
+  },
+  showDesc:function(e){
+    this.closeDesc();//关闭其他
+    var showInfo=this.data.showInfo;
+    showInfo[e.target.dataset.key]=true;
+    console.log(showInfo);
+    this.setData({
+      showInfo:showInfo
+    })
+  },
+  closeDesc:function(){
+    var showInfo = this.data.showInfo;
+    for (var i in showInfo){
+      showInfo[i]=false;
+    }
+     this.setData({
+      showInfo:showInfo
+    })
   },
   bindfocusSrId:function(){
     if(this.data.input5_ordersn.length==0){

@@ -16,6 +16,9 @@
     <button bindtap="chooseimage" class="sn_photobtn"></button>
     <image class="sn_photoimg" src="/images/camera-p.png"></image>
 </view>
+<view class="skipMyInstrment">
+从“我的仪器”选择：<navigator url="/pages/my_instrument/my_instrument" >已有记录（{{SerialNumber}}）</navigator>
+</view>
 <button class="sn_btn btn btn-primary" data-contactguid="{{ContactGuid}}" data-contactid="{{ContactId}}" data-accountguid="{{AccountGuid}}" data-accountid="{{AccountId}}" bindtap='clickToSubmit'>确定</button>
 
 <!-- 上传了的图片 --> 
@@ -27,4 +30,21 @@
     <view class="text-center fs12">如果您有任何问题，请
         <button class="fc-blue bc_chat_btn btn-meiqia" open-type='contact' session-from='{{NONTECH+inputValue}}' bindtap='MtaReport'><image src="/images/wechat_b.png"></image>
     发起会话</button></view>
+</view>
+
+<!-- showInput -->
+<view class="shLoading" wx:if="{{shLoading_alert}}">
+  <view class="shLoading-mask1">
+  </view>
+  <view class="shLoading-panel flex alignc directionC">
+      <view class="shLoading-head-panel">
+          <view class="shp_title">{{shLoading_title}}</view>
+          <view class="shp_body"><text>{{shLoading_body}}</text></view>
+      </view>
+      <view class="shLoading-btn-panel">
+          <view class="shLoading-btn-cancel" bindtap="">发起会话
+           <button open-type='contact' bindtap="" class="shLoading-btn-contact" session-from='{{NONTECH+inputValue}}'></button></view>
+          <view class="shLoading-btn-ok" bindtap="shClose">重新上传</view>
+      </view>
+  </view>
 </view>

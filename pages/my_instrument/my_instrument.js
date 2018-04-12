@@ -21,15 +21,7 @@ Page({
   backHome: function () {
     util.backHome()
   },
-
-
-  onLoad: function () {
-    //腾讯mta统计开始
-    var app = getApp();
-    app.mta.Page.init();
-    //腾讯mta统计结束
-    mobile = wx.getStorageSync(mobile);
-    console.log('mobile=======' + mobile)
+  onShow:function(){
     var that = this;
     util.NetRequest({
       url: 'site-mini/my-instrument',
@@ -53,6 +45,15 @@ Page({
         console.log(err);
       }
     })
+  },
+  onLoad: function () {
+    //腾讯mta统计开始
+    var app = getApp();
+    app.mta.Page.init();
+    //腾讯mta统计结束
+    mobile = wx.getStorageSync(mobile);
+    console.log('mobile=======' + mobile)
+    
   },
   //报修历史
   clickToNext: function (event) {
@@ -117,9 +118,10 @@ Page({
   },
   //添加仪器
   clickToAdd: function () {
-    wx.navigateTo({
-      url: '../serial_number/serial_number?mobile=' + mobile,
-    })
+    // wx.navigateTo({
+    //   url: '../serial_number/serial_number?mobile=' + mobile,
+    // })
+    util.chen_navigateTo('pages/serial_number/serial_number','../serial_number/serial_number?mobile=' + mobile);
   },
 
   //删除仪器
