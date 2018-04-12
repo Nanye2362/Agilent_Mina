@@ -29,7 +29,7 @@
       </view>
       <view class="mi_de_con flex">
           <button class="mi_btn-circle fs14 bg-primary" bindtap="clickToRemove" data-index="{{index}}">删除</button>
-          <button class="mi_btn-circle mi_btn_active fs14" bindtap="clickToRepair" data-contactId="{{Instrument.ContactId}}" data-sn="{{Instrument.SerialNo}}" data-contactGuid="{{Instrument.ContactGuid}}" data-accountGuid="{{Instrument.AccountGuid}}" data-accountId="{{Instrument.AccountId}}">报修</button>
+          <button class="mi_btn-circle mi_btn_active fs14" bindtap="clickToRepair" data-contactId="{{Instrument.ContactId}}" data-sn="{{Instrument.SerialNo}}" data-contactGuid="{{Instrument.ContactGuid}}" data-accountGuid="{{Instrument.AccountGuid}}" data-accountId="{{Instrument.AccountId}}">咨询/报修</button>
       </view>
   </view>
 </block>

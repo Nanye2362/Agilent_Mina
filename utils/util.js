@@ -61,7 +61,7 @@ function _NetRequest({ url, data, success, fail, complete, method = "POST", show
   }
 
   var _csrf = wx.getStorageSync('csrf');
-  var version = "2.3.2.1";
+  var version = "2.4.8.1";
   var csrfToken = wx.getStorageSync('csrfCookie')
   if (typeof (data) == 'object') {
     data._csrf = _csrf;
@@ -90,7 +90,8 @@ function _NetRequest({ url, data, success, fail, complete, method = "POST", show
       if ((session_id == "" || session_id == null) && typeof (res.data.session_id) != "undefined") {
         console.log(res.data.session_id);
         wx.setStorageSync('PHPSESSID', res.data.session_id); //如果本地没有就说明第一次请求 把返回的session id 存入本地
-        var str = res.header['Set-Cookie'];
+        var str = res.header['Set-Cookie'] || res.header['set-cookie'];
+        console.log(res.header);
         console.log(str);
         if (typeof (res.data.csrfToken) != 'undefined') {
           wx.setStorageSync('csrf', res.data.csrfToken);
@@ -278,6 +279,28 @@ function backHome(){
   })
 }
 
+//检测是否存在，如存在就调用返回，不存在就直接跳转
+function chen_navigateTo(name,url){
+    var pages=getCurrentPages();
+    var backPageNum=0;
+    for(var i in pages){
+      if (pages[i].route == name){
+        backPageNum=pages.length-1-i;
+          break;
+       }
+    }
+
+    if(backPageNum>0){
+      wx.navigateBack({
+        delta: backPageNum
+      })
+    }else{
+      wx.navigateTo({
+          url:url
+      })
+    }
+}
+
 
 module.exports = {
   formatTime: formatTime,
@@ -289,5 +312,6 @@ module.exports = {
   checkEmpty: checkEmpty,
   getUserInfo: getUserInfo,
   checkWorktime: checkWorktime,
-  backHome: backHome
+  backHome: backHome,
+  chen_navigateTo: chen_navigateTo
 }

@@ -118,9 +118,10 @@ Page({
   },
   //添加仪器
   clickToAdd: function () {
-    wx.navigateTo({
-      url: '../serial_number/serial_number?mobile=' + mobile,
-    })
+    // wx.navigateTo({
+    //   url: '../serial_number/serial_number?mobile=' + mobile,
+    // })
+    util.chen_navigateTo('pages/serial_number/serial_number','../serial_number/serial_number?mobile=' + mobile);
   },
 
   //删除仪器

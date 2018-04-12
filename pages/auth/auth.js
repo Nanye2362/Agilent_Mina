@@ -119,21 +119,6 @@ Page({
             shLoading_body: err_msg,
             skipFlag:res.noskip
           })
-          // wx.showModal({
-          //   title: '认证失败',
-          //   content: e_msg,
-          //   showCancel: false,
-          //   success: function (res) {
-          //     if (res.confirm) {
-          //       if (skipFlag == 1) {
-          //       } else {
-          //         wx.navigateTo({
-          //           url: '../fill_info/fill_info?mobile=' + mobile,
-          //         })
-          //       }
-          //     }
-          //   }
-          // })
         }
       },
       fail: function (err) {
@@ -165,11 +150,19 @@ Page({
         },
         success: function (res) {
           console.log(res);
-          // if (res.status == 1) {
-          //   that.setData({ disabled1: true })
-          //   that.setData({ code: nums + '秒' })
-          //   clock = setInterval(that.doLoop, 1000);
-          // }
+          if (res.status == 1) {
+            wx.showToast({
+              title: '发送成功',
+              icon: 'success',
+              duration: 2000
+            })
+          }else{
+            wx.showToast({
+              title: '发送失败',
+              icon: 'fail',
+              duration: 2000
+            })
+          }
         },
         fail: function (err) {
           wx.hideLoading();

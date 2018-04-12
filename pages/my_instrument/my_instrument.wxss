@@ -83,3 +83,6 @@
 .mi_btn-circle:first-child {
     margin-right: 20rpx;
 }
+.mi_de_con .fs14{
+  font-size:0.8rem;
+}

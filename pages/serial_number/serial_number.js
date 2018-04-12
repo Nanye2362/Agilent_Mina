@@ -19,7 +19,8 @@ Page({
     shLoading: false,
     shLoading_alert:false,
     shLoading_title:"",
-    shLoading_body:""
+    shLoading_body:"",
+    SerialNumber:0
   },
   shClose:function(){
     this.setData({
@@ -50,6 +51,17 @@ Page({
         })
       }
     })
+    
+    util.NetRequest({
+      url: 'site-mini/my-count',
+      data: {},
+      success: function (res) {
+        console.log(res); //后台获取到的mycount数据
+        that.setData({
+          SerialNumber: res.InstrumentCount
+        });
+      }
+    });
   },
 
   MtaReport: function () {

@@ -16,6 +16,9 @@
     <button bindtap="chooseimage" class="sn_photobtn"></button>
     <image class="sn_photoimg" src="/images/camera-p.png"></image>
 </view>
+<view class="skipMyInstrment">
+从“我的仪器”选择：<navigator url="/pages/my_instrument/my_instrument" >已有记录（{{SerialNumber}}）</navigator>
+</view>
 <button class="sn_btn btn btn-primary" data-contactguid="{{ContactGuid}}" data-contactid="{{ContactId}}" data-accountguid="{{AccountGuid}}" data-accountid="{{AccountId}}" bindtap='clickToSubmit'>确定</button>
 
 <!-- 上传了的图片 --> 
