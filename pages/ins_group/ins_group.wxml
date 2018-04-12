@@ -20,7 +20,7 @@
   </view>
 
   <!-- group_list -->
-  <view wx:if='{{editGroup}}'>
+  <view wx:if='{{editGroup}}' class='ins_container'>
     <block wx:for='{{GroupList}}' wx:for-item="item" wx:for-index="idx" wx:key='unique'>
       <view class='gl flex' bindtap='groupDetails' data-id='{{item.GroupID}}' data-gn='{{item.GroupName}}'data-idx='{{idx}}'>
         <view class='g_item'>{{item.GroupName}}</view>

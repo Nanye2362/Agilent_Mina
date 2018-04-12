@@ -86,7 +86,7 @@ Page({
         } else if ( res.tapIndex === 1 ){
           wx.navigateTo({
             //url: '../serial_number/serial_number?mobile=' + mobile,
-            url: '../serial_number/serial_number'
+            url: '../serial_number/serial_number?GroupID=' + that.data.GroupID
           })
         }
       },

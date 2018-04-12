@@ -23,6 +23,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log(options)
+    this.setData({
+      GroupID: options.GroupID
+    })
     //腾讯mat统计开始
     var app = getApp();
     app.mta.Page.init();
@@ -185,7 +189,8 @@ Page({
         contact_id: contactid,
         account_guid: accountguid,
         account_id: accountid,
-        serial_number: serNum
+        serial_number: serNum,
+        GroupID: that.data.GroupID
       },
       success: function (res) {
         console.log(res);

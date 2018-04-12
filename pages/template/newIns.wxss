@@ -3,10 +3,12 @@
     margin-bottom: 15px;
     box-shadow: 2px 2px 2px #dfdfdf;
 }
-.mi_re_detail:last-child{
+/* .mi_re_detail:last-child{
   margin-bottom: 100rpx !important;
-} 
-
+}  */ 
+.ins_container{
+  padding-bottom: 85rpx;
+}
 
 .mi_de_title {
     padding: 20rpx 30rpx;

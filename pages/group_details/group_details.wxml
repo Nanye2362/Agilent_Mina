@@ -8,7 +8,7 @@
 
 
 <!-- serial_list -->
-<view>
+<view class='ins_container'>
   <block wx:for="{{detailList}}" wx:for-item="item" wx:for-index="idx" wx:key='unique'>
     <template is='insTemp' data='{{item:item,idx:idx}}'></template>
   </block>
