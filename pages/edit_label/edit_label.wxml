@@ -1,0 +1,55 @@
+<view class='gl_title flex choose_state' >
+    <text class=' fs12 fc-777'>修改标签</text>
+</view>
+
+
+<block wx:for='{{LabelList}}' wx:for-item="item" wx:for-index="idx" wx:key='unique'>
+  <view class='gl flex' wx:if='{{item.deleted}}'>
+    <!-- editGroup -->
+    <view class='g_item flex alignc'>
+      <view class='label_Color {{item.LabelColor}}'></view>
+      <text>{{item.LabelName}}</text>
+    </view>
+    <!-- edit&deleteGroup -->
+    <view class='g_item flex justify-end alignc'>
+      <image src='/images/edit.png' class='edit_image edit_image1' bindtap='Popup' wx:if='{{item.editting==false}}' data-idx='{{idx}}' data-id='{{item.ID}}' data-labelname='{{item.LabelName}}' data-labelcolor='{{item.LabelColor}}'></image>
+      <image src='/images/del1.png' class='edit_image' bindtap='delGroup'  data-id='{{item.ID}}' data-idx='{{idx}}'></image>
+    </view>
+  </view>
+</block>
+
+
+  <!-- add_confirm -->
+<view class="shLoading" wx:if='{{popup}}'>
+  <view class="shLoading-mask1"  bindtap="Popup">
+  </view>
+  <view class="shLoading-panel flex alignc directionC">
+      <view class="shLoading-head-panel">
+          <view class='fs15 text-alignC'>设置标签</view>
+          <view class='add_input'>
+            <input placeholder="标签名称（1-5个字符）" maxlength='5' class='fs13' bindinput='bindKeyInput'></input>
+          </view>
+          <!-- choose_label_color -->
+          <view class='fs12'>选择标签颜色：</view>
+          <view class='colorList flex'>
+            <!-- colorList -->
+            <block wx:for='{{colorList}}' wx:for-item='item' wx:key="unique">
+              <view class='color_item  {{item.colorActive ? "colorActive" : ""}}' bindtap="chooseColor" id="{{index}}" data-colorName='{{item.colorName}}'>
+                <view class='color_item_con {{item.colorName}}'></view>
+              </view>
+            </block>
+          </view>
+      </view>
+      <view class="shLoading-btn-panel">
+          <view class="shLoading-btn-cancel" bindtap="Popup">取消</view>
+          <view class="shLoading-btn-ok" bindtap="confirmAddLabel">确认</view>
+      </view>
+  </view>
+</view>
+<!-- add_group -->
+
+
+<!-- btn -->
+<view class="group_btn">
+    <button class="btn btn-primary" id="confirm" bindtap='submit'>确定</button>
+</view>

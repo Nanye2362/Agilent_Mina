@@ -1,0 +1,116 @@
+<!-- instrument_list -->
+<template name='insTemp'>
+  <view class="mi_re_detail">
+      <view class="mi_de_title flex ">
+          <view class="mi_ti_l text_alignL flex directionC">
+              <view class="mi_ti_l_item flex">
+                  <view class="mi_item_l fs13 fc-aaa">型号：</view>
+                  <view class="mi_item_r fs13 flex" >
+                    <view class="fs13">{{item.ProductId}}</view>
+                    <!-- label -->
+                    <block  wx:for="{{item.LabelList}}" wx:for-item="labelItem" wx:key='unique'>
+                      <view class='mi_label {{labelItem.LabelColor}}'>{{labelItem.LabelName}}</view>
+                    </block>
+                  <!-- label -->
+                </view>
+              </view>
+              <view class="mi_ti_l_item flex">
+                  <view class="mi_item_l fs13 fc-aaa">序列号：</view>
+                  <view class="mi_item_r fs13">{{item.SerialNo}}</view>
+              </view>
+              <view class="mi_ti_l_item flex">
+                  <view class="mi_item_l fs13 fc-aaa">描述：</view>
+                  <view class="mi_item_r fs13">{{item.ProductDesc}}</view>
+              </view>
+              <view class="mi_ti_l_item flex">
+                  <view class="mi_item_l fs13 fc-aaa">备注：</view>
+                  <view class="mi_item_r fs13">{{item.Remark}}</view>
+              </view>
+          </view>
+          <!-- set -->
+          <view class="mi_ti_r text-center repair_history" >
+            <view class='mi_set'>
+              <view class='mi_set_out' bindtap='clickToSet' data-idx='{{idx}}'>
+                <image class="mi_instru_img" src="/images/set.png" ></image>
+              </view>
+              
+              <!-- mask -->
+              <view class='mi_set_mask' bindtap='clickToSet' wx:if='{{item.setMask}}'></view>
+              <view class='mi_set_con flex directionC' bindtap='clickToSet' wx:if='{{item.setMask}}'>
+                <!-- ins_group -->
+                <view class='mi_set_item' bindtap='setGroup' data-sn='{{item.SerialNo}}'>
+                  <image class='mi_set_image' src='/images/group.png'></image>
+                  <text class='fc-fff fs13'>仪器分组</text>
+                </view>
+                <!-- ins_label -->
+                <view class='mi_set_item' bindtap='addLabel' data-sn='{{item.SerialNo}}'>
+                  <image class='mi_set_image' src='/images/label.png'></image>
+                  <text class='fc-fff fs13'>添加标签</text>
+                </view>
+                <!-- ins_remarks -->
+                <view class='mi_set_item' bindtap='Popup' data-sn='{{item.SerialNo}}' data-remark='{{item.Remark}}'>
+                  <image class='mi_set_image' src='/images/remark.png'></image>
+                  <text class='fc-fff fs13'>修改备注</text>
+                </view>
+                <!-- ins_del -->
+                <view class='mi_set_item' bindtap="clickToRemove" data-sn="{{item.SerialNo}}" data-pi='{{item.ProductId}}' data-idx='{{idx}}'>
+                  <image class='mi_set_image' src='/images/del.png'></image>
+                  <text class='fc-fff fs13'>删除仪器</text>
+                </view>
+              </view>
+            </view>           
+          </view>
+          <!-- set -->
+      </view>
+      <view class="mi_de_con">
+          <button class="mi_btn-circle mi_btn_active fs13" bindtap="clickToRepair" data-sn="{{item.SerialNo}}">咨询/报修</button>
+          <button class='mi_btn-circle fs13 bg-primary' bindtap="clickToNext" data-sn="{{item.SerialNo}}">报修历史</button>
+      </view>
+  </view>
+</template>
+<!-- instrument_list -->
+
+
+
+
+<!-- multiSelect_list -->
+<template name='multiTemp'>
+  <checkbox-group bindchange="checkboxChange">
+    <label class="checkbox flex mi_de_title mi_re_detail" wx:for="{{detailList}}" wx:key='multiple'>
+      <view class="mi_ti_l text_alignL flex directionC">
+          <view class="mi_ti_l_item flex">
+              <view class="mi_item_l fs13 fc-aaa">型号：</view>
+              <view class="mi_item_r fs13 flex">
+                <view class='fs13'>{{item.ProductId}}</view>
+                <!-- label -->
+                <block  wx:for="{{item.LabelList}}" wx:for-item="labelItem" wx:key='unique'>
+                  <view class='mi_label {{labelItem.LabelColor}}'>{{labelItem.LabelName}}</view>
+                </block>
+                <!-- label -->
+              </view>
+          </view>
+          <view class="mi_ti_l_item flex">
+              <view class="mi_item_l fs13 fc-aaa">序列号：</view>
+              <view class="mi_item_r fs13">{{item.SerialNo}}</view>
+          </view>         
+          <view class="mi_ti_l_item flex">
+              <view class="mi_item_l fs13 fc-aaa">描述：</view>
+              <view class="mi_item_r fs13 flex">
+                  <view class="fs13">{{item.ProductDesc}}</view>
+                  
+              </view>
+          </view>
+          <view class="mi_ti_l_item flex">
+              <view class="mi_item_l fs13 fc-aaa">备注：</view>
+              <view class="mi_item_r fs13">{{item.Remark}}</view>
+          </view>
+      </view>
+      <!-- set -->
+      <view class="mi_ti_right text-center repair_history" >
+        <checkbox color='#0085d5' value="{{item.SerialNo}}" checked="{{item.checked}}"/> 
+      </view>
+      <!-- set -->
+    </label >
+  </checkbox-group>
+</template>
+

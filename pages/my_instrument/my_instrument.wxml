@@ -1,40 +1,151 @@
 <!-- 回到首页 -->
-<import  src="../template/template"/>
-<template is="backHome" bindtap="backHome"/>
+<import src="../template/template"/>
+<import src='../template/newIns'/>
+<!--template is="backHome" bindtap="backHome"/-->
+<!-- ins_group -->
+<view class='mi_group flex' bindtap='gotoGroup'>
+  <view class='mi_group_l mi_group_item alignc'>
+    <image class='mi_group_img' src='/images/ins.png'></image>
+    <text class='fs15'>仪器分组</text>
+  </view>
+  <view class='mi_group_r mi_group_item alignc flex justify-end'>
+    <text class='fs14 fc-aaa'>{{GroupCount}}</text>
+    <image class='mi_group_arrow' src='/images/arrowr.png'></image>
+  </view>
+</view>
+<!-- ins_group -->
 
-<view class="mi_num fs13 padding fc-aaa">共 <text class="fc-aaa">{{InstrumentCount}}</text> 台仪器</view>
 
-<!-- instrument_list -->
-<block wx:if="{{displayState}}">
-  <view class="mi_re_detail" wx:for="{{InstrumentList}}" wx:for-item="Instrument" >
-      <view class="mi_de_title flex ">
-          <view class="mi_ti_l text_alignL flex directionC">
-              <view class="mi_ti_l_item flex">
-                  <view class="mi_item_l fs14 fc-aaa">产品号：</view>
-                  <view class="mi_item_r fs14">{{Instrument.ProductId}}</view>
-              </view>
-              <view class="mi_ti_l_item flex">
-                  <view class="mi_item_l fs14 fc-aaa">描述：</view>
-                  <view class="mi_item_r fs14">{{Instrument.ProductDesc}}</view>
-              </view>
-              <view class="mi_ti_l_item flex">
-                  <view class="mi_item_l fs14 fc-aaa">序列号：</view>
-                  <view class="mi_item_r fs14">{{Instrument.SerialNo}}</view>
-              </view>
+<!-- ins_num -->
+<view class='mi_num flex'>
+    <view class="mi_num_item fs13 fc-aaa flex alignc">
+      共 <text class="fc-aaa fs13">{{InstrumentCount}}</text> 个序列号
+    </view>
+    <!-- filter -->
+    <view class="mi_num_item flex justify-end alignc">
+      <image class='mi_num_img' src='/images/Insfilter.png' bindtap='clickfilter'></image>
+      <!-- filter_mask -->
+      <view class='mi_filter_mask' wx:if='{{showFilter}}' bindtap='clickfilter'></view>
+      <!-- filter_con -->
+      <view class='mi_filter' wx:if='{{showFilter}}'>
+        <!-- main_title -->
+        <view class='filter_title flex'>
+          <text class=' fs12 fc-777'>筛选</text>
+          <view class='search' bindtap='Search'>
+            <image src='/images/search1.png' class='search_img'></image>
           </view>
-          <view class="mi_ti_r text-center repair_history" >
-              <image class="mi_instru_img" src="/images/instrument.png"></image>
-              <text class="fc-blue fs14" bindtap="clickToNext" data-contactId="{{Instrument.ContactId}}" data-sn="{{Instrument.SerialNo}}">报修历史</text>
+          
+        </view>
+
+
+
+
+        <!-- search -->
+        <view class='search_word fs12 fc-blue' bindtap='Search'>搜索关键字：{{searchCon}}</view>
+
+
+        <!-- serial_group -->
+        <view class='group_filter'>
+          <view class='sub_title fc-777'>仪器分组</view>
+          <view class='filter_con'>
+            <view class='group_item {{filterActive? "":"filterActive"}}' bindtap='allGroup'>不限</view>
+            <!-- 更多 -->
+            <view class='fc-blue fs12 text-alignR' bindtap='moreGroup' wx:if='{{showMoreGroup==false}}'>
+              更多
+              <image src='/images/down.png' class='more_group'></image>
+            </view>
+            <!-- group_list -->
+            <view class='group_list' wx:if='{{showMoreGroup}}'>
+                <block wx:for='{{GroupList}}' wx:for-item="item" wx:for-index="idx" wx:key='unique'>
+                  <view class='group_item fs12 {{item.filterActive? "filterActive":""}}' data-id='{{item.ID}}' bindtap='filterGroup' data-idx='{{item.idx}}'>{{item.GroupName}}</view>
+                </block>
+            </view>
+            <!-- 收起 -->
+            <view class='fc-blue fs12 text-alignR' bindtap='moreGroup' wx:if='{{showMoreGroup}}'>
+              收起
+            </view>
+            
+          </view>
+        </view>
+
+        <!-- label_filter -->
+        <view class='label_filter'>
+          <view class='sub_title fc-777'>标签</view>
+          <view class='filter_con flex'>
+            <block wx:for='{{LabelList}}' wx:for-item="item" wx:for-index="idx" wx:key='unique'>
+              <view class='justify-center flex filter_item {{item.filterActive ? "filterActive" : ""}}' bindtap='filterLabel' data-labelname='{{item.LabelName}}' data-idx='{{item.idx}}'>
+                <view class='{{item.labelView? "label_view" : ""}} flex align-center {{item.LabelColor}}'></view>
+                <view class='fs12'>{{item.LabelName}}</view>
+              </view>
+            </block>
+          </view>
+        </view>
+
+        <!-- button -->
+        <view class="btn btn-primary filter_btn" bindtap="submitfilter">确定</view>
+
+      </view>
+    </view>
+    <!-- filter -->
+</view>
+<!-- ins_num -->
+
+ 
+<!-- instrument_list -->
+<view class='ins_container'>
+  <block wx:for="{{InstrumentList}}" wx:for-item="item" wx:for-index="idx">
+    <template is='insTemp'  data="{{item:item,idx:idx}}" ></template>
+  </block>
+</view>
+<!-- instrument_list -->
+
+
+<!-- edit_remark -->
+<view class="shLoading" wx:if='{{popup}}'>
+  <view class="shLoading-mask1"  bindtap="Popup">
+  </view>
+  <view class="shLoading-panel flex alignc directionC">
+      <view class="shLoading-head-panel">
+          <view class='fs15 text-alignC'>修改备注</view>
+          <view class='add_input'>
+            <input placeholder="填写备注"  class='fs13' bindinput='bindKeyInput' value='{{remarkCon=="无"?"":remarkCon}}'></input>
+            <!-- 清除 -->
+            <view class='clear_remark' bindtap='clearRemark'>
+              <image src='/images/delete.png'></image>
+            </view>
           </view>
       </view>
-      <view class="mi_de_con flex">
-          <button class="mi_btn-circle fs14 bg-primary" bindtap="clickToRemove" data-index="{{index}}">删除</button>
-          <button class="mi_btn-circle mi_btn_active fs14" bindtap="clickToRepair" data-contactId="{{Instrument.ContactId}}" data-sn="{{Instrument.SerialNo}}" data-contactGuid="{{Instrument.ContactGuid}}" data-accountGuid="{{Instrument.AccountGuid}}" data-accountId="{{Instrument.AccountId}}">咨询/报修</button>
+      <view class="shLoading-btn-panel">
+          <view class="shLoading-btn-cancel" bindtap="Popup">取消</view>
+          <view class="shLoading-btn-ok" bindtap="confirmRemark">确认</view>
       </view>
   </view>
-</block>
+</view>
+<!-- edit_remark -->
+
+
+<!-- search -->
+<view class="shLoading" wx:if='{{searchShow}}'>
+  <view class="shLoading-mask1"  bindtap="">
+  </view>
+  <view class="shLoading-panel flex alignc directionC">
+      <view class="shLoading-head-panel">
+          <view class='fs15 text-alignC'>搜索</view>
+          <view class='add_input'>
+            <input placeholder="搜索关键字(10个字符以内)"  class='fs13' bindinput='bindSearchInput' maxlength='10'></input>
+          </view>
+      </view>
+      <view class="shLoading-btn-panel">
+          <view class="shLoading-btn-cancel" bindtap="Search">取消</view>
+          <view class="shLoading-btn-ok" bindtap="gotoSearch">确认</view>
+      </view>
+  </view>
+</view>
+<!-- search -->
+
+
 
 <!-- addNew -->
-<view class="mi_add_new text-center bg-primary" bindtap="clickToAdd">
-    <image class="mi_add_btn" src="/images/add.png"></image>     <text class="mi_add_word fc-blue">添加仪器</text>
-</view>
+<view class="mi_add_new text-center bg-primary {{InstrumentCount>=4 ? 'positionFixed' : ''}}" bindtap="clickToAdd">
+    <image class="mi_add_btn" src="/images/add.png"></image>     <text class="mi_add_word fc-blue">添加序列号</text>
+</view> 

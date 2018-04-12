@@ -1,0 +1,66 @@
+<text class='fs20'>设置标签</text> 
+<!-- group_list -->
+<view class='group flex directionC'>
+    <checkbox-group class='radio-group' bindchange="checkboxChange">
+      <label class="radio flex group_item" wx:for="{{LabelList}}" wx:key='multiple' data-idx='{{item.idx}}'>
+        <view class='group_item_details flex'>
+          <view class='label_Color {{item.LabelColor}}'></view>
+          <text>{{item.LabelName}}</text>
+        </view>
+        <!-- set -->
+        <view class="flex justify-end group_item_details" >
+          <checkbox color='#0085d5' value="{{item.ID}}" checked='{{item.Checked}}'/> 
+        </view>
+        <!-- set -->
+      </label > 
+    </checkbox-group>
+</view>
+<!-- group_list -->
+
+<!-- add_group -->
+<view class='add_group flex'>
+  <view class='edit_label' bindtap='Popup'>
+    <image class='add_image' src='/images/add1.png'></image>
+    <text class='fc-blue'>添加标签</text>
+  </view>
+  <view class='edit_label el_right' bindtap='gotoLabelList'>
+    <text class='fc-777'>编辑标签</text>
+    <image class='add_image' src='/images/rightA.png'></image>
+  </view>
+</view>
+
+  <!-- add_confirm -->
+<view class="shLoading" wx:if='{{popup}}'>
+  <view class="shLoading-mask1"  bindtap="Popup">
+  </view>
+  <view class="shLoading-panel flex alignc directionC">
+      <view class="shLoading-head-panel">
+          <view class='fs15 text-alignC'>添加标签</view>
+          <view class='add_input {{error?"error":""}}'>
+            <input placeholder="标签名称（1-5个字符）" maxlength='5' class='fs13' bindinput='bindKeyInput'></input>
+          </view>
+          <view class='errorMsg fc-red fs13' wx:if='{{error}}'>标签名不能为空</view>
+          <!-- choose_label_color -->
+          <view class='fs12'>选择标签颜色：</view>
+          <view class='colorList flex'>
+            <!-- colorList -->
+            <block wx:for='{{colorList}}' wx:for-item='item' wx:key="unique">
+              <view class='color_item  {{item.colorActive ? "colorActive" : ""}}' bindtap="chooseColor" id="{{index}}" data-colorName='{{item.colorName}}'>
+                <view class='color_item_con {{item.colorName}}'></view>
+              </view>
+            </block>
+          </view>
+      </view>
+      <view class="shLoading-btn-panel">
+          <view class="shLoading-btn-cancel" bindtap="Popup">取消</view>
+          <view class="shLoading-btn-ok" bindtap="confirmAddLabel">确认</view>
+      </view>
+  </view>
+</view>
+<!-- add_group -->
+
+<!-- btn -->
+<view class="group_btn">
+    <button class="btn btn-primary" id="confirm" bindtap='submit'>确定</button>
+    <view class='fc-777 text-alignC' bindtap='nolabel'>暂不添加</view>
+</view>

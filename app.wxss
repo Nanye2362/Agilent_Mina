@@ -339,3 +339,46 @@ view, text, input, button{ font-size: 32rpx; font-family: "MicroSoft Yahei"; col
    display: block;
    box-sizing:content-box;
 }
+
+
+
+/* 标签颜色 */
+.yellow{
+  background: #ffb652;
+}
+.coffee{
+  background: #b59177;
+}
+.green{
+  background: #6fd048;
+}
+.purple{
+  background: #9264cd;
+}
+.pink{
+  background: #fc7cb3;
+}
+.orange{
+  background: #ff8947;
+}
+.grass{
+  background: #00ce7d;
+}
+.blue{
+  background: #4ca0ff;
+}
+.red{
+  background: #ff5c5e;
+}
+.grey{
+  background: #707070;
+}
+
+
+
+.positionFixed{
+  position: fixed;
+  left:0;
+  bottom:0;
+  z-index: 1000;
+}

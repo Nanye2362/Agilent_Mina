@@ -1,0 +1,55 @@
+/* pages/ins_group/ins_group.wxss */
+page{ 
+  background: #fff; padding: 30rpx 50rpx;
+  box-sizing:border-box;
+}
+/* group_list */
+.group{
+  margin-top: 20rpx;
+}
+.group_item{
+  padding: 20rpx 0;
+}
+.radio-group{
+  width: 100%;
+}
+.group_item_details{
+  flex: .5;
+}
+/* group_list */
+
+
+
+
+/* add_group */
+.add_group{
+  width: 100%;
+  padding: 30rpx 0;
+  margin: 30rpx 0;
+}
+.add_image{
+  width: 38rpx;
+  height: 34rpx;
+  margin-right: 15rpx;
+}
+.add_input{
+  padding:10rpx 0;
+  border-bottom: 1px solid #e7e7e7;
+  margin: 50rpx 0;
+  width: 450rpx;
+  text-align: center;
+}
+
+
+
+/*btn*/
+.btn-primary{
+  width: 100%;
+}
+.group_btn{
+  margin: 120rpx 0;
+}
+
+
+
+

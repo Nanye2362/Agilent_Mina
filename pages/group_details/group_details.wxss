@@ -1,0 +1,26 @@
+@import '../template/newIns';
+.g_title{
+  padding: 20rpx 30rpx;
+  border-bottom: 1px solid #e7e7e7;
+ }
+.add_input{
+  padding:10rpx 0;
+  border-bottom: 1px solid #e7e7e7;
+  margin: 50rpx 0;
+  width: 450rpx;
+  text-align: center;
+  position: relative;
+}
+.g_title_item{
+  flex: .5;
+}
+.clear_remark{
+  position: absolute;
+  right: -70rpx;
+  top: 0;
+}
+.clear_remark image{
+  width: 64rpx;
+  height: 64rpx;
+  margin-top: 10rpx;
+}

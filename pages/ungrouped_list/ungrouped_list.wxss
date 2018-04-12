@@ -1,0 +1,4 @@
+@import '../template/newIns';
+.g_title{
+  padding: 20rpx 30rpx;
+ }
