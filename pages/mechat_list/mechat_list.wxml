@@ -27,8 +27,8 @@
             </view>
           </view>
           </view>
-          <view class="mechat_row_btn"  bindtap="showInputPanel" data-Template="{{item.templete}}" data-checkfun="{{item.checkfun}}" data-tapfun="{{item.tapfun}}" data-meqia="{{item.meqia}}">
-            在线咨询
+          <view class="mechat_row_btn mechat_row_{{item.color}} {{mechat_offline_time}}"  bindtap="showInputPanel" data-Template="{{item.templete}}" data-checkfun="{{item.checkfun}}" data-tapfun="{{item.tapfun}}" data-meqia="{{item.meqia}}">
+            点击咨询
           </view>
         </view>
        </view>
@@ -68,7 +68,7 @@
       <view class="shLoading-btn-panel">
           <view class="shLoading-btn-cancel" bindtap="infoCancelTap">返回修改</view>
           <view class="shLoading-btn-ok">发起咨询
-          <button open-type='contact' bindtap="startChat" class="shLoading-btn-contact" session-from='{{meqiaGroup}}_dataid:{{sessionId}}'></button></view>
+          <button open-type='contact' bindtap="startChat" class="shLoading-btn-contact" data-group="{{meqiaGroup}}" session-from='{{meqiaGroup}}_dataid:{{sessionId}}'></button></view>
       </view>
   </view>
 </view>

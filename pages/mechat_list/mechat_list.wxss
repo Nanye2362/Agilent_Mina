@@ -31,15 +31,16 @@ page{
 
 .mechat_list_panel .mechat_row{
    background: #fff;
-   height:90rpx;
-   margin-bottom:20rpx;
+   height:75rpx;
+   margin-bottom: 18rpx;
    border-radius: 10rpx;
+   position:relative;
 }
 
 .mechat_list_panel .mechat_row_head{
   width:80rpx;
   display: inline-block;
-  line-height: 90rpx;
+  line-height: 75rpx;
   font-size:40rpx;
   text-align: center;
   color:#eee;
@@ -52,12 +53,20 @@ page{
   background: #0087D2;
 }
 
+.mechat_list_panel .mechat_row_orange{
+  background: #802764;
+}
+
 .mechat_list_panel .mechat_row_green{
   background: #86BC02;
 }
 
 .mechat_list_panel .mechat_row_yellow{
   background: #F3A901;
+}
+
+.mechat_list_panel .mechat_offline_time{
+  background:#838690;
 }
 
 .mechat_list_panel .mechat_row_body{
@@ -75,6 +84,7 @@ page{
   position:relative;
   vertical-align: middle;
   line-height:28rpx;
+  z-index: 2;
 }
 
 .mechat_list_panel .mechat_position_top{
@@ -111,13 +121,20 @@ page{
 
 .mechat_list_panel .mechat_row_btn{
   display:inline-block;
-  font-size:20rpx;
   border:1px solid #ccc;
-  background: #EAEBEC;
-  padding:5rpx 10rpx;
-  color:#00A2E8;
-  line-height: 26rpx;
+  padding:8rpx 0;
+  color:#fff;
+  line-height: 57rpx;
   vertical-align: middle;
+  position: absolute;
+  text-align: center;
+  right:0;
+  top:0;
+  width:133rpx;
+  font-size:24rpx;
+  border-top-right-radius: 10rpx;
+  border-bottom-right-radius: 10rpx;
+  z-index: 1;
 }
 
 .mechat_list_panel .mechat_row_width{
