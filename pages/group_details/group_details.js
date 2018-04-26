@@ -140,6 +140,14 @@ Page({
           that.setData({
             detailList: detaillist,
           })
+        }else{
+          wx.showModal({
+            title: '修改失败',
+            content: '服务器错误，请重新尝试',
+            showCancel: false,
+            success: function (res) {
+            }
+          })
         }
         that.setData({
           popup: !that.data.popup
@@ -226,7 +234,18 @@ Page({
           wx.redirectTo({
             url: '../confirm_info/confirm_info' + '?ProductId=' + res.ProductId + '&ProductDesc=' + res.ProductDesc + '&SerialNo=' + res.SerialNo + '&CpName=' + res.CpName + '&ShipToName=' + res.ShipToName,
           })
+        }else{
+          wx.showModal({
+            title: '连接失败',
+            content: '服务器错误，请重新尝试',
+            showCancel: false,
+            success: function (res) {
+            }
+          })
         }
+      },
+      fail: function(err){
+        console.log(err);
       }
     })
   },
@@ -265,6 +284,14 @@ Page({
                   detailList: detailList
                 })
                 console.log('用户点击确定');
+              }else{
+                wx.showModal({
+                  title: '删除失败',
+                  content: '服务器错误，请重新尝试',
+                  showCancel: false,
+                  success: function (res) {
+                  }
+                })
               }
 
             },

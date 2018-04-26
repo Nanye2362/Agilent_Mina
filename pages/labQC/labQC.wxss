@@ -1,0 +1,88 @@
+/* pages/labQC/labQC.wxss */
+/* tab */
+.swiper-tab{ 
+  width: 100%; 
+  border-bottom: 2rpx solid #eeeeee; 
+  text-align: center; 
+  line-height: 80rpx;} 
+.swiper-tab-item{ font-size: 30rpx; 
+  display: inline-block; 
+  width: 33.33%; 
+  color: #666666; 
+} 
+.on{
+    border-bottom: 4rpx solid #0F70CB;
+    color: #0f70cb;
+}
+.swiper-box view{ 
+  text-align: center;
+} 
+.sl_tab {
+    width: 100%;
+    height: 100rpx;
+    border-bottom: 2rpx solid #e7e6e7;
+    box-sizing: content-box;
+}
+
+.sl_tab_item {
+    width: 50%;
+    height: 100rpx;
+    background: #fff;
+    line-height: 100rpx;
+    text-align: center;
+}
+
+.sl_tab_filtering::before {
+    content: "";
+    width: 100%;
+    height: 100%;
+    background: #000;
+    opacity: 0.3;
+    position: fixed;
+}
+
+.sl_tab_item_active {
+    border-bottom: 4rpx solid #0F70CB;
+    color: #0f70cb;
+}
+
+
+/* customer_informations */
+.cusName{
+  padding: 10rpx 20rpx;
+}
+.record{
+  margin-bottom: 20rpx;
+}
+
+
+/* 添加记录 */
+.mi_add_new {
+    padding: 20rpx;
+    width: 100%;
+    line-height: 50rpx;
+    border-top: 1px solid #e7e7e7;
+}
+
+.mi_add_new image {
+    width: 37rpx;
+    height: 37rpx;
+    vertical-align: sub;
+    margin-right: 10rpx;
+}
+.add_input{
+  padding:10rpx 0;
+  border-bottom: 1px solid #e7e7e7;
+  margin: 50rpx 0;
+  width: 450rpx;
+  text-align: center;
+  position: relative;
+}
+
+
+
+
+
+
+
+

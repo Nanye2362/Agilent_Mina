@@ -7,11 +7,6 @@ Page({
    */
   data: {
     selectColor: '',
-    // insGroup: [
-    //   { name: 'GC1', colorName: 'yellow', value: 'GC实验仪器一'},
-    //   { name: 'GC2', colorName: 'coffee', value: 'GC实验仪器二' },
-    //   { name: 'GC3', colorName: 'green', value: 'GC实验仪器三' },
-    // ],
     /* 弹框 */
     popup: false,
     colorList: [
@@ -111,12 +106,21 @@ Page({
         },
         success: function (res) {
           console.log(res);
-          var ll = that.data.LabelList.concat(res.CurrentLabel);
-          console.log(ll)
-          that.setData({
-            LabelList: ll
-          })
-
+          if(res.CurrentLabel.ID){
+            var ll = that.data.LabelList.concat(res.CurrentLabel);
+            console.log(ll)
+            that.setData({
+              LabelList: ll
+            })
+          }else{
+            wx.showModal({
+              title: '添加失败',
+              content: '服务器错误，请重新尝试',
+              showCancel: false,
+              success: function (res) {
+              }
+            })
+          }
         },
         fail: function (err) {
           console.log(err);
@@ -209,9 +213,20 @@ Page({
       },
       success: function (res) {
         console.log(res);
-        wx.navigateBack({
-          delta: 1
-        })
+        if(res.result){
+          wx.navigateBack({
+            delta: 1
+          })
+        }else{
+          wx.showModal({
+            title: '添加失败',
+            content: '服务器错误，请重新尝试',
+            showCancel: false,
+            success: function (res) {
+            }
+          })
+        }
+        
       },
       fail: function (err) {
         console.log(err);

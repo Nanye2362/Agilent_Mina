@@ -1,0 +1,194 @@
+<!-- loading -->
+<view wx:if='{{userType=="loading"}}'>识别中...</view>
+
+
+
+
+
+<!-- user -->
+<view wx:if='{{userType=="0"}}'>
+  <view class='flex directionC'>
+    <view class="bg-primary flex cusName">
+        <view class=" fs13 fc-aaa">安装工程师名字：</view>
+        <view class=" fs13">123</view>
+    </view>
+    <view class="bg-primary flex cusName">
+        <view class=" fs13 fc-aaa">手机：</view>
+        <view class=" fs13">123</view>
+    </view>
+    <view class="bg-primary flex cusName">
+        <view class=" fs13 fc-aaa">邮箱：</view>
+        <view class=" fs13">123</view>
+    </view>
+    <view class="bg-primary flex cusName">
+        <view class=" fs13 fc-aaa">安装完成时间：</view>
+        <view class=" fs13">123</view>
+    </view>
+    <view class="bg-primary flex cusName">
+        <view class=" fs13 fc-aaa">用户名称：</view>
+        <view class=" fs13">123</view>
+    </view>
+    <view class="bg-primary flex cusName">
+        <view class=" fs13 fc-aaa">用户职位：</view>
+        <view class=" fs13">123</view>
+    </view>
+    <view class="bg-primary flex cusName">
+        <view class=" fs13 fc-aaa">手机号：</view>
+        <view class=" fs13">123</view>
+    </view>
+    <view class="bg-primary flex cusName">
+        <view class=" fs13 fc-aaa">邮箱：</view>
+        <view class=" fs13">123</view>
+    </view>
+    <view class="bg-primary flex cusName">
+        <view class=" fs13 fc-aaa">安捷伦销售信息：</view>
+        <view class=" fs13">123</view>
+    </view>
+    <view class="bg-primary flex cusName">
+        <view class=" fs13 fc-aaa">网络版安装信息：</view>
+        <view class=" fs13">123</view>
+    </view>
+  </view>
+  <button class="sn_btn btn btn-primary" bindtap='clickToSubmit'>咨询</button>
+</view>
+
+
+
+
+
+<!-- engineer -->
+<view wx:if='{{userType=="1"}}'>
+  <!-- tab -->
+  <view class="sl_tab flex bg-primary">    
+      <view class="sl_tab_item  {{currentTab==0 ? 'on' : ''}}" circular="true" data-current="0" bindtap="swichNav">客户信息</view>  
+      <view class="sl_tab_item  {{currentTab==1 ? 'on' : ''}}" circular="true" data-current="1" bindtap="swichNav">维修记录</view>
+  </view> 
+
+  <!-- content -->
+  <swiper current="{{currentTab}}" class="swiper-box" duration="300"  bindchange="bindChange" style="height:{{winHeight - 31}}px;"> 
+    <!-- customer_informations -->
+    <swiper-item> 
+      <view class='flex directionC'>
+        <view class="bg-primary flex cusName">
+            <view class=" fs13 fc-aaa">客户名称：</view>
+            <view class=" fs13">123</view>
+        </view>
+        <view class="bg-primary flex cusName">
+            <view class=" fs13 fc-aaa">地址：</view>
+            <view class=" fs13">123</view>
+        </view>
+        <view class="bg-primary flex cusName">
+            <view class=" fs13 fc-aaa">使用部门：</view>
+            <view class=" fs13">123</view>
+        </view>
+        <view class="bg-primary flex cusName">
+            <view class=" fs13 fc-aaa">PO号：</view>
+            <view class=" fs13">123</view>
+        </view>
+        <view class="bg-primary flex cusName">
+            <view class=" fs13 fc-aaa">安装完成时间：</view>
+            <view class=" fs13">123</view>
+        </view>
+        <view class="bg-primary flex cusName">
+            <view class=" fs13 fc-aaa">SO号：</view>
+            <view class=" fs13">123</view>
+        </view>
+        <view class="bg-primary flex cusName">
+            <view class=" fs13 fc-aaa">安装工程师名字：</view>
+            <view class=" fs13">123</view>
+        </view>
+        <view class="bg-primary flex cusName">
+            <view class=" fs13 fc-aaa">手机：</view>
+            <view class=" fs13">123</view>
+        </view>
+        <view class="bg-primary flex cusName">
+            <view class=" fs13 fc-aaa">邮箱：</view>
+            <view class=" fs13">123</view>
+        </view>
+        <view class="bg-primary flex cusName">
+            <view class=" fs13 fc-aaa">用户名字：</view>
+            <view class=" fs13">123</view>
+        </view>
+        <view class="bg-primary flex cusName">
+            <view class=" fs13 fc-aaa">用户职位：</view>
+            <view class=" fs13">123</view>
+        </view>
+        <view class="bg-primary flex cusName">
+            <view class=" fs13 fc-aaa">手机号：</view>
+            <view class=" fs13">123</view>
+        </view>
+        <view class="bg-primary flex cusName">
+            <view class=" fs13 fc-aaa">邮箱：</view>
+            <view class=" fs13">123</view>
+        </view>
+        <view class="bg-primary flex cusName">
+            <view class=" fs13 fc-aaa">安捷伦销售信息：</view>
+            <view class=" fs13">123</view>
+        </view>
+        <view class="bg-primary flex cusName">
+            <view class=" fs13 fc-aaa">网络版安装信息：</view>
+            <view class=" fs13">123</view>
+        </view>
+        <view class="bg-primary flex cusName">
+            <view class=" fs13 fc-aaa">Subscribenet登录名：</view>
+            <view class=" fs13">123</view>
+        </view>
+        <view class="bg-primary flex cusName">
+            <view class=" fs13 fc-aaa">密码：</view>
+            <view class=" fs13">123</view>
+        </view>
+        <view class="bg-primary flex cusName">
+            <view class=" fs13 fc-aaa">文件1.pdf：</view>
+            <view class=" fs13" bindtap='openFile'>打开</view>
+        </view>
+      </view> 
+    </swiper-item>
+    <!-- repair_records --> 
+    <swiper-item> 
+      <block wx:for="{{recordsList}}" wx:for-item="item" wx:key='unique'>
+        <view class='flex directionC record'>       
+          <view class="bg-primary flex cusName">
+              <view class=" fs13 fc-aaa">维修人：</view>
+              <view class=" fs13">{{item.people}}</view>
+          </view>
+          <view class="bg-primary flex cusName">
+              <view class=" fs13 fc-aaa">提交时间：</view>
+              <view class=" fs13">{{item.time}}</view>
+          </view>
+          <view class="bg-primary flex cusName">
+              <view class=" fs13 fc-aaa">维修记录：</view>
+              <view class=" fs13">{{item.record}}</view>
+          </view>       
+        </view> 
+      </block>
+      <!-- addNew_Btn -->
+      <view class="mi_add_new text-center bg-primary {{InstrumentCount>=4 ? 'positionFixed' : ''}}" bindtap="Popup">
+          <image class="mi_add_btn" src="/images/add.png"></image>     <text class="mi_add_word fc-blue">添加维修记录</text>
+      </view> 
+    </swiper-item>
+  </swiper>
+</view>
+
+
+
+
+
+
+<!-- add_record -->
+<view class="shLoading" wx:if='{{popup}}'>
+  <view class="shLoading-mask1"  bindtap="Popup">
+  </view>
+  <view class="shLoading-panel flex alignc directionC">
+      <view class="shLoading-head-panel">
+          <view class='fs15 text-alignC'>添加维修记录</view>
+          <view class='add_input'>
+            <input placeholder="填写维修内容"  class='fs13' bindinput='bindKeyInput'></input>
+          </view>
+      </view>
+      <view class="shLoading-btn-panel">
+          <view class="shLoading-btn-cancel" bindtap="Popup">取消</view>
+          <view class="shLoading-btn-ok" bindtap="confirmRemark">确认</view>
+      </view>
+  </view>
+</view>
+<!-- add_record -->

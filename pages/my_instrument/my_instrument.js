@@ -1,4 +1,4 @@
-var util = require('../../utils/util.js');
+var util = require('../../utils/util.js'); 
 var newIns = require('../template/newIns.js')
 var app = getApp()
 var mobile = ''
@@ -25,7 +25,7 @@ Page({
     filterActive: false,
     selectLabel: '不限',
     selectGroup: '',
-    GroupCount: 0,
+    GroupCount: '',
     remarkCon: '',
     /* 搜索弹框 */
     searchShow: false,
@@ -179,6 +179,14 @@ Page({
             AllInstrument: instrumentlist,
             //InstrumentList: instrumentlist
           })
+        }else{
+          wx.showModal({
+            title: '修改失败',
+            content: '服务器错误，请重新尝试',
+            showCancel: false,
+            success: function (res) {
+            }
+          })
         }
         that.setData({
           popup: !that.data.popup
@@ -203,12 +211,9 @@ Page({
     })
   },
   Popup: function (e) {
-    var remarkSn = e.currentTarget.dataset.sn
     var popup = this.data.popup
     this.setData({
       popup: !popup,
-      remarkSn: remarkSn,
-      remarkCon: e.currentTarget.dataset.remark
     })
   },
 
@@ -240,6 +245,9 @@ Page({
             }
           })
         }
+      },
+      fail: function(err){
+        console.log(err);
       }
     });
   },
@@ -247,8 +255,6 @@ Page({
   //报修
   clickToRepair: function (event) {
     var sn = event.currentTarget.dataset.sn;
-    console.log(this.data.contactGuid)
-    console.log(this.data.contactId)
     util.NetRequest({
       url: 'sr/sr-confirm',
       data: {
@@ -264,16 +270,25 @@ Page({
           wx.redirectTo({
             url: '../confirm_info/confirm_info' + '?ProductId=' + res.ProductId + '&ProductDesc=' + res.ProductDesc + '&SerialNo=' + res.SerialNo + '&CpName=' + res.CpName + '&ShipToName=' + res.ShipToName,
           })
+        }else{
+          wx.showModal({
+            title: '连接失败',
+            content: '服务器错误，请重新尝试',
+            showCancel: false,
+            success: function (res) {
+            }
+          })
         }
+      },
+      fail: function(err){
+        console.log(err);
       }
     })
   },
 
   //添加仪器
   clickToAdd: function () {
-    wx.navigateTo({
-      url: '../serial_number/serial_number?mobile=' + mobile,
-    })
+    util.chen_navigateTo('pages/serial_number/serial_number', '../serial_number/serial_number?mobile=' + mobile);
   },
 
   //删除仪器
@@ -315,6 +330,14 @@ Page({
 
                 that.submitfilter();
                 console.log('用户点击确定');
+              }else{
+                wx.showModal({
+                  title: '删除失败',
+                  content: '服务器错误，请重新尝试',
+                  showCancel: false,
+                  success: function (res) {
+                  }
+                })
               }
 
             },
@@ -330,7 +353,7 @@ Page({
           console.log('用户点击取消');
           return;
         }
-      }
+      },
     })
 
   },

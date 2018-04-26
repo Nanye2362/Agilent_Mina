@@ -51,7 +51,8 @@
 <!-- notification -->
 <view class="fc-aaa text-center fs14 sl_notifi">以下显示最近三个月记录</view>
 <!-- content -->
-    <swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:{{winHeight - 31}}px;" bindchange="bindChange" >      <!-- 进行中 -->   
+    <swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:{{winHeight - 31}}px;" bindchange="bindChange" >      
+        <!-- 进行中 -->   
         <swiper-item class="flex directionC" style="overflow: scroll;">     
                <block wx:for="{{unCompleteList}}" wx:for-item="item">
                   <template is="sl-template" data="{{item}}"/>
