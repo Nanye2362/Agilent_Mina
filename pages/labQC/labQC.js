@@ -7,7 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    userType:'0',
+    userType:'1',
     authorized: true,
     winWidth: 0,
     winHeight: 0,
