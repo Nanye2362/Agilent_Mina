@@ -10,13 +10,13 @@
           <view class="mechat_row_head mechat_row_{{item.color}}">
           0{{index+1}}
           </view>
-          <view class="mechat_row_width">
-          <view class="mechat_row_body">
+          <view class="mechat_row_width " data-key="{{index}}" catchtap='showDesc'>
+          <view class="mechat_row_body {{item.class}}" data-key="{{index}}" catchtap='showDesc'>
             {{item.title}}
           </view>
-          <view class="mechat_row_desc">
+          <view class="mechat_row_desc" >
             <view class="mechat_question_icon" >
-              <image src="../../images/question_icon.jpg" mode="widthFix" data-key="{{index}}" catchtap='showDesc'></image>
+              <image src="../../images/question_icon.jpg" mode="widthFix" data-key="{{index}}" catchtap='showDesc' ></image>
             </view>
             <view wx:if="{{showInfo[index]}}" class="mechat_position_top">
               <view class="mechat_question_text"  >
@@ -27,7 +27,7 @@
             </view>
           </view>
           </view>
-          <view class="mechat_row_btn mechat_row_{{item.color}} {{mechat_offline_time}}"  bindtap="showInputPanel" data-Template="{{item.templete}}" data-checkfun="{{item.checkfun}}" data-tapfun="{{item.tapfun}}" data-meqia="{{item.meqia}}">
+          <view class="mechat_row_btn mechat_row_{{item.color}} {{mechat_offline_time}}"  bindtap="showInputPanel" data-Template="{{item.templete}}" data-checkfun="{{item.checkfun}}" data-desc="{{item.desc}}" data-tapfun="{{item.tapfun}}" data-meqia="{{item.meqia}}">
             点击咨询
           </view>
         </view>
@@ -61,6 +61,7 @@
   <view class="shLoading-mask1">
   </view>
   <view class="shLoading-panel flex alignc directionC">
+      <view class="shLoading-head-desc">{{showDesc}}</view>
       <view class="shLoading-head-panel">
           <text class="shLoading-head-panel-info">请确认以下信息是否正确\r\n</text>
           <text>{{showText}}</text>

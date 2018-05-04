@@ -42,15 +42,18 @@ Page({
     //腾讯mta统计开始
     var app = getApp();
     app.mta.Page.init();
-
-    var pages=getCurrentPages();
-    for(var i in pages){
-      if(pages[i].route=="pages/my_instrument/my_instrument"){
-        this.setData({
-          needChat:false
-        })
+    console.log(options.needChat);
+   if (typeof (options.needChat)=='undefined'){
+      var pages = getCurrentPages();
+      for (var i in pages) {
+        if (pages[i].route == "pages/my_instrument/my_instrument") {
+          this.setData({
+            needChat: false
+          })
+        }
       }
-    }
+   }
+    
 
     //腾讯mta统计结束
     this.setData({

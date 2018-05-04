@@ -73,7 +73,6 @@ page{
   display:inline-block;
   font-size:28rpx;
   padding-left:40rpx;
-  padding-right:20rpx;
   vertical-align: middle;
   line-height:28rpx;
 }
@@ -119,6 +118,10 @@ page{
   vertical-align: middle;
 }
 
+.shLoading .shLoading-head-desc{
+  padding:0 50rpx 14rpx;
+}
+
 .mechat_list_panel .mechat_row_btn{
   display:inline-block;
   border:1px solid #ccc;
@@ -140,4 +143,10 @@ page{
 .mechat_list_panel .mechat_row_width{
   width:510rpx;
   display:inline-block;
+  height:75rpx;
+  line-height:75rpx;
+}
+
+.mechat_list_panel .widthFix{
+  width:290rpx;
 }

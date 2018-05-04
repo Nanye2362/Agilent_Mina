@@ -212,7 +212,7 @@ Page({
     console.log(this.data.contactGuid)
     console.log(this.data.contactId)
     util.NetRequest({
-      url: 'sr/sr-confirm',
+      url: 'sr/sr-confirm?needChat=1',
       data: {
         contact_guid: this.data.ContactGuid,
         contact_id: this.data.ContactId,

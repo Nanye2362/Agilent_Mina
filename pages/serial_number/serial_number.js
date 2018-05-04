@@ -33,10 +33,12 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options)
-    this.setData({
-      GroupID: options.GroupID
-    })
+    console.log(options);
+    if (typeof (options.GroupID) !='undefined'){
+      this.setData({
+        GroupID: options.GroupID
+      })
+    }
     //腾讯mat统计开始
     var app = getApp();
     app.mta.Page.init();

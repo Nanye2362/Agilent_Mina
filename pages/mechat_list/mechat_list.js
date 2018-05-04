@@ -22,14 +22,15 @@ Page({
     input2_name:"",
     input2_tel:"",
     input2_company:"",
+    showDesc:"",
     showInfo:[false,false,false,false,false,false,false],
-    list: [{ title: '分析仪器报修/咨询', desc: '售后仪器操作，故障咨询', color: 'blue', templete: 'inputTemplate1', checkfun: '', tapfun: 'srTap', meqia:'T'},
-      { title: '电话工单补充图片', desc: '已有服务单号快速入口', color: 'blue', templete: 'inputTemplate5', checkfun: 'checkOrder', tapfun: 'orderTap', meqia: 'N' },
-      { title: '色谱柱、消耗品购买', desc: '购买消耗品相关问题咨询', color: 'green', templete: 'inputTemplate2', checkfun: 'checkSales', tapfun: 'salesTap', meqia: 'CB' },
-      { title: '色谱柱、消耗品售后', desc: '消耗品应用相关咨询', color: 'green', templete: 'inputTemplate2', checkfun: 'checkSales', tapfun: 'salesTap', meqia: 'CA' },
-      { title: '实验室仪器采购', desc: '实验室分析仪器购买咨询', color: 'yellow', templete: 'inputTemplate2', checkfun: 'checkSales', tapfun: 'salesTap', meqia: 'S' },
-      { title: '实验室服务方案', desc: '实验室企业级服务、整体搬迁、法规认证、分析仪器维修/维护合同等', color: 'yellow', templete: 'inputTemplate2', checkfun: 'checkSales', tapfun: 'salesTap', meqia: 'S' },
-      { title: '安捷伦大学培训', desc: '培训名额、定制培训、课程注册等咨询', color: 'orange', templete: 'inputTemplate2', checkfun: 'checkSales', tapfun: 'salesTap', meqia: 'E' } 
+    list: [{ title: '分析仪器报修/咨询', desc: '售后仪器操作，故障咨询',class:'widthFix', color: 'blue', templete: 'inputTemplate1', checkfun: '', tapfun: 'srTap', meqia:'T'},
+      { title: '电话工单补充图片', desc: '已有服务单号快速入口', color: 'blue', class: 'widthFix',templete: 'inputTemplate5', checkfun: 'checkOrder', tapfun: 'orderTap', meqia: 'N' },
+      { title: '消耗品购买', desc: '购买消耗品相关问题咨询', class: 'widthFix',color: 'green', templete: 'inputTemplate2', checkfun: 'checkSales', tapfun: 'salesTap', meqia: 'CB' },
+      { title: '消耗品售后', desc: '消耗品应用相关咨询', class: 'widthFix', color: 'green', templete: 'inputTemplate2', checkfun: 'checkSales', tapfun: 'salesTap', class: 'widthFix',meqia: 'CA' },
+      { title: '实验室仪器采购', desc: '实验室分析仪器购买咨询', color: 'yellow', templete: 'inputTemplate2', checkfun: 'checkSales', tapfun: 'salesTap', class: 'widthFix',meqia: 'K' },
+      { title: '实验室服务方案', desc: '实验室企业级服务、整体搬迁、法规认证、分析仪器维修/维护合同等', color: 'yellow', templete: 'inputTemplate2', class: 'widthFix',checkfun: 'checkSales', tapfun: 'salesTap', meqia: 'S' },
+      { title: '安捷伦大学培训', desc: '培训名额、定制培训、课程注册等咨询', color: 'orange', templete: 'inputTemplate2', checkfun: 'checkSales', class: 'widthFix', tapfun: 'salesTap', meqia: 'E' } 
     ],
     mechat_offline_time:""
   },
@@ -110,6 +111,14 @@ Page({
       },
       success: function (res) {
         console.log(res);
+        if (returnObj.obj.type=='inputTemplate2'){//缓存用户模板2输入的信息
+          var userInputInfo = { inputInfo: returnObj.obj, sessionId: res.id };
+          wx.setStorage({
+            'key': 'UserInputCache_ol',
+            'data': userInputInfo
+          })
+        }
+      
         that.setData({
           shLoading: false,
           shInputInfo: true,
@@ -190,7 +199,8 @@ Page({
     that.setData({
       showTemplate: e.target.dataset.template,
       checkFun: e.target.dataset.checkfun,
-      meqiaGroup: e.target.dataset.meqia
+      meqiaGroup: e.target.dataset.meqia,
+      showDesc: e.target.dataset.desc
     })
 
     util.IsCertificate(function () {
@@ -217,6 +227,12 @@ Page({
         }
       })
     }, function () {
+      var userInputInfo = wx.getStorageSync('UserInputCache_ol');
+      console.log(userInputInfo);
+      if (userInputInfo){
+        that.setData(userInputInfo.inputInfo);
+      }
+      console.log(userInputInfo);
       that.setData({
         shLoading: true
       })
