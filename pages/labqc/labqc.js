@@ -14,6 +14,8 @@ Page({
     // tab切换 
     currentTab: 0,
     popup: false,
+    Soft:'',
+    Hard:'',
   },
 
   /**
@@ -56,7 +58,9 @@ onShow: function (options) {
         mrInfo: res.mrInfo,
         fileList: res.fileList,
         ISAUTH: res.roleInfo.ISAUTH,
-        ISENGINEER: res.roleInfo.ISENGINEER
+        ISENGINEER: res.roleInfo.ISENGINEER,
+        Soft: 'SW_lid:' + res.ldInfo.LaboratoryID,
+        Hard: 'SW_lid:' + res.ldInfo.LaboratoryID,
       })
       // if (res.roleInfo.ISAUTH) {
       //   if (res.roleInfo.CpKeyword){
@@ -89,7 +93,7 @@ onShow: function (options) {
     fail: function (err) {
       console.log(err);
     }
-  })
+  }) 
 },
 
 /* tab */
@@ -159,14 +163,34 @@ confirmAdd: function(){
   console.log(this.data.ldInfo.LaboratoryID)
   var that = this
   util.NetRequest({
-    url: 'labqc/get-forminfo',
+    url: 'labqc/create-mrecord',
     data: {
       MaintenanceContent: that.data.inputValue,
       SubmitPerson: that.data.roleInfo.ENGINEERNAME,
       LaboratoryID: that.data.ldInfo.LaboratoryID,
     },
     success: function (res) {
+      that.Popup();
       console.log(res)
+      if (res.create_result){
+        var obj = {
+          MaintenanceContent: that.data.inputValue,
+          SubmitPerson: that.data.roleInfo.ENGINEERNAME,
+          LaboratoryID: that.data.ldInfo.LaboratoryID,
+          SubmitTime: res.SubmitTime,
+          ID: res.ID,
+        }
+        that.data.mrInfo.unshift(obj);
+        that.setData(that.data);
+      }else{
+        wx.showModal({
+          title: '添加失败',
+          content: '服务器错误，请重新尝试',
+          showCancel: false,
+          success: function (res) {
+          }
+        })
+      }
     },
     fail: function (err) {
       console.log(err);

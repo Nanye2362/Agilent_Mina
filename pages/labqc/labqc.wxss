@@ -90,6 +90,7 @@ page{
 /* customer_informations */
 .cusName{
   padding: 15rpx 20rpx;
+  align-items: baseline;
 }
 .cnL{
   flex: .45;

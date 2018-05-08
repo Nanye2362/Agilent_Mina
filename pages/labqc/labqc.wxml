@@ -67,8 +67,8 @@
     <!-- fileList -->
 
 
-    <button class="sn_btn btn btn-primary" open-type='contact' session-from=''>软件咨询</button>
-    <button class="sn_btn btn btn-primary" open-type='contact' session-from=''>硬件咨询</button>
+    <button class="sn_btn btn btn-primary" open-type='contact' session-from='{{Soft}}'>软件咨询</button>
+    <button class="sn_btn btn btn-primary" open-type='contact' session-from='{{Hard}}'>硬件咨询</button>
   </view>
 
 
