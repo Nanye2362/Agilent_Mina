@@ -1,0 +1,224 @@
+/* pages/labQC/labQC.wxss */
+page{
+  background: #fff;
+}
+.CN{
+  overflow: hidden;
+}
+/* tab */
+.swiperContent{
+  padding: 20rpx 0;
+}
+.swiper-tab{ 
+  width: 100%; 
+  border-bottom: 2rpx solid #eeeeee; 
+  text-align: center; 
+  line-height: 80rpx;} 
+.swiper-tab-item{ font-size: 30rpx; 
+  display: inline-block; 
+  width: 33.33%; 
+  color: #666666; 
+}
+.swiper-box swiper-item{
+  overflow: scroll;
+} 
+.on{
+    border-bottom: 4rpx solid #0F70CB;
+    color: #0f70cb;
+}
+.swiper-box view{ 
+  text-align: center;
+} 
+.sl_tab {
+    width: 100%;
+    height: 100rpx;
+    border-bottom: 2rpx solid #e7e6e7;
+    box-sizing: content-box;
+}
+
+.sl_tab_item {
+    width: 50%;
+    height: 100rpx;
+    background: #fff;
+    line-height: 100rpx;
+    text-align: center;
+}
+
+.sl_tab_filtering::before {
+    content: "";
+    width: 100%;
+    height: 100%;
+    background: #000;
+    opacity: 0.3;
+    position: fixed;
+}
+
+.sl_tab_item_active {
+    border-bottom: 4rpx solid #0F70CB;
+    color: #0f70cb;
+}
+
+
+/* title */
+.cnTitle{
+  width: 100%;
+  padding: 10rpx 20rpx;
+  height: 60rpx;
+  align-items: center;
+  margin-top: 30rpx;
+  margin-bottom: 10rpx;
+}
+.cnT{
+  flex: .35;
+  height: 2rpx;
+  background: #eee;
+  width: 90%;
+}
+.cnTC{
+  flex: .3;
+  width: 100%;
+  height: 40rpx;
+  line-height: 40rpx;
+  background: #0085d5;
+  border-radius: 6rpx;
+}
+
+
+
+
+
+/* customer_informations */
+.cusName{
+  padding: 15rpx 20rpx;
+}
+.cnL{
+  flex: .45;
+  text-align: right!important;
+}
+.cnR{
+  flex: .55;
+  text-align: left!important;
+  word-break: break-all;
+}
+
+/* file */
+.file{
+    margin: 8rpx auto;
+    width: 90%;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+    padding: 20rpx;
+}
+.fileImg{
+  width: 120rpx;
+  height: 150rpx;
+}
+.fileL{
+  flex: .15;
+}
+.fileC{
+  flex: .7;
+  padding: 0 10rpx;
+}
+.fileC view{  
+  text-align: left!important;
+  word-break: break-all;
+}
+.fileR{
+  flex: .15;
+}
+.fileBtn{  
+  width: 100rpx;
+  height: 100rpx;
+  line-height: 100rpx;
+  border: 1px solid #0085d5;
+  border-radius: 10rpx;
+}
+
+
+/* 维修记录 */
+#record{
+  margin: 30rpx 0;
+}
+.record{
+  padding: 0 50rpx;
+  position: relative;
+}
+.recordCon{
+  border-left: 1px solid #eee;
+  position: relative;
+}
+.recordLabel{
+  position: absolute;
+  width: 30rpx;
+  height: 30rpx;
+  background: #e2e2e2;
+  border-radius: 50%;
+  left: -15rpx;
+  top: 46rpx;
+}
+.recordDetails{
+  width: 95%;
+  padding: 40rpx;
+  margin-left: 30rpx;
+  border-bottom: 1px solid #eee;
+}
+.recordDetails > view:not(:last-child){
+  margin-bottom: 10rpx;
+}
+.firstLabel{
+  background: #0085d5;  
+  z-index: 1999;
+  position: absolute;
+  width: 30rpx;
+  height: 30rpx;
+  border-radius: 50%;
+  left: -15rpx;
+  top: 46rpx;
+}
+.secondLabel{
+  z-index: 1999;
+  background: rgba(255, 255, 255, 0);
+  border: 1px solid #0085d5;
+  position: absolute;
+  width: 38rpx;
+  height: 38rpx;
+  border-radius: 50%;
+  left: -19rpx;
+  top: 43rpx;
+}
+.firstLabel:before{
+  content:'';
+  width: 30rpx;
+  height: 60rpx;
+  background: #fff;
+  position: absolute;
+  z-index: 999;
+  top: -60rpx;
+  left: 0rpx;
+}
+
+
+
+
+
+/* 添加记录 */
+.repair_btn{
+  margin-top: 130rpx;
+}
+.add_input{
+  padding:10rpx 0;
+  border-bottom: 1px solid #e7e7e7;
+  margin: 50rpx 0;
+  width: 450rpx;
+  text-align: center;
+  position: relative;
+}
+
+
+
+
+
+
+
+
