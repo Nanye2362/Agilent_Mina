@@ -12,6 +12,13 @@
 
   <!-- user -->
   <view wx:if='{{roleInfo.ISENGINEER==0}}' class='CN'>
+    <!-- title -->
+    <view class='flex cnTitle'>
+      <view class='cnT'></view>
+      <view class='cnTC fc-fff fs12 text-center'>安装信息</view>
+      <view class='cnT'></view>
+    </view>
+    <!-- title -->
     <view class='flex directionC'>
       <view class="flex cusName">
           <view class=" fs13 fc-aaa">安装工程师名字：</view>
@@ -36,6 +43,13 @@
     </view>
 
     <!-- fileList -->
+    <!-- title -->
+    <view class='flex cnTitle'>
+      <view class='cnT'></view>
+      <view class='cnTC fc-fff fs12 text-center'>附件信息</view>
+      <view class='cnT'></view>
+    </view>
+    <!-- title -->
     <block  wx:for="{{fileList}}" wx:for-item="item" wx:key='unique'  wx:for-index="index">
       <view class="flex cusName">
           <view class=" fs13 fc-aaa">文件：{{item.file_name}}</view>
