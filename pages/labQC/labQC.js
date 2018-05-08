@@ -7,29 +7,12 @@ Page({
    * 页面的初始数据
    */
   data: {
-    userType:'1',
-    authorized: true,
+    ISAUTH: 0,
+    ISENGINEER: -1,
     winWidth: 0,
     winHeight: 0,
     // tab切换 
     currentTab: 0,
-    recordsList:[
-      {
-        people: 'en1',
-        time: '2018-02-02',
-        record: '泵修理',
-      },
-      {
-        people: 'en2',
-        time: '2019-01-06',
-        record: '泵修理',
-      },
-      {
-        people: 'en3',
-        time: '2019-03-06',
-        record: '泵修理',
-      },
-    ],
     popup: false,
   },
 
@@ -37,6 +20,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log(options);
+    var scene = decodeURIComponent(options.scene)
+    this.setData({
+      scene: scene,
+    })
     /* 获取系统信息 */
     var that = this;
     wx.getSystemInfo({
@@ -47,28 +35,56 @@ Page({
         });
       }
     });
-  },    
+  },
+
 
 /**
 * 生命周期函数--监听页面显示
 */
-onShow: function () {
-  var that = this;
+onShow: function (options) {
+  var that = this
   util.NetRequest({
-    url: '',
+    url: 'labqc/get-forminfo',
     data: {
+      lid: this.data.scene,
     },
     success: function (res) {
-      //console.log(res)
-      if(res.authorized){
-        that.setData({
-
-        })
-      }else{
-        // wx.navigateTo({
-        //   url: '../auth/auth?pageName=labQC'
-        // })
-      }
+      console.log(res)
+      that.setData({
+        roleInfo: res.roleInfo,
+        ldInfo: res.ldInfo,
+        mrInfo: res.mrInfo,
+        fileList: res.fileList,
+        ISAUTH: res.roleInfo.ISAUTH,
+        ISENGINEER: res.roleInfo.ISENGINEER
+      })
+      // if (res.roleInfo.ISAUTH) {
+      //   if (res.roleInfo.CpKeyword){
+      //     that.setData({
+      //       roleInfo: res.roleInfo,
+      //       ldInfo: res.ldInfo,
+      //       mrInfo: res.mrInfo,
+      //       fileList: res.fileList,
+      //       ISAUTH: res.roleInfo.ISAUTH,
+      //       ISENGINEER: res.roleInfo.ISENGINEER
+      //     })
+      //   }else{
+      //     wx.showModal({
+      //       title: '查看失败',
+      //       content: '您暂无权限查看该功能，请联系相关系统管理员',
+      //       showCancel: false,
+      //       success: function (res) {
+      //         wx.redirectTo({
+      //           url: '../index/index'
+      //         })
+      //       }
+      //     })
+      //   }       
+      // } else {
+      //   wx.navigateTo({
+      //     url: '../auth/auth?pageName=labQC'
+      //   })       
+      // }    
     },
     fail: function (err) {
       console.log(err);
@@ -93,21 +109,44 @@ swichNav: function (e) {
 },
 
 //下载并打开文件
-openFile: function () {
-  console.log('beginToDown')
-  wx.downloadFile({
-    url: "",
+openFile: function (event) {
+  var url = event.currentTarget.dataset.url;
+  console.log(url);
+  const downloadTask = wx.downloadFile({
+    url: url,
     success: function (res) {
-      console.log(res.tempFilePath);
+      console.log(res);
+      console.log('download succeed！！！！');
       wx.openDocument({
         filePath: res.tempFilePath,
         success: function (res) {
-          console.log('ok');
+          console.log(res)
+          console.log('open success!!!!');
+        }, 
+        fail: function (res) {
+          console.log('open fail')
+          console.log(res)
+        },
+        complete: function (res) {
+          console.log('complete')
+          console.log(res)
         }
       });
     }
   })
+
+  downloadTask.onProgressUpdate((res) => {
+    console.log('下载进度', res.progress)
+    console.log('已经下载的数据长度', res.totalBytesWritten)
+    console.log('预期需要下载的数据总长度', res.totalBytesExpectedToWrite)
+  })
 },
+
+
+
+
+
+
 
 
 //添加维修记录
@@ -116,13 +155,29 @@ bindKeyInput: function (e) {
     inputValue: e.detail.value
   })
 },
+confirmAdd: function(){
+  console.log(this.data.ldInfo.LaboratoryID)
+  var that = this
+  util.NetRequest({
+    url: 'labqc/get-forminfo',
+    data: {
+      MaintenanceContent: that.data.inputValue,
+      SubmitPerson: that.data.roleInfo.ENGINEERNAME,
+      LaboratoryID: that.data.ldInfo.LaboratoryID,
+    },
+    success: function (res) {
+      console.log(res)
+    },
+    fail: function (err) {
+      console.log(err);
+    }
+  })
+},
+
 Popup: function (e) {
-  var remarkSn = e.currentTarget.dataset.sn
-  var popup = this.data.popup
+  var popup = this.data.popup;
   this.setData({
     popup: !popup,
-    remarkSn: remarkSn,
-    remarkCon: e.currentTarget.dataset.remark
   })
 },
 

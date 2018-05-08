@@ -20,18 +20,28 @@
 			"current": -1,
 			"list": []
 		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
 		"game": {
 			"current": -1,
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
+			"current": 1,
 			"list": [
 				{
 					"id": -1,
 					"name": "demo_hanyan",
 					"pathName": "pages/mechat_list/mechat_list",
 					"query": "scene=id_1"
+				},
+				{
+					"id": 1,
+					"name": "labqc",
+					"pathName": "pages/labqc/labqc",
+					"query": "scene=000001"
 				}
 			]
 		}
