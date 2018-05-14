@@ -18,6 +18,7 @@ Page({
     Hard:'',
     isDown: false,
     percent: 0,
+    inputValue: '',
   },
 
   /**
@@ -174,46 +175,58 @@ bindKeyInput: function (e) {
 confirmAdd: function(){
   console.log(this.data.ldInfo.LaboratoryID)
   var that = this
-  util.NetRequest({
-    url: 'labqc/create-mrecord',
-    data: {
-      MaintenanceContent: that.data.inputValue,
-      SubmitPerson: that.data.roleInfo.ENGINEERNAME,
-      LaboratoryID: that.data.ldInfo.LaboratoryID,
-    },
-    success: function (res) {
-      that.Popup();
-      console.log(res)
-      if (res.create_result){
-        var obj = {
-          MaintenanceContent: that.data.inputValue,
-          SubmitPerson: that.data.roleInfo.ENGINEERNAME,
-          LaboratoryID: that.data.ldInfo.LaboratoryID,
-          SubmitTime: res.SubmitTime,
-          ID: res.ID,
-        }
-        that.data.mrInfo.unshift(obj);
-        that.setData(that.data);
-      }else{
-        wx.showModal({
-          title: '添加失败',
-          content: '服务器错误，请重新尝试',
-          showCancel: false,
-          success: function (res) {
+  if(this.data.inputValue!=''){
+    util.NetRequest({
+      url: 'labqc/create-mrecord',
+      data: {
+        MaintenanceContent: that.data.inputValue,
+        SubmitPerson: that.data.roleInfo.ENGINEERNAME,
+        LaboratoryID: that.data.ldInfo.LaboratoryID,
+      },
+      success: function (res) {
+        console.log(res)
+        if (res.create_result) {
+          var obj = {
+            MaintenanceContent: that.data.inputValue,
+            SubmitPerson: that.data.roleInfo.ENGINEERNAME,
+            LaboratoryID: that.data.ldInfo.LaboratoryID,
+            SubmitTime: res.SubmitTime,
+            ID: res.ID,
           }
-        })
+          that.data.mrInfo.unshift(obj);
+          that.setData(that.data);
+        } else {
+          wx.showModal({
+            title: '添加失败',
+            content: '服务器错误，请重新尝试',
+            showCancel: false,
+            success: function (res) {
+            }
+          })
+        }
+        that.Popup();
+      },
+      fail: function (err) {
+        console.log(err);
       }
-    },
-    fail: function (err) {
-      console.log(err);
-    }
-  })
+    })
+  }else{
+    wx.showModal({
+      title: '提交失败',
+      content: '内容不能为空',
+      showCancel: false,
+      success: function (res) {
+      }
+    })
+  }
+  
 },
 
 Popup: function (e) {
   var popup = this.data.popup;
   this.setData({
     popup: !popup,
+    inputValue: '',
   })
 },
 
