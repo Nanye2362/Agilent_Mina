@@ -16,6 +16,8 @@ Page({
     popup: false,
     Soft:'',
     Hard:'',
+    isDown: false,
+    percent: 0,
   },
 
   /**
@@ -23,10 +25,16 @@ Page({
    */
   onLoad: function (options) {
     console.log(options);
-    var scene = decodeURIComponent(options.scene)
-    this.setData({
-      scene: scene,
-    })
+    var scene = decodeURIComponent(options.scene)   
+    if (options.scene!=''){
+      this.setData({
+        scene: scene,
+      })
+    }else{
+      wx.navigateTo({
+        url: '../index/index'
+      })
+    }  
     /* 获取系统信息 */
     var that = this;
     wx.getSystemInfo({
@@ -52,43 +60,35 @@ onShow: function (options) {
     },
     success: function (res) {
       console.log(res)
-      that.setData({
-        roleInfo: res.roleInfo,
-        ldInfo: res.ldInfo,
-        mrInfo: res.mrInfo,
-        fileList: res.fileList,
-        ISAUTH: res.roleInfo.ISAUTH,
-        ISENGINEER: res.roleInfo.ISENGINEER,
-        Soft: 'SW_lid:' + res.ldInfo.LaboratoryID,
-        Hard: 'SW_lid:' + res.ldInfo.LaboratoryID,
-      })
-      // if (res.roleInfo.ISAUTH) {
-      //   if (res.roleInfo.CpKeyword){
-      //     that.setData({
-      //       roleInfo: res.roleInfo,
-      //       ldInfo: res.ldInfo,
-      //       mrInfo: res.mrInfo,
-      //       fileList: res.fileList,
-      //       ISAUTH: res.roleInfo.ISAUTH,
-      //       ISENGINEER: res.roleInfo.ISENGINEER
-      //     })
-      //   }else{
-      //     wx.showModal({
-      //       title: '查看失败',
-      //       content: '您暂无权限查看该功能，请联系相关系统管理员',
-      //       showCancel: false,
-      //       success: function (res) {
-      //         wx.redirectTo({
-      //           url: '../index/index'
-      //         })
-      //       }
-      //     })
-      //   }       
-      // } else {
-      //   wx.navigateTo({
-      //     url: '../auth/auth?pageName=labQC'
-      //   })       
-      // }    
+      if (res.roleInfo.ISAUTH==1) {
+        if (res.roleInfo.CpKeyword){
+          that.setData({
+            roleInfo: res.roleInfo,
+            ldInfo: res.ldInfo,
+            mrInfo: res.mrInfo,
+            fileList: res.fileList,
+            ISAUTH: res.roleInfo.ISAUTH,
+            ISENGINEER: res.roleInfo.ISENGINEER,
+            Soft: 'SW_lid:' + res.ldInfo.LaboratoryID,
+            Hard: 'W_lid:' + res.ldInfo.LaboratoryID,
+          })
+        }else{
+          wx.showModal({
+            title: '查看失败',
+            content: '您暂无权限查看该功能，请联系相关系统管理员',
+            showCancel: false,
+            success: function (res) {
+              wx.redirectTo({
+                url: '../index/index'
+              })
+            }
+          })
+        }       
+      } else {
+        wx.navigateTo({
+          url: '../auth/auth?pageName=labQC'
+        })       
+      }    
     },
     fail: function (err) {
       console.log(err);
@@ -114,6 +114,10 @@ swichNav: function (e) {
 
 //下载并打开文件
 openFile: function (event) {
+  var that = this;
+  this.setData({
+    isDown: true
+  })
   var url = event.currentTarget.dataset.url;
   console.log(url);
   const downloadTask = wx.downloadFile({
@@ -121,6 +125,10 @@ openFile: function (event) {
     success: function (res) {
       console.log(res);
       console.log('download succeed！！！！');
+      that.setData({
+        isDown: false,
+        percent: 0,
+      })
       wx.openDocument({
         filePath: res.tempFilePath,
         success: function (res) {
@@ -140,9 +148,13 @@ openFile: function (event) {
   })
 
   downloadTask.onProgressUpdate((res) => {
+    var that =this;
+    that.setData({
+      percent: res.progress,
+    })
     console.log('下载进度', res.progress)
-    console.log('已经下载的数据长度', res.totalBytesWritten)
-    console.log('预期需要下载的数据总长度', res.totalBytesExpectedToWrite)
+    //console.log('已经下载的数据长度', res.totalBytesWritten)
+    //console.log('预期需要下载的数据总长度', res.totalBytesExpectedToWrite)
   })
 },
 

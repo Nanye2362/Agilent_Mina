@@ -1,5 +1,20 @@
+<!-- 下载进度 -->
+<view class="shLoading" wx:if='{{isDown}}'>
+  <view class="shLoading-mask1"></view>
+  <view class="loading">
+    <text></text>
+    <text></text>
+    <text></text>
+    <text></text>
+    <text></text>
+  </view>
+  <text class="loadingText fc-fff">正在打开：{{percent}}%</text>
+</view>
+ <!-- wx:if='{{isDown}}' -->
+
+
 <!-- loading -->
-<view wx:if='{{ISAUTH==0}}'>识别中...</view>
+<view class='reading' wx:if='{{ISAUTH==0}}'>识别中...</view>
 
 
 
@@ -190,7 +205,7 @@
               </view>
               <view class=" fs13 fileC flex directionC">
                 <view class='fc-aaa fs13'>{{item.file_name}}</view>
-                <view class='fs12'>{{item.file_size}}-{{item.file_ext}}</view>
+                <view class='fs12'>{{item.file_size}}kb-{{item.file_ext}}</view>
               </view>
               <view class=" fileR" bindtap='openFile' data-url='{{item.file_path}}'>
                 <view class='fs13 fc-blue fileBtn'>查看</view>
@@ -198,6 +213,12 @@
           </view>
           </block>
           <!-- fileList -->
+
+          <button class="sn_btn btn btn-primary" bindtap='swichNav' circular="false" data-current="1" >查看维修记录</button>
+
+
+
+
 
 
 
@@ -215,12 +236,12 @@
                       <view class="fs14 {{idx==0?'fc-blue':''}}">{{item.SubmitTime}}</view>
                   </view> 
                   <view class="flex">
-                    <view class=" fs13">维修人：</view>
-                    <view class=" fs13">{{item.SubmitPerson}}</view>
+                    <view class=" fs13 rd-l">维修人：</view>
+                    <view class=" fs13 rd-r">{{item.SubmitPerson}}</view>
                   </view>  
                   <view class="flex">
-                      <view class=" fs13">维修记录：</view>
-                      <view class=" fs13">{{item.MaintenanceContent}}</view>
+                      <view class=" fs13 rd-l">维修记录：</view>
+                      <view class=" fs13 rd-r">{{item.MaintenanceContent}}</view>
                   </view>              
                 </view>
                 <!-- recordLabel -->
@@ -260,3 +281,6 @@
   <!-- add_record -->
 </view>
 
+
+
+<!-- <progress percent="{{percent}}" show-info active='{{isDown}}' stroke-width="14" /> -->

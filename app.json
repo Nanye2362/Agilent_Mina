@@ -1,7 +1,7 @@
 {
   "pages": [
-    "pages/labqc/labqc",
     "pages/index/index",
+    "pages/labqc/labqc",
     "pages/my_instrument/my_instrument",
     "pages/ins_group/ins_group", 
     "pages/add_label/add_label",
