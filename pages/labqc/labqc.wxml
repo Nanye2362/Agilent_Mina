@@ -14,82 +14,11 @@
 
 
 <!-- loading -->
-<view class='reading' wx:if='{{ISAUTH==0}}'>识别中...</view>
+<view class='reading' wx:if='{{ISENGINEER==-1}}'>识别中...</view>
 
+<view  wx:if='{{ISENGINEER > -1}}' style='overflow: hidden'>
 
-
-
-<view  wx:if='{{ISAUTH==1}}' style='overflow: hidden'>
-
-  <view wx:if='{{ISENGINEER==-1}}'>识别中...</view>
-
-
-
-  <!-- user -->
-  <view wx:if='{{roleInfo.ISENGINEER==0}}' class='CN'>
-    <!-- title -->
-    <view class='flex cnTitle'>
-      <view class='cnT'></view>
-      <view class='cnTC fc-fff fs12 text-center'>安装信息</view>
-      <view class='cnT'></view>
-    </view>
-    <!-- title -->
-    <view class='flex directionC'>
-      <view class="flex cusName">
-          <view class=" fs13 cnL">安装工程师名字：</view>
-          <view class=" fs13 cnR">{{ldInfo.InsEngineerName}}</view>
-      </view>
-      <view class="flex cusName">
-          <view class=" fs13 cnL">手机：</view>
-          <view class=" fs13 cnR">{{ldInfo.InsEngineerMobile}}</view>
-      </view>
-      <view class="flex cusName">
-          <view class=" fs13 cnL">邮箱：</view>
-          <view class=" fs13 cnR">{{ldInfo.InsEngineerEmail}}</view>
-      </view>
-      <view class="flex cusName">
-          <view class=" fs13 cnL">安装完成时间：</view>
-          <view class=" fs13 cnR">{{ldInfo.InsFinishTime}}</view>
-      </view>
-      <view class="flex cusName">
-          <view class=" fs13 cnL">网络版安装架构：</view>
-          <view class=" fs13 cnR">{{ldInfo.OnlineEditionInstallInfo}}</view>
-      </view>
-    </view>
-
-    <!-- fileList -->
-    <!-- title -->
-    <view class='flex cnTitle'>
-      <view class='cnT'></view>
-      <view class='cnTC fc-fff fs12 text-center'>附件信息</view>
-      <view class='cnT'></view>
-    </view>
-    <!-- title -->
-    <block  wx:for="{{fileList}}" wx:for-item="item" wx:key='unique'  wx:for-index="idx">
-    <view class="flex file">
-        <view class='fileL'>
-          <image class='fileImg' src='/images/file.jpg'></image>
-        </view>
-        <view class=" fs13 fileC flex directionC">
-          <view class='fc-aaa fs13'>{{item.file_name}}</view>
-          <view class='fs12'>{{item.file_size}}kb-{{item.file_ext}}</view>
-        </view>
-        <view class=" fileR" bindtap='openFile' data-url='{{item.file_path}}'>
-          <view class='fs13 fc-blue fileBtn text-center'>查看</view>
-        </view>
-    </view>
-    </block>
-    <!-- fileList -->
-
-
-    <button class="sn_btn btn btn-primary" open-type='contact' session-from='{{Soft}}'>软件咨询</button>
-    <button class="sn_btn btn btn-primary" open-type='contact' session-from='{{Hard}}'>硬件咨询</button>
-  </view>
-
-
-
-
-
+  
   <!-- engineer -->
   <view wx:if='{{roleInfo.ISENGINEER>0}}' class='CN'>
     <!-- tab -->
@@ -259,28 +188,86 @@
   </view>
 
 
+  <!-- user -->
+  <view wx:if='{{roleInfo.ISENGINEER==0}}' class='CN'>
+    <!-- title -->
+    <view class='flex cnTitle'>
+      <view class='cnT'></view>
+      <view class='cnTC fc-fff fs12 text-center'>安装信息</view>
+      <view class='cnT'></view>
+    </view>
+    <!-- title -->
+    <view class='flex directionC'>
+      <view class="flex cusName">
+          <view class=" fs13 cnL">服务工程师：</view>
+          <view class=" fs13 cnR">{{ldInfo.InsEngineerName}}</view>
+      </view>
+      <!-- <view class="flex cusName">
+          <view class=" fs13 cnL">手机：</view>
+          <view class=" fs13 cnR">{{ldInfo.InsEngineerMobile}}</view>
+      </view> -->
+      <view class="flex cusName">
+          <view class=" fs13 cnL">邮箱：</view>
+          <view class=" fs13 cnR">{{ldInfo.InsEngineerEmail}}</view>
+      </view>
+      <view class="flex cusName">
+          <view class=" fs13 cnL">服务完成时间：</view>
+          <view class=" fs13 cnR">{{ldInfo.InsFinishTime}}</view>
+      </view>
+      <view class="flex cusName">
+          <view class=" fs13 cnL">网络版安装架构：</view>
+          <view class=" fs13 cnR">{{ldInfo.OnlineEditionInstallInfo}}</view>
+      </view>
+    </view>
+
+    <!-- fileList -->
+    <!-- title -->
+    <view class='flex cnTitle'>
+      <view class='cnT'></view>
+      <view class='cnTC fc-fff fs12 text-center'>附件信息</view>
+      <view class='cnT'></view>
+    </view>
+    <!-- title -->
+    <block  wx:for="{{fileList}}" wx:for-item="item" wx:key='unique'  wx:for-index="idx">
+    <view class="flex file">
+        <view class='fileL'>
+          <image class='fileImg' src='/images/file.jpg'></image>
+        </view>
+        <view class=" fs13 fileC flex directionC">
+          <view class='fc-aaa fs13'>{{item.file_name}}</view>
+          <view class='fs12'>{{item.file_size}}kb-{{item.file_ext}}</view>
+        </view>
+        <view class=" fileR" bindtap='openFile' data-url='{{item.file_path}}'>
+          <view class='fs13 fc-blue fileBtn text-center'>查看</view>
+        </view>
+    </view>
+    </block>
+    <!-- fileList -->
 
 
-  <!-- add_record -->
-  <view class="shLoading" wx:if='{{popup}}'>
-    <view class="shLoading-mask1"  bindtap="Popup">
-    </view>
-    <view class="shLoading-panel flex alignc directionC">
-        <view class="shLoading-head-panel">
-            <view class='fs15 text-alignC'>添加维修记录</view>
-            <view class='add_input'>
-              <input placeholder="填写维修内容"  class='fs13' bindinput='bindKeyInput'></input>
-            </view>
-        </view>
-        <view class="shLoading-btn-panel">
-            <view class="shLoading-btn-cancel" bindtap="Popup">取消</view>
-            <view class="shLoading-btn-ok" bindtap="confirmAdd">确认</view>
-        </view>
-    </view>
+    <button class="sn_btn btn btn-primary" open-type='contact' session-from='{{Soft}}'>软件咨询</button>
+    <button class="sn_btn btn btn-primary" open-type='contact' session-from='{{Hard}}'>硬件咨询</button>
   </view>
-  <!-- add_record -->
+
+
 </view>
 
-
+<!-- add_record -->
+<view class="shLoading" wx:if='{{popup}}'>
+  <view class="shLoading-mask1"  bindtap="Popup">
+  </view>
+  <view class="shLoading-panel flex alignc directionC">
+      <view class="shLoading-head-panel">
+          <view class='fs15 text-alignC'>添加维修记录</view>
+            <!-- <input placeholder="填写维修内容"  class='fs13' bindinput='bindKeyInput'></input> -->
+            <textarea class='fs13 textarea' bindinput='bindKeyInput' auto-height='{{false}}' placeholder="填写维修内容" />
+      </view>
+      <view class="shLoading-btn-panel">
+          <view class="shLoading-btn-cancel" bindtap="Popup">取消</view>
+          <view class="shLoading-btn-ok" bindtap="confirmAdd">确认</view>
+      </view>
+  </view>
+</view>
+<!-- add_record -->
 
 <!-- <progress percent="{{percent}}" show-info active='{{isDown}}' stroke-width="14" /> -->

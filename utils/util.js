@@ -82,6 +82,7 @@ function _NetRequest({ url, data, success, fail, complete, method = "POST", show
 
   console.log(session_id);
   url = host + url;
+  console.log(url);
   wx.request({
     url: url,
     method: method,

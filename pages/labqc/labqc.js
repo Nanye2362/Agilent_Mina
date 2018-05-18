@@ -61,35 +61,47 @@ onShow: function (options) {
     },
     success: function (res) {
       console.log(res)
-      if (res.roleInfo.ISAUTH==1) {
-        if (res.roleInfo.CpKeyword){
-          that.setData({
-            roleInfo: res.roleInfo,
-            ldInfo: res.ldInfo,
-            mrInfo: res.mrInfo,
-            fileList: res.fileList,
-            ISAUTH: res.roleInfo.ISAUTH,
-            ISENGINEER: res.roleInfo.ISENGINEER,
-            Soft: 'SW_lid:' + res.ldInfo.LaboratoryID,
-            Hard: 'W_lid:' + res.ldInfo.LaboratoryID,
+      if (res.roleInfo.ISENGINEER > 0){
+        console.log(1111);
+        that.setData({
+          roleInfo: res.roleInfo,
+          ldInfo: res.ldInfo,
+          mrInfo: res.mrInfo,
+          fileList: res.fileList,
+          ISENGINEER: res.roleInfo.ISENGINEER,
+        })
+      }else{
+        if (res.roleInfo.ISAUTH == 1) {
+          if (res.roleInfo.CpKeyword) {
+            that.setData({
+              roleInfo: res.roleInfo,
+              ldInfo: res.ldInfo,
+              mrInfo: res.mrInfo,
+              fileList: res.fileList,
+              ISAUTH: res.roleInfo.ISAUTH,
+              ISENGINEER: res.roleInfo.ISENGINEER,
+              Soft: 'SW_lid:' + res.ldInfo.LaboratoryID,
+              Hard: 'W_lid:' + res.ldInfo.LaboratoryID,
+            })
+          } else {
+            wx.showModal({
+              title: '查看失败',
+              content: '您暂无权限查看该功能，请联系相关系统管理员',
+              showCancel: false,
+              success: function (res) {
+                console.log('should go to index');
+                wx.switchTab({
+                  url: '../index/index'
+                })
+              }
+            })
+          }
+        } else {
+          wx.navigateTo({
+            url: '../auth/auth?pageName=labQC'
           })
-        }else{
-          wx.showModal({
-            title: '查看失败',
-            content: '您暂无权限查看该功能，请联系相关系统管理员',
-            showCancel: false,
-            success: function (res) {
-              wx.redirectTo({
-                url: '../index/index'
-              })
-            }
-          })
-        }       
-      } else {
-        wx.navigateTo({
-          url: '../auth/auth?pageName=labQC'
-        })       
-      }    
+        }
+      }         
     },
     fail: function (err) {
       console.log(err);

@@ -223,13 +223,13 @@ page{
 .repair_btn{
   margin-top: 130rpx;
 }
-.add_input{
-  padding:10rpx 0;
-  border-bottom: 1px solid #e7e7e7;
-  margin: 50rpx 0;
-  width: 450rpx;
-  text-align: center;
-  position: relative;
+.textarea{
+  padding: 20rpx;
+  border: 1px solid #e2e2e2;
+  width:500rpx;
+  height: 260rpx;
+  margin: 20rpx auto;
+  border-radius: 10rpx;
 }
 
 
