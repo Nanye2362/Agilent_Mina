@@ -9,6 +9,7 @@
 
 .bc_remind {
     margin-bottom: 80rpx;
+    line-height:1.5;
 }
 
 .bc_order_icon {
@@ -21,6 +22,7 @@
 .bc_order {
     display: block;
     height: 70rpx;
+    text-align: center;
 }
 
 

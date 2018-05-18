@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/budget_confirm/budget_confirm",
     "pages/index/index",
     "pages/my_instrument/my_instrument",
     "pages/ins_group/ins_group", 
@@ -28,7 +29,7 @@
     "pages/confirm_info/confirm_info",
     "pages/serial_number/serial_number",
     "pages/service_guide/service_guide",
-    "pages/budget_confirm/budget_confirm",
+    
     "pages/personal_info/personal_info",
     "pages/logs/logs",
     "pages/leave_message/leave_message",

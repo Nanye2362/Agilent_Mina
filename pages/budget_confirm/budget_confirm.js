@@ -1,3 +1,6 @@
+var util = require('../../utils/util.js');
+
+
 // pages/budget_confirm/budget_confirm.js
 Page({
 
@@ -16,6 +19,17 @@ Page({
     var app = getApp();
     app.mta.Page.init();
     //腾讯mat统计结束
+    console.log(options);
+    util.NetRequest({
+      url: 'site-mini/get-budget',
+      data: {
+        srId: options.srId,
+        objectId: options.objectId
+      },
+      success: function (r) {
+      }
+    })
+
   },
 
   /**
