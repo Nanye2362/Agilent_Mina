@@ -40,3 +40,11 @@
     text-decoration: underline;
 }
 .chatimg{ width: 50rpx; height: 38rpx; vertical-align: sub;margin-right: 6rpx; margin-left: 10rpx;}
+
+#confirm:disabled {
+    background: #a6d5f1;
+}
+
+.bq_checkbox_panel{
+  text-align: center;
+}

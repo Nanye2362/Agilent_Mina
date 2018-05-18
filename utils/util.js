@@ -16,10 +16,11 @@ function formatNumber(n) {
   return n[1] ? n : '0' + n
 }
 
+var urlArr = ["wechat-mini/wx-login", "api/check-lunch"];//未登录可以使用的url
 let ocrServer ="https://msd.coffeelandcn.cn/";
 //let ocrServer = "https://devopsx.coffeelandcn.cn/";
-let Server = "https://devopsx.coffeelandcn.cn/"; //DEV
-//let Server = "https://devops.coffeelandcn.cn/"; //UAT
+//let Server = "https://devopsx.coffeelandcn.cn/"; //DEV
+let Server = "https://devops.coffeelandcn.cn/"; //UAT
 //let Server = "https://prd.wechat.service.agilent.com/"; //PRO
 var arrRequest=[],isRequesting=false;
 function NetRequest({ url, data, success, fail, complete, method = "POST", showload = true, host = Server}) {
@@ -30,7 +31,9 @@ function NetRequest({ url, data, success, fail, complete, method = "POST", showl
       mask: true
     })
   }
-   if (isRequesting){
+  var app=getApp();
+  console.log(app.globalData.isLogin);
+  if (isRequesting || (!app.globalData.isLogin && !in_array(url,urlArr))){
       arrRequest.push(obj);
       return;
    }
@@ -51,7 +54,7 @@ function in_array(stringToSearch, arrayToSearch) {
 function _NetRequest({ url, data, success, fail, complete, method = "POST", showload = true, host = Server}){
   var tempUrl = url;
   var app = getApp();
-  var urlArr = ["wechat-mini/wx-login","api/check-lunch"];//未登录可以使用的url
+  
 
   if (!in_array(url,urlArr)&&app.globalData.needCheck){     
      isRequesting = false;
