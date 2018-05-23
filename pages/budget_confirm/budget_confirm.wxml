@@ -53,7 +53,7 @@
                 </view>
             </block>
           </block>
-          <block>
+          <block wx:else>
             <button class="btn btn-primary" disabled="disabled" >您已确认</button>
           </block>
       </block>
@@ -64,7 +64,7 @@
 
 
 <view class="bc_chat padding text-center">如果对报价有任何问题，请<image class="chatimg" src="/images/wechat_b.png"></image>
-   <button class="fc-blue bc_chat_btn btn-meiqia" open-type='contact' session-from='W' bindtap='MtaReport'>
+   <button class="fc-blue bc_chat_btn btn-meiqia" open-type='contact' session-from='W_bqobjectid:{{bqId}}' bindtap='MtaReport'>
     发起会话</button>
 </view>
 </block>

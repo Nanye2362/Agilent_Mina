@@ -105,6 +105,23 @@ function _NetRequest({ url, data, success, fail, complete, method = "POST", show
         }
       }
 
+      if (!fail){
+        fail=function(){
+          wx.showModal({
+            title: '请求失败',
+            content: '发生错误，请联系客服。',
+            showCancel: false,
+            success: function (res) {
+              if (res.confirm) {
+                wx.switchTab({
+                  url: '../index/index',
+                })
+              }
+            }
+          })
+        }
+      }
+
       let data = res.data
       res['statusCode'] === 200 ? success(data) : fail(res)
     },

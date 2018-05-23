@@ -1,16 +1,16 @@
 {
   "pages": [
-    "pages/budget_confirm/budget_confirm",
+    
     "pages/index/index",
+   	"pages/budget_confirm/budget_confirm",
     "pages/my_instrument/my_instrument",
-    "pages/ins_group/ins_group", 
+    "pages/ins_group/ins_group",
     "pages/add_label/add_label",
     "pages/edit_label/edit_label",
     "pages/ungrouped_list/ungrouped_list",
     "pages/set_group/set_group",
     "pages/group_details/group_details",
     "pages/mechat_list/mechat_list",
-    
     "pages/user_guidelines/user_guidelines",
     "pages/contact_us/contact_us",
     "pages/evaluate/evaluate",
@@ -29,12 +29,12 @@
     "pages/confirm_info/confirm_info",
     "pages/serial_number/serial_number",
     "pages/service_guide/service_guide",
-    
     "pages/personal_info/personal_info",
     "pages/logs/logs",
     "pages/leave_message/leave_message",
     "pages/contact_service/contact_service",
-    "pages/html/openHtml"
+    "pages/html/openHtml",
+    "pages/labqc/labqc"
   ],
   "networkTimeout": {
     "request": 10000

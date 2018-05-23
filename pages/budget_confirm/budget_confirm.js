@@ -9,6 +9,7 @@ Page({
     })
   },
   confirm:function(){
+    var that=this;
     if (!this.data.checkBox){
       wx.showToast({
         title: '请勾选已阅读并接收此报价单',
@@ -23,7 +24,7 @@ Page({
       url: 'site-mini/confirm-budget',
       data: {
         BudgetoryquoteId: this.data.bqId,
-        accountId: this.data.accountId,
+        AccountId: this.data.accountId,
         ContactId: this.data.ContactId
       },
       success: function (r) {
@@ -32,6 +33,9 @@ Page({
             title: '成功',
             icon: 'success',
             duration: 2000
+          })
+          that.setData({
+            isConfirm:1
           })
         } else {
           wx.showToast({
@@ -103,7 +107,6 @@ Page({
       url: 'site-mini/get-budget',
       data: {
         srId: options.srId,
-        isConfirm:0,
         objectId: options.objectId
       },
       success: function (r) {
@@ -115,7 +118,9 @@ Page({
              approval_button_enable: r.data.approval_button_enable,
              item_description: r.data.item_description,
              price: r.data.accept_price,
-             maxprice: r.data.max_price
+             maxprice: r.data.max_price,
+             accountId: r.data.accountId,
+             ContactId: r.data.contactId
            })
         }else{
           that.setData({
