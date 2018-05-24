@@ -325,30 +325,31 @@ function chen_navigateTo(name,url){
 
 //检测是否工作时间
 function checkWorkTime(){
-  setTimeout(function () {
-    var currentPages = getCurrentPages();
-    var _this = currentPages[currentPages.length - 1];
-    console.log(_this.data);
-    checkWorktime(function(){
-      _this.setData({
-        isWork: false,
-      })
-      console.log("----chektime----");
-      checkWorkTime();
-    },function(){
-      _this.setData({
-        isWork: false,
-      })    
-      console.log("----chektime----");
-      checkWorkTime();
-    },false);   
-  }, 60000);
+  worktime();
+}
+function worktime(){
+  var currentPages = getCurrentPages();
+  var _this = currentPages[currentPages.length - 1];
+  console.log(_this.data);  
+  checkWorktime(function () {
+    _this.setData({
+      isWork: true,
+    })
+    console.log("----chektime----");
+    setTimeout(worktime, 60000);
+  }, function () {
+    _this.setData({
+      isWork: false,
+    })
+    console.log("----chektime----");
+    setTimeout(worktime, 60000);
+  }, false);
 }
 
 function isWorkTime(){
-  console.log('outWorkTime');
-  var app = getApp();
-  if (app.globalData.isWorkTime){
+  var currentPages = getCurrentPages();
+  var _this = currentPages[currentPages.length - 1];
+  if (_this.data.isWork){
     return true;
   }else{
     wx.showModal({

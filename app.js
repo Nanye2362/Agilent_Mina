@@ -78,7 +78,6 @@ App({
     isFirstLunch: true, //是否第一次打开
     isUploading: false, //是否正在上传
     loginText:'',
-    isWorkTime: false,//是否工作时间 true为工作时间
     tabbar: {
       "color": "#a9b7b7",
       "selectedColor": "#0085d5",

@@ -4,7 +4,7 @@ var util = require('../../utils/util.js');
 // pages/budget_confirm/budget_confirm.js
 Page({
   contractConfirm:function(e){
-    this.setData({
+    this.setData({ 
       checkBox: e.detail.value.length==1
     })
   },
@@ -83,6 +83,12 @@ Page({
       }
     })
   },
+  //检测工作时间
+  MtaReport: function () {
+    util.isWorkTime();
+    var app = getApp();
+    app.mta.Event.stat("meqia", { "group": 'NONTECH' });
+  },
   /**
    * 页面的初始数据
    */
@@ -97,6 +103,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    util.checkWorkTime();
     //腾讯mat统计开始
     var app = getApp();
     var that=this;

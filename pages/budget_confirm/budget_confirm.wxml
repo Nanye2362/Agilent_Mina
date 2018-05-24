@@ -64,9 +64,10 @@
 
 
 <view class="bc_chat padding text-center">如果对报价有任何问题，请<image class="chatimg" src="/images/wechat_b.png"></image>
-   <button class="fc-blue bc_chat_btn btn-meiqia" open-type='contact' session-from='W_bqobjectid:{{bqId}}' bindtap='MtaReport'>
+   <button class="fc-blue bc_chat_btn btn-meiqia" open-type='{{isWork?"contact":""}}' session-from='W_bqobjectid:{{bqId}}' bindtap='MtaReport'>
     发起会话</button>
 </view>
 </block>
  
 
+ 
