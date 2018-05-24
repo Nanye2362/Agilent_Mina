@@ -346,17 +346,26 @@ function worktime(){
   }, false);
 }
 
-function isWorkTime(){
+function isWorkTime(isAlert=false){
   var currentPages = getCurrentPages();
   var _this = currentPages[currentPages.length - 1];
   if (_this.data.isWork){
     return true;
   }else{
-    wx.showModal({
-      title: '温馨提示',
-      content: '感谢您一直以来对我们工作的关注和支持。我们的工作时间是周一至周五的 8:30-17:30，双休日（除节假日外）仅提供紧急电话技术支持，服务时间为：9:00-17:00。',
-      showCancel: false
-    })
+    if (isAlert){
+      wx.showModal({
+        title: '温馨提示',
+        content: '感谢您一直以来对我们工作的关注和支持。我们的工作时间是周一至周五的 8:30-17:30，双休日（除节假日外）仅提供紧急电话技术支持，服务时间为：9:00-17:00。',
+        showCancel: false,
+        success: function (res) {
+
+        }
+      })
+    }else{
+      wx.redirectTo({
+        url: '../leave_message/leave_message',
+      })
+    }
   }
 }
 

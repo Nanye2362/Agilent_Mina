@@ -85,7 +85,7 @@ Page({
   },
   //检测工作时间
   MtaReport: function () {
-    util.isWorkTime();
+    util.isWorkTime(true);
     var app = getApp();
     app.mta.Event.stat("meqia", { "group": 'NONTECH' });
   },

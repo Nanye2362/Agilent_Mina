@@ -122,7 +122,7 @@ Page({
   },
 
   MtaReport: function(){
-    util.isWorkTime();
+    util.isWorkTime(true);
     var app = getApp();
     app.mta.Event.stat("meqia", { "group": 'TECH' });
   },

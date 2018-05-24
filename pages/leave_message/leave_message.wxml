@@ -49,6 +49,6 @@
             </view>
         </view>
     </view>
-    <view class="btn btn-primary" bindtap="submit">确定</view>
+    <view class="btn btn-primary" bindtap="submit">提交</view>
 </form>
 
