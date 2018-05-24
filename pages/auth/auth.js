@@ -21,7 +21,7 @@ Page({
     shLoading:false,
     shLoading_title:"",
     shLoading_body:"",
-    skipFlag:0
+    skipFlag:0,
   },
   skipFillInfo:function(){
       if (this.data.skipFlag==1) {
@@ -40,6 +40,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options,e) {
+    util.checkWorkTime();
     //腾讯mat统计开始
     var app = getApp();
     app.mta.Page.init();
@@ -235,5 +236,13 @@ Page({
       this.setData({ verification_code: scode });
     }
   },
+
+  //检测工作时间
+  isWorkTime: function () {
+    util.isWorkTime();
+    var app = getApp();
+    app.mta.Event.stat("meqia", { "group": 'NONTECH' });
+  },
+
 
 })

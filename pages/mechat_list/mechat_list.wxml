@@ -68,7 +68,7 @@
       <view class="shLoading-btn-panel">
           <view class="shLoading-btn-cancel" bindtap="infoCancelTap">返回修改</view>
           <view class="shLoading-btn-ok">发起咨询
-          <button open-type='contact' bindtap="startChat" class="shLoading-btn-contact" data-group="{{meqiaGroup}}" session-from='{{meqiaGroup}}_dataid:{{sessionId}}'></button></view>
+          <button open-type='{{isWork?"contact":""}}' bindtap="startChat" class="shLoading-btn-contact" data-group="{{meqiaGroup}}" session-from='{{meqiaGroup}}_dataid:{{sessionId}}'></button></view>
       </view>
   </view>
 </view>

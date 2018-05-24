@@ -59,6 +59,7 @@ Page({
     }
   },
   startChat:function(e){
+    util.isWorkTime();
     var app = getApp();
     app.mta.Event.stat("meqia", { "group": e.target.dataset.group});
     this.setData({
@@ -302,6 +303,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    util.checkWorkTime();
     //腾讯mat统计开始
     var app = getApp();
     app.mta.Page.init();
@@ -370,14 +372,10 @@ Page({
   },
   showOfflineText:function(){
       wx.showModal({
-        title: '提示',
+        title: '温馨提示',
         content: '感谢您一直以来对我们工作的关注和支持。我们的工作时间是周一至周五的 8:30-17:30，双休日（除节假日外）仅提供紧急电话技术支持，服务时间为：9:00-17:00。',
+        showCancel: false,
         success: function (res) {
-          if (res.confirm) {
-            console.log('用户点击确定')
-          } else if (res.cancel) {
-            console.log('用户点击取消')
-          }
         }
       })
   }

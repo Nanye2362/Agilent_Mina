@@ -179,6 +179,7 @@ page{
 .rd-r{
   flex: .7;
   text-align: left!important;
+  word-break: break-all;
 }
 .recordDetails > view:not(:last-child){
   margin-bottom: 10rpx;

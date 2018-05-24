@@ -33,6 +33,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    util.checkWorkTime();
     console.log(options)
     this.setData({
       GroupID: options.GroupID
@@ -69,8 +70,14 @@ Page({
   },
 
   MtaReport: function () {
+    util.isWorkTime();
     var app = getApp();
     app.mta.Event.stat("meqia", { "group": 'WLA' });
+  },
+  MtaReportt: function () {
+    util.isWorkTime();
+    var app = getApp();
+    app.mta.Event.stat("meqia", { "group": 'NONTECH' });
   },
   
   chooseimage: function () {

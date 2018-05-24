@@ -222,9 +222,10 @@ function IsCertificate(success,fail){
 }
 
 //判断是否为工作时间,true为是工作时间，false为非工作时间
-function checkWorktime(success,fail) {
+function checkWorktime(success, fail, showload=true) {
   NetRequest({
     url: 'util/get-worktime',
+    showload: showload,
     success: function (res) {
       if (res == 1) {
         success();
@@ -305,6 +306,42 @@ function chen_navigateTo(name,url){
     }
 }
 
+//检测是否工作时间
+function checkWorkTime(){
+  setTimeout(function () {
+    var currentPages = getCurrentPages();
+    var _this = currentPages[currentPages.length - 1];
+    console.log(_this.data);
+    checkWorktime(function(){
+      _this.setData({
+        isWork: false,
+      })
+      console.log("----chektime----");
+      checkWorkTime();
+    },function(){
+      _this.setData({
+        isWork: false,
+      })    
+      console.log("----chektime----");
+      checkWorkTime();
+    },false);   
+  }, 60000);
+}
+
+function isWorkTime(){
+  console.log('outWorkTime');
+  var app = getApp();
+  if (app.globalData.isWorkTime){
+    return true;
+  }else{
+    wx.showModal({
+      title: '温馨提示',
+      content: '感谢您一直以来对我们工作的关注和支持。我们的工作时间是周一至周五的 8:30-17:30，双休日（除节假日外）仅提供紧急电话技术支持，服务时间为：9:00-17:00。',
+      showCancel: false
+    })
+  }
+}
+
 
 module.exports = {
   formatTime: formatTime,
@@ -317,5 +354,8 @@ module.exports = {
   getUserInfo: getUserInfo,
   checkWorktime: checkWorktime,
   backHome: backHome,
-  chen_navigateTo: chen_navigateTo
+  chen_navigateTo: chen_navigateTo,
+  checkWorkTime: checkWorkTime,
+  checkWorkTime:checkWorkTime,
+  isWorkTime: isWorkTime,
 }

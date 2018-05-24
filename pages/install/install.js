@@ -25,9 +25,9 @@ Page({
   },
 
   MtaReport: function () {
+    util.isWorkTime();
     var app = getApp();
     app.mta.Event.stat("meqia", { "group": 'WLA' });
-    console.log('大神要的MTA');
   },
 
   blurfun: function (event) {
@@ -185,6 +185,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+
+    util.checkWorkTime();
     //腾讯mta统计开始
     var app = getApp();
     app.mta.Page.init();

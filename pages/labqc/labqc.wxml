@@ -245,8 +245,8 @@
     <!-- fileList -->
 
 
-    <button class="sn_btn btn btn-primary" open-type='contact' session-from='{{Soft}}'>软件咨询</button>
-    <button class="sn_btn btn btn-primary" open-type='contact' session-from='{{Hard}}'>硬件咨询</button>
+    <button class="sn_btn btn btn-primary" open-type='{{isWork?"contact":""}}' session-from='{{Soft}}' bindtap="isWorkTime" >软件咨询</button>
+    <button class="sn_btn btn btn-primary" open-type='{{isWork?"contact":""}}' session-from='{{Hard}}' bindtap="isWorkTimee" >硬件咨询</button>
   </view>
 
 
