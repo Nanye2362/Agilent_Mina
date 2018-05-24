@@ -1,9 +1,8 @@
 {
   "pages": [
-    
     "pages/index/index",
-   	"pages/budget_confirm/budget_confirm",
     "pages/labqc/labqc",
+   	"pages/budget_confirm/budget_confirm",
     "pages/my_instrument/my_instrument",
     "pages/ins_group/ins_group",
     "pages/add_label/add_label",
@@ -34,7 +33,7 @@
     "pages/logs/logs",
     "pages/leave_message/leave_message",
     "pages/contact_service/contact_service",
-    "pages/html/openHtml",
+    "pages/html/openHtml"
   ],
   "networkTimeout": {
     "request": 10000
