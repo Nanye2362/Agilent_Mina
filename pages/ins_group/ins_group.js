@@ -29,7 +29,7 @@ Page({
      * 生命周期函数--监听页面显示
      */
   onShow: function () {
-    var that = this
+    var that = this 
     util.NetRequest({
       url: 'site-mini/ins-group',
       data: {
@@ -176,6 +176,14 @@ Page({
               console.log(err);
             }
           })
+        }else{
+          wx.showModal({
+            title: '设置失败',
+            content: '服务器错误，请重新尝试',
+            showCancel: false,
+            success: function (res) {
+            }
+          })
         }
       },
       fail: function (err) {
@@ -223,14 +231,25 @@ Page({
         success: function (res) {
           console.log(res);
           console.log(that.data.GroupList)
-          var curGroup = { GroupID: res.CurrentGroup.ID, GroupName: res.CurrentGroup.GroupName, GroupSnCount: "0", deleted: true, editting: false, idx: that.data.GroupList.length }
-          var gl = that.data.GroupList.concat(curGroup);
-          console.log(gl)
-          console.log(gl.length)
-          that.setData({
-            GroupList: gl,
-            GroupCount: gl.length
-          })
+          if(res.CurrentGroup.ID){
+            var curGroup = { GroupID: res.CurrentGroup.ID, GroupName: res.CurrentGroup.GroupName, GroupSnCount: "0", deleted: true, editting: false, idx: that.data.GroupList.length }
+            var gl = that.data.GroupList.concat(curGroup);
+            console.log(gl)
+            console.log(gl.length)
+            that.setData({
+              GroupList: gl,
+              GroupCount: gl.length
+            })
+          }else{
+            wx.showModal({
+              title: '创建失败',
+              content: '服务器错误，请重新尝试',
+              showCancel: false,
+              success: function (res) {
+              }
+            })
+          }
+          
         },
         fail: function (err) {
           console.log(err);

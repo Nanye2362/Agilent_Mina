@@ -135,6 +135,14 @@ Page({
                 that.setData({
                   LabelList: labelList
                 })
+              }else{
+                wx.showModal({
+                  title: '删除失败',
+                  content: '服务器错误，请重新尝试',
+                  showCancel: false,
+                  success: function (res) {
+                  }
+                })
               }
             },
             fail: function (err) {
@@ -214,6 +222,14 @@ Page({
           console.log(labelList);
           that.setData({
             LabelList: labelList
+          })
+        }else{
+          wx.showModal({
+            title: '修改失败',
+            content: '服务器错误，请重新尝试',
+            showCancel: false,
+            success: function (res) {
+            }
           })
         }
       },

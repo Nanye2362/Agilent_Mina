@@ -28,7 +28,7 @@
 <!-- gotoChat -->
 <view class="cs_con" wx:if="{{chat}}">
     <view class="text-center fs12">如果您有任何问题，请
-        <button class="fc-blue bc_chat_btn btn-meiqia" open-type='contact' session-from='{{NONTECH+inputValue}}' bindtap='MtaReport'><image src="/images/wechat_b.png"></image>
+        <button class="fc-blue bc_chat_btn btn-meiqia" open-type='{{isWork?"contact":""}}' session-from='{{NONTECH+inputValue}}' bindtap='MtaReport'><image src="/images/wechat_b.png"></image>
     发起会话</button></view>
 </view>
 
@@ -43,7 +43,7 @@
       </view>
       <view class="shLoading-btn-panel">
           <view class="shLoading-btn-cancel" bindtap="">发起会话
-           <button open-type='contact' bindtap="" class="shLoading-btn-contact" session-from='{{NONTECH+inputValue}}'></button></view>
+           <button open-type='{{isWork?"contact":""}}' bindtap="MtaReportt" class="shLoading-btn-contact" session-from='{{NONTECH+inputValue}}'></button></view>
           <view class="shLoading-btn-ok" bindtap="shClose">重新上传</view>
       </view>
   </view>

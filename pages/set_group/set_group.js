@@ -79,11 +79,22 @@ Page({
       },
       success: function (res) {
         console.log(res);
-        var gl = that.data.groupList.concat(res.CurrentGroup);
-        console.log(gl)
-        that.setData({
-          groupList: gl
-        })
+        if(res.CurrentGroup.ID){
+          var gl = that.data.groupList.concat(res.CurrentGroup);
+          console.log(gl)
+          that.setData({
+            groupList: gl
+          })
+        }else{
+          wx.showModal({
+            title: '创建失败',
+            content: '服务器错误，请重新尝试',
+            showCancel: false,
+            success: function (res) {
+            }
+          })
+        }
+        
       },
       fail: function (err) {
         console.log(err);
@@ -110,9 +121,23 @@ Page({
       },
       success: function (res) {
         console.log(res);
-        wx.navigateBack({
-          delta: 1
-        })
+        if(res.result){
+          wx.navigateBack({
+            delta: 1
+          })
+        }else{
+          wx.showModal({
+            title: '设置失败',
+            content: '服务器错误，请重新尝试',
+            showCancel: false,
+            success: function (res) {
+              wx.navigateBack({
+                delta: 1
+              })
+            }
+          })
+        }
+        
       },
       fail: function (err) {
         console.log(err);

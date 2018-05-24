@@ -45,6 +45,7 @@ Page({
     this.data.isFirst = false;
   },
   onLoad: function (option) {
+    util.checkWorkTime();
     //腾讯mat统计开始
     var app = getApp();
     app.mta.Page.init();
@@ -121,6 +122,7 @@ Page({
   },
 
   MtaReport: function(){
+    util.isWorkTime();
     var app = getApp();
     app.mta.Event.stat("meqia", { "group": 'TECH' });
   },
