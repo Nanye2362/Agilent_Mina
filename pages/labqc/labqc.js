@@ -26,14 +26,15 @@ Page({
    */
   onLoad: function (options) {
     util.checkWorkTime();
-    var scene = decodeURIComponent(options.scene)   
-    if (options.scene!=''){
+    var scene = decodeURIComponent(options.scene)  
+    console.log(scene); 
+    if (typeof(options.scene)!='undefined'){
       this.setData({
         scene: scene,
       })
     }else{
-      wx.navigateTo({
-        url: '../index/index'
+      wx.switchTab({
+        url: '../index/index',
       })
     }  
     /* 获取系统信息 */
