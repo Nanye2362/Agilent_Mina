@@ -20,8 +20,8 @@ var urlArr = ["wechat-mini/wx-login", "api/check-lunch"];//未登录可以使用
 let ocrServer ="https://msd.coffeelandcn.cn/";
 //let ocrServer = "https://devopsx.coffeelandcn.cn/";
 //let Server = "https://devopsx.coffeelandcn.cn/"; //DEV
-let Server = "https://devops.coffeelandcn.cn/"; //UAT
-//let Server = "https://prd.wechat.service.agilent.com/"; //PRO
+//let Server = "https://devops.coffeelandcn.cn/"; //UAT
+let Server = "https://prd.wechat.service.agilent.com/"; //PRO
 var arrRequest=[],isRequesting=false;
 function NetRequest({ url, data, success, fail, complete, method = "POST", showload = true, host = Server}) {
   var obj = { url: url, data: data, success: success, fail: fail, complete: complete, method: method, showload: showload, host: host}; 
@@ -244,7 +244,7 @@ function checkWorktime(success, fail, showload=true) {
     url: 'util/get-worktime',
     showload: showload,
     success: function (res) {
-      if (res == 1) {
+      if (res==1) {
         success();
       } else {
         fail();
@@ -325,9 +325,9 @@ function chen_navigateTo(name,url){
 
 //检测是否工作时间
 function checkWorkTime(){
-  worktime();
+  worktime(true);
 }
-function worktime(){
+function worktime(shLoading=false){
   var currentPages = getCurrentPages();
   var _this = currentPages[currentPages.length - 1];
   console.log(_this.data);  
@@ -343,7 +343,7 @@ function worktime(){
     })
     console.log("----chektime----");
     setTimeout(worktime, 60000);
-  }, false);
+    }, shLoading);
 }
 
 function isWorkTime(isAlert=false){
@@ -383,6 +383,5 @@ module.exports = {
   backHome: backHome,
   chen_navigateTo: chen_navigateTo,
   checkWorkTime: checkWorkTime,
-  checkWorkTime:checkWorkTime,
   isWorkTime: isWorkTime,
 }
