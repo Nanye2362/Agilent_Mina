@@ -186,7 +186,7 @@ Page({
    */
   onLoad: function (options) {
 
-    util.checkWorkTime();
+    util.checkTime();
     //腾讯mta统计开始
     var app = getApp();
     app.mta.Page.init();

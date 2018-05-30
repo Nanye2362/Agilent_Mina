@@ -244,8 +244,7 @@ function checkWorktime(success, fail, showload=true) {
     url: 'util/get-worktime',
     showload: showload,
     success: function (res) {
-      if (res==1) {
-        success();
+      if (res == 1) {        success();
       } else {
         fail();
       }
@@ -324,7 +323,7 @@ function chen_navigateTo(name,url){
 }
 
 //检测是否工作时间
-function checkWorkTime(){
+function checkTime(){
   worktime(true);
 }
 function worktime(shLoading=false){
@@ -382,6 +381,5 @@ module.exports = {
   checkWorktime: checkWorktime,
   backHome: backHome,
   chen_navigateTo: chen_navigateTo,
-  checkWorkTime: checkWorkTime,
-  isWorkTime: isWorkTime,
+checkTime: checkTime,  isWorkTime: isWorkTime,
 }

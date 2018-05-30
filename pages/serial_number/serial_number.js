@@ -34,7 +34,7 @@ Page({
    */
   onLoad: function (options) {
     console.log(options);
-    util.checkWorkTime();
+    util.checkTime();
     if (typeof (options.GroupID) !='undefined'){
       this.setData({
         GroupID: options.GroupID
