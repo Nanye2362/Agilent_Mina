@@ -25,7 +25,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    util.checkWorkTime();
+    util.checkTime();
     var scene = decodeURIComponent(options.scene)  
     console.log(scene); 
     if (typeof(options.scene)!='undefined'){
