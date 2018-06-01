@@ -13,7 +13,6 @@ Page({
       sn:'',
       NONTECH:'N'
     },
-
     onLoad: function (options) {
       util.checkTime();
       //腾讯mta统计开始
@@ -30,6 +29,7 @@ Page({
     },
     //submit form
     submitConfirm: function(e){
+      util.submitFormId(e.detail.formId);
       console.log(e.detail.value)
       //获取手机
       var mobile = this.data.mobile

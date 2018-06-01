@@ -5,7 +5,7 @@
 </view>
 
 <!-- form -->
-<form class="lm_form" id="lm_form" method="">
+<form class="lm_form" id="lm_form" method="" report-submit="true" bindsubmit="formSubmit">
     <view class="s-list flex directionC">
         <view class="s-item flex alignc">
             <view class="item-t fc-g fs14">姓名：</view>
@@ -49,6 +49,8 @@
             </view>
         </view>
     </view>
-    <view class="btn btn-primary" bindtap="submit">提交</view>
+    <button plain="true" class="formbtn" form-type="submit" data-click="submit">
+    <view class="btn btn-primary">提交</view>
+    </button>
 </form>
 

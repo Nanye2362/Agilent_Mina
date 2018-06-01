@@ -12,6 +12,12 @@ Page({
     desc: "",
     sn: ""
   },
+  formSubmit: function (e) {
+    var clickevent = e.detail.target.dataset.click;
+    console.log(e.detail.formId);
+    util.submitFormId(e.detail.formId);
+    this[clickevent](e.detail.target);
+  },
   blurfun: function (event) {
     this.setData(JSON.parse('{"' + event.target.dataset.name + '":"' + event.detail.value + '"}'));
   },

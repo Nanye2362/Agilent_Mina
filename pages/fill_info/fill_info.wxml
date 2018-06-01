@@ -6,7 +6,7 @@
 <view class="padding">
     <text class="fs12 fc-red ">温馨提示：您的手机在系统里还没有建档。请填写以下资料，我们会尽快为您建档。</text>
 </view>
-<form bindsubmit="submitConfirm" class="fillinfo_form" id="fillinfo_form">
+<form bindsubmit="submitConfirm" class="fillinfo_form" id="fillinfo_form" report-submit="true" >
     <!-- service-infomation -->
     <view class="s-list flex directionC">
         <view class="s-item flex alignc">

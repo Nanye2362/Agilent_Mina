@@ -4,6 +4,12 @@ var util = require('../../utils/util.js');
 var app = getApp()
 var routes = require('../../utils/routes');
 Page({
+  formSubmit:function(e){
+    var clickevent = e.detail.target.dataset.click;
+    console.log(e.detail.formId);
+    util.submitFormId(e.detail.formId);
+    this[clickevent](e.detail.target);
+  },
   data: {
     text: '',
     marqueePace: 1,//滚动速度
@@ -148,8 +154,9 @@ Page({
 **  我要报修跳转
 */
   clickToRepair: function (event) {
+    
     var app = getApp();
-    app.mta.Event.stat(event.currentTarget.dataset.info, {});
+    app.mta.Event.stat(event.dataset.info, {});
 
     util.IsCertificate(function(){
         //已绑定
@@ -185,21 +192,23 @@ Page({
 ** 安装申请、服务历史 点击跳转
 */
   nevigateToNext: function(e){
-    console.log(e.currentTarget.dataset.info);
+    console.log(e.dataset.info);
     var app=getApp();
-    app.mta.Event.stat(e.currentTarget.dataset.info, {});
+    app.mta.Event.stat(e.dataset.info, {});
     
-    console.log(e)
-    var url = e.currentTarget.dataset.url;
+    var url = e.dataset.url;
+
       util.IsCertificate(function () {
+        console.log(1111);
         //绑定的话,跳转相应页面
         wx.navigateTo({
           url: url,
         })
         //未绑定，则跳转认证页面
       }, function () {
+        console.log(2222);
         wx.navigateTo({
-          url: '../auth/auth?pageName=self_service',
+          url: '../auth/auth?pageName=' + e.dataset.info,
 
         })
       });
