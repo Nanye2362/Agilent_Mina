@@ -1,88 +1,96 @@
 <!--pages/self_service/self_service.wxml-->
 <!-- search -->
 <view class="weui-search-bar " id="searchBar">
-      <view class="" style="padding:20rpx; position: relative;" wx:if="{{searchFake}}">
-            <view class="nosearchIcon"
-            bindtap='clickToHide'>搜索常见问题</view>
-            <image src="/images/search.png"></image>
-      </view> 
-       <view class="search-bar-top flex" wx:if="{{searchFlag}}">
-            <view class='search-bar_cancel-btn' bindtap='clickToCancel'>取消</view>
-            <input class="nosearchIconTop" placeholder="搜索常见问题" 
-            bindinput="bindInput" value="{{inputValue}}" focus="{{autofocus}}" />
-            <view class='search-bar_submit-btn' bindtap='clickToSearch'>确定</view>
-            <image class="search-bar-icon" src="/images/search.png"></image> 
-      </view>
+    <view class="search-bar-top flex">
+      <input class="searchInput" placeholder="搜索常见问题" 
+      bindinput="bindInput" value="{{inputValue}}" placeholder-class='search-placeholder'/>
+      <view class='searchBtn bg-primary flex' bindtap='clickToSearch'>
+        <image class="search-bar-icon" src="/images/search.png" mode='widthFix'></image>
+      </view>   
+  </view>
 </view>
 
 <!-- tab -->
 <movable-area class="ss_tab_content">
    <movable-view class="ss_tab bg-primary" x="{{x}}" y="{{y}}" direction="horizontal" inertia="true"	out-of-bounds="false" damping="50">   
-        <block wx:for="{{dataList}}" >
+        <block wx:for="{{dataList}}" wx:key='unique' >
               <view class="ss_tab_item {{currentTab==index ? 'ss_tab_item_active' : ''}}" data-current="{{index}}"  data-id="{{item.id}}" bindtap="swichNav">{{item.name}}</view>
         </block>    
     </movable-view> 
 
     <view class="ss_tab_right ss_tab_btn">
-        <image src="/images/arrowr.png"></image>
+        <image src="/images/arraw-left.png" mode='widthFix'></image>
     </view>
 
 </movable-area>
 
 <!-- tab_content -->
 <!-- content -->
-    <swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:{{winHeight - 31}}px" bindchange="bindChange">    
-        <!-- 全部 -->   
-        <block wx:for="{{dataList}}">
-               <swiper-item class="flex directionC" style="overflow: scroll;">
-              <!-- service_list_item -->
-               <view class="ss_tab_con">
-                      <!-- title -->
-                      <view class="ss_title bg-gb">
-                          <image src="/images/question.png" class="ss_img_ques"></image>热点问题
-                      </view>
-                      <!-- hot_issue -->
-                      <view class="ss_hot_issue bg-primary">
-                          <!-- question -->
-                          <view class="ss_hi_con fc-blue fs12">
-                              <block wx:for="{{item.category}}">
-                                  <view >
-                                        <view class="faq_item_con" data-id='{{item.id}}' bindtap='clickToFaqDetails'>{{item.questions}}</view>
-                                  </view>
-                              </block>
-                              
-                          </view>
-                      </view>
-                      <!-- question_classificastion -->
-                      <view class="ss_ques_class">
-                          <!-- title -->
-                          <view class="ss_title ss_qc_title bg-gb" >
-                              <image src="/images/species.png" class="ss_img_ques"></image>问题分类
-                          </view>
-                          <!-- species -->
-                          <view class="ss_qc_con bg-primary marginB-40">
-                              <view class="ss_qc_inside">
+<swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:{{winHeight - 31}}px" bindchange="bindChange">    
+  <!-- 全部 -->   
+  <block wx:for="{{dataList}}" wx:key='unique'>
+    <swiper-item class="flex directionC" style="overflow: scroll;">
+      <!-- service_list_item -->
+      <view class="ss_tab_con">
 
-                                  <block wx:for="{{item.children}}" wx:for-item="children">
-                                           <view data-id='{{children.id}}' data-pid='{{children.pid}}' bindtap='clickToFaq'>
-                                                  <image class="ss_qc_icon" src="https://prd.wechat.service.agilent.com/images/mini_selfservice_icon/{{children.icon}}.jpg"></image>
-                                                   <view>{{children.name}}</view>
-                                           </view>
-                                  </block>
-                                 
-                             </view>
-                          </view>
-                      </view>
+        <!-- ======问题分类-start===== -->
+        <view class="ss_ques_class">
+          <!-- title -->
+          <view class="ss_title ss_qc_title" >
+              <image src="/images/species.png" class="ss_img_ques" mode='widthFix'></image>问题分类
+          </view>
+          <!-- species -->
+          <view class="ss_qc_con bg-primary marginB-40">
+              <view class="ss_qc_inside flex">
+                  <block wx:for="{{item.children}}" wx:for-item="children"  wx:key='unique'>
+                    <view data-id='{{children.id}}' data-pid='{{children.pid}}' bindtap='clickToFaq' data-sid='{{item.id}}'>
+                      <!-- <image class="ss_qc_icon" src="https://prd.wechat.service.agilent.com/images/mini_selfservice_icon/{{children.icon}}.jpg"></image> -->
+                      <image class="ss_qc_icon" src="https://devops.coffeelandcn.cn/images/mini_selfservice_icon/{{children.icon}}.png"></image>
+                      <view class='fc-fff fs12'>{{children.name}}</view>
+                    </view>
+                  </block>                  
               </view>
+          </view>
+        </view>
+        <!-- =====问题分类-end====== -->
 
-              <view class="faq_notification text-center bg-primary marginB-20" style='margin-top:40rpx;'>
-    <view>如有其他疑问，您可以提交<view class="fc-blue service_repair btn-meiqia" bindtap='clickToRepair'>故障反馈</view>
-    </view>
-</view>
-        </swiper-item>
-        </block>
-         <!-- next page     -->
-    </swiper>
+        <!-- ========热点问题-start====== -->
+        <view class="ss-hot-issue" style='margin-top: -60rpx;'>
+          <view class="ss_title">
+              <image src="/images/question.png" class="ss_img_ques" mode='widthFix'></image>热点问题
+          </view>  
+          
+          <!-- question -->     
+          <view class="ss_hot_issue bg-primary">
+            <view class="ss_hi_con fc-blue fs12">
+                <block wx:for="{{item.category}}" wx:key='unique'>
+                  <view class='faq_con'>
+                    <view class='flex faq_con_in'>
+                      <view class="faq_item_con" data-id='{{item.id}}' bindtap='clickToFaqDetails'>{{item.questions}}</view>
+                      <view class='faq_img text-center'>
+                        <image src='/images/arrow_grey.png' mode='widthFix'></image>
+                      </view>
+                    </view>
+                  </view>
+                </block>                
+            </view>
+          </view> 
+        </view>   
+        <!-- ========热点问题-end======= -->
+
+      </view>
+
+
+      <!-- 咨询 -->
+      <view class="faq_notification text-center bg-primary marginB-20" style='margin-top:40rpx;'>
+        <view>如有其他疑问，您可以提交<view class="fc-blue service_repair btn-meiqia" bindtap='clickToRepair'>故障反馈</view>
+        </view>
+      </view>
+
+    </swiper-item>
+  </block>
+  <!-- next page     -->
+</swiper>
 
 
 

@@ -10,8 +10,6 @@ Page({
     currentTab: 0,
     dataList: [],
     TECH:'T',
-    searchFlag: false,
-    searchFake: true,
     searchValue: '',
     autofocus: false   //搜索框内自动聚焦Flag
   },
@@ -20,6 +18,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log(options);
     //腾讯mat统计开始
     var app = getApp();
     app.mta.Page.init();
@@ -36,6 +35,15 @@ Page({
          })
       }
     });
+  },
+
+  onShow: function(){
+    var pages = getCurrentPages();
+    var _this = pages[pages.length - 1];
+    var cT = _this.data.currentTab;
+    this.setData({
+      currentTab : cT,
+    })
   },
 
 sortList: function(list){
@@ -69,28 +77,7 @@ sortList: function(list){
       searchValue: ''
     })
   },
-
-  clickToHide: function(){
-    console.log(2)
-      this.setData({
-        searchFlag: true,
-        searchFake: false,
-        autofocus: true
-      })
-
-      console.log('searchFake=' + this.data.searchFake);
-      console.log('searchFlag=' + this.data.searchFlag);
-  },
-
-  clickToCancel:function(){
-    console.log(1)
-    this.setData({
-      searchFlag: false,
-      searchFake: true,
-      searchValue: '',
-      autofocus: false
-    })
-  },
+ 
 
   clickToSearch:function(e){
     //腾讯mta记录搜索事件开始
@@ -141,8 +128,9 @@ sortList: function(list){
   clickToFaq: function(e){
     console.log(e);
       var id = e.currentTarget.dataset.id;
+      var sid = e.currentTarget.dataset.sid;
       wx.navigateTo({
-        url: '../faq/faq?id='+id,
+        url: '../faq/faq?id='+id+'&sid='+sid,
       })
   },
 

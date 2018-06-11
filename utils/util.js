@@ -20,8 +20,8 @@ var urlArr = ["wechat-mini/wx-login", "api/check-lunch"];//未登录可以使用
 let ocrServer ="https://msd.coffeelandcn.cn/";
 //let ocrServer = "https://devopsx.coffeelandcn.cn/";
 //let Server = "https://devopsx.coffeelandcn.cn/"; //DEV
-//let Server = "https://devops.coffeelandcn.cn/"; //UAT
-let Server = "https://prd.wechat.service.agilent.com/"; //PRO
+let Server = "https://devops.coffeelandcn.cn/"; //UAT
+//let Server = "https://prd.wechat.service.agilent.com/"; //PRO
 var arrRequest=[],isRequesting=false;
 function NetRequest({ url, data, success, fail, complete, method = "POST", showload = true, host = Server}) {
   var obj = { url: url, data: data, success: success, fail: fail, complete: complete, method: method, showload: showload, host: host}; 
@@ -244,7 +244,8 @@ function checkWorktime(success, fail, showload=true) {
     url: 'util/get-worktime',
     showload: showload,
     success: function (res) {
-      if (res == 1) {        success();
+      if (res.isworktime == true) {        
+        success();
       } else {
         fail();
       }
@@ -381,5 +382,6 @@ module.exports = {
   checkWorktime: checkWorktime,
   backHome: backHome,
   chen_navigateTo: chen_navigateTo,
-checkTime: checkTime,  isWorkTime: isWorkTime,
+  checkTime: checkTime,  
+  isWorkTime: isWorkTime,
 }

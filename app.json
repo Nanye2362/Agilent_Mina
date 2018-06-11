@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/self_service/self_service",
     "pages/index/index",
     "pages/labqc/labqc",
     "pages/budget_confirm/budget_confirm",
@@ -15,7 +16,6 @@
     "pages/contact_us/contact_us",
     "pages/evaluate/evaluate",
     "pages/welcome/welcome",
-    "pages/self_service/self_service",
     "pages/search-list/search-list",
     "pages/auth/auth",
     "pages/faq/faq",
