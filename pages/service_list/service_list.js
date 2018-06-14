@@ -22,7 +22,7 @@ Page({
     SerialNo_listFlag: [],
     getSn: '',
     getContactId: '',
-    TECH: 'T_srid:',
+    TECH: 'N_srid:',
     SN: ';sn:',
     isFirst:true
   },

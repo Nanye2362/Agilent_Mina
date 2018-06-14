@@ -8,7 +8,7 @@
   </view>
 </view>
  <!--pages/serial_number/serial_number.wxml-->
-<image src="/images/sn_bg.jpg" class="sn_bg"></image>
+<image src="https://prd.wechat.service.agilent.com/images/sn_bg.jpg" class="mc_poster_bg" mode="widthFix" style="width:100%;"></image>
 <view class="sn_title">产品序列号 (Serial No.)</view>
 <view class="sn_num bg-primary">
     <input class="" type="text" placeholder="拍照识别序列号或手动输入" bindinput='saveTheValue' value="{{cameraValue}}"/>

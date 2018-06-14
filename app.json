@@ -1,6 +1,11 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/serial_number/serial_number",
+    
+    "pages/auth/auth",
+    "pages/leave_message/leave_message",
+    "pages/fill_info/fill_info",
     "pages/labqc/labqc",
     "pages/budget_confirm/budget_confirm",
     "pages/my_instrument/my_instrument",
@@ -17,26 +22,23 @@
     "pages/welcome/welcome",
     "pages/self_service/self_service",
     "pages/search-list/search-list",
-    "pages/auth/auth",
     "pages/faq/faq",
     "pages/faq_details/faq_details",
     "pages/service_list/service_list",
     "pages/evaluation/evaluation",
     "pages/myhome/myhome",
-    "pages/fill_info/fill_info",
     "pages/install/install",
     "pages/my_instrument-old/my_instrument-old",
     "pages/confirm_info/confirm_info",
-    "pages/serial_number/serial_number",
     "pages/service_guide/service_guide",
     "pages/personal_info/personal_info",
     "pages/logs/logs",
-    "pages/leave_message/leave_message",
+    
     "pages/contact_service/contact_service",
     "pages/html/openHtml"
   ],
   "networkTimeout": {
-    "request": 10000
+    "request": 30000
   },
   "window": {
     "backgroundTextStyle": "light",

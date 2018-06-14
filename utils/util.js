@@ -89,8 +89,7 @@ function _NetRequest({ url, data, success, fail, complete, method = "POST", show
     data: data,
     header: header,
     success: res => {
-      console.log(url);
-      console.log(res.data.csrfToken);
+      console.log("success");
       if ((session_id == "" || session_id == null) && typeof (res.data.session_id) != "undefined") {
         console.log(res.data.session_id);
         wx.setStorageSync('PHPSESSID', res.data.session_id); //如果本地没有就说明第一次请求 把返回的session id 存入本地
@@ -127,12 +126,13 @@ function _NetRequest({ url, data, success, fail, complete, method = "POST", show
       res['statusCode'] === 200 ? success(data) : fail(res)
     },
     fail: function (e) {
+      console.log("fail");
       console.log(e);
-      isRequesting = false; 
-      arrRequest = [];
       
       if (tempUrl != "wechat-mini/wx-login" && (e.errMsg == "request:fail timeout" || e.errMsg == "request:fail ")){
         wx.hideLoading();
+        isRequesting = false; 
+        arrRequest = [];
         wx.showModal({
           title: '请求失败',
           content: '请检查您的网络',
@@ -151,6 +151,8 @@ function _NetRequest({ url, data, success, fail, complete, method = "POST", show
       if (typeof (fail) == 'function') {
         fail(e);
       }else{
+        isRequesting = false;
+        arrRequest = [];
         wx.showModal({
           title: '请求失败',
           content: '请检查您的网络',
@@ -165,7 +167,8 @@ function _NetRequest({ url, data, success, fail, complete, method = "POST", show
         })
       }
     },
-    complete: function () {
+    complete: function (res) {
+      console.log("complete");
       if (typeof (complete) == 'function') {
         complete();
       }
@@ -176,8 +179,10 @@ function _NetRequest({ url, data, success, fail, complete, method = "POST", show
         }
         isRequesting = false;
       } else {
-        var obj = arrRequest.shift();
-        _NetRequest(obj); 
+        if (res['statusCode'] === 200){
+          var obj = arrRequest.shift();
+          _NetRequest(obj); 
+        }
       }
     }
   })
@@ -240,6 +245,13 @@ function IsCertificate(success,fail){
 
 //判断是否为工作时间,true为是工作时间，false为非工作时间
 function checkWorktime(success, fail, showload=true) {
+  var reauestFail;
+  if (!showload){ //如果为false，基于后台请求，如遇网络错误不弹框提示
+    reauestFail=function(){
+      console.log("request fail");
+    }
+  }
+  console.log(showload);
   NetRequest({
     url: 'util/get-worktime',
     showload: showload,
@@ -249,7 +261,8 @@ function checkWorktime(success, fail, showload=true) {
       } else {
         fail();
       }
-    }
+    },
+    fail: reauestFail
   });
 }
 
