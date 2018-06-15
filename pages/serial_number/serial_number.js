@@ -70,6 +70,10 @@ Page({
       }
     });
   },
+  onUnload: function () {
+    console.log('************closethepage***********');
+    util.clearWorkTime();
+  },
 
   MtaReport: function () {
     util.isWorkTime();

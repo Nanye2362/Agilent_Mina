@@ -154,5 +154,26 @@ Page({
       delta: pages.length - nums
     })
   },
+ 
+  clickToSearch: function (e) {
+    //腾讯mta记录搜索事件开始
+    var app = getApp();
+    app.mta.Event.stat("self_service_search", { "query": this.data.searchValue });
+    //腾讯mta记录搜索事件结束
+
+    console.log('确定');
+    var value = this.data.searchValue;
+    wx: wx.navigateTo({
+      url: '../search-list/search-list?value=' + value,
+    })
+  },
+  bindInput:function(e){
+    console.log(e);
+    var value = e.detail.value;
+    var inputLength = e.detail.value.length;
+    this.setData({
+      searchValue: value
+    })
+  },
   
 })

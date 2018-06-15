@@ -1,8 +1,8 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/self_service/self_service",
     "pages/labqc/labqc",
+    "pages/self_service/self_service",
     "pages/budget_confirm/budget_confirm",
     "pages/my_instrument/my_instrument",
     "pages/ins_group/ins_group",

@@ -113,7 +113,7 @@
           </view>
           <view class="flex cusName">
               <view class=" fs13 cnL">密码：</view>
-              <view class=" fs13 cnR">{{ldInfo.SoftwareSN}}</view>
+              <view class=" fs13 cnR">{{ldInfo.SubscribenetPwd}}</view>
           </view>
 
 

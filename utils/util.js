@@ -325,7 +325,12 @@ function chen_navigateTo(name,url){
 
 //检测是否工作时间
 function checkTime(){
-  worktime(true);
+  if (getApp().globalData.timer == '') {
+    worktime(true);
+  } else {
+    return true;
+  } 
+  //worktime(true);
 }
 function worktime(shLoading=false){
   var currentPages = getCurrentPages();
@@ -336,14 +341,18 @@ function worktime(shLoading=false){
       isWork: true,
     })
     console.log("----chektime----");
-    setTimeout(worktime, 60000);
+    getApp().globalData.timer = setTimeout(worktime, 5000);
   }, function () {
     _this.setData({
       isWork: false,
     })
     console.log("----chektime----");
-    setTimeout(worktime, 60000);
+    getApp().globalData.timer = setTimeout(worktime, 5000);
     }, shLoading);
+}
+
+function clearWorkTime(){
+  clearTimeout(getApp().globalData.timer);
 }
 
 function isWorkTime(isAlert=false){
@@ -384,4 +393,5 @@ module.exports = {
   chen_navigateTo: chen_navigateTo,
   checkTime: checkTime,  
   isWorkTime: isWorkTime,
+  clearWorkTime: clearWorkTime,
 }
