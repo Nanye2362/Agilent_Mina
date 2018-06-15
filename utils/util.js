@@ -1,3 +1,5 @@
+var config = require('../config');
+
 function formatTime(date) {
   var year = date.getFullYear()
   var month = date.getMonth() + 1
@@ -19,9 +21,8 @@ function formatNumber(n) {
 var urlArr = ["wechat-mini/wx-login", "api/check-lunch"];//未登录可以使用的url
 let ocrServer ="https://msd.coffeelandcn.cn/";
 //let ocrServer = "https://devopsx.coffeelandcn.cn/";
-//let Server = "https://devopsx.coffeelandcn.cn/"; //DEV
-let Server = "https://devops.coffeelandcn.cn/"; //UAT
-//let Server = "https://prd.wechat.service.agilent.com/"; //PRO
+let Server = config.Server; //UAT
+
 var arrRequest=[],isRequesting=false;
 function NetRequest({ url, data, success, fail, complete, method = "POST", showload = true, host = Server}) {
   var obj = { url: url, data: data, success: success, fail: fail, complete: complete, method: method, showload: showload, host: host}; 
@@ -64,7 +65,7 @@ function _NetRequest({ url, data, success, fail, complete, method = "POST", show
   }
 
   var _csrf = wx.getStorageSync('csrf');
-  var version = "2.4.8.1";
+  var version = config.version;
   var csrfToken = wx.getStorageSync('csrfCookie')
   if (typeof (data) == 'object') {
     data._csrf = _csrf;
@@ -336,52 +337,6 @@ function chen_navigateTo(name,url){
     }
 }
 
-//检测是否工作时间
-function checkTime(){
-  worktime(true);
-}
-function worktime(shLoading=false){
-  var currentPages = getCurrentPages();
-  var _this = currentPages[currentPages.length - 1];
-  console.log(_this.data);  
-  checkWorktime(function () {
-    _this.setData({
-      isWork: true,
-    })
-    console.log("----chektime----");
-    setTimeout(worktime, 60000);
-  }, function () {
-    _this.setData({
-      isWork: false,
-    })
-    console.log("----chektime----");
-    setTimeout(worktime, 60000);
-    }, shLoading);
-}
-
-function isWorkTime(isAlert=false){
-  var currentPages = getCurrentPages();
-  var _this = currentPages[currentPages.length - 1];
-  if (_this.data.isWork){
-    return true;
-  }else{
-    if (isAlert){
-      wx.showModal({
-        title: '温馨提示',
-        content: '感谢您一直以来对我们工作的关注和支持。我们的工作时间是周一至周五的 8:30-17:30，双休日（除节假日外）仅提供紧急电话技术支持，服务时间为：9:00-17:00。',
-        showCancel: false,
-        success: function (res) {
-
-        }
-      })
-    }else{
-      wx.redirectTo({
-        url: '../leave_message/leave_message',
-      })
-    }
-  }
-}
-
 function submitFormId(formId){
   if (formId.length == 0 || formId =="the formId is a mock one"){
     return false;
@@ -409,7 +364,5 @@ module.exports = {
   checkWorktime: checkWorktime,
   backHome: backHome,
   chen_navigateTo: chen_navigateTo,
-  checkTime: checkTime, 
-  isWorkTime: isWorkTime,
   submitFormId:submitFormId
 }

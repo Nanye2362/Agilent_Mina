@@ -28,12 +28,12 @@
 <!-- gotoChat -->
 <view class="cs_con" wx:if="{{chat}}">
     <view class="text-center fs12">如果您有任何问题，请
-        <button class="fc-blue bc_chat_btn btn-meiqia" open-type='{{isWork?"contact":""}}' session-from='{{NONTECH+inputValue}}' bindtap='MtaReport'><image src="/images/wechat_b.png"></image>
-    发起会话</button></view>
+      <meiqiaBtn bindmeiqiaTap="MtaReport" btn-class="fc-blue bc_chat_btn btn-meiqia" handle-alert="{{false}}" meiqia-group="{{meqiaGroup}}" session-from="{{NONTECH+inputValue}}"><image src="/images/wechat_b.png"></image>发起会话</meiqiaBtn> 
+</view>
 </view>
 
 <!-- showInput -->
-<view class="shLoading" wx:if="{{shLoading_alert}}">
+<view class="shLoading" hidden="{{!shLoading_alert}}">
   <view class="shLoading-mask1">
   </view>
   <view class="shLoading-panel flex alignc directionC">
@@ -43,7 +43,8 @@
       </view>
       <view class="shLoading-btn-panel">
           <view class="shLoading-btn-cancel" bindtap="">发起会话
-           <button open-type='{{isWork?"contact":""}}' bindtap="MtaReportt" class="shLoading-btn-contact" session-from='{{NONTECH+inputValue}}'></button></view>
+           <meiqiaBtn bindmeiqiaTap="MtaReportt" btn-class="shLoading-btn-contact" handle-alert="{{false}}" meiqia-group="{{meqiaGroup}}" session-from="{{NONTECH+inputValue}}"></meiqiaBtn>       
+           </view>
           <view class="shLoading-btn-ok" bindtap="shClose">重新上传</view>
       </view>
   </view>

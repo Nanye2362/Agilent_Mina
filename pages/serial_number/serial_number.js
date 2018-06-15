@@ -34,7 +34,7 @@ Page({
    */
   onLoad: function (options) {
     console.log(options);
-    util.checkTime();
+    
     if (typeof (options.GroupID) !='undefined'){
       this.setData({
         GroupID: options.GroupID
@@ -72,12 +72,12 @@ Page({
   },
 
   MtaReport: function () {
-    util.isWorkTime();
+  
     var app = getApp();
     app.mta.Event.stat("meqia", { "group": 'WLA' });
   },
   MtaReportt: function () {
-    util.isWorkTime();
+
     var app = getApp();
     app.mta.Event.stat("meqia", { "group": 'NONTECH' });
   },

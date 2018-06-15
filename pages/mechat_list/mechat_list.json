@@ -1,1 +1,6 @@
-{}
+{
+  "navigationBarTitleText": "在线咨询",
+  "usingComponents": {
+    "meiqiaBtn": "/components/meiqiaBtn/meiqiaBtn"
+  }
+}

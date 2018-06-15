@@ -1,0 +1,4 @@
+<!--components/meiqiaBtn/meiqiaBtn.wxml-->
+<button class="btn-class" bindtap="meiqiaBtnTap" open-type='{{isWork?"contact":""}}' session-from='{{sessionFrom}}' data-group="{{meqiaGroup}}">
+  <slot></slot>
+</button>

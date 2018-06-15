@@ -1,3 +1,6 @@
 {
-  "navigationBarTitleText": "产品序列号"
+  "navigationBarTitleText": "产品序列号",
+  "usingComponents": {
+    "meiqiaBtn": "/components/meiqiaBtn/meiqiaBtn"
+  }
 }

@@ -45,7 +45,6 @@ Page({
     this.data.isFirst = false;
   },
   onLoad: function (option) {
-    util.checkTime();
     //腾讯mat统计开始
     var app = getApp();
     app.mta.Page.init();
