@@ -243,13 +243,11 @@
     </view>
     </block>
     <!-- fileList -->
-
-
-    <button class="sn_btn btn btn-primary" open-type='{{isWork?"contact":""}}' session-from='{{Soft}}' bindtap="isWorkTime" >软件咨询</button>
-    <button class="sn_btn btn btn-primary" open-type='{{isWork?"contact":""}}' session-from='{{Hard}}' bindtap="isWorkTimee" >仪器咨询</button>
+       <meiqiaBtn bindmeiqiaTap="isWorkTime" btn-class="sn_btn btn btn-primary" handle-alert="{{false}}" session-from="{{Soft}}">
+        软件咨询 </meiqiaBtn>
+         <meiqiaBtn bindmeiqiaTap="isWorkTimee" btn-class="sn_btn btn btn-primary" handle-alert="{{false}}" session-from="{{Hard}}">
+        仪器咨询 </meiqiaBtn>
   </view>
-
-
 </view>
 
 <!-- add_record -->

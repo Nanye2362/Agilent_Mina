@@ -25,12 +25,12 @@ Page({
   }, 
 
   MtaReport: function () {
-    util.isWorkTime();
+  
     var app = getApp();
     app.mta.Event.stat("meqia", { "group": 'TECH' });
   },
   MtaReportt: function () {
-    util.isWorkTime();
+
     var app = getApp();
     app.mta.Event.stat("meqia", { "group": 'NONTECH' });
   },
@@ -41,7 +41,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    util.checkTime();
+    
     //腾讯mta统计开始
     var app = getApp();
     app.mta.Page.init();

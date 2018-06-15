@@ -15,7 +15,12 @@ Page({
     displayTips: false,
     WLA: 'W'
   },
-
+  formSubmit: function (e) {
+    var clickevent = e.detail.target.dataset.click;
+    console.log(e.detail.formId);
+    util.submitFormId(e.detail.formId);
+    this[clickevent](e.detail.target);
+  },
   showTips: function(){
     var displayTips = this.data.displayTips
     console.log('showtips')
@@ -25,7 +30,6 @@ Page({
   },
 
   MtaReport: function () {
-    util.isWorkTime();
     var app = getApp();
     app.mta.Event.stat("meqia", { "group": 'WLA' });
   },
@@ -186,7 +190,6 @@ Page({
    */
   onLoad: function (options) {
 
-    util.checkTime();
     //腾讯mta统计开始
     var app = getApp();
     app.mta.Page.init();

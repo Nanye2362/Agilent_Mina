@@ -85,7 +85,6 @@ Page({
   },
   //检测工作时间
   MtaReport: function () {
-    util.isWorkTime(true);
     var app = getApp();
     app.mta.Event.stat("meqia", { "group": 'NONTECH' });
   },
@@ -103,7 +102,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    util.checkTime();
+    
     //腾讯mat统计开始
     var app = getApp();
     var that=this;

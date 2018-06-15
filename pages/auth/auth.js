@@ -59,7 +59,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options, e) {
-    util.checkTime();
     //腾讯mat统计开始
     var app = getApp();
     app.mta.Page.init();
@@ -272,7 +271,6 @@ Page({
 
   //检测工作时间
   isWorkTime: function () {
-    util.isWorkTime();
     var app = getApp();
     app.mta.Event.stat("meqia", { "group": 'NONTECH' });
   },

@@ -1,3 +1,6 @@
 {
-  "navigationBarTitleText": "预算确认"
+  "navigationBarTitleText": "预算确认",
+  "usingComponents": {
+    "meiqiaBtn": "/components/meiqiaBtn/meiqiaBtn"
+  }
 }

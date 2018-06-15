@@ -1,1 +1,6 @@
-{}
+{
+  "navigationBarTitleText": "实验室信息",
+  "usingComponents": {
+    "meiqiaBtn": "/components/meiqiaBtn/meiqiaBtn"
+  }
+}

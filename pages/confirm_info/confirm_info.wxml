@@ -47,12 +47,17 @@
         </view>
     </view>
     <view class="pd_btn" wx:if="{{needChat}}">
-        <button class="btn btn-primary" open-type='{{isWork?"contact":""}}' session-from='{{TECH}}' id="confirm" bindtap='MtaReport'>确定并开始咨询</button>
+         <meiqiaBtn bindmeiqiaTap="MtaReport" btn-class="btn btn-primary" handle-alert="{{false}}" session-from="{{TECH}}">
+         确定并开始咨询
+        </meiqiaBtn>
     </view>
     <view class="pd_btn" wx:else>
         <button class="btn btn-primary" id="confirm" bindtap='skipReturn'>确定</button>
     </view>
     <view class="pd_wechat padding text-center">
-        信息不正确？您可以<button class="pd_wechat_btn fc-blue btn-meiqia" open-type='{{isWork?"contact":""}}' session-from='{{NONTECH}}' bindtap='MtaReportt'><image src="../../images/wechat_b.png"></image>发起会话</button>
+        信息不正确？您可以
+        <meiqiaBtn bindmeiqiaTap="MtaReportt" btn-class="pd_wechat_btn fc-blue btn-meiqia" handle-alert="{{false}}" session-from="{{NONTECH}}">
+        <image src="../../images/wechat_b.png"></image>发起会话
+        </meiqiaBtn>
     </view>
 </view> 

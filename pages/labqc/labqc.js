@@ -25,7 +25,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    util.checkTime();
     var scene = decodeURIComponent(options.scene)  
     console.log(scene); 
     if (typeof(options.scene)!='undefined'){
@@ -245,12 +244,10 @@ Popup: function (e) {
 
 //检测工作时间
 isWorkTime: function () {
-  util.isWorkTime();
   var app = getApp();
   app.mta.Event.stat("meqia", { "group": 'SOFTWARE' });
 },
 isWorkTimee: function () {
-  util.isWorkTime();
   var app = getApp();
   app.mta.Event.stat("meqia", { "group": 'WLA' });
 },

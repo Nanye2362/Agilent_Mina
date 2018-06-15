@@ -1,3 +1,6 @@
 {
-  "navigationBarTitleText": "填写资料"
+  "navigationBarTitleText": "填写资料",
+  "usingComponents": {
+    "meiqiaBtn": "/components/meiqiaBtn/meiqiaBtn"
+  }
 }

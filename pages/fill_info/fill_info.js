@@ -14,7 +14,6 @@ Page({
       NONTECH:'N'
     },
     onLoad: function (options) {
-      util.checkTime();
       //腾讯mta统计开始
       var app = getApp();
       app.mta.Page.init();
@@ -98,7 +97,6 @@ Page({
     },
 
     MtaReport: function () {
-      util.isWorkTime();
       var app = getApp();
       app.mta.Event.stat("meqia", { "group": 'NONTECH' });
     },

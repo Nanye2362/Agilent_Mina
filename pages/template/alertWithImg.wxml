@@ -1,0 +1,22 @@
+<!--pages/template/alertWithImg.wxml-->
+<template name="alertWithImg">
+  <view class="shLoading shLoadingWithImg" wx:if="{{shLoading_foreign}}">
+    <view class="shLoading-mask1">
+    </view>
+    <view class="shLoading-panel flex alignc directionC">
+      <view class="shLoading-title">Opps...<view class="shLoading-close" bindtap="alertClose">X</view></view>
+      <view class="shLoading-view-img"><image  mode="widthFix" src="https://devops.coffeelandcn.cn/images/waiguoren.png"></image></view>
+      <view class="shLoading-head-panel">
+        <view class="shp_title">Application is for China domestic only. 
+Please visit our website for more information.</view>
+        <view class="shp_body">
+          <view class="shpb_text"><view class="shpb_important"><image  mode="widthFix" src="https://devops.coffeelandcn.cn/images/warning.png"></image></view><view class="shpbb_text">Get more brilant inforation</view></view>
+          <view class="shpb_a" bindtap="skipHtml5Page">www.agilent.com</view>
+        </view>
+      </view>
+      <view class="shLoading-btn-panel">
+        <view class="shLoading-btn-ok" bindtap="alertClose">Ok,I SEE</view>
+      </view>
+    </view>
+  </view>
+</template>

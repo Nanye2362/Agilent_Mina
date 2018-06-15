@@ -21,7 +21,7 @@
 
 
 <!-- form -->
-<form class="install_form" id="insth_form" action="">
+<form class="install_form" id="insth_form" action="" report-submit="true" bindsubmit="formSubmit">
     <!-- basic_info -->
     <view class="ins_form bg-primary">
        <!-- order -->
@@ -89,8 +89,10 @@
     <!-- gotoChat -->
     <view class="cs_con ">
         <view class="text-center fs12">如需查看安装申请的安排进度，请
-            <button class="fc-blue bc_chat_btn btn-meiqia" open-type='{{isWork?"contact":""}}' session-from='{{WLA}}' bindtap='MtaReport'><image src="/images/wechat_b.png"></image>
-        发起会话</button></view>
+           <meiqiaBtn bindmeiqiaTap="MtaReport" btn-class="fc-blue bc_chat_btn btn-meiqia" handle-alert="{{false}}" session-from="{{WLA}}">
+              <image src="/images/wechat_b.png"></image>发起会话
+           </meiqiaBtn>
+        </view>
     </view>
 </form>
 
