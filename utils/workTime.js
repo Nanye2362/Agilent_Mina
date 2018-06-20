@@ -1,6 +1,7 @@
 var config = require('../config.js');
 var util = require('./util.js');
-var arrHandle=[];
+var arrHandle={};
+var startRequest=false;
 
 function getWorkStatus(){
   var app = getApp();
@@ -12,11 +13,15 @@ function setWorkStatus(workStatus){
   app.globalData.workStatus = workStatus;
 }
 
+function removeHandleArr(id){
+  delete arrHandle[id];
+}
 
-function startWorkTime(handle){
+
+function startWorkTime(handle,id){
     var isWorkTime=getWorkStatus();
     if (typeof (isWorkTime) =="undefined"){ //是否已检测过
-      arrHandle.push(handle);//没有检测过缓存方法
+      arrHandle[id]=handle;//没有检测过缓存方法
       checkWorktime(true);//发起检测
     }else{
       handle(isWorkTime);//已检测过直接返回结果
@@ -31,17 +36,23 @@ function handle(workTimeStatus){
 }
 
 function checkWorktime(shLoading = false) {
+  if (startRequest){
+    return false;
+  }
+  startRequest=true;
   var date = new Date();
   console.log("time" + console.log(date.toTimeString()));
   util.checkWorktime(function () {
     setWorkStatus(true);
     handle(true);
+    startRequest=false;
     console.log("----chen chektime----");
     setTimeout(checkWorktime, 60000);
   }, function () {
     setWorkStatus(false);
     handle(false);
     console.log("----chen chektime----");
+    startRequest = false;
     setTimeout(checkWorktime, 60000);
   }, shLoading);
 }
@@ -68,10 +79,8 @@ function handleWorkTime(isAlert = false) {
   }
 }
 
-
- 
-
 module.exports = {
   startWorkTime: startWorkTime,
-  handleWorkTime: handleWorkTime
+  handleWorkTime: handleWorkTime,
+  removeHandleArr: removeHandleArr
 }

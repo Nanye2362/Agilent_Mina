@@ -35,6 +35,7 @@ function NetRequest({ url, data, success, fail, complete, method = "POST", showl
   var app=getApp();
   console.log(app.globalData.isLogin);
   if (isRequesting || (!app.globalData.isLogin && !in_array(url,urlArr))){
+      console.log("request start");
       arrRequest.push(obj);
       return;
    }
@@ -53,6 +54,7 @@ function in_array(stringToSearch, arrayToSearch) {
 }
 
 function _NetRequest({ url, data, success, fail, complete, method = "POST", showload = true, host = Server}){
+  var args = arguments[0];
   var tempUrl = url;
   var app = getApp();
   
@@ -81,7 +83,6 @@ function _NetRequest({ url, data, success, fail, complete, method = "POST", show
     var header = { 'content-type': 'application/x-www-form-urlencoded' }
   }
 
-  console.log(session_id);
   url = host + url;
   console.log(url);
   wx.request({
@@ -122,50 +123,28 @@ function _NetRequest({ url, data, success, fail, complete, method = "POST", show
           })
         }
       }
-
       let data = res.data
-      res['statusCode'] === 200 ? success(data) : fail(res)
+
+      if (res['statusCode'] === 200){
+        success(data);
+        //执行后续队列任务
+        if (arrRequest.length>0){
+          var obj = arrRequest.shift();
+          _NetRequest(obj); 
+        }
+      }else{
+        fail(res);
+      }
     },
     fail: function (e) {
       console.log("fail");
       console.log(e);
-      
-      if (tempUrl != "wechat-mini/wx-login" && (e.errMsg == "request:fail timeout" || e.errMsg == "request:fail ")){
-        wx.hideLoading();
-        isRequesting = false; 
-        arrRequest = [];
-        wx.showModal({
-          title: '请求失败',
-          content: '请检查您的网络',
-          showCancel: false,
-          success: function (res) {
-            if (res.confirm) {
-              wx.switchTab({
-                url: '../index/index',
-              })
-            }
-          }
-        })
-        return;
-      }
-
-      if (typeof (fail) == 'function') {
-        fail(e);
-      }else{
+      if (in_array(args.url, urlArr) && typeof (args.fail) =="function"){
         isRequesting = false;
-        arrRequest = [];
-        wx.showModal({
-          title: '请求失败',
-          content: '请检查您的网络',
-          showCancel: false,
-          success: function (res) {
-            if (res.confirm) {
-              wx.switchTab({
-                url: '../index/index',
-              })
-            }
-          }
-        })
+        console.log(args.fail);
+        args.fail();
+      }else{
+        requestResend(args);//失败重连
       }
     },
     complete: function (res) {
@@ -179,11 +158,31 @@ function _NetRequest({ url, data, success, fail, complete, method = "POST", show
           wx.hideLoading()
         }
         isRequesting = false;
-      } else {
-        if (res['statusCode'] === 200){
-          var obj = arrRequest.shift();
-          _NetRequest(obj); 
+      } 
+    }
+  })
+}
+
+function requestResend(obj){
+  console.log(obj);
+  if (!obj.showload){
+    _NetRequest(obj);
+    return ;
+  }
+  wx.showModal({
+    title: '请求失败',
+    content: '请检查您的网络',
+    confirmText: "重试",
+    showCancel: false,
+    success: function (res) {
+      if (res.confirm) {
+        if(obj.showload){
+          wx.showLoading({
+            title: '加载中，请稍候',
+            mask: true
+          })
         }
+        _NetRequest(obj);
       }
     }
   })
@@ -249,7 +248,7 @@ function checkWorktime(success, fail, showload=true) {
   var reauestFail;
   if (!showload){ //如果为false，基于后台请求，如遇网络错误不弹框提示
     reauestFail=function(){
-      console.log("request fail");
+      checkWorktime(success, fail, showload);
     }
   }
   console.log(showload);

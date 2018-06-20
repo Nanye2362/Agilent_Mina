@@ -1,5 +1,6 @@
 //app.js
 var util = require('/utils/util.js');
+
 //var aldstat = require("./utils/ald-stat.js");
 var mta = require('/utils/mta_analysis.js');
 var miniApp_env = "prod";// prod或uat
@@ -31,7 +32,7 @@ App({
     }
     console.log(userMobile);
     this.wxlogin();
-
+    
   },
   onShow: function (res) {
     var nowDate = new Date();

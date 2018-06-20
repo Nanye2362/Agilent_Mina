@@ -39,6 +39,9 @@ Component({
        that.setData({
          isWork: workTimeStatus
        })
-     });
+     }, this.__wxExparserNodeId__);
+  },
+  detached:function(){
+    workTime.removeHandleArr(this.__wxExparserNodeId__);
   }
 })
