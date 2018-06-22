@@ -132,8 +132,8 @@ page{
 
 
 .ss_qc_icon {
-    width: 86rpx;
-    height: 82rpx; 
+    width: 67rpx;
+    height: 61rpx; 
 }
 .faq_con{
   border: 1px solid #eee;
