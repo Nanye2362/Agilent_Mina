@@ -26,8 +26,8 @@ Page({
     showInfo:[false,false,false,false,false,false,false],
     list: [{ title: '分析仪器报修/咨询', desc: '售后仪器操作，故障咨询',class:'widthFix', color: 'blue', templete: 'inputTemplate1', checkfun: '', tapfun: 'srTap', meqia:'T'},
       { title: '电话工单补充图片', desc: '已有服务单号快速入口', color: 'blue', class: 'widthFix',templete: 'inputTemplate5', checkfun: 'checkOrder', tapfun: 'orderTap', meqia: 'N' },
-      { title: '消耗品购买', desc: '购买消耗品相关问题咨询', class: 'widthFix',color: 'green', templete: 'inputTemplate2', checkfun: 'checkSales', tapfun: 'salesTap', meqia: 'CB' },
-      { title: '消耗品售后', desc: '消耗品应用相关咨询', class: 'widthFix', color: 'green', templete: 'inputTemplate2', checkfun: 'checkSales', tapfun: 'salesTap', class: 'widthFix',meqia: 'CA' },
+      { title: '消耗品购买', desc: '购买消耗品相关问题咨询', class: 'widthFix', color: 'green', templete: 'inputTemplate2', checkfun: 'checkSales', tapfun: 'salesBATap', meqia: 'CB' },
+      { title: '消耗品售后', desc: '消耗品应用相关咨询', class: 'widthFix', color: 'green', templete: 'inputTemplate2', checkfun: 'checkSales', tapfun: 'salesBATap', class: 'widthFix',meqia: 'CA' },
       { title: '实验室仪器采购', desc: '实验室分析仪器购买咨询', color: 'yellow', templete: 'inputTemplate2', checkfun: 'checkSales', tapfun: 'salesTap', class: 'widthFix',meqia: 'K' },
       { title: '实验室服务方案', desc: '实验室企业级服务、整体搬迁、法规认证、分析仪器维修/维护合同等', color: 'yellow', templete: 'inputTemplate2', class: 'widthFix',checkfun: 'checkSales', tapfun: 'salesTap', meqia: 'S' },
       { title: '安捷伦大学培训', desc: '培训名额、定制培训、课程注册等咨询', color: 'orange', templete: 'inputTemplate2', checkfun: 'checkSales', class: 'widthFix', tapfun: 'salesTap', meqia: 'E' } 
@@ -161,7 +161,6 @@ Page({
           url: '../auth/auth?pageName=serial_number',
         })
       });
-
   },
   showInputPanel:function(e){// 点击弹出信息输入
     var that=this;
@@ -173,6 +172,9 @@ Page({
         case "orderTap":
           that.orderTap(e);
           break;
+        case "salesBATap":
+          that.salesBATap(e);
+          break;
         case "srTap":
           that.srTap(e);
           break;
@@ -180,6 +182,9 @@ Page({
     },function(){
       switch (e.target.dataset.tapfun) {
         case "salesTap":
+          that.showOfflineText();
+          break;
+        case "salesBATap":
           that.showOfflineText();
           break;
         case "orderTap":
@@ -201,32 +206,35 @@ Page({
       showTemplate: e.target.dataset.template,
       checkFun: e.target.dataset.checkfun,
       meqiaGroup: e.target.dataset.meqia,
-      showDesc: e.target.dataset.desc
+      showDesc: e.target.dataset.desc,
+      titleColor: e.target.dataset.color,
+      titleCon: e.target.dataset.title,
     })
 
     util.IsCertificate(function () {
-      util.NetRequest({
-        url: 'site-mini/meqia-getuserinfo',
-        success: function (res) {
-          console.log(res);
-          that.setData({
-            input2_name: res.userinfo.name,
-            input2_tel: res.userinfo.tel,
-            input2_company: res.userinfo.meta.company
-          })
+      // util.NetRequest({
+      //   url: 'site-mini/meqia-getuserinfo',
+      //   success: function (res) {
+      //     console.log(res);
+      //     that.setData({
+      //       input2_name: res.userinfo.name,
+      //       input2_tel: res.userinfo.tel,
+      //       input2_company: res.userinfo.meta.company
+      //     })
 
-          var showInfo = "";
-          for (var i in dataTemplete[that.data.showTemplate]) {
-            showInfo += dataTemplete[that.data.showTemplate][i]["nameInfo"] + ":" + that.data[dataTemplete[that.data.showTemplate][i]["name"]] + "\r\n";
-          }
+      //     var showInfo = "";
+      //     for (var i in dataTemplete[that.data.showTemplate]) {
+      //       showInfo += dataTemplete[that.data.showTemplate][i]["nameInfo"] + ":" + that.data[dataTemplete[that.data.showTemplate][i]["name"]] + "\r\n";
+      //     }
 
-          that.setData({
-            shLoading: false,
-            shInputInfo: true,
-            showText: showInfo
-          });
-        }
-      })
+      //     that.setData({
+      //       shLoading: false,
+      //       shInputInfo: true,
+      //       showText: showInfo
+      //     });
+      //   }
+      // })
+      that.getCusInfo();
     }, function () {
       var userInputInfo = wx.getStorageSync('UserInputCache_ol');
       console.log(userInputInfo);
@@ -239,6 +247,50 @@ Page({
       })
     })
   },
+  salesBATap: function(e){
+    var that = this;
+    that.setData({
+      showTemplate: e.target.dataset.template,
+      checkFun: e.target.dataset.checkfun,
+      meqiaGroup: e.target.dataset.meqia,
+      showDesc: e.target.dataset.desc,
+      titleColor: e.target.dataset.color,
+      titleCon: e.target.dataset.title,
+    })
+    util.IsCertificate(function () {
+      that.getCusInfo();
+      //未绑定，则跳转认证页面
+    }, function () {
+      wx.navigateTo({
+        url: '../auth/auth?pageName=mechat_list&pagelabel=salesBA',
+      })
+    });
+  },
+  getCusInfo: function(e){
+    var that = this;
+    util.NetRequest({
+      url: 'site-mini/meqia-getuserinfo',
+      success: function (res) {
+        console.log(res);
+        that.setData({
+          input2_name: res.userinfo.name,
+          input2_tel: res.userinfo.tel,
+          input2_company: res.userinfo.meta.company
+        })
+
+        var showInfo = "";
+        for (var i in dataTemplete[that.data.showTemplate]) {
+          showInfo += dataTemplete[that.data.showTemplate][i]["nameInfo"] + ":" + that.data[dataTemplete[that.data.showTemplate][i]["name"]] + "\r\n";
+        }
+
+        that.setData({
+          shLoading: false,
+          shInputInfo: true,
+          showText: showInfo
+        });
+      }
+    })
+  },
   orderTap:function(e){
     var that=this;
     util.IsCertificate(function () {
@@ -247,6 +299,8 @@ Page({
         showTemplate: e.target.dataset.template,
         checkFun: e.target.dataset.checkfun,
         meqiaGroup: e.target.dataset.meqia,
+        titleColor: e.target.dataset.color,
+        titleCon: e.target.dataset.title,
         shLoading: true
       })
       //未绑定，则跳转认证页面
@@ -264,8 +318,8 @@ Page({
       })
     });
 
-  }
-  ,checkOrder:function(){
+  },
+  checkOrder:function(){
     //服务单号格式为10位数字且是8开头
     var parm = /^8(\d){9}$/;
     if (!parm.test(this.data.input5_ordersn)){
@@ -314,6 +368,13 @@ Page({
     })
 
     return true;
+  },
+
+  //关闭提示框
+  closeShLoading: function(){
+    this.setData({
+      shInputInfo: false,
+    })
   },
   /**
    * 生命周期函数--监听页面加载

@@ -68,7 +68,11 @@ Page({
     if (typeof (pageName) == "undefined") {
       pageName = "index";
     }
-    this.setData({ pageName: pageName });
+    var pagelabel = options.pagelabel;
+    this.setData({ 
+      pageName: pageName,
+      pagelabel: pagelabel, 
+    });
   },
 
 
@@ -99,8 +103,10 @@ Page({
             var allPages = getCurrentPages();
             allPages[allPages.length - 2].setData({
               shLoading: true
-            });
-
+            }); 
+            if (that.data.pagelabel =='salesBA'){
+              allPages[allPages.length - 2].getCusInfo()
+            }
             wx.navigateBack();
           } else {
             wx.redirectTo({
