@@ -124,34 +124,42 @@ Page({
             that.showForeign();
             return;
           }
+          if (that.data.pagelabel == 'salesBA' && err_msg!='UB001' || err_msg!='UB004' ){
+            var allPages = getCurrentPages();
+            allPages[allPages.length - 2].setData({
+              shLoading: true
+            }); 
+            wx.navigateBack();
+          }else{
+            switch (err_msg) {
+              case 'UB001':
+                err_msg = '身份认证通过';
+                break;
+              case 'UB002':
+                err_msg = '身份认证通过，您的联系信息关联多家单位，我们将根据您第一次报修的仪器序列号为您关联单位名称';
+                break;
+              case 'UB003':
+                err_msg = '身份认证失败，您的手机号在系统中关联了多个联系人，请点击下方发起会话确认';
+                break;
+              case 'UB004':
+                err_msg = '您已经通过身份认证';
+                break;
+              case 'UB005':
+                err_msg = '您的手机在系统中未关联任何联系人，请提供相关的信息，我们尽快为您建档';
+                break;
+              case 'UB006':
+                err_msg = 'UB006';
+                break;
+            }
 
-          switch (err_msg) {
-            case 'UB001':
-              err_msg = '身份认证通过';
-              break;
-            case 'UB002':
-              err_msg = '身份认证通过，您的联系信息关联多家单位，我们将根据您第一次报修的仪器序列号为您关联单位名称';
-              break;
-            case 'UB003':
-              err_msg = '身份认证失败，您的手机号在系统中关联了多个联系人，请点击下方发起会话确认';
-              break;
-            case 'UB004':
-              err_msg = '您已经通过身份认证';
-              break;
-            case 'UB005':
-              err_msg = '您的手机在系统中未关联任何联系人，请提供相关的信息，我们尽快为您建档';
-              break;
-            case 'UB006':
-              err_msg = 'UB006';
-              break;
+            that.setData({
+              shLoading: true,
+              shLoading_title: '认证失败',
+              shLoading_body: err_msg,
+              skipFlag: res.noskip
+            })
           }
-
-          that.setData({
-            shLoading: true,
-            shLoading_title: '认证失败',
-            shLoading_body: err_msg,
-            skipFlag: res.noskip
-          })
+          
         }
       },
       fail: function (err) {
