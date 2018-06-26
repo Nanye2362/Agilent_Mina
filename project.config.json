@@ -29,7 +29,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
+			"current": 2,
 			"list": [
 				{
 					"id": -1,
@@ -42,6 +42,12 @@
 					"name": "labqc",
 					"pathName": "pages/labqc/labqc",
 					"query": "scene=000001"
+				},
+				{
+					"id": -1,
+					"name": "bqchange",
+					"pathName": "pages/budget_confirm/budget_confirm",
+					"query": "objectId=3000212942&srId=8101654924"
 				}
 			]
 		}

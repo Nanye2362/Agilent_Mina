@@ -1,4 +1,7 @@
 /* pages/budget_confirm/budget_confirm.wxss */
+page{
+  background: #fff;
+}
 .budget_confirm {
     width: 100%;
 }

@@ -3,6 +3,55 @@ var util = require('../../utils/util.js');
 
 // pages/budget_confirm/budget_confirm.js
 Page({
+  /**
+   * 页面的初始数据
+   */
+  data: {
+    bqId: "",
+    info: "加载中",
+    checkBox: false,
+    pageComplete: false
+  },
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+    //腾讯mat统计开始
+    var app = getApp();
+    var that = this;
+    app.mta.Page.init();
+    //腾讯mat统计结束
+    console.log(options);
+    util.NetRequest({
+      url: 'site-mini/get-budget',
+      data: {
+        srId: options.srId,
+        objectId: options.objectId
+      },
+      success: function (r) {
+        if (r.status == 0) {
+          that.setData({
+            pageComplete: true,
+            bqId: options.objectId,
+            isConfirm: r.data.is_confirm,
+            approval_button_enable: r.data.approval_button_enable,
+            item_description: r.data.item_description,
+            price: r.data.accept_price,
+            maxprice: r.data.max_price,
+            accountId: r.data.accountId,
+            ContactId: r.data.contactId
+          })
+        } else {
+          that.setData({
+            pageComplete: false,
+            info: r.errorInfo
+          })
+        }
+      }
+    })
+
+  },
   contractConfirm:function(e){
     this.setData({ 
       checkBox: e.detail.value.length==1
@@ -88,56 +137,7 @@ Page({
     var app = getApp();
     app.mta.Event.stat("meqia", { "group": 'NONTECH' });
   },
-  /**
-   * 页面的初始数据
-   */
-  data: {
-    bqId:"",
-    info:"加载中",
-    checkBox:false,
-    pageComplete:false
-  },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-    
-    //腾讯mat统计开始
-    var app = getApp();
-    var that=this;
-    app.mta.Page.init();
-    //腾讯mat统计结束
-    console.log(options);
-    util.NetRequest({
-      url: 'site-mini/get-budget',
-      data: {
-        srId: options.srId,
-        objectId: options.objectId
-      },
-      success: function (r) {
-        if(r.status==0){
-           that.setData({
-             pageComplete:true,
-             bqId: options.objectId,
-             isConfirm: r.data.is_confirm,
-             approval_button_enable: r.data.approval_button_enable,
-             item_description: r.data.item_description,
-             price: r.data.accept_price,
-             maxprice: r.data.max_price,
-             accountId: r.data.accountId,
-             ContactId: r.data.contactId
-           })
-        }else{
-          that.setData({
-            pageComplete:false,
-            info: r.errorInfo
-          })
-        }
-      }
-    })
-
-  },
+  
 
   /**
    * 生命周期函数--监听页面初次渲染完成
