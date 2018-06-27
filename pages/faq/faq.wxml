@@ -56,10 +56,10 @@
     <view style="overflow: scroll;" class='ss_hot_issue'>
       <view class="ss_hi_con">
         <block wx:for="{{questionsList}}" wx:key='unique'>
-          <view class='faq_con'>
+          <view class='faq_con' bindtap='clickTodetails'>
             <view class='flex faq_con_in'>
               <!-- questionCon -->
-              <view class="faq_item_con fs12" data-id='{{item.id}}' bindtap='clickTodetails'>{{item.questions}}
+              <view class="faq_item_con" data-id='{{item.id}}'>{{item.questions}}
               </view>
               <!-- arrow-right -->
               <view class="faq_img text-center">

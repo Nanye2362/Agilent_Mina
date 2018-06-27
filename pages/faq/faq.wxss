@@ -38,13 +38,10 @@ page{
 }
 
 .faq_notification {
-    position: fixed;
+    margin: 20rpx 0;
     height: 100rpx;
     width: 100%;
-    bottom: 0;
-    left: 0;
     line-height: 100rpx;
-    border-top: 2rpx solid #e7e7e7;
 }
 
 .faq_select {

@@ -11,7 +11,8 @@ Page({
     dataList: [],
     TECH:'T',
     searchValue: '',
-    autofocus: false   //搜索框内自动聚焦Flag
+    autofocus: false,   //搜索框内自动聚焦Flag
+    x: ''
   },
   
   /**
@@ -37,12 +38,20 @@ Page({
     });
   },
 
+
   onShow: function(){
     var pages = getCurrentPages();
     var _this = pages[pages.length - 1];
     var cT = _this.data.currentTab;
     this.setData({
       currentTab : cT,
+    })
+  },
+
+  moveTab: function(){
+    console.log('clicktoMove')
+    this.setData({
+      x: this.data.x-70
     })
   },
 

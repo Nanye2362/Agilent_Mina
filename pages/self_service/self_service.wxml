@@ -9,7 +9,7 @@
       </view>   
   </view>
 </view>
-
+ 
 <!-- tab -->
 <movable-area class="ss_tab_content">
    <movable-view class="ss_tab bg-primary" x="{{x}}" y="{{y}}" direction="horizontal" inertia="true"	out-of-bounds="false" damping="50">   
@@ -18,7 +18,7 @@
         </block>    
     </movable-view> 
 
-    <view class="ss_tab_right ss_tab_btn">
+    <view class="ss_tab_right ss_tab_btn" bindtap='moveTab'>
         <image src="/images/arraw-left.png" mode='widthFix'></image>
     </view>
 
@@ -64,9 +64,9 @@
           <view class="ss_hot_issue bg-primary">
             <view class="ss_hi_con fc-blue fs12">
                 <block wx:for="{{item.category}}" wx:key='unique'>
-                  <view class='faq_con'>
+                  <view class='faq_con' bindtap='clickToFaqDetails'>
                     <view class='flex faq_con_in'>
-                      <view class="faq_item_con" data-id='{{item.id}}' bindtap='clickToFaqDetails'>{{item.questions}}</view>
+                      <view class="faq_item_con" data-id='{{item.id}}'>{{item.questions}}</view>
                       <view class='faq_img text-center'>
                         <image src='/images/arrow_grey.png' mode='widthFix'></image>
                       </view>
