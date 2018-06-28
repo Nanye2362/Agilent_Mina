@@ -94,8 +94,8 @@
 </template>
 
 <template name="inputTemplate2">
-	 <input class="shLoading-input"   bindinput="bindKeyInput" placeholder="请输入姓名" data-name="input2_name" value="{{input2_name}}" />
    <input class="shLoading-input"   bindinput="bindKeyInput" placeholder="请输入手机" data-name="input2_tel" value="{{input2_tel}}" />
+	 <input class="shLoading-input"   bindinput="bindKeyInput" placeholder="请输入姓名" data-name="input2_name" value="{{input2_name}}" />
    <input class="shLoading-input"   bindinput="bindKeyInput" placeholder="请输入公司" data-name="input2_company" value="{{input2_company}}" />
    <text class="shLoading-input-error" wx:if="{{hasInputError}}">{{inputError}}</text>
 </template>
