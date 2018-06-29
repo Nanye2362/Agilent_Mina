@@ -14,7 +14,7 @@
     <view class="fd_ans">
        <block wx:for="{{answersList}}">
               
-                <block wx:if="{{item.type == 'text'}}">
+                <block wx:if="{{item.type == 'text'}}" wx:key='key' >
                   <view >
                       <rich-text nodes="{{item.content}}"></rich-text>
                   </view>

@@ -118,17 +118,15 @@ page{
 .ss_qc_inside > view {
     width: 30%;
     text-align: center;
-    padding: 10rpx 40rpx;
+    padding: 20rpx 40rpx;
     margin: 10rpx;
-    height: 120rpx;
+    height: 150rpx;
 }
 
 .ss_qc_inside > view{
-    background: #00a9e0;
-}
-
-.ss_qc_inside > view {
-    border-bottom: 2rpx solid #e7e7e7;
+    /*background: #00a9e0;*/
+    background: linear-gradient(-180deg, #FFFFFF 0%, #F8F8F8 51%, #F7F7F7 100%);
+    border: 1px solid #e9e9e9;
 }
 
 
@@ -149,6 +147,7 @@ page{
 .faq_item_con{
   flex: .9;
   box-sizing: border-box;
+  color: #8a8a8a;
 }
 .faq_img{
   flex: .1;
@@ -156,4 +155,12 @@ page{
 }
 .faq_img image{
   width: 16rpx;
+}
+.faq_notification{
+  margin-top:40rpx;
+}
+.faq_notification_img{
+  width: 47rpx;
+  height: 38rpx;
+  vertical-align: middle;
 }

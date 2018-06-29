@@ -6,8 +6,9 @@ page{
   background: #fff;
 }
 .faq_item {
-    padding: 30rpx 40rpx;
+    padding: 25rpx 30rpx 10rpx;
     position: relative;
+    align-items: baseline;
 }
 
 .faq_item a {
@@ -46,17 +47,18 @@ page{
 
 .faq_select {
     position: absolute;
-    right: -28rpx;
-    border: 2rpx solid #aaa;
+    right: 0;
+    top: 90rpx;
+    border: 2rpx solid #e0e0e0;
     border-radius: 12rpx;
     z-index: 999;
     text-align: center;
 }
 
 .faq_select > view{
-    height: 80rpx;
-    line-height: 80rpx;
-    min-width: 300rpx;
+    height: 75rpx;
+    line-height: 75rpx;
+    min-width: 275rpx;
 }
 
 @media screen and (max-width: 320px) {
@@ -102,4 +104,9 @@ page{
 .faq_select >view.selected{
     background: #0085d5;
     color: white
+}
+
+.sl_dropdown{
+  padding: 20rpx;
+  border: 1px solid #e0e0e0;
 }
