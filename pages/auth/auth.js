@@ -125,24 +125,36 @@ Page({
             that.showForeign();
             return;
           }
-          if (that.data.pagelabel == 'salesBA'){
-            if (err_msg != 'UB001' && err_msg != 'UB004'){
-              var allPages = getCurrentPages();
-              allPages[allPages.length - 2].setData({
-                shLoading: true,
-                input2_tel: that.data.mobile
-              });
+          if(res.noskip==0){
+            if (that.data.pagelabel == 'salesBA') {
+              if (err_msg != 'UB001' && err_msg != 'UB004') {
+                var allPages = getCurrentPages();
+                allPages[allPages.length - 2].setData({
+                  shLoading: true,
+                  input2_tel: that.data.mobile
+                });
+              } else {
+                mechat.getCusInfo();
+              }
               wx.navigateBack();
             }else{
-              mechat.getCusInfo();
+              that.errCon(err_msg);
               that.setData({
+                shLoading: true,
+                shLoading_title: '认证失败',
+                shLoading_body: err_msg,
                 skipFlag: res.noskip
               })
             }
-          }else{           
-            that.errCon(err_msg,res);
-          }
-          
+          } else if (res.noskip == 1)  {
+            that.errCon(err_msg);
+            that.setData({
+              shLoading: true,
+              shLoading_title: '认证失败',
+              shLoading_body: err_msg,
+              skipFlag: res.noskip
+            })
+          }       
         }
       },
       fail: function (err) {
@@ -150,7 +162,7 @@ Page({
       }
     })
   },
-  errCon: function(err_msg,res){
+  errCon: function(err_msg){
     var that = this;
     switch (err_msg) {
       case 'UB001':
@@ -172,12 +184,6 @@ Page({
         err_msg = 'UB006';
         break;
     }
-    that.setData({
-      shLoading: true,
-      shLoading_title: '认证失败',
-      shLoading_body: err_msg,
-      skipFlag: res.noskip
-    })
   },
   showForeign(){
     this.setData({
