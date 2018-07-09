@@ -17,11 +17,12 @@
 
 <!-- 搜索内容分类标题 -->
 <!--block wx:for="{{}}" wx:key='key'-->
-  <view class='search_title fs13'>液相</view>
+<block wx:for="{{resultList}}" wx:key='unique' wx:for-item="result" wx:for-index="idx">
+  <view class='search_title fs13'>{{idx}}</view>
   <!--搜索内容-->
   <view class="ss_hot_issue bg-primary">
     <view class="ss_hi_con fc-blue">
-      <block wx:for="{{resultList}}" wx:key='key'>
+      <block wx:for="{{result}}" wx:key='unique' wx:for-item="item">
         <view  class='faq_con' data-id='{{item.id}}' bindtap='clickToFaqDetails'>
           <view class="flex faq_con_in">
             <view class="faq_item_con">
@@ -36,4 +37,5 @@
       </block>
     </view>
   </view>
+</block>
 <!--/block-->
