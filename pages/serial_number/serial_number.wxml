@@ -26,7 +26,7 @@
 
 
 <!-- gotoChat -->
-<view class="cs_con" wx:if="{{chat}}">
+<view class="cs_con" hidden="{{!chat}}">
     <view class="text-center fs12">如果您有任何问题，请
       <meiqiaBtn bindmeiqiaTap="MtaReport" btn-class="fc-blue bc_chat_btn btn-meiqia" handle-alert="{{false}}" meiqia-group="{{meqiaGroup}}" session-from="{{NONTECH+inputValue}}"><image src="/images/wechat_b.png"></image>发起会话</meiqiaBtn> 
 </view>

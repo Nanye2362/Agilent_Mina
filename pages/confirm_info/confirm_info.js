@@ -13,6 +13,7 @@ Page({
     SerialNo: '',
     CpName: '',
     ShipToName: '',
+    aglNum:'',
     userInfo: {},
     TECH:'',
     NONTECH:'',
@@ -56,7 +57,12 @@ Page({
         }
       }
    }
-    
+   console.log(options);
+   if(typeof(options.aglNum) != 'undefined' && options.aglNum.length>0){
+       this.setData({
+         aglNum: "&"+options.aglNum
+       })
+   }
 
     //腾讯mta统计结束
     this.setData({

@@ -47,7 +47,7 @@
         </view>
     </view>
     <view class="pd_btn" wx:if="{{needChat}}">
-         <meiqiaBtn bindmeiqiaTap="MtaReport" btn-class="btn btn-primary" handle-alert="{{false}}" session-from="{{TECH}}">
+         <meiqiaBtn bindmeiqiaTap="MtaReport" btn-class="btn btn-primary" handle-alert="{{false}}" session-from="{{TECH+aglNum}}">
          确定并开始咨询
         </meiqiaBtn>
     </view>
@@ -56,7 +56,7 @@
     </view>
     <view class="pd_wechat padding text-center">
         信息不正确？您可以
-        <meiqiaBtn bindmeiqiaTap="MtaReportt" btn-class="pd_wechat_btn fc-blue btn-meiqia" handle-alert="{{false}}" session-from="{{NONTECH}}">
+        <meiqiaBtn bindmeiqiaTap="MtaReportt" btn-class="pd_wechat_btn fc-blue btn-meiqia" handle-alert="{{false}}" session-from="{{NONTECH+aglNum}}">
         <image src="../../images/wechat_b.png"></image>发起会话
         </meiqiaBtn>
     </view>

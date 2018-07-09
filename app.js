@@ -1,5 +1,6 @@
 //app.js
 var util = require('/utils/util.js');
+var miniAppupdate=require("/utils/miniAppupdate.js");
 
 //var aldstat = require("./utils/ald-stat.js");
 var mta = require('/utils/mta_analysis.js');
@@ -10,11 +11,13 @@ var userMobile={};
 console.log(userMobile);
 App({
   onLaunch: function () {
-      mta.App.init({
+    miniAppupdate.checkUpdate();//检测小程序版本
+
+    mta.App.init({
         "appID": "500539156",
         "eventID": "500539161",
-      });
-   
+    });
+ 
     this.mta = mta;
     
     this.globalData.isLoading = true;
