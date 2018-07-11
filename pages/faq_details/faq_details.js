@@ -25,7 +25,7 @@ Page({
     var app = getApp();
     app.mta.Page.init();
     //腾讯mta统计结束
-    console.log(options.id)
+    console.log('id='+options.id)
     var that = this;
     var meiqiaInfo = wx.getStorageSync('meiqia');
 

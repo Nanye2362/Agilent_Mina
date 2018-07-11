@@ -17,7 +17,7 @@
 <movable-area class="ss_tab_content">
    <movable-view class="ss_tab bg-primary" x="{{x}}" y="{{y}}" direction="horizontal" inertia="true"	out-of-bounds="false" damping="50">   
         <block wx:for="{{dataList}}" wx:key='unique' wx:for-index='index' >
-              <view class="ss_tab_item {{item.id==getsid ? 'ss_tab_item_active' : ''}}" bindtap="gotoTab" data-index='{{index}}'>{{item.name}}</view>
+              <view class="ss_tab_item fs15 {{item.id==getsid ? 'ss_tab_item_active' : ''}}" bindtap="gotoTab" data-index='{{index}}'>{{item.name}}</view>
         </block>    
     </movable-view> 
 
@@ -33,18 +33,18 @@
   <view class="bg-primary">
     <!-- title -->
     <view class="faq_item faq_title flex">
-      <view class="faq_title_l">
+      <view class="faq_title_l fs15">
         <image src="../../images/species.png" class="ss_img_ques" mode='widthFix'/>问题分类
       </view>
       <view class="text-right faq_title_r fc-blue" style="display: inline; position: relative; z-index: 1000;" bindtap="tagShow">
-        <view class="sl_dropdown text-right fc-blue">{{chooseCont}}
+        <view class="sl_dropdown text-right fc-blue fs12">{{chooseCont}}
           <image src="/images/down.png"></image>
         </view>
         
         <!-- menu -->
         <view wx:if="{{dropdown}}" class="faq_select">
           <block wx:for="{{dropDownlist}}">
-            <view class="text-overflow {{item.changeColor?'selected':''}} fs12" data-id='{{item.id}}' bindtap='changeChoose'>
+            <view class="text-overflow fs12 {{item.changeColor?'selected':''}}" data-id='{{item.id}}' bindtap='changeChoose'>
               {{item.name}}
             </view>
           </block>
@@ -56,10 +56,10 @@
     <view style="overflow: scroll;" class='ss_hot_issue'>
       <view class="ss_hi_con">
         <block wx:for="{{questionsList}}" wx:key='unique'>
-          <view class='faq_con' bindtap='clickTodetails'>
+          <view class='faq_con' bindtap='clickTodetails' data-id='{{item.id}}'>
             <view class='flex faq_con_in'>
               <!-- questionCon -->
-              <view class="faq_item_con" data-id='{{item.id}}'>{{item.questions}}
+              <view class="faq_item_con">{{item.questions}}
               </view>
               <!-- arrow-right -->
               <view class="faq_img text-center">

@@ -4,6 +4,9 @@
 page{
   background: #fff;
 }
+.fs135{
+  font-size: 0.84rem;
+}
 .swiper-box{
   min-height:100%;
 }
@@ -64,11 +67,13 @@ page{
     height: 112rpx;
     line-height: 112rpx;
     text-align: center;
+    font-weight: 600;
 }
 
 .ss_tab_item_active {
     color: #0085d5;
     border-bottom: 3px solid #0085d5;
+    font-weight: 600;
 }
 
 .ss_tab_btn {
@@ -97,6 +102,7 @@ page{
     height: 80rpx;
     line-height: 80rpx;
     padding: 0 40rpx;
+    font-weight: 600;
 }
 .ss_hot_issue {
     padding: 10rpx 30rpx;
@@ -129,21 +135,33 @@ page{
     border: 1px solid #e9e9e9;
 }
 
+.ss_qc_container{
+  width: 120rpx;
+  height: 76rpx;
+  text-align: center;
+  background-size: 10rpx 10rpx;
+}
 
 .ss_qc_icon {
-    width: 67rpx;
-    height: 61rpx; 
+    width: 110rpx;
+    height: 70rpx; 
 }
+
 .faq_con{
   border: 1px solid #eee;
   border-left: 4px solid #0085d5; 
   padding: 26rpx 20rpx;
-  margin-bottom: 20rpx;  
+  margin-bottom: 20rpx; 
 }
 .faq_con_in{
   box-sizing: border-box;
   align-items: center;
+  align-content: center;
 }
+.faq_con_in > view {
+  -webkit-align-self:center;
+}
+
 .faq_item_con{
   flex: .9;
   box-sizing: border-box;

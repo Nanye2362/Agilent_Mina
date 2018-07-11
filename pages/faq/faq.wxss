@@ -21,7 +21,8 @@ page{
 }
 
 .faq_title_l{
-    flex: .6;
+    flex: .8;
+    font-weight: 600;
 }
 .faq_title_r{
   flex: .4;
@@ -33,9 +34,9 @@ page{
 }
 .sl_dropdown image{
     width: 28rpx;
-    height:14rpx;
-    margin-left:40rpx;
-    margin-bottom: 5rpx;
+    height:19rpx;
+    margin: 0 10rpx 5rpx 12rpx;
+    vertical-align: middle;
 }
 
 .faq_notification {
@@ -48,17 +49,17 @@ page{
 .faq_select {
     position: absolute;
     right: 0;
-    top: 90rpx;
+    top: 76rpx;
     border: 2rpx solid #e0e0e0;
-    border-radius: 12rpx;
+    border-radius: 6rpx;
     z-index: 999;
     text-align: center;
 }
 
 .faq_select > view{
-    height: 75rpx;
-    line-height: 75rpx;
-    min-width: 275rpx;
+    height: 66rpx;
+    line-height: 66rpx;
+    min-width: 228rpx;
 }
 
 @media screen and (max-width: 320px) {
@@ -88,12 +89,12 @@ page{
     background: #fff;
 }
 .faq_select > view:first-child{
-  border-top-left-radius: 12rpx;
-  border-top-right-radius: 12rpx;
+  border-top-left-radius: 6rpx;
+  border-top-right-radius: 6rpx;
 }
 .faq_select > view:last-child{
-  border-bottom-left-radius: 12rpx;
-  border-bottom-right-radius: 12rpx;
+  border-bottom-left-radius: 6rpx;
+  border-bottom-right-radius: 6rpx;
 }
 .faq_mask {
     position: fixed;
@@ -107,6 +108,6 @@ page{
 }
 
 .sl_dropdown{
-  padding: 20rpx;
+  padding: 12rpx;
   border: 1px solid #e0e0e0;
 }

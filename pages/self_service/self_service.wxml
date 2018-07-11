@@ -45,8 +45,9 @@
                   <block wx:for="{{item.children}}" wx:for-item="children"  wx:key='unique'>
                     <view data-id='{{children.id}}' data-pid='{{children.pid}}' bindtap='clickToFaq' data-sid='{{item.id}}'>
                       <!-- <image class="ss_qc_icon" src="https://prd.wechat.service.agilent.com/images/mini_selfservice_icon/{{children.icon}}.jpg"></image> -->
-                      <image class="ss_qc_icon" src="https://devops.coffeelandcn.cn/images/mini_selfservice_icon/{{children.icon}}.png"></image>
-                      <view>{{children.name}}</view>
+                      <!--view class='ss_qc_container' style='background: url("https://devops.coffeelandcn.cn/images/mini_selfservice_icon/{{children.icon}}.png")'-->
+                        <image class="ss_qc_icon" src="https://devops.coffeelandcn.cn/images/mini_selfservice_icon/{{children.icon}}.png"  mode='aspectFit'></image>                     
+                      <view class='fs135'>{{children.name}}</view>
                     </view>
                   </block>                  
               </view>
@@ -64,12 +65,12 @@
           <view class="ss_hot_issue bg-primary">
             <view class="ss_hi_con fc-blue fs12">
                 <block wx:for="{{item.category}}" wx:key='unique'>
-                  <view class='faq_con' bindtap='clickToFaqDetails'>
+                  <view class='faq_con' bindtap='clickToFaqDetails' data-id='{{item.id}}'>
                     <view class='flex faq_con_in'>
-                      <view class="faq_item_con" data-id='{{item.id}}'>{{item.questions}}</view>
-                      <view class='faq_img text-center'>
+                      <view class="faq_item_con">{{item.questions}}</view>
+                       <view class='faq_img text-center'>
                         <image src='/images/arrow_grey.png' mode='widthFix'></image>
-                      </view>
+                      </view> 
                     </view>
                   </view>
                 </block>                

@@ -77,7 +77,6 @@ sortList: function(list){
     wx.navigateTo({
       url: '../faq_details/faq_details?id='+id,
     })
-
   },
   bindblur:function(){
     this.setData({
