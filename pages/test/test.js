@@ -13,43 +13,43 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    //腾讯mat统计开始
-    var app = getApp();
-    app.mta.Page.init();
-    //腾讯mat统计结束
-    var url = util.Server + 'files/111.xls';
-    var downloadTask = wx.downloadFile({
-      url: url,
-      success: function (res) {
-        console.log(res);
-        var filePath = res.tempFilePath;
-        console.log('filePath= ' + filePath);
-        wx.openDocument({
-          filePath: filePath,
-          success: function (res) {
-            console.log('打开文档成功')
-          },
-          fail: function (res) {
-            console.log(res)
-            wx.showModal({
-              title: '提示',
-              content: '报告显示错误。如果需要此报告，请联系客服索取。',
-              showCancel: false,
-            })
-          }
-        })
-      },
-      complete: function () {
-        wx.hideLoading();
-      },
-      fail: function () {
-        wx.showModal({
-          title: '提示',
-          content: '报告下载失败，请检测网络。',
-          showCancel: false,
-        })
-      },
-    })
+    // //腾讯mat统计开始
+    // var app = getApp();
+    // app.mta.Page.init();
+    // //腾讯mat统计结束
+    // var url = util.Server + 'files/111.xls';
+    // var downloadTask = wx.downloadFile({
+    //   url: url,
+    //   success: function (res) {
+    //     console.log(res);
+    //     var filePath = res.tempFilePath;
+    //     console.log('filePath= ' + filePath);
+    //     wx.openDocument({
+    //       filePath: filePath,
+    //       success: function (res) {
+    //         console.log('打开文档成功')
+    //       },
+    //       fail: function (res) {
+    //         console.log(res)
+    //         wx.showModal({
+    //           title: '提示',
+    //           content: '报告显示错误。如果需要此报告，请联系客服索取。',
+    //           showCancel: false,
+    //         })
+    //       }
+    //     })
+    //   },
+    //   complete: function () {
+    //     wx.hideLoading();
+    //   },
+    //   fail: function () {
+    //     wx.showModal({
+    //       title: '提示',
+    //       content: '报告下载失败，请检测网络。',
+    //       showCancel: false,
+    //     })
+    //   },
+    // })
   },
 
   /**

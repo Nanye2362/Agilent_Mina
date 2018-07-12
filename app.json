@@ -2,6 +2,7 @@
   "pages": [
     "pages/index/index",
     "pages/serial_number/serial_number",
+    "pages/test/test",
     
     "pages/auth/auth",
     "pages/leave_message/leave_message",
