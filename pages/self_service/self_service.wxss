@@ -163,6 +163,7 @@ page{
 }
 
 .faq_item_con{
+  line-height: 1;
   flex: .9;
   box-sizing: border-box;
   color: #8a8a8a;
