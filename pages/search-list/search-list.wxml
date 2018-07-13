@@ -6,20 +6,36 @@
 
 <view class="faq_item faq_ques" data-id='{{item.id}}' bindtap='clickTodetails'>
   <view class=" flex">
-    <view class="fs14">共找到与“
+    <view class="fs14">
+      <image src='/images/searchR.png' class='searchResult'></image>
+      共找到与“
       <span class="fc-blue fs14">{{value}}</span>”相关的{{resultLength}}条记录</view>
   </view>
 </view>
-<block wx:for="{{resultList}}">
-  <view class="faq_item faq_ques" data-id='{{item.id}}' bindtap='clickToFaqDetails'>
-    <view class="faq_item_con flex">
-      <view class="faq_item_l ">
-          <rich-text class="" nodes="{{item.questions}}">
-          </rich-text>
-      </view>
-      <view class="faq_item_r text-right">
-        <image src="../../images/arrow-r.png" />
-      </view>
+
+
+
+<!-- 搜索内容分类标题 -->
+<!--block wx:for="{{}}" wx:key='key'-->
+<block wx:for="{{resultList}}" wx:key='unique' wx:for-item="result" wx:for-index="idx">
+  <view class='search_title fs13'>{{idx}}</view>
+  <!--搜索内容-->
+  <view class="ss_hot_issue bg-primary">
+    <view class="ss_hi_con fc-blue">
+      <block wx:for="{{result}}" wx:key='unique' wx:for-item="item">
+        <view  class='faq_con' data-id='{{item.id}}' bindtap='clickToFaqDetails'>
+          <view class="flex faq_con_in">
+            <view class="faq_item_con">
+                <rich-text class="" nodes="{{item.questions}}">
+                </rich-text>
+            </view>
+            <view class='faq_img text-center'>
+              <image src='/images/arrow_grey.png' mode='widthFix'></image>
+            </view>
+          </view>
+        </view>
+      </block>
     </view>
   </view>
 </block>
+<!--/block-->

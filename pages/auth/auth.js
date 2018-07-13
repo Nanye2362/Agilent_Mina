@@ -70,7 +70,8 @@ Page({
     }
     this.setData({ pageName: pageName });
   },
-
+  
+  
 
   registrationSubmit: function (e) {
     var pageName = this.data.pageName;
