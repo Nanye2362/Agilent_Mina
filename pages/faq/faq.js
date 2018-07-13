@@ -25,21 +25,24 @@ Page({
     //腾讯mta统计结束
     console.log(option);
     var id = option.id;
+    var sid = option.sid;
     var that = this;
     util.NetRequest({
       url: 'site-mini/faq',
       data: {
-        'id': id
+        'id': id,
       },
       success: function (res) {
         console.log(res);
         that.setData({
-          getid: id
+          getid: id,
+          getsid: sid
         })
         var dropDownlist = that.addSelectedFlag(res.types);
         that.setData({
           dropDownlist: dropDownlist,
-          questionsList: res.data
+          questionsList: res.data,
+          dataList: res.parents,
         })
       }
     });
@@ -128,6 +131,48 @@ Page({
       wx.navigateTo({
         url: '../leave_message/leave_message',
       })
+    })
+  },
+
+  //点击tab跳转
+  gotoTab: function(e){
+    var index = e.currentTarget.dataset.index;
+    console.log(index);
+    var pages = getCurrentPages();
+    console.log(pages.length);
+    var nums;
+    for (var i in pages) {
+      if (pages[i].route =='pages/self_service/self_service'){
+        console.log('就是这一页没错了!!!!!!!!!!')
+        pages[i].data.currentTab = index;
+        console.log(pages[i].data)
+        console.log(pages[i].route)
+        nums = i+1;
+      }
+    }
+    wx.navigateBack({
+      delta: pages.length - nums
+    })
+  },
+ 
+  clickToSearch: function (e) {
+    //腾讯mta记录搜索事件开始
+    var app = getApp();
+    app.mta.Event.stat("self_service_search", { "query": this.data.searchValue });
+    //腾讯mta记录搜索事件结束
+
+    console.log('确定');
+    var value = this.data.searchValue;
+    wx: wx.navigateTo({
+      url: '../search-list/search-list?value=' + value,
+    })
+  },
+  bindInput:function(e){
+    console.log(e);
+    var value = e.detail.value;
+    var inputLength = e.detail.value.length;
+    this.setData({
+      searchValue: value
     })
   },
   
