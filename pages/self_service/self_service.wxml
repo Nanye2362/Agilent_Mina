@@ -44,9 +44,8 @@
               <view class="ss_qc_inside flex">
                   <block wx:for="{{item.children}}" wx:for-item="children"  wx:key='unique'>
                     <view data-id='{{children.id}}' data-pid='{{children.pid}}' bindtap='clickToFaq' data-sid='{{item.id}}'>
-                      <!-- <image class="ss_qc_icon" src="https://prd.wechat.service.agilent.com/images/mini_selfservice_icon/{{children.icon}}.jpg"></image> -->
-                      <!--view class='ss_qc_container' style='background: url("https://devops.coffeelandcn.cn/images/mini_selfservice_icon/{{children.icon}}.png")'-->
-                        <image class="ss_qc_icon" src="https://devops.coffeelandcn.cn/images/mini_selfservice_icon/{{children.icon}}.png"  mode='aspectFit'></image>                     
+                       <image class="ss_qc_icon" src="https://prd.wechat.service.agilent.com/images/mini_selfservice_icon/{{children.icon}}.jpg" mode='aspectFit'></image> 
+                        <!-- <image class="ss_qc_icon" src="https://devops.coffeelandcn.cn/images/mini_selfservice_icon/{{children.icon}}.png"  mode='aspectFit'></image>                      -->
                       <view class='fs135'>{{children.name}}</view>
                     </view>
                   </block>                  
