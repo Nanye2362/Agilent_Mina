@@ -6,7 +6,7 @@
     </view>
     <view class="mechat_list_panel"  bind-tap="closeDesc">
       <view class="mechat_list">
-        <view class="mechat_row" wx:for="{{list}}">
+        <view class="mechat_row" wx:for="{{list}}"> 
           <view class="mechat_row_head mechat_row_{{item.color}}">
           0{{index+1}}
           </view>
@@ -27,7 +27,7 @@
             </view>
           </view>
           </view>
-          <view class="mechat_row_btn mechat_row_{{item.color}} {{mechat_offline_time}}"  bindtap="showInputPanel" data-Template="{{item.templete}}" data-checkfun="{{item.checkfun}}" data-desc="{{item.desc}}" data-tapfun="{{item.tapfun}}" data-meqia="{{item.meqia}}">
+          <view class="mechat_row_btn mechat_row_{{item.color}} {{mechat_offline_time}}"  bindtap="showInputPanel" data-Template="{{item.templete}}" data-checkfun="{{item.checkfun}}" data-desc="{{item.desc}}" data-tapfun="{{item.tapfun}}" data-meqia="{{item.meqia}}" data-title='{{item.title}}' data-color='mechat_row_{{item.color}}'>
             点击咨询
           </view>
         </view>
@@ -45,6 +45,10 @@
   <view class="shLoading-mask1">
   </view>
   <view class="shLoading-panel flex alignc directionC">
+      <view class='shLoading-title {{titleColor}}'>
+        {{titleCon}}
+        <image src='/images/close.png' class='shLoading-title-img' bindtap='cancelTap'></image>
+      </view>
       <view class="shLoading-head-panel">
           <template is="{{showTemplate}}"  data="{{hasInputError:hasInputError,inputError:inputError,input5_ordersn:input5_ordersn,input2_name:input2_name,input2_tel:input2_tel,input2_company:input2_company}}"></template>
       </view>
@@ -61,10 +65,17 @@
   <view class="shLoading-mask1">
   </view>
   <view class="shLoading-panel flex alignc directionC">
-      <view class="shLoading-head-desc">{{showDesc}}</view>
+      <view class='shLoading-title {{titleColor}}'>
+        {{titleCon}}
+        <image src='/images/close.png' class='shLoading-title-img' bindtap='closeShLoading'></image>
+      </view>
+      <view class="shLoading-head-desc fs12 fc-ddd">
+        <image src='/images/notifi.png' class='shLoading-head-img'></image>
+        {{showDesc}}
+      </view>
       <view class="shLoading-head-panel">
           <text class="shLoading-head-panel-info">请确认以下信息是否正确\r\n</text>
-          <text>{{showText}}</text>
+          <text class='fs12' style='line-height: 50rpx;'>{{showText}}</text>
       </view>
       <view class="shLoading-btn-panel">
           <view class="shLoading-btn-cancel" bindtap="infoCancelTap">返回修改</view>
@@ -83,8 +94,8 @@
 </template>
 
 <template name="inputTemplate2">
-	 <input class="shLoading-input"   bindinput="bindKeyInput" placeholder="请输入姓名" data-name="input2_name" value="{{input2_name}}" />
    <input class="shLoading-input"   bindinput="bindKeyInput" placeholder="请输入手机" data-name="input2_tel" value="{{input2_tel}}" />
+	 <input class="shLoading-input"   bindinput="bindKeyInput" placeholder="请输入姓名" data-name="input2_name" value="{{input2_name}}" />
    <input class="shLoading-input"   bindinput="bindKeyInput" placeholder="请输入公司" data-name="input2_company" value="{{input2_company}}" />
    <text class="shLoading-input-error" wx:if="{{hasInputError}}">{{inputError}}</text>
 </template>

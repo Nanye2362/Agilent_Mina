@@ -49,23 +49,23 @@ page{
   border-bottom-left-radius: 10rpx;
 }
 
-.mechat_list_panel .mechat_row_blue{
+.mechat_row_blue{
   background: #0087D2;
 }
 
-.mechat_list_panel .mechat_row_orange{
+.mechat_row_orange{
   background: #802764;
 }
 
-.mechat_list_panel .mechat_row_green{
+.mechat_row_green{
   background: #86BC02;
 }
 
-.mechat_list_panel .mechat_row_yellow{
+.mechat_row_yellow{
   background: #F3A901;
 }
 
-.mechat_list_panel .mechat_offline_time{
+.mechat_offline_time{
   background:#838690;
 }
 
@@ -119,7 +119,8 @@ page{
 }
 
 .shLoading .shLoading-head-desc{
-  padding:0 50rpx 14rpx;
+  padding:20rpx 40rpx 0;
+  line-height: 55rpx;
 }
 
 .mechat_list_panel .mechat_row_btn{
