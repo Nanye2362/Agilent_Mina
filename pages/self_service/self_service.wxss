@@ -124,7 +124,7 @@ page{
 .ss_qc_inside > view {
     width: 30%;
     text-align: center;
-    padding: 20rpx 40rpx;
+    padding: 20rpx 0rpx;
     margin: 10rpx;
     height: 150rpx;
 }
