@@ -8,7 +8,7 @@
 		"newFeature": true
 	},
 	"compileType": "miniprogram",
-	"libVersion": "1.9.90",
+	"libVersion": "2.0.0",
 	"appid": "wxd73c4d1bcd0db4c2",
 	"projectname": "%E5%B0%8F%E7%A8%8B%E5%BA%8Fprod",
 	"condition": {
@@ -41,31 +41,7 @@
 					"id": 1,
 					"name": "labqc",
 					"pathName": "pages/labqc/labqc",
-					"query": "scene=000002"
-				},
-				{
-					"id": 2,
-					"name": "建档",
-					"pathName": "pages/fill_info/fill_info",
-					"query": ""
-				},
-				{
-					"id": 3,
-					"name": "手机认证",
-					"pathName": "pages/budget_confirm/budget_confirm",
-					"query": ""
-				},
-				{
-					"id": 4,
-					"name": "BQ确认页",
-					"pathName": "pages/budget_confirm/budget_confirm",
-					"query": "objectId=3000212942&srId=8101654924"
-				},
-				{
-					"id": -1,
-					"name": "BQ确认页",
-					"pathName": "pages/index/index",
-					"query": "objectId=3000212942&srId=8101654924"
+					"query": "scene=000001"
 				}
 			]
 		}
