@@ -13,8 +13,38 @@ Page({
     photoURL: [],
     hasError:false,
     displayTips: false,
-    WLA: 'W'
+    WLA: 'W',
+    insType: ['液相', '气象', '液态', '气化'],
+    pickerType: -1,
+    desc:'',
   },
+  //选择仪器类型
+  bindPickerChange: function(e){
+    console.log(e);
+    console.log('picker发送选择改变，携带值为', e.detail.value)
+    this.setData({
+      pickerType: e.detail.value
+    })
+  },
+  //附加信息
+  desNo: function (e) {
+    this.setData({
+      desc: e.detail.value 
+    });
+  },
+  //场地安装就绪
+  installReady: function(){
+    wx.setStorage({
+      key: "openHtmlUrl",
+      data: "https://www.baidu.com",
+      success: function () {
+        wx.navigateTo({
+          url: '../html/openHtml',
+        });
+      }
+    })
+  },
+
   formSubmit: function (e) {
     var clickevent = e.detail.target.dataset.click;
     console.log(e.detail.formId);

@@ -373,7 +373,7 @@ view, text, input, button{ font-size: 32rpx; font-family: "MicroSoft Yahei"; col
 
 /* 标签颜色 */
 .yellow{
-  background: #ffb652;
+  background: #F3A901;
 }
 .coffee{
   background: #b59177;
@@ -424,3 +424,17 @@ view, text, input, button{ font-size: 32rpx; font-family: "MicroSoft Yahei"; col
   height:100%;
   line-height:1;
 }
+
+
+/* 底部聊天 */
+.bottom_remind{
+  margin: 40rpx 0;
+}
+.bottom_remind_img{
+  width: 47rpx;
+  height: 38rpx;
+  vertical-align: middle;
+}
+
+
+

@@ -1,0 +1,24 @@
+<!--pages/serviceOrder/serviceOrder.wxml-->
+<image src="https://prd.wechat.service.agilent.com/images/sn_bg.jpg" mode="scaleToFill" style="width:100%;"></image>
+
+
+<!-- ==========service_list========== -->
+<view class='service'>
+  <block wx:for='{{serviceList}}' wx:for-item='item' wx:key="unique">
+    <view class='serviceList flex' data-url='{{item.url}}' bindtap='gotoNext'>
+      <!-- icon -->
+      <view class='sl_icon'>
+        <image src='{{item.icon}}' mode="aspectFit"></image>
+      </view>
+      <!-- discribe -->      
+      <view class='sl_con flex directionC'>
+        <text>{{item.title}}</text>
+        <text class='fs13 fc-aaa'>{{item.describe}}</text>
+      </view>
+      <!-- arrow -->
+      <view class='sl_arrow text-right'>     
+        <image src='{{item.arrow}}' mode="widthFix"></image>
+      </view>
+    </view>
+  </block>
+</view>

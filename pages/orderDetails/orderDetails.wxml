@@ -1,0 +1,25 @@
+<!--pages/orderDetails/orderDetails.wxml-->
+<!-- form_content -->
+<view class='orderDetails'>
+    <!-- <block wx:for="{{}}" wx:for-item="item" wx:key='unique'>
+    </block> -->
+    <view class='orderItem flex '>
+      <view class='orderItem_l'>预约日期：</view>
+      <view class='orderItem_r'>2018-03-04</view>
+    </view>
+    
+    
+</view>
+
+<button class="btn btn-primary" bindtap='goBack'>返回</button>
+
+
+<!-- gotoChat -->
+<view class="bottom_remind text-center">
+    <view class="fc-777 fs12">如需查看安装申请的安排进度，请
+        <meiqiaBtn bindmeiqiaTap="MtaReport" btn-class="bc_chat_btn btn-meiqia" handle-alert="{{false}}" session-from="{{WLA}}">
+          <image class='bottom_remind_img' src="/images/wechat_b.png"></image>
+          <text class='fc-blue btn-meiqia fs14'>发起会话</text>
+        </meiqiaBtn>
+    </view>
+</view>

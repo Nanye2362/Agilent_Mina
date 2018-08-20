@@ -1,0 +1,51 @@
+
+<view class='CN'>
+  <!-- tab -->
+  <view class="sl_tab flex">    
+      <view class="sl_tab_item  {{currentTab==0 ? 'on' : ''}}" circular="true" data-current="0" bindtap="swichNav">最近一个月内</view>  
+      <view class="sl_tab_item  {{currentTab==1 ? 'on' : ''}}" circular="true" data-current="1" bindtap="swichNav">所有预约记录</view>
+  </view> 
+
+  <!-- content -->
+  <swiper current="{{currentTab}}" class="swiper-box" duration="300"  bindchange="bindChange" style="height:{{winHeight - 31}}px;"> 
+    <!-- records --> 
+    <block  wx:for="{{tabList}}" wx:for-item="item" wx:key='unique' wx:for-index="idx">
+      <swiper-item> 
+        <view id='record'>
+          <block wx:for="{{item}}" wx:for-item="record" wx:key='unique' wx:for-index="idx">
+            <view class='record' data-id='{{record.id}}' bindtap='gotoDetails' data-orderType='{{record.orderType}}'>
+              <view class='recordCon'>
+                <!-- recordDetails -->
+                <view class="flex directionC recordDetails">
+                  <view class="flex">
+                    <view class="{{idx==0?'fc-blue':''}}">{{record.orderTime}}</view>
+                  </view> 
+                  <view class="flex">
+                    <view class=" fs13 rd-l">服务类型：</view>
+                    <view class=" fs13 rd-r">{{record.orderType}}</view>
+                  </view>  
+                  <view class="flex">
+                    <view class=" fs13 rd-l">序列号：</view>
+                    <view class=" fs13 rd-r">{{record.orderSn}}</view>
+                  </view>
+                  <view class="flex">
+                    <view class=" fs13 rd-l">预约状态：</view>
+                    <view class=" fs13 rd-r">
+                      <view class='fs12 order_status'>
+                        {{record.orderStatus}}
+                      </view>
+                    </view>
+                  </view>  
+                  <!-- recordLabel -->
+                  <view class='{{idx==0?"firstLabel":"recordLabel"}}' ></view>        
+                  <view class='{{idx==0?"secondLabel":""}}' ></view>             
+                </view>
+              </view>
+            </view>
+          </block>
+        </view>
+      </swiper-item>
+    </block>
+  </swiper>
+  
+</view>
