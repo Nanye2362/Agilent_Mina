@@ -1,9 +1,22 @@
 /* pages/serial_number/serial_number.wxss */
+page{
+  background: #fff;
+}
 .sn_bg{ width: 100%; height: 200px; }
-.sn_title{ padding: 10px 20px; }
-.sn_num{ padding: 10px 20px; position: relative;}
+.sn_title{ 
+  padding: 10px 20px; 
+  font-weight: 600;
+}
+.sn_num{ 
+  padding: 5px 15px; 
+  position: relative;
+  width:93%;
+  margin:0 auto;
+  border:4rpx solid #eaeaea;
+  border-radius: 10rpx;
+}
 .sn_photobtn{ position: absolute; width: 160rpx; height: 100%; bottom: 0; right: 0; opacity:0; z-index: 100; border: none;}
-.sn_photoimg{ width: 40rpx; height: 40rpx; position: absolute; bottom: 30rpx; right: 30rpx; z-index:90; }
+.sn_photoimg{ width: 40rpx; height: 40rpx; position: absolute; bottom: 16rpx; right: 30rpx; z-index:90; }
 .cs_con {
     width: 100%;
     position: fixed;
