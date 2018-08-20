@@ -10,7 +10,8 @@ var userMobile={};
 
 console.log(userMobile);
 App({
-  onLaunch: function () {
+  onLaunch: function (e) {
+    
     miniAppupdate.checkUpdate();//检测小程序版本
 
     mta.App.init({
@@ -38,6 +39,14 @@ App({
     
   },
   onShow: function (res) {
+    console.log(res);
+    //如果已在后台启动并且是客服链接过来的，就打开指定页面
+    if (!this.globalData.isFirstLunch && (res.scene == 1081 || res.scene == 1082) && res.path.length != 0) {
+      wx.redirectTo({
+        url: res.path,
+      })
+    }
+
     var nowDate = new Date();
     var lastDate=wx.getStorageSync("sessionDate");
     var that = this;
