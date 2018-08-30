@@ -20,7 +20,7 @@ button{
 
 /* ====================== flex ====================== */
 /* flex */
-.flex { display: flex; }
+.flex { display: flex;}
 .flex_item{ flex: 1;}
 .alignc { align-items: center;}
 .alignl { align-content: left;}
@@ -121,6 +121,9 @@ view, text, input, button{ font-size: 32rpx; font-family: "MicroSoft Yahei"; col
 }
 .fc-777 {
     color: #777;
+}
+.fc-grey{
+    color: #b5b4b5;
 }
 /*浅灰色*/
 .fc-ddd{

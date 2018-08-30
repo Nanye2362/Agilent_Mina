@@ -1,2 +1,101 @@
 <!--pages/OQ/OQ.wxml-->
-<text>pages/OQ/OQ.wxml</text>
+<!--pages/install/install.wxml-->
+<!-- poster -->
+<view class="ins-poster">
+    <image class="img_bg" src="../../images/install_bg.jpg"></image>
+</view>
+<!-- showLoading -->
+<view class="shLoading" wx:if="{{shLoading}}">
+  <view class="shLoading-mask">
+  </view>
+  <view class="shLoading-con flex alignc directionC">
+    <image src="/images/uploading.png" class="shLoading-img"></image>
+    <text class="shLoading-text">识别中...</text>
+  </view>
+</view>
+
+
+<!-- form -->
+<form class="install_form" id="insth_form" action="" report-submit="true" bindsubmit="formSubmit">
+    <!-- basic_info -->
+    <view class="ins_form bg-primary">
+        <!-- order -->
+        <view class="ins_item flex alignc {{hasError?'ins_error':''}}">
+            <view class="ins_title">序列号:</view>
+            <label class="ins_con" for="ins_orderno" style="flex: .6">
+                <input class="" type="text" placeholder="拍照识别序列号或手动输入" bindinput='saveTheValue' value="{{cameraValue}}"/>
+                <!-- 拍照按钮 -->
+                <button bindtap="chooseimage" class="sn_photobtn"></button>
+                <image class="sn_photoimg" src="/images/camera-p.png" mode='widthFix' style="width: 40rpx; margin-top: 12rpx"></image>
+            </label>
+            <view bindtap="showTips" data-no='0' class="text-right ins_question" style="flex: .1">
+              <!-- questionReminder -->
+              <blueQuestion>
+                <view class="ins_o_title text-center padding">订单号</view>
+                <view class="ins_o_con padding text-left">
+                    <text>参照以上图片，在到货的外包装箱上 SO 或Sales Order 后面以03开头的一串数字即为订单号，填入即可。</text>
+                </view>
+              </blueQuestion>
+              <!-- questionReminder -->
+            </view>
+        </view>
+        <!-- name -->
+        <view class="ins_item flex alignc">
+            <view class="ins_title">姓名:</view>
+            <label class="ins_con" for="ins_name">
+                <input bindblur="blurfun" data-name="name" value="{{ name }}" name="ins_phone" type="text" placeholder="请输入姓名" id="ins_name" maxlength="10" required="" />
+            </label>
+        </view>
+        <!-- phone -->
+        <view class="ins_item flex alignc">
+            <view class="ins_title">手机号:</view>
+            <label class="ins_con" for="ins_phone">
+                <input name="ins_phone" type="tel" placeholder="请输入手机号" id="ins_phone" required="" value="{{mobile}}" disabled/>
+                <!--span>{{mobile}}</span-->
+            </label>
+        </view>
+        <!-- company -->
+        <view class="ins_item flex alignc">
+            <view class="ins_title">单位名称:</view>
+            <label class="ins_con" for="ins_company">
+                <input bindblur="blurfun" data-name="company" value="{{ company }}" name="ins_phone" type="text" placeholder="请输入单位全称" id="ins_company" required="" />
+            </label>
+        </view>
+    </view>
+
+    <!-- attachInfo -->
+    <view class="ins_form bg-primary">
+        <!-- date -->
+        <date-component></date-component>   
+    </view>
+
+
+
+
+    <!-- btn... -->
+    <view class="ins_form bg-primary">
+      <view class="checkboxarea">
+          <checkbox-group bindchange="checkboxChange">
+            <checkbox value="true" class="ins_checkbox" id="ins_checkbox"/>
+            <text class="fs12">我已阅读 </text>
+            <text class="fs12 fc-blue" style='text-decoration:underline' bindtap='EQP'>EQP</text>
+            <text class="fs12"> 并同意相关规定</text>              
+          </checkbox-group>
+      </view>
+      <!-- btn -->
+      <button form-type="submit"  data-click="submit"  class="btn btn-primary submit_insth" id="gotoAuth" disabled="" style='width: 100%;'>确定</button>
+      <!-- gotoChat -->
+      <view class="cs_con ">
+          <view class="text-center fs12">如您对EQP有任何疑问或需要查看服务申请的安排进度，请
+            <meiqiaBtn bindmeiqiaTap="MtaReport" btn-class="fc-blue bc_chat_btn btn-meiqia" handle-alert="{{false}}" session-from="{{WLA}}">
+                <image src="/images/wechat_b.png"></image>
+                <text class='fc-blue'>发起会话</text>
+            </meiqiaBtn>
+          </view>
+      </view>
+    </view>
+
+    
+</form>
+
+

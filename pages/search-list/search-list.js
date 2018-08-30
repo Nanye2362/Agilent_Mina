@@ -23,25 +23,25 @@ Page({
     var app = getApp();
     app.mta.Page.init();
     //腾讯mat统计结束
-        var value = options.value;
-        var that = this;
-        console.log(value)
-        util.NetRequest({
-          url: 'site-mini/search-result',
-          data:{
-              'key_word':value
-          },
-          success: function (res) {
-            console.log(res);
-            var resultList = res.result;
-          
-           that.setData({
-             value:value,
-             resultList: resultList,
-             resultLength: res.count,          
-           })
-          }
-        });
+    var value = options.value;
+    var that = this;
+    console.log(value)
+    util.NetRequest({
+      url: 'site-mini/search-result',
+      data:{
+          'key_word':value
+      },
+      success: function (res) {
+        console.log(res);
+        var resultList = res.result;
+      
+        that.setData({
+          value:value,
+          resultList: resultList,
+          resultLength: res.count,          
+        })
+      }
+    });
   },
 
   /**

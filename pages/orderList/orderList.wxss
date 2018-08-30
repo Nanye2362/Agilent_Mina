@@ -2,7 +2,6 @@
 .order_status{
   width: 150rpx;
   height: 100%;
-  background: orange;
   border-radius: 8rpx;
   color: #fff;
 }

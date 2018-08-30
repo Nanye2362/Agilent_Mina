@@ -101,7 +101,8 @@ Page({
           head_img_url: res.head_img_url,
           is_auth: res.is_auth,
           mobile: res.mobile,
-          name: res.name
+          name: res.name,
+          AppointmentCount: res.AppointmentCount,
         });
       }
     });

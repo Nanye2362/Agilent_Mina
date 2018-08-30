@@ -1,4 +1,5 @@
 // pages/orderList/orderList.js
+var util = require('../../utils/util.js');
 Page({
 
   /**
@@ -9,54 +10,6 @@ Page({
     currentTab: 0,
     winWidth: 0,
     winHeight: 0,
-    tabList: [
-      [
-        {
-          'orderTime': '2018-03-04',
-          'orderType': '安装申请',
-          'orderSn':'SN899293',
-          'orderStatus':'预约中',
-          'id':'123',
-        },
-        {
-          'orderTime': '2018-03-04',
-          'orderType': '安装申请',
-          'orderSn': 'SN899293',
-          'orderStatus': '预约中',
-          'id': '123',
-        },
-        {
-          'orderTime': '2018-03-04',
-          'orderType': '安装申请',
-          'orderSn': 'SN899293',
-          'orderStatus': '预约中',
-          'id': '123',
-        },
-      ],
-      [
-        {
-          'orderTime': '2018-03-04',
-          'orderType': '安装申请',
-          'orderSn': 'SN899293',
-          'orderStatus': '预约中',
-          'id': '123',
-        },
-        {
-          'orderTime': '2018-03-04',
-          'orderType': '安装申请',
-          'orderSn': 'SN899293',
-          'orderStatus': '预约中',
-          'id': '123',
-        },
-        {
-          'orderTime': '2018-03-04',
-          'orderType': '安装申请',
-          'orderSn': 'SN899293',
-          'orderStatus': '预约中',
-          'id': '123',
-        },
-      ],
-    ],
   },
 
   /**
@@ -72,6 +25,39 @@ Page({
         });
       }
     });
+    util.NetRequest({
+      url: 'site-mini/my-appointment',
+      data: {
+      },
+      success: function (res) {
+        console.log(res);
+        that.setData({
+          tabList: res,
+        })
+      }
+    });
+    /* 
+      预约状态的后台四种模式，前端三种
+      后台：0-未处理 1-已处理 2-忽略 3-锁定
+      前端：0- 未处理---未处理
+            1- 已处理(完成)---已预约
+            2，3- 忽略锁定---处理中
+     */
+    /* 
+      服务类型：
+      pm：预防性维护
+      install：安装申请
+      oq：法规认证
+     */
+    // util.NetRequest({
+    //   url: 'site-mini/my-appointment',
+    //   data: {},
+    //   success: function (res) {
+    //     console.log(res); 
+    //     that.setData({
+    //     });
+    //   }
+    // });
   },
   gotoDetails: function(e){
     var id = e.currentTarget.dataset.id;

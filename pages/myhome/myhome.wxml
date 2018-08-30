@@ -41,11 +41,11 @@
       <image src="/images/arrow-r.png" class="mc_arrow-r self-center"></image>
     </view>
     <!-- ==========我的预约============ -->
-    <view class="mc_items flex" bindtap="gotoNext" data-url="../my_instrument/my_instrument">
+    <view class="mc_items flex" bindtap="gotoNext" data-url="../orderList/orderList">
       <image src="/images/mc-instrument.png" class="mc_icon self-center"></image>
       <view class="flex directionC mc_con self-center">
         <text class="fw mc_con_title">我的预约</text>
-        <text class="fc-aaa fs12">目前预约次数：<text class="fc-orange fs14">{{InstrumentCount}}</text> 次</text>
+        <text class="fc-aaa fs12">目前预约次数：<text class="fc-orange fs14">{{AppointmentCount}}</text> 次</text>
       </view>
       <image src="/images/arrow-r.png" class="mc_arrow-r self-center"></image>
     </view>

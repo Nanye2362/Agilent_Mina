@@ -11,7 +11,9 @@ page{
   border-bottom : 1px dotted #c9c8c8;
   padding : 30rpx 0;
 }
-
+.sl_title{
+  margin-bottom: 10rpx;
+}
 .sl_icon{
   flex: .2;
 }

@@ -1,1 +1,6 @@
 /* pages/OQ/OQ.wxss */
+@import '../install/install';
+@import "../template/chooseDate/chooseDate.wxss";
+.ins_con{
+  position: relative;
+}

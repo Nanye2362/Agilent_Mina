@@ -39,9 +39,9 @@
         </form>
 
         <form class="wxform " bindsubmit="formSubmit" report-submit="true"  >
-          <button plain="true" class="formbtn h_service_item" form-type="submit" data-info="install" data-click="nevigateToNext" data-url="../install/install">
+          <button plain="true" class="formbtn h_service_item" form-type="submit" data-info="serviceOrder" data-click="nevigateToNext" data-url="../serviceOrder/serviceOrder">
            <image src="/images/install.png"></image>
-           <view class="fs14 fc-fff">安装申请</view>  
+           <view class="fs14 fc-fff">服务预约</view>  
            </button>  
         </form>
     </view>

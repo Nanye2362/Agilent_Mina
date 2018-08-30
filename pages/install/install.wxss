@@ -22,13 +22,15 @@
 
 .ins_title {
     flex: .3;
+    line-height: 1;
 }
 
 .ins_con {
     flex: .7;
+    margin-left: -30rpx;
 }
 .ins_type{
-  padding: 10rpx;
+  padding: 14rpx;
 }
 .ins_down{
   position: absolute;
@@ -213,6 +215,7 @@
 
 .ins_o_title {
     border-bottom: 1px solid #e7e6e7;
+    font-weight: bold;
 }
 
 .ins_o_con .h5:not(:first-child) {
@@ -222,9 +225,32 @@
 .ins_o_con .h5 {
     margin-bottom: 5px;
 }
+.ins_o_con_text{
+  padding: 20rpx 10rpx;
+  border-bottom: 1px dashed #bbb;
+  line-height: 50rpx;
+}
 .checkboxarea{ 
   margin-bottom: 40rpx; 
 }
 .ins_checkbox{
   transform:scale(.7)
 }
+.sn_photobtn {
+  position: absolute;
+  width:80rpx;
+  height:100%;
+  bottom:0;
+  right:-15rpx;
+  opacity:0;
+  z-index:100;
+  border:none;
+}
+.sn_photoimg {
+  height:40rpx;
+  position:absolute;
+  bottom:12rpx;
+  right:-10rpx;
+  z-index:90;
+}
+

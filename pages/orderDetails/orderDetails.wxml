@@ -1,14 +1,16 @@
 <!--pages/orderDetails/orderDetails.wxml-->
 <!-- form_content -->
 <view class='orderDetails'>
-    <!-- <block wx:for="{{}}" wx:for-item="item" wx:key='unique'>
-    </block> -->
-    <view class='orderItem flex '>
-      <view class='orderItem_l'>预约日期：</view>
-      <view class='orderItem_r'>2018-03-04</view>
+    <block wx:for="{{orderArry[orderType]}}" wx:for-item="item" wx:key='unique'  wx:for-index="idx">   
+      <view class='orderItem flex  alignc'>
+        <view class='orderItem_l'>{{item}}：</view>
+        <view class='orderItem_r'> {{orderDetails[idx]==''||orderDetails[idx]==null?'无':orderDetails[idx]}}</view>
+      </view>
+    </block>
+    <view class='orderItem flex  alignc'>
+      <view class='orderItem_l'>状态：</view>
+      <view class='orderItem_r orderStatus flex {{orderDetails["Status"]==0?"bg-blue":orderDetails["Status"]==1?"bg-green":"bg-orange"}}'> {{orderDetails["Status"]==0?'未处理':orderDetails["Status"]==1?'已预约':'处理中'}}</view>
     </view>
-    
-    
 </view>
 
 <button class="btn btn-primary" bindtap='goBack'>返回</button>
