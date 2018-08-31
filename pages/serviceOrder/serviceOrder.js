@@ -1,10 +1,13 @@
 // pages/serviceOrder/serviceOrder.js
+var util = require('../../utils/util.js');
+var config = require('../../config.js');
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    imgUrl: config.Server + 'images/serviceOrder.jpg',
     serviceList: [
       { 
         'icon': "/images/installPic.png",

@@ -1,6 +1,7 @@
 // pages/OQ/OQ.js
 var util = require('../../utils/util.js');
 var isSend = false;
+var config = require('../../config.js');
 Page({
 
   /**
@@ -13,6 +14,7 @@ Page({
     desc:'',
     chooseCheckbox:[],
     shLoading: false,
+    imgUrl: config.Server + 'images/oq.jpg',
   },
 
   /**

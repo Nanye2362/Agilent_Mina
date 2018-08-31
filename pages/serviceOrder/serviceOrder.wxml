@@ -1,5 +1,6 @@
 <!--pages/serviceOrder/serviceOrder.wxml-->
-<image src="https://prd.wechat.service.agilent.com/images/sn_bg.jpg" mode="widthFix" style="width:100%;"></image>
+<!-- <image src="https://prd.wechat.service.agilent.com/images/serviceOrder.jpg" mode="widthFix" style="width:100%;"></image> -->
+<image src="{{imgUrl}}" mode="widthFix" style="width:100%;"></image>
 
 
 <!-- ==========service_list========== -->

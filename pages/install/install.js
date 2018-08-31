@@ -1,6 +1,6 @@
 // pages/install/install.js
-var commondata = require('../../Data/database.js');
 var util = require('../../utils/util.js');
+var config = require('../../config.js');
 var isSend=false;
 Page({
 
@@ -11,7 +11,6 @@ Page({
     uploadBtn: true,
     photoURL: [],
     hasError:false,
-    //displayTips: false,
     WLA: 'W',
     insType: ['气相色谱','气质联用','液相色谱','液质联用','溶出度仪','紫外光谱','红外光谱','原子光谱','ICP-OES','ICP-MS','其他'],
     pickerType: -1,
@@ -20,6 +19,7 @@ Page({
     orderno:'',
     chooseCheckbox:[],
     showTextarea: true,
+    imgUrl: config.Server +'images/install_bg.jpg',
   },
   //选择仪器类型
   bindPickerChange: function(e){
@@ -48,16 +48,18 @@ Page({
   installReady: function(){
     var that = this;
     console.log('clickInstall')
-    wx.setStorage({
-      key: "openHtmlUrl",
-      // data: "https://stgwww.agilent.com/search/?Ntt=" + encodeURI(that.data.insType[that.data.pickerType]),
-      data: "https://devops.coffeelandcn.cn/files/5990-6321CHCN.pdf",
-      success: function () {
-        wx.navigateTo({
-          url: '../html/openHtml',
-        });
-      }
-    })
+    if (that.data.pickerType!=-1){
+      wx.setStorage({
+        key: "openHtmlUrl",
+        data: "https://www.agilent.com/search/?Ntt=" + encodeURI(that.data.insType[that.data.pickerType] + '场地'),
+        //data: "https://devops.coffeelandcn.cn/files/5990-6321CHCN.pdf",
+        success: function () {
+          wx.navigateTo({
+            url: '../html/openHtml',
+          });
+        }
+      })
+    }   
   },
 
   formSubmit: function (e) {

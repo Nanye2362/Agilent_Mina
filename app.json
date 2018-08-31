@@ -1,11 +1,11 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/orderList/orderList",
-    "pages/install/install",
+    "pages/serviceOrder/serviceOrder",
     "pages/PM/PM",
     "pages/OQ/OQ",
-    "pages/serviceOrder/serviceOrder",
+    "pages/install/install",
+    "pages/orderList/orderList",
     "pages/myhome/myhome",
     "pages/orderDetails/orderDetails",
     "pages/labqc/labqc",

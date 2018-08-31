@@ -9,13 +9,9 @@
 </view>
  <!--pages/serial_number/serial_number.wxml-->
 <image src="https://prd.wechat.service.agilent.com/images/sn_bg.jpg" class="mc_poster_bg" mode="widthFix" style="width:100%;"></image>
-<view class="sn_title">产品序列号 (Serial No.)
-  <questionMark>
-    <text class='fc-fff'>testtesttesttest</text>
-  </questionMark>
-</view>
+<view class="sn_title">产品序列号 (Serial No.)</view>
 <view class="sn_num bg-primary">
-    <input class="" type="text" placeholder="拍照识别序列号或手动输入" bindinput='saveTheValue' value="{{cameraValue}}" placeholder-style='color:#bfbfbf; font-size: 24rpx; '/>
+    <input class="" type="text" placeholder="拍照识别序列号或手动输入" bindinput='saveTheValue' value="{{cameraValue}}"/>
     <!-- 拍照按钮 -->
     <button bindtap="chooseimage" class="sn_photobtn"></button>
     <image class="sn_photoimg" src="/images/camera-p.png"></image>
@@ -30,7 +26,7 @@
 
 
 <!-- gotoChat -->
-<view class="cs_con" wx:if="{{chat}}">
+<view class="cs_con" hidden="{{!chat}}">
     <view class="text-center fs12">如果您有任何问题，请
       <meiqiaBtn bindmeiqiaTap="MtaReport" btn-class="fc-blue bc_chat_btn btn-meiqia" handle-alert="{{false}}" meiqia-group="{{meqiaGroup}}" session-from="{{NONTECH+inputValue}}"><image src="/images/wechat_b.png"></image>发起会话</meiqiaBtn> 
 </view>
