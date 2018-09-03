@@ -87,7 +87,7 @@
       <!-- gotoChat -->
       <view class="cs_con ">
           <view class="text-center fs12">如您对EQP有任何疑问或需要查看服务申请的安排进度，请
-            <meiqiaBtn bindmeiqiaTap="MtaReport" btn-class="fc-blue bc_chat_btn btn-meiqia" handle-alert="{{false}}" session-from="{{WLA}}">
+            <meiqiaBtn bindmeiqiaTap="MtaReport" btn-class="fc-blue bc_chat_btn btn-meiqia" handle-alert="{{true}}" session-from="{{WLA}}">
                 <image src="/images/wechat_b.png"></image>
                 <text class='fc-blue'>发起会话</text>
             </meiqiaBtn>
