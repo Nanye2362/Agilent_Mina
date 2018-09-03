@@ -1,3 +1,4 @@
+@import '../self_service/self_service.wxss';
 /* ====================faq_details====================== */
 page{
   background: #fff;

@@ -1,8 +1,8 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/mechat_list/mechat_list",
     "pages/serial_number/serial_number",
-    
     "pages/auth/auth",
     "pages/leave_message/leave_message",
     "pages/fill_info/fill_info",
@@ -15,7 +15,6 @@
     "pages/ungrouped_list/ungrouped_list",
     "pages/set_group/set_group",
     "pages/group_details/group_details",
-    "pages/mechat_list/mechat_list",
     "pages/user_guidelines/user_guidelines",
     "pages/contact_us/contact_us",
     "pages/evaluate/evaluate",
@@ -38,7 +37,7 @@
     "pages/html/openHtml"
   ],
   "networkTimeout": {
-    "request": 30000
+    "request": 20000
   },
   "window": {
     "backgroundTextStyle": "light",

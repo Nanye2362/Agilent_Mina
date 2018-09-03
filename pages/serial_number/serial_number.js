@@ -70,6 +70,10 @@ Page({
       }
     });
   },
+  onUnload: function () {
+    console.log('************closethepage***********');
+
+  },
 
   MtaReport: function () {
   
@@ -226,7 +230,7 @@ Page({
         console.log(res);
         if (res.success == true) {
           wx.redirectTo({
-            url: '../confirm_info/confirm_info' + '?ProductId=' + res.ProductId + '&ProductDesc=' + res.ProductDesc + '&SerialNo=' + res.SerialNo + '&CpName=' + res.CpName + '&ShipToName=' + res.ShipToName,
+            url: '../confirm_info/confirm_info' + '?ProductId=' + res.ProductId + '&ProductDesc=' + res.ProductDesc + '&SerialNo=' + res.SerialNo + '&CpName=' + res.CpName + '&ShipToName=' + res.ShipToName + "&aglNum=" + res.AglSN,
           })
         } else {
           var errorInfo = "您输入的序列号为：" + that.data.inputValue+"\n";

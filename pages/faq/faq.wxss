@@ -1,12 +1,14 @@
 /* pages/faq/faq.wxss */
+@import '../self_service/self_service.wxss';
+
 /* ====================faq====================== */
 page{
   background: #fff;
 }
 .faq_item {
-    padding: 30rpx 40rpx;
-    border-bottom: 2rpx solid #e6e7e6;
+    padding: 25rpx 30rpx 10rpx;
     position: relative;
+    align-items: baseline;
 }
 
 .faq_item a {
@@ -18,75 +20,46 @@ page{
     flex: 1;
 }
 
-.faq_title_l,
-.faq_title_r {
-    flex: .5;
+.faq_title_l{
+    flex: .8;
+    font-weight: 600;
 }
-.faq_title_l image{
-    width: 28rpx;
-    height:28rpx; 
-    margin-right: 10rpx;
+.faq_title_r{
+  flex: .4;
 }
+
 .faq_title_right {
     position: relative;
     margin-right: 28rpx;
 }
 .sl_dropdown image{
     width: 28rpx;
-    height:14rpx;
-    margin-left:40rpx;
-    margin-bottom: 5rpx;
-}
-.faq_item_con:before {
-    content: "";
-    position: absolute;
-    width: 12rpx;
-    height: 12rpx;
-    border-radius: 50%;
-    background: #0085d5;
-    top: 50%;
-    left: 40rpx;
-    margin-top:-6rpx;
-}
-
-.faq_item_l >view {
-    list-style: disc;
-}
-
-.faq_item_r {
-    width: 60rpx;
-    position: relative;
-}
-
-.faq_item_r image {
-    width: 20rpx;
-    height: 32rpx;
-    vertical-align: sub;
+    height:19rpx;
+    margin: 0 10rpx 5rpx 12rpx;
+    vertical-align: middle;
 }
 
 .faq_notification {
-    position: fixed;
+    margin: 20rpx 0;
     height: 100rpx;
     width: 100%;
-    bottom: 0;
-    left: 0;
     line-height: 100rpx;
-    border-top: 2rpx solid #e7e7e7;
 }
 
 .faq_select {
     position: absolute;
-    right: -28rpx;
-    border: 2rpx solid #aaa;
-    border-radius: 12rpx;
+    right: 0;
+    top: 76rpx;
+    border: 2rpx solid #e0e0e0;
+    border-radius: 6rpx;
     z-index: 999;
     text-align: center;
 }
 
 .faq_select > view{
-    height: 80rpx;
-    line-height: 80rpx;
-    min-width: 600rpx;
+    height: 66rpx;
+    line-height: 66rpx;
+    min-width: 228rpx;
 }
 
 @media screen and (max-width: 320px) {
@@ -108,23 +81,20 @@ page{
 }
 
 .faq_select > view:not(:last-child) {
-    border-bottom: 2rpx solid #e7e7e7;
+    border-bottom: 1rpx solid #e7e7e7;
 }
 
-.faq_select > view:nth-child(2n) {
-    background: #eaeaea;
-}
 
-.faq_select > view:nth-child(2n-1) {
+.faq_select > view{
     background: #fff;
 }
 .faq_select > view:first-child{
-  border-top-left-radius: 12rpx;
-  border-top-right-radius: 12rpx;
+  border-top-left-radius: 6rpx;
+  border-top-right-radius: 6rpx;
 }
 .faq_select > view:last-child{
-  border-bottom-left-radius: 12rpx;
-  border-bottom-right-radius: 12rpx;
+  border-bottom-left-radius: 6rpx;
+  border-bottom-right-radius: 6rpx;
 }
 .faq_mask {
     position: fixed;
@@ -135,4 +105,9 @@ page{
 .faq_select >view.selected{
     background: #0085d5;
     color: white
+}
+
+.sl_dropdown{
+  padding: 12rpx;
+  border: 1px solid #e0e0e0;
 }

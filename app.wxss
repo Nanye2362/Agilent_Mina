@@ -122,6 +122,10 @@ view, text, input, button{ font-size: 32rpx; font-family: "MicroSoft Yahei"; col
 .fc-777 {
     color: #777;
 }
+/*浅灰色*/
+.fc-ddd{
+    color: #d4d4d4;
+}
 .fc-orange {
     color: #ff961a;
 }
@@ -237,14 +241,39 @@ view, text, input, button{ font-size: 32rpx; font-family: "MicroSoft Yahei"; col
    height: 100%; 
    z-index: 9990;
 }
-
+.shLoading-title{
+  position: relative;
+  width: 100%;
+  height: 100rpx;
+  margin-top: -50rpx; 
+  border-top-left-radius: 12rpx;
+  border-top-right-radius: 12rpx;
+  text-align: center;
+  line-height: 100rpx;
+  color: #fff;
+}
+.shLoading-title-img{
+  width: 60rpx;
+  height: 60rpx;
+  position: absolute;
+  right: -15rpx;
+  top: -20rpx;
+}
 .shLoading-head-panel{
   min-height:80rpx;
+  margin-bottom: 20rpx;
+  margin-top: 40rpx;
+}
+.shLoading-head-img{
+  width: 35rpx;
+  height: 35rpx;
+  vertical-align: middle;
 }
 
 .shLoading-head-panel-info{
-  padding-bottom:10rpx;
+  padding-bottom:20rpx;
   display:block;
+  font-weight: 600;
 }
 
 .shLoading-btn-panel{

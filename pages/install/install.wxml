@@ -83,7 +83,7 @@
 
     <!-- btn -->
     <view class="ins_btn">
-        <button  bindtap="submit" class="btn btn-primary submit_insth" id="gotoAuth" disabled="">确定</button>
+        <button  data-click="submit" form-type="submit" class="btn btn-primary submit_insth" id="gotoAuth" disabled="">确定</button>
     </view>
 
     <!-- gotoChat -->

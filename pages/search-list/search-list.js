@@ -9,7 +9,7 @@ Page({
   data: {
       value:'',
       resultLength:0,
-      resultList:[]
+      resultList:[],
   },
   backHome: function () {
     util.backHome()
@@ -34,15 +34,11 @@ Page({
           success: function (res) {
             console.log(res);
             var resultList = res.result;
-            var resultLength = 0 ;
-            if(resultList.length){
-              resultLength = resultList.length;
-            }
           
            that.setData({
              value:value,
              resultList: resultList,
-             resultLength: resultLength
+             resultLength: res.count,          
            })
           }
         });
