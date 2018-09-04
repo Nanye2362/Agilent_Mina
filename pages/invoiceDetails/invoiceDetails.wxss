@@ -1,0 +1,26 @@
+/* pages/invoiceDetails/invoiceDetails.wxss */
+page{
+  background: #fff;
+}
+
+.invoiceCon{
+  padding: 30rpx 40rpx;
+}
+.invTitle{
+  margin-top: 20rpx;
+  padding-bottom: 20rpx;
+  font-weight: 600;
+}
+.invTitle_icon{
+  width: 44rpx;
+  vertical-align: sub;
+  margin-right: 16rpx;
+  align-self: flex-start;
+}
+.invRemind{
+  margin: 20rpx 0;
+  text-align: center;
+}
+.invRemind image{
+  width: 30rpx;
+}

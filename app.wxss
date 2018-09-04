@@ -296,6 +296,13 @@ view, text, input, button{ font-size: 32rpx; font-family: "MicroSoft Yahei"; col
 .shLoading-btn-cancel{
   border-right:1px solid #eee;
 }
+.shLoading-cancel{
+  display:inline-block;
+  width:100%;
+  line-height:100rpx;
+  text-align:center;
+  font-size:36rpx;
+}
 
 .shLoading-btn-ok{
   color:#66CD00;

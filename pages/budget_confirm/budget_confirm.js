@@ -10,7 +10,14 @@ Page({
     bqId: "",
     info: "加载中",
     checkBox: false,
-    pageComplete: false
+    pageComplete: false,
+    invoiceTitle:'-增值税普通发票',
+    shInputInfo: false,
+    //0:normalInvoice,1:specialInvoice
+    invoiceType: [
+      { name: '0', value: '增值税普通发票' },
+      { name: '1', value: '增值税专业发票' },
+    ],
   },
 
   /**
@@ -30,7 +37,18 @@ Page({
         objectId: options.objectId
       },
       success: function (r) {
+        //InvoiceTitle: 发票抬头,TaxpayerRecognitionNumber:纳税人识别号,Recipient:寄送人姓名       
         if (r.status == 0) {
+          if (r.data.InvoiceInfo.InvoiceTitle == null){
+            var InvoiceInfo = wx.getStorageSync('InvoiceInfo');
+            that.setData({
+              InvoiceInfo: InvoiceInfo,
+            })
+          }else{
+            that.setData({
+              InvoiceInfo: r.data.InvoiceInfo
+            })            
+          }
           that.setData({
             pageComplete: true,
             bqId: options.objectId,
@@ -40,8 +58,8 @@ Page({
             price: r.data.accept_price,
             maxprice: r.data.max_price,
             accountId: r.data.accountId,
-            ContactId: r.data.contactId
-          })
+            ContactId: r.data.contactId,
+          })          
         } else {
           that.setData({
             pageComplete: false,
@@ -51,6 +69,24 @@ Page({
       }
     })
 
+  },
+  radioChange: function (e) {
+    console.log('radio发生change事件，携带value值为：', e.detail.value);
+    var invoiceType;
+    if(e.detail.value==0){
+      invoiceType ='normalInvoice';
+    }else{
+      invoiceType = 'specialInvoice';
+    };
+    wx.navigateTo({
+      url: '../invoiceDetails/invoiceDetails?invoiceType=' + invoiceType
+    })
+    this.inputInvoice();
+  },
+  inputInvoice: function(){
+    this.setData({
+      shInputInfo: !this.data.shInputInfo,
+    })
   },
   contractConfirm:function(e){
     this.setData({ 

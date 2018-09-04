@@ -7,27 +7,44 @@ page{
 }
 
 .bc_title {
-    margin-bottom: 40rpx;
+    margin: 40rpx 0;
+}
+.bc_title image{
+  width: 200rpx;
 }
 
 .bc_remind {
-    margin-bottom: 80rpx;
+    padding-bottom: 40rpx;
     line-height:1.5;
+    border-bottom: 1px solid #e2e2e2;
 }
 
 .bc_order_icon {
     width: 44rpx;
-    height: 38rpx;
     vertical-align: sub;
     margin-right: 8rpx;
+    align-self: flex-start;
 }
 
 .bc_order {
-    display: block;
-    height: 70rpx;
-    text-align: center;
+    margin-top: 40rpx;
+    padding-bottom: 40rpx;
+    border-bottom: 1px dashed #e2e2e2;
+}
+.bc_order_con{
+  flex: 1;
+  line-height: 1;
+  margin-left: 10rpx;
+}
+.bc_order_arrow{
+  flex: .1;
+  text-align: right;
+  line-height: 1;
 }
 
+.bc_order_con view{
+  line-height: 40rpx;
+}
 
 .bc_confirm {
     margin-bottom: 60rpx;
@@ -49,5 +66,15 @@ page{
 }
 
 .bq_checkbox_panel{
-  text-align: center;
+  margin-top: 120rpx;
+  padding: 0 50rpx;
+}
+
+
+.invoiceType{
+  padding: 22rpx 0;
+  width: 520rpx;
+}
+.invoiceType:first-child{
+  border-bottom: 1px solid #e2e2e2;
 }

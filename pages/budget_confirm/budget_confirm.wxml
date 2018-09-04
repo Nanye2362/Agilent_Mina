@@ -6,12 +6,30 @@
 
 <block wx:if="{{pageComplete}}">
 <view class="budget_confirm padding">
-    <view class="bc_title fs20 text-center">预算确认</view>
-    <view class="bc_remind">您的问题需要现场工程师的支持，当前报价已经生成，BQ编号为：<span>{{bqId}}</span>，请确保您已知晓并接受，
+    <view class="bc_title fs20 text-center">
+      <image src='/images/bq.png' mode='widthFix'></image>
+    </view>
+    <view class="bc_remind fc-777">您的问题需要现场工程师的支持，当前报价已经生成，BQ编号为：<span>{{bqId}}</span>，请确保您已知晓并接受，
         以便我们安排工程师为您服务。</view>
     <view class="bc_order fc-blue" bindtap='openPDF'>
-        <image class="bc_order_icon" src="/images/pdf.png"></image> 
+        <image class="bc_order_icon" src="/images/pdf.png" mode='widthFix'></image> 
         安捷伦维修收费标准说明书-报价单
+    </view>
+    <view class="bc_order flex alignc" bindtap='inputInvoice'>
+        <image class="bc_order_icon" src="/images/invoice.png" mode='widthFix'></image> 
+        <view class='bc_order_con'>
+          <view>发票信息 
+            <text class='{{InvoiceInfo.invoiceTitle!=null?"":"fc-aaa"}}'>{{InvoiceInfo.invoiceTitle!=null?InvoiceInfo.invoiceTitle:'[未填写]'}}</text>
+          </view>
+          <block wx:if='{{InvoiceInfo.InvoiceTitle!=null?true:false}}'>
+            <view class='fs12'>发票抬头：{{InvoiceInfo.InvoiceTitle}}</view>
+            <view class='fs12'>纳税人识别号：{{InvoiceInfo.TaxpayerRecognitionNumber}}</view>
+            <view class='fs12'>寄送人姓名：{{InvoiceInfo.Recipient}}</view>
+          </block>
+        </view>
+        <view class='bc_order_arrow'>
+          <image src='/images/arrow_grey.png' mode='widthFix' style='width: 20rpx'></image>
+        </view>
     </view>
 </view>
 
@@ -20,7 +38,10 @@
       <block wx:if="{{isConfirm==0}}">
             <view class="bq_checkbox_panel">
               <checkbox-group bindchange="contractConfirm">
-                <checkbox value="contract" checked="{{checkBox}}"/>我已阅读并接受此报价单
+                <label class="checkbox">
+                  <checkbox value="contract" checked="{{checkBox}}" style='transform:scale(.7);'/>
+                  <text class='fc-777 fs12'>我已阅读并接受此报价单</text>
+                </label>
               </checkbox-group>
             </view>
              <button class="btn btn-primary" id="confirm" bindtap='confirm' >确认并接受</button>
@@ -63,12 +84,32 @@
 
 
 
-<view class="bc_chat padding text-center">如果对报价有任何问题，请<image class="chatimg" src="/images/wechat_b.png"></image>
+<view class="bc_chat padding text-center fs12">如果对报价有任何问题，请<image class="chatimg" src="/images/wechat_b.png"></image>
    <meiqiaBtn bindmeiqiaTap="MtaReport" btn-class="fc-blue bc_chat_btn btn-meiqia" handle-alert="{{true}}" session-from="W_bqobjectid:{{bqId}}">
               发起会话
            </meiqiaBtn>
 </view>
 </block>
+
+
+
+<view class="shLoading" wx:if="{{shInputInfo}}">
+  <view class="shLoading-mask1" bindtap='inputInvoice'>
+  </view>
+  <view class="shLoading-panel flex alignc directionC">
+      <view class='shLoading-title blue'>选择发票类型</view>
+      <view class="shLoading-head-panel">
+          <radio-group class="radio-group flex directionC" bindchange="radioChange">
+            <label class="radio invoiceType" wx:for="{{invoiceType}}">
+              <radio color='#0085d5' value="{{item.name}}" checked="{{item.checked}}"/>{{item.value}}
+            </label>
+          </radio-group>
+      </view>
+      <view class="shLoading-btn-panel">
+          <view class="shLoading-cancel" bindtap="inputInvoice">取消</view>
+      </view>
+  </view>
+</view>
  
 
  

@@ -1,0 +1,19 @@
+<!--pages/invoiceDetails/invoiceDetails.wxml-->
+<view class='invoiceCon'>
+  <!-- 发票信息 -->
+  <view class='invoiceInfo'>
+    <view class='invTitle'>
+        <image class="invTitle_icon" src="/images/invoice.png" mode='widthFix'></image> 
+        增值税普通发票
+    </view>
+    <view class='invRemind'>
+        <image class="invRemind_icon" src="/images/remind1.png" mode='widthFix'></image> 
+        <text class='fs12'>增值税普通发票</text>
+        <image class="invRemind_icon" src="/images/invoice.png" mode='widthFix'></image>
+    </view>
+  </view>
+  <!-- 寄送信息 -->
+  <view class='sendInfo'>
+
+  </view>
+</view>
