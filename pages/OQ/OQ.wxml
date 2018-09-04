@@ -76,17 +76,17 @@
     <view class="ins_form bg-primary">
       <view class="checkboxarea">
           <checkbox-group bindchange="checkboxChange">
-            <checkbox value="true" class="ins_checkbox" id="ins_checkbox"/>
-            <text class="fs12">我已阅读 </text>
-            <text class="fs12 fc-blue" style='text-decoration:underline' bindtap='EQP'>EQP</text>
-            <text class="fs12"> 并同意相关规定</text>              
+            <label class='checkbox'>
+              <checkbox value="true" class="ins_checkbox" id="ins_checkbox"/>
+              <text class="fs12">已查看邮件中EQP</text>   
+            </label>          
           </checkbox-group>
       </view>
       <!-- btn -->
       <button form-type="submit"  data-click="submit"  class="btn btn-primary submit_insth" id="gotoAuth" disabled="" style='width: 100%;'>确定</button>
       <!-- gotoChat -->
       <view class="cs_con ">
-          <view class="text-center fs12">如您对EQP有任何疑问或需要查看服务申请的安排进度，请
+          <view class="text-center fs12">如有任何疑问，请
             <meiqiaBtn bindmeiqiaTap="MtaReport" btn-class="fc-blue bc_chat_btn btn-meiqia" handle-alert="{{true}}" session-from="{{WLA}}">
                 <image src="/images/wechat_b.png"></image>
                 <text class='fc-blue'>发起会话</text>

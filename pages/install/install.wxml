@@ -110,7 +110,7 @@
       <button form-type="submit"  data-click="submit" class="btn btn-primary submit_insth" id="gotoAuth" disabled="" style='width: 100%;'>确定</button>
       <!-- gotoChat -->
       <view class="cs_con ">
-          <view class="text-center fs12">如需查看安装申请的安排进度，请
+          <view class="text-center fs12">如有任何疑问，请
             <meiqiaBtn bindmeiqiaTap="MtaReport" btn-class="fc-blue bc_chat_btn btn-meiqia" handle-alert="{{true}}" session-from="{{WLA}}">
                 <image src="/images/wechat_b.png"></image>发起会话
             </meiqiaBtn>
