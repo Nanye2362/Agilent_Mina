@@ -12,7 +12,9 @@ Component({
       value:false
     },
     sessionFrom:String,
-    meqiaGroup:String
+    meqiaGroup:String,
+    disabled:String,
+    formType:String
   },
 
   /**
@@ -28,7 +30,7 @@ Component({
   methods: {
     meiqiaBtnTap:function(e){
       workTime.handleWorkTime(this.data.handleAlert);
-      this.triggerEvent('meiqiaTap', e);
+      this.triggerEvent('meiqiaTap', e);  
     }
   },
   externalClasses: ['btn-class'],

@@ -1,1 +1,8 @@
-<web-view src="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxf939d5b301703b2f&redirect_uri=https%3a%2f%2fprd.wechat.service.agilent.com%2fsite%2fuser-guidelines&response_type=code&scope=snsapi_base&state=123#wechat_redirect"></web-view>
+<!--<web-view src="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxf939d5b301703b2f&redirect_uri=https%3a%2f%2fprd.wechat.service.agilent.com%2fsite%2fuser-guidelines&response_type=code&scope=snsapi_userinfo&state=123#wechat_redirect"></web-view>-->
+
+<web-view src="{{url}}"></web-view>
+
+
+
+
+

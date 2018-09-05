@@ -51,8 +51,12 @@ Page({
         shLoading_body: ""
       })
     } else {
+      var args="";
+      if (this.data.pagelabel.length>0){
+        args = "&pagelabel=" + this.data.pagelabel;
+      } 
       wx.navigateTo({
-        url: '../fill_info/fill_info?mobile=' + this.data.mobile,
+        url: '../fill_info/fill_info?mobile=' + this.data.mobile + args,
       })
     }
   },
@@ -69,7 +73,10 @@ Page({
     if (typeof (pageName) == "undefined") {
       pageName = "index";
     }
-    var pagelabel = options.pagelabel;
+    var pagelabel="";
+    if (typeof (options.pagelabel) !='undefined'){
+      pagelabel = options.pagelabel;
+    }
     this.setData({ 
       pageName: pageName,
       pagelabel: pagelabel, 
@@ -106,7 +113,7 @@ Page({
             allPages[allPages.length - 2].setData({
               shLoading: true
             }); 
-            if (that.data.pagelabel =='salesBA'){
+            if (that.data.pagelabel == 'salesBA_CA' || that.data.pagelabel == 'salesBA_CB'){
               allPages[allPages.length - 2].getCusInfo()
             }
             wx.navigateBack();
@@ -127,26 +134,13 @@ Page({
             return;
           }
           if(res.noskip==0){
-            if (that.data.pagelabel == 'salesBA') {
-              if (err_msg != 'UB001' && err_msg != 'UB004') {
-                var allPages = getCurrentPages();
-                allPages[allPages.length - 2].setData({
-                  shLoading: true,
-                  input2_tel: that.data.mobile
-                });
-              } else {
-                mechat.getCusInfo();
-              }
-              wx.navigateBack();
-            }else{
               that.errCon(err_msg);
               that.setData({
                 shLoading: true,
                 shLoading_title: '认证失败',
                 shLoading_body: err_msg,
                 skipFlag: res.noskip
-              })
-            }
+              }) 
           } else if (res.noskip == 1)  {
             that.errCon(err_msg);
             that.setData({

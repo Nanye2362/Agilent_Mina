@@ -20,7 +20,7 @@ function formatNumber(n) {
 
 var urlArr = ["wechat-mini/wx-login", "api/check-lunch"];//未登录可以使用的url
 let ocrServer ="https://msd.coffeelandcn.cn/";
-//let ocrServer = "https://devopsx.coffeelandcn.cn/";
+//let ocrServer = "https://devops.coffeelandcn.cn/";
 let Server = config.Server; //UAT
 
 var arrRequest=[],isRequesting=false;
@@ -94,15 +94,10 @@ function _NetRequest({ url, data, success, fail, complete, method = "POST", show
       if ((session_id == "" || session_id == null) && typeof (res.data.session_id) != "undefined") {
         console.log(res.data.session_id);
         wx.setStorageSync('PHPSESSID', res.data.session_id); //如果本地没有就说明第一次请求 把返回的session id 存入本地
-        var str = res.header['Set-Cookie'] || res.header['set-cookie'];
-        console.log(res.header);
-        console.log(str);
+       
         if (typeof (res.data.csrfToken) != 'undefined') {
           wx.setStorageSync('csrf', res.data.csrfToken);
-          var m = str.match(/_csrf=(.)*?;/);
-          if (m != null) {
-            wx.setStorageSync('csrfCookie', m[0]);
-          }
+          wx.setStorageSync('csrfCookie', res.data.csrfCookie);
         }
       }
 

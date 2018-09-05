@@ -3,42 +3,91 @@
 <template is="backHome" bindtap="backHome"/>
 <!--pages/fill_info/fill_info.wxml-->
 <!-- remind -->
-<view class="padding">
-    <text class="fs12 fc-red ">温馨提示：您的手机在系统里还没有建档。请填写以下资料，我们会尽快为您建档。</text>
-</view>
+<view class="fi_background">
+  <view class="fi_head">
+    <view class="fih_img">
+      <image src='/images/notifi.png' mode="widthFix" />
+    </view>
+    <view class="fih_text">您的手机在系统里还没有建档。请填写以下资料，我们会尽快为您建档。</view>
+  </view>
+
 <form bindsubmit="submitConfirm" class="fillinfo_form" id="fillinfo_form" report-submit="true" >
     <!-- service-infomation -->
-    <view class="s-list flex directionC">
-        <view class="s-item flex alignc">
-            <view class="item-t fc-g fs14">姓名：</view>
-            <input class="fs14 item-r userNam" type="text" placeholder="请输入姓名" bindinput="getname"/>
-        </view>
-        <view class="s-item flex alignc">
-            <view class="item-t fc-g fs14">手机号：</view>
-            <input class="fs14 item-r" type="number" maxlength="11"  placeholder="" bindinput="getmobile" value="{{mobile}}"/>
-        </view>
-        <view class="s-item flex alignc">
-            <view class="item-t fc-g fs14">单位名称：</view>
-            <input type="text" class="item-r fs14 companyNam" placeholder="请输入单位名称" bindinput='getcompany'/>
-        </view>
-        <view class="s-item flex alignc">
-            <view class="item-t fc-g fs14">序列号：</view>
-            <input type="text" class="item-r fs14 serialNo" placeholder="例：US00000000" bindinput='getsn' value='{{sn}}'/>
-        </view>
-        <view class="s-item flex alignc">
-            <view class="item-t fc-g fs14">备注：</view>
-            <input type="text" class="item-r fs14 serialNo" placeholder="添加备注（可选）" bindinput='getother'/>
-        </view>
+  <view class="fi_form">
+    <view class="fif_row">
+        <view class="fif_label">姓名:</view>
+        <view class="fif_input"><input class="userNam" type="text" placeholder="请输入姓名" bindinput="getname" value="{{name}}"/></view>
     </view>
-    <!-- btn -->
-    <button class="btn btn-primary"  formType="submit" disabled="{{nameV && companyV && snV? false:true}}">确定</button>
 
+    <view class="fif_row">
+        <view class="fif_label">手机号:</view>
+        <view class="fif_input"><input class="" type="number" maxlength="11"  placeholder="" bindinput="getmobile" value="{{mobile}}"/></view>
+    </view>
+    
+     <view class="fif_row">
+        <view class="fif_label">单位名称:</view>
+        <view class="fif_input"><input class="" type="text"  placeholder="请输入单位名称" bindinput='getcompany' value="{{company}}"/></view>
+    </view>
+
+     <view class="fif_row" wx:if="{{noSelectHas}}">
+        <view class="fif_label">{{selectHasSnVal==-1?"请选择":"已选择"}}：</view>
+        <view class="fif_input fif_select {{selectHasSnVal==-1?'':'fif_selected'}}"  bindtap='selectHasSn'>{{selectHasSnVal==-1?"是否有安捷伦整机设备":selectHasSnText}}<view class="fif_triangle"></view></view>
+    </view>
+
+    <view class="fif_row" wx:if="{{selectHasSnVal===0}}">
+        <view class="fif_label">序列号:</view>
+        <view class="fif_input"><input class="" type="text"  placeholder="例：US00000000" bindinput='getsn' value='{{sn}}'/></view>
+    </view>
+
+    <view class="fif_row" wx:if="{{selectHasSnVal===1}}">
+        <view class="fif_label"> </view>
+        <view class="fif_input"><radio-group class="radio-group" bindchange="radioChange">
+  <label class="radio">
+    <radio value="1" checked="{{userType==1}}"/>最终用户
+  </label>
+  <label class="radio">
+    <radio value="2" checked="{{userType==2}}"/>中间商
+  </label>
+</radio-group></view>
+    </view>
+
+     <view class="fif_row">
+        <view class="fif_label">备注:</view>
+        <view class="fif_input"><input class="" type="text" maxlength="11"  placeholder="添加备注（可选）" bindinput='getother' value="{{other}}"/></view>
+    </view>
+  </view>
+  <view class="fibtn">
+   <!-- btn -->
+    <button class="btn btn-primary"  formType="submit" disabled="{{nameV && companyV && snV && userTypeV? false:true}}">确定</button>
+  </view>
 
     <!-- gotoChat -->
     <view class="cs_con ">
         <view class="text-center fs12">如有疑问，您可以
-             <meiqiaBtn bindmeiqiaTap="MtaReport" btn-class="fc-blue bc_chat_btn btn-meiqia" handle-alert="{{false}}" session-from="{{NONTECH}}">
-            <image src="/images/wechat_b.png"></image>
+             <meiqiaBtn bindmeiqiaTap="MtaReport" btn-class="fc-blue bc_chat_btn btn-meiqia" handle-alert="{{true}}" session-from="N">
+            <image src="/images/wechat_b.png" mode="widthFix"></image>
         发起会话 </meiqiaBtn></view>
     </view>
+    
 </form>
+</view>
+
+
+<!-- showInput -->
+<view class="shLoading" hidden="{{!shLoading}}">
+  <view class="shLoading-mask1">
+  </view>
+  <view class="shLoading-panel flex alignc directionC">
+      <view class="shLoading-head-panel">
+          <view class="shp_title">信息提交成功！</view>
+          <view class="shp_body">点击发起会话联系客服。</view>
+      </view>
+      <view class="shLoading-btn-panel">
+          <view class="shLoading-btn-ok" bindtap="">发起会话
+           <meiqiaBtn bindmeiqiaTap="isWorkTime" btn-class="shLoading-btn-contact" session-from="{{MeiqiaGroup}}" handle-alert="{{true}}">
+            </meiqiaBtn>
+           </view>
+      </view>
+  </view>
+</view>
+

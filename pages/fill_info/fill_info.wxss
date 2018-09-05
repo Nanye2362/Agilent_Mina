@@ -1,21 +1,83 @@
 /* pages/fill_info/fill_info.wxss */
-.s-list{ padding: 0 40rpx; background: #fff; }
-.s-item{ border-bottom: 1px solid #dfdfdf; padding: 0rpx 8rpx; }
-.s-item:last-child{ border: none; }
-.item-t{ flex: .3; height: 100rpx; line-height: 100rpx; }
-.s-item input{ height: 100rpx; }
-.item-r{ flex: .7; }
-.serialNo{ text-transform: uppercase; }
-.cs_con {
-    padding: 20rpx 40rpx 120rpx;
+.fi_background{
+  background: #fff;
+  height:100%;
+  padding:30rpx 40rpx;
 }
 
-.cs_con image {
-    width: 44rpx;
-    height: 39rpx;
-    vertical-align: sub;
+.fi_head{
+  display: flex;
+  align-items: baseline;
 }
 
-.cs_con > view {
-    line-height: 60rpx;
+.fih_img{
+  width:30rpx;
+  height:20rpx;
+  margin-right:16rpx;
+}
+
+.fih_text{
+  color:#aaa;
+  line-height: 1.2;
+  font-size:26rpx;
+}
+
+.fi_form{
+  margin-top:50rpx;
+  border-top:2rpx solid #eee;
+  height:700rpx;
+}
+
+.fif_row{
+  display: flex;
+  align-items: center;
+  height:100rpx;
+  border-bottom:2rpx solid #eee;
+  color:#666;
+}
+
+.fif_label{
+  width:180rpx;
+  font-size:30rpx;
+}
+
+.fif_input{
+  width:490rpx;
+  font-size:30rpx;
+}
+
+.fibtn .btn{
+  width:100%;
+}
+
+.fif_select{
+  position: relative;
+  color:#aaa;
+}
+
+.fif_select .fif_triangle{
+  position: absolute;
+  right:30rpx;
+  top:15rpx;
+  height:0;
+  width:0;
+  border-width:15rpx 15rpx 0;
+  border-style:solid;
+  border-color:#0085d5 transparent transparent;/*灰 透明 透明 */
+}
+
+.fif_selected{
+  color:#000;
+}
+
+.fih_img image{
+  width:100%;
+}
+
+.cs_con image{
+  width:50rpx;
+}
+
+.shLoading-btn-ok{
+  width:100% !important;
 }

@@ -262,7 +262,7 @@ Page({
       //未绑定，则跳转认证页面
     }, function () {
       wx.navigateTo({
-        url: '../auth/auth?pageName=mechat_list&pagelabel=salesBA',
+        url: '../auth/auth?pageName=mechat_list&pagelabel=salesBA_'+ e.target.dataset.meqia,
       })
     });
   },
