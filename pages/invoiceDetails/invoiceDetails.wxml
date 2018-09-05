@@ -26,7 +26,7 @@
         <view class='invInfo_item flex alignc'>
           <view class='invInfo_left fs13'>发票抬头：</view>
           <view class='invInfo_right fs13'>
-            <input type='text' placeholder='请输入' bindinput='bindInvoiceInput' data-type='input1'></input>
+            <input disabled='{{inputDisabled}}' type='text' placeholder='请输入' bindinput='bindInvoiceInput' data-type='input1'></input>
           </view>
         </view>
       </block>
@@ -53,7 +53,7 @@
       <view class='invInfo_item flex alignc'>
         <radio-group class="radio-group" bindchange="radioChange">
           <label class="radio" wx:for="{{sendWhom}}" wx:key='unique'>
-            <radio color='#0085d5' value="{{item.name}}" checked="{{item.checked}}"/>{{item.value}}
+            <radio disabled='{{inputDisabled}}' color='#0085d5' value="{{item.name}}" checked="{{item.checked}}"/>{{item.value}}
           </label>
         </radio-group>
       </view>
@@ -61,7 +61,7 @@
         <view class='invInfo_item flex alignc'>
           <view class='invInfo_left fs13'>发票抬头：</view>
           <view class='invInfo_right fs13'>
-            <input type='text' placeholder='请输入' bindinput='bindSendInput' data-type='input1'></input>
+            <input disabled='{{inputDisabled}}' type='text' placeholder='请输入' bindinput='bindSendInput' data-type='input1'></input>
           </view>
         </view>
       </block>
@@ -79,14 +79,14 @@
     <view class='invInfo_item flex alignc'>
       <view class='invInfo_left fs13'>PO号码：</view>
       <view class='invInfo_right fs13'>
-        <input type='text' placeholder='请输入' bindinput='bindKeyInput' data-type=''></input>
+        <input disabled='{{inputDisabled}}' type='text' placeholder='请输入' bindinput='bindKeyInput' data-type=''></input>
       </view>
     </view>
 
     <view class='marginT'>
       <checkbox-group bindchange="contractConfirm">
         <label class="checkbox">
-          <checkbox value="contract" checked="{{checkBox}}" style='transform:scale(.7);'/>
+          <checkbox disabled='{{inputDisabled}}' value="contract" checked="{{checkBox}}" style='transform:scale(.7);'/>
           <text class='fc-777 fs12'>详见销货清单（如需要，请勾选）</text>
         </label>
       </checkbox-group>

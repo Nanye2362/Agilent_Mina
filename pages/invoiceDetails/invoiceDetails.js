@@ -4,6 +4,9 @@ var isSend = false;
 var config = require('../../config.js');
 var invoiceInfo = {};
 var sendInfo = {};
+var invoiceArry = [
+  
+]
 Page({
 
   /**
@@ -13,7 +16,8 @@ Page({
     sendWhom: [
       { name: 'me', value: '我自己',checked: 'true' },
       { name: 'other', value: '其他人' }
-    ]
+    ],
+    inputDisabled: false,
   },
 
   /**
