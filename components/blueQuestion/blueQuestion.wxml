@@ -1,6 +1,6 @@
 <!--components/blueQuestion/blueQuestion.wxml-->
 <!-- icon -->
-<image bindtap="showTips" style="width: 40rpx; height: 40rpx; margin-top: 12rpx" src="/images/tips.png"></image>
+<image bindtap="showTips" style="width: 40rpx; height: 40rpx; vertical-align:middle" src="/images/tips.png"></image>
 
 <!-- content -->
 <view class="bq_mask" wx:if="{{displayTips}}" bindtap='showTips'></view>
