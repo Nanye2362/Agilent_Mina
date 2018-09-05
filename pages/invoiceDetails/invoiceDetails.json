@@ -1,1 +1,6 @@
-{}
+{
+  "navigationBarTitleText": "预算确认",
+  "usingComponents": {
+    "blueQuestion": "/components/blueQuestion/blueQuestion"
+  }
+}

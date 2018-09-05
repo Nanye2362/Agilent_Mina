@@ -73,7 +73,7 @@ button{
 
 /* ======================= font ===================== */
 view, text, input, button{ font-size: 32rpx; font-family: "MicroSoft Yahei"; color: #333;}
-.fw{ font-weight: bold; }
+.fw{ font-weight: 600; }
 /* font-size */
 .fs12 {
     font-size: 0.75rem;
@@ -172,6 +172,11 @@ view, text, input, button{ font-size: 32rpx; font-family: "MicroSoft Yahei"; col
     width: 100%;
     background: #eaeaea;
 }
+.dashed{
+  width: 100%;
+  height: 0;
+  border-bottom: 1px dashed #d8d8d8;
+}
 /* ===================margin====================== */
   
 .marginB-6{
@@ -182,6 +187,9 @@ view, text, input, button{ font-size: 32rpx; font-family: "MicroSoft Yahei"; col
 }
 .marginB-40{
   margin-bottom: 80rpx;
+}
+.marginT{
+  margin-top: 30rpx;
 }
 
 

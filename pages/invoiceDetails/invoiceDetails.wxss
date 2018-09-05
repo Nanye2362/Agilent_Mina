@@ -1,4 +1,5 @@
 /* pages/invoiceDetails/invoiceDetails.wxss */
+@import '../install/install';
 page{
   background: #fff;
 }
@@ -6,10 +7,11 @@ page{
 .invoiceCon{
   padding: 30rpx 40rpx;
 }
+
+
 .invTitle{
   margin-top: 20rpx;
   padding-bottom: 20rpx;
-  font-weight: 600;
 }
 .invTitle_icon{
   width: 44rpx;
@@ -17,10 +19,58 @@ page{
   margin-right: 16rpx;
   align-self: flex-start;
 }
+
+
 .invRemind{
   margin: 20rpx 0;
-  text-align: center;
 }
 .invRemind image{
-  width: 30rpx;
+  width: 44rpx;
+  vertical-align: middle;  
+  transform:scale(.7);
+}
+.invoice_o_con view{
+  line-height: 45rpx;
+  font-size: 0.75rem;
+  margin-bottom: 35rpx;
+}
+
+
+.invInfo{
+  padding: 0 10rpx;
+  border: 3px solid #bfd9f7;
+  position: relative;
+  margin: 30rpx 0;
+}
+.invInfo::before{
+  content: '';
+  height: 0;
+  width: 0;
+  border-top: 30rpx solid #0085d5;
+  border-right: 30rpx solid transparent ;
+  border-bottom: 30rpx solid transparent ; 
+  border-left: 30rpx solid #0085d5;
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform: rotate('90');
+}
+.invInfo_item{
+  padding: 20rpx 30rpx; 
+}
+.invInfo_item:not(:last-child){
+  border-bottom: 1px dashed #d8d8d8;
+}
+.invInfo_left{
+  flex: .4;
+  line-height: 1;
+}
+.invInfo_right{
+  flex: .6;
+  line-height: 1;
+  word-break: break-all;
+}
+
+.radio{
+  margin: 0 20rpx;
 }

@@ -1,0 +1,14 @@
+<!--components/blueQuestion/blueQuestion.wxml-->
+<!-- icon -->
+<image bindtap="showTips" style="width: 40rpx; height: 40rpx;" src="/images/tips.png"></image>
+
+<!-- content -->
+<view class="bq_mask" wx:if="{{displayTips}}" bindtap='showTips'></view>
+<view class="bq_order" wx:if="{{displayTips}}"  bindtap='showTips'>
+    <view class="bq_o_close text-right">
+        <img src="/images/close.png" />
+    </view>
+    <view class="bq_o_details">
+    	<slot></slot>
+    </view>
+</view>
