@@ -1,0 +1,12 @@
+<view class="mechat_row_desc"  bindtap="questionDetails">
+  <view class="mechat_question_icon" >
+    <image src="/images/question_icon.jpg" mode="widthFix" data-key="{{index}}"></image>
+  </view>
+  <view wx:if="{{showInfo}}" class="mechat_position_top">
+    <view class="mechat_question_text"  >
+      <slot></slot>
+    </view>
+    <view class="mechat_triangle_down">
+    </view>
+  </view>
+</view>

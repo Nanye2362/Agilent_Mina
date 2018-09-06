@@ -1,0 +1,133 @@
+<!-- pages/PM/PM.wxml预防性维护 -->
+<!-- showLoading -->
+<view class="shLoading" wx:if="{{shLoading}}">
+  <view class="shLoading-mask">
+  </view>
+  <view class="shLoading-con flex alignc directionC">
+    <image src="/images/uploading.png" class="shLoading-img"></image>
+    <text class="shLoading-text">识别中...</text>
+  </view>
+</view>
+<!-- tips -->
+<view class="ins_mask" wx:if="{{displayTips}}" bindtap='showTips'></view>
+<view class="ins_order" wx:if="{{displayTips}}"  bindtap='showTips'>
+    <view class="ins_o_close text-right">
+        <img src="/images/close.png" />
+    </view>
+    <view class="ins_o_details">
+      <view class="ins_o_title padding">以下仪器除提供序列号外请登记如下信息：</view>
+      <view class="ins_o_con" style='padding: 0 30rpx'>
+          <view class='ins_o_con_text'>
+            <view>液相：</view>
+            <view>1.是否有泵头清洗功能</view>
+            <view>2.请确认是正相还是反相系统</view>
+          </view>
+          <view class='ins_o_con_text'>
+            <view>气相：</view>
+            <view>1.进样口类型（例如：分流或不分流）</view>
+            <view>2.检测器类型（例如：FID）</view>
+          </view>
+          <view class='ins_o_con_text'>
+            <view>液质：</view>
+            <view>1.离子源类型</view>
+            <view>2.喷雾针类型</view>
+            <view>3.前级泵类型</view>
+          </view>
+      </view>
+    </view>
+</view>
+
+
+<!--pages/install/install.wxml-->
+<!-- poster -->
+<view class="ins-poster">
+    <image class="img_bg" src="{{imgUrl}}"></image>
+</view>
+
+
+
+<!-- form -->
+<form class="install_form" id="insth_form" action="" report-submit="true" bindsubmit="formSubmit">
+    <!-- basic_info -->
+    <view class="ins_form bg-primary">
+        <!-- order -->
+        <view class="ins_item flex alignc {{hasError?'ins_error':''}}">
+            <view class="ins_title">序列号:</view>
+            <label class="ins_con" for="ins_orderno" style="flex: .6">
+                <input class="" type="text" placeholder="拍照识别序列号或手动输入" bindinput='saveTheValue' value="{{cameraValue}}"/>
+                <!-- 拍照按钮 -->
+                <button bindtap="chooseimage" class="sn_photobtn"></button>
+                <image class="sn_photoimg" src="/images/camera-p.png" mode='widthFix' style="width: 40rpx; margin-top: 12rpx"></image>
+                
+            </label>
+            <view class="text-right ins_question" style="flex: .1">
+              <!-- blueQuestion -->
+              <blueQuestion>
+                <view class="ins_o_title padding text-left">序列号</view>
+                <view class="ins_o_con padding text-left">
+                    <text>大多数在仪器外壳下方，一般以CN，US，DE，JP，AA，等开头的一串字符组合。</text>
+                </view>
+              </blueQuestion>
+              <!-- blueQuestion -->
+            </view>
+        </view>
+        <!-- name -->
+        <view class="ins_item flex alignc">
+            <view class="ins_title">姓名:</view>
+            <label class="ins_con" for="ins_name">
+                <input bindblur="blurfun" data-name="name" value="{{ name }}" name="ins_phone" type="text" placeholder="请输入姓名" id="ins_name" maxlength="10" required="" />
+            </label>
+        </view>
+        <!-- phone -->
+        <view class="ins_item flex alignc">
+            <view class="ins_title">手机号:</view>
+            <label class="ins_con" for="ins_phone">
+                <input name="ins_phone" type="tel" placeholder="请输入手机号" id="ins_phone" required="" value="{{mobile}}" disabled/>
+                <!--span>{{mobile}}</span-->
+            </label>
+        </view>
+        <!-- company -->
+        <view class="ins_item flex alignc">
+            <view class="ins_title">单位名称:</view>
+            <label class="ins_con" for="ins_company">
+                <input bindblur="blurfun" data-name="company" value="{{ company }}" name="ins_phone" type="text" placeholder="请输入单位全称" id="ins_company" required="" />
+            </label>
+        </view>
+    </view>
+
+    <!-- attachInfo -->
+    <view class="ins_form bg-primary">
+        <!-- date -->
+        <date-component></date-component>
+        <!-- attachInfo -->
+        <view class="insText">
+          <view class="fs14">
+            配置信息：
+            <image style="width: 40rpx; height: 40rpx; vertical-align: middle" src="/images/tips.png" bindtap='showTips'></image>
+          </view>
+          <textarea wx:if="{{showTextarea}}" class="ins-textarea fs13" bindinput="desNo" value="{{ desc }}" placeholder='请输入您希望安捷伦需要知道的信息'/>
+        </view>      
+    </view>
+
+
+
+
+    <!-- btn... -->
+    <view class="ins_form bg-primary">
+      <!-- btn -->
+      <button form-type="submit"  data-click="submit"  class="btn btn-primary submit_insth" id="gotoAuth" disabled="" style='width: 100%;'>确定</button>
+      <!-- gotoChat -->
+      <view class="cs_con ">
+          <view class="text-center fs12">如有任何疑问，请
+            <meiqiaBtn bindmeiqiaTap="MtaReport" btn-class="fc-blue bc_chat_btn btn-meiqia" handle-alert="{{true}}" session-from="{{WLA}}">
+                <image src="/images/wechat_b.png"></image>
+                <text class='fc-blue'>发起会话</text>
+            </meiqiaBtn>
+          </view>
+      </view>
+    </view>
+
+    
+</form>
+
+

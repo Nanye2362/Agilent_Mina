@@ -1,6 +1,8 @@
 {
   "navigationBarTitleText": "安装申请",
   "usingComponents": {
-      "meiqiaBtn": "/components/meiqiaBtn/meiqiaBtn"
+      "meiqiaBtn": "/components/meiqiaBtn/meiqiaBtn",
+      "date-component": "/components/orderDate/orderDate",
+      "blueQuestion": "/components/blueQuestion/blueQuestion"
   }
 }

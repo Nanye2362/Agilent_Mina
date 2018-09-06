@@ -1,0 +1,56 @@
+/* components/blueQuestion/blueQuestion.wxss */
+.bq_mask {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    opacity: .5!important;
+    z-index: 999;
+    display: block;
+    left: 0;
+    top: 0;
+}
+
+.bq_order {
+    position: fixed;
+    bottom: 0px;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    display: block;
+}
+
+.bq_o_close {
+    width: 100%;
+    height: 50px;
+    padding: 0 20px;
+}
+
+.bq_o_close image {
+    width: 35px;
+}
+
+.bq_o_details {
+    width: 100%;
+    height: 30%;
+    background: #fff;
+    padding-bottom: 20px;
+}
+
+.bq_o_title {
+    border-bottom: 1px solid #e7e6e7;
+    font-weight: bold;
+}
+
+.bq_o_con .h5:not(:first-child) {
+    margin-top: 15px;
+}
+
+.bq_o_con .h5 {
+    margin-bottom: 5px;
+}
+.bq_o_con_text{
+  padding: 20rpx 10rpx;
+  border-bottom: 1px dashed #bbb;
+  line-height: 50rpx;
+}

@@ -1,0 +1,41 @@
+<!--components/orderDate/orderDate.wxml-->
+<view class='orderDate'>
+	<!-- date_icon -->
+	<view class="date_item flex">
+	    <view class="ins_title">期望日期:</view>
+	    <view bindtap="openDate" class='ins_con' style="flex: .6">{{chooseDate}}</view>
+	    <view bindtap="openDate" class="text-right" style="flex: .1">
+	      <image style="width: 40rpx; margin-top: 8rpx" src="/images/date.png" mode='widthFix'></image>
+	    </view>
+	</view>
+	<!-- date_content -->
+	<block wx:if='{{openDate}}'>
+		<view class='date-mask' bindtap='openDate'></view>
+		<!-- dateContent -->
+		<view class='date-con'>
+			<!-- data_title -->
+			<view class='data-title'>
+				<view class='dtitle-up flex'>
+					<view class='dtitle-l fc-blue'>{{theYear}}年</view>
+					<view class='dtitle-c text-center'>选择预约日期</view>
+					<view class='dtitle-r text-right flex' bindtap='openDate'>
+						<image src='/images/closeDate.png' mode='widthFix' style='width: 28rpx;'></image>
+					</view>
+				</view>
+				<view class='dtitle-down flex'>
+					<block wx:for='{{dayList}}' wx:for-item='item' wx:key="unique">
+						<view class='text-center fs12' style='width:{{dateWidth}}px;'>{{item}}</view>
+					</block>
+				</view>
+			</view>
+			<!-- data_main -->
+			<view class='data-main flex'>
+				<block wx:for='{{dateList}}' wx:for-item='item' wx:key="unique" wx:for-index="key">
+				  <view bindtap='chooseDate' class='text-center dmain-item {{item.optional==0?"fc-blue":""}}' style='width:{{dateWidth}}px' data-date='{{item.year+"-"+item.month+"-"+item.date}}' data-optional='{{item.optional}}'>{{item.date}}
+				  	<view class='{{item.firstDay=="firstDay"?"firstDay":"notFirstDay"}}'>{{item.month}}月</view>
+				  </view>
+			  </block>
+			</view>
+		</view>
+	</block>
+</view>

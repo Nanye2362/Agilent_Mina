@@ -1,0 +1,34 @@
+/* pages/serviceOrder/serviceOrder.wxss */
+page{
+  background: #fff;
+}
+.service{
+  padding: 0 40rpx;
+}
+.serviceList{
+  justify-content: center;
+  align-items: center;
+  border-bottom : 1px dotted #c9c8c8;
+  padding : 30rpx 0;
+}
+.sl_title{
+  margin-bottom: 10rpx;
+}
+.sl_icon{
+  flex: .2;
+}
+.sl_icon image{
+  width: 120rpx;
+  height: 100rpx;
+}
+.sl_con{
+  flex: .7;
+  margin-left: 20rpx; 
+}
+.sl_arrow{
+  flex: .1;
+}
+.sl_arrow image{
+  width: 25rpx;
+}
+

@@ -1,8 +1,7 @@
 // pages/install/install.js
-var commondata = require('../../Data/database.js');
 var util = require('../../utils/util.js');
+var config = require('../../config.js');
 var isSend=false;
-
 Page({
 
   /**
@@ -12,21 +11,62 @@ Page({
     uploadBtn: true,
     photoURL: [],
     hasError:false,
-    displayTips: false,
-    WLA: 'W'
+    WLA: 'W',
+    insType: ['气相色谱','气质联用','液相色谱','液质联用','溶出度仪','紫外光谱','红外光谱','原子光谱','ICP-OES','ICP-MS','其他'],
+    pickerType: -1,
+    desc:'',
+    chooseDate: '',
+    orderno:'',
+    chooseCheckbox:[],
+    showTextarea: true,
+    imgUrl: config.Server +'images/install_bg.jpg',
   },
+  //选择仪器类型
+  bindPickerChange: function(e){
+    console.log(e);
+    console.log('picker发送选择改变，携带值为', e.detail.value)
+    this.setData({
+      pickerType: e.detail.value
+    })
+  },
+  //多选框
+  checkboxChange: function (e) {
+    var chooseCheckbox = e.detail.value;
+    console.log(chooseCheckbox);
+    this.setData({
+      chooseCheckbox: chooseCheckbox,
+    })
+  },
+  
+  //附加信息
+  desNo: function (e) {
+    this.setData({
+      desc: e.detail.value 
+    });
+  },
+  //场地安装就绪
+  installReady: function(){
+    var that = this;
+    console.log('clickInstall')
+    if (that.data.pickerType!=-1){
+      wx.setStorage({
+        key: "openHtmlUrl",
+        data: "https://www.agilent.com/search/?Ntt=" + encodeURI(that.data.insType[that.data.pickerType] + '场地'),
+        //data: "https://devops.coffeelandcn.cn/files/5990-6321CHCN.pdf",
+        success: function () {
+          wx.navigateTo({
+            url: '../html/openHtml',
+          });
+        }
+      })
+    }   
+  },
+
   formSubmit: function (e) {
     var clickevent = e.detail.target.dataset.click;
     console.log(e.detail.formId);
     util.submitFormId(e.detail.formId);
     this[clickevent](e.detail.target);
-  },
-  showTips: function(){
-    var displayTips = this.data.displayTips
-    console.log('showtips')
-    this.setData({
-      displayTips: !displayTips
-    })
   },
 
   MtaReport: function () {
@@ -47,15 +87,14 @@ Page({
   },
   _ordercheck: function (_orderno){
     var reStart = /^03(\d*)$/;
-    if (_orderno != '' &&(_orderno.length!=10 || !reStart.test(_orderno))) {
+    if (_orderno != '' &&(_orderno.length!=10 || !reStart.test(_orderno) || _orderno.length==0)) {
           return false;
     }
     return true;
   },
   submit: function (event) {
     var URLArr = this.data.photoURL;
-    var that = this;
-   
+    var that = this; 
     if (!this._ordercheck(this.data.orderno)){
       wx.showModal({
         title: '提示',
@@ -64,9 +103,7 @@ Page({
       })
       return;
     }
-
-
-    if (util.checkEmpty(that.data, ['name', 'company','orderno'])) {
+    if (util.checkEmpty(that.data, ['name', 'company', 'orderno']) || that.data.pickerType == -1 || that.data.chooseCheckbox.length == 0) {
       wx.showModal({
         title: '提示',
         content: '请确认信息输入完整',
@@ -74,7 +111,6 @@ Page({
       })
       return;
     }
-
     if (isSend) {
       return false;
     }
@@ -90,13 +126,15 @@ Page({
     } else {
       that._submit([]);
     }
-
+ 
   },
   _submit: function (imgUrlList) {
     var that = this;
     util.NetRequest({
       showload: false,
-      url: "sr/sr-instal", data: {
+      url: "sr/sr-instal", 
+      data: {
+        InsType: that.data.insType[that.data.pickerType],
         orderno: that.data.orderno,
         username: that.data.name,
         company: that.data.company,
@@ -104,7 +142,9 @@ Page({
         img_1: imgUrlList[0],
         img_2: imgUrlList[1],
         img_3: imgUrlList[2],
-        img_4: imgUrlList[3]
+        img_4: imgUrlList[3],
+        ExpectedDate: that.data.chooseDate,
+        AdditionalInfo: that.data.desc,
       }, fail:function(e){
         console.log(e);
         isSend=false;
