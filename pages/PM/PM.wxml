@@ -63,9 +63,9 @@
             <view class="text-right ins_question" style="flex: .1">
               <!-- blueQuestion -->
               <blueQuestion>
-                <view class="ins_o_title text-center padding">订单号</view>
+                <view class="ins_o_title padding text-left">序列号</view>
                 <view class="ins_o_con padding text-left">
-                    <text>参照以上图片，在到货的外包装箱上 SO 或Sales Order 后面以03开头的一串数字即为订单号，填入即可。</text>
+                    <text>大多数在仪器外壳下方，一般以CN，US，DE，JP，AA，等开头的一串字符组合。</text>
                 </view>
               </blueQuestion>
               <!-- blueQuestion -->
