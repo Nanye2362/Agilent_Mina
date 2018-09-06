@@ -1,21 +1,9 @@
-<!-- tips -->
-<view class="ins_mask" wx:if="{{displayTips}}" bindtap='showTips'></view>
-<view class="ins_order" wx:if="{{displayTips}}"  bindtap='showTips'>
-    <view class="ins_o_close text-right">
-        <img src="/images/close.png" />
-    </view>
-    <view class="ins_o_details">
-        <view class="ins_o_title fs24 text-center padding fs18">订单号</view>
-        <view class="ins_o_con padding">
-            <text>参照以上图片，在到货的外包装箱上 SO 或Sales Order 后面以03开头的一串数字即为订单号，填入即可。</text>
-        </view>
-    </view>
-</view>
+
 
 <!--pages/install/install.wxml-->
 <!-- poster -->
 <view class="ins-poster">
-    <image class="img_bg" src="../../images/install_bg.jpg"></image>
+    <image class="img_bg" src="{{imgUrl}}"></image>
 </view>
 
 
@@ -24,34 +12,53 @@
 <form class="install_form" id="insth_form" action="" report-submit="true" bindsubmit="formSubmit">
     <!-- basic_info -->
     <view class="ins_form bg-primary">
-       <!-- order -->
-        <view class="ins_item flex {{hasError?'ins_error':''}}">
-            <view class="ins_title self-center">订单号:</view>
-            <label class="ins_con" for="ins_orderno" style="flex: .6">
+        <!-- order -->
+        <view class="ins_item flex alignc {{hasError?'ins_error':''}}">
+            <view class="ins_title">订单号:</view>
+            <label class="ins_con flex alignc" for="ins_orderno" style="flex: .6">
                 <input bindinput='ordercheck' bindblur="blurfun" data-name="orderno" value="{{ orderno }}" name="ins_phone" maxlength="10" type="number" placeholder="请输入以03开头的订单号" id="ins_orderno" required="" />
             </label>
-            <view bindtap="showTips" class="text-right ins_question" style="flex: .1">
-              <image style="width: 44rpx; height: 44rpx; margin-top: 10rpx" src="/images/tips.png"></image>
+ 
+            
+            <view class="text-right ins_question" style="flex: .1">
+              <!-- questionReminder -->
+              <blueQuestion>
+                <view class="ins_o_title text-center padding">订单号</view>
+                <view class="ins_o_con padding text-left">
+                    <text>参照以上图片，在到货的外包装箱上 SO 或Sales Order 后面以03开头的一串数字即为订单号，填入即可。</text>
+                </view>
+              </blueQuestion>
+              <!-- questionReminder -->
             </view>
         </view>
+        <!-- type -->
+        <view class="ins_item flex alignc" style='position: relative;'>
+            <view class="ins_title">仪器类型:</view>
+            <label class="ins_con ins_type" for="ins_orderno" style="flex: .7">
+                <picker mode="selector" bindchange="bindPickerChange" value="{{pickerType}}" range="{{insType}}" bindcancel='true'>
+                  <view class="picker">{{pickerType==-1?'请选择仪器类型':insType[pickerType]}}</view> 
+                </picker>
+            </label>
+            <image class="ins_down" src="/images/down.png" mode='widthFix'></image>
+        </view>
         <!-- name -->
-        <view class="ins_item flex">
-            <view class="ins_title self-center">姓名:</view>
+        <view class="ins_item flex alignc">
+            <view class="ins_title">姓名:</view>
             <label class="ins_con" for="ins_name">
                 <input bindblur="blurfun" data-name="name" value="{{ name }}" name="ins_phone" type="text" placeholder="请输入姓名" id="ins_name" maxlength="10" required="" />
             </label>
         </view>
         <!-- phone -->
-        <view class="ins_item flex">
-            <view class="ins_title self-center">手机号:</view>
+        <view class="ins_item flex alignc">
+            <view class="ins_title">手机号:</view>
             <label class="ins_con" for="ins_phone">
                 <input name="ins_phone" type="tel" placeholder="请输入手机号" id="ins_phone" required="" value="{{mobile}}" disabled/>
                 <!--span>{{mobile}}</span-->
             </label>
         </view>
         <!-- company -->
-        <view class="ins_item flex">
-            <view class="ins_title self-center">单位名称:</view>
+        <view class="ins_item flex alignc">
+            <view class="ins_title">单位名称:</view>
             <label class="ins_con" for="ins_company">
                 <input bindblur="blurfun" data-name="company" value="{{ company }}" name="ins_phone" type="text" placeholder="请输入单位全称" id="ins_company" required="" />
             </label>
@@ -59,14 +66,14 @@
     </view>
 
     <!-- upload_pic -->
-    <view class="ins_form bg-primary" style="margin: 10px 0;">
+    <view class="ins_form bg-primary">
         <!-- 照片上传 -->
         <view class="ins_pic_title">
             <view class="weui-cell__hd">添加照片<span class="fs14 fc-aaa">(订单信息，订单场地等)</span></view>
         </view>
         <view class="lm_upload ins_upload">
             <view class="weui-uploader__bd lm_upload_pic">
-                <view class="weui-uploader__files flex " id="uploaderFiles">
+                <view class="weui-uploader__files flex  alignc" id="uploaderFiles">
                     <view class="weui-uploader__file lm_upload_item" wx:for="{{photoURL}}">
                        <image src="{{item}}" mode="aspecFill" style="width: 100%; height: 100%; }"></image> 
                         <view class="lm_img_delete"  bindtap="clickToDelete" data-index="{{index}}">删除</view>
@@ -76,23 +83,42 @@
                       <image src="/images/upload.png" bindtap="chooseimage" class="lm_photobtn" style="display: {{btnDisplay}}"></image>
                   </view>
                 </view>
-            </view>
-        </view>       
-    </view>
-
-
-    <!-- btn -->
-    <view class="ins_btn">
-        <button  data-click="submit" form-type="submit" class="btn btn-primary submit_insth" id="gotoAuth" disabled="">确定</button>
-    </view>
-
-    <!-- gotoChat -->
-    <view class="cs_con ">
-        <view class="text-center fs12">如需查看安装申请的安排进度，请
-           <meiqiaBtn bindmeiqiaTap="MtaReport" btn-class="fc-blue bc_chat_btn btn-meiqia" handle-alert="{{false}}" session-from="{{WLA}}">
-              <image src="/images/wechat_b.png"></image>发起会话
-           </meiqiaBtn>
+            </view>    
         </view>
+        <!-- date -->
+        <view style='padding: 30rpx 0; border-bottom: 1px solid #e7e6e7'>
+          <date-component></date-component>
+        </view>
+        
+        <!-- attachInfo -->
+        <view class="insText">
+          <view class="fs14">附加信息：</view>
+          <textarea wx:if="{{showTextarea}}" class="ins-textarea fs13" bindinput="desNo" value="{{ desc }}" placeholder='请输入您希望安捷伦需要知道的信息'/>
+        </view>      
     </view>
+
+
+    <!-- btn... -->
+    <view class="ins_form bg-primary">
+      <view class="checkboxarea">
+          <checkbox-group bindchange="checkboxChange">
+            <checkbox value="value" class="ins_checkbox" id="ins_checkbox"/>
+            <text class="fs12 fc-blue" style='text-decoration:underline' bindtap='installReady'>{{pickerType==-1?'':insType[pickerType]}}场地安装</text>
+            <text class="fs12"> 已准备就绪</text>              
+          </checkbox-group>
+      </view>
+      <!-- btn -->
+      <button form-type="submit"  data-click="submit" class="btn btn-primary submit_insth" id="gotoAuth" disabled="" style='width: 100%;'>确定</button>
+      <!-- gotoChat -->
+      <view class="cs_con ">
+          <view class="text-center fs12">如有任何疑问，请
+            <meiqiaBtn bindmeiqiaTap="MtaReport" btn-class="fc-blue bc_chat_btn btn-meiqia" handle-alert="{{true}}" session-from="{{WLA}}">
+                <image src="/images/wechat_b.png"></image>发起会话
+            </meiqiaBtn>
+          </view>
+      </view>
+    </view>
+
+   
 </form>
 

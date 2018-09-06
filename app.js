@@ -36,7 +36,16 @@ App({
     }
     console.log(userMobile);
     this.wxlogin();
-    
+    var that = this;
+    wx.getSystemInfo({
+      success: function (res) {
+        that.globalData.sysInfo = {
+          winWidth: res.windowWidth,
+          winHeight: res.windowHeight,
+          dateWidth: parseInt((res.windowWidth - 30) / 7),
+        }
+      }
+    });
   },
   onShow: function (res) {
     console.log(res);

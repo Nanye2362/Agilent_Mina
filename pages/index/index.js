@@ -1,5 +1,6 @@
 //index.js
 var util = require('../../utils/util.js');
+var config = require('../../config.js');
 //获取应用实例
 var app = getApp()
 var routes = require('../../utils/routes');
@@ -21,15 +22,17 @@ Page({
     orientation: 'left',//滚动方向
     interval2: 20, // 时间间隔
     imgUrls:
-    [{
-      url: '/images/slider1.jpg'
-    },
-    {
-      url: '/images/slider2.jpg'
-    },
-    {
-      url: '/images/slider3.jpg'
-    }],
+    [
+      {
+        url: config.Server +'images/slider1.jpg'
+      },
+      {
+        url: config.Server + 'images/slider2.jpg',
+      },
+      {
+        url: config.Server + 'images/slider3.jpg',
+      }
+    ],
     indicatorDots: true,
     autoplay: true,
     interval: 5000,

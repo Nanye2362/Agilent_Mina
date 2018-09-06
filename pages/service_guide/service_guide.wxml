@@ -54,7 +54,7 @@
         <view class="sg_text">点击首页“安装申请”进入申请表单页面</view>
         <view class="sg_text">完善个人信息并上传订单信息和场地准备的附件，确认并提交表单，稍后安捷伦工程师会与您取得联系，确认安装详情。</view>
         <view>
-            <image class="sg_img" src="../../images/tu01.jpg" alt=""></image>
+            <image class="sg_img" src="{{imgUrl}}" alt=""></image>
         </view>
     </view>
 
@@ -67,7 +67,7 @@
     <view>
         <view class="sg_text">“常见问题”为您准备了气相色谱、液相色谱、气质联用的常见问题，您可以在线预览，如果问题仍未解决，您可以选择下方的“故障反馈”联系我们。</view>
         <view>
-            <image class="sg_img" src="../../images/tu02.jpg" alt=""></image>
+            <image class="sg_img" src="{{imgUrl2}}" alt=""></image>
         </view>
     </view>
 

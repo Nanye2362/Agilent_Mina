@@ -175,14 +175,16 @@ page{
 .rd-l{
   flex: .3;
   text-align: left!important;
+  line-height: 1;
 }
 .rd-r{
   flex: .7;
   text-align: left!important;
   word-break: break-all;
+  line-height: 1;
 }
 .recordDetails > view:not(:last-child){
-  margin-bottom: 10rpx;
+  margin-bottom: 20rpx;
 }
 .firstLabel{
   background: #0085d5;  

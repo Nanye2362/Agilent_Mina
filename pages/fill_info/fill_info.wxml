@@ -5,10 +5,6 @@
 <!-- remind -->
 <view class="fi_background">
   <view class="fi_head">
-    <view class="fih_img">
-      <image src='/images/notifi.png' mode="widthFix" />
-    </view>
-    <view class="fih_text">您的手机在系统里还没有建档。请填写以下资料，我们会尽快为您建档。</view>
   </view>
 
 <form bindsubmit="submitConfirm" class="fillinfo_form" id="fillinfo_form" report-submit="true" >
@@ -59,16 +55,7 @@
   <view class="fibtn">
    <!-- btn -->
     <button class="btn btn-primary"  formType="submit" disabled="{{nameV && companyV && snV && userTypeV? false:true}}">确定</button>
-  </view>
-
-    <!-- gotoChat -->
-    <view class="cs_con ">
-        <view class="text-center fs12">如有疑问，您可以
-             <meiqiaBtn bindmeiqiaTap="MtaReport" btn-class="fc-blue bc_chat_btn btn-meiqia" handle-alert="{{true}}" session-from="N">
-            <image src="/images/wechat_b.png" mode="widthFix"></image>
-        发起会话 </meiqiaBtn></view>
-    </view>
-    
+  </view>    
 </form>
 </view>
 
@@ -80,11 +67,10 @@
   <view class="shLoading-panel flex alignc directionC">
       <view class="shLoading-head-panel">
           <view class="shp_title">信息提交成功！</view>
-          <view class="shp_body">点击发起会话联系客服。</view>
       </view>
       <view class="shLoading-btn-panel">
-          <view class="shLoading-btn-ok" bindtap="">发起会话
-           <meiqiaBtn bindmeiqiaTap="isWorkTime" btn-class="shLoading-btn-contact" session-from="{{MeiqiaGroup}}" handle-alert="{{true}}">
+          <view class="shLoading-btn-ok" bindtap="">进入会话
+           <meiqiaBtn bindmeiqiaTap="isWorkTime" btn-class="shLoading-btn-contact" session-from="{{meiqiaGroup}}" handle-alert="{{true}}">
             </meiqiaBtn>
            </view>
       </view>

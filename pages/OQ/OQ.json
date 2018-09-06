@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "法规认证",
+  "usingComponents": {
+    "meiqiaBtn": "/components/meiqiaBtn/meiqiaBtn",
+    "date-component": "/components/orderDate/orderDate",
+    "blueQuestion": "/components/blueQuestion/blueQuestion"
+  }
+}

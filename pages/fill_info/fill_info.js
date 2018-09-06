@@ -16,7 +16,7 @@ Page({
       company:'',
       other:'',
       sn:'',
-      MeiqiaGroup:'N',
+      meiqiaGroup:'N',
       fromPage:"",
       userType:0,
       shLoading:false
@@ -40,6 +40,11 @@ Page({
             } else {
               meiqiaGroup = "N";
             }
+            that.setData({
+              meiqiaGroup: meiqiaGroup,
+              userType:0,
+              userTypeV:true 
+            })
           }else{
             snV = true;
             that.setData({
@@ -62,6 +67,12 @@ Page({
       //腾讯mta统计开始
       var app = getApp();
       app.mta.Page.init();
+
+      var infoSetupData = wx.getStorageSync('infoSetup');
+      if (infoSetupData) {
+        this.setData(infoSetupData);
+      }
+
     //腾讯mta统计结束
       var mobile = options.mobile
       if (typeof (options.pagelabel) !="undefined"){//销售组咨询过来有序列号是否存在的选择
@@ -78,10 +89,7 @@ Page({
       this.setData({
         'mobile': mobile
       })
-      var infoSetupData=wx.getStorageSync('infoSetup');
-      if (infoSetupData){
-        this.setData(infoSetupData);
-      }
+      
     },
     backHome: function () {
       util.backHome()
@@ -248,5 +256,10 @@ Page({
           meiqiaGroup = "N";
         }
      }
+    console.log(meiqiaGroup);
+    this.setData({
+      meiqiaGroup: meiqiaGroup
+    })
+    console.log(this.data.meiqiaGroup);
   }
 }) 

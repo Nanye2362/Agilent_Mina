@@ -48,8 +48,7 @@
            <meiqiaBtn bindmeiqiaTap="isWorkTime" btn-class="shLoading-btn-contact" session-from="N">
             </meiqiaBtn>
            </view>
-          <view wx:if="{{!skipFlag}}" class="shLoading-btn-ok" bindtap="skipFillInfo">申请建档</view>
-           <view wx:if="{{skipFlag}}" class="shLoading-btn-ok" bindtap="skipFillInfo">完成</view>
+           <view class="shLoading-btn-ok" bindtap="skipFillInfo">完成</view>
       </view>
   </view>
 </view>

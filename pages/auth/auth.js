@@ -44,21 +44,11 @@ Page({
     })
   },
   skipFillInfo: function () {
-    if (this.data.skipFlag == 1) {
       this.setData({
         shLoading: false,
         shLoading_title: "",
         shLoading_body: ""
       })
-    } else {
-      var args="";
-      if (this.data.pagelabel.length>0){
-        args = "&pagelabel=" + this.data.pagelabel;
-      } 
-      wx.navigateTo({
-        url: '../fill_info/fill_info?mobile=' + this.data.mobile + args,
-      })
-    }
   },
   /**
    * 生命周期函数--监听页面加载
@@ -134,13 +124,13 @@ Page({
             return;
           }
           if(res.noskip==0){
-              that.errCon(err_msg);
-              that.setData({
-                shLoading: true,
-                shLoading_title: '认证失败',
-                shLoading_body: err_msg,
-                skipFlag: res.noskip
-              }) 
+            var args = "";
+            if (that.data.pagelabel.length > 0) {
+              args = "&pagelabel=" + that.data.pagelabel;
+            }
+            wx.navigateTo({
+              url: '../fill_info/fill_info?mobile=' + that.data.mobile + args,
+            })
           } else if (res.noskip == 1)  {
             that.errCon(err_msg);
             that.setData({

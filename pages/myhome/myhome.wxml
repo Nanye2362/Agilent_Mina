@@ -22,6 +22,7 @@
 <view class="mc_service_list bg-primary">
   <!-- 已认证 -->
   <block wx:if="{{is_auth == 1}}">
+    <!-- ==========个人信息============ -->
     <view class="mc_items flex selfinfo" bindtap="gotoNext" data-url="../personal_info/personal_info?head_img_url={{head_img_url}}&name={{name}}&sex=1&mobile={{mobile}}&company={{company}}&email={{email}}">
       <image src="/images/mc-user.png" class="mc_icon  self-center"></image>
       <view class="flex directionC mc_con self-center">
@@ -30,6 +31,7 @@
       </view>
       <image src="/images/arrow-r.png" class="mc_arrow-r self-center"></image>
     </view>
+    <!-- ==========我的仪器============ -->
     <view class="mc_items flex" bindtap="gotoNext" data-url="../my_instrument/my_instrument">
       <image src="/images/mc-instrument.png" class="mc_icon self-center"></image>
       <view class="flex directionC mc_con self-center">
@@ -38,6 +40,16 @@
       </view>
       <image src="/images/arrow-r.png" class="mc_arrow-r self-center"></image>
     </view>
+    <!-- ==========我的预约============ -->
+    <view class="mc_items flex" bindtap="gotoNext" data-url="../orderList/orderList">
+      <image src="/images/mc-instrument.png" class="mc_icon self-center"></image>
+      <view class="flex directionC mc_con self-center">
+        <text class="fw mc_con_title">我的预约</text>
+        <text class="fc-aaa fs12">目前预约次数：<text class="fc-orange fs14">{{AppointmentCount}}</text> 次</text>
+      </view>
+      <image src="/images/arrow-r.png" class="mc_arrow-r self-center"></image>
+    </view>
+    <!-- ==========报修指南============ -->
     <view class="mc_items flex service_guide" bindtap="gotoNext" data-url="../service_guide/service_guide">
       <image src="/images/mc-guide.png" class="mc_icon self-center"></image>
       <view class="flex directionC mc_con self-center">
@@ -46,6 +58,7 @@
       </view>
       <image src="/images/arrow-r.png" class="mc_arrow-r self-center"></image>
     </view>
+    <!-- ==========绑定解绑============ -->
     <view class="mc_items flex user_unbind" data-contact_guid="{{ContactGuid}}" bindtap="Unbind">
       <image src="/images/mc-unbind.png" class="mc_icon self-center"></image>
       <view class="flex directionC mc_con self-center">

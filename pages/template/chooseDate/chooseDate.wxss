@@ -1,0 +1,53 @@
+.date-mask {
+  width:100%;
+  height:100%;
+  background:#000;
+  opacity:.5!important;
+  z-index:999;
+  display:block;
+  position: fixed;
+}
+.date-con {
+  background: #fff;
+  position: fixed;
+  bottom:0px;
+  left:0;
+  width:100%;
+  z-index:1000;
+  display:block;
+}
+
+.data-title{
+  background: #f4f4f4;
+  border-bottom: 1px solid #d9d9d9;
+  padding: 0 30rpx;
+}
+.dtitle-up{
+  align-items: center;
+  padding: 10rpx 0;
+}
+.dtitle-l{
+  flex: .2;
+}
+.dtitle-c{
+  flex: .6;
+}
+.dtitle-r{
+  flex: .2;
+  justify-content: flex-end;
+}
+.dtitle-down{
+  padding: 10rpx 0;
+}
+
+
+
+.data-main{
+  padding: 0 30rpx;
+  flex-wrap: wrap;
+}
+.dmain-item{
+  padding: 34rpx 0;
+  border-bottom: 1px solid #f2f2f2;
+  font-weight: bold;
+}

@@ -1,0 +1,31 @@
+/* pages/orderDetails/orderDetails.wxss */
+@import '../orderList/orderList';
+page{
+  background: #fff;
+}
+.orderDetails{
+  padding: 0 50rpx;
+}
+.orderItem{
+  padding: 40rpx 0;
+  /*border-bottom: 1px solid c9c8c8;*/
+  border-bottom: 1px solid #f5f5f5;
+  align-items: center;
+}
+.orderItem_l{
+  flex: .3;
+  font-weight: bold;
+  line-height: 1;
+}
+.orderItem_r{
+  flex: .6;
+  line-height: 1;
+}
+.orderStatus{
+	flex: .2;
+	color: #fff;
+	border-radius: 8rpx;
+	font-size: 0.75rem;
+	align-items: center;
+	justify-content: center;
+}

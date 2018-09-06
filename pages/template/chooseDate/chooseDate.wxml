@@ -1,0 +1,27 @@
+<template name='chooseDate'>
+  <view class='date-mask' bindtap='openDate'></view>
+  <!-- dateContent -->
+  <view class='date-con'>
+  	<!-- data_title -->
+  	<view class='data-title'>
+  		<view class='dtitle-up flex'>
+  			<view class='dtitle-l fc-blue'>2018年</view>
+  			<view class='dtitle-c text-center'>选择预约日期</view>
+  			<view class='dtitle-r text-right flex' bindtap='openDate'>
+  				<image src='/images/closeDate.png' mode='widthFix' style='width: 28rpx;'></image>
+  			</view>
+  		</view>
+  		<view class='dtitle-down flex'>
+  			<block wx:for='{{dayList}}' wx:for-item='item' wx:key="unique">
+  				<view class='text-center fs12' style='width:{{dateWidth}}px;'>{{item}}</view>
+  			</block>
+  		</view>
+  	</view>
+  	<!-- data_main -->
+  	<view class='data-main flex'>
+  		<block wx:for='{{dateList}}' wx:for-item='item' wx:key="unique" wx:for-index="key">
+			  <view class='text-center fs12 dmain-item {{item.optional==0?"fc-blue":"fc-grey"}}' style='width:{{dateWidth}}px'>{{item.date}}</view>
+		  </block>
+  	</view>
+  </view>
+</template>
