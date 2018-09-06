@@ -51,25 +51,34 @@
     <!-- basic_info -->
     <view class="ins_form bg-primary">
         <!-- order -->
-        <view class="ins_item flex alignc {{hasError?'ins_error':''}}">
+        <!-- <view class="ins_item flex alignc {{hasError?'ins_error':''}}">
             <view class="ins_title">序列号:</view>
             <label class="ins_con" for="ins_orderno" style="flex: .6">
                 <input class="" type="text" placeholder="拍照识别序列号或手动输入" bindinput='saveTheValue' value="{{cameraValue}}"/>
-                <!-- 拍照按钮 -->
+                <!-- 拍照按钮 >
                 <button bindtap="chooseimage" class="sn_photobtn"></button>
                 <image class="sn_photoimg" src="/images/camera-p.png" mode='widthFix' style="width: 40rpx; margin-top: 12rpx"></image>
                 
             </label>
             <view class="text-right ins_question" style="flex: .1">
-              <!-- blueQuestion -->
+              <!-- blueQuestion >
               <blueQuestion>
                 <view class="ins_o_title padding text-left">序列号</view>
                 <view class="ins_o_con padding text-left">
                     <text>大多数在仪器外壳下方，一般以CN，US，DE，JP，AA，等开头的一串字符组合。</text>
                 </view>
               </blueQuestion>
-              <!-- blueQuestion -->
             </view>
+        </view> -->
+        <view class="ins_item flex alignc {{hasError?'ins_error':''}}">
+            <view class="ins_title">序列号:</view>
+            <label class="ins_con" for="ins_orderno" style="flex: .8">
+                <input class="" type="text" placeholder="拍照识别序列号或手动输入" bindinput='saveTheValue' value="{{cameraValue}}"/>
+                <!-- 拍照按钮 -->
+                <button bindtap="chooseimage" class="sn_photobtn"></button>
+                <image class="sn_photoimg" src="/images/camera-p.png" mode='widthFix' style="width: 40rpx; margin-top: 12rpx"></image>
+                
+            </label>
         </view>
         <!-- name -->
         <view class="ins_item flex alignc">

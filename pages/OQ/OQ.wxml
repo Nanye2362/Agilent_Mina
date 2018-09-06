@@ -20,24 +20,32 @@
     <!-- basic_info -->
     <view class="ins_form bg-primary">
         <!-- order -->
-        <view class="ins_item flex alignc {{hasError?'ins_error':''}}">
+        <!-- <view class="ins_item flex alignc {{hasError?'ins_error':''}}">
             <view class="ins_title">序列号:</view>
             <label class="ins_con" for="ins_orderno" style="flex: .6">
                 <input class="" type="text" placeholder="拍照识别序列号或手动输入" bindinput='saveTheValue' value="{{cameraValue}}"/>
-                <!-- 拍照按钮 -->
+                <!-- 拍照按钮 >
                 <button bindtap="chooseimage" class="sn_photobtn"></button>
                 <image class="sn_photoimg" src="/images/camera-p.png" mode='widthFix' style="width: 40rpx; margin-top: 12rpx"></image>
             </label>
-            <view bindtap="showTips" data-no='0' class="text-right ins_question" style="flex: .1">
-              <!-- questionReminder -->
+            <view bindtap="showTips" data-no='0' class="text-right ins_question" style="flex: .1;">
+              <!-- questionReminder >
               <blueQuestion>
                 <view class="ins_o_title text-left padding">序列号</view>
                 <view class="ins_o_con padding text-left">
                     <text>大多数在仪器外壳下方，一般以CN，US，DE，JP，AA，等开头的一串字符组合。</text>
                 </view>
               </blueQuestion>
-              <!-- questionReminder -->
             </view>
+        </view> -->
+        <view class="ins_item flex alignc {{hasError?'ins_error':''}}">
+            <view class="ins_title">序列号:</view>
+            <label class="ins_con" for="ins_orderno" style="flex: .8">
+              <input class="" type="text" placeholder="拍照识别序列号或手动输入" bindinput='saveTheValue' value="{{cameraValue}}"/>
+              <!-- 拍照按钮 -->
+              <button bindtap="chooseimage" class="sn_photobtn"></button>
+              <image class="sn_photoimg" src="/images/camera-p.png" mode='widthFix' style="width: 40rpx; margin-top: 12rpx"></image>
+            </label>
         </view>
         <!-- name -->
         <view class="ins_item flex alignc">
@@ -74,13 +82,14 @@
 
     <!-- btn... -->
     <view class="ins_form bg-primary">
-      <view class="checkboxarea">
-          <checkbox-group bindchange="checkboxChange">
+      <view class="checkboxarea flex alignc">
+        ※ 请确认贵单位已收到EQP并已签字回传
+          <!-- <checkbox-group bindchange="checkboxChange">
             <label class='checkbox'>
               <checkbox value="true" class="ins_checkbox" id="ins_checkbox"/>
               <text class="fs12">已查看邮件中EQP</text>   
             </label>          
-          </checkbox-group>
+          </checkbox-group> -->
       </view>
       <!-- btn -->
       <button form-type="submit"  data-click="submit"  class="btn btn-primary submit_insth" id="gotoAuth" disabled="" style='width: 100%;'>确定</button>

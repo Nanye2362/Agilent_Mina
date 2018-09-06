@@ -67,7 +67,7 @@ Page({
   },
   submit: function (event) {
     var that = this;
-    if (util.checkEmpty(that.data, ['name', 'company', 'inputValue']) || that.data.chooseCheckbox.length==0) {
+    if (util.checkEmpty(that.data, ['name', 'company', 'inputValue'])) {
       wx.showModal({
         title: '提示',
         content: '请确认信息输入完整',
