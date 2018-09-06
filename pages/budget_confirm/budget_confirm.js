@@ -38,9 +38,11 @@ Page({
         objectId: options.objectId
       },
       success: function (r) {
-        //InvoiceTitle: 发票抬头,TaxpayerRecognitionNumber:纳税人识别号,Recipient:寄送人姓名       
+        var invoiceinfo = r.InvoiceInfo;
+        console.log(r);
+        //title: 发票抬头,taxNumber:纳税人识别号,name:寄送人姓名       
         if (r.status == 0) {
-          if (r.data.InvoiceInfo.InvoiceTitle == null){
+          if (r.data.InvoiceInfo.title == null){
             var InvoiceInfo = wx.getStorageSync('InvoiceInfo');
             that.setData({
               InvoiceInfo: InvoiceInfo,
@@ -112,7 +114,7 @@ Page({
         BudgetoryquoteId: this.data.bqId,
         AccountId: this.data.accountId,
         ContactId: this.data.ContactId,
-        invoiceDetails: invoiceDetails,
+        invoiceDetails: JSON.stringify(invoiceDetails),
       },
       success: function (r) {
         if (r.success) {

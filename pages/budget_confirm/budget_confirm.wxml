@@ -22,9 +22,9 @@
             <text class='{{InvoiceInfo.invoiceTitle!=null?"":"fc-aaa"}}'>{{InvoiceInfo.invoiceTitle!=null?InvoiceInfo.invoiceTitle:'[未填写]'}}</text>
           </view>
           <block wx:if='{{InvoiceInfo.InvoiceTitle!=null?true:false}}'>
-            <view class='fs12'>发票抬头：{{InvoiceInfo.InvoiceTitle}}</view>
-            <view class='fs12'>纳税人识别号：{{InvoiceInfo.TaxpayerRecognitionNumber}}</view>
-            <view class='fs12'>寄送人姓名：{{InvoiceInfo.Recipient}}</view>
+            <view class='fs12'>发票抬头：{{InvoiceInfo.title}}</view>
+            <view class='fs12'>纳税人识别号：{{InvoiceInfo.taxNumber}}</view>
+            <view class='fs12'>寄送人姓名：{{InvoiceInfo.name}}</view>
           </block>
         </view>
         <view class='bc_order_arrow'>

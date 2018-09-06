@@ -54,8 +54,12 @@ Page({
   },
 
   submit: function(){
-    wx.navigateTo({
-      url: '../budget_confirm/budget_confirm'
+    // wx.navigateTo({
+    //   url: '../budget_confirm/budget_confirm'
+    // })
+    console.log(getCurrentPages());
+    wx.navigateBack({
+      delta: 2
     })
   },
 
