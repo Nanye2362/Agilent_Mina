@@ -29,7 +29,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 2,
+			"current": 3,
 			"list": [
 				{
 					"id": -1,
@@ -48,6 +48,12 @@
 					"name": "bqchange",
 					"pathName": "pages/budget_confirm/budget_confirm",
 					"query": "objectId=3000212942&srId=8101654924"
+				},
+				{
+					"id": 3,
+					"name": "invoiceDetails",
+					"pathName": "pages/invoiceDetails/invoiceDetails",
+					"query": "invoiceType='specialInvoice'"
 				}
 			]
 		}

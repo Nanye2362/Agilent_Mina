@@ -1,0 +1,6 @@
+/* pages/invoiceConfirm/invoiceConfirm.wxss */
+@import '../install/install';
+@import '../invoiceDetails/invoiceDetails';
+.invInfo_item {
+  padding: 30rpx;
+}

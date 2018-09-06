@@ -2,11 +2,22 @@
 var util = require('../../utils/util.js');
 var isSend = false;
 var config = require('../../config.js');
-var invoiceInfo = {};
-var sendInfo = {};
-var invoiceArry = [
-  
-]
+
+var invoiceArry = {
+  "normalInvoice":{
+    'title':"发票抬头",
+    'taxNumber':"纳税人识别号",
+  },
+  "specialInvoice":{
+    "title":"发票抬头",
+    "taxNumber":"纳税人识别号",
+    "bankName":"开户行",
+    "bankAccount":"银行账号",
+    "companyAddress":"注册地址",
+    "telephone":"注册电话",
+  }
+};
+
 Page({
 
   /**
@@ -17,7 +28,30 @@ Page({
       { name: 'me', value: '我自己',checked: 'true' },
       { name: 'other', value: '其他人' }
     ],
-    inputDisabled: false,
+    sendObj: {
+      "name": "寄送人姓名",
+      "telephone": "联系电话",
+      "address": "地址",
+    },
+    sendTo:'me',
+    invoiceType: '',
+    invoiceInfo:{
+      "bankAccount":"",
+      "bankName":"",
+      "companyAddress":"",
+      "errMsg":"",
+      "taxNumber":"",
+      "telephone":"",
+      "title":"",
+      "type": 0,
+    },
+    sendInfo:{
+      'name':'',
+      'telephone':'',
+      'address':'',
+    },
+    PO:'',
+    needBill: false,
   },
 
   /**
@@ -25,19 +59,55 @@ Page({
    */
   onLoad: function (options) {
     console.log(options);
-    var userInfo = wx.getStorageSync('userInfo');
-    sendInfo.sendName = userInfo.name;
-    sendInfo.sendMobile = userInfo.mobile;
+    var invoiceType = options.invoiceType;
+    var invoiceInfo = wx.getStorageSync('invoiceInfo');  
+    if (invoiceInfo){
+      this.setData({
+        invoiceInfo: invoiceInfo,
+      })
+    }
+    this.getMeInfo();
+    this.setData({
+      invoiceType: options.invoiceType,
+      invoice: invoiceArry[invoiceType],
+    })
+
   },
+  //获取用户自己信息
+  getMeInfo: function(){
+    var userInfo = wx.getStorageSync('userInfo');
+    var sendInfo = this.data.sendInfo;
+    sendInfo.name = userInfo.name;
+    sendInfo.telephone = userInfo.mobile;
+    this.setData({
+      sendInfo: sendInfo,
+    })
+  },
+  //从微信中获取发票信息
+  chooseInvoice: function () {
+    var that = this;
+    wx.chooseInvoiceTitle({
+      success(res) {
+        console.log(res);
+        that.setData({
+          invoiceInfo: res
+        })
+      }
+    })
+  },
+  //输入发票数据
   bindInvoiceInput: function (e) {
+    var invoiceInfo = this.data.invoiceInfo
     console.log(e.currentTarget.dataset.type);
     var inputType = e.currentTarget.dataset.type;
     invoiceInfo[inputType] = e.detail.value;
     this.setData({
       invoiceInfo: invoiceInfo
-    })
+    });
   },
+  //输入寄送信息
   bindSendInput: function (e) {
+    var sendInfo = this.data.sendInfo;
     console.log(e)
     console.log(e.currentTarget.dataset.type);
     var inputType = e.currentTarget.dataset.type;
@@ -46,9 +116,46 @@ Page({
       sendInfo: sendInfo
     })
   },
+  //选择寄送人
   radioChange: function (e) {
-    console.log('radio发生change事件，携带value值为：', e.detail.value)
+    console.log(e.detail.value)
+    var sendInfo = this.data.sendInfo;
+    if(e.detail.value=='other'){
+      sendInfo.name='';
+      sendInfo.telephone = '';
+      this.setData({
+        sendInfo: sendInfo
+      })
+    }else{
+      this.getMeInfo();
+    }
   },
+  //输入PO号
+  bindInputPO: function(e){
+    this.setData({
+      PO:e.detail.value
+    })
+  },
+  //详见销货清单
+  checkBill: function (e) {
+    var needBill = this.data.needBill;
+    this.setData({
+      needBill: !needBill,
+    })
+  },
+  //提交
+  submit: function(){
+    var invoiceDetails = {};
+    invoiceDetails.invoiceInfo = this.data.invoiceInfo;
+    invoiceDetails.sendInfo = this.data.sendInfo;
+    invoiceDetails.PO = this.data.PO;
+    invoiceDetails.needBill = this.data.needBill;
+    wx.setStorageSync('invoiceDetails', invoiceDetails);
+    wx.navigateTo({
+      url: '../invoiceConfirm/invoiceConfirm?invoiceType=' + this.data.invoiceType
+    })
+  },
+  
 
   /**
    * 生命周期函数--监听页面初次渲染完成

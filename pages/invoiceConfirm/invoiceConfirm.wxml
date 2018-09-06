@@ -25,20 +25,12 @@
       <block wx:for="{{invoice}}" wx:for-item="item" wx:for-index="idx" wx:key='unique'>
         <view class='invInfo_item flex alignc'>
           <view class='invInfo_left fs13'>{{item}}：</view>
-          <view class='invInfo_right'>
-            <input class='fs13' type='text' placeholder='请输入' bindinput='bindInvoiceInput' data-type='{{idx}}' value="{{invoiceInfo[idx]}}"></input>
-          </view>
+          <view class='invInfo_right fs13'>{{invoiceInfo[idx]}}</view>
         </view>
       </block>
     </view>
-    <!-- 微信获取发票信息 -->
-    <view class='invTitle text-right fc-blue' bindtap='chooseInvoice'>        
-        <image class="invTitle_icon" src="/images/wechatFull.png" mode='widthFix'></image>  
-        从微信中获取发票信息   
-    </view>
   </view>
 
-  <view class='dashed marginT marginB-40'></view>
 
 
   <!-- 寄送信息 -->
@@ -50,19 +42,10 @@
     </view>
     <!-- 具体信息 -->
     <view class='invInfo'>
-      <view class='invInfo_item flex alignc'>
-        <radio-group class="radio-group" bindchange="radioChange">
-          <label class="radio" wx:for="{{sendWhom}}" wx:key='unique'>
-            <radio disabled='{{inputDisabled}}' color='#0085d5' value="{{item.name}}" checked="{{item.checked}}"/>{{item.value}}
-          </label>
-        </radio-group>
-      </view>
       <block wx:for="{{sendObj}}" wx:for-item="item" wx:for-index="idx" wx:key='unique'>
         <view class='invInfo_item flex alignc'>
           <view class='invInfo_left fs13'>{{item}}：</view>
-          <view class='invInfo_right'>
-            <input class='fs13' type='text' placeholder='请输入' bindinput='bindSendInput' data-type='{{idx}}' value='{{sendInfo[idx]}}'></input>
-          </view>
+          <view class='invInfo_right'>{{sendInfo[idx]}}</view>
         </view>
       </block>
     </view>
@@ -78,15 +61,13 @@
     <!--PO-->
     <view class='invInfo_item flex alignc'>
       <view class='invInfo_left fs13'>PO号码：</view>
-      <view class='invInfo_right'>
-        <input class='fs13' type='text' placeholder='请输入' bindinput='bindInputPO' value='{{PO}}'></input>
-      </view>
+      <view class='invInfo_right'>{{PO}}</view>
     </view>
 
     <view class='marginT'>
       <checkbox-group bindchange="checkBill">
         <label class="checkbox">
-          <checkbox disabled='{{inputDisabled}}' value="needBill" checked="{{checkBox}}" style='transform:scale(.7);'/>
+          <checkbox disabled='{{true}}' value="needBill" checked="{{needBill}}" style='transform:scale(.7);'/>
           <text class='fc-777 fs12'>详见销货清单（如需要，请勾选）</text>
         </label>
       </checkbox-group>
@@ -98,5 +79,5 @@
 
 <!-- btn -->
 <view class="group_btn">
-    <button class="btn btn-primary" id="confirm" bindtap='submit'>提交</button>
+    <button class="btn btn-primary" id="confirm" bindtap='submit'>确认</button>
 </view>

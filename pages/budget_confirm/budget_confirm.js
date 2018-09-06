@@ -1,5 +1,5 @@
 var util = require('../../utils/util.js');
-
+var invoiceDetails = wx.getStorageSync('invoiceDetails');
 
 // pages/budget_confirm/budget_confirm.js
 Page({
@@ -24,6 +24,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    
     //腾讯mat统计开始
     var app = getApp();
     var that = this;
@@ -110,7 +111,8 @@ Page({
       data: {
         BudgetoryquoteId: this.data.bqId,
         AccountId: this.data.accountId,
-        ContactId: this.data.ContactId
+        ContactId: this.data.ContactId,
+        invoiceDetails: invoiceDetails,
       },
       success: function (r) {
         if (r.success) {
