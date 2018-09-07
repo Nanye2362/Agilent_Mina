@@ -11,20 +11,36 @@ Page({
     info: "加载中",
     checkBox: false,
     pageComplete: false,
-    invoiceTitle:'-增值税普通发票',
     shInputInfo: false,
     //0:normalInvoice,1:specialInvoice
     invoicetype: [
       { name: '0', value: '增值税普通发票' },
       { name: '1', value: '增值税专业发票' },
     ],
+    invoiceInfo: {
+      "errMsg": "",
+      "type": 0,
+      "title": "",
+      "taxNumber": "",
+      "companyAddress": "",
+      "telephone": "",
+      "bankName": "",
+      "bankAccount": ""
+    },
+    sendInfo:{
+      "name": "",
+      "telephone": "",
+      "address": "",
+    },
+    PO: '',
+    needBill : '',
+    invoiceType : '', 
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
     //腾讯mat统计开始
     var app = getApp();
     var that = this;
@@ -38,51 +54,48 @@ Page({
         objectId: options.objectId
       },
       success: function (r) {
-        var invoiceInfo = {
-          "errMsg": "",
-          "type": 0,
-          "title": "",
-          "taxNumber": "",
-          "companyAddress": "",
-          "telephone": "",
-          "bankName": "",
-          "bankAccount": ""
-        };
-        var sendInfo = {
-          "name": "",
-          "telephone": "",
-          "address": "",
-        };
-        var invoiceinfo = r.data.InvoiceInfo;
+        console.log(r);
+        var invoiceDetails = {},
+        invoiceinfo = r.data.InvoiceInfo,
+        invoiceInfo = that.data.invoiceInfo,
+        sendInfo = that.data.sendInfo,
+        PO = that.data.PO,
+        invoiceType = that.data.invoiceType,
+        needBill = that.data.needBill;
         console.log(invoiceinfo);
-
-        
-        //title: 发票抬头,taxNumber:纳税人识别号,name:寄送人姓名       
-        if (r.status == 0) {
-          if (r.data.InvoiceInfo.InvoiceTitle == null){
-            var invoiceDetails = wx.getStorageSync('invoiceDetails');
-            var invoiceInfo = invoiceDetails.invoiceInfo;
-            that.setData({
-              InvoiceInfo: InvoiceInfo,
-            })
-          }else{
-            invoiceInfo.title = invoiceinfo.InvoiceTitle;
-            invoiceInfo.companyAddress = invoiceinfo.RegisteredAddress;
-            invoiceInfo.taxNumber = invoiceinfo.TaxpayerRecognitionNumber;
-            invoiceInfo.bankName = invoiceinfo.Bank;
-            invoiceInfo.bankAccount = invoiceinfo.BankAccount;
-            invoiceInfo.telephone = invoiceinfo.RegisteredPhone;
-            sendInfo.name = invoiceinfo.Recipient;
-            sendInfo.address = invoiceinfo.Address;
-            sendInfo.telephone = invoiceinfo.Tel;
-            that.setData({
-              invoiceInfo: invoiceInfo,
-              sendInfo: sendInfo,
-              needBill: invoiceinfo.AccountSales == 0 ? 'false' : true,
-              PO: invoiceinfo.POCode,
-              invoiceType: invoiceinfo.InvoiceType == 0 ? 'normalInvoice' : 'specialInvoice',
-            })
+        if (invoiceinfo.InvoiceTitle == null) {
+          if (wx.getStorageSync('invoiceDetails')!='') {
+            that.getInvoiceInfoStorage(that);
           }
+        } else {         
+          invoiceInfo.title = invoiceinfo.InvoiceTitle;
+          invoiceInfo.companyAddress = invoiceinfo.RegisteredAddress;
+          invoiceInfo.taxNumber = invoiceinfo.TaxpayerRecognitionNumber;
+          invoiceInfo.bankName = invoiceinfo.Bank;
+          invoiceInfo.bankAccount = invoiceinfo.BankAccount;
+          invoiceInfo.telephone = invoiceinfo.RegisteredPhone;
+          sendInfo.name = invoiceinfo.Recipient;
+          sendInfo.address = invoiceinfo.Address;
+          sendInfo.telephone = invoiceinfo.Tel;
+          PO = invoiceinfo.POCode;
+          needBill = invoiceinfo.AccountSales == 0 ? 'false' : true,
+          invoiceType = invoiceinfo.InvoiceType == 0 ? 'normalInvoice' : 'specialInvoice';
+          invoiceDetails.invoiceInfo = invoiceInfo;
+          invoiceDetails.sendInfo = sendInfo;
+          invoiceDetails.PO = PO;
+          invoiceDetails.needBill = needBill;
+          invoiceDetails.invoiceType = invoiceType;
+          wx.setStorageSync('invoiceDetails', invoiceDetails);
+          that.setData({
+            invoiceInfo: invoiceInfo,
+            sendInfo: sendInfo,
+            needBill: needBill,
+            PO: PO,
+            invoiceType: invoiceType,
+          })
+        }
+        
+        if (r.status == 0) {         
           that.setData({
             pageComplete: true,
             bqId: options.objectId,
@@ -104,6 +117,16 @@ Page({
     })
 
   },
+  getInvoiceInfoStorage: function(that){
+    invoiceDetails = wx.getStorageSync('invoiceDetails');
+    that.setData({
+      invoiceInfo: invoiceDetails.invoiceInfo,
+      sendInfo: invoiceDetails.sendInfo,
+      invoiceType: invoiceDetails.invoiceType,
+      PO: invoiceDetails.PO,
+      needBill: invoiceDetails.needBill,
+    })
+  },
   radioChange: function (e) {
     console.log('radio发生change事件，携带value值为：', e.detail.value);
     var invoiceType;
@@ -120,7 +143,7 @@ Page({
   inputInvoice: function(){
     if(this.data.invoiceType!=''){
       wx.navigateTo({
-        url: '../invoiceConfirm/invoiceConfirm?url=bugetConfirm'
+        url: '../invoiceConfirm/invoiceConfirm?isConfirm=' + this.data.isConfirm+'?url=budgetConfirm'
       })
     }else{
       this.setData({
@@ -163,6 +186,7 @@ Page({
           that.setData({
             isConfirm:1
           })
+          //wx.removeStorageSync('invoiceDetails');
         } else {
           wx.showToast({
             title: '失败',
@@ -226,8 +250,10 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
-  
+  onShow: function () {   
+    if (wx.getStorageSync('invoiceDetails') != '') {
+      this.getInvoiceInfoStorage(this);
+    }
   },
 
   /**

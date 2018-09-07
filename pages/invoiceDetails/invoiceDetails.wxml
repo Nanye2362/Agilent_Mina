@@ -26,7 +26,7 @@
         <view class='invInfo_item flex alignc'>
           <view class='invInfo_left fs13'>{{item}}：</view>
           <view class='invInfo_right'>
-            <input class='fs13' type='text' placeholder='请输入' bindinput='bindInvoiceInput' data-type='{{idx}}' value="{{invoiceInfo[idx]}}"></input>
+            <input class='fs13' type='text' placeholder='请输入{{item}}' bindinput='bindInvoiceInput' data-type='{{idx}}' value="{{invoiceInfo[idx]}}"></input>
           </view>
         </view>
       </block>
@@ -61,7 +61,7 @@
         <view class='invInfo_item flex alignc'>
           <view class='invInfo_left fs13'>{{item}}：</view>
           <view class='invInfo_right'>
-            <input class='fs13' type='text' placeholder='请输入' bindinput='bindSendInput' data-type='{{idx}}' value='{{sendInfo[idx]}}'></input>
+            <input class='fs13' type='text' placeholder='请输入{{item}}' bindinput='bindSendInput' data-type='{{idx}}' value='{{sendInfo[idx]}}'></input>
           </view>
         </view>
       </block>
@@ -86,7 +86,7 @@
     <view class='marginT'>
       <checkbox-group bindchange="checkBill">
         <label class="checkbox">
-          <checkbox disabled='{{inputDisabled}}' value="needBill" checked="{{checkBox}}" style='transform:scale(.7);'/>
+          <checkbox disabled='{{inputDisabled}}' value="needBill" checked="{{needBill}}" style='transform:scale(.7);'/>
           <text class='fc-777 fs12'>详见销货清单（如需要，请勾选）</text>
         </label>
       </checkbox-group>

@@ -65,6 +65,9 @@ button{
 /* ======================  button ================== */
 .btn{ border-radius: 12rpx; text-align: center; margin: 20px auto; }
 .btn-primary{ height: 90rpx; width: 90%; background: #0084d6; color: #fff; line-height: 90rpx; }
+.btn-assist{
+  height: 90rpx; width: 90%; color: #0085d5;line-height: 90rpx;border: 1px solid #0085d5;background: #fff;
+}
 /* ===================meiqia-btn====================== */
 .btn-meiqia{ display: inline; background: none; border: none; padding: 0;}
 .btn-meiqia::after{ width: 0; height: 0; }

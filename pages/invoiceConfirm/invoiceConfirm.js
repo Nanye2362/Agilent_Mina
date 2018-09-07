@@ -40,22 +40,24 @@ Page({
    */
   onLoad: function (options) {
     console.log(options);
-    if(options.url=='budgetConfirm'){
-      wx.getStorageSync('invoiceDetails');
-    }else{
-      var invoiceType = options.invoiceType;
-      //var invoiceType="specialInvoice";
-      var invoiceDetails = wx.getStorageSync('invoiceDetails')
+    if(options.url=='invoiceConfirm'){
       this.setData({
-        invoiceInfo: invoiceDetails.invoiceInfo,
-        sendInfo: invoiceDetails.sendInfo,
-        PO: invoiceDetails.PO,
-        needBill: invoiceDetails.needBill,
-        invoiceType: invoiceType,
-        invoice: invoiceArry[invoiceType],
+        isConfirm: 0,
+      })  
+    }else{
+      this.setData({
+        isConfirm: options.isConfirm,
       })
     }
-    
+    var invoiceDetails = wx.getStorageSync('invoiceDetails');
+    this.setData({
+      invoiceInfo: invoiceDetails.invoiceInfo,
+      sendInfo: invoiceDetails.sendInfo,
+      PO: invoiceDetails.PO,
+      needBill: invoiceDetails.needBill,
+      invoiceType: invoiceDetails.invoiceType,
+      invoice: invoiceArry[invoiceDetails.invoiceType],
+    })    
   },
 
   submit: function(){
@@ -65,6 +67,11 @@ Page({
     console.log(getCurrentPages());
     wx.navigateBack({
       delta: 2
+    })
+  },
+  goBackEdit: function(){
+    wx.navigateTo({
+      url: '../invoiceDetails/invoiceDetails?invoiceType='+this.data.invoiceType,
     })
   },
 

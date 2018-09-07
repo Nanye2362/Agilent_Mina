@@ -1,8 +1,8 @@
 {
   "pages": [
+    "pages/index/index",
     "pages/invoiceConfirm/invoiceConfirm",
     "pages/invoiceDetails/invoiceDetails",
-    "pages/index/index",
     "pages/mechat_list/mechat_list",
     "pages/serial_number/serial_number",
     "pages/auth/auth",

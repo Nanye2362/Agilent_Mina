@@ -79,5 +79,6 @@
 
 <!-- btn -->
 <view class="group_btn">
-    <button class="btn btn-primary" id="confirm" bindtap='submit'>确认</button>
+  <button class="btn btn-assist" wx:if='{{isConfirm==0?true:false}}'  bindtap='goBackEdit'>修改</button>
+  <button class="btn btn-primary" id="confirm" bindtap='submit'>确认</button>
 </view>

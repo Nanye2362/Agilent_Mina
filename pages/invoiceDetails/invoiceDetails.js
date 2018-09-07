@@ -17,7 +17,7 @@ var invoiceArry = {
     "telephone":"注册电话",
   }
 };
-
+var invoiceDetails = wx.getStorageSync('invoiceDetails');
 Page({
 
   /**
@@ -58,30 +58,28 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options);
-    var invoiceType = options.invoiceType;
-    var invoiceInfo = wx.getStorageSync('invoiceInfo');  
-    if (invoiceInfo){
-      this.setData({
-        invoiceInfo: invoiceInfo,
-      })
-    }
-    this.getMeInfo();
+    console.log(options);  
+    console.log(invoiceDetails);  
     this.setData({
-      invoiceType: options.invoiceType,
-      invoice: invoiceArry[invoiceType],
+      invoiceType: options.invoiceType
     })
-
   },
   //获取用户自己信息
   getMeInfo: function(){
-    var userInfo = wx.getStorageSync('userInfo');
-    var sendInfo = this.data.sendInfo;
-    sendInfo.name = userInfo.name;
-    sendInfo.telephone = userInfo.mobile;
-    this.setData({
-      sendInfo: sendInfo,
-    })
+    if (invoiceDetails!=''){
+      var sendInfo = invoiceDetails.sendInfo;
+      this.setData({
+        sendInfo: sendInfo,
+      })
+    }else{
+      var userInfo = wx.getStorageSync('userInfo');
+      var sendInfo = this.data.sendInfo;
+      sendInfo.name = userInfo.name;
+      sendInfo.telephone = userInfo.mobile;
+      this.setData({
+        sendInfo: sendInfo,
+      })
+    }   
   },
   //从微信中获取发票信息
   chooseInvoice: function () {
@@ -108,8 +106,6 @@ Page({
   //输入寄送信息
   bindSendInput: function (e) {
     var sendInfo = this.data.sendInfo;
-    console.log(e)
-    console.log(e.currentTarget.dataset.type);
     var inputType = e.currentTarget.dataset.type;
     sendInfo[inputType] = e.detail.value;
     this.setData({
@@ -118,7 +114,6 @@ Page({
   },
   //选择寄送人
   radioChange: function (e) {
-    console.log(e.detail.value)
     var sendInfo = this.data.sendInfo;
     if(e.detail.value=='other'){
       sendInfo.name='';
@@ -150,9 +145,10 @@ Page({
     invoiceDetails.sendInfo = this.data.sendInfo;
     invoiceDetails.PO = this.data.PO;
     invoiceDetails.needBill = this.data.needBill;
+    invoiceDetails.invoiceType = this.data.invoiceType;
     wx.setStorageSync('invoiceDetails', invoiceDetails);
     wx.navigateTo({
-      url: '../invoiceConfirm/invoiceConfirm?invoiceType=' + this.data.invoiceType
+      url: '../invoiceConfirm/invoiceConfirm?url=invoiceConfirm'
     })
   },
   
@@ -168,7 +164,21 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+    if (invoiceDetails != '') {
+      this.setData({
+        invoiceInfo: invoiceDetails.invoiceInfo,
+        invoiceType: invoiceDetails.invoiceType,
+        invoice: invoiceArry[invoiceDetails.invoiceType],
+        PO: invoiceDetails.PO,
+        needBill: invoiceDetails.needBill,
+      })
+    } else {   
+      this.setData({
+        invoiceType: this.data.invoiceType,
+        invoice: invoiceArry[this.data.invoiceType],
+      })
+    }
+    this.getMeInfo();
   },
 
   /**
