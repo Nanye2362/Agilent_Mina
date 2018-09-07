@@ -14,7 +14,7 @@ Page({
     invoiceTitle:'-增值税普通发票',
     shInputInfo: false,
     //0:normalInvoice,1:specialInvoice
-    invoiceType: [
+    invoicetype: [
       { name: '0', value: '增值税普通发票' },
       { name: '1', value: '增值税专业发票' },
     ],
@@ -38,19 +38,50 @@ Page({
         objectId: options.objectId
       },
       success: function (r) {
-        var invoiceinfo = r.InvoiceInfo;
-        console.log(r);
+        var invoiceInfo = {
+          "errMsg": "",
+          "type": 0,
+          "title": "",
+          "taxNumber": "",
+          "companyAddress": "",
+          "telephone": "",
+          "bankName": "",
+          "bankAccount": ""
+        };
+        var sendInfo = {
+          "name": "",
+          "telephone": "",
+          "address": "",
+        };
+        var invoiceinfo = r.data.InvoiceInfo;
+        console.log(invoiceinfo);
+
+        
         //title: 发票抬头,taxNumber:纳税人识别号,name:寄送人姓名       
         if (r.status == 0) {
-          if (r.data.InvoiceInfo.title == null){
-            var InvoiceInfo = wx.getStorageSync('InvoiceInfo');
+          if (r.data.InvoiceInfo.InvoiceTitle == null){
+            var invoiceDetails = wx.getStorageSync('invoiceDetails');
+            var invoiceInfo = invoiceDetails.invoiceInfo;
             that.setData({
               InvoiceInfo: InvoiceInfo,
             })
           }else{
+            invoiceInfo.title = invoiceinfo.InvoiceTitle;
+            invoiceInfo.companyAddress = invoiceinfo.RegisteredAddress;
+            invoiceInfo.taxNumber = invoiceinfo.TaxpayerRecognitionNumber;
+            invoiceInfo.bankName = invoiceinfo.Bank;
+            invoiceInfo.bankAccount = invoiceinfo.BankAccount;
+            invoiceInfo.telephone = invoiceinfo.RegisteredPhone;
+            sendInfo.name = invoiceinfo.Recipient;
+            sendInfo.address = invoiceinfo.Address;
+            sendInfo.telephone = invoiceinfo.Tel;
             that.setData({
-              InvoiceInfo: r.data.InvoiceInfo
-            })            
+              invoiceInfo: invoiceInfo,
+              sendInfo: sendInfo,
+              needBill: invoiceinfo.AccountSales == 0 ? 'false' : true,
+              PO: invoiceinfo.POCode,
+              invoiceType: invoiceinfo.InvoiceType == 0 ? 'normalInvoice' : 'specialInvoice',
+            })
           }
           that.setData({
             pageComplete: true,
@@ -82,14 +113,20 @@ Page({
       invoiceType = 'specialInvoice';
     };
     wx.navigateTo({
-      url: '../invoiceDetails/invoiceDetails?invoiceType=' + invoiceType
+      url: '../invoiceDetails/invoiceDetails?invoiceType=' + invoiceType+'&url=bugetConfirm'
     })
     this.inputInvoice();
   },
   inputInvoice: function(){
-    this.setData({
-      shInputInfo: !this.data.shInputInfo,
-    })
+    if(this.data.invoiceType!=''){
+      wx.navigateTo({
+        url: '../invoiceConfirm/invoiceConfirm?url=bugetConfirm'
+      })
+    }else{
+      this.setData({
+        shInputInfo: !this.data.shInputInfo,
+      })
+    }
   },
   contractConfirm:function(e){
     this.setData({ 

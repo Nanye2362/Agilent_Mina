@@ -78,3 +78,6 @@ page{
 .invoiceType:first-child{
   border-bottom: 1px solid #e2e2e2;
 }
+.invoiceD{
+  margin-bottom: 6rpx;
+}

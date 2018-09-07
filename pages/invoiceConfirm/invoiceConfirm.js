@@ -40,17 +40,22 @@ Page({
    */
   onLoad: function (options) {
     console.log(options);
-    var invoiceType = options.invoiceType; 
-    //var invoiceType="specialInvoice";
-    var invoiceDetails = wx.getStorageSync('invoiceDetails')
-    this.setData({
-      invoiceInfo: invoiceDetails.invoiceInfo,
-      sendInfo: invoiceDetails.sendInfo,
-      PO: invoiceDetails.PO,
-      needBill: invoiceDetails.needBill,
-      invoiceType: invoiceType,
-      invoice: invoiceArry[invoiceType],
-    })
+    if(options.url=='budgetConfirm'){
+      wx.getStorageSync('invoiceDetails');
+    }else{
+      var invoiceType = options.invoiceType;
+      //var invoiceType="specialInvoice";
+      var invoiceDetails = wx.getStorageSync('invoiceDetails')
+      this.setData({
+        invoiceInfo: invoiceDetails.invoiceInfo,
+        sendInfo: invoiceDetails.sendInfo,
+        PO: invoiceDetails.PO,
+        needBill: invoiceDetails.needBill,
+        invoiceType: invoiceType,
+        invoice: invoiceArry[invoiceType],
+      })
+    }
+    
   },
 
   submit: function(){

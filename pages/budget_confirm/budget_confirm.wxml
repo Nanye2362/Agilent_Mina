@@ -18,13 +18,13 @@
     <view class="bc_order flex alignc" bindtap='inputInvoice'>
         <image class="bc_order_icon" src="/images/invoice.png" mode='widthFix'></image> 
         <view class='bc_order_con'>
-          <view>发票信息 
-            <text class='{{InvoiceInfo.invoiceTitle!=null?"":"fc-aaa"}}'>{{InvoiceInfo.invoiceTitle!=null?InvoiceInfo.invoiceTitle:'[未填写]'}}</text>
+          <view class='fw' style='margin-bottom: 10rpx;'>发票信息 -  
+            <text class='fw {{invoiceInfo.title!=""?"":"fc-aaa"}}'>{{invoiceInfo.title!=''?invoiceType=='normalInvoice'?'增值税普通发票':'增值税专用发票':'[未填写]'}}</text>
           </view>
-          <block wx:if='{{InvoiceInfo.InvoiceTitle!=null?true:false}}'>
-            <view class='fs12'>发票抬头：{{InvoiceInfo.title}}</view>
-            <view class='fs12'>纳税人识别号：{{InvoiceInfo.taxNumber}}</view>
-            <view class='fs12'>寄送人姓名：{{InvoiceInfo.name}}</view>
+          <block wx:if='{{invoiceInfo.title!=""?true:false}}'>
+            <view class='fs12 invoiceD'>发票抬头：{{invoiceInfo.title}}</view>
+            <view class='fs12 invoiceD'>纳税人识别号：{{invoiceInfo.taxNumber}}</view>
+            <view class='fs12 invoiceD'>寄送人姓名：{{sendInfo.name}}</view>
           </block>
         </view>
         <view class='bc_order_arrow'>
@@ -100,7 +100,7 @@
       <view class='shLoading-title blue'>选择发票类型</view>
       <view class="shLoading-head-panel">
           <radio-group class="radio-group flex directionC" bindchange="radioChange">
-            <label class="radio invoiceType" wx:for="{{invoiceType}}">
+            <label class="radio invoiceType" wx:for="{{invoicetype}}">
               <radio color='#0085d5' value="{{item.name}}" checked="{{item.checked}}"/>{{item.value}}
             </label>
           </radio-group>
