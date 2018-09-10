@@ -65,8 +65,15 @@ Page({
     //   url: '../budget_confirm/budget_confirm'
     // })
     console.log(getCurrentPages());
+    var pages = getCurrentPages();
+    var nums;
+    for (var i in pages) {
+      if (pages[i].route == 'pages/budget_confirm/budget_confirm') {
+        nums = i + 1;
+      }
+    }
     wx.navigateBack({
-      delta: 2
+      delta: pages.length - nums
     })
   },
   goBackEdit: function(){

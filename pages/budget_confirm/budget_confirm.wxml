@@ -2,7 +2,7 @@
 <block wx:if="{{!pageComplete}}">
   <view>{{info}}</view>
 </block>
-
+<view style='height: 300rpx' bindtap='clearStorage'>清storage</view>
 
 <block wx:if="{{pageComplete}}">
 <view class="budget_confirm padding">

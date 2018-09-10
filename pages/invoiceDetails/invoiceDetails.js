@@ -52,17 +52,34 @@ Page({
     },
     PO:'',
     needBill: false,
+    errText:{
+      invoiceTitle:'发票抬头不能为空',
+    }
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options);  
-    console.log(invoiceDetails);  
-    this.setData({
-      invoiceType: options.invoiceType
-    })
+    console.log(options);
+    invoiceDetails = wx.getStorageSync('invoiceDetails');
+    if (invoiceDetails != '') {
+      this.setData({
+        invoiceInfo: invoiceDetails.invoiceInfo,
+        invoiceType: invoiceDetails.invoiceType,
+        invoice: invoiceArry[invoiceDetails.invoiceType],
+        PO: invoiceDetails.PO,
+        needBill: invoiceDetails.needBill,
+      })
+    } else {
+      this.setData({
+        invoiceType: options.invoiceType,
+        //invoiceType: this.data.invoiceType,
+        //invoice: invoiceArry[this.data.invoiceType],
+        invoice: invoiceArry[options.invoiceType],
+      })
+    }
+    this.getMeInfo(); 
   },
   //获取用户自己信息
   getMeInfo: function(){
@@ -139,7 +156,18 @@ Page({
     })
   },
   //提交
-  submit: function(){
+  submit: function(){  
+    // if (util.checkEmpty(that.data, ['name', 'company', 'orderno']) || that.data.pickerType == -1 || that.data.chooseCheckbox.length == 0) {
+    //   wx.showModal({
+    //     title: '提示',
+    //     content: '请确认信息输入完整',
+    //     showCancel: false,
+    //   })
+    //   return;
+    // }
+    var check = this.checkEmpty(this.data, this.data.PO);
+    console.log(check);
+    this.checkEmpty(this.data,PO);
     var invoiceDetails = {};
     invoiceDetails.invoiceInfo = this.data.invoiceInfo;
     invoiceDetails.sendInfo = this.data.sendInfo;
@@ -150,6 +178,27 @@ Page({
     wx.navigateTo({
       url: '../invoiceConfirm/invoiceConfirm?url=invoiceConfirm'
     })
+  },
+  emptyRemind: function(errText,emptyText){
+    wx.showModal({
+      title: '提交失败',
+      content: errRemind.emptyText+'不能为空',
+      showCancel: false,
+      success: function (res) {
+      }
+    })
+  },
+  checkEmpty: function (obj, arrInput){
+      var isEmpty = false;
+      var fieldName = '';
+      for(var i in arrInput){
+        if (obj[arrInput[i]].trim().length == 0) {
+          isEmpty = true;
+          fieldName = i;
+          return { isEmpty: isEmpty,fieldName:fieldName};
+        }
+      }
+    return { isEmpty: isEmpty, fieldName: fieldName };
   },
   
 
@@ -164,21 +213,6 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    if (invoiceDetails != '') {
-      this.setData({
-        invoiceInfo: invoiceDetails.invoiceInfo,
-        invoiceType: invoiceDetails.invoiceType,
-        invoice: invoiceArry[invoiceDetails.invoiceType],
-        PO: invoiceDetails.PO,
-        needBill: invoiceDetails.needBill,
-      })
-    } else {   
-      this.setData({
-        invoiceType: this.data.invoiceType,
-        invoice: invoiceArry[this.data.invoiceType],
-      })
-    }
-    this.getMeInfo();
   },
 
   /**
