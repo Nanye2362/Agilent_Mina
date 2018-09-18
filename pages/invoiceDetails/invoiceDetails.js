@@ -18,6 +18,16 @@ var invoiceArry = {
   }
 };
 var invoiceDetails = wx.getStorageSync('invoiceDetails');
+
+var errText={
+  "title": "发票抬头",
+  "taxNumber": "纳税人识别号",
+  "bankName": "开户行",
+  "bankAccount": "银行账号",
+  "companyAddress": "注册地址",
+  "telephone": "注册电话",
+}
+
 Page({
 
   /**
@@ -52,9 +62,8 @@ Page({
     },
     PO:'',
     needBill: false,
-    errText:{
-      invoiceTitle:'发票抬头不能为空',
-    }
+    currentInvoice:'',
+    
   },
 
   /**
@@ -62,29 +71,32 @@ Page({
    */
   onLoad: function (options) {
     console.log(options);
-    invoiceDetails = wx.getStorageSync('invoiceDetails');
-    if (invoiceDetails != '') {
+    var currentInvoice = options.currentInvoice;
+    invoiceDetails = wx.getStorageSync('invoiceDetails');  
+    if (invoiceDetails[currentInvoice]!=undefined){
+      console.log(invoiceDetails[currentInvoice]);
       this.setData({
-        invoiceInfo: invoiceDetails.invoiceInfo,
-        invoiceType: invoiceDetails.invoiceType,
-        invoice: invoiceArry[invoiceDetails.invoiceType],
-        PO: invoiceDetails.PO,
-        needBill: invoiceDetails.needBill,
+        invoiceInfo: invoiceDetails[currentInvoice].invoiceInfo,
+        invoice: invoiceArry[currentInvoice],
+        PO: invoiceDetails[currentInvoice].PO,
+        needBill: invoiceDetails[currentInvoice].needBill,
+        currentInvoice: options.currentInvoice,
+        invoiceDetails: invoiceDetails,
       })
-    } else {
+    }else{
       this.setData({
-        invoiceType: options.invoiceType,
-        //invoiceType: this.data.invoiceType,
-        //invoice: invoiceArry[this.data.invoiceType],
-        invoice: invoiceArry[options.invoiceType],
+        currentInvoice: options.currentInvoice,
+        invoice: invoiceArry[options.currentInvoice],
+        invoiceDetails: invoiceDetails,
       })
-    }
+    }   
     this.getMeInfo(); 
   },
   //获取用户自己信息
   getMeInfo: function(){
-    if (invoiceDetails!=''){
-      var sendInfo = invoiceDetails.sendInfo;
+    var currentInvoice = this.data.currentInvoice;
+    if (invoiceDetails[currentInvoice]!=undefined){
+      var sendInfo = invoiceDetails[currentInvoice].sendInfo;
       this.setData({
         sendInfo: sendInfo,
       })
@@ -157,47 +169,43 @@ Page({
   },
   //提交
   submit: function(){  
-    // if (util.checkEmpty(that.data, ['name', 'company', 'orderno']) || that.data.pickerType == -1 || that.data.chooseCheckbox.length == 0) {
-    //   wx.showModal({
-    //     title: '提示',
-    //     content: '请确认信息输入完整',
-    //     showCancel: false,
-    //   })
-    //   return;
-    // }
-    var check = this.checkEmpty(this.data, this.data.PO);
-    console.log(check);
-    this.checkEmpty(this.data,PO);
-    var invoiceDetails = {};
-    invoiceDetails.invoiceInfo = this.data.invoiceInfo;
-    invoiceDetails.sendInfo = this.data.sendInfo;
-    invoiceDetails.PO = this.data.PO;
-    invoiceDetails.needBill = this.data.needBill;
-    invoiceDetails.invoiceType = this.data.invoiceType;
-    wx.setStorageSync('invoiceDetails', invoiceDetails);
-    wx.navigateTo({
-      url: '../invoiceConfirm/invoiceConfirm?url=invoiceConfirm'
-    })
-  },
-  emptyRemind: function(errText,emptyText){
-    wx.showModal({
-      title: '提交失败',
-      content: errRemind.emptyText+'不能为空',
-      showCancel: false,
-      success: function (res) {
-      }
-    })
+    var that = this;
+    var checkObjInvoice = Object.keys(invoiceArry[this.data.currentInvoice]);
+    var checkObjSend = Object.keys(this.data.sendInfo);
+    var checkInvoice = this.checkEmpty(this.data.invoiceInfo, checkObjInvoice);
+    var checkSend = this.checkEmpty(this.data.sendInfo, checkObjSend);
+    console.log(typeof errText[checkInvoice.fieldName] );
+    if (checkInvoice.isEmpty == true || checkSend.isEmpty ==true){
+      wx.showModal({
+        title: '提交失败',
+        content: errText[checkInvoice.fieldName] == undefined ? "寄送信息不全，请完善信息" : errText[checkInvoice.fieldName] +'不能为空，请完善信息',
+        showCancel: false,
+      })
+    }else{
+      var currentInvoice = this.data.currentInvoice;
+      var invoiceDetails = this.data.invoiceDetails;
+      invoiceDetails[currentInvoice] = {};
+      invoiceDetails[currentInvoice].invoiceInfo = this.data.invoiceInfo;
+      invoiceDetails[currentInvoice].sendInfo = this.data.sendInfo;
+      invoiceDetails[currentInvoice].PO = this.data.PO;
+      invoiceDetails[currentInvoice].needBill = this.data.needBill;
+      invoiceDetails[currentInvoice].invoiceType = this.data.currentInvoice;
+      wx.setStorageSync('invoiceDetails', invoiceDetails);
+      wx.navigateTo({
+        url: '../invoiceConfirm/invoiceConfirm?url=invoiceDetails&&currentInvoice=' + currentInvoice
+      })
+    }   
   },
   checkEmpty: function (obj, arrInput){
-      var isEmpty = false;
-      var fieldName = '';
-      for(var i in arrInput){
-        if (obj[arrInput[i]].trim().length == 0) {
-          isEmpty = true;
-          fieldName = i;
-          return { isEmpty: isEmpty,fieldName:fieldName};
-        }
+    var isEmpty = false;
+    var fieldName = '';
+    for(var i in arrInput){
+      if (obj[arrInput[i]].trim().length == 0) {
+        isEmpty = true;
+        fieldName = arrInput[i];
+        return { isEmpty: isEmpty,fieldName:fieldName};
       }
+    }
     return { isEmpty: isEmpty, fieldName: fieldName };
   },
   

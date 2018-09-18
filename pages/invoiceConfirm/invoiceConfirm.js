@@ -33,6 +33,8 @@ Page({
       "telephone": "联系电话",
       "address": "地址",
     },
+    currentInvoice:'',
+    isConfirm:'',
   },
 
   /**
@@ -40,23 +42,25 @@ Page({
    */
   onLoad: function (options) {
     console.log(options);
-    if(options.url=='invoiceConfirm'){
+    if(options.url=='invoiceDetails'){
       this.setData({
         isConfirm: 0,
-      })  
+      })
     }else{
       this.setData({
         isConfirm: options.isConfirm,
       })
     }
+    
+    var currentInvoice = options.currentInvoice;
     var invoiceDetails = wx.getStorageSync('invoiceDetails');
     this.setData({
-      invoiceInfo: invoiceDetails.invoiceInfo,
-      sendInfo: invoiceDetails.sendInfo,
-      PO: invoiceDetails.PO,
-      needBill: invoiceDetails.needBill,
-      invoiceType: invoiceDetails.invoiceType,
-      invoice: invoiceArry[invoiceDetails.invoiceType],
+      invoiceInfo: invoiceDetails[currentInvoice].invoiceInfo,
+      sendInfo: invoiceDetails[currentInvoice].sendInfo,
+      PO: invoiceDetails[currentInvoice].PO,
+      needBill: invoiceDetails[currentInvoice].needBill,
+      invoice: invoiceArry[currentInvoice],
+      currentInvoice: currentInvoice,
     })    
   },
 
@@ -69,6 +73,9 @@ Page({
     var nums;
     for (var i in pages) {
       if (pages[i].route == 'pages/budget_confirm/budget_confirm') {
+        pages[i].setData({
+          currentInvoice: this.data.currentInvoice
+        })
         nums = i + 1;
       }
     }
@@ -78,7 +85,7 @@ Page({
   },
   goBackEdit: function(){
     wx.navigateTo({
-      url: '../invoiceDetails/invoiceDetails?invoiceType='+this.data.invoiceType,
+      url: '../invoiceDetails/invoiceDetails?currentInvoice='+this.data.currentInvoice,
     })
   },
 

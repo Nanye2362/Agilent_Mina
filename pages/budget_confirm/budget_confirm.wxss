@@ -81,3 +81,12 @@ page{
 .invoiceD{
   margin-bottom: 6rpx;
 }
+.invoiceInformation{
+  position: relative;
+  margin-bottom: 10rpx;
+}
+.changeType{
+  position: absolute;
+  right: -10rpx;
+  top: 0;
+}

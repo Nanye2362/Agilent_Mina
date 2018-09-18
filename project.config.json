@@ -8,7 +8,7 @@
 		"newFeature": true
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.0.0",
+	"libVersion": "2.2.5",
 	"appid": "wxd73c4d1bcd0db4c2",
 	"projectname": "%E5%B0%8F%E7%A8%8B%E5%BA%8Fprod",
 	"condition": {
@@ -52,8 +52,8 @@
 				{
 					"id": 3,
 					"name": "invoiceDetails",
-					"pathName": "pages/invoiceDetails/invoiceDetails",
-					"query": "invoiceType='specialInvoice'"
+					"pathName": "pages/fill_info/fill_info",
+					"query": "mobile=13133334444"
 				}
 			]
 		}

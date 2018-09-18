@@ -2,7 +2,7 @@
 <block wx:if="{{!pageComplete}}">
   <view>{{info}}</view>
 </block>
-<view style='height: 300rpx' bindtap='clearStorage'>清storage</view>
+
 
 <block wx:if="{{pageComplete}}">
 <view class="budget_confirm padding">
@@ -15,11 +15,11 @@
         <image class="bc_order_icon" src="/images/pdf.png" mode='widthFix'></image> 
         安捷伦维修收费标准说明书-报价单
     </view>
-    <view class="bc_order flex alignc" bindtap='inputInvoice'>
+    <view class="bc_order flex alignc">
         <image class="bc_order_icon" src="/images/invoice.png" mode='widthFix'></image> 
         <view class='bc_order_con'>
-          <view class='fw' style='margin-bottom: 10rpx;'>发票信息 -  
-            <text class='fw {{invoiceInfo.title!=""?"":"fc-aaa"}}'>{{invoiceInfo.title!=''?invoiceType=='normalInvoice'?'增值税普通发票':'增值税专用发票':'[未填写]'}}</text>
+          <view class='invoiceInformation'>发票信息-<text class='fw {{invoiceInfo.title!=""?"":"fc-aaa"}}'>{{invoiceInfo.title!=''?currentInvoice=='normalInvoice'?'增值税普通发票':'增值税专用发票':'[未填写]'}}</text>
+            <text class='fc-blue changeType' wx:if='{{currentInvoice!=""&&isConfirm==0?true:false}}' bindtap='changeInvoiceType'>[更改发票类型]</text>
           </view>
           <block wx:if='{{invoiceInfo.title!=""?true:false}}'>
             <view class='fs12 invoiceD'>发票抬头：{{invoiceInfo.title}}</view>
@@ -27,7 +27,7 @@
             <view class='fs12 invoiceD'>寄送人姓名：{{sendInfo.name}}</view>
           </block>
         </view>
-        <view class='bc_order_arrow'>
+        <view class='bc_order_arrow' bindtap='inputInvoice'>
           <image src='/images/arrow_grey.png' mode='widthFix' style='width: 20rpx'></image>
         </view>
     </view>
@@ -94,7 +94,7 @@
 
 
 <view class="shLoading" wx:if="{{shInputInfo}}">
-  <view class="shLoading-mask1" bindtap='inputInvoice'>
+  <view class="shLoading-mask1" bindtap='changeInvoiceType'>
   </view>
   <view class="shLoading-panel flex alignc directionC">
       <view class='shLoading-title blue'>选择发票类型</view>
@@ -106,7 +106,7 @@
           </radio-group>
       </view>
       <view class="shLoading-btn-panel">
-          <view class="shLoading-cancel" bindtap="inputInvoice">取消</view>
+          <view class="shLoading-cancel" bindtap="changeInvoiceType">取消</view>
       </view>
   </view>
 </view>

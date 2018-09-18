@@ -34,10 +34,8 @@ Page({
     },
     PO: '',
     needBill : '',
-    invoiceType : '', 
-  },
-  clearStorage: function(){
-    wx.removeStorageSync('invoiceDetails');
+    invoiceDetails:{},
+    currentInvoice:'',
   },
 
   /**
@@ -50,6 +48,9 @@ Page({
     app.mta.Page.init();
     //腾讯mat统计结束
     console.log(options);
+    util.getUserInfo(function (user) {
+      console.log(user);
+    });
     util.NetRequest({
       url: 'site-mini/get-budget',
       data: {
@@ -59,43 +60,31 @@ Page({
       success: function (r) {
         console.log(r);
         var invoiceDetails = {},
-        invoiceinfo = r.data.InvoiceInfo,
-        invoiceInfo = that.data.invoiceInfo,
-        sendInfo = that.data.sendInfo,
-        PO = that.data.PO,
-        invoiceType = that.data.invoiceType,
-        needBill = that.data.needBill;
-        console.log(invoiceinfo);
-        if (invoiceinfo.InvoiceTitle == null) {
-          if (wx.getStorageSync('invoiceDetails')!='') {
-            that.getInvoiceInfoStorage(that);
+            currentInvoice = '';
+        if (r.data.InvoiceInfo[0]!=undefined){
+          currentInvoice = r.data.InvoiceInfo[0].InvoiceType == 0 ? 'normalInvoice' : 'specialInvoice';
+        }       
+        console.log(r.data.InvoiceInfo);
+
+        if (r.data.InvoiceInfo.length!=''){
+          for (var i in r.data.InvoiceInfo){
+            that.setInvoiceInfo(r.data.InvoiceInfo[i])
           }
-        } else {         
-          invoiceInfo.title = invoiceinfo.InvoiceTitle;
-          invoiceInfo.companyAddress = invoiceinfo.RegisteredAddress;
-          invoiceInfo.taxNumber = invoiceinfo.TaxpayerRecognitionNumber;
-          invoiceInfo.bankName = invoiceinfo.Bank;
-          invoiceInfo.bankAccount = invoiceinfo.BankAccount;
-          invoiceInfo.telephone = invoiceinfo.RegisteredPhone;
-          sendInfo.name = invoiceinfo.Recipient;
-          sendInfo.address = invoiceinfo.Address;
-          sendInfo.telephone = invoiceinfo.Tel;
-          PO = invoiceinfo.POCode;
-          needBill = invoiceinfo.AccountSales == 0 ? 'false' : true,
-          invoiceType = invoiceinfo.InvoiceType == 0 ? 'normalInvoice' : 'specialInvoice';
-          invoiceDetails.invoiceInfo = invoiceInfo;
-          invoiceDetails.sendInfo = sendInfo;
-          invoiceDetails.PO = PO;
-          invoiceDetails.needBill = needBill;
-          invoiceDetails.invoiceType = invoiceType;
-          wx.setStorageSync('invoiceDetails', invoiceDetails);
+          invoiceDetails = that.data.invoiceDetails
+          console.log(invoiceDetails);
           that.setData({
-            invoiceInfo: invoiceInfo,
-            sendInfo: sendInfo,
-            needBill: needBill,
-            PO: PO,
-            invoiceType: invoiceType,
+            invoiceInfo: invoiceDetails[currentInvoice].invoiceInfo,
+            sendInfo: invoiceDetails[currentInvoice].sendInfo,
+            needBill: invoiceDetails[currentInvoice].needBill,
+            PO: invoiceDetails[currentInvoice].PO,
+            currentInvoice: currentInvoice,
           })
+        }
+        else{
+          // if (wx.getStorageSync('invoiceDetails') != '') {
+          //   that.getInvoiceInfoStorage(that);
+          // }
+          wx.setStorageSync('invoiceDetails', {});
         }
         
         if (r.status == 0) {         
@@ -120,39 +109,77 @@ Page({
     })
 
   },
-  getInvoiceInfoStorage: function(that){
-    invoiceDetails = wx.getStorageSync('invoiceDetails');
+  setInvoiceInfo: function (invoiceinfo){
+    var that = this;
+    var invoiceDetails = that.data.invoiceDetails,
+        invoiceInfo = that.data.invoiceInfo,
+        sendInfo = that.data.sendInfo,
+        PO = that.data.PO,
+        invoiceType = that.data.invoiceType,
+        needBill = that.data.needBill;
+
+    invoiceInfo.title = invoiceinfo.InvoiceTitle;
+    invoiceInfo.companyAddress = invoiceinfo.RegisteredAddress;
+    invoiceInfo.taxNumber = invoiceinfo.TaxpayerRecognitionNumber;
+    invoiceInfo.bankName = invoiceinfo.Bank;
+    invoiceInfo.bankAccount = invoiceinfo.BankAccount;
+    invoiceInfo.telephone = invoiceinfo.RegisteredPhone;
+    sendInfo.name = invoiceinfo.Recipient;
+    sendInfo.address = invoiceinfo.Address;
+    sendInfo.telephone = invoiceinfo.Tel;
+    PO = invoiceinfo.POCode;
+    needBill = invoiceinfo.AccountSales == 0 ? 'false' : true,
+    invoiceType = invoiceinfo.InvoiceType == 0 ? 'normalInvoice' : 'specialInvoice';
+    invoiceDetails[invoiceType] = {}
+    invoiceDetails[invoiceType].invoiceInfo = invoiceInfo;
+    invoiceDetails[invoiceType].sendInfo = sendInfo;
+    invoiceDetails[invoiceType].PO = PO;
+    invoiceDetails[invoiceType].needBill = needBill;
+    invoiceDetails[invoiceType].invoiceType = invoiceType;
+    wx.setStorageSync('invoiceDetails', invoiceDetails);
     that.setData({
-      invoiceInfo: invoiceDetails.invoiceInfo,
-      sendInfo: invoiceDetails.sendInfo,
-      invoiceType: invoiceDetails.invoiceType,
-      PO: invoiceDetails.PO,
-      needBill: invoiceDetails.needBill,
+      invoiceDetails: invoiceDetails
+    })   
+  },
+  getInvoiceInfoStorage: function(that){
+    var currentInvoice = that.data.currentInvoice;
+    invoiceDetails = wx.getStorageSync('invoiceDetails');
+    console.log(invoiceDetails[currentInvoice]);
+    that.setData({
+      invoiceInfo: invoiceDetails[currentInvoice].invoiceInfo,
+      sendInfo: invoiceDetails[currentInvoice].sendInfo,
+      invoiceType: invoiceDetails[currentInvoice].invoiceType,
+      PO: invoiceDetails[currentInvoice].PO,
+      needBill: invoiceDetails[currentInvoice].needBill,
     })
   },
   radioChange: function (e) {
     console.log('radio发生change事件，携带value值为：', e.detail.value);
-    var invoiceType;
+    var currentInvoice;
     if(e.detail.value==0){
-      invoiceType ='normalInvoice';
+      currentInvoice ='normalInvoice';
     }else{
-      invoiceType = 'specialInvoice';
+      currentInvoice = 'specialInvoice';
     };
     wx.navigateTo({
-      url: '../invoiceDetails/invoiceDetails?invoiceType=' + invoiceType+'&url=bugetConfirm'
-    })
-    this.inputInvoice();
+      url: '../invoiceDetails/invoiceDetails?currentInvoice=' + currentInvoice
+    }) 
+    this.changeInvoiceType();
   },
+
   inputInvoice: function(){
-    if(this.data.invoiceType!=''){
+    if (this.data.currentInvoice!=''){
       wx.navigateTo({
-        url: '../invoiceConfirm/invoiceConfirm?isConfirm=' + this.data.isConfirm+'?url=budgetConfirm'
+        url: '../invoiceConfirm/invoiceConfirm?isConfirm=' + this.data.isConfirm + '&&currentInvoice=' + this.data.currentInvoice
       })
     }else{
-      this.setData({
-        shInputInfo: !this.data.shInputInfo,
-      })
+      this.changeInvoiceType();
     }
+  },
+  changeInvoiceType: function(){
+    this.setData({
+      shInputInfo: !this.data.shInputInfo,
+    })
   },
   contractConfirm:function(e){
     this.setData({ 
@@ -161,44 +188,47 @@ Page({
   },
   confirm:function(){
     var that=this;
-    if (!this.data.checkBox){
-      wx.showToast({
-        title: '请勾选已阅读并接收此报价单',
-        icon: 'none',
-        duration: 2000
+    if (!this.data.checkBox || invoiceDetails==''){
+      wx.showModal({
+        title: '提交失败',
+        content: '请确认发票信息的完整，并勾选已阅读并接收此报价单',
       })
-      return false;
-    }
-
-
-    util.NetRequest({
-      url: 'site-mini/confirm-budget',
-      data: {
-        BudgetoryquoteId: this.data.bqId,
-        AccountId: this.data.accountId,
-        ContactId: this.data.ContactId,
-        invoiceDetails: JSON.stringify(invoiceDetails),
-      },
-      success: function (r) {
-        if (r.success) {
-          wx.showToast({
-            title: '成功',
-            icon: 'success',
-            duration: 2000
-          })
-          that.setData({
-            isConfirm:1
-          })
-          //wx.removeStorageSync('invoiceDetails');
-        } else {
-          wx.showToast({
-            title: '失败',
-            icon: 'fail',
-            duration: 2000
-          })
+      //return false;  
+    }else{
+      var invoicedetails = invoiceDetails;
+      var currentInvoice = this.data.currentInvoice;
+      console.log(invoicedetails);
+      invoicedetails[currentInvoice].needBill = invoiceDetails.needBill==true?1:0;
+      invoicedetails[currentInvoice].invoiceType = invoiceDetails[currentInvoice].invoiceType=='specialInvoice'?1:0;
+      util.NetRequest({
+        url: 'site-mini/confirm-budget',
+        data: {
+          BudgetoryquoteId: this.data.bqId,
+          AccountId: this.data.accountId,
+          ContactId: this.data.ContactId,
+          invoiceDetails: JSON.stringify(invoicedetails[currentInvoice]),
+        },
+        success: function (r) {
+          if (r.success) {
+            wx.showToast({
+              title: '成功',
+              icon: 'success',
+              duration: 2000
+            })
+            that.setData({
+              isConfirm: 1
+            })
+            //wx.removeStorageSync('invoiceDetails');
+          } else {
+            wx.showToast({
+              title: '失败',
+              icon: 'fail',
+              duration: 2000
+            })
+          }
         }
-      }
-    })
+      })
+    } 
   },
   openPDF:function(){
     var url = util.Server + 'site/open-file?ServconfId=' + this.data.bqId;
@@ -254,7 +284,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {   
-    if (wx.getStorageSync('invoiceDetails') != '') {
+    if (this.data.currentInvoice != '' && wx.getStorageSync('invoiceDetails') != '' ) {
       this.getInvoiceInfoStorage(this);
     }
   },
