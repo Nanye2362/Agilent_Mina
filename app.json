@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/repair/repair",
     "pages/index/index",
     "pages/serviceOrder/serviceOrder",
     "pages/PM/PM",
