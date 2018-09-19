@@ -1,5 +1,5 @@
 <!--pages/repair/repair.wxml-->
-
+<image  class="img_bg" src="{{imgUrl}}" mode='widthFix'></image>
 <!-- tab -->
 <view class="sl_tab flex">    
     <view class="sl_tab_item  {{currentTab==0 ? 'on' : ''}}" circular="true" data-current="0" bindtap="swichNav">送修服务介绍</view>  
@@ -9,128 +9,10 @@
 <!-- content -->
 <swiper current="{{currentTab}}" class="swiper-box" duration="300"  bindchange="bindChange" style="height:{{winHeight - 31}}px;"> 
   <!-- customer_informations -->
-  <swiper-item> 
-    <view class='flex directionC swiperContent'>
-
-      <!-- title -->
-      <view class='flex cnTitle'>
-        <view class='cnT'></view>
-        <view class='cnTC fc-fff fs12'>用户信息</view>
-        <view class='cnT'></view>
-      </view>
-      <!-- title -->
-
-      <view class="flex cusName">
-          <view class=" fs13 cnL">客户名称：</view>
-          <view class=" fs13 cnR">{{ldInfo.CustomerName}}</view>
-      </view>
-
-
-
-      <!-- contactPerson -->
-      <block  wx:for="{{ldInfo.UserInfo}}" wx:for-item="item" wx:key='unique'  wx:for-index="idx">
-        <view class="flex cusName">
-            <view class=" fs13 cnL">联系人{{idx+1}}：</view>
-            <view class=" fs13 cnR">{{item.UserName}}</view>
-        </view>
-        <view class="flex cusName">
-            <view class=" fs13 cnL">部门：</view>
-            <view class=" fs13 cnR">{{item.Department}}</view>
-        </view>
-        <view class="flex cusName">
-            <view class=" fs13 cnL">职位：</view>
-            <view class=" fs13 cnR">{{item.UserJob}}</view>
-        </view>
-        <view class="flex cusName">
-            <view class=" fs13 cnL">手机号：</view>
-            <view class=" fs13 cnR">{{item.UserMobile}}</view>
-        </view>
-        <view class="flex cusName">
-            <view class=" fs13 cnL">邮箱：</view>
-            <view class=" fs13 cnR">{{item.UserEmail}}</view>
-        </view>
-      </block>
-      <!-- contactPerson -->
-
-
-      
-
-      <!-- title -->
-      <view class='flex cnTitle'>
-        <view class='cnT'></view>
-        <view class='cnTC fc-fff fs12'>安装信息</view>
-        <view class='cnT'></view>
-      </view>
-      <!-- title -->
-      <view class="flex cusName">
-          <view class=" fs13 cnL">安装工程师名字：</view>
-          <view class=" fs13 cnR">{{ldInfo.InsEngineerName}}</view>
-      </view>
-      <view class="flex cusName">
-          <view class=" fs13 cnL">手机：</view>
-          <view class=" fs13 cnR">{{ldInfo.InsEngineerMobile}}</view>
-      </view>
-      <view class="flex cusName">
-          <view class=" fs13 cnL">邮箱：</view>
-          <view class=" fs13 cnR">{{ldInfo.InsEngineerEmail}}</view>
-      </view>
-      <view class="flex cusName">
-          <view class=" fs13 cnL">安装完成时间：</view>
-          <view class=" fs13 cnR">{{ldInfo.InsFinishTime}}</view>
-      </view>
-      <view class="flex cusName">
-          <view class=" fs13 cnL">网络版安装架构：</view>
-          <view class=" fs13 cnR">{{ldInfo.OnlineEditionInstallInfo}}</view>
-      </view>
-      <view class="flex cusName">
-          <view class=" fs13 cnL">销售信息：</view>
-          <view class=" fs13 cnR">{{ldInfo.AgilentMarketingInfo}}</view>
-      </view>
-      <view class="flex cusName">
-          <view class=" fs13 cnL">Subscribenet登录名：</view>
-          <view class=" fs13 cnR">{{ldInfo.SubscribenetLoginName}}</view>
-      </view>
-      <view class="flex cusName">
-          <view class=" fs13 cnL">密码：</view>
-          <view class=" fs13 cnR">{{ldInfo.SubscribenetPwd}}</view>
-      </view>
-
-
-
-      <!-- title -->
-      <view class='flex cnTitle'>
-        <view class='cnT'></view>
-        <view class='cnTC fc-fff fs12'>附件信息</view>
-        <view class='cnT'></view>
-      </view>
-      <!-- title -->
-
-      <!-- fileList -->
-      <block  wx:for="{{fileList}}" wx:for-item="item" wx:key='unique'  wx:for-index="idx">
-      <view class="flex file">
-          <view class='fileL'>
-            <image class='fileImg' src='/images/file.jpg'></image>
-          </view>
-          <view class=" fs13 fileC flex directionC">
-            <view class='fc-aaa fs13'>{{item.file_name}}</view>
-            <view class='fs12'>{{item.file_size}}kb-{{item.file_ext}}</view>
-          </view>
-          <view class=" fileR" bindtap='openFile' data-url='{{item.file_path}}'>
-            <view class='fs13 fc-blue fileBtn'>查看</view>
-          </view>
-      </view>
-      </block>
-      <!-- fileList -->
-
-      <button class="sn_btn btn btn-primary" bindtap='swichNav' circular="false" data-current="1" >查看维修记录</button>
-
-
-
-
-
-
-
-    </view> 
+  <swiper-item class='text-center'> 
+    <block wx:for='{{imgUrls}}' wx:for-item='item' wx:key="unique">
+      <image class="img_bg img_item" src="{{item.url}}" mode='widthFix'></image>
+    </block>
   </swiper-item>
   <!-- repair_records --> 
   <swiper-item> 

@@ -1,2 +1,11 @@
-/* pages/repair/repair.wxss */
 @import '../labqc/labqc';
+.img_bg{
+  width: 100%;
+}
+swiper-item{
+  padding: 60rpx;
+  box-sizing: border-box;
+}
+.img_item{
+  margin-bottom: 120rpx;
+}
