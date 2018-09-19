@@ -27,7 +27,7 @@
             <view class='fs12 invoiceD'>寄送人姓名：{{sendInfo.name}}</view>
           </block>
         </view>
-        <view class='bc_order_arrow' bindtap='inputInvoice'>
+        <view class='bc_order_arrow' wx:if='{{hasInvoice==false&&isConfirm==1?false:true}}' bindtap='inputInvoice'>
           <image src='/images/arrow_grey.png' mode='widthFix' style='width: 20rpx'></image>
         </view>
     </view>

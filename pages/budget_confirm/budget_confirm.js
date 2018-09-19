@@ -36,6 +36,7 @@ Page({
     needBill : '',
     invoiceDetails:{},
     currentInvoice:'',
+    hasInvoice: true,
   },
 
   /**
@@ -63,6 +64,10 @@ Page({
             currentInvoice = '';
         if (r.data.InvoiceInfo[0]!=undefined){
           currentInvoice = r.data.InvoiceInfo[0].InvoiceType == 0 ? 'normalInvoice' : 'specialInvoice';
+        }else{
+          that.setData({
+            hasInvoice: false,
+          })
         }       
         console.log(r.data.InvoiceInfo);
 
