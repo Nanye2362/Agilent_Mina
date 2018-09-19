@@ -62,6 +62,7 @@ Page({
         console.log(r);
         var invoiceDetails = {},
             currentInvoice = '';
+        console.log(r.data.InvoiceInfo[0])
         if (r.data.InvoiceInfo[0]!=undefined){
           currentInvoice = r.data.InvoiceInfo[0].InvoiceType == 0 ? 'normalInvoice' : 'specialInvoice';
         }else{
