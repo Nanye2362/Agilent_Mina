@@ -15,7 +15,7 @@ Page({
     //0:normalInvoice,1:specialInvoice
     invoicetype: [
       { name: '0', value: '增值税普通发票' },
-      { name: '1', value: '增值税专业发票' },
+      { name: '1', value: '增值税专用发票' },
     ],
     invoiceInfo: {
       "errMsg": "",
@@ -194,7 +194,8 @@ Page({
   },
   confirm:function(){
     var that=this;
-    if (!this.data.checkBox || invoiceDetails==''){
+    console.log(invoiceDetails)
+    if (!this.data.checkBox || Object.keys(invoiceDetails).length === 0){
       wx.showModal({
         title: '提交失败',
         content: '请确认发票信息的完整，并勾选已阅读并接收此报价单',

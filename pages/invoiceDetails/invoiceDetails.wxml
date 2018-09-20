@@ -4,7 +4,7 @@
   <view class='invoiceInfo'>
     <view class='invTitle fw'>
         <image class="invTitle_icon" src="/images/invoice.png" mode='widthFix'></image> 
-        增值税{{currentInvoice=='normalInvoice'?'普通':'专业'}}发票
+        增值税{{currentInvoice=='normalInvoice'?'普通':'专用'}}发票
     </view>
     <!-- 提醒 -->
     <view class='invRemind text-center'>

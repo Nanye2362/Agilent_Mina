@@ -94,9 +94,12 @@ Page({
   },
   //获取用户自己信息
   getMeInfo: function(){
+    var invoiceDetails = wx.getStorageSync('invoiceDetails');
+    console.log(invoiceDetails)
     var currentInvoice = this.data.currentInvoice;
     if (invoiceDetails[currentInvoice]!=undefined){
       var sendInfo = invoiceDetails[currentInvoice].sendInfo;
+      console.log(sendInfo);
       this.setData({
         sendInfo: sendInfo,
       })
@@ -144,6 +147,8 @@ Page({
   //选择寄送人
   radioChange: function (e) {
     var sendInfo = this.data.sendInfo;
+    console.log(sendInfo);
+    console.log(e.detail.value);
     if(e.detail.value=='other'){
       sendInfo.name='';
       sendInfo.telephone = '';
