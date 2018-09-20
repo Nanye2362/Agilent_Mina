@@ -120,7 +120,7 @@ Page({
       success: function (res) {
         console.log("获取缓存成功！");
         console.log(res.data)
-        that.videoContext.seek(res.data)
+        that.videoContext.seek(res.data);
       }
     })       
     //that.videoContext.play()

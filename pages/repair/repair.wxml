@@ -23,7 +23,7 @@
       <view class='videoTitle'>{{item.title}}</view>
       <view class='video-item' data-id="{{item.id}}" bindtap="videoPlay" data-vid='{{"video"+item.id}}'>        
         <!-- video -->
-        <video wx:if="{{curr_id == item.id}}" data-vid='{{"video"+item.id}}' id="myVideo" src="{{item.url}}" objectFit="contain" controls poster="{{item.poster}}" autoplay='{{false}}' bindtimeupdate="goOnVideo"></video>
+        <video custom-cache="{{false}}"  wx:if="{{curr_id == item.id}}" data-vid='{{"video"+item.id}}' id="myVideo" src="{{item.url}}" objectFit="contain" controls poster="{{item.poster}}" autoplay='{{false}}' bindtimeupdate="goOnVideo"></video>
         <!-- poster -->
         <view wx:else>
           <image class="video-img" mode="aspectFill" src="{{item.poster}}"></image>
