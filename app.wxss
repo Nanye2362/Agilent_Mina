@@ -20,7 +20,7 @@ button{
 
 /* ====================== flex ====================== */
 /* flex */
-.flex { display: flex;}
+.flex { display: flex; }
 .flex_item{ flex: 1;}
 .alignc { align-items: center;}
 .alignl { align-content: left;}
@@ -65,6 +65,9 @@ button{
 /* ======================  button ================== */
 .btn{ border-radius: 12rpx; text-align: center; margin: 20px auto; }
 .btn-primary{ height: 90rpx; width: 90%; background: #0084d6; color: #fff; line-height: 90rpx; }
+.btn-assist{
+  height: 90rpx; width: 90%; color: #0085d5;line-height: 90rpx;border: 1px solid #0085d5;background: #fff;
+}
 /* ===================meiqia-btn====================== */
 .btn-meiqia{ display: inline; background: none; border: none; padding: 0;}
 .btn-meiqia::after{ width: 0; height: 0; }
@@ -73,7 +76,7 @@ button{
 
 /* ======================= font ===================== */
 view, text, input, button{ font-size: 32rpx; font-family: "MicroSoft Yahei"; color: #333;}
-.fw{ font-weight: bold; }
+.fw{ font-weight: 600; }
 /* font-size */
 .fs12 {
     font-size: 0.75rem;
@@ -121,9 +124,6 @@ view, text, input, button{ font-size: 32rpx; font-family: "MicroSoft Yahei"; col
 }
 .fc-777 {
     color: #777;
-}
-.fc-grey{
-    color: #b5b4b5;
 }
 /*浅灰色*/
 .fc-ddd{
@@ -175,6 +175,11 @@ view, text, input, button{ font-size: 32rpx; font-family: "MicroSoft Yahei"; col
     width: 100%;
     background: #eaeaea;
 }
+.dashed{
+  width: 100%;
+  height: 0;
+  border-bottom: 1px dashed #d8d8d8;
+}
 /* ===================margin====================== */
   
 .marginB-6{
@@ -185,6 +190,9 @@ view, text, input, button{ font-size: 32rpx; font-family: "MicroSoft Yahei"; col
 }
 .marginB-40{
   margin-bottom: 80rpx;
+}
+.marginT{
+  margin-top: 30rpx;
 }
 
 
@@ -299,6 +307,13 @@ view, text, input, button{ font-size: 32rpx; font-family: "MicroSoft Yahei"; col
 .shLoading-btn-cancel{
   border-right:1px solid #eee;
 }
+.shLoading-cancel{
+  display:inline-block;
+  width:100%;
+  line-height:100rpx;
+  text-align:center;
+  font-size:36rpx;
+}
 
 .shLoading-btn-ok{
   color:#66CD00;
@@ -376,7 +391,7 @@ view, text, input, button{ font-size: 32rpx; font-family: "MicroSoft Yahei"; col
 
 /* 标签颜色 */
 .yellow{
-  background: #F3A901;
+  background: #ffb652;
 }
 .coffee{
   background: #b59177;
@@ -427,17 +442,3 @@ view, text, input, button{ font-size: 32rpx; font-family: "MicroSoft Yahei"; col
   height:100%;
   line-height:1;
 }
-
-
-/* 底部聊天 */
-.bottom_remind{
-  margin: 40rpx 0;
-}
-.bottom_remind_img{
-  width: 47rpx;
-  height: 38rpx;
-  vertical-align: middle;
-}
-
-
-

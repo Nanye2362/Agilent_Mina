@@ -13,37 +13,25 @@
     <block wx:for='{{imgUrls}}' wx:for-item='item' wx:key="unique">
       <image class="img_bg img_item" src="{{item.url}}" mode='widthFix'></image>
     </block>
+    <!-- btn -->
+    <button class="btn btn-primary" id="confirm" bindtap='submit'>一键送修</button>
   </swiper-item>
   <!-- repair_records --> 
-  <swiper-item> 
-    <view id='record'>
-      <block wx:for="{{mrInfo}}" wx:for-item="item" wx:key='unique' wx:for-index="idx">
-        <view class='record'>
-          <view class='recordCon'>
-            <!-- recordDetails -->
-            <view class="flex directionC recordDetails">
-              <view class="flex">
-                  <view class="fs14 {{idx==0?'fc-blue':''}}">{{item.SubmitTime}}</view>
-              </view> 
-              <view class="flex">
-                <view class=" fs13 rd-l">维修人：</view>
-                <view class=" fs13 rd-r">{{item.SubmitPerson}}</view>
-              </view>  
-              <view class="flex">
-                  <view class=" fs13 rd-l">维修记录：</view>
-                  <view class=" fs13 rd-r">{{item.MaintenanceContent}}</view>
-              </view>              
-            </view>
-            <!-- recordLabel -->
-            <view class='{{idx==0?"firstLabel":"recordLabel"}}' ></view>        
-            <view class='{{idx==0?"secondLabel":""}}' ></view>
-          </view>
+  <swiper-item bindtouchmove="handletouchmove">  
+    <block wx:for='{{videoUrls}}' wx:for-item='item' wx:key="unique">
+      <!-- title -->
+      <view class='videoTitle'>{{item.title}}</view>
+      <view class='video-item' data-id="{{item.id}}" bindtap="videoPlay" data-vid='{{"video"+item.id}}'>        
+        <!-- video -->
+        <video wx:if="{{curr_id == item.id}}" data-vid='{{"video"+item.id}}' id="myVideo" src="{{item.url}}" objectFit="contain" controls poster="{{item.poster}}" autoplay='{{false}}' bindtimeupdate="goOnVideo"></video>
+        <!-- poster -->
+        <view wx:else>
+          <image class="video-img" mode="aspectFill" src="{{item.poster}}"></image>
         </view>
-      </block>
-    </view>
-    
-    <!-- addNew_Btn -->
-    <button class="repair_btn btn btn-primary" bindtap="Popup">新增维修记录</button>
+      </view>
+    </block> 
+    <!-- btn -->
+    <button class="btn btn-primary" id="confirm" bindtap='submit'>一键送修</button>
   </swiper-item>
 </swiper>
 

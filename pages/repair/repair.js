@@ -10,6 +10,7 @@ Page({
     winWidth: 0,
     winHeight: 0,
     currentTab: 0,
+    curr_id: '',
     imgUrl: config.Server + 'images/Send_banner.jpg',
     // imgUrls: [
     //   {
@@ -45,6 +46,50 @@ Page({
         url: config.Server + 'images/Send_5.jpg',
       }
     ],
+    videoUrls:[
+      {
+        id:1,
+        poster: '/images/cover.png',
+        title: '1.安捷伦液相色谱仪-完整装机步骤',
+        url: 'http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400',
+      },
+      {
+        id: 2,
+        poster: '/images/cover.png',
+        title: '2.安捷伦液相色谱仪-完整拆机步骤',
+        url: 'http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400',
+      },
+      {
+        id: 3,
+        poster: '/images/cover.png',
+        title: '3.安捷伦液相色谱仪拆装机-G1367E自动进样器',
+        url: 'http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400',
+      },
+      {
+        id: 4,
+        poster: '/images/cover.png',
+        title: '4.安捷伦液相色谱仪拆装机-四元泵',
+        url: 'http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400',
+      },
+      {
+        id: 5,
+        poster: '/images/cover.png',
+        title: '5.安捷伦液相色谱仪-CAN线LAN线连接步骤',
+        url: 'http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400',
+      },
+      {
+        id: 6,
+        poster: '/images/cover.png',
+        title: '6.安捷伦液相色谱仪拆装-seal-wash管线拆卸',
+        url: 'http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400',
+      },
+      {
+        id: 7,
+        poster: '/images/cover.png',
+        title: '7.安捷伦气相色谱仪自动进样器送修包装指南',
+        url: 'http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400',
+      },
+    ]
   },
 
   /**
@@ -62,7 +107,45 @@ Page({
       }
     });
   },
+  //视频播放
+  videoPlay: function(event) {
+    var videoId = event.currentTarget.dataset.vid;
+    console.log(videoId)
+    var that = this; 
+    that.setData({
+      curr_id: event.currentTarget.dataset.id,
+    })
+    wx.getStorage({
+      key: videoId,
+      success: function (res) {
+        console.log("获取缓存成功！");
+        console.log(res.data)
+        that.videoContext.seek(res.data)
+      }
+    })       
+    //that.videoContext.play()
+  },
+  //页面滑动暂停视频播放
+  handletouchmove: function(){
+    this.setData({
+      curr_id:'',
+    })
+    this.videoContext.pause()
+  },
+  //视频续播
+  goOnVideo: function(event){ 
+    var detail = event.detail;
+    var videoId = event.currentTarget.dataset.vid;
+    wx.setStorage({
+      key: videoId,
+      data: detail.currentTime,
+      success(res) {
+        console.log("保存成功！")
+      }
+    })
+  },
   swichNav: function (e) {
+    this.handletouchmove();
     var that = this;
     if (this.data.currentTab === e.target.dataset.current) {
       return false;
@@ -77,7 +160,8 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    //创建视频上下文对象
+    this.videoContext = wx.createVideoContext('myVideo');
   },
 
   /**
