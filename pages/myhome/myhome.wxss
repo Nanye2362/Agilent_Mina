@@ -1,86 +1,77 @@
 /* pages/myhome/myhome.wxss */
-
-/* ====================my_count====================== */
-image{
-  height: 100%;
+page{
+  background: #fff;
 }
 
-.mc_poster {
-    position: relative;
+.mh_info{
+  padding: 40rpx;
 }
-
-.mc_poster_bg {
-    width: 100%;
-    display: block;
-    
-}
-@media screen and (max-width: 330px){
-  .mc_poster_bg{
-    height: 400rpx;
-  }
-}
-@media screen and (min-width: 331px) and (max-width: 480px){
-  .mc_poster_bg{
-    height: 440rpx;
-  }
-}
-
-@media screen and (min-width: 481px) and (max-width: 760px){
-  .mc_poster_bg{
-    height: 500rpx;
-  }
-}
-
-
 .mc_avatar {
-    width: 200rpx;
-    height: 200rpx;
-    border-radius: 50%;
-    border: 6rpx solid #007cc7;
-    position: absolute;
-    top: 70rpx;
-    left: 50%;
-    margin-left: -100rpx;
+  flex: .3;
+}
+.mc_info{
+  flex: .5;
+}
+.mc_info_img{
+  width: 25rpx;
+  vertical-align: middle;
+}
+.mc_edit{
+  flex: .2;
+}
+.mc_edit image{
+  width: 30rpx;
+}
+.mc_avatar_con{
+  width: 130rpx;
+  height: 130rpx;
+  border-radius: 50%;
+  border: 2rpx solid #dededf;
+}
+.mc_avatar_con image{
+  width: 100%;
+  border-radius: 50%;
 }
 
-.mc_avatar image {
-    border-radius: 50%;
+.mh_func{
+  padding: 0 40rpx;
+  margin-bottom: 40rpx;
+}
+.mh_fbtn:first-child{
+  border-right: 1px solid #bdbdbd;
+}
+.mh_fbtn{
+  flex: .5;
+}
+.mh_fbtn image{
+  width: 34rpx;
+  vertical-align: middle;
+  margin-right: 20rpx;
+}
+.mc_unavatar{
+  padding: 40rpx;
+}
+.mc_unavatar_img{
+  width: 150rpx;
+}
+.mc_id_btn{
+  width: 240rpx;
+  padding: 14rpx;
+  border: 1px solid #d6d6d6;
+  text-align: center;
+  border-radius: 15rpx;
+  box-sizing: border-box;
+  margin-top: 10rpx;
+}
+.mc_id_btn_text{
+  margin-top: 10rpx;
+}
+.mc_id_btn_img{
+  width: 30rpx;
+  vertical-align: middle;
+  margin-right: 10rpx;
 }
 
-.mc_avatar image {
-    width: 100%;
-    height:100%;
-}
-
-@media screen and (max-width: 359px) {
-    .mc_id_btn {
-        bottom: 30rpx;
-    }
-    .mc_avatar {
-        top: 50rpx;
-    }
-}
-
-@media screen and (min-width: 360px) {
-    .mc_id_btn {
-        bottom: 60rpx;
-    }
-}
-
-.mc_id_btn {
-    position: absolute;
-    left: 50%;
-    margin-left: -120rpx;
-    width: 240rpx;
-    height: 80rpx;
-    line-height: 80rpx;
-    text-align: center;
-}
-
-.mc_id_state {
-    border-radius: 10rpx;
-    box-shadow: 0 0 6rpx #fff;
-}
 
 .mc_items {
     padding: 30rpx 40rpx;

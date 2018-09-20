@@ -1,12 +1,12 @@
 {
   "pages": [
+    "pages/myhome/myhome",
     "pages/index/index",
     "pages/serviceOrder/serviceOrder",
     "pages/PM/PM",
     "pages/OQ/OQ",
     "pages/install/install",
     "pages/orderList/orderList",
-    "pages/myhome/myhome",
     "pages/orderDetails/orderDetails",
     "pages/labqc/labqc",
     "pages/mechat_list/mechat_list",

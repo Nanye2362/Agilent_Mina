@@ -1,20 +1,52 @@
 <!--pages/myhome/myhome.wxml-->
 <!-- poster -->
 <view class="mc_poster">
-  <image src="../../images/mc_bg.jpg" class="mc_poster_bg"></image>
   <!-- 已认证 -->
   <block wx:if="{{is_auth == 1}}">
-    <view class="mc_avatar">
-      <image src="{{head_img_url}}"></image>
+    <!-- 头像信息等 -->
+    <view class='mh_info flex alignc'>
+      <!-- 头像 -->
+      <view class="mc_avatar">
+        <view class='mc_avatar_con'>
+          <image src="{{head_img_url}}"  mode='widthFix'></image>
+        </view>        
+      </view>
+      <!-- 信息 -->
+      <view class="mc_info">
+        <view class='fs16 fw'>{{name}}</view>
+        <view style='margin-top: 10rpx;'>
+          <image class='mc_info_img' src='/images/phno.png' mode='widthFix'></image>
+          <text class='fs13'>{{mobile}}</text>
+        </view>
+      </view>
+      <!-- 修改信息 -->
+      <view class='mc_edit text-center' bindtap="gotoNext" data-url="../personal_info/personal_info?head_img_url={{head_img_url}}&name={{name}}&sex=1&mobile={{mobile}}&company={{company}}&email={{email}}">
+        <image src='/images/editMH.png' mode='widthFix'></image>
+      </view>     
     </view>
-    <view class="mc_id_btn fs16 fc-fff">{{mobile}}</view>
+    <!-- 解绑 -->
+    <view class='mh_func flex'>
+      <view class='mh_fbtn text-center'>
+        <image src='/images/binded.png' mode='widthFix'></image>
+        <text>已认证</text>
+      </view>
+      <view class='mh_fbtn text-center' data-contact_guid="{{ContactGuid}}" bindtap="Unbind">
+        <image src='/images/unbind.png' mode='widthFix'></image>
+        <text>解绑</text>
+      </view>
+    </view>  
+    
   </block>
   <!-- 未认证 -->
   <block wx:elif="{{is_auth == 0 || is_auth == null}}">
-    <view class="mc_avatar">
-      <image src="../../images/no-avatar.png"></image>
-    </view>
-    <view class="mc_id_btn mc_id_state fs16 fc-fff" bindtap="gotoNext" data-url="../auth/auth">身份认证</view>
+    <view class="mc_unavatar flex directionC alignc">
+      <image class='mc_unavatar_img' src="../../images/no-avatar.png"  mode='widthFix'></image>
+      <text class='mc_id_btn_text'>未认证</text>
+      <view class="mc_id_btn" bindtap="gotoNext" data-url="../auth/auth">
+        <image class='mc_id_btn_img' src="../../images/binded.png"  mode='widthFix'></image>
+        <text>身份认证</text>
+      </view>
+    </view>   
   </block>
 </view>
 
