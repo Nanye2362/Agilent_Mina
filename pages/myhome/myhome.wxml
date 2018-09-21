@@ -147,7 +147,10 @@
     </view>   
     <view class="flex directionC mc_con">
       <text class="fw mc_con_title">我的仪器</text>
-      <text class="fc-aaa fs12">已认证</text>
+      <view wx:if='{{is_auth==0||is_auth==null}}' class="fc-aaa fs12">请先身份认证后查看当前仪器</view>
+      <view wx:else class="fc-aaa fs12">当前仪器：
+        <text class="fc-blue fs14">{{InstrumentCount}}</text> 台
+      </view>
     </view>
     <view class="mc_arrow text-right">
       <image src="/images/arrow-r.png" class="mc_arrow_img" mode='widthFix'></image>
