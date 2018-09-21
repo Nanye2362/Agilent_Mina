@@ -8,7 +8,7 @@
 		"newFeature": true
 	},
 	"compileType": "miniprogram",
-	"libVersion": "1.9.97",
+	"libVersion": "2.2.5",
 	"appid": "wxd73c4d1bcd0db4c2",
 	"projectname": "%E5%B0%8F%E7%A8%8B%E5%BA%8Fprod",
 	"condition": {
@@ -29,7 +29,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": -1,
+			"current": 3,
 			"list": [
 				{
 					"id": -1,
@@ -42,6 +42,18 @@
 					"name": "labqc",
 					"pathName": "pages/labqc/labqc",
 					"query": "scene=000001"
+				},
+				{
+					"id": -1,
+					"name": "bqchange",
+					"pathName": "pages/budget_confirm/budget_confirm",
+					"query": "objectId=3000212942&srId=8101654924"
+				},
+				{
+					"id": 3,
+					"name": "invoiceDetails",
+					"pathName": "pages/fill_info/fill_info",
+					"query": "mobile=13133334444"
 				}
 			]
 		}

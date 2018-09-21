@@ -1,6 +1,6 @@
 // pages/authentication/authentication.js
 var util = require('../../utils/util.js');
-var mechat = require('../mechat_list/mechat_list.js');
+//var mechat = require('../mechat_list/mechat_list.js');
 var clock = '';
 var nums = 60;
 Page({

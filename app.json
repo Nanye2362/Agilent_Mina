@@ -1,6 +1,8 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/invoiceConfirm/invoiceConfirm",
+    "pages/invoiceDetails/invoiceDetails",
     "pages/serviceOrder/serviceOrder",
     "pages/PM/PM",
     "pages/OQ/OQ",

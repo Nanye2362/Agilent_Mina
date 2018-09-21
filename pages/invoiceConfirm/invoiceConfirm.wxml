@@ -1,0 +1,84 @@
+<!--pages/invoiceDetails/invoiceDetails.wxml-->
+<view class='invoiceCon'>
+  <!-- 发票信息 -->
+  <view class='invoiceInfo'>
+    <view class='invTitle fw'>
+        <image class="invTitle_icon" src="/images/invoice.png" mode='widthFix'></image> 
+        增值税{{currentInvoice=='normalInvoice'?'普通':'专用'}}发票
+    </view>
+    <!-- 提醒 -->
+    <view class='invRemind text-center'>
+        <image class="invRemind_icon" src="/images/remind1.png" mode='widthFix'></image> 
+        <text class='fs12' style='margin:0 20rpx;'>应税劳务名称将按照实际服务内容开具</text>
+        <blueQuestion style='margin-top: -12rpx'>
+          <view class="ins_o_title text-left padding">关于发票应税劳务名称的说明</view>
+          <view class="invoice_o_con padding text-left">
+              <view>1.最终维修只有工时，票面内容为：劳务*维修费</view>
+              <view>2.单买备件，票面内容为：分析仪器*备件费或分析仪器*耗材（如果不单独注明开成耗材，我司将默认开成备件费）</view>
+              <view>3.最终维修同时有工时和备件，票面内容为：劳务*维修费（第一栏）；分析仪器*备件费（不同备件分栏列明）</view>
+              <view>★需体现备件中文名，请勾选“详见销货清单”（详见销货清单选项表示会随发票附一张清单，清单上将列明所使用的工时和备件的具体信息及价格）</view>
+          </view>
+        </blueQuestion>
+    </view>
+    <!-- 发票信息 -->
+    <view class='invInfo'>
+      <block wx:for="{{invoice}}" wx:for-item="item" wx:for-index="idx" wx:key='unique'>
+        <view class='invInfo_item flex alignc'>
+          <view class='invInfo_left fs13'>{{item}}：</view>
+          <view class='invInfo_right fs13'>{{invoiceInfo[idx]}}</view>
+        </view>
+      </block>
+    </view>
+  </view>
+
+
+
+  <!-- 寄送信息 -->
+  <view class='sendInfo'>
+    <!-- title -->
+    <view class='invTitle fw'>
+        <image class="invTitle_icon" src="/images/sendInfo.png" mode='widthFix'></image> 
+        发票寄送信息
+    </view>
+    <!-- 具体信息 -->
+    <view class='invInfo'>
+      <block wx:for="{{sendObj}}" wx:for-item="item" wx:for-index="idx" wx:key='unique'>
+        <view class='invInfo_item flex alignc'>
+          <view class='invInfo_left fs13'>{{item}}：</view>
+          <view class='invInfo_right'>{{sendInfo[idx]}}</view>
+        </view>
+      </block>
+    </view>
+    <!-- 提醒 -->
+    <view class='invRemind'>
+        <image class="invRemind_icon" src="/images/remind1.png" mode='widthFix'></image> 
+        <text class='fs12' style='margin:0 20rpx;'>如贵司的PO号码必须显示在发票上，或有其他特殊开票要求，请务必填写于此</text>
+    </view>
+
+
+    <view class='dashed marginT'></view>
+
+    <!--PO-->
+    <view class='invInfo_item flex alignc'>
+      <view class='invInfo_left fs13'>PO号码：</view>
+      <view class='invInfo_right'>{{PO}}</view>
+    </view>
+
+    <view class='marginT'>
+      <checkbox-group bindchange="checkBill">
+        <label class="checkbox">
+          <checkbox disabled='{{true}}' value="needBill" checked="{{needBill}}" style='transform:scale(.7);'/>
+          <text class='fc-777 fs12'>详见销货清单（如需要，请勾选）</text>
+        </label>
+      </checkbox-group>
+    </view>
+
+  </view>
+</view>
+
+
+<!-- btn -->
+<view class="group_btn">
+  <button class="btn btn-assist" wx:if='{{isConfirm==0?true:false}}'  bindtap='goBackEdit'>修改</button>
+  <button class="btn btn-primary" id="confirm" bindtap='submit'>确认</button>
+</view>

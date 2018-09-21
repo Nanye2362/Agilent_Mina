@@ -1,0 +1,7 @@
+/* pages/invoiceConfirm/invoiceConfirm.wxss */
+@import '../install/install';
+@import '../invoiceDetails/invoiceDetails';
+
+.invInfo_item view{
+  line-height: 1.5;
+}
