@@ -194,8 +194,9 @@ Page({
   },
   confirm:function(){
     var that=this;
-    console.log(invoiceDetails)
-    if (!this.data.checkBox || Object.keys(invoiceDetails).length === 0){
+    console.log(invoiceDetails);
+    console.log(Object.keys(invoiceDetails).length)
+    if (!this.data.checkBox || Object.keys(invoiceDetails).length == 0){
       wx.showModal({
         title: '提交失败',
         content: '请确认发票信息的完整，并勾选已阅读并接收此报价单',
