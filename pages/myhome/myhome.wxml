@@ -51,10 +51,10 @@
 </view>
 
 <!-- service_list -->
-<view class="mc_service_list bg-primary">
-  <!-- 已认证 -->
+<!-- <view class="mc_service_list bg-primary">
+  <!-- 已认证 >
   <block wx:if="{{is_auth == 1}}">
-    <!-- ==========个人信息============ -->
+    <!-- ==========个人信息============ >
     <view class="mc_items flex selfinfo" bindtap="gotoNext" data-url="../personal_info/personal_info?head_img_url={{head_img_url}}&name={{name}}&sex=1&mobile={{mobile}}&company={{company}}&email={{email}}">
       <image src="/images/mc-user.png" class="mc_icon  self-center"></image>
       <view class="flex directionC mc_con self-center">
@@ -63,7 +63,7 @@
       </view>
       <image src="/images/arrow-r.png" class="mc_arrow-r self-center"></image>
     </view>
-    <!-- ==========我的仪器============ -->
+    <!-- ==========我的仪器============ >
     <view class="mc_items flex" bindtap="gotoNext" data-url="../my_instrument/my_instrument">
       <image src="/images/mc-instrument.png" class="mc_icon self-center"></image>
       <view class="flex directionC mc_con self-center">
@@ -72,7 +72,7 @@
       </view>
       <image src="/images/arrow-r.png" class="mc_arrow-r self-center"></image>
     </view>
-    <!-- ==========我的预约============ -->
+    <!-- ==========我的预约============ >
     <view class="mc_items flex" bindtap="gotoNext" data-url="../orderList/orderList">
       <image src="/images/mc-instrument.png" class="mc_icon self-center"></image>
       <view class="flex directionC mc_con self-center">
@@ -81,7 +81,7 @@
       </view>
       <image src="/images/arrow-r.png" class="mc_arrow-r self-center"></image>
     </view>
-    <!-- ==========报修指南============ -->
+    <!-- ==========报修指南============ >
     <view class="mc_items flex service_guide" bindtap="gotoNext" data-url="../service_guide/service_guide">
       <image src="/images/mc-guide.png" class="mc_icon self-center"></image>
       <view class="flex directionC mc_con self-center">
@@ -90,7 +90,7 @@
       </view>
       <image src="/images/arrow-r.png" class="mc_arrow-r self-center"></image>
     </view>
-    <!-- ==========绑定解绑============ -->
+    <!-- ==========绑定解绑============ >
     <view class="mc_items flex user_unbind" data-contact_guid="{{ContactGuid}}" bindtap="Unbind">
       <image src="/images/mc-unbind.png" class="mc_icon self-center"></image>
       <view class="flex directionC mc_con self-center">
@@ -100,7 +100,7 @@
       <image src="/images/arrow-r.png" class="mc_arrow-r self-center"></image>
     </view>
   </block>
-  <!-- 未认证 -->
+  <!-- 未认证 >
   <block wx:elif="{{is_auth == 0 || is_auth == null}}">
     <view class="mc_items flex selfinfo" bindtap="gotoNext" data-url="../auth/auth">
       <image src="/images/mc-user.png" class="mc_icon  self-center"></image>
@@ -135,4 +135,97 @@
       <image src="/images/arrow-r.png" class="mc_arrow-r self-center"></image>
     </view>
   </block>
+</view> -->
+
+<view class="mc_service_list">
+  <!-- ==========我的仪器============ -->
+  <view class="mc_items flex alignc" bindtap="gotoNext">
+    <view class="mc_icon">
+      <view class="mc_icon_con flex alignc blue">
+        <image src="/images/myins.png" class="mc_icon_img" mode='widthFix'></image>
+      </view>      
+    </view>   
+    <view class="flex directionC mc_con">
+      <text class="fw mc_con_title">我的仪器</text>
+      <text class="fc-aaa fs12">已认证</text>
+    </view>
+    <view class="mc_arrow text-right">
+      <image src="/images/arrow-r.png" class="mc_arrow_img" mode='widthFix'></image>
+    </view>   
+  </view>
+  <!-- ==========我的预约============ -->
+  <view class="mc_items flex alignc" bindtap="gotoNext">
+    <view class="mc_icon">
+      <view class="mc_icon_con flex alignc blue">
+        <image src="/images/anzhuang.png" class="mc_icon_img" mode='widthFix'></image>
+      </view>      
+    </view>   
+    <view class="flex directionC mc_con">
+      <text class="fw mc_con_title">我的预约</text>
+      <text class="fc-aaa fs12">已认证</text>
+    </view>
+    <view class="mc_arrow text-right">
+      <image src="/images/arrow-r.png" class="mc_arrow_img" mode='widthFix'></image>
+    </view>   
+  </view>
+  <!-- ==========服务历史============ -->
+  <view class="mc_items flex alignc" bindtap="gotoNext">
+    <view class="mc_icon">
+      <view class="mc_icon_con flex alignc green">
+        <image src="/images/history (2).png" class="mc_icon_img" mode='widthFix'></image>
+      </view>      
+    </view>   
+    <view class="flex directionC mc_con">
+      <text class="fw mc_con_title">服务历史</text>
+      <text class="fc-aaa fs12">已认证</text>
+    </view>
+    <view class="mc_arrow text-right">
+      <image src="/images/arrow-r.png" class="mc_arrow_img" mode='widthFix'></image>
+    </view>   
+  </view>
+  <!-- ==========报修指南============ -->
+  <view class="mc_items flex alignc" bindtap="gotoNext">
+    <view class="mc_icon">
+      <view class="mc_icon_con flex alignc grass">
+        <image src="/images/guideline.png" class="mc_icon_img" mode='widthFix'></image>
+      </view>      
+    </view>   
+    <view class="flex directionC mc_con">
+      <text class="fw mc_con_title">报修指南</text>
+      <text class="fc-aaa fs12">已认证</text>
+    </view>
+    <view class="mc_arrow text-right">
+      <image src="/images/arrow-r.png" class="mc_arrow_img" mode='widthFix'></image>
+    </view>   
+  </view>
+  <!-- ==========送修指南============ -->
+  <view class="mc_items flex alignc" bindtap="gotoNext">
+    <view class="mc_icon">
+      <view class="mc_icon_con flex alignc grass">
+        <image src="/images/sendforrepair.png" class="mc_icon_img" mode='widthFix'></image>
+      </view>      
+    </view>   
+    <view class="flex directionC mc_con">
+      <text class="fw mc_con_title">送修指南</text>
+      <text class="fc-aaa fs12">已认证</text>
+    </view>
+    <view class="mc_arrow text-right">
+      <image src="/images/arrow-r.png" class="mc_arrow_img" mode='widthFix'></image>
+    </view>   
+  </view>
+  <!-- ==========我的课程============ -->
+  <view class="mc_items flex alignc" bindtap="gotoNext">
+    <view class="mc_icon">
+      <view class="mc_icon_con flex alignc orange">
+        <image src="/images/mylesson.png" class="mc_icon_img" mode='widthFix'></image>
+      </view>      
+    </view>   
+    <view class="flex directionC mc_con">
+      <text class="fw mc_con_title">我的课程</text>
+      <text class="fc-aaa fs12">已认证</text>
+    </view>
+    <view class="mc_arrow text-right">
+      <image src="/images/arrow-r.png" class="mc_arrow_img" mode='widthFix'></image>
+    </view>   
+  </view>
 </view>
