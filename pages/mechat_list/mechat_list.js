@@ -1,11 +1,13 @@
 // pages/mechat_list/mechat_list.js
 var util = require('../../utils/util.js');
+var config = require('../../config.js');
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    imgUrl: config.Server + 'images/mechat_poster.jpg',
     shLoading:false,// 是否显示输入框
     shInputInfo:false,//  是否显示信息确认页
     showTemplate:"", //需要显示的输入模块
@@ -22,7 +24,7 @@ Page({
     input2_name:"",
     input2_tel:"",
     input2_company:"",
-    showDesc:"",
+    //showDesc:"",
     showInfo:[false,false,false,false,false,false,false],
     list: [{ title: '分析仪器报修/咨询', desc: '售后仪器操作，故障咨询',class:'widthFix', color: 'blue', templete: 'inputTemplate1', checkfun: '', tapfun: 'srTap', meqia:'T'},
       { title: '电话工单补充图片', desc: '已有服务单号快速入口', color: 'blue', class: 'widthFix',templete: 'inputTemplate5', checkfun: 'checkOrder', tapfun: 'orderTap', meqia: 'N' },
@@ -34,24 +36,24 @@ Page({
     ],
     mechat_offline_time:""
   },
-  showDesc:function(e){
-    this.closeDesc();//关闭其他
-    var showInfo=this.data.showInfo;
-    showInfo[e.target.dataset.key]=true;
-    console.log(showInfo);
-    this.setData({
-      showInfo:showInfo
-    })
-  },
-  closeDesc:function(){
-    var showInfo = this.data.showInfo;
-    for (var i in showInfo){
-      showInfo[i]=false;
-    }
-     this.setData({
-      showInfo:showInfo
-    })
-  },
+  // showDesc:function(e){
+  //   this.closeDesc();//关闭其他
+  //   var showInfo=this.data.showInfo;
+  //   showInfo[e.target.dataset.key]=true;
+  //   console.log(showInfo);
+  //   this.setData({
+  //     showInfo:showInfo
+  //   })
+  // },
+  // closeDesc:function(){
+  //   var showInfo = this.data.showInfo;
+  //   for (var i in showInfo){
+  //     showInfo[i]=false;
+  //   }
+  //    this.setData({
+  //     showInfo:showInfo
+  //   })
+  // },
   bindfocusSrId:function(){
     if(this.data.input5_ordersn.length==0){
         this.setData({
@@ -206,7 +208,7 @@ Page({
       showTemplate: e.target.dataset.template,
       checkFun: e.target.dataset.checkfun,
       meqiaGroup: e.target.dataset.meqia,
-      showDesc: e.target.dataset.desc,
+      //showDesc: e.target.dataset.desc,
       titleColor: e.target.dataset.color,
       titleCon: e.target.dataset.title,
     })
@@ -253,7 +255,7 @@ Page({
       showTemplate: e.target.dataset.template,
       checkFun: e.target.dataset.checkfun,
       meqiaGroup: e.target.dataset.meqia,
-      showDesc: e.target.dataset.desc,
+      //showDesc: e.target.dataset.desc,
       titleColor: e.target.dataset.color,
       titleCon: e.target.dataset.title,
     })
@@ -384,7 +386,11 @@ Page({
     var app = getApp();
     app.mta.Page.init();
     //腾讯mat统计结束
-    //getApp().editTabBar();   
+    //getApp().editTabBar();
+    this.setData({
+      iconWidth: (app.globalData.sysInfo.winWidth-30)/3,
+      winWidth: app.globalData.sysInfo.winWidth
+    })   
   },
 
   /**

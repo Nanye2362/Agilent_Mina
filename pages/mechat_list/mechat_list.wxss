@@ -1,17 +1,9 @@
 /* pages/mechat_list/mechat_list.wxss */
 page{
-  height:auto !important;
-  position: relative;
+  background: #fff;
 }
-
-.mechat_panel{
-  background:#EEEEEE;
-  min-height:100%;
-}
-
 .mc_poster_bg{
-  height:416rpx;
-  width:750rpx;
+  width: 100%;
 }
 
 .btn-meiqia{
@@ -26,27 +18,24 @@ page{
 }
 
 .mechat_list_panel{
-  padding:15rpx;
+  padding: 15px;
 }
 
-.mechat_list_panel .mechat_row{
-   background: #fff;
-   height:75rpx;
-   margin-bottom: 18rpx;
-   border-radius: 10rpx;
-   position:relative;
+.mechat_title{
+  margin-bottom: 20rpx;
+}
+.mechat_list{
+  box-sizing: border-box;
+  flex-wrap: wrap;
 }
 
-.mechat_list_panel .mechat_row_head{
-  width:80rpx;
-  display: inline-block;
-  line-height: 75rpx;
-  font-size:40rpx;
-  text-align: center;
-  color:#eee;
-  vertical-align: middle;
-  border-top-left-radius: 10rpx;
-  border-bottom-left-radius: 10rpx;
+.mechat_row{
+  padding: 20rpx 0;
+  box-sizing: border-box;
+}
+
+.mechat_row_body{
+  font-size: 24rpx;
 }
 
 .mechat_row_blue{
@@ -68,86 +57,14 @@ page{
 .mechat_offline_time{
   background:#838690;
 }
-
-.mechat_list_panel .mechat_row_body{
-  display:inline-block;
-  font-size:28rpx;
-  padding-left:40rpx;
-  vertical-align: middle;
-  line-height:28rpx;
-}
-
-.mechat_list_panel .mechat_row_desc{
-  display:inline-block;
-  width:35rpx;
-  position:relative;
-  vertical-align: middle;
-  line-height:28rpx;
-  z-index: 2;
-}
-
-.mechat_list_panel .mechat_position_top{
-  position: absolute;
-  bottom:40rpx;
-  left:-10rpx;
-  opacity:0.8;
-  width:320rpx;
-}
-
-.mechat_list_panel .mechat_question_text{
-  font-size:20rpx;
-  padding:20rpx 40rpx;
-  display:inline-block;
-  background: #000;
-  color:#fff;
-  border-radius: 10rpx;
-}
-
-.mechat_list_panel .mechat_triangle_down{
-  width: 0; 
-  height: 0; 
-  border-left: 10rpx solid transparent; 
-  border-right: 10rpx solid transparent; 
-  border-top: 10rpx solid #000;
-  margin-left:19rpx;
-}
-
-.mechat_list_panel .mechat_question_icon image{
-  width:100%;
-  display: inline-block;
-  vertical-align: middle;
-}
-
-.shLoading .shLoading-head-desc{
-  padding:20rpx 40rpx 0;
-  line-height: 55rpx;
-}
-
-.mechat_list_panel .mechat_row_btn{
-  display:inline-block;
-  border:1px solid #ccc;
-  padding:8rpx 0;
-  color:#fff;
-  line-height: 57rpx;
-  vertical-align: middle;
-  position: absolute;
+.mechat_row_btn{
+  width: 130rpx;
+  height: 130rpx;
   text-align: center;
-  right:0;
-  top:0;
-  width:133rpx;
-  font-size:24rpx;
-  border-top-right-radius: 10rpx;
-  border-bottom-right-radius: 10rpx;
-  z-index: 1;
+  border-radius: 50%;
+  justify-content: center;
+  margin-bottom: 15rpx;
 }
-
-.mechat_list_panel .mechat_row_width{
-  width:510rpx;
-  display:inline-block;
-  height:75rpx;
-  line-height:75rpx;
-}
-
-.mechat_list_panel .widthFix{
-  width:290rpx;
+.mechat_row_btn image{
+  width: 70%;
 }

@@ -11,10 +11,18 @@ Page({
   },
 
   gotoNext: function(event){
-    console.log(event.currentTarget.dataset.url + '?pageName=myhome');
-    wx.navigateTo({
-      url: event.currentTarget.dataset.url+'?pageName=myhome'
-    })
+    var is_auth = this.data.is_auth;
+    var needauth = this.data.needauth;
+    if (needauth && is_auth==0){
+      wx.navigateTo({
+        url: '../auth/auth'
+      })
+    } else {
+      console.log(event.currentTarget.dataset.url + '?pageName=myhome');
+      wx.navigateTo({
+        url: event.currentTarget.dataset.url + '?pageName=myhome'
+      })
+    }    
   },
 
   Unbind: function (e) {

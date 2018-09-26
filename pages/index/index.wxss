@@ -1,37 +1,33 @@
-
+page{
+  background: #fff;
+}
+.slide-image{
+  width: 100%;
+}
 
 .h_alert_img image{ width: 30rpx; height: 30rpx; }
-.h_service_item { display: block; width: 100%; text-align: center; padding: 1.9rem 20px;}
+.h_service_item { 
+  display: block; 
+  width: 100%; 
+  text-align: center; 
+  padding: 0.9rem 20px;
+}
 
 .h_icon {
-    position: relative;
+    padding: 0 10px;
+    flex-wrap: wrap;
+    box-sizing: border-box;
 }
 
-.h_icon::before {
-    content: "";
-    width: 100%;
-    height: 1px;
-    background: #fff;
-    opacity: .4;
-    position: absolute;
-    top: 50%;
-    left: 0;
-}
-
-.h_icon::after {
-    content: "";
-    width: 1px;
-    height: 100%;
-    background: #fff;
-    opacity: .4;
-    position: absolute;
-    left: 50%;
-    top: 0;
+.icon_item{
+  background: #0085d5;
+  margin: 0 5px 20rpx;
+  border-radius: 10rpx;
 }
 
 .h_service_item image {
-    width: 120rpx;
-    height: 146rpx;
+    width: 90rpx;
+    height: 110rpx;
 }
 
 .h_alert {
@@ -69,18 +65,10 @@
     position: absolute;
     animation:horse 15s linear 0s infinite;
 }
-/*
-.example{
-  width: 90%;
-  height: 50px;
-  line-height: 50px;
-  overflow: hidden;
-}
-.marquee_text {
-  white-space: nowrap;
-  position: absolute;
-  top: 0;
-}*/
+
+
+
+
 .wrapper{  
     width:90%;  
     height:50px;
@@ -95,4 +83,50 @@
     66.5%{left:750rpx;top:600rpx;}
     67%  {left:750rpx;top:0px;}  
     100% {left:250rpx;top:0px;}  
+}
+
+
+.recent_service{
+  padding: 40rpx 30rpx 20rpx;
+}
+.rs_content{
+  padding: 30rpx 0 40rpx;
+}
+.rs_left{
+  position: relative;
+}
+.rs_time{
+  position: absolute;
+  right: -34rpx;
+  top: 36rpx;
+}
+
+.rs_sno{
+  margin-bottom: 10rpx;
+  word-break: break-all;
+}
+.rs_text{
+  height: 50rpx;
+  line-height: 50rpx;
+}
+.rs_l{
+  flex: .9
+}
+.rs_r{
+  flex: .1
+}
+.rs_r image{
+  width: 18rpx;
+  vertical-align: middle;
+}
+.rs_img{
+  width: 80rpx;
+  height: 80rpx;
+  background: #0085d5;
+  border-radius: 50%;
+  justify-content: center;
+  margin-right: 20rpx;
+}
+.rs_img image{
+  width: 36rpx;
 }

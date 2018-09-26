@@ -41,6 +41,10 @@ Page({
     cellHeight: '120px',
     pageItems: [],
     indicatorActiveColor: '#0085d5',
+    CreateTime:'',
+    HeaderStatus:'',
+    ServiceRequestId:'',
+    Title:'',
   },
   //事件处理函数
   bindViewTap: function () {
@@ -53,7 +57,10 @@ Page({
     var app = getApp();
     app.mta.Page.init();
     //腾讯mta统计结束
-
+    this.setData({
+      iconWidth: (app.globalData.sysInfo.winWidth-40)/2,
+      winWidth: app.globalData.sysInfo.winWidth
+    })
     var that = this;
     var text='';
     
@@ -63,9 +70,14 @@ Page({
       },
       success: function (res) {
         if (res.success) {
+          console.log(res)
           wx.setStorageSync('wrapper_text', res.text);
           that.setData({
-            text: res.text
+            text: res.text,
+            CreateTime: res.CurrentSr.CreateTime,
+            HeaderStatus: res.CurrentSr.HeaderStatus,
+            ServiceRequestId: res.CurrentSr.ServiceRequestId,
+            Title: res.CurrentSr.Title,
           })
           //wx.hideLoading();
         } else {
@@ -99,41 +111,6 @@ Page({
     console.log('onload' + option);
     var that = this
     console.log(app);
-    //调用应用实例的方法获取全局数据 
-    // app.getUserInfo(function (userInfo) {
-    //   that.setData({
-    //     userInfo: userInfo
-    //   })
-    //   var pageItems = [];
-    //   var row = [];
-    //   var len = routes.PageItems.length;//重组PageItems 
-    //   len = Math.floor(len);
-    //   for (var i = 0; i < len; i++) {
-    //     if ((i + 1) % 2 == 0) {
-    //       row.push(routes.PageItems[i]);
-    //       pageItems.push(row);
-    //       row = [];
-    //       continue;
-    //     }
-    //     else {
-    //       row.push(routes.PageItems[i]);
-    //     }
-    //   }
-    //   console.log(pageItems)
-    //   wx.getSystemInfo({
-    //     success: function (res) {
-    //       var windowWidth = res.windowWidth;
-    //       that.setData({
-    //         cellHeight: (windowWidth / 2.5) + 'px'
-    //       })
-    //     },
-    //     complete: function () {
-    //       that.setData({
-    //         pageItems: pageItems
-    //       })
-    //     }
-    //   })
-    // })
   },
   
   onShow: function () {
