@@ -59,7 +59,8 @@ Page({
     //腾讯mta统计结束
     this.setData({
       iconWidth: (app.globalData.sysInfo.winWidth-40)/2,
-      winWidth: app.globalData.sysInfo.winWidth
+      winWidth: app.globalData.sysInfo.winWidth,
+      winHeight: app.globalData.sysInfo.winHeight,
     })
     var that = this;
     var text='';
@@ -72,10 +73,12 @@ Page({
         if (res.success) {
           console.log(res)
           wx.setStorageSync('wrapper_text', res.text);
+          var headStatus = that.headStatus(res.CurrentSr.HeaderStatus);
+          console.log(headStatus)
           that.setData({
             text: res.text,
             CreateTime: res.CurrentSr.CreateTime,
-            HeaderStatus: res.CurrentSr.HeaderStatus,
+            HeaderStatus: headStatus,
             ServiceRequestId: res.CurrentSr.ServiceRequestId,
             Title: res.CurrentSr.Title,
           })
@@ -112,7 +115,89 @@ Page({
     var that = this
     console.log(app);
   },
-  
+
+  //最新服务历史图片
+  headStatus: function (headStatus){
+    switch(headStatus){
+      //等待您确认处理结果
+      case 'SR_EXCP' :
+      case 'DSR_EXCP' :
+        return 'waitResult';
+        break;
+      //在线服务订单已建立
+      case 'SR_IDSO':
+      case 'DSR_IDSO':
+        return 'onlineBuilt';
+        break;
+      //服务已完成及评价邀请
+      case 'SR_CLOSED':
+      case 'DSR_CLOSED':
+      case 'SO_RFREVIEW':
+      case 'DSO_RFREVIEW':
+      case 'SO_CLOSED':
+      case 'DSO_CLOSED':
+      case 'IHRO_CLOSED':
+        return 'serviceEvaluation';
+        break;
+      //服务订单已生成
+      case 'SO_OPEN':
+      case 'DSO_OPEN':
+        return 'orderBuilt';
+        break;
+      //备件已从库房发出
+      case 'SOI_AWPTORD':
+      case 'DSOI_AWPTORD':
+        return 'replaceStoreroom';
+        break;
+      //备件已从国外库房订购
+      case 'SOI_PTBO':
+      case 'DSOI_PTBO':
+        return 'replaceOrderOutside';
+        break;
+      //现场服务已安排
+      case 'SOI_SCHD':
+      case 'DSOI_SCHD':
+        return 'spotArranged';
+        break;
+      //预估报价待确认
+      case 'BQ_SENT':
+      case 'DBQ_SENT':
+        return 'estimateQuotationConfirm';
+        break;
+      //等待安排工程师
+      case 'BQ_ACCPT':
+      case 'DBQ_ACCPT':
+        return 'waitArrageEngineer';
+        break;
+      //服务报告已就绪
+      case 'SC_RFREVIEW':
+      case 'DSC_RFREVIEW':
+      case 'SC_SFCLOSER':
+      case 'DSC_SFCLOSER':
+        return 'serviceReportOk';
+        break;
+      //送修仪器已发出
+      case 'IHRO_SHCOMP':
+        return 'IHRO_SHCOMP';
+        break;
+      //送修仪器已收到
+      case 'IHRO_RTAREC':
+        return 'IHRO_RTAREC';
+        break;
+      //备用仪器已发出
+      case 'IHRO_LOANSHCOMP':
+        return 'IHRO_LOANSHCOMP';
+        break;
+      //交换仪器已发出
+      case 'IHRO_REPLOANSHCOMP':
+        return 'IHRO_REPLOANSHCOMP';
+        break;
+      //备用仪器已收到
+      case 'IHRO_LOANRETURN':
+        return 'IHRO_LOANRETURN';
+        break;
+    }
+  },
   onShow: function () {
   },
 
@@ -169,7 +254,7 @@ Page({
     });
   },
 /*
-** 安装申请、服务历史 点击跳转
+** 安装申请 点击跳转
 */
   nevigateToNext: function(e){
     console.log(e.dataset.info);
@@ -194,7 +279,26 @@ Page({
       });
 
   },
-  
+  /*
+    在线学习
+   */
+  skipHtml5Page: function (e) {
+    wx.setStorage({
+      key: "openHtmlUrl",
+      data: config.Server +'site/elearning?visitType=wechatmini',
+      success: function () {
+        wx.navigateTo({
+          url: '../html/openHtml',
+        });
+      }
+    })
+  },
+  //最新服务更新
+  gotoSH: function(){
+    wx.navigateTo({
+      url: '../service_list/service_list',
+    })
+  },
   /*
 **  自助服务点击弹出框
 */

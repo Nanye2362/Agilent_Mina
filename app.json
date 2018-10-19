@@ -1,7 +1,7 @@
 {
   "pages": [
-    "pages/mechat_list/mechat_list",
     "pages/index/index",
+    "pages/mechat_list/mechat_list",
     "pages/myhome/myhome",
     "pages/serviceOrder/serviceOrder",
     "pages/PM/PM",

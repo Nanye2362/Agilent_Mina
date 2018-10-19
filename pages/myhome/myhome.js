@@ -8,6 +8,7 @@ Page({
   data: {
     head_img_url: '../../images / no - avatar.png',
     InstrumentCount: 0,
+    NewNotificationCount: 0,
   },
 
   gotoNext: function(event){
@@ -111,6 +112,7 @@ Page({
           mobile: res.mobile,
           name: res.name,
           AppointmentCount: res.AppointmentCount,
+          NewNotificationCount: res.NewNotificationCount,
         });
       }
     });

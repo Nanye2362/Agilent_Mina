@@ -20,13 +20,30 @@ page{
 }
 
 .icon_item{
-  background: #0085d5;
+  /*background: #0085d5;*/
   margin: 0 5px 20rpx;
   border-radius: 10rpx;
 }
 
+/* 彩色版本 */
+.blue_gradient{
+  background: linear-gradient(-47deg, #13AAE0 0%, #1EB9F0 100%);
+}
+.orange_gradient{
+  background: linear-gradient(-224deg, #F2A80B 0%, #E87723 35%);
+}
+.green_gradient{
+  background: linear-gradient(-48deg, #84BD00 0%, #92CE08 100%);
+}
+.purple_gradient{
+  background: linear-gradient(-45deg, #80276C 0%, #CC1169 100%);
+}
+/* 彩色版本 */
+
+
+
 .h_service_item image {
-    width: 90rpx;
+    width: 110rpx;
     height: 110rpx;
 }
 
@@ -87,10 +104,10 @@ page{
 
 
 .recent_service{
-  padding: 40rpx 30rpx 20rpx;
+  padding: 30rpx 30rpx 10rpx;
 }
 .rs_content{
-  padding: 30rpx 0 40rpx;
+  padding: 20rpx 0 35rpx;
 }
 .rs_left{
   position: relative;
@@ -98,11 +115,10 @@ page{
 .rs_time{
   position: absolute;
   right: -34rpx;
-  top: 36rpx;
+  top: 32rpx;
 }
 
 .rs_sno{
-  margin-bottom: 10rpx;
   word-break: break-all;
 }
 .rs_text{
@@ -116,17 +132,18 @@ page{
   flex: .1
 }
 .rs_r image{
-  width: 18rpx;
+  width: 16rpx;
   vertical-align: middle;
 }
 .rs_img{
   width: 80rpx;
   height: 80rpx;
-  background: #0085d5;
+  background: #00A9E0;
   border-radius: 50%;
   justify-content: center;
   margin-right: 20rpx;
 }
 .rs_img image{
-  width: 36rpx;
+  width: 50rpx;
+  height: 50rpx;
 }

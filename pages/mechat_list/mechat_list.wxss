@@ -18,11 +18,11 @@ page{
 }
 
 .mechat_list_panel{
-  padding: 15px;
+  padding: 20rpx 15px;
 }
 
 .mechat_title{
-  margin-bottom: 20rpx;
+  margin-bottom: 10rpx;
 }
 .mechat_list{
   box-sizing: border-box;
@@ -30,7 +30,7 @@ page{
 }
 
 .mechat_row{
-  padding: 20rpx 0;
+  padding: 15rpx 0;
   box-sizing: border-box;
 }
 
@@ -39,24 +39,30 @@ page{
 }
 
 .mechat_row_blue{
-  background: #0087D2;
+  background: #00A9E0;
 }
 
-.mechat_row_orange{
+.mechat_row_purple{
   background: #802764;
 }
 
 .mechat_row_green{
-  background: #86BC02;
+  background: #6fd100;
+}
+.mechat_row_tree{
+  background: #009400;
 }
 
 .mechat_row_yellow{
   background: #F3A901;
 }
-
-.mechat_offline_time{
-  background:#838690;
+.mechat_row_orange{
+  background: #E67600;
 }
+
+/* .mechat_offline_time{
+  background:#838690;
+} */
 .mechat_row_btn{
   width: 130rpx;
   height: 130rpx;
@@ -67,4 +73,5 @@ page{
 }
 .mechat_row_btn image{
   width: 70%;
+  height: 70%;
 }

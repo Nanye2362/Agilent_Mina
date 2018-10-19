@@ -1,9 +1,9 @@
 var config = {
 
-  En:"PRO",
+  En:"DEV",
   // 下面的地址配合云端 Server 工作
-  //Server: "https://devops.coffeelandcn.cn/",//UAT
-  Server:"https://devopsx.coffeelandcn.cn/", //DEV
+  Server: "https://devops.coffeelandcn.cn/",//UAT
+  //Server:"https://devopsx.coffeelandcn.cn/", //DEV
   //Server: "https://prd.wechat.service.agilent.com/", //PRO
   //Server:"",
   version:"2.9.7.1",

@@ -6,18 +6,6 @@
         <image src="{{item.url}}" class="slide-image" mode='widthFix'></image>
     </swiper-item>
   </block>
-  <!-- notification -->
-    <view class="flex h_alert h_alert_bg"></view>
-    <view class="flex h_alert">
-        <view class="h_alert_img">
-            <image src="/images/info_alert.png"></image>
-        </view>
-        <view class="wrapper">
-            <view class="flex__item h_alert_con">
-                <text class="fc-fff fs14">{{text}}</text>
-            </view>
-        </view>
-    </view>
 </swiper>
 
 
@@ -27,13 +15,13 @@
   <!-- title -->
   <view class='fs18'>最新服务更新</view>
   <!-- content -->
-  <view class='rs_content flex alignc'>
+  <view class='rs_content flex alignc' bindtap='gotoSH'>
     <view class='rs_l'>
       <!-- Service -->
       <view wx:if='{{ServiceRequestId!=""}}' class='flex alignc rs_left'>
         <!-- statusImg -->
         <view class='rs_img flex alignc'>
-          <image src='/images/rs.png' mode='widthFix'></image>
+          <image src='/images/{{HeaderStatus}}.png'></image>
         </view>
         <!-- content -->
         <view class='flex directionC rs_con'>
@@ -59,32 +47,32 @@
 
 <!-- 图标链接 -->
 <view class="h_icon flex">
+  <!-- 常见问题 -->
+  <form class="wxform icon_item blue_gradient" bindsubmit="formSubmit" report-submit="true" style='width:{{iconWidth}}px'  >
+    <button plain="true" class="formbtn h_service_item" form-type="submit" data-info="self_service" data-click="nevigateToNext" data-url="../self_service/self_service">
+      <image src="/images/self.png"></image>
+      <view class="fs14 fc-fff">常见问题</view>  
+    </button>  
+  </form>
   <!-- 我要报修 -->
-  <form class="wxform icon_item" bindsubmit="formSubmit" report-submit="true" style='width:{{iconWidth}}px' >
+  <form class="wxform icon_item orange_gradient" bindsubmit="formSubmit" report-submit="true" style='width:{{iconWidth}}px' >
     <button plain="true" class="formbtn h_service_item service_repair" form-type="submit" data-info="serial_number" data-click="clickToRepair">
       <image src="/images/repair.png"></image>
       <view class="fs14 fc-fff">我要报修</view>  
     </button>  
   </form>
   <!-- 服务预约 -->
-  <form class="wxform icon_item" bindsubmit="formSubmit" report-submit="true" style='width:{{iconWidth}}px'  >
+  <form class="wxform icon_item green_gradient" bindsubmit="formSubmit" report-submit="true" style='width:{{iconWidth}}px'  >
     <button plain="true" class="formbtn h_service_item" form-type="submit" data-info="serviceOrder" data-click="nevigateToNext" data-url="../serviceOrder/serviceOrder">
       <image src="/images/install.png"></image>
       <view class="fs14 fc-fff">服务预约</view>  
     </button>  
   </form>
-  <!-- 自助服务 -->
-  <form class="wxform icon_item" bindsubmit="formSubmit" report-submit="true" style='width:{{iconWidth}}px'  >
-    <button plain="true" class="formbtn h_service_item" form-type="submit" data-info="self_service" data-click="nevigateToNext" data-url="../self_service/self_service">
-      <image src="/images/self.png"></image>
-      <view class="fs14 fc-fff">自助服务</view>  
-    </button>  
-  </form>
-  <!-- 服务历史 -->
-  <form class="wxform icon_item" bindsubmit="formSubmit" report-submit="true" style='width:{{iconWidth}}px'  >
-    <button plain="true" class="formbtn h_service_item" form-type="submit" data-info="service_list" data-click="nevigateToNext" data-url="../service_list/service_list">
-      <image src="/images/history.png"></image>
-      <view class="fs14 fc-fff">服务历史</view>  
+  <!-- elearning -->
+  <form class="wxform icon_item purple_gradient" bindsubmit="formSubmit" report-submit="true" style='width:{{iconWidth}}px'  >
+    <button plain="true" class="formbtn h_service_item" form-type="submit" data-info="elearning" data-click="skipHtml5Page" data-url="../elearning/elearning">
+      <image src="/images/myclass.png"></image>
+      <view class="fs14 fc-fff">在线学习</view>  
     </button>  
   </form>
 </view>
