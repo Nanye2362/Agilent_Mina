@@ -25,48 +25,47 @@ Page({
     input2_tel:"",
     input2_company:"",
     //showDesc:"",
-    showInfo:[false,false,false,false,false,false,false],
-    list: [{ title: '分析仪器报修/咨询', img:'repair', class:'widthFix', color: 'blue', templete: 'inputTemplate1', checkfun: '', tapfun: 'srTap', meqia:'T'},  
+    //showInfo:[false,false,false,false,false,false,false,false,false],
+    list: [{ title: '分析仪器报修/咨询', img: 'repair', class: 'widthFix', color: 'blue', templete: 'inputTemplate1', checkfun: 'checkSales', tapfun: 'srTap', meqia:'T'},  
       { title: '消耗品购买', img: 'buy', class: 'widthFix', color: 'green', templete: 'inputTemplate2', checkfun: 'checkSales', tapfun: 'salesBATap', meqia: 'CB' },
       { title: '消耗品售后', img: 'afterbuy', class: 'widthFix', color: 'green', templete: 'inputTemplate2', checkfun: 'checkSales', tapfun: 'salesBATap', class: 'widthFix',meqia: 'CA' },
       { title: '实验室仪器采购', img: 'purchase', color: 'tree', templete: 'inputTemplate2', checkfun: 'checkSales', tapfun: 'salesTap', class: 'widthFix',meqia: 'K' },
       { title: '实验室服务方案', img: 'solution', color: 'tree', templete: 'inputTemplate2', class: 'widthFix',checkfun: 'checkSales', tapfun: 'salesTap', meqia: 'S' },
-      { title: '售后服务合同', img: 'contract', color: 'yellow', class: 'widthFix', templete: 'inputTemplate5', checkfun: 'checkOrder', tapfun: 'orderTap', meqia: 'N' },
-      { title: '实验室法规认证', img: 'OQ', color: 'yellow', templete: 'inputTemplate2', checkfun: 'checkSales', class: 'widthFix', tapfun: 'salesTap', meqia: 'E' }, 
-      { title: '送修及仪器翻新', img: 'renew', color: 'orange', templete: 'inputTemplate2', checkfun: 'checkSales', class: 'widthFix', tapfun: 'salesTap', meqia: 'E' }, 
+      { title: '售后服务合同', img: 'contract', color: 'yellow', class: 'widthFix', templete: 'inputTemplate2', checkfun: 'checkSales', tapfun: 'salesTap', meqia: 'S' },
+      { title: '实验室法规认证', img: 'OQ', color: 'yellow', templete: 'inputTemplate2', checkfun: 'checkSales', class: 'widthFix', tapfun: 'salesTap', meqia: 'S' }, 
+      { title: '送修及仪器翻新', img: 'renew', color: 'orange', templete: 'inputTemplate2', checkfun: 'checkSales', class: 'widthFix', tapfun: 'srTap', meqia: 'T' }, 
       { title: '安捷伦大学培训', img: 'myclass', color: 'purple', templete: 'inputTemplate2', checkfun: 'checkSales', class: 'widthFix', tapfun: 'salesTap', meqia: 'E' },  
     ],
     mechat_offline_time:""
   },
-  showDesc:function(e){
-    this.closeDesc();//关闭其他
-    var showInfo=this.data.showInfo;
-    showInfo[e.target.dataset.key]=true;
-    console.log(showInfo);
-    this.setData({
-      showInfo:showInfo
-    })
-  },
-  closeDesc:function(){
-    var showInfo = this.data.showInfo;
-    for (var i in showInfo){
-      showInfo[i]=false;
-    }
-     this.setData({
-      showInfo:showInfo
-    })
-  },
-  bindfocusSrId:function(){
-    if(this.data.input5_ordersn.length==0){
-        this.setData({
-          input5_ordersn:"810"
-        });
-    }
-  },
-  startChat:function(e){
-    
+  // showDesc:function(e){
+  //   this.closeDesc();//关闭其他
+  //   var showInfo=this.data.showInfo;
+  //   showInfo[e.currentTarget.dataset.key]=true;
+  //   console.log(showInfo);
+  //   this.setData({
+  //     showInfo:showInfo
+  //   })
+  // },
+  // closeDesc:function(){
+  //   var showInfo = this.data.showInfo;
+  //   for (var i in showInfo){
+  //     showInfo[i]=false;
+  //   }
+  //    this.setData({
+  //     showInfo:showInfo
+  //   })
+  // },
+  // bindfocusSrId:function(){
+  //   if(this.data.input5_ordersn.length==0){
+  //       this.setData({
+  //         input5_ordersn:"810"
+  //       });
+  //   }
+  // },
+  startChat:function(e){  
     var app = getApp();
-    app.mta.Event.stat("meqia", { "group": e.target.dataset.group});
+    app.mta.Event.stat("meqia", { "group": e.currentTarget.dataset.group});
     this.setData({
       shInputInfo: false,
       sessionId:0
@@ -91,17 +90,6 @@ Page({
       showInfo += dataTemplete[this.data.showTemplate][i]["nameInfo"] + ":" + this.data[dataTemplete[this.data.showTemplate][i]["name"]]+"\r\n";
     }
     return { hasError: hasError, showInfo: showInfo, obj: dataObj}
-  },
-  headImgTap:function(){
-    wx.setStorage({
-      key: "openHtmlUrl",
-      data: "https://www.chem.agilent.com/store/",
-      success:function(){
-        wx.navigateTo({
-          url: '../html/openHtml',
-        });
-      }
-    })
   },
   okTap:function(e){
     var returnObj = this.getInputInfo();
@@ -149,7 +137,7 @@ Page({
   },
   bindKeyInput: function (e) {
     var obj={};
-    obj[e.target.dataset.name] = e.detail.value;
+    obj[e.currentTarget.dataset.name] = e.detail.value;
     this.setData(obj);
   },
   srTap:function(e){//立即咨询1  sr逻辑 检测是否绑定手机，如没有跳转到绑定页，如是则弹出序列号输入框
@@ -167,9 +155,10 @@ Page({
       });
   },
   showInputPanel:function(e){// 点击弹出信息输入
+    console.log('showinputpanel');
     var that=this;
     util.checkWorktime(function () {
-      switch (e.target.dataset.tapfun){
+      switch (e.currentTarget.dataset.tapfun){
         case "salesTap":
           that.salesTap(e);
           break;
@@ -184,7 +173,8 @@ Page({
           break;
       }
     },function(){
-      switch (e.target.dataset.tapfun) {
+      console.log(e)
+      switch (e.currentTarget.dataset.tapfun) {
         case "salesTap":
           that.showOfflineText();
           break;
@@ -207,37 +197,15 @@ Page({
     console.log(e);
     var that = this;
     that.setData({
-      showTemplate: e.target.dataset.template,
-      checkFun: e.target.dataset.checkfun,
-      meqiaGroup: e.target.dataset.meqia,
-      showDesc: e.target.dataset.desc,
-      titleColor: e.target.dataset.color,
-      titleCon: e.target.dataset.title,
+      showTemplate: e.currentTarget.dataset.template,
+      checkFun: e.currentTarget.dataset.checkfun,
+      meqiaGroup: e.currentTarget.dataset.meqia,
+      //showDesc: e.currentTarget.dataset.desc,
+      titleColor: e.currentTarget.dataset.color,
+      titleCon: e.currentTarget.dataset.title,
     })
 
     util.IsCertificate(function () {
-      // util.NetRequest({
-      //   url: 'site-mini/meqia-getuserinfo',
-      //   success: function (res) {
-      //     console.log(res);
-      //     that.setData({
-      //       input2_name: res.userinfo.name,
-      //       input2_tel: res.userinfo.tel,
-      //       input2_company: res.userinfo.meta.company
-      //     })
-
-      //     var showInfo = "";
-      //     for (var i in dataTemplete[that.data.showTemplate]) {
-      //       showInfo += dataTemplete[that.data.showTemplate][i]["nameInfo"] + ":" + that.data[dataTemplete[that.data.showTemplate][i]["name"]] + "\r\n";
-      //     }
-
-      //     that.setData({
-      //       shLoading: false,
-      //       shInputInfo: true,
-      //       showText: showInfo
-      //     });
-      //   }
-      // })
       that.getCusInfo();
     }, function () {
       var userInputInfo = wx.getStorageSync('UserInputCache_ol');
@@ -254,19 +222,19 @@ Page({
   salesBATap: function(e){
     var that = this;
     that.setData({
-      showTemplate: e.target.dataset.template,
-      checkFun: e.target.dataset.checkfun,
-      meqiaGroup: e.target.dataset.meqia,
-      showDesc: e.target.dataset.desc,
-      titleColor: e.target.dataset.color,
-      titleCon: e.target.dataset.title,
+      showTemplate: e.currentTarget.dataset.template,
+      checkFun: e.currentTarget.dataset.checkfun,
+      meqiaGroup: e.currentTarget.dataset.meqia,
+      //showDesc: e.currentTarget.dataset.desc,
+      titleColor: e.currentTarget.dataset.color,
+      titleCon: e.currentTarget.dataset.title,
     })
     util.IsCertificate(function () {
       that.getCusInfo();
       //未绑定，则跳转认证页面
     }, function () {
       wx.navigateTo({
-        url: '../auth/auth?pageName=mechat_list&pagelabel=salesBA_'+ e.target.dataset.meqia,
+        url: '../auth/auth?pageName=mechat_list&pagelabel=salesBA_'+ e.currentTarget.dataset.meqia,
       })
     });
   },
@@ -300,11 +268,11 @@ Page({
     util.IsCertificate(function () {
       //绑定的话,跳转相应页面
       that.setData({
-        showTemplate: e.target.dataset.template,
-        checkFun: e.target.dataset.checkfun,
-        meqiaGroup: e.target.dataset.meqia,
-        titleColor: e.target.dataset.color,
-        titleCon: e.target.dataset.title,
+        showTemplate: e.currentTarget.dataset.template,
+        checkFun: e.currentTarget.dataset.checkfun,
+        meqiaGroup: e.currentTarget.dataset.meqia,
+        titleColor: e.currentTarget.dataset.color,
+        titleCon: e.currentTarget.dataset.title,
         shLoading: true
       })
       //未绑定，则跳转认证页面
@@ -313,9 +281,9 @@ Page({
         url: '../auth/auth?pageName=mechat_list',
         success:function(){
           that.setData({
-            showTemplate: e.target.dataset.template,
-            checkFun: e.target.dataset.checkfun,
-            meqiaGroup: e.target.dataset.meqia,
+            showTemplate: e.currentTarget.dataset.template,
+            checkFun: e.currentTarget.dataset.checkfun,
+            meqiaGroup: e.currentTarget.dataset.meqia,
             //shLoading: true
           })
         }

@@ -2,19 +2,19 @@
 
   <view class="mechat_panel">
     <!-- poster -->
-    <view class="mechat_head_img" bindtap="headImgTap">
+    <view class="mechat_head_img">
       <image src="{{imgUrl}}" class="mc_poster_bg" mode="widthFix"></image>
     </view>
     <!-- icon -->
-    <view class="mechat_list_panel">
+    <view class="mechat_list_panel" >
       <view class='mechat_title fs18'>请选择咨询</view>
       <view class="mechat_list flex alignc">
         <!-- item -->
-        <view class="mechat_row flex directionC alignc" wx:for="{{list}}" wx:key='unique' style='width:{{iconWidth}}px'>      
-          <view class="mechat_row_btn flex alignc mechat_row_{{item.color}}"  bindtap="showInputPanel" data-Template="{{item.templete}}" data-checkfun="{{item.checkfun}}" data-desc="{{item.desc}}" data-tapfun="{{item.tapfun}}" data-meqia="{{item.meqia}}" data-title='{{item.title}}' data-color='mechat_row_{{item.color}}'>
-            <image class='' src='/images/{{item.img}}.png'></image>
+        <view class="mechat_row flex directionC alignc" wx:for="{{list}}" wx:key='unique' style='width:{{iconWidth}}px' bindtap="showInputPanel" data-Template="{{item.templete}}" data-checkfun="{{item.checkfun}}" data-desc="{{item.desc}}" data-tapfun="{{item.tapfun}}" data-meqia="{{item.meqia}}" data-title='{{item.title}}' data-color='mechat_row_{{item.color}}' data-key="{{index}}">      
+          <view class="mechat_row_btn flex alignc mechat_row_{{item.color}}">
+            <image src='/images/{{item.img}}.png'></image>
           </view>
-          <view class="mechat_row_body {{item.class}} fc-777" data-key="{{index}}">
+          <view class="mechat_row_body {{item.class}} fc-777" data-key="{{index}}" >
             {{item.title}}
           </view>
         </view>

@@ -4,6 +4,17 @@ page{
 .slide-image{
   width: 100%;
 }
+.swiper_text{
+    position: absolute;
+    width: 100%;
+    height: 94rpx;
+    background: rgba(000, 000, 000, .4);
+    bottom: 0;
+    left: 0;
+    line-height: 60rpx;
+    color: #fff;
+    text-indent: 20rpx;
+}
 
 .h_alert_img image{ width: 30rpx; height: 30rpx; }
 .h_service_item { 

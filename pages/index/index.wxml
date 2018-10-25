@@ -1,9 +1,10 @@
 
 <!--index.wxml-->
 <swiper indicator-dots="{{indicatorDots}}" indicator-active-color="{{indicatorActiveColor}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" style="width: 100%; height: 410rpx;" circular="{{true}}">
-  <block wx:for="{{imgUrls}}" wx:key="{{img}}">
-    <swiper-item>
-        <image src="{{item.url}}" class="slide-image" mode='widthFix'></image>
+  <block wx:for="{{imgUrls}}" wx:key="{{img}}" wx:for-index='index'>
+    <swiper-item bindtap='gotoPoster' data-type='url' data-url='{{item.skipUrl}}'>
+      <image src="{{item.url}}" class="slide-image" mode='widthFix'></image>
+      <view class='swiper_text'>{{item.text}}</view>
     </swiper-item>
   </block>
 </swiper>
@@ -48,32 +49,32 @@
 <!-- 图标链接 -->
 <view class="h_icon flex">
   <!-- 常见问题 -->
-  <form class="wxform icon_item blue_gradient" bindsubmit="formSubmit" report-submit="true" style='width:{{iconWidth}}px'  >
+  <view class="wxform icon_item blue_gradient" style='width:{{iconWidth1}}px' bindtap='gotoSS' >
     <button plain="true" class="formbtn h_service_item" form-type="submit" data-info="self_service" data-click="nevigateToNext" data-url="../self_service/self_service">
       <image src="/images/self.png"></image>
       <view class="fs14 fc-fff">常见问题</view>  
     </button>  
-  </form>
+  </view>
   <!-- 我要报修 -->
-  <form class="wxform icon_item orange_gradient" bindsubmit="formSubmit" report-submit="true" style='width:{{iconWidth}}px' >
+  <form class="wxform icon_item orange_gradient" bindsubmit="formSubmit" report-submit="true" style='width:{{iconWidth2}}px' >
     <button plain="true" class="formbtn h_service_item service_repair" form-type="submit" data-info="serial_number" data-click="clickToRepair">
       <image src="/images/repair.png"></image>
       <view class="fs14 fc-fff">我要报修</view>  
     </button>  
   </form>
   <!-- 服务预约 -->
-  <form class="wxform icon_item green_gradient" bindsubmit="formSubmit" report-submit="true" style='width:{{iconWidth}}px'  >
+  <form class="wxform icon_item green_gradient" bindsubmit="formSubmit" report-submit="true" style='width:{{iconWidth3}}px'  >
     <button plain="true" class="formbtn h_service_item" form-type="submit" data-info="serviceOrder" data-click="nevigateToNext" data-url="../serviceOrder/serviceOrder">
       <image src="/images/install.png"></image>
       <view class="fs14 fc-fff">服务预约</view>  
     </button>  
   </form>
   <!-- elearning -->
-  <form class="wxform icon_item purple_gradient" bindsubmit="formSubmit" report-submit="true" style='width:{{iconWidth}}px'  >
-    <button plain="true" class="formbtn h_service_item" form-type="submit" data-info="elearning" data-click="skipHtml5Page" data-url="../elearning/elearning">
+  <view class="wxform icon_item purple_gradient" style='width:{{iconWidth4}}px' bindtap='skipHtml5Page' >
+    <button plain="true" class="formbtn h_service_item" form-type="submit" data-info="elearning" data-click="skipHtml5Page">
       <image src="/images/myclass.png"></image>
       <view class="fs14 fc-fff">在线学习</view>  
     </button>  
-  </form>
+  </view>
 </view>
  <!-- <button bindtap='clearStorage'>清缓存</button>  -->

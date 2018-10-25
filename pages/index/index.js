@@ -24,13 +24,19 @@ Page({
     imgUrls:
     [
       {
-        url: config.Server +'images/slider1.jpg'
+        url: config.Server + 'images/slider2.jpg?version=20181019',
+        text: '维修门诊 | 液相色谱步入送修时代!(附病例分析)',
+        skipUrl: 'https://mp.weixin.qq.com/s/-q9UIjUUEgxTiM7vIh64eA',
       },
       {
-        url: config.Server + 'images/slider2.jpg',
+        url: config.Server + 'images/slider1.jpg?version=20181019',
+        text: '搬迁服务 | 安捷伦为您多想一点',
+        skipUrl: 'https://mp.weixin.qq.com/s/YHLs9IyMfFS8iLlDLuBAXw',
       },
       {
-        url: config.Server + 'images/slider3.jpg',
+        url: config.Server + 'images/slider3.jpg?version=20181019',
+        text: '记忆大师 | 数据备份追溯测试解决方案',
+        skipUrl: 'https://mp.weixin.qq.com/s/wLJMsWpnAYAqoLPO06OhjA',
       }
     ],
     indicatorDots: true,
@@ -56,9 +62,14 @@ Page({
     //腾讯mta统计开始
     var app = getApp();
     app.mta.Page.init();
+    var iconWidth = (app.globalData.sysInfo.winWidth - 40) / 2;
     //腾讯mta统计结束
     this.setData({
-      iconWidth: (app.globalData.sysInfo.winWidth-40)/2,
+      iconWidth: iconWidth,
+      iconWidth1: iconWidth-20,
+      iconWidth2: iconWidth + 20,
+      iconWidth3: iconWidth + 15,
+      iconWidth4: iconWidth - 15,
       winWidth: app.globalData.sysInfo.winWidth,
       winHeight: app.globalData.sysInfo.winHeight,
     })
@@ -293,6 +304,27 @@ Page({
       }
     })
   },
+  gotoPoster: function (e) {
+    var url = e.currentTarget.dataset.url;
+    wx.setStorage({
+      key: "openHtmlUrl",
+      data: url,
+      success: function () {
+        wx.navigateTo({
+          url: '../html/openHtml',
+        });
+      }
+    })
+  },
+
+  //常见问题
+  gotoSS: function(){
+    wx.navigateTo({
+      url: '../self_service/self_service',
+    });
+  },
+
+
   //最新服务更新
   gotoSH: function(){
     wx.navigateTo({
