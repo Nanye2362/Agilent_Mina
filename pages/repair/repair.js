@@ -11,24 +11,8 @@ Page({
     winHeight: 0,
     currentTab: 0,
     curr_id: '',
+    sn: '',
     imgUrl: config.Server + 'images/Send_banner.jpg',
-    // imgUrls: [
-    //   {
-    //     url: config.Server + 'images/Send_1.jpg',
-    //   }, 
-    //   {
-    //     url: config.Server + 'images/Send_2.jpg',
-    //   },
-    //   {
-    //     url: config.Server + 'images/Send_3.jpg',
-    //   }, 
-    //   {
-    //     url: config.Server + 'images/Send_4.jpg',
-    //   },
-    //   {
-    //     url: config.Server + 'images/Send_5.jpg',
-    //   }
-    // ],
     imgUrls: [
       {
         url: config.Server + 'images/Send_1.jpg',
@@ -49,43 +33,43 @@ Page({
     videoUrls:[
       {
         id:1,
-        poster: '/images/cover.png',
+        poster: '/images/cover.jpg',
         title: '1.安捷伦液相色谱仪-完整装机步骤',
         url: 'http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400',
       },
       {
         id: 2,
-        poster: '/images/cover.png',
+        poster: '/images/cover.jpg',
         title: '2.安捷伦液相色谱仪-完整拆机步骤',
         url: 'http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400',
       },
       {
         id: 3,
-        poster: '/images/cover.png',
+        poster: '/images/cover.jpg',
         title: '3.安捷伦液相色谱仪拆装机-G1367E自动进样器',
         url: 'http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400',
       },
       {
         id: 4,
-        poster: '/images/cover.png',
+        poster: '/images/cover.jpg',
         title: '4.安捷伦液相色谱仪拆装机-四元泵',
         url: 'http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400',
       },
       {
         id: 5,
-        poster: '/images/cover.png',
+        poster: '/images/cover.jpg',
         title: '5.安捷伦液相色谱仪-CAN线LAN线连接步骤',
         url: 'http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400',
       },
       {
         id: 6,
-        poster: '/images/cover.png',
+        poster: '/images/cover.jpg',
         title: '6.安捷伦液相色谱仪拆装-seal-wash管线拆卸',
         url: 'http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400',
       },
       {
         id: 7,
-        poster: '/images/cover.png',
+        poster: '/images/cover.jpg',
         title: '7.安捷伦气相色谱仪自动进样器送修包装指南',
         url: 'http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400',
       },
@@ -96,6 +80,12 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log(options)
+    if(options.sn!=undefined){
+      this.setData({
+        sn: options.sn
+      })
+    }
     /* 获取系统信息 */
     var that = this;
     wx.getSystemInfo({

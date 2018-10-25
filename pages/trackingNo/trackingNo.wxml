@@ -1,0 +1,33 @@
+<!--pages/trackingNo/trackingNo.wxml-->
+<view class='trackingNo'>
+  顺丰快递：{{deliveryno}}
+</view>
+<view id='recordOut' class='recordOut'>
+  <block wx:if='{{istracking}}' wx:for="{{tracking}}" wx:for-item="item" wx:key='unique' wx:for-index="idx">
+    <view class='record'>
+      <view class='recordCon'>
+        <!-- recordDetails -->
+        <view class="flex directionC recordDetails">
+          <view class="flex">
+              <view class="fs14 {{idx==0?'fc-blue':''}}">{{item.time}}</view>
+          </view> 
+          <view class="flex">
+            <view class=" fs13 rd-l">进度：</view>
+            <view class=" fs13 rd-r">{{item.context}}</view>
+          </view>           
+        </view>
+        <!-- recordLabel -->
+        <view class='{{idx==0?"firstLabel":"recordLabel"}}' ></view>        
+        <view class='{{idx==0?"secondLabel":""}}' ></view>
+      </view>
+    </view>
+  </block>
+  <!-- <view wx:else >暂无快递信息</view>  -->
+</view>
+<button class="btn btn-primary" bindtap='goBack'>返回</button>
+<view class="check_repair" bindtap='gotoCheck'>
+    <view class="text-center fs12">如有任何疑问，请
+      <image src="/images/trackingNo.png" mode='widthFix'></image>
+      <text class='fc-blue'>查看送修服务介绍</text>
+    </view>
+</view>

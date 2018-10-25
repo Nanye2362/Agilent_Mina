@@ -1,0 +1,32 @@
+
+/* pages/trackingNo/trackingNo.wxss */
+@import '../labqc/labqc';
+.trackingNo{
+  padding: 60rpx 50rpx;
+  font-size: 1.1rem;
+  background: #fff;
+  border-bottom: 1px solid #cacaca;
+}
+.rd-l{
+  flex: .2;
+  line-height: 40rpx;
+}
+.recordDetails{
+  margin-left: 20rpx;
+}
+.rd-r{
+  line-height: 40rpx;
+}
+.record{
+  background: #fff;
+  margin-top: 20rpx;
+}
+.check_repair{
+  margin: 20rpx auto;
+  width: 100%;
+}
+.check_repair image{
+  width: 40rpx;
+  vertical-align: middle;
+  margin: 0 6rpx 0 10rpx;
+}
