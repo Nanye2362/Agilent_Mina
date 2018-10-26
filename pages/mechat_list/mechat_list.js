@@ -1,11 +1,13 @@
 // pages/mechat_list/mechat_list.js
 var util = require('../../utils/util.js');
+var config = require('../../config.js');
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    imgUrl: config.Server + 'images/mechat_poster.jpg',
     shLoading:false,// 是否显示输入框
     shInputInfo:false,//  是否显示信息确认页
     showTemplate:"", //需要显示的输入模块
@@ -22,47 +24,48 @@ Page({
     input2_name:"",
     input2_tel:"",
     input2_company:"",
-    showDesc:"",
-    showInfo:[false,false,false,false,false,false,false],
-    list: [{ title: '分析仪器报修/咨询', desc: '售后仪器操作，故障咨询',class:'widthFix', color: 'blue', templete: 'inputTemplate1', checkfun: '', tapfun: 'srTap', meqia:'T'},
-      { title: '电话工单补充图片', desc: '已有服务单号快速入口', color: 'blue', class: 'widthFix',templete: 'inputTemplate5', checkfun: 'checkOrder', tapfun: 'orderTap', meqia: 'N' },
-      { title: '消耗品购买', desc: '购买消耗品相关问题咨询', class: 'widthFix', color: 'green', templete: 'inputTemplate2', checkfun: 'checkSales', tapfun: 'salesBATap', meqia: 'CB' },
-      { title: '消耗品售后', desc: '消耗品应用相关咨询', class: 'widthFix', color: 'green', templete: 'inputTemplate2', checkfun: 'checkSales', tapfun: 'salesBATap', class: 'widthFix',meqia: 'CA' },
-      { title: '实验室仪器采购', desc: '实验室分析仪器购买咨询', color: 'yellow', templete: 'inputTemplate2', checkfun: 'checkSales', tapfun: 'salesTap', class: 'widthFix',meqia: 'K' },
-      { title: '实验室服务方案', desc: '实验室企业级服务、整体搬迁、法规认证、分析仪器维修/维护合同等', color: 'yellow', templete: 'inputTemplate2', class: 'widthFix',checkfun: 'checkSales', tapfun: 'salesTap', meqia: 'S' },
-      { title: '安捷伦大学培训', desc: '培训名额、定制培训、课程注册等咨询', color: 'orange', templete: 'inputTemplate2', checkfun: 'checkSales', class: 'widthFix', tapfun: 'salesTap', meqia: 'E' } 
+    //showDesc:"",
+    //showInfo:[false,false,false,false,false,false,false,false,false],
+    list: [{ title: '分析仪器报修/咨询', img: 'repair', class: 'widthFix', color: 'blue', templete: 'inputTemplate1', checkfun: 'checkSales', tapfun: 'srTap', meqia: 'T', desc:'售后仪器操作，故障咨询'},  
+      { title: '消耗品购买', img: 'buy', class: 'widthFix', color: 'green', templete: 'inputTemplate2', checkfun: 'checkSales', tapfun: 'salesBATap', meqia: 'CB', desc: '购买消耗品相关问题咨询' },
+      { title: '消耗品售后', img: 'afterbuy', class: 'widthFix', color: 'green', templete: 'inputTemplate2', checkfun: 'checkSales', tapfun: 'salesBATap', class: 'widthFix', meqia: 'CA', desc: '消耗品应用相关咨询' },
+      { title: '实验室仪器采购', img: 'purchase', color: 'tree', templete: 'inputTemplate2', checkfun: 'checkSales', tapfun: 'salesTap', class: 'widthFix', meqia: 'K', desc: '实验室分析仪器购买咨询'},
+      { title: '实验室服务方案', img: 'solution', color: 'tree', templete: 'inputTemplate2', class: 'widthFix', checkfun: 'checkSales', tapfun: 'salesTap', meqia: 'S', desc: '实验室企业级服务、整体搬迁、法规认证、分析仪器维修/维护合同等' },
+      { title: '售后服务合同', img: 'contract', color: 'yellow', class: 'widthFix', templete: 'inputTemplate2', checkfun: 'checkSales', tapfun: 'salesTap', meqia: 'S', desc: '售后服务合同相关事项咨询' },
+      { title: '实验室法规认证', img: 'OQ', color: 'yellow', templete: 'inputTemplate2', checkfun: 'checkSales', class: 'widthFix', tapfun: 'salesTap', meqia: 'S', desc: '实验室法规认证等咨询' }, 
+      { title: '送修及仪器翻新', img: 'renew', color: 'orange', templete: 'inputTemplate2', checkfun: 'checkSales', class: 'widthFix', tapfun: 'srTap', meqia: 'T', desc: '仪器送修及翻新等咨询'}, 
+      { title: '安捷伦大学培训', img: 'myclass', color: 'purple', templete: 'inputTemplate2', checkfun: 'checkSales', class: 'widthFix', tapfun: 'salesTap', meqia: 'E', desc: '培训名额、定制培训、课程注册等咨询' },  
     ],
     mechat_offline_time:""
   },
-  showDesc:function(e){
-    this.closeDesc();//关闭其他
-    var showInfo=this.data.showInfo;
-    showInfo[e.target.dataset.key]=true;
-    console.log(showInfo);
-    this.setData({
-      showInfo:showInfo
-    })
-  },
-  closeDesc:function(){
-    var showInfo = this.data.showInfo;
-    for (var i in showInfo){
-      showInfo[i]=false;
-    }
-     this.setData({
-      showInfo:showInfo
-    })
-  },
-  bindfocusSrId:function(){
-    if(this.data.input5_ordersn.length==0){
-        this.setData({
-          input5_ordersn:"810"
-        });
-    }
-  },
-  startChat:function(e){
-    
+  // showDesc:function(e){
+  //   this.closeDesc();//关闭其他
+  //   var showInfo=this.data.showInfo;
+  //   showInfo[e.currentTarget.dataset.key]=true;
+  //   console.log(showInfo);
+  //   this.setData({
+  //     showInfo:showInfo
+  //   })
+  // },
+  // closeDesc:function(){
+  //   var showInfo = this.data.showInfo;
+  //   for (var i in showInfo){
+  //     showInfo[i]=false;
+  //   }
+  //    this.setData({
+  //     showInfo:showInfo
+  //   })
+  // },
+  // bindfocusSrId:function(){
+  //   if(this.data.input5_ordersn.length==0){
+  //       this.setData({
+  //         input5_ordersn:"810"
+  //       });
+  //   }
+  // },
+  startChat:function(e){  
     var app = getApp();
-    app.mta.Event.stat("meqia", { "group": e.target.dataset.group});
+    app.mta.Event.stat("meqia", { "group": e.currentTarget.dataset.group});
     this.setData({
       shInputInfo: false,
       sessionId:0
@@ -87,17 +90,6 @@ Page({
       showInfo += dataTemplete[this.data.showTemplate][i]["nameInfo"] + ":" + this.data[dataTemplete[this.data.showTemplate][i]["name"]]+"\r\n";
     }
     return { hasError: hasError, showInfo: showInfo, obj: dataObj}
-  },
-  headImgTap:function(){
-    wx.setStorage({
-      key: "openHtmlUrl",
-      data: "https://www.chem.agilent.com/store/",
-      success:function(){
-        wx.navigateTo({
-          url: '../html/openHtml',
-        });
-      }
-    })
   },
   okTap:function(e){
     var returnObj = this.getInputInfo();
@@ -145,7 +137,7 @@ Page({
   },
   bindKeyInput: function (e) {
     var obj={};
-    obj[e.target.dataset.name] = e.detail.value;
+    obj[e.currentTarget.dataset.name] = e.detail.value;
     this.setData(obj);
   },
   srTap:function(e){//立即咨询1  sr逻辑 检测是否绑定手机，如没有跳转到绑定页，如是则弹出序列号输入框
@@ -163,9 +155,10 @@ Page({
       });
   },
   showInputPanel:function(e){// 点击弹出信息输入
+    console.log('showinputpanel');
     var that=this;
     util.checkWorktime(function () {
-      switch (e.target.dataset.tapfun){
+      switch (e.currentTarget.dataset.tapfun){
         case "salesTap":
           that.salesTap(e);
           break;
@@ -180,7 +173,8 @@ Page({
           break;
       }
     },function(){
-      switch (e.target.dataset.tapfun) {
+      console.log(e)
+      switch (e.currentTarget.dataset.tapfun) {
         case "salesTap":
           that.showOfflineText();
           break;
@@ -203,37 +197,15 @@ Page({
     console.log(e);
     var that = this;
     that.setData({
-      showTemplate: e.target.dataset.template,
-      checkFun: e.target.dataset.checkfun,
-      meqiaGroup: e.target.dataset.meqia,
-      showDesc: e.target.dataset.desc,
-      titleColor: e.target.dataset.color,
-      titleCon: e.target.dataset.title,
+      showTemplate: e.currentTarget.dataset.template,
+      checkFun: e.currentTarget.dataset.checkfun,
+      meqiaGroup: e.currentTarget.dataset.meqia,
+      showDesc: e.currentTarget.dataset.desc,
+      titleColor: e.currentTarget.dataset.color,
+      titleCon: e.currentTarget.dataset.title,
     })
 
     util.IsCertificate(function () {
-      // util.NetRequest({
-      //   url: 'site-mini/meqia-getuserinfo',
-      //   success: function (res) {
-      //     console.log(res);
-      //     that.setData({
-      //       input2_name: res.userinfo.name,
-      //       input2_tel: res.userinfo.tel,
-      //       input2_company: res.userinfo.meta.company
-      //     })
-
-      //     var showInfo = "";
-      //     for (var i in dataTemplete[that.data.showTemplate]) {
-      //       showInfo += dataTemplete[that.data.showTemplate][i]["nameInfo"] + ":" + that.data[dataTemplete[that.data.showTemplate][i]["name"]] + "\r\n";
-      //     }
-
-      //     that.setData({
-      //       shLoading: false,
-      //       shInputInfo: true,
-      //       showText: showInfo
-      //     });
-      //   }
-      // })
       that.getCusInfo();
     }, function () {
       var userInputInfo = wx.getStorageSync('UserInputCache_ol');
@@ -250,19 +222,19 @@ Page({
   salesBATap: function(e){
     var that = this;
     that.setData({
-      showTemplate: e.target.dataset.template,
-      checkFun: e.target.dataset.checkfun,
-      meqiaGroup: e.target.dataset.meqia,
-      showDesc: e.target.dataset.desc,
-      titleColor: e.target.dataset.color,
-      titleCon: e.target.dataset.title,
+      showTemplate: e.currentTarget.dataset.template,
+      checkFun: e.currentTarget.dataset.checkfun,
+      meqiaGroup: e.currentTarget.dataset.meqia,
+      showDesc: e.currentTarget.dataset.desc,
+      titleColor: e.currentTarget.dataset.color,
+      titleCon: e.currentTarget.dataset.title,
     })
     util.IsCertificate(function () {
       that.getCusInfo();
       //未绑定，则跳转认证页面
     }, function () {
       wx.navigateTo({
-        url: '../auth/auth?pageName=mechat_list&pagelabel=salesBA_'+ e.target.dataset.meqia,
+        url: '../auth/auth?pageName=mechat_list&pagelabel=salesBA_'+ e.currentTarget.dataset.meqia,
       })
     });
   },
@@ -296,11 +268,11 @@ Page({
     util.IsCertificate(function () {
       //绑定的话,跳转相应页面
       that.setData({
-        showTemplate: e.target.dataset.template,
-        checkFun: e.target.dataset.checkfun,
-        meqiaGroup: e.target.dataset.meqia,
-        titleColor: e.target.dataset.color,
-        titleCon: e.target.dataset.title,
+        showTemplate: e.currentTarget.dataset.template,
+        checkFun: e.currentTarget.dataset.checkfun,
+        meqiaGroup: e.currentTarget.dataset.meqia,
+        titleColor: e.currentTarget.dataset.color,
+        titleCon: e.currentTarget.dataset.title,
         shLoading: true
       })
       //未绑定，则跳转认证页面
@@ -309,9 +281,9 @@ Page({
         url: '../auth/auth?pageName=mechat_list',
         success:function(){
           that.setData({
-            showTemplate: e.target.dataset.template,
-            checkFun: e.target.dataset.checkfun,
-            meqiaGroup: e.target.dataset.meqia,
+            showTemplate: e.currentTarget.dataset.template,
+            checkFun: e.currentTarget.dataset.checkfun,
+            meqiaGroup: e.currentTarget.dataset.meqia,
             //shLoading: true
           })
         }
@@ -384,7 +356,11 @@ Page({
     var app = getApp();
     app.mta.Page.init();
     //腾讯mat统计结束
-    //getApp().editTabBar();   
+    //getApp().editTabBar();
+    this.setData({
+      iconWidth: (app.globalData.sysInfo.winWidth-30)/3,
+      winWidth: app.globalData.sysInfo.winWidth
+    })   
   },
 
   /**

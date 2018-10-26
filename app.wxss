@@ -56,7 +56,7 @@ button{
     background: #0085d5;
 }
 .bg-green {
-    background: #84bd00;
+    background: #6fd100;
 }
 .bg-orange {
     background: #f2a900;
@@ -141,7 +141,7 @@ view, text, input, button{ font-size: 32rpx; font-family: "MicroSoft Yahei"; col
 }
 
 .fc-green {
-    color: #84bd00;
+    color: #6fd100;
 }
 
 /* =================text================== */
@@ -327,6 +327,11 @@ view, text, input, button{ font-size: 32rpx; font-family: "MicroSoft Yahei"; col
    font-size:40rpx;
    text-align: center;
 }
+.shLoading-head-desc {
+  word-break: break-all;
+  padding: 20rpx 10rpx 0;
+
+}
 
 .shLoading-head-panel .shp_body{
    color:#666;
@@ -394,31 +399,31 @@ view, text, input, button{ font-size: 32rpx; font-family: "MicroSoft Yahei"; col
 
 /* 标签颜色 */
 .yellow{
-  background: #F3A901;
+  background: #F2A900;
 }
 .coffee{
   background: #b59177;
 }
 .green{
-  background: #6fd048;
+  background: #84db00;
 }
 .purple{
-  background: #9264cd;
+  background: #80276c;
 }
 .pink{
-  background: #fc7cb3;
+  background: #ce0f69;
 }
 .orange{
-  background: #ff8947;
+  background: #e87722;
 }
 .grass{
-  background: #00ce7d;
+  background: #008522;
 }
 .blue{
-  background: #4ca0ff;
+  background: #00A9E0;
 }
 .red{
-  background: #ff5c5e;
+  background: #d6001c;
 }
 .grey{
   background: #707070;

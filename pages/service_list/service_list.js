@@ -79,7 +79,7 @@ Page({
         url: 'sr/get-history-formini',
         data: {
           'ContactId': option.contactId,
-          'SerialNo': option.sn,
+          'SerialNo': option.sn
         },
         success: function (res) {
           //history数据分类
@@ -104,9 +104,10 @@ Page({
       util.NetRequest({
         url: 'site-mini/service-list',
         success: function (res) {
+          console.log(res);
           that.sortHistory(res);
           that.setData({
-            getContactId: res.SerialNo_list[0].ContactId
+            getContactId: res.SerialNo_list[0] == undefined ? '' : res.SerialNo_list[0].ContactId
           });
         }
       });

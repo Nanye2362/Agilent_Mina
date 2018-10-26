@@ -1,39 +1,25 @@
 <!--pages/mechat_list/mechat_list.wxml-->
 
-  <view class="mechat_panel" bindtap="closeDesc">
-    <view class="mechat_head_img" bindtap="headImgTap">
-      <image src="https://prd.wechat.service.agilent.com/images/Bitmap.png" class="mc_poster_bg" mode="widthFix"></image>
+  <view class="mechat_panel">
+    <!-- poster -->
+    <view class="mechat_head_img">
+      <image src="{{imgUrl}}" class="mc_poster_bg" mode="widthFix"></image>
     </view>
-    <view class="mechat_list_panel"  bind-tap="closeDesc">
-      <view class="mechat_list">
-        <view class="mechat_row" wx:for="{{list}}"> 
-          <view class="mechat_row_head mechat_row_{{item.color}}">
-          0{{index+1}}
+    <!-- icon -->
+    <view class="mechat_list_panel" >
+      <view class='mechat_title fs18'>请选择咨询</view>
+      <view class="mechat_list flex alignc">
+        <!-- item -->
+        <view class="mechat_row flex directionC alignc" wx:for="{{list}}" wx:key='unique' style='width:{{iconWidth}}px' bindtap="showInputPanel" data-Template="{{item.templete}}" data-checkfun="{{item.checkfun}}" data-desc="{{item.desc}}" data-tapfun="{{item.tapfun}}" data-meqia="{{item.meqia}}" data-title='{{item.title}}' data-color='mechat_row_{{item.color}}' data-key="{{index}}">      
+          <view class="mechat_row_btn flex alignc mechat_row_{{item.color}}">
+            <image src='/images/{{item.img}}.png'></image>
           </view>
-          <view class="mechat_row_width " data-key="{{index}}" catchtap='showDesc'>
-          <view class="mechat_row_body {{item.class}}" data-key="{{index}}" catchtap='showDesc'>
+          <view class="mechat_row_body {{item.class}} fc-777" data-key="{{index}}" >
             {{item.title}}
-          </view>
-          <view class="mechat_row_desc" >
-            <view class="mechat_question_icon" >
-              <image src="../../images/question_icon.jpg" mode="widthFix" data-key="{{index}}" catchtap='showDesc' ></image>
-            </view>
-            <view wx:if="{{showInfo[index]}}" class="mechat_position_top">
-              <view class="mechat_question_text"  >
-                {{item.desc}}
-              </view>
-              <view class="mechat_triangle_down">
-              </view>
-            </view>
-          </view>
-          </view>
-          <view class="mechat_row_btn mechat_row_{{item.color}} {{mechat_offline_time}}"  bindtap="showInputPanel" data-Template="{{item.templete}}" data-checkfun="{{item.checkfun}}" data-desc="{{item.desc}}" data-tapfun="{{item.tapfun}}" data-meqia="{{item.meqia}}" data-title='{{item.title}}' data-color='mechat_row_{{item.color}}'>
-            点击咨询
           </view>
         </view>
        </view>
     </view>
-
   </view>
 
 

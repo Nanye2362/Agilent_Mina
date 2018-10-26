@@ -1,64 +1,80 @@
 
 <!--index.wxml-->
-<swiper indicator-dots="{{indicatorDots}}" indicator-active-color="{{indicatorActiveColor}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" style="width: 750rpx; height: 450rpx;" circular="{{true}}">
-  <block wx:for="{{imgUrls}}" wx:key="{{img}}">
-    <swiper-item>
-        <image src="{{item.url}}" class="slide-image" style="width: 750rpx; height: 450rpx;"></image>
+<swiper indicator-dots="{{indicatorDots}}" indicator-active-color="{{indicatorActiveColor}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" style="width: 100%; height: 410rpx;" circular="{{true}}">
+  <block wx:for="{{imgUrls}}" wx:key="{{img}}" wx:for-index='index'>
+    <swiper-item bindtap='gotoPoster' data-type='url' data-url='{{item.skipUrl}}'>
+      <image src="{{item.url}}" class="slide-image" mode='widthFix'></image>
+      <view class='swiper_text'>{{item.text}}</view>
     </swiper-item>
   </block>
-  <!-- notification -->
-    <view class="flex h_alert h_alert_bg"></view>
-    <view class="flex h_alert">
-        <view class="h_alert_img">
-            <image src="/images/info_alert.png"></image>
-        </view>
-        <view class="wrapper">
-            <view class="flex__item h_alert_con">
-                <text class="fc-fff fs14">{{text}}</text>
-            </view>
-        </view>
-        
-        <!--view class="example">
-            <view class="flex__item h_alert_con marquee_box">
-                <view class="fc-fff fs14 marquee_text" style="{{orientation}}:{{marqueeDistance}}px;font-size: {{size}}px;">{{text}}</view>
-            </view>
-        </view-->
-        
-    </view>
 </swiper>
 
-<!-- 图标链接 -->
-<view class="h_icon bg-blue">
-    <!-- top -->
-    <view class="flex">
-       <form class="wxform" bindsubmit="formSubmit" report-submit="true"  >
-          <button plain="true" class="formbtn h_service_item service_repair" form-type="submit" data-info="serial_number" data-click="clickToRepair">
-           <image src="/images/repair.png"></image>
-           <view class="fs14 fc-fff">我要报修</view>  
-           </button>  
-        </form>
 
-        <form class="wxform " bindsubmit="formSubmit" report-submit="true"  >
-          <button plain="true" class="formbtn h_service_item" form-type="submit" data-info="serviceOrder" data-click="nevigateToNext" data-url="../serviceOrder/serviceOrder">
-           <image src="/images/install.png"></image>
-           <view class="fs14 fc-fff">服务预约</view>  
-           </button>  
-        </form>
+
+<!-- 近期服务更新 -->
+<view class='recent_service'>
+  <!-- title -->
+  <view class='fs18'>最新服务更新</view>
+  <!-- content -->
+  <view class='rs_content flex alignc' bindtap='gotoSH'>
+    <view class='rs_l'>
+      <!-- Service -->
+      <view wx:if='{{ServiceRequestId!=""}}' class='flex alignc rs_left'>
+        <!-- statusImg -->
+        <view class='rs_img flex alignc'>
+          <image src='/images/{{HeaderStatus}}.png'></image>
+        </view>
+        <!-- content -->
+        <view class='flex directionC rs_con'>
+          <view class='rs_sno fs14'>服务单号：{{ServiceRequestId}}</view>
+          <view class='rs_text'>
+            <image style='width: 26rpx; margin-right: 10rpx;' src='/images/rs_status.png' mode='widthFix'></image>
+            <text  class='fc-777 fs14'>{{Title}}</text>
+          </view>
+        </view>
+        <view class='fs12 rs_time fc-grey'>{{CreateTime}}</view>
+      </view>
+      <!-- no_Service -->
+      <view wx:else class='fc-grey'>尚无任何服务更新消息</view>
     </view>
-    <!-- bottom -->
-    <view class="flex">
-    <form class="wxform " bindsubmit="formSubmit" report-submit="true"  >
-          <button plain="true" class="formbtn h_service_item" form-type="submit" data-info="self_service" data-click="nevigateToNext" data-url="../self_service/self_service">
-           <image src="/images/self.png"></image>
-           <view class="fs14 fc-fff">自助服务</view>  
-           </button>  
-        </form>
-        <form class="wxform " bindsubmit="formSubmit" report-submit="true"  >
-          <button plain="true" class="formbtn h_service_item" form-type="submit" data-info="service_list" data-click="nevigateToNext" data-url="../service_list/service_list">
-           <image src="/images/history.png"></image>
-           <view class="fs14 fc-fff">服务历史</view>  
-           </button>  
-        </form>
+    <view class='rs_r text-right'>
+      <image src='/images/arrow-r.png' mode='widthFix'></image>
     </view>
+  </view>
+</view>
+
+
+
+
+<!-- 图标链接 -->
+<view class="h_icon flex">
+  <!-- 常见问题 -->
+  <view class="wxform icon_item blue_gradient" style='width:{{iconWidth1}}px' bindtap='gotoSS' >
+    <button plain="true" class="formbtn h_service_item" form-type="submit" data-info="self_service" data-click="nevigateToNext" data-url="../self_service/self_service">
+      <image src="/images/self.png"></image>
+      <view class="fs14 fc-fff">常见问题</view>  
+    </button>  
+  </view>
+  <!-- 我要报修 -->
+  <form class="wxform icon_item orange_gradient" bindsubmit="formSubmit" report-submit="true" style='width:{{iconWidth2}}px' >
+    <button plain="true" class="formbtn h_service_item service_repair" form-type="submit" data-info="serial_number" data-click="clickToRepair">
+      <image src="/images/repair.png"></image>
+      <view class="fs14 fc-fff">我要报修</view>  
+    </button>  
+  </form>
+  <!-- 服务预约 -->
+  <form class="wxform icon_item green_gradient" bindsubmit="formSubmit" report-submit="true" style='width:{{iconWidth3}}px'  >
+    <button plain="true" class="formbtn h_service_item" form-type="submit" data-info="serviceOrder" data-click="nevigateToNext" data-url="../serviceOrder/serviceOrder">
+      <image src="/images/install.png"></image>
+      <view class="fs14 fc-fff">服务预约</view>  
+    </button>  
+  </form>
+  <!-- elearning -->
+  <view class="wxform icon_item purple_gradient" style='width:{{iconWidth4}}px' bindtap='skipHtml5Page' >
+    <button plain="true" class="formbtn h_service_item" form-type="submit" data-info="elearning" data-click="skipHtml5Page">
+      <image src="/images/myclass.png"></image>
+      <view class="fs14 fc-fff">在线学习</view>  
+    </button>  
+  </view>
 </view>
  <!-- <button bindtap='clearStorage'>清缓存</button>  -->

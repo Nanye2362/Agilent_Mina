@@ -8,15 +8,26 @@ Page({
   data: {
     head_img_url: '../../images / no - avatar.png',
     InstrumentCount: 0,
+    NewNotificationCount: 0,
   },
 
   gotoNext: function(event){
-    console.log(event.currentTarget.dataset.url + '?pageName=myhome');
-    wx.navigateTo({
-      url: event.currentTarget.dataset.url+'?pageName=myhome'
-    })
+    var is_auth = this.data.is_auth;
+    var needauth = event.currentTarget.dataset.needauth;
+    console.log(needauth)
+    if (needauth==0 && is_auth==0){
+      wx.navigateTo({
+        url: '../auth/auth?pageName=myhome'
+      })
+    } else {
+      console.log(event.currentTarget.dataset.url + '?pageName=myhome');
+      wx.navigateTo({
+        url: event.currentTarget.dataset.url + '?pageName=myhome'
+      })
+    }    
   },
 
+  //解绑
   Unbind: function (e) {
     wx.showModal({
       title: '解除绑定',
@@ -99,10 +110,11 @@ Page({
           company: res.company,
           email: res.email,
           head_img_url: res.head_img_url,
-          is_auth: res.is_auth,
+          is_auth: res.is_auth == null ? 0 : res.is_auth,
           mobile: res.mobile,
           name: res.name,
           AppointmentCount: res.AppointmentCount,
+          NewNotificationCount: res.NewNotificationCount,
         });
       }
     });

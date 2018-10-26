@@ -1,105 +1,133 @@
 /* pages/myhome/myhome.wxss */
-
-/* ====================my_count====================== */
-image{
-  height: 100%;
+page{
+  background: #fff;
 }
 
-.mc_poster {
+.mh_info{
+  padding: 30rpx 40rpx;
+}
+.mc_avatar {
+  margin-left: 30rpx; 
+  flex: .3;
+}
+.mc_info{
+  flex: .5;
+}
+.mc_info_img{
+  width: 25rpx;
+  vertical-align: middle;
+}
+.mc_edit{
+  flex: .2;
+}
+.mc_edit image{
+  width: 15rpx;
+}
+.mc_info_mobile{
+  margin-left: 10rpx;
+}
+.mc_avatar_con{
+  width: 130rpx;
+  height: 130rpx;
+  border-radius: 50%;
+  border: 2rpx solid #dededf;
+}
+.mc_avatar_con image{
+  width: 100%;
+  border-radius: 50%;
+}
+
+.mh_func{
+  padding: 0 40rpx;
+  margin-bottom: 40rpx;
+}
+.mh_fbtn:first-child{
+  border-right: 1px solid #dddddd;
+}
+.mh_fbtn{
+  flex: .5;
+}
+.mh_fbtn image{
+  width: 24rpx;
+  vertical-align: middle;
+  margin-right: 20rpx;
+}
+.mc_unavatar{
+  padding: 40rpx;
+}
+.mc_unavatar_img{
+  width: 150rpx;
+}
+.mc_id_btn{
+  width: 240rpx;
+  padding: 14rpx;
+  border: 1px solid #d6d6d6;
+  text-align: center;
+  border-radius: 15rpx;
+  box-sizing: border-box;
+  margin-top: 10rpx;
+}
+.mc_id_btn_text{
+  margin-top: 10rpx;
+}
+.mc_id_btn_img{
+  width: 30rpx;
+  vertical-align: middle;
+  margin-right: 10rpx;
+}
+
+
+.mc_service_list{
+  padding: 0 40rpx;
+}
+.mc_items {
+    padding: 20rpx 30rpx;
+    background: #fafafa;
+    box-sizing: border-box;
+    width: 100%;
+    box-shadow: 5rpx 5rpx 15rpx  #e9e9e9;
+    margin-bottom: 30rpx;
     position: relative;
 }
-
-.mc_poster_bg {
-    width: 100%;
-    display: block;
-    
-}
-@media screen and (max-width: 330px){
-  .mc_poster_bg{
-    height: 400rpx;
-  }
-}
-@media screen and (min-width: 331px) and (max-width: 480px){
-  .mc_poster_bg{
-    height: 440rpx;
-  }
-}
-
-@media screen and (min-width: 481px) and (max-width: 760px){
-  .mc_poster_bg{
-    height: 500rpx;
-  }
-}
-
-
-.mc_avatar {
-    width: 200rpx;
-    height: 200rpx;
-    border-radius: 50%;
-    border: 6rpx solid #007cc7;
-    position: absolute;
-    top: 70rpx;
-    left: 50%;
-    margin-left: -100rpx;
-}
-
-.mc_avatar image {
-    border-radius: 50%;
-}
-
-.mc_avatar image {
-    width: 100%;
-    height:100%;
-}
-
-@media screen and (max-width: 359px) {
-    .mc_id_btn {
-        bottom: 30rpx;
-    }
-    .mc_avatar {
-        top: 50rpx;
-    }
-}
-
-@media screen and (min-width: 360px) {
-    .mc_id_btn {
-        bottom: 60rpx;
-    }
-}
-
-.mc_id_btn {
-    position: absolute;
-    left: 50%;
-    margin-left: -120rpx;
-    width: 240rpx;
-    height: 80rpx;
-    line-height: 80rpx;
-    text-align: center;
-}
-
-.mc_id_state {
-    border-radius: 10rpx;
-    box-shadow: 0 0 6rpx #fff;
-}
-
-.mc_items {
-    padding: 30rpx 40rpx;
-    border-bottom: 2rpx solid #e6e7e6;
+.newServiceHistory{
+  width: 36rpx;
+  height: 36rpx;
+  position: absolute;
+  top: 46rpx;
+  right: 70rpx;
+  background: #ff0000;
+  border-radius: 50%;
+  z-index: 999;
+  color: #fff;
+  text-align: center;
+  line-height: 36rpx;
+  font-size: 0.6rem;
 }
 
 .mc_icon {
-    width: 100rpx;
-    height: 80rpx;
+  flex: .2;
 }
-
+.mc_icon_con{
+  width: 90rpx;
+  height: 90rpx;
+  border-radius: 50%;
+  justify-content: center;
+}
+.mc_icon_con image{
+  width: 68%;
+  height: 68%;
+  vertical-align: middle;
+}
 .mc_con {
-    width: 80%;
-    margin-left: 40rpx;
+    flex: .7;
 }
 
-.mc_arrow-r {
-    width: 20rpx;
-    height: 36rpx;
+.mc_arrow {
+    flex: .1;
+    line-height: 1;
+}
+.mc_arrow image{
+  width: 15rpx;
 }
 
 .mc_con_title{

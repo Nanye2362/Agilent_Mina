@@ -12,7 +12,6 @@ Page({
     this[clickevent](e.detail.target);
   },
   data: {
-    text: '',
     marqueePace: 1,//滚动速度
     marqueeDistance: 200,//初始滚动距离
     marqueeDistance2: 0,
@@ -24,13 +23,19 @@ Page({
     imgUrls:
     [
       {
-        url: config.Server +'images/slider1.jpg'
+        url: config.Server + 'images/slider2.jpg?version=20181019',
+        text: '维修门诊 | 液相色谱步入送修时代!(附病例分析)',
+        skipUrl: 'https://mp.weixin.qq.com/s/-q9UIjUUEgxTiM7vIh64eA',
       },
       {
-        url: config.Server + 'images/slider2.jpg',
+        url: config.Server + 'images/slider1.jpg?version=20181019',
+        text: '搬迁服务 | 安捷伦为您多想一点',
+        skipUrl: 'https://mp.weixin.qq.com/s/YHLs9IyMfFS8iLlDLuBAXw',
       },
       {
-        url: config.Server + 'images/slider3.jpg',
+        url: config.Server + 'images/slider3.jpg?version=20181019',
+        text: '记忆大师 | 数据备份追溯测试解决方案',
+        skipUrl: 'https://mp.weixin.qq.com/s/wLJMsWpnAYAqoLPO06OhjA',
       }
     ],
     indicatorDots: true,
@@ -41,6 +46,10 @@ Page({
     cellHeight: '120px',
     pageItems: [],
     indicatorActiveColor: '#0085d5',
+    CreateTime:'',
+    HeaderStatus:'',
+    ServiceRequestId:'',
+    Title:'',
   },
   //事件处理函数
   bindViewTap: function () {
@@ -52,8 +61,17 @@ Page({
     //腾讯mta统计开始
     var app = getApp();
     app.mta.Page.init();
+    var iconWidth = (app.globalData.sysInfo.winWidth - 40) / 2;
     //腾讯mta统计结束
-
+    this.setData({
+      iconWidth: iconWidth,
+      iconWidth1: iconWidth-20,
+      iconWidth2: iconWidth + 20,
+      iconWidth3: iconWidth + 15,
+      iconWidth4: iconWidth - 15,
+      winWidth: app.globalData.sysInfo.winWidth,
+      winHeight: app.globalData.sysInfo.winHeight,
+    })
     var that = this;
     var text='';
     
@@ -63,10 +81,17 @@ Page({
       },
       success: function (res) {
         if (res.success) {
-          wx.setStorageSync('wrapper_text', res.text);
-          that.setData({
-            text: res.text
-          })
+          console.log(res)
+          if (res.CurrentSr.length!=0){
+            var headStatus = that.headStatus(res.CurrentSr.HeaderStatus);
+            console.log(headStatus)
+            that.setData({
+              CreateTime: res.CurrentSr.CreateTime,
+              HeaderStatus: headStatus,
+              ServiceRequestId: res.CurrentSr.ServiceRequestId,
+              Title: res.CurrentSr.Title,
+            })
+          }         
           //wx.hideLoading();
         } else {
           wx.showModal({
@@ -99,43 +124,90 @@ Page({
     console.log('onload' + option);
     var that = this
     console.log(app);
-    //调用应用实例的方法获取全局数据 
-    // app.getUserInfo(function (userInfo) {
-    //   that.setData({
-    //     userInfo: userInfo
-    //   })
-    //   var pageItems = [];
-    //   var row = [];
-    //   var len = routes.PageItems.length;//重组PageItems 
-    //   len = Math.floor(len);
-    //   for (var i = 0; i < len; i++) {
-    //     if ((i + 1) % 2 == 0) {
-    //       row.push(routes.PageItems[i]);
-    //       pageItems.push(row);
-    //       row = [];
-    //       continue;
-    //     }
-    //     else {
-    //       row.push(routes.PageItems[i]);
-    //     }
-    //   }
-    //   console.log(pageItems)
-    //   wx.getSystemInfo({
-    //     success: function (res) {
-    //       var windowWidth = res.windowWidth;
-    //       that.setData({
-    //         cellHeight: (windowWidth / 2.5) + 'px'
-    //       })
-    //     },
-    //     complete: function () {
-    //       that.setData({
-    //         pageItems: pageItems
-    //       })
-    //     }
-    //   })
-    // })
   },
-  
+
+  //最新服务历史图片
+  headStatus: function (headStatus){
+    switch(headStatus){
+      //等待您确认处理结果
+      case 'SR_EXCP' :
+      case 'DSR_EXCP' :
+        return 'waitResult';
+        break;
+      //在线服务订单已建立
+      case 'SR_IDSO':
+      case 'DSR_IDSO':
+        return 'onlineBuilt';
+        break;
+      //服务已完成及评价邀请
+      case 'SR_CLOSED':
+      case 'DSR_CLOSED':
+      case 'SO_RFREVIEW':
+      case 'DSO_RFREVIEW':
+      case 'SO_CLOSED':
+      case 'DSO_CLOSED':
+      case 'IHRO_CLOSED':
+        return 'serviceEvaluation';
+        break;
+      //服务订单已生成
+      case 'SO_OPEN':
+      case 'DSO_OPEN':
+        return 'orderBuilt';
+        break;
+      //备件已从库房发出
+      case 'SOI_AWPTORD':
+      case 'DSOI_AWPTORD':
+        return 'replaceStoreroom';
+        break;
+      //备件已从国外库房订购
+      case 'SOI_PTBO':
+      case 'DSOI_PTBO':
+        return 'replaceOrderOutside';
+        break;
+      //现场服务已安排
+      case 'SOI_SCHD':
+      case 'DSOI_SCHD':
+        return 'spotArranged';
+        break;
+      //预估报价待确认
+      case 'BQ_SENT':
+      case 'DBQ_SENT':
+        return 'estimateQuotationConfirm';
+        break;
+      //等待安排工程师
+      case 'BQ_ACCPT':
+      case 'DBQ_ACCPT':
+        return 'waitArrageEngineer';
+        break;
+      //服务报告已就绪
+      case 'SC_RFREVIEW':
+      case 'DSC_RFREVIEW':
+      case 'SC_SFCLOSER':
+      case 'DSC_SFCLOSER':
+        return 'serviceReportOk';
+        break;
+      //送修仪器已发出
+      case 'IHRO_SHCOMP':
+        return 'IHRO_SHCOMP';
+        break;
+      //送修仪器已收到
+      case 'IHRO_RTAREC':
+        return 'IHRO_RTAREC';
+        break;
+      //备用仪器已发出
+      case 'IHRO_LOANSHCOMP':
+        return 'IHRO_LOANSHCOMP';
+        break;
+      //交换仪器已发出
+      case 'IHRO_REPLOANSHCOMP':
+        return 'IHRO_REPLOANSHCOMP';
+        break;
+      //备用仪器已收到
+      case 'IHRO_LOANRETURN':
+        return 'IHRO_LOANRETURN';
+        break;
+    }
+  },
   onShow: function () {
   },
 
@@ -192,7 +264,7 @@ Page({
     });
   },
 /*
-** 安装申请、服务历史 点击跳转
+** 安装申请 点击跳转
 */
   nevigateToNext: function(e){
     console.log(e.dataset.info);
@@ -217,7 +289,47 @@ Page({
       });
 
   },
-  
+  /*
+    在线学习
+   */
+  skipHtml5Page: function (e) {
+    wx.setStorage({
+      key: "openHtmlUrl",
+      data: config.Server +'site/elearning?visitType=wechatmini',
+      success: function () {
+        wx.navigateTo({
+          url: '../html/openHtml',
+        });
+      }
+    })
+  },
+  gotoPoster: function (e) {
+    var url = e.currentTarget.dataset.url;
+    wx.setStorage({
+      key: "openHtmlUrl",
+      data: url,
+      success: function () {
+        wx.navigateTo({
+          url: '../html/openHtml',
+        });
+      }
+    })
+  },
+
+  //常见问题
+  gotoSS: function(){
+    wx.navigateTo({
+      url: '../self_service/self_service',
+    });
+  },
+
+
+  //最新服务更新
+  gotoSH: function(){
+    wx.navigateTo({
+      url: '../service_list/service_list',
+    })
+  },
   /*
 **  自助服务点击弹出框
 */

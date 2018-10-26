@@ -3,15 +3,15 @@
     "pages/index/index",
     "pages/invoiceConfirm/invoiceConfirm",
     "pages/invoiceDetails/invoiceDetails",
+    "pages/mechat_list/mechat_list",
+    "pages/myhome/myhome",
     "pages/serviceOrder/serviceOrder",
     "pages/PM/PM",
     "pages/OQ/OQ",
     "pages/install/install",
     "pages/orderList/orderList",
-    "pages/myhome/myhome",
     "pages/orderDetails/orderDetails",
     "pages/labqc/labqc",
-    "pages/mechat_list/mechat_list",
     "pages/serial_number/serial_number",
     "pages/auth/auth",
     "pages/leave_message/leave_message",
@@ -48,14 +48,14 @@
   },
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#444",
+    "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "安捷伦售后服务小程序",
-    "navigationBarTextStyle": "white"
+    "navigationBarTextStyle": "black"
   },
   "tabBar": {
     "color": "#a9b7b7",
     "selectedColor": "#0085d5",
-    "backgroundColor": "#f7f7f7",
+    "backgroundColor": "#fff",
     "borderStyle": "black",
     "list": [
       {
