@@ -4,6 +4,11 @@
     <!-- poster -->
     <view class="mechat_head_img">
       <image src="{{imgUrl}}" class="mc_poster_bg" mode="widthFix"></image>
+      <view class="example">
+        <view class="h_alert_con">
+            <text class="fc-fff fs14">{{text}}</text>
+        </view>
+      </view>
     </view>
     <!-- icon -->
     <view class="mechat_list_panel" >

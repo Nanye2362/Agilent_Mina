@@ -7,6 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    text: '111111111',
     imgUrl: config.Server + 'images/mechat_poster.jpg',
     shLoading:false,// 是否显示输入框
     shInputInfo:false,//  是否显示信息确认页

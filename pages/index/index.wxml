@@ -73,7 +73,7 @@
   <view class="wxform icon_item purple_gradient" style='width:{{iconWidth4}}px' bindtap='skipHtml5Page' >
     <button plain="true" class="formbtn h_service_item" form-type="submit" data-info="elearning" data-click="skipHtml5Page">
       <image src="/images/myclass.png"></image>
-      <view class="fs14 fc-fff">在线学习</view>  
+      <view class="fs14 fc-fff">培训中心</view>  
     </button>  
   </view>
 </view>
