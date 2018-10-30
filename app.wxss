@@ -404,8 +404,8 @@ view, text, input, button{ font-size: 32rpx; font-family: "MicroSoft Yahei"; col
 .coffee{
   background: #b59177;
 }
-.green{
-  background: #84db00;
+.green{ 
+ 	background: #84db00;
 }
 .purple{
   background: #80276c;

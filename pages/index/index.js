@@ -25,12 +25,12 @@ Page({
       {
         url: config.Server + 'images/slider2.jpg?version=20181019',
         text: '维修门诊 | 液相色谱步入送修时代!(附病例分析)',
-        skipUrl: 'https://mp.weixin.qq.com/s/-q9UIjUUEgxTiM7vIh64eA',
+        skipUrl: 'https://mp.weixin.qq.com/s/YHLs9IyMfFS8iLlDLuBAXw',
       },
       {
         url: config.Server + 'images/slider1.jpg?version=20181019',
         text: '搬迁服务 | 安捷伦为您多想一点',
-        skipUrl: 'https://mp.weixin.qq.com/s/YHLs9IyMfFS8iLlDLuBAXw',
+        skipUrl: 'https://mp.weixin.qq.com/s/-q9UIjUUEgxTiM7vIh64eA',
       },
       {
         url: config.Server + 'images/slider3.jpg?version=20181019',

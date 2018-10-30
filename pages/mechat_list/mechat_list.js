@@ -7,7 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    text: '111111111',
+    text: '已致电安捷伦客服热线的用户，需补充相关图片给技术工程师参考的，可以点击页面右下方“我的”，进入服务历史，找到相应的咨询单号后直接发起会话。',
     imgUrl: config.Server + 'images/mechat_poster.jpg',
     shLoading:false,// 是否显示输入框
     shInputInfo:false,//  是否显示信息确认页
@@ -34,7 +34,7 @@ Page({
       { title: '实验室服务方案', img: 'solution', color: 'tree', templete: 'inputTemplate2', class: 'widthFix', checkfun: 'checkSales', tapfun: 'salesTap', meqia: 'S', desc: '实验室企业级服务、整体搬迁、法规认证、分析仪器维修/维护合同等' },
       { title: '售后服务合同', img: 'contract', color: 'yellow', class: 'widthFix', templete: 'inputTemplate2', checkfun: 'checkSales', tapfun: 'salesTap', meqia: 'S', desc: '售后服务合同相关事项咨询' },
       { title: '实验室法规认证', img: 'OQ', color: 'yellow', templete: 'inputTemplate2', checkfun: 'checkSales', class: 'widthFix', tapfun: 'salesTap', meqia: 'S', desc: '实验室法规认证等咨询' }, 
-      { title: '送修及仪器翻新', img: 'renew', color: 'orange', templete: 'inputTemplate2', checkfun: 'checkSales', class: 'widthFix', tapfun: 'srTap', meqia: 'T', desc: '仪器送修及翻新等咨询'}, 
+      { title: '送修及翻新服务', img: 'renew', color: 'orange', templete: 'inputTemplate2', checkfun: 'checkSales', class: 'widthFix', tapfun: 'repairTap', meqia: 'T', desc: '仪器送修及翻新等咨询'}, 
       { title: '安捷伦大学培训', img: 'myclass', color: 'purple', templete: 'inputTemplate2', checkfun: 'checkSales', class: 'widthFix', tapfun: 'salesTap', meqia: 'E', desc: '培训名额、定制培训、课程注册等咨询' },  
     ],
     mechat_offline_time:""
@@ -155,6 +155,12 @@ Page({
         })
       });
   },
+  //送修
+  repairTap: function(){
+    wx.navigateTo({
+      url: '../repair/repair',
+    });
+  },
   showInputPanel:function(e){// 点击弹出信息输入
     console.log('showinputpanel');
     var that=this;
@@ -172,6 +178,9 @@ Page({
         case "srTap":
           that.srTap(e);
           break;
+        case "repairTap":
+          that.repairTap(e);
+          break; 
       }
     },function(){
       console.log(e)
@@ -188,6 +197,11 @@ Page({
         case "srTap":
           wx.navigateTo({
             url: '../leave_message/leave_message',
+          });
+          break;
+        case "repairTap":
+          wx.navigateTo({
+            url: '../repair/repair',
           });
           break;
       }

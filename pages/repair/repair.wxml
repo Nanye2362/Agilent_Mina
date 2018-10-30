@@ -1,0 +1,48 @@
+<!--pages/repair/repair.wxml-->
+<image  class="img_bg" src="{{imgUrl}}" mode='widthFix'></image>
+<!-- tab -->
+<view class="sl_tab flex">    
+    <view class="sl_tab_item  {{currentTab==0 ? 'on' : ''}}" circular="true" data-current="0" bindtap="swichNav">送修服务介绍</view>  
+    <view class="sl_tab_item  {{currentTab==1 ? 'on' : ''}}" circular="true" data-current="1" bindtap="swichNav">拆装机视频</view>
+</view> 
+
+<!-- content -->
+<swiper current="{{currentTab}}" class="swiper-box" duration="300"  bindchange="bindChange" style="height:{{winHeight - 31}}px;"> 
+  <!-- customer_informations -->
+  <swiper-item class='text-center'> 
+    <block wx:for='{{imgUrls}}' wx:for-item='item' wx:key="unique">
+      <image class="img_bg img_item" src="{{item.url}}" mode='widthFix'></image>
+    </block>
+    <!-- btn -->
+    <view wx:if='{{sn==""}}' class="btn btn-primary" bindtap='noSn'>送修服务咨询</view>
+    <view wx:else class='btn btn-primary'>    
+      <meiqiaBtn bindmeiqiaTap="MtaReport" btn-class="btn btn-primary" handle-alert="{{false}}" session-from="{{TECH+sn}}">
+        送修服务咨询
+      </meiqiaBtn>
+    </view>
+  </swiper-item>
+  <!-- repair_records --> 
+  <swiper-item bindtouchmove="handletouchmove">  
+    <block wx:for='{{videoUrls}}' wx:for-item='item' wx:key="unique">
+      <!-- title -->
+      <view class='videoTitle'>{{item.title}}</view>
+      <view class='video-item' data-id="{{item.id}}" bindtap="videoPlay" data-vid='{{"video"+item.id}}'>        
+        <!-- video -->
+        <video custom-cache="{{false}}"  wx:if="{{curr_id == item.id}}" data-vid='{{"video"+item.id}}' id="myVideo" src="{{item.url}}" objectFit="contain" controls poster="{{item.poster}}" autoplay='{{true}}' bindtimeupdate="goOnVideo"></video>
+        <!-- poster -->
+        <view wx:else>
+          <image class="video-img" mode="aspectFill" src="{{item.poster}}"></image>
+        </view>
+      </view>
+    </block> 
+    <!-- btn -->
+    <view wx:if='{{sn==""}}' class="btn btn-primary" bindtap='noSn'>送修服务咨询</view>
+    <view wx:else class='btn btn-primary'>         
+      <meiqiaBtn bindmeiqiaTap="MtaReport" btn-class="btn btn-primary" handle-alert="{{false}}" session-from="{{TECH+sn}}">
+        送修服务咨询
+      </meiqiaBtn>
+    </view>
+
+  </swiper-item>
+</swiper>
+

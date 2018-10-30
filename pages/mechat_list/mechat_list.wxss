@@ -80,12 +80,21 @@ page{
 .mechat_head_img{
   position: relative;
 }
-@keyframes horse  
+/* @keyframes horse  
 {  
     0%   {left:250rpx;top:0px;}  
     66%  {left:-750rpx;top:0px;}  
     66.5%{left:750rpx;top:600rpx;}
     67%  {left:750rpx;top:0px;}  
+    100% {left:250rpx;top:0px;}  
+} */
+
+@keyframes horse  
+{  
+    0%   {left:250rpx;top:0px;}  
+    66%  {left:-2250rpx;top:0px;}  
+    66.5%{left:2250rpx;top:600rpx;}
+    67%  {left:2250rpx;top:0px;}  
     100% {left:250rpx;top:0px;}  
 }
 .h_alert_con {
@@ -93,7 +102,7 @@ page{
     height: 80rpx;
     line-height: 80rpx;
     position: absolute;
-    animation:horse 15s linear 0s infinite;
+    animation:horse 26s linear 0s infinite;
 }
 .example{
   width: 100%;

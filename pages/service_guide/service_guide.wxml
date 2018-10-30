@@ -61,7 +61,7 @@
     <view class="sg_bar">
         <view class="sg_bar_blue"></view>
         <image class="sg_bar_img" src="/images/self-service.png"></image>
-        <view class="sg_bar_title">自助服务指南</view>
+        <view class="sg_bar_title">常见问题指南</view>
     </view>
 
     <view>

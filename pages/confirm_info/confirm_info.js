@@ -17,7 +17,7 @@ Page({
     userInfo: {},
     TECH:'',
     NONTECH:'',
-    needChat:true
+    needChat:true,
   },
   clickToNext: function(){
     wx.redirectTo({
@@ -47,6 +47,10 @@ Page({
     var app = getApp();
     app.mta.Page.init();
     console.log(options.needChat);
+    console.log(options);
+    this.setData({
+      CanRepair: options.CanRepair
+    })
    if (typeof (options.needChat)=='undefined'){
       var pages = getCurrentPages();
       for (var i in pages) {
@@ -72,10 +76,16 @@ Page({
       CpName: options.CpName,
       ShipToName: options.ShipToName,
       TECH: 'T_psn:' + options.SerialNo,
+      RTECH: 'T_rsn:' + options.SerialNo,
       NONTECH: 'N_psn:' + options.SerialNo
     })
   },
   backHome: function () {
     util.backHome()
+  },
+  gotoDetails: function(){
+    wx.navigateTo({
+      url: '../repair/repair?sn=' + this.data.SerialNo,
+    })
   },
 })

@@ -68,6 +68,7 @@ Page({
     //若有传参，则调取gethistory接口， 若没有传参，调取server-list接口
     if (option.sn) {
       console.log(option.length)
+      console.log(option)
       this.setData({
         getSn: option.sn,
         getContactId: option.contactId,
@@ -247,7 +248,7 @@ Page({
         console.log(res);
         if (res.success == true) {
           wx.navigateTo({
-            url: '../confirm_info/confirm_info' + '?ProductId=' + res.ProductId + '&ProductDesc=' + res.ProductDesc + '&SerialNo=' + res.SerialNo + '&CpName=' + res.CpName + '&ShipToName=' + res.ShipToName,
+            url: '../confirm_info/confirm_info' + '?ProductId=' + res.ProductId + '&ProductDesc=' + res.ProductDesc + '&SerialNo=' + res.SerialNo + '&CpName=' + res.CpName + '&ShipToName=' + res.ShipToName + '&CanRepair=' + res.CanRepair,
           })
         }
       }
@@ -261,6 +262,15 @@ Page({
     var SerialID = e.currentTarget.dataset.srid;
     wx.navigateTo({
       url: '../evaluate/evaluate?Surveyid=' + Surveyid + '&&SerialNo=' + SerialID
+    })
+  },
+
+  //查看物流
+  trackingNo: function(e){
+    var deliveryno = e.currentTarget.dataset.deliveryno;
+    var sn = e.currentTarget.dataset.sn;
+    wx.navigateTo({
+      url: '../trackingNo/trackingNo?deliveryno=' + deliveryno + '&sn=' + sn
     })
   },
 

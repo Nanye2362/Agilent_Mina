@@ -1,7 +1,10 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/repair/repair",
     "pages/invoiceConfirm/invoiceConfirm",
+    "pages/trackingNo/trackingNo",
+    "pages/service_list/service_list",
     "pages/invoiceDetails/invoiceDetails",
     "pages/mechat_list/mechat_list",
     "pages/myhome/myhome",
@@ -32,7 +35,6 @@
     "pages/search-list/search-list",
     "pages/faq/faq",
     "pages/faq_details/faq_details",
-    "pages/service_list/service_list",
     "pages/evaluation/evaluation",
     "pages/my_instrument-old/my_instrument-old",
     "pages/confirm_info/confirm_info",

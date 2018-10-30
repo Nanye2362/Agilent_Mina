@@ -220,6 +220,7 @@ Page({
   //报修历史
   clickToNext: function (event) {
     var sn = event.currentTarget.dataset.sn;
+    var that = this;
     this.setData({ 'sn': sn })
     var that = this;
     util.NetRequest({
@@ -231,7 +232,7 @@ Page({
       success: function (res) {
         if (res.success == true) {
           wx.navigateTo({
-            url: '../service_list/service_list?sn=' + sn + '&contactId=' + contactId,
+            url: '../service_list/service_list?sn=' + sn + '&contactId=' + that.data.ContactId,
           })
         } else {
           wx.showModal({
@@ -268,7 +269,7 @@ Page({
         console.log(res);
         if (res.success == true) {
           wx.redirectTo({
-            url: '../confirm_info/confirm_info' + '?ProductId=' + res.ProductId + '&ProductDesc=' + res.ProductDesc + '&SerialNo=' + res.SerialNo + '&CpName=' + res.CpName + '&ShipToName=' + res.ShipToName+"&needChat=1",
+            url: '../confirm_info/confirm_info' + '?ProductId=' + res.ProductId + '&ProductDesc=' + res.ProductDesc + '&SerialNo=' + res.SerialNo + '&CpName=' + res.CpName + '&ShipToName=' + res.ShipToName + "&needChat=1" + '&CanRepair=' + res.CanRepair,
           })
         }else{
           wx.showModal({
