@@ -6,7 +6,7 @@
           <view class="sl_tab_con_state bg-blue" ></view>
            <view class="sl_list_item_down flex">
             <view class="sl_list_item_left">
-                <view class="fs14">服务单号：{{item.SrId}}</view>
+                <view class="fs14">咨询单号：{{item.SrId}}</view>
             </view>
             <view class="fs14 sl_list_item_right fc-blue justify-end">进行中</view>
         </view>
@@ -16,7 +16,7 @@
           <view class="sl_tab_con_state bg-blue" ></view>
            <view class="sl_list_item_down flex">
             <view class="sl_list_item_left">
-                <view class="fs14">服务单号：{{item.SrId}}</view>
+                <view class="fs14">咨询单号：{{item.SrId}}</view>
             </view>
             <view class="fs14 sl_list_item_right fc-orange justify-end" data-Surveyid='{{item.Surveyid}}' data-SrId='{{item.SrId}}' bindtap='trackingNo' data-deliveryno='{{item.Delivery_no}}' data-sn='{{item.SerialNo}}'> 
               <image style="width:35rpx; margin-right:10rpx;" src='/images/trackingNo.png' mode='widthFix'></image>
@@ -29,7 +29,7 @@
           <view class="sl_tab_con_state bg-green" ></view>
            <view class="sl_list_item_down flex">
             <view class="sl_list_item_left">
-                <view class="fs14">服务单号：{{item.SrId}}</view>
+                <view class="fs14">咨询单号：{{item.SrId}}</view>
             </view>
             <view class="fs14 sl_list_item_right justify-end" data-surveyid='{{item.Surveyid}}' data-srId='{{item.SrId}}' bindtap='clickToMyComment'> <image style="width:35rpx; height:35rpx; margin-right:10rpx;" src='/images/evaluate.png'></image><view class="fc-green" style='align-self:center;'>我的评价</view></view>
         </view>
@@ -39,7 +39,7 @@
           <view class="sl_tab_con_state bg-orange" ></view>
            <view class="sl_list_item_down flex">
             <view class="sl_list_item_left">
-                <view class="fs14">服务单号：{{item.SrId}}</view>
+                <view class="fs14">咨询单号：{{item.SrId}}</view>
             </view>
             <view class="fs14 sl_list_item_right fc-orange justify-end" data-Surveyid='{{item.Surveyid}}' data-SrId='{{item.SrId}}' bindtap='clickToEvaluate'> <image style="width:35rpx; height:35rpx; margin-right:10rpx;" src='/images/goeva.png'></image><view class="fc-orange" style='align-self:center;'>前往评价</view></view>
         </view>
@@ -50,7 +50,7 @@
           <view class="sl_tab_con_state bg-green"></view>
            <view class="sl_list_item_down flex">
             <view class="sl_list_item_left">
-                <view class="fs14">服务单号：{{item.SrId}}</view>
+                <view class="fs14">咨询单号：{{item.SrId}}</view>
             </view>
             <!-- <view class="fs14 sl_list_item_right fc-orange justify-end" data-Surveyid='{{item.Surveyid}}' data-SrId='{{item.SrId}}' bindtap='clickToEvaluate'> <image style="width:35rpx; height:35rpx; margin-right:10rpx;" src='/images/goeva.png'></image>前往评价</view> -->
           </view>
@@ -58,7 +58,7 @@
         <!-- btn -->
         <!-- <view class="sl_list_item_down flex">
             <view class="sl_list_item_left">
-                <view class="fs14">服务单号：{{item.slNo}}</view>
+                <view class="fs14">咨询单号：{{item.slNo}}</view>
             </view>
             <view class="fs14 sl_list_item_right fc-blue">{{item.slStateDes}}</view>
         </view> -->

@@ -25,7 +25,7 @@
         </view>
         <!-- content -->
         <view class='flex directionC rs_con'>
-          <view class='rs_sno fs14'>服务单号：{{ServiceRequestId}}</view>
+          <view class='rs_sno fs14'>咨询单号：{{ServiceRequestId}}</view>
           <view class='rs_text'>
             <image style='width: 26rpx; margin-right: 10rpx;' src='/images/rs_status.png' mode='widthFix'></image>
             <text  class='fc-777 fs14'>{{Title}}</text>
