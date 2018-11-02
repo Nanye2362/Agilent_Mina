@@ -33,7 +33,8 @@ page{
   border: 2rpx solid #dededf;
 }
 .mc_avatar_con image{
-  width: 100%;
+  width: 130rpx;
+  height:130rpx;
   border-radius: 50%;
 }
 

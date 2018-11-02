@@ -8,7 +8,7 @@
       <!-- 头像 -->
       <view class="mc_avatar">
         <view class='mc_avatar_con'>
-          <image src="{{head_img_url}}"  mode='widthFix'></image>
+          <image src="{{head_img_url}}"></image>
         </view>        
       </view>
       <!-- 信息 -->
