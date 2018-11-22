@@ -9,8 +9,7 @@
     <view class="bc_title fs20 text-center">
       <image src='/images/bq.png' mode='widthFix'></image>
     </view>
-    <view class="bc_remind fc-777">您的问题需要现场工程师的支持，当前报价已经生成，BQ编号为：<span>{{bqId}}</span>，请确保您已知晓并接受，
-        以便我们安排工程师为您服务。</view>
+    <view class="bc_remind fc-777">您的服务报价已经生成，报价单编号为：<span>{{bqId}}</span>，请确保您已知晓，以便我们尽快为您提供相应服务</view>
     <view class="bc_order fc-blue" bindtap='openPDF'>
         <image class="bc_order_icon" src="/images/pdf.png" mode='widthFix'></image> 
         安捷伦维修收费标准说明书-报价单
