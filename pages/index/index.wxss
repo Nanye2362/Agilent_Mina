@@ -59,7 +59,7 @@ page{
 }
 
 .h_alert {
-    position: absolute;
+    position: relative;
     bottom: 0;
     left: 0;
     z-index: 99;
@@ -67,29 +67,32 @@ page{
 }
 
 .h_alert_bg {
-    background: #000;
-    opacity: .3;
-    height: 50px;
+    /* background: #fff;
+    opacity: .3; */
+    background-color: rgba(0, 0, 0, 0.03);
+    height: 77rpx;
     width: 100%;
+    border-bottom: 1rpx solid #ccc;
 }
 
 .h_alert_img {
     width: 10%;
     padding: 0 15px;
     height: 50px;
-    line-height: 50px;
+    line-height: 40px;
     margin-right: 5px;
+    margin-top:6rpx;
 }
 
 .h_alert_img img {
     width: 16px;
-    margin-top: 15px;
+    margin-top: 10px;
 }
 
 .h_alert_con {
     /*width: 100%;*/
     height: 50px;
-    line-height: 50px;
+    line-height: 40px;
     position: absolute;
     animation:horse 15s linear 0s infinite;
 }
@@ -107,9 +110,9 @@ page{
 @keyframes horse  
 {  
     0%   {left:250rpx;top:0px;}  
-    66%  {left:-750rpx;top:0px;}  
-    66.5%{left:750rpx;top:600rpx;}
-    67%  {left:750rpx;top:0px;}  
+    66%  {left:-1100rpx;top:0px;}  
+    66.5%{left:1100rpx;top:600rpx;}
+    67%  {left:1100rpx;top:0px;}  
     100% {left:250rpx;top:0px;}  
 }
 

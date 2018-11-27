@@ -20,6 +20,8 @@ Page({
     size: 14,
     orientation: 'left',//滚动方向
     interval2: 20, // 时间间隔
+    shSystem:true,
+    system_text:"系统升级中，微信在线咨询通道暂时无法使用，您可以点击下方常见问题寻求解决方案，给您带来不便，敬请谅解。",
     imgUrls:
     [
       {
@@ -124,6 +126,13 @@ Page({
     console.log('onload' + option);
     var that = this
     console.log(app);
+  },
+  // 是否显示系统故障
+  showSystem:function(){
+    var shSystem = this.data.shSystem;
+    this.setData({
+      shSystem: !shSystem
+    })
   },
 
   //最新服务历史图片
