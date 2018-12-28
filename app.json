@@ -54,6 +54,9 @@
     "navigationBarTitleText": "安捷伦售后服务小程序",
     "navigationBarTextStyle": "black"
   },
+  "usingComponents":{
+    "meiqiaCheckWork": "/components/meiqia/meiqiaCheckWork"
+  },
   "tabBar": {
     "color": "#a9b7b7",
     "selectedColor": "#0085d5",

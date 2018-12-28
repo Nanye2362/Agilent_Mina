@@ -121,17 +121,17 @@ Page({
   },
 
   clickToRepair: function () {
-    util.checkWorktime(function () {
+    if (e.detail.iswork) {
       //是工作时间跳转serial number页面
       wx.navigateTo({
         url: '../serial_number/serial_number',
       })
-    }, function () {
+    }else{
       //是工作时间跳转leave-message页面
       wx.navigateTo({
         url: '../leave_message/leave_message',
       })
-    })
+    }
   },
 
   //点击tab跳转

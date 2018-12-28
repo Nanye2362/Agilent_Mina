@@ -7,9 +7,10 @@ var routes = require('../../utils/routes');
 Page({
   formSubmit:function(e){
     var clickevent = e.detail.target.dataset.click;
-    console.log(e.detail.formId);
     util.submitFormId(e.detail.formId);
-    this[clickevent](e.detail.target);
+    if (typeof(clickevent)!="undefined"){
+      this[clickevent](e.detail.target);
+    }
   },
   data: {
     marqueePace: 1,//滚动速度
@@ -238,45 +239,43 @@ Page({
 **  我要报修跳转
 */
   clickToRepair: function (event) {
-    
+
     var app = getApp();
-    app.mta.Event.stat(event.dataset.info, {});
+    app.mta.Event.stat(event.target.dataset.info, {});
 
     util.IsCertificate(function(){
         //已绑定
-      util.checkWorktime(function(){
-        //绑定 且 是工作时间
+      if (event.detail.iswork){
         wx.navigateTo({
           url: '../serial_number/serial_number',
         });
-      }, function(){
+      }else{
         //绑定 但 不是工作时间
         wx.navigateTo({
           url: '../leave_message/leave_message',
         })
-      }
-      )       
+      }      
     }, 
     //未绑定
     function(){
-      util.checkWorktime(function(){
+      if (event.detail.iswork) {
         //未绑定， 且不是工作时间
         wx.navigateTo({
           url: '../auth/auth?pageName=serial_number',
         })       
-      },function(){
+      }else{
         //未绑定，是工作时间
         wx.navigateTo({
           url: '../auth/auth?pageName=leave_message',
         })
-      })     
+      } 
     });
   },
 /*
 ** 安装申请 点击跳转
 */
   nevigateToNext: function(e){
-    console.log(e.dataset.info);
+ 
     var app=getApp();
     app.mta.Event.stat(e.dataset.info, {});
     

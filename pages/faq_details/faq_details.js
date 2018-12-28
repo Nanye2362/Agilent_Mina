@@ -14,7 +14,9 @@ Page({
     maskFlag: true,
     TECH:'',
     answersList:'',
-    questions:''
+    questions:'',
+    type:0,
+    url:""
   },
   
   /**
@@ -38,12 +40,23 @@ Page({
         var app = getApp();
         app.mta.Event.stat("self_service_question", { "title": res.detail.questions });
         console.log(res);
+        if (res.detail.type==1){
+          that.setData({
+            type:2,
+            url: res.detail.answers[0].content
+          })
+          return;
+        }else{
+          that.setData({
+            type: 1
+          })
+        }
+
         wx.showLoading({
           title: '下载中，请稍候',
           mask: true
         })
         that.setData({
-          TECH: meiqiaInfo.TECH,
           answersList: res.detail.answers,
           questions: res.detail.questions,
         })   
@@ -68,18 +81,19 @@ Page({
     this.setData({ unusefulFlag: true, maskFlag: false });
   },
 
-  clickToRepair: function () {
-    util.checkWorktime(function () {
+  clickToRepair: function (e) {
+    console.log(e.detail.iswork);
+    if (e.detail.iswork){
       //是工作时间跳转serial number页面
       wx.navigateTo({
         url: '../serial_number/serial_number',
       })
-    }, function () {
+    }else{
       //是工作时间跳转leave-message页面
       wx.navigateTo({
         url: '../leave_message/leave_message',
       })
-    })
+    }
   },
   //拨打电话
   calling: function (event) {

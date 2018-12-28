@@ -10,16 +10,9 @@
 </swiper>
 
 <!-- 系统故障 -->
-    <view class="flex h_alert h_alert_bg" wx:if="{{shSystem}}">
-        <view class="h_alert_img">
-            <image src="/images/system_alert.jpg"></image>
-        </view>
-          <view class="wrapper">
-              <view class="flex_item h_alert_con">
-                  <text class="fc-D61 fs14">{{system_text}}</text>
-              </view>
-          </view>    
-    </view>
+
+<!-- 系统错误提示 -->
+<meiqiaCheckWork showType="showText"></meiqiaCheckWork>
 
 <!-- 近期服务更新 -->
 <view class='recent_service'>
@@ -66,14 +59,17 @@
     </button>  
   </view>
   <!-- 我要报修 -->
-  <form class="wxform icon_item orange_gradient" bindsubmit="formSubmit" report-submit="true" style='width:{{iconWidth2}}px' >
-    <button plain="true" class="formbtn h_service_item service_repair" form-type="submit" data-info="serial_number" data-click="clickToRepair">
-      <image src="/images/repair.png"></image>
-      <view class="fs14 fc-fff">我要报修</view>  
-    </button>  
+    <form class="wxform icon_item orange_gradient" bindsubmit="formSubmit" report-submit="true" style='width:{{iconWidth2}}px' >
+    <meiqiaCheckWork data-info="serial_number"  showType="clickPanel" bindclickevent="clickToRepair" needBind="true">
+      <button plain="true"  class="formbtn h_service_item service_repair" form-type="submit">
+        <image src="/images/repair.png"></image>
+        <view class="fs14 fc-fff">我要报修</view>  
+      </button>  
+    </meiqiaCheckWork>
   </form>
+  
   <!-- 服务预约 -->
-  <form class="wxform icon_item green_gradient" bindsubmit="formSubmit" report-submit="true" style='width:{{iconWidth3}}px'  >
+   <form class="wxform icon_item green_gradient" bindsubmit="formSubmit" report-submit="true" style='width:{{iconWidth3}}px'  >
     <button plain="true" class="formbtn h_service_item" form-type="submit" data-info="serviceOrder" data-click="nevigateToNext" data-url="../serviceOrder/serviceOrder">
       <image src="/images/install.png"></image>
       <view class="fs14 fc-fff">服务预约</view>  

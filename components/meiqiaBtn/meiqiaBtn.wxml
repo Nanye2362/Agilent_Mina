@@ -3,3 +3,5 @@
 formType="{{formType}}" disabled="{{disabled}}" >
   <slot></slot>
 </button>
+
+ <meiqiaNoWorkModal showModal="{{showModal}}"></meiqiaNoWorkModal>

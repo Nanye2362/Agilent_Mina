@@ -33,6 +33,18 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var mobile = wx.getStorageSync('MOBILE');
+    if (mobile.length==0){
+      //未绑定， 且不是工作时间
+      wx.navigateTo({
+        url: '../auth/auth?pageName=serial_number',
+      }) 
+    }else{
+      console.log(mobile);
+    }
+
+
+
     console.log(options);
     
     if (typeof (options.GroupID) !='undefined'){

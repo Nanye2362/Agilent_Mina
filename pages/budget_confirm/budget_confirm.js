@@ -62,20 +62,21 @@ Page({
         console.log(r);
         var invoiceDetails = {},
             currentInvoice = '';
-        console.log(r.data.InvoiceInfo[0])
-        if (r.data.InvoiceInfo[0]!=undefined){
-          currentInvoice = r.data.InvoiceInfo[0].InvoiceType == 0 ? 'normalInvoice' : 'specialInvoice';
+        console.log(r.data.InvoiceInfo)
+        if (typeof(r.data.InvoiceInfo)!="undefined"){
+          currentInvoice = r.data.InvoiceInfo.InvoiceType == 0 ? 'normalInvoice' : 'specialInvoice';
         }else{
           that.setData({
             hasInvoice: false,
           })
         }       
         console.log(r.data.InvoiceInfo);
+        console.log(currentInvoice);
 
         if (r.data.InvoiceInfo.length!=''){
-          for (var i in r.data.InvoiceInfo){
-            that.setInvoiceInfo(r.data.InvoiceInfo[i])
-          }
+          //for (var i in r.data.InvoiceInfo){
+            that.setInvoiceInfo(r.data.InvoiceInfo)
+          //}
           invoiceDetails = that.data.invoiceDetails
           console.log(invoiceDetails);
           that.setData({

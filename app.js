@@ -48,6 +48,7 @@ App({
     });
   },
   onShow: function (res) {
+    this.globalData.appShow = true;
     console.log(res);
     //如果已在后台启动并且是客服链接过来的，就打开指定页面
     if (!this.globalData.isFirstLunch && (res.scene == 1081 || res.scene == 1082) && res.path.length != 0) {
@@ -70,7 +71,7 @@ App({
     that.globalData.isFirstLunch = false;
   },
   onHide:function () {
-    
+    this.globalData.appShow=false;
     var nowDate = new Date();
     wx.setStorageSync("sessionDate", nowDate);
   },
@@ -99,6 +100,7 @@ App({
     isSetOption: false, //是否正在配置
     isFirstLunch: true, //是否第一次打开
     isUploading: false, //是否正在上传
+    appShow:true,
     loginText:'',
     timer: '',
     tabbar: {

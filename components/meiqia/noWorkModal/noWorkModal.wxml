@@ -1,0 +1,5 @@
+<modal modalContentClass="modalContent" show="{{showModal}}" height='60%' bindconfirm='modalConfirm'>
+     <view class="modalContentClass">
+          系统升级维护中，会话功能暂时无法使用，您可以点击<text bindtap="ModalSkipUrl" style="color:blue">这里</text>给我们留言，也可以拨打我们的客服热线<text bindtap='ModalCalling' style="color:green">4008203278</text>，与我们取得联系。
+     </view>
+</modal>

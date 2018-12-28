@@ -1,7 +1,7 @@
 <!-- 回到首页 -->
 <import  src="../template/template"/>
 <template is="backHome" bindtap="backHome"/>
-
+<block wx:if="{{type==1}}">
 <view class="fd">
     <!-- question -->
     <view class="fd_ques">
@@ -34,14 +34,19 @@
     <!-- notification -->
     <view class="faq_notification text-center bg-primary marginB-20">
       <view class='fc-777 fs12'>如有其他疑问，您可以提交
-        <view class="fc-blue service_repair btn-meiqia fs14" bindtap='clickToRepair'>
+        <meiqiaCheckWork my-class="fc-blue service_repair btn-meiqia fs14"  showType="clickPanel" bindclickevent="clickToRepair">
           <image src='/images/feedback.png' class='faq_notification_img'></image>
           故障反馈
-        </view>
+        </meiqiaCheckWork>
       </view>
     </view>
 </view>
-
+</block>
+<block wx:if="{{type==2}}">
+<view>
+  <web-view src="{{url}}"></web-view>
+</view>
+</block>
 <!-- notification -->
 <!-- <view class="fd_notification">
     <view class="fd_not text-center">

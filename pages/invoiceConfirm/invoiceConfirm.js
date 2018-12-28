@@ -6,6 +6,10 @@ var invoiceArry = {
   "normalInvoice": {
     'title': "发票抬头",
     'taxNumber': "纳税人识别号",
+    "bankName": "开户行(选填)",
+    "bankAccount": "银行账号(选填)",
+    "companyAddress": "注册地址(选填)",
+    "telephone": "注册电话(选填)",
   },
   "specialInvoice": {
     "title": "发票抬头",

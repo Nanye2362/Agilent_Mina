@@ -7,6 +7,10 @@ var invoiceArry = {
   "normalInvoice":{
     'title':"发票抬头",
     'taxNumber':"纳税人识别号",
+    "bankName": "开户行(选填)",
+    "bankAccount": "银行账号(选填)",
+    "companyAddress": "注册地址(选填)",
+    "telephone": "注册电话(选填)",
   },
   "specialInvoice":{
     "title":"发票抬头",
@@ -176,6 +180,10 @@ Page({
   submit: function(){  
     var that = this;
     var checkObjInvoice = Object.keys(invoiceArry[this.data.currentInvoice]);
+    if (this.data.currentInvoice =="normalInvoice"){
+      checkObjInvoice = ["title","taxNumber"];
+    }
+
     var checkObjSend = Object.keys(this.data.sendInfo);
     var checkInvoice = this.checkEmpty(this.data.invoiceInfo, checkObjInvoice);
     var checkSend = this.checkEmpty(this.data.sendInfo, checkObjSend);

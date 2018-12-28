@@ -21,25 +21,36 @@ Component({
    * 组件的初始数据
    */
   data: {
-    isWork:true
+    isWork:true,
+    showModal:false,
+    canUse:true
   },
-
   /**
    * 组件的方法列表
    */
   methods: {
     meiqiaBtnTap:function(e){
-      workTime.handleWorkTime(this.data.handleAlert);
-      this.triggerEvent('meiqiaTap', e);  
+      if (!this.data.canUse){
+        this.setData({
+          showModal:true
+        })
+      }else{
+        workTime.handleWorkTime(this.data.handleAlert);
+        this.triggerEvent('meiqiaTap', e); 
+      }
     }
   },
   externalClasses: ['btn-class'],
   attached:function(){
      let that=this;
-     workTime.startWorkTime(function(workTimeStatus){
-       console.log("-----meiqiaBtn setData isWork " + workTimeStatus+" ------");
+    workTime.startWorkTime(function (workTimeStatus, canUse){
+      if (!canUse){
+        workTimeStatus=false;
+      }
+
        that.setData({
-         isWork: workTimeStatus
+         isWork: workTimeStatus,
+         canUse: canUse
        })
      }, this.__wxExparserNodeId__);
   },

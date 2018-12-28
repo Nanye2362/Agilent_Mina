@@ -240,7 +240,7 @@ function IsCertificate(success,fail){
 }
 
 //判断是否为工作时间,true为是工作时间，false为非工作时间
-function checkWorktime(success, fail, showload=true) {
+function checkWorktime(callBack, showload=true) {
   var reauestFail;
   if (!showload){ //如果为false，基于后台请求，如遇网络错误不弹框提示
     reauestFail=function(){
@@ -252,11 +252,7 @@ function checkWorktime(success, fail, showload=true) {
     url: 'util/get-worktime',
     showload: showload,
     success: function (res) {
-      if (res.isworktime) {
-        success();
-      } else {
-        fail();
-      }
+      callBack(res);
     },
     fail: reauestFail
   });

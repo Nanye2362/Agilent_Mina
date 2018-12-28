@@ -37,8 +37,7 @@ Page({
       { title: '实验室法规认证', img: 'OQ', color: 'yellow', templete: 'inputTemplate2', checkfun: 'checkSales', class: 'widthFix', tapfun: 'salesTap', meqia: 'S', desc: '实验室法规认证等咨询' }, 
       { title: '送修及翻新服务', img: 'renew', color: 'orange', templete: 'inputTemplate2', checkfun: 'checkSales', class: 'widthFix', tapfun: 'repairTap', meqia: 'T', desc: '仪器送修及翻新等咨询'}, 
       { title: '安捷伦大学培训', img: 'myclass', color: 'purple', templete: 'inputTemplate2', checkfun: 'checkSales', class: 'widthFix', tapfun: 'salesTap', meqia: 'E', desc: '培训名额、定制培训、课程注册等咨询' },  
-    ],
-    mechat_offline_time:""
+    ]
   },
   // showDesc:function(e){
   //   this.closeDesc();//关闭其他
@@ -165,7 +164,7 @@ Page({
   showInputPanel:function(e){// 点击弹出信息输入
     console.log('showinputpanel');
     var that=this;
-    util.checkWorktime(function () {
+    if(e.detail.iswork){
       switch (e.currentTarget.dataset.tapfun){
         case "salesTap":
           that.salesTap(e);
@@ -183,8 +182,7 @@ Page({
           that.repairTap(e);
           break; 
       }
-    },function(){
-      console.log(e)
+    }else{
       switch (e.currentTarget.dataset.tapfun) {
         case "salesTap":
           that.showOfflineText();
@@ -206,7 +204,7 @@ Page({
           });
           break;
       }
-    });
+    };
     
   },
   salesTap:function(e){
@@ -390,18 +388,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    var that=this;
-    util.checkWorktime(function(){
-      that.setData({
-        mechat_offline_time: ""
-      })
-    },function(){
-      that.setData({
-        mechat_offline_time: "mechat_offline_time"
-      })
-    });
-
-      
+          
   },
 
   /**

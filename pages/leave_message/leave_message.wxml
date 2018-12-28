@@ -1,7 +1,7 @@
 <!--pages/leave_message/leave_message.wxml-->
 <!-- notification -->
 <view class="lm_remind padding">
-    <view class="fs13 fc-red">抱歉！非工作时间我们暂时无法为您提供服务。如需帮助，可申请离线报修，我们将尽快联系并解决您的问题。您也可以通过<text class="fc-blue" bindtap='gotoSS'>常见问题</text>了解仪器保养、维护及故障排除的知识。</view>
+    <view class="fs13 fc-red">抱歉！我们暂时无法为您提供服务。如需帮助，可申请离线报修，我们将尽快联系并解决您的问题。您也可以通过<text class="fc-blue" bindtap='gotoSS'>常见问题</text>了解仪器保养、维护及故障排除的知识。</view>
 </view>
 
 <!-- form -->

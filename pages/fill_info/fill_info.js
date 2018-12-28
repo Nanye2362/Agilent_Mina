@@ -146,7 +146,7 @@ Page({
             }
           } else {
             wx.showModal({
-              title: '重复提交',
+              title: '信息提交',
               content: '您已提交信息，客服正在为您建档，建档成功后将通过电话或短信通知您',
               showCancel: false,
               success: function (res) {

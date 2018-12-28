@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "meiqiaShowText":"/components/meiqia/meiqiaShowText/meiqiaShowText",
+    "meiqiaNoWorkModal":"/components/meiqia/noWorkModal/noWorkModal"
+  }
+}

@@ -1,0 +1,14 @@
+<!--components/meiqiaCheckWork/meiqiaCheckWork.wxml-->
+
+<block wx:if="{{showType=='showText'}}">
+  <meiqiaShowText canUse="{{canUse}}"></meiqiaShowText>
+</block>
+
+
+<block  wx:if="{{showType=='clickPanel'}}">
+   <view bindtap="cp_Tap" class="my-class">
+   <slot></slot>
+   </view>
+
+    <meiqiaNoWorkModal showModal="{{showModal}}"></meiqiaNoWorkModal>
+</block>

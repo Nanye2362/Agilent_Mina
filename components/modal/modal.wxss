@@ -53,7 +53,7 @@ align-items:center;
 }
 .shLoading-btn-cancel,.shLoading-btn-ok{
   display:inline-block;
-  width:50%;
+  width:100%;
   line-height:100rpx;
   text-align: center;
   font-size:36rpx;

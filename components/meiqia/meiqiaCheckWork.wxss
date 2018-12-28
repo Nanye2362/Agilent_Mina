@@ -1,0 +1,5 @@
+/* components/meiqiaCheckWork/meiqiaCheckWork.wxss */
+.modalContent{
+  padding:30rpx 0;
+  line-height: 1.2;
+}
