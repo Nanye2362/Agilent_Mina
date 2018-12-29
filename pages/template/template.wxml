@@ -5,3 +5,11 @@
         <text class="fs13 self-center" class="bh_text">回到首页</text>
     </view>  
 </template>
+
+<!-- 联系客服 -->
+<template name="contactMeiqia">
+    <view class="contactMeiqia flex alignc" bindtap='contact'>
+        <image src='https://devops.coffeelandcn.cn/images/advisory.png' class="bH_img"></image>
+        <text class="fs13 self-center" class="bh_text">联系客服</text>
+    </view>  
+</template>

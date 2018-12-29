@@ -73,6 +73,7 @@ Page({
       sessionId:0
     });
   },
+  // 未认证时处理输入的数据以便点击确认传给后台
   getInputInfo:function(){
     console.log(this.data.checkFun);
     var hasError=false;
@@ -93,6 +94,7 @@ Page({
     }
     return { hasError: hasError, showInfo: showInfo, obj: dataObj}
   },
+  // 未认证，将用户输入数据传给后台
   okTap:function(e){
     var returnObj = this.getInputInfo();
     if (returnObj.hasError){
@@ -103,6 +105,7 @@ Page({
       url: 'site-mini/meqia-postdata',
       data: {
         'info': JSON.stringify(returnObj.obj),
+        // 多传一个参数email
       },
       success: function (res) {
         console.log(res);
@@ -123,6 +126,7 @@ Page({
       }
     })  
   },
+  
   cancelTap:function(){
     this.setData({
       shLoading: false,
@@ -131,6 +135,7 @@ Page({
       sessionId:0
     })
   },
+  // 输入信息修改
   infoCancelTap:function(){
     this.setData({
       shInputInfo:false,
@@ -165,6 +170,7 @@ Page({
   showInputPanel:function(e){// 点击弹出信息输入
     console.log('showinputpanel');
     var that=this;
+    // 检测工作时间
     util.checkWorktime(function () {
       switch (e.currentTarget.dataset.tapfun){
         case "salesTap":
@@ -220,7 +226,7 @@ Page({
       titleColor: e.currentTarget.dataset.color,
       titleCon: e.currentTarget.dataset.title,
     })
-
+  // 工作时间成功后验证是否认证过
     util.IsCertificate(function () {
       that.getCusInfo();
     }, function () {
@@ -254,8 +260,10 @@ Page({
       })
     });
   },
+  // 验证过的，信息从后台取出
   getCusInfo: function(e){
     var that = this;
+    // 验证过的信息通过后台判断取出
     util.NetRequest({
       url: 'site-mini/meqia-getuserinfo',
       success: function (res) {
@@ -325,6 +333,7 @@ Page({
        return true;
     }
   },
+  // 未认证用户输入信息为空时弹出的提示
   checkSales:function(){
     if (this.data.input2_name.length==0) {
       this.setData({
@@ -358,7 +367,7 @@ Page({
     return true;
   },
 
-  //关闭提示框
+  //右上角关闭提示框
   closeShLoading: function(){
     this.setData({
       shInputInfo: false,

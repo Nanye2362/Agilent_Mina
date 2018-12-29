@@ -10,7 +10,7 @@
 </swiper>
 
 <!-- 系统故障 -->
-    <view class="flex h_alert h_alert_bg" wx:if="{{shSystem}}">
+    <!-- <view class="flex h_alert h_alert_bg" wx:if="{{shSystem}}">
         <view class="h_alert_img">
             <image src="/images/system_alert.jpg"></image>
         </view>
@@ -19,7 +19,7 @@
                   <text class="fc-D61 fs14">{{system_text}}</text>
               </view>
           </view>    
-    </view>
+    </view> -->
 
 <!-- 近期服务更新 -->
 <view class='recent_service'>

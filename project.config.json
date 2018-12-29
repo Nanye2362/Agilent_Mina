@@ -29,7 +29,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 3,
+			"current": 4,
 			"list": [
 				{
 					"id": -1,
@@ -52,8 +52,14 @@
 				{
 					"id": 3,
 					"name": "invoiceDetails",
-					"pathName": "pages/fill_info/fill_info",
-					"query": "mobile=13133334444"
+					"pathName": "pages/index/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "invoiceDetails",
+					"pathName": "second-buy",
+					"query": ""
 				}
 			]
 		}

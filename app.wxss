@@ -107,6 +107,7 @@ view, text, input, button{ font-size: 32rpx; font-family: "MicroSoft Yahei"; col
 }
 
 /* font-color */
+
 .fc-333 {
     color: #333;
 }
@@ -132,6 +133,7 @@ view, text, input, button{ font-size: 32rpx; font-family: "MicroSoft Yahei"; col
 .fc-ddd{
     color: #d4d4d4;
 }
+
 .fc-orange {
     color: #ff961a;
 }
@@ -142,6 +144,9 @@ view, text, input, button{ font-size: 32rpx; font-family: "MicroSoft Yahei"; col
 
 .fc-green {
     color: #6fd100;
+}
+.fc-D61 {
+  color:#D61000;
 }
 
 /* =================text================== */
@@ -212,6 +217,19 @@ view, text, input, button{ font-size: 32rpx; font-family: "MicroSoft Yahei"; col
   border-bottom-left-radius: 80rpx;
   line-height: 80rpx;
   box-shadow:  0px 2px 6px 0px rgba(0, 0, 0, 0.5);
+  z-index: 5999;
+ }
+ .contactMeiqia{ 
+  position: fixed;
+  right: 0;
+  bottom: 8%;
+  width: 200rpx;
+  height: 80rpx;
+  background: #0287D2;
+  border-top-left-radius: 80rpx;
+  border-bottom-left-radius: 80rpx;
+  line-height: 80rpx;
+  box-shadow:  0px 0px 30px 0px rgba(155, 155, 155, 0.5);
   z-index: 5999;
  }
  .bH_img{
@@ -294,7 +312,7 @@ view, text, input, button{ font-size: 32rpx; font-family: "MicroSoft Yahei"; col
   position:absolute;
   bottom:3rpx;
   height:100rpx;
-  width:100%;
+  width:90%;
   border-top:1px solid #eee;
 }
 

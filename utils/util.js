@@ -253,8 +253,10 @@ function checkWorktime(success, fail, showload=true) {
     showload: showload,
     success: function (res) {
       if (res.isworktime) {
+        // 如果工作时间走success回调函数
         success();
       } else {
+        // 如果非工作时间走fail回调函数
         fail();
       }
     },
@@ -309,6 +311,7 @@ function backHome(){
     url: '../index/index',
   })
 }
+
 
 //检测是否存在，如存在就调用返回，不存在就直接跳转
 function chen_navigateTo(name,url){

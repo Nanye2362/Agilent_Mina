@@ -37,7 +37,6 @@ padding-top:50rpx;
 flex-direction:column;
 display:flex;
 align-items:center;
-
 }
 .shLoading-head-panel{
   min-height:80rpx;

@@ -1,7 +1,7 @@
 
 <template name="sl-template"  >
     <view class="sl_list_item bg-primary "> 
-        <!-- 进行中 -->
+        <!-- 进行中 替换{{item.ChineseHeaderStatus}}-->
         <block wx:if="{{item.SrStatus =='WIP' && item.Delivery_no==''}}">
           <view class="sl_tab_con_state bg-blue" ></view>
            <view class="sl_list_item_down flex">
