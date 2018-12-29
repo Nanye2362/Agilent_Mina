@@ -1,0 +1,142 @@
+<!--pages/second-buy/second-buy.wxml  wx:if="{{bannerShow}} {{lineFixed?'lineFix':''}}" {{curIndex == index ? '' : 'left-border'}} class="{{bannerShow?'':'banner-hidden'}}"  animation="{{bannerShow?ani2:ani1}}"  animation="{{bannerShow?ani22:ani21}}"-->
+
+
+  <image class="top-banner"  src="{{server+'/images/banner.png'}}"></image>
+
+<view class="line-top {{leftFix?'left-fixed':''}}" id="line-top"></view>
+<view class="second-content">
+  <!-- 秒购左侧导航栏{{curIndex === index?'on':''}} {{curIndex == index ? 'left-border' : ''}} -->
+  <view class="tab-left">
+    <scroll-view class="{{leftFix?'left-fixed':''}}" style="height:100%;width:160rpx;" scroll-y="true">
+    <view class="tab-left-panel">
+      <block wx:for="{{productList}}" wx:key="{{index}}">
+        <view data-id="{{item.ID}}" data-current="{{index}}" bindtap="switchTab" class="left-list {{curIndex == index ? 'on-right' : ''}}">
+          <view class="line-border left_row_{{curIndex == index ? 'on_'+index : index}}"></view>
+          <view class="left_menu">
+            <!-- 引入图标 -->
+            <view class="iconfont icon-{{index}} {{curIndex == index ? 'on-'+index : ''}}"></view>
+            <!-- 左栏类目名 -->
+            <view class="left_row_body  fc-777">
+              {{item.PMENU_NAME}}
+            </view>
+          </view>
+          <view class="line-bottom"></view>
+          <view class="line-right-border"></view>
+        </view>
+      </block>
+    </view>
+    </scroll-view>
+  </view>
+
+
+  <!-- 秒购右侧内容栏 bindscroll="onScroll" id="{{item.PRODUCT_INFO[0].PMENU_ID}}"-->
+
+  <!-- <scroll-view class="tab-right" scroll-y="{{isScroll}}" scroll-into-view="{{toView}}" scroll-with-animation="true"> -->
+  <view class="tab-right">
+    <block wx:for="{{productList}}" wx:key='unique' wx:for-item="item">
+      <view  class="right-box {{toView == item.PRODUCT_INFO[0].PMENU_ID ? 'show':'hidden'}}">
+        <view class="right-title" wx:if="{{item.PRODUCT_INFO[0].SHOW_TYPE=='0'?true:false}}">
+          <view class="main-title">{{item.PMENU_TITLE}}</view>
+          <view class="sub-title">{{item.PMENU_SUBTITLE}}</view>
+        </view>
+        <view class="product" wx:for="{{item.PRODUCT_INFO}}" wx:key="index" wx:for-item="itm">
+          <view class="product-list">
+            <view class="pro-name" wx:if="{{itm.PRODUCT_NAME.length==0?false:true}}">{{itm.PRODUCT_NAME}}</view>
+          <!-- 产品图片 -->
+            <view wx:if="{{itm.PRODUCT_NAME.length==0}}">
+              <image bindtap='skipHtml5Page' src="https://devops.coffeelandcn.cn{{itm.PRODUCT_IMG}}" data-imglink="{{itm.PRODUCT_LINK}}" style="width:100%;" mode="widthFix"></image>
+            </view>
+            <view wx:if="{{itm.PRODUCT_NAME.length!=0}}">
+              <image bindtap='previewImage' src="https://devops.coffeelandcn.cn{{itm.PRODUCT_DETAIL_IMG}}" data-src="https://devops.coffeelandcn.cn{{itm.PRODUCT_DETAIL_IMG}}" style="width:350rpx;" mode="widthFix"></image>
+            </view>
+            <!-- 产品详情 -->
+            <view class="pro-describe" wx:if="{{itm.PRODUCT_DESC==null?false:true}}">{{itm.PRODUCT_DESC}}</view>
+
+            <!--秒购方法联系客服按钮  -->
+            <view class="pro-btn" wx:if="{{itm.PROMOTION[0].length==0?false:true}}" bindtap="showInputPanel" data-Template="{{templete}}" data-checkfun="{{checkfun}}" data-desc="{{desc}}" data-tapfun="{{tapfun}}" data-meqia="{{item.PMENU_MEIQIA_GROUP}}" data-productid="{{itm.ID}}" data-productname="{{itm.PRODUCT_NAME}}">
+              <view class="meth-btn">
+                <view class="big-meth {{itm.PROMOTION.length==2?'':'t-center'}}">{{itm.PROMOTION[0]}}</view>
+                <view class="small-meth">{{itm.PROMOTION[1]}}</view>
+              </view>
+            </view>
+            <!-- 联系客服悬浮按钮start -->
+            <view wx:if="{{item.PRODUCT_INFO[0].SHOW_TYPE=='0'?false:true}}" class="contactMeiqia flex alignc" bindtap="showInputPanel" data-Template="{{templete}}" data-checkfun="{{checkfun}}" data-desc="{{desc}}" data-tapfun="{{tapfun}}" data-meqia="{{item.PMENU_MEIQIA_GROUP}}"
+              data-productid="{{itm.ID}}" data-productname="{{itm.PRODUCT_NAME}}">
+              <image src='https://devops.coffeelandcn.cn/images/advisory.png' class="c_img"></image>
+              <text class="bh_text fs12 fc-fff">联系客服</text>
+            </view>
+            <!--联系客服悬浮按钮end-->
+          </view>
+          <view wx:if="{{item.PRODUCT_INFO[0].SHOW_TYPE=='0'?true:false}}" class="right_bottomline"></view>
+        </view>
+      </view>
+    </block>
+  </view>
+ 
+</view>
+
+<!-- 未认证弹出的信息框通过showLoading控制 -->
+<!-- showInput 未认证弹出填写输入框-->
+<view class="shLoading" wx:if="{{shLoading}}">
+  <view class="shLoading-mask1">
+  </view>
+  <view class="shLoading-panel flex alignc directionC">
+    <view class='shLoading-title left_row_on_0'>
+      服务秒购
+      <image src='/images/close.png' class='shLoading-title-img' bindtap='cancelTap'></image>
+    </view>
+    <view class="shLoading-head-panel">
+      <template is="{{showTemplate}}" data="{{hasInputError:hasInputError,inputError:inputError,input2_name:input2_name,input2_tel:input2_tel,input2_company:input2_company,input2_email:input2_email}}"></template>
+    </view>
+    <view class="shLoading-btn-panel">
+      <view class="shLoading-btn-cancel" bindtap="cancelTap">取消</view>
+      <view class="shLoading-btn-ok" bindtap="okTap">提交</view>
+    </view>
+  </view>
+</view>
+
+<!-- 认证过弹出的信息框通过shInputInfo控制 -->
+<!-- showInputInfo 认证过用户确认信息并发起咨询-->
+<view class="shLoading" wx:if="{{shInputInfo}}">
+  <view class="shLoading-mask1">
+  </view>
+  <view class="shLoading-panel flex alignc directionC">
+    <view class='shLoading-title left_row_on_0'>
+      服务秒购
+      <image src='/images/close.png' class='shLoading-title-img' bindtap='closeShLoading'></image>
+    </view>
+    <view class="shLoading-head-desc fs12 fc-ddd">
+      <image src='/images/notifi.png' class='shLoading-head-img'></image>
+      {{showDesc}}
+    </view>
+    <view class="shLoading-head-panel">
+      <text class="shLoading-head-panel-info">请确认以下信息是否正确\r\n</text>
+      <text class='fs12' style='line-height: 50rpx;'>{{showText}}</text>
+      <!-- <text class='fs12' style='line-height: 50rpx;'>E-mail：{{input2_email}}</text> -->
+    </view>
+    <view class="shLoading-btn-panel">
+      <view class="shLoading-btn-cancel" bindtap="infoCancelTap">返回修改</view>
+      <view class="shLoading-btn-ok">发起咨询
+        <meiqiaBtn bindmeiqiaTap="startChat" btn-class="shLoading-btn-contact" handle-alert="{{false}}" meiqia-group="{{meqiaGroup}}" session-from="{{meqiaGroup}}_purchase:{{productid}},{{sessionId}}"></meiqiaBtn>
+      </view>
+    </view>
+  </view>
+</view>
+
+
+<!--弹出信息填写模板-->
+<template name="inputTemplate2">
+  <input class="shLoading-input" bindinput="bindKeyInput" placeholder="请输入手机" data-name="input2_tel" value="{{input2_tel}}" />
+  <input class="shLoading-input" bindinput="bindKeyInput" placeholder="请输入姓名" data-name="input2_name" value="{{input2_name}}" />
+  <input class="shLoading-input" bindinput="bindKeyInput" placeholder="请输入公司" data-name="input2_company" value="{{input2_company}}" />
+  <input class="shLoading-input" bindinput="bindKeyInput" placeholder="请输入E-Mail" data-name="input2_email" value="{{input2_email}}" />
+  <text class="shLoading-input-error" wx:if="{{hasInputError}}">{{inputError}}</text>
+</template>
+
+<!-- 备用<view class="meth-btn">
+                <meiqiaBtn bindmeiqiaTap="startChat" btn-class="pro-contact" handle-alert="{{false}}" meiqia-group="{{meqiaGroup}}" session-from="{{meqiaGroup}}_purchase:{{itm.ID}}">
+                  <view class="big-meth {{itm.PROMOTION.length==2?'':'t-center'}}">{{itm.PROMOTION[0]}}</view>
+                  <view class="small-meth">{{itm.PROMOTION[1]}}</view>
+                </meiqiaBtn>
+              </view>
+               -->

@@ -41,8 +41,11 @@
     "pages/service_guide/service_guide",
     "pages/personal_info/personal_info",
     "pages/logs/logs",
-    
+    "pages/second-buy/second-buy",
     "pages/contact_service/contact_service",
+    "pages/test/test",
+    "pages/template/tarbar" ,
+    "pages/template/template",
     "pages/html/openHtml"
   ],
   "networkTimeout": {
@@ -74,6 +77,12 @@
         "text": "在线咨询",
         "iconPath": "/images/contact.png",
         "selectedIconPath": "/images/contact_c.png"
+      },
+      {
+        "pagePath": "pages/second-buy/second-buy",
+        "text": "服务秒购",
+        "iconPath": "/images/miao.png",
+        "selectedIconPath": "/images/miao_1.png"
       },
       {
         "pagePath": "pages/myhome/myhome",

@@ -29,8 +29,8 @@
 
 
 
-
-<!-- showInput -->
+<!-- 未认证弹出的信息框通过showLoading控制 -->
+<!-- showInput 未认证弹出填写输入框-->
 <view class="shLoading" wx:if="{{shLoading}}">
   <view class="shLoading-mask1">
   </view>
@@ -49,8 +49,8 @@
   </view>
 </view>
 
-
-<!-- showInputInfo-->
+<!-- 认证过弹出的信息框通过shInputInfo控制 -->
+<!-- showInputInfo 认证过用户确认信息并发起咨询-->
 <view class="shLoading" wx:if="{{shInputInfo}}">
   <view class="shLoading-mask1">
   </view>
@@ -83,6 +83,7 @@
      <text class="shLoading-input-error" wx:if="{{hasInputError}}">{{inputError}}</text>
 </template>
 
+<!-- 通用未认证时用户输入信息模板 其中value全程绑定输入信息(输入框初始内容)以便返回修改 bindInput键盘输入时触发-->
 <template name="inputTemplate2">
    <input class="shLoading-input"   bindinput="bindKeyInput" placeholder="请输入手机" data-name="input2_tel" value="{{input2_tel}}" />
 	 <input class="shLoading-input"   bindinput="bindKeyInput" placeholder="请输入姓名" data-name="input2_name" value="{{input2_name}}" />

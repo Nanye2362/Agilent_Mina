@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "服务秒购",
+  "usingComponents": {
+    "meiqiaBtn": "/components/meiqiaBtn/meiqiaBtn"
+  }
+}
