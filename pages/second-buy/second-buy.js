@@ -57,19 +57,41 @@ Page({
     tapfun: 'salesTap',
     desc: '服务秒购相关事项咨询',
     leftFix: false,
+
+    imgFlag: 0,
+    imgTotal: 0,
+    tabTap: [true],
+    imgNum:[],
     imglist: []
   },
-
+  onLoad: function () {
+    var app = getApp();
+    app.mta.Page.init();
+    let observer = wx.createIntersectionObserver(this);
+    observer.relativeTo().observe('.top-banner', (res) => {
+      console.log('.top-banner');
+      console.log(res);
+      this.setData({
+        leftFix: res.intersectionRatio > 0 ? false : true
+      })
+    })
+    console.log('----2');
+    wx.showLoading({
+      title: '加载中，请稍后',
+      mask:true
+    });
+    console.log('----2');
+  },
   onShow: function(options) {
     console.log("onShow");
     var that = this;
+  
     if (that.data.isOnShow) {
       util.NetRequest({
         url: 'purchase/get-purchase-list',
         data: {},
         success: function(res) {
           console.log(res); //后台获取到的mycount数据
-          // var fontUrl=res.fontUrl;
           wx.loadFontFace({
             family: 'iconfont',
             source: 'url("//at.alicdn.com/t/' + res.fontUrl + '.woff")',
@@ -85,197 +107,45 @@ Page({
           });
           that.setData({
             productList: res.data,
-
           })
         }
       });
     };
     that.data.isOnShow = true;
-  
+    // that.data.imgFlag=0;
+    // console.log('----1');
+    // wx.showLoading({
+    //   title: '加载中，请稍后',
+    // });
+    // console.log('----2');
+    
   },
-   onLoad:function(){
-     let observer = wx.createIntersectionObserver(this);
-     observer.relativeTo().observe('.top-banner', (res) => {
-       console.log('.top-banner');
-       console.log(res);
-       this.setData({
-         leftFix: res.intersectionRatio > 0 ? false:true
-       })
-     })
-
-   },
-  // 获取右栏每块高度
-  // onShow:function(){
-  //   let queryRight=wx.createSelectorQuery().in(this);
-  //   let heightArr=[];
-  //   let s=0;
-  //   queryRight.selectAll('.right-box').boundingClientRect((react)=>{
-  //     // console.log(react);
-  //     react.forEach((res)=>{
-  //       s+=res.height;
-  //       heightArr.push(s)
-  //     });
-  //     // console.log(heightArr);
-  //     this.setData({
-  //       heightArr: heightArr
-  //     })
-  //   });
-  //   queryRight.select('.tab-right').boundingClientRect((res)=>{
-  //     console.log("tab-right容器");
-  //     console.log(res);
-  //     // 计算容器高度
-  //     this.setData({
-  //       rightH:res.height
-  //     })
-  //   }).exec()
-  // },
-  // 右栏滚动监听
-  // onScroll:function(e){
-  //   console.log("onscroll")
-  //   console.log(e);
-  //   console.log(e.detail.scrollTop);
-  //   var that=this;
-  //   let scrollTop=e.detail.scrollTop;
-  //   if (scrollTop >= 154){
-  //     scrollTop = 154;
-  //   } else if (scrollTop <= 0){
-  //     scrollTop = 0;
-  //   }
-  //   setTimeout(function(){
-  //     that.setData({
-  //       scrollH: scrollTop
-  //     })
-  //   },0)
-
-  // setTimeout(function () {
-  // wx.pageScrollTo({
-  //   scrollTop: scrollTop,
-  //   duration: 50
-  // })},200)
-  //   var animation = wx.createAnimation({
-  //     duration: 5000,
-  //     timingFunction: 'ease',
-  //     delay: 0
-  //   });
-  //   var animation2 = wx.createAnimation({
-  //     duration: 5000,
-  //     timingFunction: 'ease',
-  //     delay: 0
-  //   });
-  //   if (scrollTop>3){
-  //     animation.opacity(0.2).translate(0, -308).step()
-  //     animation2.opacity(1).translate(0, -150).step()
-  //       that.setData({
-  //         bannerShow: false,
-  //         lineFixed: true,
-  //         ani1: animation.export(),
-  //         ani21: animation2.export()
-  //       })
-
-  //   } else {
-  //     animation.opacity(1).translate(0, 0).step()
-  //     animation2.opacity(1).translate(0, 0).step()
-  //       that.setData({
-  //         bannerShow: true,
-  //         lineFixed: false,
-  //         ani2: animation.export(),
-  //         ani22: animation2.export(),
-  //       })
-
-  // }
-  // },
-  // onScroll:function(e){
-  //   console.log("onscroll")
-  //   console.log(e);
-  //   console.log(e.detail.scrollTop);
-  //   let scrollTop = e.detail.scrollTop;
-  //   let scrollArr=this.data.heightArr;
-  //   if(scrollTop>=scrollArr[scrollArr.length-1]){
-  //     return
-  //   }else{
-  //     for(let i=0;i<scrollArr.length;i++){
-  //       if(scrollTop>=0&&scrollTop<scrollArr[0]){
-  //         this.setData({
-  //           curIndex:0
-
-  //         })
-  //       }else if(scrollTop>=scrollArr[i-1]&&scrollTop<scrollArr[i]){
-  //         this.setData({
-  //           curIndex: i
-
-  //         })
-  //       }
-  //     }
-  //   }
-  // },
-  // onPageScroll: function (e) { // 获取滚动条当前位置
-  //   console.log("PageScroll");
-  //   console.log(e);
-
-  //   var leftFix=this.data.leftFix;
-  //   var that = this;
-  //   if (e.scrollTop > 154) {
-  //     that.setData({
-  //       leftFix:true
-  //     })
-  //     console.log(leftFix);
-  //   }
-  //   else{
-  //     that.setData({
-  //       leftFix: false
-  //     })
-  //     console.log(leftFix);
-  //   }
-  // var that = this;
-  // //当滚动的top值最大或者最小时，为什么要做这一步是由于在手机实测小程序的时候会发生滚动条回弹，所以为了解决回弹，设置默认最大最小值   
-  // if (e.scrollTop <= 0) {
-  //  // e.scrollTop = 0;
-  // } else if (e.scrollTop > wx.getSystemInfoSync().windowHeight) {
-  //  //e.scrollTop = wx.getSystemInfoSync().windowHeight;
-  // }
-  // //判断浏览器滚动条上下滚动   
-  // if (e.scrollTop > this.data.scrollH || e.scrollTop == wx.getSystemInfoSync().windowHeight) {
-  //   that.setData({
-  //     bannerShow: false
-  //   })
-  //   console.log('向下滚动');
-  // } else{
-  //   that.setData({
-  //     bannerShow: true
-  //   })
-  //   console.log('向上滚动');
-  // }
-
-  //给scrollTop重新赋值    
-  // setTimeout(function () {
-  //   that.setData({
-  //     scrollH: e.scrollTop
-  //   })
-  // }, 0)
-
-  // },
+ 
   // 左侧导航栏切换
   switchTab: function(e) {
     console.log("switchTab");
     console.log(e);
-    var toView = this.data.toView;
-    var curIndex = this.data.curIndex;
-    console.log(toView);
-    var that = this;
-    // this.setData({
-    //   isScroll: true
-    // })
-    // setTimeout(function () {
-    that.setData({
-      curIndex: e.currentTarget.dataset.current,
-      toView: e.currentTarget.dataset.id,
+    var toView = e.currentTarget.dataset.id;
+    var curIndex = e.currentTarget.dataset.current;
+    var productList = this.data.productList;
+    this.data.imgFlag = 0;
+   
+    if (this.data.imgNum[curIndex] == '' || this.data.imgNum[curIndex]==null){
+      wx.showLoading({
+        title: '加载中，请稍后',
+        mask: true
+      });
+  }
+    var tabTap = this.data.tabTap;
+    tabTap[curIndex] = true;
+  
+    
+    this.setData({
+      curIndex: curIndex,
+      toView: toView,
+
+      tabTap: tabTap
     })
-    // }, 0);
-    // setTimeout(function () {
-    //   that.setData({
-    //     isScroll: false
-    //   })
-    // }, 1);
 
   },
 
@@ -530,22 +400,21 @@ Page({
   skipHtml5Page: function(e) {
     console.log(e);
     var proLink = e.currentTarget.dataset.imglink;
-    if (proLink.length!=0){
+    if (proLink.length != 0) {
       wx.setStorage({
         key: "openHtmlUrl",
         data: proLink,
-        success: function () {
+        success: function() {
           wx.navigateTo({
             url: '../html/openHtml',
           });
         }
       })
     }
-    
+
   },
   previewImage: function(e) {
     console.log(e);
-
     var current = e.currentTarget.dataset.src;
     console.log(current);
     var imglist = this.data.imglist;
@@ -562,6 +431,32 @@ Page({
         })
       }
     })
+  },
+  finishLoad: function(e) {
+    console.log('加载图片---');
+    console.log(e);
+  
+    var imgFlag = this.data.imgFlag;
+    var productList = this.data.productList;
+    var curIndex = this.data.curIndex;
+    var imgTotal = productList[curIndex].PRODUCT_INFO.length;
+    ++imgFlag;
+    
+    console.log(imgFlag);
+    console.log(imgTotal);
+ 
+    if (imgFlag == imgTotal) {
+      console.log("hide");
+      wx.hideLoading();
+      this.data.imgNum[curIndex] = imgFlag;
+      console.log(this.data.imgNum);
+    }
+    this.setData({
+      imgFlag: imgFlag
+    })
+
+    // console.log("imgTotal");
+    // console.log(imgTotal);
   },
   /**
    * 用户点击右上角分享

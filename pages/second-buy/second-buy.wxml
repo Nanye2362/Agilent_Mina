@@ -34,8 +34,8 @@
   <!-- <scroll-view class="tab-right" scroll-y="{{isScroll}}" scroll-into-view="{{toView}}" scroll-with-animation="true"> -->
   <view class="tab-right">
     <block wx:for="{{productList}}" wx:key='unique' wx:for-item="item">
-      <view  class="right-box {{toView == item.PRODUCT_INFO[0].PMENU_ID ? 'show':'hidden'}}">
-        <view class="right-title" wx:if="{{item.PRODUCT_INFO[0].SHOW_TYPE=='0'?true:false}}">
+      <view  wx:if='{{tabTap[index]}}' class="right-box {{toView == item.PRODUCT_INFO[0].PMENU_ID ? 'show':'hidden'}}">
+        <view class="right-title" wx:if="{{item.PRODUCT_INFO[0].SHOW_TYPE=='0'}}">
           <view class="main-title">{{item.PMENU_TITLE}}</view>
           <view class="sub-title">{{item.PMENU_SUBTITLE}}</view>
         </view>
@@ -44,10 +44,10 @@
             <view class="pro-name" wx:if="{{itm.PRODUCT_NAME.length==0?false:true}}">{{itm.PRODUCT_NAME}}</view>
           <!-- 产品图片 -->
             <view wx:if="{{itm.PRODUCT_NAME.length==0}}">
-              <image bindtap='skipHtml5Page' src="https://devops.coffeelandcn.cn{{itm.PRODUCT_IMG}}" data-imglink="{{itm.PRODUCT_LINK}}" style="width:100%;" mode="widthFix"></image>
+              <image bindload='finishLoad' bindtap='skipHtml5Page' src='{{server}}{{itm.PRODUCT_IMG}}' data-imglink="{{itm.PRODUCT_LINK}}" style="width:100%;" mode="widthFix"></image>
             </view>
             <view wx:if="{{itm.PRODUCT_NAME.length!=0}}">
-              <image bindtap='previewImage' src="https://devops.coffeelandcn.cn{{itm.PRODUCT_DETAIL_IMG}}" data-src="https://devops.coffeelandcn.cn{{itm.PRODUCT_DETAIL_IMG}}" style="width:350rpx;" mode="widthFix"></image>
+              <image bindload='finishLoad' bindtap='previewImage' src="{{server}}{{itm.PRODUCT_DETAIL_IMG}}" data-src="{{server}}{{itm.PRODUCT_DETAIL_IMG}}" style="width:350rpx;" mode="widthFix"></image>
             </view>
             <!-- 产品详情 -->
             <view class="pro-describe" wx:if="{{itm.PRODUCT_DESC==null?false:true}}">{{itm.PRODUCT_DESC}}</view>
@@ -62,7 +62,7 @@
             <!-- 联系客服悬浮按钮start -->
             <view wx:if="{{item.PRODUCT_INFO[0].SHOW_TYPE=='0'?false:true}}" class="contactMeiqia flex alignc" bindtap="showInputPanel" data-Template="{{templete}}" data-checkfun="{{checkfun}}" data-desc="{{desc}}" data-tapfun="{{tapfun}}" data-meqia="{{item.PMENU_MEIQIA_GROUP}}"
               data-productid="{{itm.ID}}" data-productname="{{itm.PRODUCT_NAME}}">
-              <image src='https://devops.coffeelandcn.cn/images/advisory.png' class="c_img"></image>
+              <image src='{{server}}images/advisory.png' class="c_img"></image>
               <text class="bh_text fs12 fc-fff">联系客服</text>
             </view>
             <!--联系客服悬浮按钮end-->
