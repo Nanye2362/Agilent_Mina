@@ -30,7 +30,6 @@ Page({
   data: {
 
     isOnShow: true,
-    isScroll: false,
     curIndex: 0,
     toView: 1,
     scrollH: 0,
@@ -60,28 +59,30 @@ Page({
 
     imgFlag: 0,
     imgTotal: 0,
-    tabTap: [true],
+    tabTap: [],
     imgNum:[],
     imglist: []
   },
-  onLoad: function () {
-    var app = getApp();
-    app.mta.Page.init();
-    let observer = wx.createIntersectionObserver(this);
-    observer.relativeTo().observe('.top-banner', (res) => {
-      console.log('.top-banner');
-      console.log(res);
-      this.setData({
-        leftFix: res.intersectionRatio > 0 ? false : true
-      })
-    })
-    console.log('----2');
-    wx.showLoading({
-      title: '加载中，请稍后',
-      mask:true
-    });
-    console.log('----2');
-  },
+ 
+  // onLoad: function () {
+  //   var app = getApp();
+  //   app.mta.Page.init();
+  //   let observer = wx.createIntersectionObserver(this);
+  //   observer.relativeTo().observe('.top-banner', (res) => {
+  //     console.log('.top-banner');
+  //     console.log(res);
+  //     this.setData({
+  //       leftFix: res.intersectionRatio > 0 ? false : true
+  //     })
+  //   })
+  //   console.log('----2');
+  //   wx.showLoading({
+  //     title: '加载中，请稍后',
+  //     mask:true
+  //   });
+  //   console.log('----2');
+  // },
+ 
   onShow: function(options) {
     console.log("onShow");
     var that = this;
@@ -92,6 +93,7 @@ Page({
         data: {},
         success: function(res) {
           console.log(res); //后台获取到的mycount数据
+          
           wx.loadFontFace({
             family: 'iconfont',
             source: 'url("//at.alicdn.com/t/' + res.fontUrl + '.woff")',
@@ -107,11 +109,18 @@ Page({
           });
           that.setData({
             productList: res.data,
+
+            toView: res.data[that.data.curIndex]['ID'],
+
+
           })
+
         }
       });
     };
     that.data.isOnShow = true;
+
+   
     // that.data.imgFlag=0;
     // console.log('----1');
     // wx.showLoading({
@@ -120,6 +129,41 @@ Page({
     // console.log('----2');
     
   },
+ 
+
+
+   onLoad:function(e){
+     var app = getApp();
+     app.mta.Page.init();
+     console.log('onload curIndex');
+      console.log(e);
+     if(typeof(e.index)!="undefined"){
+       this.data.tabTap[e.index]=true;
+       this.setData({
+         curIndex: e.index,
+         tabTap: this.data.tabTap
+       })
+     }else{
+       this.setData({
+         tabTap:[true]
+       })
+     }
+     console.log('----2');
+     wx.showLoading({
+       title: '加载中，请稍后',
+       mask: true
+     });
+     console.log('----2');
+     let observer = wx.createIntersectionObserver(this);
+     observer.relativeTo().observe('.top-banner', (res) => {
+       console.log('.top-banner');
+       console.log(res);
+       this.setData({
+         leftFix: res.intersectionRatio > 0 ? false:true
+       })
+     })
+
+   },
  
   // 左侧导航栏切换
   switchTab: function(e) {
