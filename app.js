@@ -36,6 +36,7 @@ App({
     }
     console.log(userMobile);
     this.wxlogin();
+    
     var that = this;
     wx.getSystemInfo({
       success: function (res) {

@@ -85,15 +85,20 @@ Page({
           });
           that.setData({
             productList: res.data,
-
+            toView: res.data[that.data.curIndex]['ID']
           })
         }
       });
     };
     that.data.isOnShow = true;
-  
   },
-   onLoad:function(){
+   onLoad:function(e){
+     if(typeof(e.index)!="undenfined"){
+       this.setData({
+         curIndex: e.index
+       })
+     }
+     
      let observer = wx.createIntersectionObserver(this);
      observer.relativeTo().observe('.top-banner', (res) => {
        console.log('.top-banner');

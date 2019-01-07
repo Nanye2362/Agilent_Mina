@@ -1,6 +1,6 @@
 var config = {
 
-  En: "DEV",
+  En: "PRO",
   // 下面的地址配合云端 Server 工作
   //Server: "https://devops.coffeelandcn.cn/",//UAT
   //Server:"https://devopsx.coffeelandcn.cn/", //DEV
