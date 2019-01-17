@@ -1,21 +1,65 @@
 <import src="service-list-template/service-list-template.wxml"/>
+<!-- history-filter 搜索 -->
+<view class="weui-search-bar " id="searchBar">
+    <view class="search-bar-top flex">
+      <input class="searchInput" placeholder="请输入状态、故障描述、服务单号、序列号搜索" 
+      bindinput="bindInput" value="{{inputValue}}" placeholder-class='search-placeholder'/>
+      <view class='searchBtn bg-primary flex' bindtap='clickToSearch'>
+        <image class="search-bar-icon" src="/images/search.png" mode='widthFix'></image>
+      </view>   
+  </view>
+</view>
 
 <view  wx:if="{{dropdown}}"  class="faq_mask" bindtap="clickToHide"></view>
 <!-- tab_filter -->
  <view class="sl_tab flex bg-primary">    
-        <view class="sl_tab_item  {{currentTab==0 ? 'on' : ''}}" circular="true" data-current="0" bindtap="swichNav">进行中</view>  
-         <view class="sl_tab_item  {{currentTab==1 ? 'on' : ''}}" circular="true" data-current="1" bindtap="swichNav">待评价</view>  
-        <view class="sl_tab_item {{currentTab==2 ? 'on' : ''}}" circular="true" data-current="2" bindtap="swichNav">全部</view>  
+        <view class="sl_tab_item {{currentTab==0 ? 'on' : ''}}" circular="true" data-current="0" bindtap="swichNav">进行中<view class='circle_icon'>{{unCompleteListL}}</view><view class="{{currentTab==0 ? 'on_tab' : ''}}"></view></view>  
+        <view class="sl_tab_item {{currentTab==1 ? 'on' : ''}}" circular="true" data-current="1" bindtap="swichNav">待确认<span class='circle_icon'>{{unConfirmListL}}</span><view class="{{currentTab==1 ? 'on_tab' : ''}}"></view></view>  
+
+         <view class="sl_tab_item {{currentTab==2 ? 'on' : ''}}" circular="true" data-current="2" bindtap="swichNav">待评价<span class='circle_icon'>{{unsubmmitListL}}</span><view class="{{currentTab==2 ? 'on_tab' : ''}}"></view></view>  
+        <!-- <view class="sl_tab_item {{currentTab==3 ? 'on' : ''}}" circular="true" data-current="3" bindtap="swichNav">全部</view>  -->
+        <view class="sl_tab_item text-right" style="display: inline; z-index: 1000;">
+              <wxs module="m1">
+                    var textChange = function(getSn){
+                       var text ='';
+                        if(getSn == ''){
+                            text = "全部";
+                        }else{
+                            text = getSn;
+                        }
+                        return text;
+                    }
+                     module.exports.textChange = textChange;
+                </wxs>
+              
+              <view class="sl_dropdown text-center {{currentTab==3 ? 'on' : ''}}"><span circular="true" data-current="3" bindtap="swichNav">{{m1.textChange(getSn)}}</span><image src="/images/down.png"  bindtap="tagShow"></image></view>
+              <view class="{{currentTab==3 ? 'on_tab' : ''}}"></view>
+                <view wx:if="{{dropdown}}" class="faq_select">
+                  <view class="text-overflow" data-id='{{getContactId}}' data-num='' bindtap='clickToChoose'>
+                              全部
+                        </view>
+                    <block wx:for="{{SerialNo_listFlag}}" wx:for-item="item">
+                        <view class="text-overflow {{item.changeColor?'selected':''}}" data-index="{{index}}" data-id='{{item.ContactId}}' data-num='{{item.SerialNo}}' bindtap='clickToChoose'>
+                              {{item.SerialNo}}
+                        </view>
+                    </block>
+                </view>                
+      
+        
+        </view> 
+
+
 </view> 
 <!-- filter_head -->
 
-<view class="sl_filter bg-primary">
+<!-- <view class="sl_filter bg-primary">
     <view class=" flex" style="padding: 0 20px;">
         <view class="flex_item">
             <view class="placeholder fc-aaa">共
                 <span wx:if="{{currentTab == 0}}">{{unCompleteListL}}</span>
-                 <span wx:elif="{{currentTab == 1}}">{{unsubmmitListL}}</span>
-                 <span wx:elif="{{currentTab == 2}}">{{HistoryResultsL}}</span>
+                 <span wx:elif="{{currentTab == 1}}">{{unConfirmListL}}</span>
+                 <span wx:elif="{{currentTab == 2}}">{{unsubmmitListL}}</span>
+                 <span wx:elif="{{currentTab == 3}}">{{HistoryResultsL}}</span>
                 条记录
             </view>
         </view>
@@ -44,17 +88,24 @@
                         </view>
                     </block>
                 </view>                
+      
         </view>
     </view>
-</view>
+</view> -->
 
 <!-- notification -->
-<view class="fc-aaa text-center fs14 sl_notifi">以下显示最近三个月记录</view>
+<!-- <view class="fc-aaa text-center fs14 sl_notifi">以下显示最近三个月记录</view> -->
 <!-- content -->
     <swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:{{winHeight - 31}}px;" bindchange="bindChange" >      
         <!-- 进行中 -->   
         <swiper-item class="flex directionC" style="overflow: scroll;">     
                <block wx:for="{{unCompleteList}}" wx:for-item="item">
+                  <template is="sl-template" data="{{item}}"/>
+              </block>
+        </swiper-item> 
+        <!-- 待确认 -->   
+        <swiper-item class="flex directionC" style="overflow: scroll;">     
+               <block wx:for="{{unConfirmList}}" wx:for-item="item">
                   <template is="sl-template" data="{{item}}"/>
               </block>
         </swiper-item> 
@@ -74,4 +125,7 @@
         </swiper-item>  
     </swiper>
 
+<!-- <block wx:if='{{isSearch}}' wx:for="{{resultList}}" wx:for-item="item">
+                  <template is="sl-template" data="{{item}}"/>
+</block> -->
 

@@ -90,7 +90,6 @@ function _NetRequest({ url, data, success, fail, complete, method = "POST", show
     data: data,
     header: header,
     success: res => {
-      console.log("success");
       if ((session_id == "" || session_id == null) && typeof (res.data.session_id) != "undefined") {
         console.log(res.data.session_id);
         wx.setStorageSync('PHPSESSID', res.data.session_id); //如果本地没有就说明第一次请求 把返回的session id 存入本地
@@ -99,6 +98,17 @@ function _NetRequest({ url, data, success, fail, complete, method = "POST", show
           wx.setStorageSync('csrf', res.data.csrfToken);
           wx.setStorageSync('csrfCookie', res.data.csrfCookie);
         }
+      }
+
+      console.log(res.data);
+      if (res.data == "no session") {
+        var aa = getApp();
+        arrRequest = [];
+        aa.wxlogin();
+        wx.switchTab({
+          url: '../index/index',
+        })
+        return;
       }
 
       if (!fail){
@@ -164,7 +174,6 @@ function _NetRequest({ url, data, success, fail, complete, method = "POST", show
       }
     },
     complete: function (res) {
-      console.log("complete");
       if (typeof (complete) == 'function') {
         complete();
       }

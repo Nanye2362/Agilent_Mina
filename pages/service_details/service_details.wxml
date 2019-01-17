@@ -1,0 +1,65 @@
+<!--pages/service_details/service_details.wxml-->
+<view class="sr_history_details">
+    <view class="sr_header">
+        <view class="sr_SrId fs14">咨询单号：{{details.SrId}}</view>
+        <view class="sr_Surveyid fs14" wx:if="{{details.Surveyid !=''}}">服务单号：{{details.Surveyid}}</view>
+        <view class="sr_SrDesc fs12 fc-b9">故障描述：{{details.SrDesc}}</view>                       
+    </view>
+
+    <view class="sr_content">
+       <view class='sr_list' wx:for="{{history}}" wx:key="id" >
+         <view class="sr_left_circle">
+            <!-- <view class="up_line"></view> -->
+            <view class="{{index==0?'blue_circle_out':'grey_circle'}}"><view wx:if="{{index==0}}" class="blue_circle_in"></view></view>
+            <view class="down_line"></view>
+         </view>
+
+         <view class="sr_right_details">
+            <view class="sr_history_time fc-9d">
+              <image src="/images/{{index==0?'time_b':'time'}}.png" style='width:26rpx;' mode='widthFix'></image>
+              <text class="fs12 {{index==0?'fc-d7':'fc-9d'}} marginL text-alignC">{{item.CreateTime}}</text>
+            </view>
+            <view class="sr_history_status {{index==0?'fc-d7':''}}">
+            {{item.ChineseHeaderStatus}}
+            </view>
+            <view wx:if="{{index==0}}" class="sr_first_status {{index==0?'fc-9a':''}}">
+            {{item.ChineseMsg}}
+            </view>
+            <!-- 按钮 session-from="{{item.TECH+item.SrId+item.SN+item.SerialNo}}"还没处理-->
+            <view wx:if="{{index==0}}" class="sl_list_item_bottom {{details.SrStatus == 'WIP'&& details.notConfirmed == 0?'padding123':'padding48'}}">
+                <block wx:if="{{details.SrStatus == 'WIP'}}">
+                     <!-- <meiqiaBtn bindmeiqiaTap="MtaReport" btn-class="sl_chat fs12 self-center" wx:if="{{details.notConfirmed == 0}}" style="width:34%;" handle-alert="{{true}}"  session-from="{{TECH+details.SrId+SN+details.SerialNo}}">联系客服</meiqiaBtn>  -->
+                     <meiqiaBtn bindmeiqiaTap="MtaReport" btn-class="sl_chat blue_status fs12 self-center" wx:if="{{details.notConfirmed == 1}}" style="width:34%;" handle-alert="{{true}}"  session-from="{{TECH+details.SrId+SN+details.SerialNo}}">反馈结果</meiqiaBtn> 
+                     <view wx:if="{{details.Delivery_no!=''}}" class="sl_chat_btn blue_status fs12" data-Surveyid='{{details.Surveyid}}' data-SrId='{{details.SrId}}' bindtap='trackingNo' data-deliveryno='{{details.Delivery_no}}' data-sn='{{details.SerialNo}}'>查看物流</view>
+                </block>
+                <block wx:elif="{{details.SrStatus == 'CPLT'}}"> 
+                    <view class="sl_chat_btn fs12" data-index="{{index}}" data-sn="{{details.SerialNo}}" bindtap='clickToRepairAgain' >再次报修</view>
+                    <view wx:if="{{details.SurveySubmitted=='N'}}" class="sl_chat_btn blue_status fs12" data-Surveyid='{{details.Surveyid}}' data-SrId='{{details.SrId}}' bindtap='clickToEvaluate'>前往评价</view>
+                    <view wx:if="{{details.SurveySubmitted=='Y'}}" class="sl_chat_btn blue_status fs12" data-Surveyid='{{details.Surveyid}}' data-SrId='{{details.SrId}}' bindtap='clickToMyComment'>查看评价</view>
+                </block>
+                <!-- ||typeof(ServconfId)=="undefined" -->
+                <wxs module="m1">
+                    var reportShowOrNot = function(ServconfId){
+                        var reportFlag = true;
+                        if(ServconfId == ''||typeof(ServconfId)=="undefined"){
+                          reportFlag = false;
+                        }
+                        return reportFlag;
+                    }
+                     module.exports.reportShowOrNot = reportShowOrNot;
+                </wxs>
+                <view href="javascript:;" class="sl_chat_btn fs12" wx:if="{{m1.reportShowOrNot(details.ServconfId)}}" data-Servconf-id='{{details.ServconfId}}' bindtap='clickToReport'>查看服务报告</view>
+                <view href="javascript:;" class="sl_chat_btn blue_status fs12" wx:if="{{m1.reportShowOrNot(details.bqId)}}" data-Servconf-id='{{details.bqId}}' bindtap='clickToReport'>预估报价单</view>
+            </view> 
+    
+   
+         </view>  
+       </view>
+    </view>
+    <!-- 联系客服悬浮按钮start -->
+            <view  class="contactMeiqia flex alignc">
+              <image src='{{server}}images/advisory.png'  class="c_img" ></image>
+              <meiqiaBtn bindmeiqiaTap="MtaReport" btn-class="sr_chat fs12  fc-fff" handle-alert="{{true}}" style="padding:0;width:110%;" session-from="{{TECH+details.SrId+SN+details.SerialNo}}">联系客服</meiqiaBtn> 
+            </view>
+    <!--联系客服悬浮按钮end-->
+</view>

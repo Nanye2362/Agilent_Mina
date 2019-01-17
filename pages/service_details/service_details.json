@@ -1,5 +1,5 @@
 {
-  "navigationBarTitleText": "服务快询",
+  "navigationBarTitleText": "服务历史详情",
   "usingComponents": {
     "meiqiaBtn": "/components/meiqiaBtn/meiqiaBtn"
   }

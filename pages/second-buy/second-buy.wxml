@@ -44,10 +44,17 @@
             <view class="pro-name" wx:if="{{itm.PRODUCT_NAME.length==0?false:true}}">{{itm.PRODUCT_NAME}}</view>
           <!-- 产品图片 -->
             <view wx:if="{{itm.PRODUCT_NAME.length==0}}">
-              <image bindload='finishLoad' bindtap='skipHtml5Page' src='{{server}}{{itm.PRODUCT_IMG}}' data-imglink="{{itm.PRODUCT_LINK}}" style="width:100%;" mode="widthFix"></image>
+
+              <image wx:if='{{!finishLoadFlag}}' mode='widthFix' src='/images/tempLoading.gif' style='width:260rpx;' class='load_image'/>
+              <image mode='widthFix' class='{{finishLoadFlag ? "" : "before-load"}}' src='{{server}}{{itm.PRODUCT_IMG}}' bindload='finishLoad' style='{{finishLoadFlag ? "width:100%;" : ""}}'  data-imglink="{{itm.PRODUCT_LINK}}" bindtap='skipHtml5Page'  />
+<!-- 
+              <image bindload='finishLoad' bindtap='skipHtml5Page' src='{{server}}{{itm.PRODUCT_IMG}}' data-imglink="{{itm.PRODUCT_LINK}}" style="width:100%;" mode="widthFix"></image> -->
             </view>
             <view wx:if="{{itm.PRODUCT_NAME.length!=0}}">
-              <image bindload='finishLoad' bindtap='previewImage' src="{{server}}{{itm.PRODUCT_DETAIL_IMG}}" data-src="{{server}}{{itm.PRODUCT_DETAIL_IMG}}" style="width:350rpx;" mode="widthFix"></image>
+              <image wx:if='{{!finishLoadFlag}}' mode='widthFix' src='/images/tempLoading.gif' style='width:260rpx;' class='image-class'/>
+              <image mode='widthFix' class='{{finishLoadFlag ? "" : "before-load"}}' src='{{server}}{{itm.PRODUCT_DETAIL_IMG}}' bindload='finishLoad' style='{{finishLoadFlag ? "width:350rpx;" : ""}}'  data-src="{{server}}{{itm.PRODUCT_DETAIL_IMG}}" bindtap='previewImage'  />
+
+              <!-- <image bindload='finishLoad' bindtap='previewImage' src="{{server}}{{itm.PRODUCT_DETAIL_IMG}}" data-src="{{server}}{{itm.PRODUCT_DETAIL_IMG}}" style="width:350rpx;" mode="widthFix"></image> -->
             </view>
             <!-- 产品详情 -->
             <view class="pro-describe" wx:if="{{itm.PRODUCT_DESC==null?false:true}}">{{itm.PRODUCT_DESC}}</view>
@@ -82,7 +89,7 @@
   </view>
   <view class="shLoading-panel flex alignc directionC">
     <view class='shLoading-title left_row_on_0'>
-      服务秒购
+      服务快询
       <image src='/images/close.png' class='shLoading-title-img' bindtap='cancelTap'></image>
     </view>
     <view class="shLoading-head-panel">
@@ -102,7 +109,7 @@
   </view>
   <view class="shLoading-panel flex alignc directionC">
     <view class='shLoading-title left_row_on_0'>
-      服务秒购
+      服务快询
       <image src='/images/close.png' class='shLoading-title-img' bindtap='closeShLoading'></image>
     </view>
     <view class="shLoading-head-desc fs12 fc-ddd">

@@ -54,8 +54,9 @@ Page({
     templete: 'inputTemplate2',
     checkfun: 'checkSales',
     tapfun: 'salesTap',
-    desc: '服务秒购相关事项咨询',
+    desc: '服务快询相关事项咨询',
     leftFix: false,
+    finishLoadFlag: false,
 
     imgFlag: 0,
     imgTotal: 0,
@@ -121,12 +122,6 @@ Page({
     that.data.isOnShow = true;
 
    
-    // that.data.imgFlag=0;
-    // console.log('----1');
-    // wx.showLoading({
-    //   title: '加载中，请稍后',
-    // });
-    // console.log('----2');
     
   },
  
@@ -148,12 +143,12 @@ Page({
          tabTap:[true]
        })
      }
-     console.log('----2');
-     wx.showLoading({
-       title: '加载中，请稍后',
-       mask: true
-     });
-     console.log('----2');
+    //  console.log('----2');
+    //  wx.showLoading({
+    //    title: '加载中，请稍后',
+    //    mask: true
+    //  });
+    //  console.log('----2');
      let observer = wx.createIntersectionObserver(this);
      observer.relativeTo().observe('.top-banner', (res) => {
        console.log('.top-banner');
@@ -169,17 +164,21 @@ Page({
   switchTab: function(e) {
     console.log("switchTab");
     console.log(e);
+    // this.data.finishLoadFlag=false;
     var toView = e.currentTarget.dataset.id;
     var curIndex = e.currentTarget.dataset.current;
     var productList = this.data.productList;
     this.data.imgFlag = 0;
    
-    if (this.data.imgNum[curIndex] == '' || this.data.imgNum[curIndex]==null){
-      wx.showLoading({
-        title: '加载中，请稍后',
-        mask: true
-      });
-  }
+  //   if (this.data.imgNum[curIndex] == '' || this.data.imgNum[curIndex]==null){
+  //     wx.showLoading({
+  //       title: '加载中，请稍后',
+  //       mask: true
+  //     });
+  // }
+    if (this.data.imgNum[curIndex] == '' || this.data.imgNum[curIndex] == null) {
+      this.data.finishLoadFlag=false;
+    }
     var tabTap = this.data.tabTap;
     tabTap[curIndex] = true;
   
@@ -187,7 +186,7 @@ Page({
     this.setData({
       curIndex: curIndex,
       toView: toView,
-
+      finishLoadFlag: this.data.finishLoadFlag,
       tabTap: tabTap
     })
 
@@ -389,6 +388,7 @@ Page({
       },
       success: function(res) {
         console.log(res);
+        console.log(res.id);
         if (returnObj.obj.type == 'inputTemplate2') { //缓存用户模板2输入的信息
           var userInputInfo = {
             inputInfo: returnObj.obj,
@@ -477,30 +477,42 @@ Page({
     })
   },
   finishLoad: function(e) {
-    console.log('加载图片---');
-    console.log(e);
+
+    // console.log('加载图片---');
+    // console.log(e);
   
     var imgFlag = this.data.imgFlag;
+    var finishLoadFlag = this.data.finishLoadFlag;
     var productList = this.data.productList;
     var curIndex = this.data.curIndex;
     var imgTotal = productList[curIndex].PRODUCT_INFO.length;
     ++imgFlag;
     
-    console.log(imgFlag);
-    console.log(imgTotal);
+    // console.log(imgFlag);
+    // console.log(imgTotal);
  
     if (imgFlag == imgTotal) {
-      console.log("hide");
-      wx.hideLoading();
+      // console.log("hide");
+      // wx.hideLoading();
       this.data.imgNum[curIndex] = imgFlag;
       console.log(this.data.imgNum);
+      finishLoadFlag=true;
     }
-    this.setData({
-      imgFlag: imgFlag
-    })
+    var that=this;
+    // this.setData({
+    //   imgFlag: imgFlag
+    // })
+    // console.log("前finishLoadFlag");
+    // console.log(this.data.finishLoadFlag);
+     that.setData({
+      imgFlag: imgFlag,
+      finishLoadFlag: finishLoadFlag
 
-    // console.log("imgTotal");
-    // console.log(imgTotal);
+    })
+    
+
+    console.log("finishLoadFlag");
+    console.log(this.data.finishLoadFlag);
   },
   /**
    * 用户点击右上角分享

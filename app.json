@@ -5,6 +5,7 @@
     "pages/invoiceConfirm/invoiceConfirm",
     "pages/trackingNo/trackingNo",
     "pages/service_list/service_list",
+    "pages/service_result/service_result",
     "pages/invoiceDetails/invoiceDetails",
     "pages/mechat_list/mechat_list",
     "pages/myhome/myhome",
@@ -46,6 +47,8 @@
     "pages/test/test",
     "pages/template/tarbar" ,
     "pages/template/template",
+    "pages/service_details/service_details",
+    
     "pages/html/openHtml"
   ],
   "networkTimeout": {
@@ -80,7 +83,7 @@
       },
       {
         "pagePath": "pages/second-buy/second-buy",
-        "text": "服务秒购",
+        "text": "服务快询",
         "iconPath": "/images/miao.png",
         "selectedIconPath": "/images/miao_1.png"
       },
