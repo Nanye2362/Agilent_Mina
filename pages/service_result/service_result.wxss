@@ -385,3 +385,7 @@ font-size:18rpx;
 .self-end{
   align-self: flex-end;
 }
+.blue_status{
+  color:#0084d6;
+  border:1rpx solid #0084d6;
+}

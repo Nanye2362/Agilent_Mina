@@ -377,6 +377,15 @@ Page({
       searchValue: value
     })
   },
+  //前往预估报价单确认页面
+  clickToBudgetConfirm: function (e) {
+    var objectId = e.currentTarget.dataset.objectid;
+    console.log(objectId);
+    var srId = e.currentTarget.dataset.srid;
+    wx.navigateTo({
+      url: '../budget_confirm/budget_confirm?srId=' + srId + '&&objectId=' + objectId
+    })
+  },
 // 点击跳转历史详情 data:{SrId:} site-mini/service-details
   clickToDetail: function (e) {
     console.log(e);

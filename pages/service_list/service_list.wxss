@@ -140,7 +140,7 @@ page {
 
 .sl_tab_con_state {
   width: 16rpx;
-  height: 58%;
+  height: 60%;
   position: absolute;
   left: 28rpx;
   top: 24rpx;

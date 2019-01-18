@@ -13,7 +13,7 @@
 <view  wx:if="{{dropdown}}"  class="faq_mask" bindtap="clickToHide"></view>
 <!-- tab_filter -->
  <view class="sl_tab flex bg-primary">    
-        <view class="sl_tab_item {{currentTab==0 ? 'on' : ''}}" circular="true" data-current="0" bindtap="swichNav">进行中<view class='circle_icon'>{{unCompleteListL}}</view><view class="{{currentTab==0 ? 'on_tab' : ''}}"></view></view>  
+        <view class="sl_tab_item {{currentTab==0 ? 'on' : ''}}" circular="true" data-current="0" bindtap="swichNav">进行中<span class='circle_icon'>{{unCompleteListL}}</span><view class="{{currentTab==0 ? 'on_tab' : ''}}"></view></view>  
         <view class="sl_tab_item {{currentTab==1 ? 'on' : ''}}" circular="true" data-current="1" bindtap="swichNav">待确认<span class='circle_icon'>{{unConfirmListL}}</span><view class="{{currentTab==1 ? 'on_tab' : ''}}"></view></view>  
 
          <view class="sl_tab_item {{currentTab==2 ? 'on' : ''}}" circular="true" data-current="2" bindtap="swichNav">待评价<span class='circle_icon'>{{unsubmmitListL}}</span><view class="{{currentTab==2 ? 'on_tab' : ''}}"></view></view>  
