@@ -179,7 +179,7 @@ Page({
       this.data.imgFlag = 0;
       this.data.finishLoadFlag = [];
     }
-    console.log('imgNum',this.data.imgNum[curIndex])
+   
     console.log('switchTap',this.data.finishLoadFlag)
     var tabTap = this.data.tabTap;
     tabTap[curIndex] = true;
@@ -481,7 +481,7 @@ Page({
   },
   finishLoad: function (e) {
 
-    // console.log('加载图片---');
+    console.log('11111加载图片---');
     // console.log(e);
 
     var imgFlag = this.data.imgFlag;
@@ -491,41 +491,33 @@ Page({
     var imgTotal = productList[curIndex].PRODUCT_INFO.length;
 
     finishLoadFlag[imgFlag]=true;
-    
+
+    console.log("finishLoadFlag");
+    console.log(this.data.finishLoadFlag);
     ++imgFlag;
-
-    this.setData({
-      imgFlag: imgFlag,
-      finishLoadFlag: finishLoadFlag
-
-    })
+    // var that=this;
+    // setTimeout(function () {
+      this.setData({
+        imgFlag: imgFlag,
+        finishLoadFlag: finishLoadFlag
+     
+      })
     
+    console.log("imgFlag");
+    console.log(this.data.imgFlag);
     // console.log(imgFlag);
     // console.log(imgTotal);
 
     if (imgFlag == imgTotal) {
-      // console.log("hide");
-      // wx.hideLoading();
+      
       this.data.imgNum[curIndex] = imgFlag;
       console.log(this.data.imgNum);
-      
-      // console.log(finishLoadFlag);
       this.setData({
         imgNum: this.data.imgNum
       })
-    
     }
-    var that = this;
-    this.setData({
-      imgFlag: imgFlag
-    })
-    // console.log("前finishLoadFlag");
-    // console.log(this.data.finishLoadFlag);
-    
-
-
-    console.log("finishLoadFlag");
-    console.log(this.data.finishLoadFlag);
+ 
+ 
   },
   /**
    * 用户点击右上角分享

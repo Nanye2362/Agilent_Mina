@@ -46,7 +46,7 @@
             <view wx:if="{{itm.PRODUCT_NAME.length==0}}">
 
               <image wx:if='{{!finishLoadFlag[imgFlag-1]}}' mode='widthFix' src='/images/tempLoading.gif' style='width:260rpx;' class='load_image'/>
-              <image mode='widthFix' class='{{finishLoadFlag[imgFlag-1] ? "" : "before-load"}}' src='{{server}}{{itm.PRODUCT_IMG}}' bindload='finishLoad' style='{{finishLoadFlag[imgFlag-1] ? "width:100%;" : ""}}'  data-imglink="{{itm.PRODUCT_LINK}}" bindtap='skipHtml5Page'  />
+              <image  mode='widthFix' class='{{finishLoadFlag[imgFlag-1] ? "" : "before-load"}}' src='{{server}}{{itm.PRODUCT_IMG}}' bindload='finishLoad' style='{{finishLoadFlag[imgFlag-1] ? "width:100%;" : ""}}'  data-imglink="{{itm.PRODUCT_LINK}}" bindtap='skipHtml5Page'  />
 <!-- 
               <image bindload='finishLoad' bindtap='skipHtml5Page' src='{{server}}{{itm.PRODUCT_IMG}}' data-imglink="{{itm.PRODUCT_LINK}}" style="width:100%;" mode="widthFix"></image> -->
             </view>
