@@ -177,9 +177,38 @@ page{
 }
 .faq_notification{
   margin-top:40rpx;
+  /* padding:0 40rpx; */
+
 }
 .faq_notification_img{
   width: 47rpx;
   height: 38rpx;
   vertical-align: middle;
+}
+.soft_picker{
+  width:675rpx;
+  height:54rpx;
+  background: #fff;
+  border: 1rpx solid #c5c5c5;
+  border-radius: 16rpx;
+  padding-left: 10rpx;
+  line-height:54rpx;
+
+}
+.soft_input{
+  flex:.9;
+  padding-left:18rpx;
+  align-self:center;
+
+}
+.down_select{
+  flex:0.1;
+  width:8rpx;
+  align-self:center;
+}
+.ss_soft_inside{
+  margin-left: 34rpx;
+  margin-top:22rpx;
+  margin-bottom:60rpx;
+
 }
