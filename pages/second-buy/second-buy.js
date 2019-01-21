@@ -42,7 +42,7 @@ Page({
     inputError: "",
     meqiaGroup: "", //美恰分组
     productid: '',
-    //服务秒购咨询
+    //服务快询咨询
     input2_name: "",
     input2_tel: "",
     input2_company: "",
@@ -54,7 +54,7 @@ Page({
     templete: 'inputTemplate2',
     checkfun: 'checkSales',
     tapfun: 'salesTap',
-    desc: '服务秒购相关事项咨询',
+    desc: '服务快询相关事项咨询',
     leftFix: false,
 
     imgFlag: 0,
@@ -91,9 +91,20 @@ Page({
       util.NetRequest({
         url: 'purchase/get-purchase-list',
         data: {},
+        complete:function(){
+          console.log(that.data.imgFlag);
+          console.log(that.data.productList[that.data.curIndex].PRODUCT_INFO.length);
+
+          if (that.data.imgFlag < that.data.productList[that.data.curIndex].PRODUCT_INFO.length){
+            wx.showLoading({
+              title: '加载中，请稍后',
+              mask: true
+            });
+          }      
+        },
         success: function(res) {
+         
           console.log(res); //后台获取到的mycount数据
-          
           wx.loadFontFace({
             family: 'iconfont',
             source: 'url("//at.alicdn.com/t/' + res.fontUrl + '.woff")',

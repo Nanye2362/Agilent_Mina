@@ -80,7 +80,7 @@
       },
       {
         "pagePath": "pages/second-buy/second-buy",
-        "text": "服务秒购",
+        "text": "服务快询",
         "iconPath": "/images/miao.png",
         "selectedIconPath": "/images/miao_1.png"
       },

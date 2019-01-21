@@ -165,16 +165,19 @@ function _NetRequest({ url, data, success, fail, complete, method = "POST", show
     },
     complete: function (res) {
       console.log("complete");
-      if (typeof (complete) == 'function') {
-        complete();
-      }
-      
+
       if (arrRequest.length == 0) {
         if (!app.globalData.isLoading && !app.globalData.isUploading) {
           wx.hideLoading()
         }
         isRequesting = false;
-      } else {
+      }
+
+      if (typeof (complete) == 'function') {
+        complete();
+      }
+      
+      if (arrRequest.length != 0) {
         if (res['statusCode'] === 200){
           var obj = arrRequest.shift();
           _NetRequest(obj); 

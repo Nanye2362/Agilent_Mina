@@ -95,6 +95,7 @@ Page({
         if (res.success == true) {
           wx.setStorageSync('mobile', mobile)
           if (pageName == 'myhome' || pageName == 'index') {
+            wx.setStorageSync("MOBILE", mobile);
             wx.switchTab({
               url: '../' + pageName + '/' + pageName + '?mobile=' + mobile,
             })
