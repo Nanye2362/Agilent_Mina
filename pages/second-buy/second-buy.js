@@ -56,7 +56,7 @@ Page({
     tapfun: 'salesTap',
     desc: '服务快询相关事项咨询',
     leftFix: false,
-    finishLoadFlag: false,
+    finishLoadFlag: [],
 
     imgFlag: 0,
     imgTotal: 0,
@@ -162,13 +162,12 @@ Page({
 
   // 左侧导航栏切换
   switchTab: function (e) {
-    console.log("switchTab");
-    console.log(e);
-    // this.data.finishLoadFlag=false;
+    // console.log("switchTab");
+    // console.log(e);
     var toView = e.currentTarget.dataset.id;
     var curIndex = e.currentTarget.dataset.current;
     var productList = this.data.productList;
-    this.data.imgFlag = 0;
+    
 
     //   if (this.data.imgNum[curIndex] == '' || this.data.imgNum[curIndex]==null){
     //     wx.showLoading({
@@ -177,14 +176,18 @@ Page({
     //     });
     // }
     if (this.data.imgNum[curIndex] == '' || this.data.imgNum[curIndex] == null) {
-      this.data.finishLoadFlag = false;
+      this.data.imgFlag = 0;
+      this.data.finishLoadFlag = [];
     }
+    console.log('imgNum',this.data.imgNum[curIndex])
+    console.log('switchTap',this.data.finishLoadFlag)
     var tabTap = this.data.tabTap;
     tabTap[curIndex] = true;
 
 
     this.setData({
       curIndex: curIndex,
+      imgFlag: this.data.imgFlag,
       toView: toView,
       finishLoadFlag: this.data.finishLoadFlag,
       tabTap: tabTap
@@ -486,8 +489,17 @@ Page({
     var productList = this.data.productList;
     var curIndex = this.data.curIndex;
     var imgTotal = productList[curIndex].PRODUCT_INFO.length;
+
+    finishLoadFlag[imgFlag]=true;
+    
     ++imgFlag;
 
+    this.setData({
+      imgFlag: imgFlag,
+      finishLoadFlag: finishLoadFlag
+
+    })
+    
     // console.log(imgFlag);
     // console.log(imgTotal);
 
@@ -496,19 +508,20 @@ Page({
       // wx.hideLoading();
       this.data.imgNum[curIndex] = imgFlag;
       console.log(this.data.imgNum);
-      finishLoadFlag = true;
+      
+      // console.log(finishLoadFlag);
+      this.setData({
+        imgNum: this.data.imgNum
+      })
+    
     }
     var that = this;
-    // this.setData({
-    //   imgFlag: imgFlag
-    // })
+    this.setData({
+      imgFlag: imgFlag
+    })
     // console.log("前finishLoadFlag");
     // console.log(this.data.finishLoadFlag);
-    that.setData({
-      imgFlag: imgFlag,
-      finishLoadFlag: finishLoadFlag
-
-    })
+    
 
 
     console.log("finishLoadFlag");
