@@ -126,6 +126,12 @@ view, text, input, button{ font-size: 32rpx; font-family: "MicroSoft Yahei"; col
 .fc-777 {
     color: #777;
 }
+.fc-b0{
+  color:#b0b0b0;
+}
+.fc-98{
+  color:#989898;
+}
 .fc-grey{
     color: #b5b4b5;
 }
@@ -189,7 +195,9 @@ view, text, input, button{ font-size: 32rpx; font-family: "MicroSoft Yahei"; col
   border-bottom: 1px dashed #d8d8d8;
 }
 /* ===================margin====================== */
-  
+/* .marginB-3{
+  margin-bottom: 18rpx;
+}  */
 .marginB-6{
   margin-bottom: 30rpx;
 }  
@@ -202,7 +210,9 @@ view, text, input, button{ font-size: 32rpx; font-family: "MicroSoft Yahei"; col
 .marginT{
   margin-top: 30rpx;
 }
-
+.marginL{
+  margin-left: 20rpx;
+}
 
 /* ==================backHome===================== */
 .backHome{ 

@@ -82,7 +82,7 @@
 
 
       <!-- 咨询 -->
-      <view my-class="faq_notification text-center bg-primary marginB-20">
+      <view class="faq_notification text-center bg-primary marginB-20">
         <view class='fc-777 fs12'>如有其他疑问，您可以提交
           <meiqiaCheckWork my-class="fc-blue service_repair btn-meiqia fs14" showType="clickPanel" bindclickevent='clickToRepair'>
             <image src='/images/feedback.png' class='faq_notification_img'></image>

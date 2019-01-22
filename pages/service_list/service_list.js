@@ -19,18 +19,22 @@ Page({
     unCompleteListL: 0,
     unsubmmitList: [],   //待评价
     unsubmmitListL: 0,
+    unConfirmList:[],
+    unConfirmListL:0,
     SerialNo_listFlag: [],
     getSn: '',
     getContactId: '',
+    isSearch:false,
     TECH: 'N_srid:',
     SN: ';sn:',
+    searchValue: '',
     isFirst:true
   },
   onShow: function () {
     var that = this;
     console.log(this.data.isFirst);
     if (!this.data.isFirst){
-      //请求后台接口
+      //请求后台接口 data:{SrId:} site-mini/service-details
       util.NetRequest({
         url: 'site-mini/service-list',
         success: function (res) {
@@ -75,7 +79,7 @@ Page({
         currentTab: 2
       });
       //请求后台接口
-
+  // sr/history-filter
       util.NetRequest({
         url: 'sr/get-history-formini',
         data: {
@@ -165,6 +169,7 @@ Page({
         'SerialNo': serialNu,
         'index': that.data.currentTab
       },
+      
       success: function (res) {
         //history数据分类
         console.log('choose' + res)
@@ -189,6 +194,7 @@ Page({
     var ListAll = res.HistoryResults;
     var unCompleteList = [];
     var unsubmmitList = [];
+    var unConfirmList = [];
     var getSerialNo_list = res.SerialNo_list;
     var SerialNo_list = this.data.SerialNo_listFlag;
     var TECH = this.data.TECH;
@@ -203,26 +209,34 @@ Page({
     for (var i = 0; i < ListAll.length; i++) {
       ListAll[i].TECH = TECH;
       ListAll[i].SN = SN;
-      if (ListAll[i].SrStatus == 'WIP') {
+      if (ListAll[i].SrStatus == 'WIP' && ListAll[i].notConfirmed == 0) {
         unCompleteList.push(ListAll[i]);
       }
-      if (ListAll[i].SrStatus == 'CPLT' && ListAll[i].SurveySubmitted == 'N') {
+      if (ListAll[i].SrStatus == 'CPLT' && ListAll[i].SurveySubmitted == 'N')       {
         unsubmmitList.push(ListAll[i]);
       }
+      if (ListAll[i].notConfirmed == 1) {
+        unConfirmList.push(ListAll[i]);
+      }
+      // unConfirmList待确认历史表
     }
-
+    console.log('unConfirmList',unConfirmList);
     var HistoryResultsL = ListAll.length;
     var unCompleteListL = unCompleteList.length;
     var unsubmmitListL = unsubmmitList.length;
+    var unConfirmListL = unConfirmList.length;
     this.setData({
       InstrumentCount: res.InstrumentCount,
       HistoryResults: res.HistoryResults,
       unCompleteList: unCompleteList,
       unsubmmitList: unsubmmitList,
+      unConfirmList: unConfirmList,
       SerialNo_listFlag: SerialNo_listFlag,
       HistoryResultsL: HistoryResultsL,
       unCompleteListL: unCompleteListL,
-      unsubmmitListL: unsubmmitListL
+      unsubmmitListL: unsubmmitListL,
+      unConfirmListL: unConfirmListL
+
     });
   },
 
@@ -323,5 +337,64 @@ Page({
     wx.navigateTo({
       url: '../evaluation/evaluation?Surveyid=' + Surveyid + '&&SerialNo=' + SerialID
     })
-  }
+  },
+// 搜索服务列表
+  clickToSearch: function (e) {
+    //腾讯mta记录搜索事件开始
+    // var app = getApp();
+    // app.mta.Event.stat("self_service_search", { "query": this.data.searchValue });
+    //腾讯mta记录搜索事件结束
+
+    console.log('确定');
+    var value = this.data.searchValue;
+    wx.navigateTo({
+      url: '../service_result/service_result?value=' + value,
+    })
+    // var that = this;
+    // console.log(value)
+    // util.NetRequest({
+    //   url: 'sr/history-filter',
+    //   data: {
+    //     'keywords': value
+    //   },
+    //   success: function (res) {
+    //     console.log(res);
+    //     var resultList = res.HistoryFilter;
+    //     var isSearch=true;
+    //     that.setData({
+     
+    //       resultList: resultList,
+    //       isSearch: isSearch
+    //     })
+    //   }
+    // });
+  },
+  bindInput: function (e) {
+    console.log(e);
+    var value = e.detail.value;
+    var inputLength = e.detail.value.length;
+    this.setData({
+      searchValue: value
+    })
+  },
+  //前往预估报价单确认页面
+  clickToBudgetConfirm: function (e) {
+    var objectId = e.currentTarget.dataset.objectid;
+    console.log(objectId);
+    var srId = e.currentTarget.dataset.srid;
+    wx.navigateTo({
+      url: '../budget_confirm/budget_confirm?srId=' + srId + '&&objectId=' + objectId
+    })
+  },
+// 点击跳转历史详情 data:{SrId:} site-mini/service-details
+  clickToDetail: function (e) {
+    console.log(e);
+    var SrId = e.currentTarget.dataset.srid;
+    // var SrDesc = e.currentTarget.dataset.srdesc;
+    // var Surveyid = e.currentTarget.dataset.surveyid;
+    console.log(SrId);
+    wx.navigateTo({
+      url: '../service_details/service_details?SrId=' + SrId
+    })
+  },
 }) 

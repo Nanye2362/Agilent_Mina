@@ -58,7 +58,6 @@ page {
   height: 120rpx;
   display: flex;
   flex-direction: column;
-
   position: absolute;
   border-radius: 10px;
   top: 2;
@@ -339,3 +338,12 @@ page {
   margin-left: 34rpx;
   margin-right: 5px;
 }
+
+.before-load {
+  width: 0;
+  height: 0;
+  opacity: 0;
+}
+/* .load_image{
+
+} */
