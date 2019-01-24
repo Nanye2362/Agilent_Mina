@@ -33,7 +33,7 @@
       <!-- service_list_item -->
       <view class="ss_tab_con">
         <!-- =====软件分类-start====== -->
-        <view class="ss_soft_class" wx:if='{{index==3}}'>
+        <view class="ss_soft_class" wx:if='{{index==5}}'>
           <view class="ss_title ss_qc_title fs15" >
               <image src="/images/soft_menu.png" class="ss_img_ques" mode='widthFix'></image>软件分类
           </view>
