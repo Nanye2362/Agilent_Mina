@@ -1,0 +1,5 @@
+<!--components/preLoad/preLoad.wxml-->
+<image wx:if='{{!finishLoadFlag}}' mode='{{mode}}' src='{{defaultImage}}' style=' width : 260rpx;' class="img-class"/>
+<image mode='{{mode}}' class='{{finishLoadFlag ? "" : "before-load"}}' src='{{originalImage}}' bindtap='bindtap' data-imglink='{{imgLink}}' data-src='{{imgSrc}}' bindload='finishLoad' style='{{finishLoadFlag && width ? "width:" + width : ""}};' />
+<!-- {{finishLoadFlag && height ? "height:" + height : ""}}' : "before-load"}}' src='{{originalImage}}' bindtap='bindtap' data-imglink='{{imgLink}}' data-src='{{imgSrc}}' bindload='finishLoad' style='{{finishLoadFlag && width ? "width:" + width : ""}};' />
+<!-- {{finishLoadFlag && height ? "height:" + height : ""}} -->

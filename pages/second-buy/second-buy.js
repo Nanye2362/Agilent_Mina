@@ -56,13 +56,16 @@ Page({
     tapfun: 'salesTap',
     desc: '服务快询相关事项咨询',
     leftFix: false,
+ 
     finishLoadFlag: [],
+    loadImg:[],
 
     imgFlag: 0,
     imgTotal: 0,
     tabTap: [],
     imgNum: [],
-    imglist: []
+    imglist: [],
+    finishTabload:[]
   },
 
   // onLoad: function () {
@@ -110,7 +113,7 @@ Page({
           });
           that.setData({
             productList: res.data,
-
+            
             toView: res.data[that.data.curIndex]['ID'],
 
 
@@ -167,29 +170,26 @@ Page({
     var toView = e.currentTarget.dataset.id;
     var curIndex = e.currentTarget.dataset.current;
     var productList = this.data.productList;
-    
+    // console.log('this.data.imgNum[curIndex]');
+    console.log(curIndex);
+    // console.log(this.data.imgNum[curIndex]);
 
-    //   if (this.data.imgNum[curIndex] == '' || this.data.imgNum[curIndex]==null){
-    //     wx.showLoading({
-    //       title: '加载中，请稍后',
-    //       mask: true
-    //     });
+    
+    // if (this.data.imgNum[curIndex] == '' || this.data.imgNum[curIndex] == undefined) {
+    //   this.data.imgFlag = 0;
+    //   this.data.finishLoadFlag=[];
+    //   console.log('ppppppppppp');
     // }
-    if (this.data.imgNum[curIndex] == '' || this.data.imgNum[curIndex] == null) {
-      this.data.imgFlag = 0;
-      this.data.finishLoadFlag = [];
-    }
-   
-    console.log('switchTap',this.data.finishLoadFlag)
+    
     var tabTap = this.data.tabTap;
     tabTap[curIndex] = true;
 
 
     this.setData({
       curIndex: curIndex,
-      imgFlag: this.data.imgFlag,
+      // imgFlag: this.data.imgFlag,
       toView: toView,
-      finishLoadFlag: this.data.finishLoadFlag,
+      // finishLoadFlag: this.data.finishLoadFlag,
       tabTap: tabTap
     })
 
@@ -445,8 +445,10 @@ Page({
    跳转图片html
   */
   skipHtml5Page: function (e) {
+    console.log('skipHtml5Page');
     console.log(e);
-    var proLink = e.currentTarget.dataset.imglink;
+    // var proLink = e.currentTarget.dataset.imglink;
+    var proLink = e.detail.currentTarget.dataset.imglink;
     if (proLink.length != 0) {
       wx.setStorage({
         key: "openHtmlUrl",
@@ -461,8 +463,10 @@ Page({
 
   },
   previewImage: function (e) {
+    console.log('previewImage');
     console.log(e);
-    var current = e.currentTarget.dataset.src;
+    // var current = e.currentTarget.dataset.src;
+    var current = e.detail.currentTarget.dataset.src;
     console.log(current);
     var imglist = this.data.imglist;
     imglist.push(current);
@@ -479,19 +483,26 @@ Page({
       }
     })
   },
-  finishLoad: function (e) {
+  loadFinish: function (e) {
 
     console.log('11111加载图片---');
     // console.log(e);
 
     var imgFlag = this.data.imgFlag;
+    var loadImg = this.data.loadImg;
     var finishLoadFlag = this.data.finishLoadFlag;
+    var finishTabload = this.data.finishTabload;
     var productList = this.data.productList;
     var curIndex = this.data.curIndex;
+    console.log('ccccccc', curIndex);
     var imgTotal = productList[curIndex].PRODUCT_INFO.length;
 
     finishLoadFlag[imgFlag]=true;
 
+    loadImg.splice(curIndex, 1, { finishLoadFlag });
+    console.log('1111111111111222222');
+    console.log(loadImg);
+    
     console.log("finishLoadFlag");
     console.log(this.data.finishLoadFlag);
     ++imgFlag;
@@ -499,8 +510,8 @@ Page({
     // setTimeout(function () {
       this.setData({
         imgFlag: imgFlag,
-        finishLoadFlag: finishLoadFlag
-     
+        finishLoadFlag: finishLoadFlag,
+        loadImg: loadImg
       })
     
     console.log("imgFlag");
@@ -509,11 +520,13 @@ Page({
     // console.log(imgTotal);
 
     if (imgFlag == imgTotal) {
-      
       this.data.imgNum[curIndex] = imgFlag;
+      finishTabload[curIndex]=true;
       console.log(this.data.imgNum);
       this.setData({
-        imgNum: this.data.imgNum
+        imgNum: this.data.imgNum,
+        finishTabload: finishTabload
+   
       })
     }
  
