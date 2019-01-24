@@ -1,6 +1,7 @@
 {
   "navigationBarTitleText": "服务快询",
   "usingComponents": {
-    "meiqiaBtn": "/components/meiqiaBtn/meiqiaBtn"
+    "meiqiaBtn": "/components/meiqiaBtn/meiqiaBtn",
+    "image-loader": "/components/preLoad/preLoad"
   }
 }

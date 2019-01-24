@@ -42,7 +42,7 @@ Page({
     inputError: "",
     meqiaGroup: "", //美恰分组
     productid: '',
-    //服务快询咨询
+    //服务秒购咨询
     input2_name: "",
     input2_tel: "",
     input2_company: "",
@@ -56,15 +56,18 @@ Page({
     tapfun: 'salesTap',
     desc: '服务快询相关事项咨询',
     leftFix: false,
-    finishLoadFlag: false,
+ 
+    finishLoadFlag: [],
+    loadImg:[],
 
     imgFlag: 0,
     imgTotal: 0,
     tabTap: [],
-    imgNum:[],
-    imglist: []
+    imgNum: [],
+    imglist: [],
+    finishTabload:[]
   },
- 
+
   // onLoad: function () {
   //   var app = getApp();
   //   app.mta.Page.init();
@@ -83,45 +86,34 @@ Page({
   //   });
   //   console.log('----2');
   // },
- 
-  onShow: function(options) {
+
+  onShow: function (options) {
     console.log("onShow");
     var that = this;
-  
+
     if (that.data.isOnShow) {
       util.NetRequest({
         url: 'purchase/get-purchase-list',
         data: {},
-        complete:function(){
-          console.log(that.data.imgFlag);
-          console.log(that.data.productList[that.data.curIndex].PRODUCT_INFO.length);
-
-          if (that.data.imgFlag < that.data.productList[that.data.curIndex].PRODUCT_INFO.length){
-            wx.showLoading({
-              title: '加载中，请稍后',
-              mask: true
-            });
-          }      
-        },
-        success: function(res) {
-         
+        success: function (res) {
           console.log(res); //后台获取到的mycount数据
+
           wx.loadFontFace({
             family: 'iconfont',
             source: 'url("//at.alicdn.com/t/' + res.fontUrl + '.woff")',
             success(res) {
 
             },
-            fail: function(res) {
+            fail: function (res) {
               console.log(res);
             },
-            complete: function(res) {
+            complete: function (res) {
               console.log(res.status)
             }
           });
           that.setData({
             productList: res.data,
-
+            
             toView: res.data[that.data.curIndex]['ID'],
 
 
@@ -132,79 +124,79 @@ Page({
     };
     that.data.isOnShow = true;
 
-   
-    
+
+
   },
- 
 
 
-   onLoad:function(e){
-     var app = getApp();
-     app.mta.Page.init();
-     console.log('onload curIndex');
-      console.log(e);
-     if(typeof(e.index)!="undefined"){
-       this.data.tabTap[e.index]=true;
-       this.setData({
-         curIndex: e.index,
-         tabTap: this.data.tabTap
-       })
-     }else{
-       this.setData({
-         tabTap:[true]
-       })
-     }
+
+  onLoad: function (e) {
+    var app = getApp();
+    app.mta.Page.init();
+    console.log('onload curIndex');
+    console.log(e);
+    if (typeof (e.index) != "undefined") {
+      this.data.tabTap[e.index] = true;
+      this.setData({
+        curIndex: e.index,
+        tabTap: this.data.tabTap
+      })
+    } else {
+      this.setData({
+        tabTap: [true]
+      })
+    }
     //  console.log('----2');
     //  wx.showLoading({
     //    title: '加载中，请稍后',
     //    mask: true
     //  });
     //  console.log('----2');
-     let observer = wx.createIntersectionObserver(this);
-     observer.relativeTo().observe('.top-banner', (res) => {
-       console.log('.top-banner');
-       console.log(res);
-       this.setData({
-         leftFix: res.intersectionRatio > 0 ? false:true
-       })
-     })
+    let observer = wx.createIntersectionObserver(this);
+    observer.relativeTo().observe('.top-banner', (res) => {
+      console.log('.top-banner');
+      console.log(res);
+      this.setData({
+        leftFix: res.intersectionRatio > 0 ? false : true
+      })
+    })
 
-   },
- 
+  },
+
   // 左侧导航栏切换
-  switchTab: function(e) {
-    console.log("switchTab");
-    console.log(e);
-    // this.data.finishLoadFlag=false;
+  switchTab: function (e) {
+    // console.log("switchTab");
+    // console.log(e);
     var toView = e.currentTarget.dataset.id;
     var curIndex = e.currentTarget.dataset.current;
     var productList = this.data.productList;
-    this.data.imgFlag = 0;
-   
-  //   if (this.data.imgNum[curIndex] == '' || this.data.imgNum[curIndex]==null){
-  //     wx.showLoading({
-  //       title: '加载中，请稍后',
-  //       mask: true
-  //     });
-  // }
-    if (this.data.imgNum[curIndex] == '' || this.data.imgNum[curIndex] == null) {
-      this.data.finishLoadFlag=false;
-    }
+    // console.log('this.data.imgNum[curIndex]');
+    console.log(curIndex);
+    // console.log(this.data.imgNum[curIndex]);
+
+    
+    // if (this.data.imgNum[curIndex] == '' || this.data.imgNum[curIndex] == undefined) {
+    //   this.data.imgFlag = 0;
+    //   this.data.finishLoadFlag=[];
+    //   console.log('ppppppppppp');
+    // }
+    
     var tabTap = this.data.tabTap;
     tabTap[curIndex] = true;
-  
-    
+
+
     this.setData({
       curIndex: curIndex,
+      // imgFlag: this.data.imgFlag,
       toView: toView,
-      finishLoadFlag: this.data.finishLoadFlag,
+      // finishLoadFlag: this.data.finishLoadFlag,
       tabTap: tabTap
     })
 
   },
 
   //美恰联系
-  startChat: function(e) {
+  startChat: function (e) {
     var app = getApp();
     // console.log("productid");
     // console.log(this.data.productid);
@@ -220,19 +212,19 @@ Page({
   },
   // 点击联系客服事件
 
-  showInputPanel: function(e) { // 点击弹出信息输入
+  showInputPanel: function (e) { // 点击弹出信息输入
     console.log('showinputpanel');
 
 
     var that = this;
     // 检测工作时间
-    util.checkWorktime(function() {
+    util.checkWorktime(function () {
       switch (e.currentTarget.dataset.tapfun) {
         case "salesTap":
           that.salesTap(e);
           break;
       }
-    }, function() {
+    }, function () {
       console.log(e)
       switch (e.currentTarget.dataset.tapfun) {
         case "salesTap":
@@ -243,7 +235,7 @@ Page({
 
   },
   // 工作时间正式执行的函数
-  salesTap: function(e) {
+  salesTap: function (e) {
     console.log(e);
     var that = this;
     that.setData({
@@ -256,9 +248,9 @@ Page({
     })
 
     // 工作时间成功后验证是否认证过
-    util.IsCertificate(function() {
+    util.IsCertificate(function () {
       that.getCusInfo();
-    }, function() {
+    }, function () {
       var userInputInfo = wx.getStorageSync('UserInputCache_ol');
       console.log(userInputInfo);
       if (userInputInfo) {
@@ -271,11 +263,11 @@ Page({
     })
   },
   // 验证过的，信息从后台取出
-  getCusInfo: function(e) {
+  getCusInfo: function (e) {
     var that = this;
     util.NetRequest({
       url: 'site-mini/meqia-getuserinfo',
-      success: function(res) {
+      success: function (res) {
         console.log(res);
         that.setData({
           input2_name: res.userinfo.name,
@@ -298,7 +290,7 @@ Page({
     })
   },
   // 未认证用户输入信息为空时弹出的提示
-  checkSales: function() {
+  checkSales: function () {
     if (this.data.input2_name.length == 0) {
       this.setData({
         hasInputError: true,
@@ -350,18 +342,18 @@ Page({
     return true;
   },
 
-  checkEmail: function(str) {
+  checkEmail: function (str) {
     var reg = /^(\w)+(\.\w+)*@(\w)+((\.\w+)+)$/;
     return reg.test(str);
   },
   //右上角关闭提示框
-  closeShLoading: function() {
+  closeShLoading: function () {
     this.setData({
       shInputInfo: false,
     })
   },
   // 点击确认
-  getInputInfo: function() {
+  getInputInfo: function () {
     console.log(this.data.checkFun);
     var hasError = false;
     switch (this.data.checkFun) {
@@ -384,7 +376,7 @@ Page({
     }
   },
   // 未认证，将用户输入数据传给后台
-  okTap: function(e) {
+  okTap: function (e) {
     var returnObj = this.getInputInfo();
     var email = this.data.input2_email;
     if (returnObj.hasError) {
@@ -397,7 +389,7 @@ Page({
         'info': JSON.stringify(returnObj.obj),
         'email': email // 多传一个参数email
       },
-      success: function(res) {
+      success: function (res) {
         console.log(res);
         console.log(res.id);
         if (returnObj.obj.type == 'inputTemplate2') { //缓存用户模板2输入的信息
@@ -420,7 +412,7 @@ Page({
       }
     })
   },
-  cancelTap: function() {
+  cancelTap: function () {
     this.setData({
       shLoading: false,
       hasInputError: false,
@@ -429,37 +421,39 @@ Page({
     })
   },
   // 输入信息修改
-  infoCancelTap: function() {
+  infoCancelTap: function () {
     this.setData({
       shInputInfo: false,
       shLoading: true
     })
   },
-  bindKeyInput: function(e) {
+  bindKeyInput: function (e) {
     var obj = {};
     obj[e.currentTarget.dataset.name] = e.detail.value;
     this.setData(obj);
   },
   // 非工作时间的弹出框内容
-  showOfflineText: function() {
+  showOfflineText: function () {
     wx.showModal({
       title: '温馨提示',
       content: '感谢您一直以来对我们工作的关注和支持。我们的工作时间是周一至周五的 8:30-17:30，双休日（除节假日外）仅提供紧急电话技术支持，服务时间为：9:00-17:00。',
       showCancel: false,
-      success: function(res) {}
+      success: function (res) { }
     })
   },
   /*
    跳转图片html
   */
-  skipHtml5Page: function(e) {
+  skipHtml5Page: function (e) {
+    console.log('skipHtml5Page');
     console.log(e);
-    var proLink = e.currentTarget.dataset.imglink;
+    // var proLink = e.currentTarget.dataset.imglink;
+    var proLink = e.detail.currentTarget.dataset.imglink;
     if (proLink.length != 0) {
       wx.setStorage({
         key: "openHtmlUrl",
         data: proLink,
-        success: function() {
+        success: function () {
           wx.navigateTo({
             url: '../html/openHtml',
           });
@@ -468,9 +462,11 @@ Page({
     }
 
   },
-  previewImage: function(e) {
+  previewImage: function (e) {
+    console.log('previewImage');
     console.log(e);
-    var current = e.currentTarget.dataset.src;
+    // var current = e.currentTarget.dataset.src;
+    var current = e.detail.currentTarget.dataset.src;
     console.log(current);
     var imglist = this.data.imglist;
     imglist.push(current);
@@ -480,55 +476,66 @@ Page({
     wx.previewImage({
       current: current, // 当前显示图片的http链接  
       urls: imglist, // 需要预览的图片http链接列表  
-      success: function(res) {
+      success: function (res) {
         that.setData({
           isOnShow: false
         })
       }
     })
   },
-  finishLoad: function(e) {
+  loadFinish: function (e) {
 
-    // console.log('加载图片---');
+    console.log('11111加载图片---');
     // console.log(e);
-  
+
     var imgFlag = this.data.imgFlag;
+    var loadImg = this.data.loadImg;
     var finishLoadFlag = this.data.finishLoadFlag;
+    var finishTabload = this.data.finishTabload;
     var productList = this.data.productList;
     var curIndex = this.data.curIndex;
+    console.log('ccccccc', curIndex);
     var imgTotal = productList[curIndex].PRODUCT_INFO.length;
-    ++imgFlag;
-    
-    // console.log(imgFlag);
-    // console.log(imgTotal);
- 
-    if (imgFlag == imgTotal) {
-      // console.log("hide");
-      // wx.hideLoading();
-      this.data.imgNum[curIndex] = imgFlag;
-      console.log(this.data.imgNum);
-      finishLoadFlag=true;
-    }
-    var that=this;
-    // this.setData({
-    //   imgFlag: imgFlag
-    // })
-    // console.log("前finishLoadFlag");
-    // console.log(this.data.finishLoadFlag);
-     that.setData({
-      imgFlag: imgFlag,
-      finishLoadFlag: finishLoadFlag
 
-    })
-    
+    finishLoadFlag[imgFlag]=true;
 
+    loadImg.splice(curIndex, 1, { finishLoadFlag });
+    console.log('1111111111111222222');
+    console.log(loadImg);
+    
     console.log("finishLoadFlag");
     console.log(this.data.finishLoadFlag);
+    ++imgFlag;
+    // var that=this;
+    // setTimeout(function () {
+      this.setData({
+        imgFlag: imgFlag,
+        finishLoadFlag: finishLoadFlag,
+        loadImg: loadImg
+      })
+    
+    console.log("imgFlag");
+    console.log(this.data.imgFlag);
+    // console.log(imgFlag);
+    // console.log(imgTotal);
+
+    if (imgFlag == imgTotal) {
+      this.data.imgNum[curIndex] = imgFlag;
+      finishTabload[curIndex]=true;
+      console.log(this.data.imgNum);
+      this.setData({
+        imgNum: this.data.imgNum,
+        finishTabload: finishTabload
+   
+      })
+    }
+ 
+ 
   },
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function() {
+  onShareAppMessage: function () {
 
   }
 })
