@@ -64,9 +64,11 @@ Page({
   //       });
   //   }
   // },
-  startChat:function(e){  
+  startChat:function(e){ 
+
+    console.log('----------',e);
     var app = getApp();
-    app.mta.Event.stat("meqia", { "group": e.currentTarget.dataset.group});
+    app.mta.Event.stat("meqia", { "group": e.detail.currentTarget.dataset.group});
     this.setData({
       shInputInfo: false,
       sessionId:0
@@ -208,6 +210,7 @@ Page({
     
   },
   salesTap:function(e){
+
     console.log(e);
     var that = this;
     that.setData({
@@ -218,7 +221,7 @@ Page({
       titleColor: e.currentTarget.dataset.color,
       titleCon: e.currentTarget.dataset.title,
     })
-
+    console.log(e.currentTarget.dataset.meqia)
     util.IsCertificate(function () {
       that.getCusInfo();
     }, function () {

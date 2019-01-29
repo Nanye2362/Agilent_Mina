@@ -30,6 +30,7 @@ Component({
    */
   methods: {
     meiqiaBtnTap:function(e){
+      
       if (!this.data.canUse){
         this.setData({
           showModal:true
@@ -37,6 +38,7 @@ Component({
       }else{
         workTime.handleWorkTime(this.data.handleAlert);
         this.triggerEvent('meiqiaTap', e); 
+        console.log('meiqiaBtnTap', e)
       }
     }
   },
