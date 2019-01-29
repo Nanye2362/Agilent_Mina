@@ -26,14 +26,14 @@
 
 <!-- tab_content -->
 <!-- content -->
-<swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:{{winHeight - 31}}px" bindchange="bindChange">    
+<swiper current="{{currentSwiper}}" class="swiper-box" duration="300" style="height:{{winHeight - 31}}px" bindchange="bindChange">    
   <!-- 全部 -->   
   <block wx:for="{{dataList}}" wx:key='unique'>
     <swiper-item class="flex directionC" style="overflow: scroll;">
       <!-- service_list_item -->
       <view class="ss_tab_con">
         <!-- =====软件分类-start====== -->
-        <view class="ss_soft_class" wx:if='{{index==5}}'>
+        <view class="ss_soft_class" wx:if='{{currentSwiper==5}}'>
           <view class="ss_title ss_qc_title fs15" >
               <image src="/images/soft_menu.png" class="ss_img_ques" mode='widthFix'></image>软件分类
           </view>
@@ -62,7 +62,7 @@
           <!-- species -->
           <view class="ss_qc_con bg-primary marginB-40">
               <view class="ss_qc_inside flex">
-                  <block wx:for="{{index==3?quesList:item.children}}" wx:for-item="children"  wx:key='unique'>
+                  <block wx:for="{{currentSwiper==5 ?quesList:item.children}}" wx:for-item="children"  wx:key='unique'>
                     <view data-id='{{children.id}}' data-pid='{{children.pid}}' bindtap='clickToFaq' data-sid='{{item.id}}'>
                        <image class="ss_qc_icon" src="https://prd.wechat.service.agilent.com/images/mini_selfservice_icon/{{children.icon}}.jpg" mode='aspectFit'></image> 
                         <!-- <image class="ss_qc_icon" src="https://devops.coffeelandcn.cn/images/mini_selfservice_icon/{{children.icon}}.png"  mode='aspectFit'></image>                      -->

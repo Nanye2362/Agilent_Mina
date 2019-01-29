@@ -9,42 +9,43 @@ Page({
   data: {
     currentTab: 0,
     dataList: [],
-    idx: 0,
-    quesList: [],
-    softListName: ['OpenLab CDS', 'test 2', 'test 3'],
-    softList: [
+    idx: -1,
+    quesList: '',
+    // softListName: ['OpenLab CDS', 'test 2', 'test 3'],
+    softListName: [],
+    // softList: [
 
-      {
-        name: 'OpenLab CDS',
-        children: [
-          { id: "4", name: "泵1", pid: "1", icon: "A1" },
-          { id: "5", name: "检测器", pid: "1", icon: "A2" },
-          { id: "6", name: "进样器", pid: "1", icon: "A3" },
-          { id: "7", name: "其他", pid: "1", icon: "A4" },
-          { id: "8", name: "软件", pid: "1", icon: "A5" }
-        ]
-      },
-      {
-        name: 'test 2',
-        children: [
-          { id: "4", name: "泵2", pid: "1", icon: "A1" },
-          { id: "5", name: "检测器", pid: "1", icon: "A2" },
-          { id: "6", name: "进样器", pid: "1", icon: "A3" },
-          { id: "7", name: "其他", pid: "1", icon: "A4" },
-          { id: "8", name: "软件", pid: "1", icon: "A5" }
-        ]
-      },
-      {
-        name: 'test 3',
-        children: [
-          { id: "4", name: "泵3", pid: "1", icon: "A1" },
-          { id: "5", name: "检测器", pid: "1", icon: "A2" },
-          { id: "6", name: "进样器", pid: "1", icon: "A3" },
-          { id: "7", name: "其他", pid: "1", icon: "A4" },
-          { id: "8", name: "软件", pid: "1", icon: "A5" }
-        ]
-      }
-    ],
+    //   {
+    //     name: 'OpenLab CDS',
+    //     children: [
+    //       { id: "4", name: "泵1", pid: "1", icon: "A1" },
+    //       { id: "5", name: "检测器", pid: "1", icon: "A2" },
+    //       { id: "6", name: "进样器", pid: "1", icon: "A3" },
+    //       { id: "7", name: "其他", pid: "1", icon: "A4" },
+    //       { id: "8", name: "软件", pid: "1", icon: "A5" }
+    //     ]
+    //   },
+    //   {
+    //     name: 'test 2',
+    //     children: [
+    //       { id: "4", name: "泵2", pid: "1", icon: "A1" },
+    //       { id: "5", name: "检测器", pid: "1", icon: "A2" },
+    //       { id: "6", name: "进样器", pid: "1", icon: "A3" },
+    //       { id: "7", name: "其他", pid: "1", icon: "A4" },
+    //       { id: "8", name: "软件", pid: "1", icon: "A5" }
+    //     ]
+    //   },
+    //   {
+    //     name: 'test 3',
+    //     children: [
+    //       { id: "4", name: "泵3", pid: "1", icon: "A1" },
+    //       { id: "5", name: "检测器", pid: "1", icon: "A2" },
+    //       { id: "6", name: "进样器", pid: "1", icon: "A3" },
+    //       { id: "7", name: "其他", pid: "1", icon: "A4" },
+    //       { id: "8", name: "软件", pid: "1", icon: "A5" }
+    //     ]
+    //   }
+    // ],
 
     TECH: 'T',
     searchValue: '',
@@ -61,16 +62,23 @@ Page({
     var app = getApp();
     app.mta.Page.init();
     //腾讯mat统计结束
+    // var quesList = this.data.softList[0].children;
     var that = this;
-    var quesList = this.data.softList[0].children;
+    
     util.NetRequest({
       url: 'site-mini/self-service',
       success: function (res) {
-        console.log(res);
+        console.log("objectkeys");
+        var objKeys = Object.keys(res.data);
+        console.log(objKeys);
         var data = that.sortList(res);
+        console.log(data);
         that.setData({
           dataList: data,
-          quesList: quesList
+          // quesList: quesList,
+          objKeys: objKeys,
+          currentTab: objKeys[0],
+          currentSwiper:0
         })
       }
     });
@@ -78,12 +86,14 @@ Page({
 
 
   onShow: function () {
-    var pages = getCurrentPages();
-    var _this = pages[pages.length - 1];
-    var cT = _this.data.currentTab;
-    this.setData({
-      currentTab: cT,
-    })
+    // var pages = getCurrentPages();
+    // var _this = pages[pages.length - 1];
+    // console.log("_this");
+    // console.log(_this);
+    // var cT = _this.data.currentTab;
+    // this.setData({
+    //   currentTab: cT,
+    // })
   },
 
   moveTab: function () {
@@ -94,14 +104,15 @@ Page({
   },
 
   sortList: function (list) {
-    var data = list.data;
-    var dataL = list.data.length;
+    console.log('list',list)
+    var data = list.data;   
     var hots = list.hots;
-    for (var i = 0; i < dataL; i++) {
-      for (var key in hots) {
+    for (let i in data) {
+      for (let key in hots) {
         if (data[i].id == key) {
-          data[i].category = hots[key];
+          data[i].category = hots[key];        
         }
+        // console.log(hots[key]);
       }
     }
     return data;
@@ -150,12 +161,38 @@ Page({
    * 点击tab切换 
    */
   swichNav: function (e) {
+    var objKeys = this.data.objKeys;
     var that = this;
     if (this.data.currentTab === e.target.dataset.current) {
       return false;
     } else {
+      // var currentTab = e.target.dataset.current;
+      console.log('currentTab', e.target.dataset.current);
+      var currentSwiper = objKeys.indexOf(e.target.dataset.current);
+      if (currentSwiper==5){
+        var softListName = this.data.softListName;
+        var softList = this.data.dataList[e.target.dataset.current].children;
+        console.log("softList");
+        console.log(softList);
+        var softKeys = Object.keys(softList);
+        console.log("softKeys");
+        console.log(softKeys);
+        for(let key in softList){
+          softListName.push(softList[key].name);
+        }
+        console.log("softListName");
+        console.log(softListName);
+        that.setData({
+          softKeys: softKeys,
+          softList: softList,
+          softListName: softListName
+        })
+      }
+      console.log('currentSwiper', currentSwiper);
       that.setData({
-        currentTab: e.target.dataset.current
+        currentTab: e.target.dataset.current,
+        currentSwiper: currentSwiper,
+     
       })
     }
   },
@@ -164,8 +201,9 @@ Page({
      * 滑动切换tab 
      */
   bindChange: function (e) {
+    var objKeys = this.data.objKeys;
     var that = this;
-    that.setData({ currentTab: e.detail.current });
+    that.setData({ currentTab: objKeys[e.detail.current] });
   },
 
   /** 
@@ -205,9 +243,25 @@ Page({
 
   //对应问题分类改变
   getQuesList: function (idx) {
-    let quesList = this.data.softList[idx].children;
-    this.setData({
-      quesList: quesList
-    })
+    
+    
+    var softList = this.data.softList;
+    var softKeys = this.data.softKeys;
+    var currentIdx = softKeys[idx];
+    console.log("currentIdx");
+    console.log(currentIdx);
+    if (typeof (softList[currentIdx].children) != "undefined"){
+      var quesList = softList[currentIdx].children;
+      console.log("quesList");
+      console.log(quesList);
+      this.setData({
+        quesList: quesList
+      })
+    }else{
+      this.setData({
+        quesList: ''
+      })
+    }
+    
   }
 })
