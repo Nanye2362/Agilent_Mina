@@ -174,11 +174,16 @@ Page({
         var softList = this.data.dataList[e.target.dataset.current].children;
         console.log("softList");
         console.log(softList);
+        // Object.keys方法取出对象的键值组成数组，便于处理数据
         var softKeys = Object.keys(softList);
         console.log("softKeys");
         console.log(softKeys);
+
         for(let key in softList){
-          softListName.push(softList[key].name);
+          // indexOf将键值转化为index下标
+          let i = softKeys.indexOf(key);
+          console.log('i',i);
+            softListName[i]=softList[key].name;         
         }
         console.log("softListName");
         console.log(softListName);
