@@ -101,6 +101,7 @@ page{
 .ss_title {
     height: 80rpx;
     line-height: 80rpx;
+    
     padding: 0 40rpx;
     font-weight: 600;
 }
@@ -196,14 +197,16 @@ page{
 
 }
 .soft_input{
-  flex:.9;
+  width:90%;
   padding-left:18rpx;
   align-self:center;
 
 }
 .down_select{
-  flex:0.1;
-  width:8rpx;
+  
+  width:42rpx;
+
+
   align-self:center;
 }
 .ss_soft_inside{
