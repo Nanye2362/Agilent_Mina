@@ -15,7 +15,7 @@ Page({
     quesList: '',
     // softListName: ['OpenLab CDS', 'test 2', 'test 3'],
     softListName: [],
-    showSoft: false,
+    showSoft: [false],
     // softList: [
 
     //   {
@@ -165,10 +165,12 @@ Page({
    */
   swichNav: function (e) {
     var objKeys = this.data.objKeys;
-    this.setData({
-      showSoft: false
-    })
-    var that = this;
+
+    // this.setData({
+    //   showSoft: false
+    // })
+    // var that = this;
+    var showSoft = this.data.showSoft;
     if (this.data.currentTab === e.target.dataset.current) {
       return false;
     } else {
@@ -191,30 +193,32 @@ Page({
           // console.log('i', i);
           // softListName[i] = softList[key].name;
           // 判断二级分类对象里是否包含三级分类
-          if (typeof (softList[key].children) != "undefined") {
-            
-            this.data.showSoft = true;
-
-
+          if (typeof (softList[key].children) != "undefined") {      
+            showSoft[currentSwiper] = true;
+          }else{
+            showSoft[currentSwiper] = false;
           }
-          console.log('tttttttt', this.data.showSoft)
+          
         }
-        console.log("softListName");
-        console.log(softListName);
-        that.setData({
+        console.log('tttttttt', showSoft)
+        
+        this.setData({
           softKeys: softKeys,
           softList: softList,
-          showSoft: this.data.showSoft,
+          showSoft: showSoft,
          
         })
-        if (this.data.showSoft == true) {
+        console.log('88888888',this.data.showSoft)
+        if (showSoft[currentSwiper] == true) {
           this.getQuesList(this.data.idx);
           for(let keys in softList){
             let i = softKeys.indexOf(keys);
             console.log('i', i);
             softListName[i] = softList[keys].name;
           }
-          that.setData({
+          console.log("softListName");
+          console.log(softListName);
+          this.setData({
             softListName: softListName
           })
         }
@@ -242,7 +246,7 @@ Page({
 
 
       console.log('currentSwiper', currentSwiper);
-      that.setData({
+      this.setData({
         currentTab: e.target.dataset.current,
         currentSwiper: currentSwiper,
 
@@ -255,10 +259,11 @@ Page({
      */
   bindChange: function (e) {
     var objKeys = this.data.objKeys;
-    this.setData({
-      showSoft: false
-    })
-    var that = this;
+    var showSoft = this.data.showSoft;
+    // this.setData({
+    //   showSoft: false
+    // })
+    // var that = this;
     if (this.data.currentTab === objKeys[e.detail.current]) {
       return false;
     } else {
@@ -283,28 +288,30 @@ Page({
           // 判断二级分类对象里是否包含三级分类
           if (typeof (softList[key].children) != "undefined") {
 
-            this.data.showSoft = true;
+            showSoft[currentSwiper]= true;
 
 
+          }else{
+            showSoft[currentSwiper] = false;
           }
-          console.log('tttttttt', this.data.showSoft)
+          console.log('qqqqqqq',showSoft)
         }
         console.log("softListName");
         console.log(softListName);
-        that.setData({
+        this.setData({
           softKeys: softKeys,
           softList: softList,
-          showSoft: this.data.showSoft,
+          showSoft: showSoft,
 
         })
-        if (this.data.showSoft == true) {
+        if (showSoft[currentSwiper] == true) {
           this.getQuesList(this.data.idx);
           for (let keys in softList) {
             let i = softKeys.indexOf(keys);
             console.log('i', i);
             softListName[i] = softList[keys].name;
           }
-          that.setData({
+          this.setData({
             softListName: softListName
           })
         }
@@ -312,7 +319,7 @@ Page({
       }
 
       console.log('currentSwiper', currentSwiper);
-      that.setData({
+      this.setData({
         currentTab: objKeys[e.detail.current],
         currentSwiper: currentSwiper,
 

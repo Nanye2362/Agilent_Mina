@@ -33,7 +33,7 @@
       <!-- service_list_item -->
       <view class="ss_tab_con">
         <!-- =====软件分类-start====== -->
-        <view class="ss_soft_class" wx:if='{{showSoft}}'>
+        <view class="ss_soft_class" wx:if='{{showSoft[currentSwiper]}}'>
           <view class="ss_title ss_qc_title fs15" >
               <image src="/images/soft_menu.png" class="ss_img_ques" mode='widthFix'></image>软件分类
           </view>
@@ -62,7 +62,7 @@
           <!-- species -->
           <view class="ss_qc_con bg-primary marginB-40">
               <view class="ss_qc_inside flex">
-                  <block wx:for="{{showSoft ? quesList:item.children}}" wx:for-item="children"  wx:key='unique'>
+                  <block wx:for="{{showSoft[currentSwiper] ? quesList:item.children}}" wx:for-item="children"  wx:key='unique'>
                     <view data-id='{{children.id}}' data-pid='{{children.pid}}' bindtap='clickToFaq' data-sid='{{item.id}}'>
                        <image class="ss_qc_icon" src="{{server+'images/mini_selfservice_icon/'+children.icon+'.jpg'}}" mode='aspectFit'></image> 
                         <!-- <image class="ss_qc_icon" src="https://devops.coffeelandcn.cn/images/mini_selfservice_icon/{{children.icon}}.png"  mode='aspectFit'></image>                      -->
