@@ -26,12 +26,32 @@
 
 <!-- tab_content -->
 <!-- content -->
-<swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:{{winHeight - 31}}px" bindchange="bindChange">    
+<swiper current="{{currentSwiper}}" class="swiper-box" duration="300" style="height:{{winHeight - 31}}px" bindchange="bindChange">    
   <!-- 全部 -->   
   <block wx:for="{{dataList}}" wx:key='unique'>
     <swiper-item class="flex directionC" style="overflow: scroll;">
       <!-- service_list_item -->
       <view class="ss_tab_con">
+        <!-- =====软件分类-start====== -->
+        <view class="ss_soft_class" wx:if='{{showSoft}}'>
+          <view class="ss_title ss_qc_title fs15" >
+              <image src="/images/soft_menu.png" class="ss_img_ques" mode='widthFix'></image>软件分类
+          </view>
+          <!-- <view class="ss_soft_con bg-primary marginB-40"> -->
+            <view class="ss_soft_inside bg-primary flex">
+                <picker bindchange="softChange" value="{{idx}}" range="{{softListName}}">
+                  <view class="soft_picker flex">
+                    <view class="soft_input fs12">{{softListName[idx]}}</view>
+                    <image class='down_select' mode='widthFix' src='/images/gl.png'/>
+                  </view>
+                </picker>
+                <!-- <view class='picker-image'>
+                  <image class='select_img' src='/images/gl.png'/>
+                </view>  -->
+            </view>
+          <!-- </view> -->
+        </view>
+        <!-- =====软件分类-end====== -->
 
         <!-- ======问题分类-start===== -->
         <view class="ss_ques_class">
@@ -42,9 +62,9 @@
           <!-- species -->
           <view class="ss_qc_con bg-primary marginB-40">
               <view class="ss_qc_inside flex">
-                  <block wx:for="{{item.children}}" wx:for-item="children"  wx:key='unique'>
+                  <block wx:for="{{showSoft ? quesList:item.children}}" wx:for-item="children"  wx:key='unique'>
                     <view data-id='{{children.id}}' data-pid='{{children.pid}}' bindtap='clickToFaq' data-sid='{{item.id}}'>
-                       <image class="ss_qc_icon" src="https://prd.wechat.service.agilent.com/images/mini_selfservice_icon/{{children.icon}}.jpg" mode='aspectFit'></image> 
+                       <image class="ss_qc_icon" src="{{server+'images/mini_selfservice_icon/'+children.icon+'.jpg'}}" mode='aspectFit'></image> 
                         <!-- <image class="ss_qc_icon" src="https://devops.coffeelandcn.cn/images/mini_selfservice_icon/{{children.icon}}.png"  mode='aspectFit'></image>                      -->
                       <view class='fs135'>{{children.name}}</view>
                     </view>
@@ -95,6 +115,5 @@
   </block>
   <!-- next page     -->
 </swiper>
-
 
 
