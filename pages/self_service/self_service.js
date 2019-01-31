@@ -255,8 +255,72 @@ Page({
      */
   bindChange: function (e) {
     var objKeys = this.data.objKeys;
+    this.setData({
+      showSoft: false
+    })
     var that = this;
-    that.setData({ currentTab: objKeys[e.detail.current] });
+    if (this.data.currentTab === objKeys[e.detail.current]) {
+      return false;
+    } else {
+      var currentTab = objKeys[e.detail.current];
+      console.log('currentTab', currentTab);
+      var currentSwiper = objKeys.indexOf(currentTab);
+      // 判断是否有二级问题分类
+      if (typeof (this.data.dataList[currentTab].children) != "undefined") {
+        var softListName = this.data.softListName;
+        var softList = this.data.dataList[currentTab].children;
+        console.log("softList");
+        console.log(softList);
+        // Object.keys方法取出对象的键值组成数组，便于处理数据
+        var softKeys = Object.keys(softList);
+        console.log("softKeys");
+        console.log(softKeys);
+
+        for (let key in softList) {
+          // let i = softKeys.indexOf(key);
+          // console.log('i', i);
+          // softListName[i] = softList[key].name;
+          // 判断二级分类对象里是否包含三级分类
+          if (typeof (softList[key].children) != "undefined") {
+
+            this.data.showSoft = true;
+
+
+          }
+          console.log('tttttttt', this.data.showSoft)
+        }
+        console.log("softListName");
+        console.log(softListName);
+        that.setData({
+          softKeys: softKeys,
+          softList: softList,
+          showSoft: this.data.showSoft,
+
+        })
+        if (this.data.showSoft == true) {
+          this.getQuesList(this.data.idx);
+          for (let keys in softList) {
+            let i = softKeys.indexOf(keys);
+            console.log('i', i);
+            softListName[i] = softList[keys].name;
+          }
+          that.setData({
+            softListName: softListName
+          })
+        }
+
+      }
+
+      console.log('currentSwiper', currentSwiper);
+      that.setData({
+        currentTab: objKeys[e.detail.current],
+        currentSwiper: currentSwiper,
+
+      })
+    }
+    
+    // var that = this;
+    // that.setData({ currentTab: objKeys[e.detail.current] });
   },
 
   /** 
