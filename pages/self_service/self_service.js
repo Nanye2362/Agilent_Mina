@@ -13,43 +13,8 @@ Page({
     server: config.Server,
     idx: 0,
     quesList: '',
-    // softListName: ['OpenLab CDS', 'test 2', 'test 3'],
     softListName: [],
-    showSoft: [false],
-    // softList: [
-
-    //   {
-    //     name: 'OpenLab CDS',
-    //     children: [
-    //       { id: "4", name: "泵1", pid: "1", icon: "A1" },
-    //       { id: "5", name: "检测器", pid: "1", icon: "A2" },
-    //       { id: "6", name: "进样器", pid: "1", icon: "A3" },
-    //       { id: "7", name: "其他", pid: "1", icon: "A4" },
-    //       { id: "8", name: "软件", pid: "1", icon: "A5" }
-    //     ]
-    //   },
-    //   {
-    //     name: 'test 2',
-    //     children: [
-    //       { id: "4", name: "泵2", pid: "1", icon: "A1" },
-    //       { id: "5", name: "检测器", pid: "1", icon: "A2" },
-    //       { id: "6", name: "进样器", pid: "1", icon: "A3" },
-    //       { id: "7", name: "其他", pid: "1", icon: "A4" },
-    //       { id: "8", name: "软件", pid: "1", icon: "A5" }
-    //     ]
-    //   },
-    //   {
-    //     name: 'test 3',
-    //     children: [
-    //       { id: "4", name: "泵3", pid: "1", icon: "A1" },
-    //       { id: "5", name: "检测器", pid: "1", icon: "A2" },
-    //       { id: "6", name: "进样器", pid: "1", icon: "A3" },
-    //       { id: "7", name: "其他", pid: "1", icon: "A4" },
-    //       { id: "8", name: "软件", pid: "1", icon: "A5" }
-    //     ]
-    //   }
-    // ],
-
+    showSoft: [false],    
     TECH: 'T',
     searchValue: '',
     autofocus: false,   //搜索框内自动聚焦Flag
@@ -61,6 +26,7 @@ Page({
    */
   onLoad: function (options) {
     console.log(options);
+
     //腾讯mat统计开始
     var app = getApp();
     app.mta.Page.init();
@@ -75,6 +41,7 @@ Page({
         var objKeys = Object.keys(res.data);
         console.log(objKeys);
         var data = that.sortList(res);
+        that.getshowSoftList(res);
         console.log(data);
         that.setData({
           dataList: data,
@@ -88,15 +55,24 @@ Page({
   },
 
 
-  onShow: function () {
-    // var pages = getCurrentPages();
-    // var _this = pages[pages.length - 1];
-    // console.log("_this");
-    // console.log(_this);
-    // var cT = _this.data.currentTab;
-    // this.setData({
-    //   currentTab: cT,
-    // })
+  onShow: function (e) {
+    var objKeys = this.data.objKeys;
+    console.log("objKeys", objKeys)
+    var pages = getCurrentPages();
+    console.log('pages.length', pages.length);
+    var _this = pages[pages.length - 1];
+    console.log("_this");
+    console.log(_this);
+    var currentTab = _this.data.currentTab;
+    if (typeof (objKeys) != "undefined"){
+      var currentSwiper = objKeys.indexOf(currentTab);
+      this.setData({
+        currentSwiper: currentSwiper
+      })
+    } 
+    this.setData({
+      currentTab: currentTab,  
+    })
   },
 
   moveTab: function () {
@@ -119,6 +95,62 @@ Page({
       }
     }
     return data;
+  },
+  // 处理全部数据是否有软件分类
+  getshowSoftList:function(list){
+    console.log('Showlist',list);
+    var objKeys = Object.keys(list.data);
+    var showSoft = this.data.showSoft;
+    var data = list.data;
+    for(let i in data){
+      var currentSwiper = objKeys.indexOf(i);
+      if (typeof (data[i].children) != "undefined") {
+        var softListName = this.data.softListName;
+        var softList = data[i].children;
+        console.log("softList");
+        console.log(softList);
+        // Object.keys方法取出对象的键值组成数组，便于处理数据
+        var softKeys = Object.keys(softList);
+        console.log("softKeys");
+        console.log(softKeys);
+
+        for (let key in softList) {
+          // let i = softKeys.indexOf(key);
+          // console.log('i', i);
+          // softListName[i] = softList[key].name;
+          // 判断二级分类对象里是否包含三级分类
+          if (typeof (softList[key].children) != "undefined") {
+            showSoft[currentSwiper] = true;
+          } else {
+            showSoft[currentSwiper] = false;
+          }
+
+        }
+        console.log('tttttttt', showSoft)
+
+        this.setData({
+          softKeys: softKeys,
+          softList: softList,
+          showSoft: showSoft,
+
+        })
+        console.log('88888888', this.data.showSoft)
+        if (showSoft[currentSwiper] == true) {
+          this.getQuesList(this.data.idx);
+          for (let keys in softList) {
+            let i = softKeys.indexOf(keys);
+            console.log('i', i);
+            softListName[i] = softList[keys].name;
+          }
+          console.log("softListName");
+          console.log(softListName);
+          this.setData({
+            softListName: softListName
+          })
+        }
+
+      }
+    }
   },
   /**
     * 热点问题跳转
@@ -165,86 +197,14 @@ Page({
    */
   swichNav: function (e) {
     var objKeys = this.data.objKeys;
-
-    // this.setData({
-    //   showSoft: false
-    // })
-    // var that = this;
     var showSoft = this.data.showSoft;
     if (this.data.currentTab === e.target.dataset.current) {
       return false;
     } else {
-      // var currentTab = e.target.dataset.current;
+  
       console.log('currentTab', e.target.dataset.current);
       var currentSwiper = objKeys.indexOf(e.target.dataset.current);
-      // 判断是否有二级问题分类
-      if (typeof (this.data.dataList[e.target.dataset.current].children) != "undefined") {
-        var softListName = this.data.softListName;
-        var softList = this.data.dataList[e.target.dataset.current].children;
-        console.log("softList");
-        console.log(softList);
-        // Object.keys方法取出对象的键值组成数组，便于处理数据
-        var softKeys = Object.keys(softList);
-        console.log("softKeys");
-        console.log(softKeys);
-
-        for (let key in softList) {
-          // let i = softKeys.indexOf(key);
-          // console.log('i', i);
-          // softListName[i] = softList[key].name;
-          // 判断二级分类对象里是否包含三级分类
-          if (typeof (softList[key].children) != "undefined") {      
-            showSoft[currentSwiper] = true;
-          }else{
-            showSoft[currentSwiper] = false;
-          }
-          
-        }
-        console.log('tttttttt', showSoft)
-        
-        this.setData({
-          softKeys: softKeys,
-          softList: softList,
-          showSoft: showSoft,
-         
-        })
-        console.log('88888888',this.data.showSoft)
-        if (showSoft[currentSwiper] == true) {
-          this.getQuesList(this.data.idx);
-          for(let keys in softList){
-            let i = softKeys.indexOf(keys);
-            console.log('i', i);
-            softListName[i] = softList[keys].name;
-          }
-          console.log("softListName");
-          console.log(softListName);
-          this.setData({
-            softListName: softListName
-          })
-        }
-      
-      }
-
-      // if (currentSwiper==5){
-      //   var softListName = this.data.softListName;
-      //   var softList = this.data.dataList[e.target.dataset.current].children;
-      //   console.log("softList");
-      //   console.log(softList);
-      // Object.keys方法取出对象的键值组成数组，便于处理数据
-      // var softKeys = Object.keys(softList);
-      // console.log("softKeys");
-      // console.log(softKeys);
-
-      // for(let key in softList){
-      //   // indexOf将键值转化为index下标
-      //   let i = softKeys.indexOf(key);
-      //   console.log('i',i);
-      //     softListName[i]=softList[key].name;         
-      // }
-      // console.log("softListName");
-      // console.log(softListName);
-
-
+     
       console.log('currentSwiper', currentSwiper);
       this.setData({
         currentTab: e.target.dataset.current,
@@ -259,65 +219,13 @@ Page({
      */
   bindChange: function (e) {
     var objKeys = this.data.objKeys;
-    var showSoft = this.data.showSoft;
-    // this.setData({
-    //   showSoft: false
-    // })
-    // var that = this;
+   
     if (this.data.currentTab === objKeys[e.detail.current]) {
       return false;
     } else {
       var currentTab = objKeys[e.detail.current];
       console.log('currentTab', currentTab);
       var currentSwiper = objKeys.indexOf(currentTab);
-      // 判断是否有二级问题分类
-      if (typeof (this.data.dataList[currentTab].children) != "undefined") {
-        var softListName = this.data.softListName;
-        var softList = this.data.dataList[currentTab].children;
-        console.log("softList");
-        console.log(softList);
-        // Object.keys方法取出对象的键值组成数组，便于处理数据
-        var softKeys = Object.keys(softList);
-        console.log("softKeys");
-        console.log(softKeys);
-
-        for (let key in softList) {
-          // let i = softKeys.indexOf(key);
-          // console.log('i', i);
-          // softListName[i] = softList[key].name;
-          // 判断二级分类对象里是否包含三级分类
-          if (typeof (softList[key].children) != "undefined") {
-
-            showSoft[currentSwiper]= true;
-
-
-          }else{
-            showSoft[currentSwiper] = false;
-          }
-          console.log('qqqqqqq',showSoft)
-        }
-        console.log("softListName");
-        console.log(softListName);
-        this.setData({
-          softKeys: softKeys,
-          softList: softList,
-          showSoft: showSoft,
-
-        })
-        if (showSoft[currentSwiper] == true) {
-          this.getQuesList(this.data.idx);
-          for (let keys in softList) {
-            let i = softKeys.indexOf(keys);
-            console.log('i', i);
-            softListName[i] = softList[keys].name;
-          }
-          this.setData({
-            softListName: softListName
-          })
-        }
-
-      }
-
       console.log('currentSwiper', currentSwiper);
       this.setData({
         currentTab: objKeys[e.detail.current],
@@ -325,9 +233,6 @@ Page({
 
       })
     }
-    
-    // var that = this;
-    // that.setData({ currentTab: objKeys[e.detail.current] });
   },
 
   /** 

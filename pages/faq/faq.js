@@ -23,6 +23,7 @@ Page({
     var app = getApp();
     app.mta.Page.init();
     //腾讯mta统计结束
+    console.log("option");
     console.log(option);
     var id = option.id;
     var sid = option.sid;
@@ -111,16 +112,16 @@ Page({
     });
   },
 
-  tagShow: function () {
+  tagShow: function (e) {
     var that = this;
     this.setData({ dropdown: !that.data.dropdown });
   },
 
-  clickToHide: function () {
+  clickToHide: function (e) {
     this.setData({ dropdown: false });
   },
 
-  clickToRepair: function () {
+  clickToRepair: function (e) {
     if (e.detail.iswork) {
       //是工作时间跳转serial number页面
       wx.navigateTo({
@@ -137,6 +138,7 @@ Page({
   //点击tab跳转
   gotoTab: function(e){
     var index = e.currentTarget.dataset.index;
+    var currentTab = e.currentTarget.dataset.id;
     console.log(index);
     var pages = getCurrentPages();
     console.log(pages.length);
@@ -144,7 +146,7 @@ Page({
     for (var i in pages) {
       if (pages[i].route =='pages/self_service/self_service'){
         console.log('就是这一页没错了!!!!!!!!!!')
-        pages[i].data.currentTab = index;
+        pages[i].data.currentTab = currentTab;
         console.log(pages[i].data)
         console.log(pages[i].route)
         nums = i+1;
