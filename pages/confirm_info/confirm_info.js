@@ -77,7 +77,7 @@ Page({
       ShipToName: options.ShipToName,
       TECH: 'T_psn:' + options.SerialNo,
       RTECH: 'T_rsn:' + options.SerialNo,
-      NONTECH: 'N_psn:' + options.SerialNo
+      NONTECH: 'T_psn:' + options.SerialNo
     })
   },
   backHome: function () {

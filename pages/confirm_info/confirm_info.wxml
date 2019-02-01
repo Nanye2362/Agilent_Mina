@@ -49,7 +49,7 @@
     <block  wx:if="{{needChat}}" >
       <view class="pd_btn">
           <meiqiaBtn bindmeiqiaTap="MtaReport" btn-class="btn btn-primary" handle-alert="{{false}}" session-from="{{TECH+aglNum}}">
-            报修并开始咨询
+            立即咨询
             <image class='btn_img' mode='widthFix' src="../../images/repari.png"></image>
           </meiqiaBtn>
       </view>
@@ -63,12 +63,7 @@
     <view class="pd_btn" wx:else>
         <button class="btn btn-primary" id="confirm" bindtap='skipReturn'>确定</button>
     </view>
-    <view class="text-center">
-        信息不正确？您可以
-        <meiqiaBtn bindmeiqiaTap="MtaReportt" btn-class="pd_wechat_btn fc-blue btn-meiqia" handle-alert="{{false}}" session-from="{{NONTECH+aglNum}}">
-        <image src="../../images/wechat_b.png"></image>发起会话
-        </meiqiaBtn>
-    </view>
+
     <view  wx:if='{{CanRepair==1}}'  class="checkDetails text-center fc-blue" bindtap='gotoDetails'>
         <image class='send_img' src='/images/sendIntro.png' mode='widthFix'></image>
         查看送修服务介绍
