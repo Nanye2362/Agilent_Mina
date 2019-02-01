@@ -17,7 +17,7 @@
 <movable-area class="ss_tab_content">
    <movable-view class="ss_tab bg-primary" x="{{x}}" y="{{y}}" direction="horizontal" inertia="true"	out-of-bounds="false" damping="50">   
         <block wx:for="{{dataList}}" wx:key='unique' wx:for-index='index' >
-              <view class="ss_tab_item fs15 {{item.id==getsid ? 'ss_tab_item_active' : ''}}" bindtap="gotoTab" data-index='{{index}}'>{{item.name}}</view>
+              <view class="ss_tab_item fs15 {{item.id==getsid ? 'ss_tab_item_active' : ''}}" bindtap="gotoTab" data-id='{{item.id}}' data-index='{{index}}'>{{item.name}}</view>
         </block>    
     </movable-view> 
 

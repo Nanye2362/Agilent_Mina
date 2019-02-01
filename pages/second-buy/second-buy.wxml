@@ -1,7 +1,7 @@
 <!--pages/second-buy/second-buy.wxml  wx:if="{{bannerShow}} {{lineFixed?'lineFix':''}}" {{curIndex == index ? '' : 'left-border'}} class="{{bannerShow?'':'banner-hidden'}}"  animation="{{bannerShow?ani2:ani1}}"  animation="{{bannerShow?ani22:ani21}}"-->
 
 
-  <image class="top-banner"  src="{{server+'/images/banner.png'}}"></image>
+  <image class="top-banner"  src="{{server+'images/banner.png'}}"></image>
 
 <view class="line-top {{leftFix?'left-fixed':''}}" id="line-top"></view>
 <view class="second-content">
