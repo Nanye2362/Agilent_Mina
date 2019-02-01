@@ -93,7 +93,7 @@
         <!-- attachInfo -->
         <view class="insText">
           <view class="fs14">附加信息：</view>
-          <textarea wx:if="{{showTextarea}}" class="ins-textarea fs13" bindinput="desNo" value="{{ desc }}" placeholder='请输入您希望安捷伦需要知道的信息'/>
+          <textarea wx:if="{{showTextarea}}" class="ins-textarea fs13" bindinput="desNo" value="{{ desc }}" placeholder='请输入您希望安捷伦需要知道的信息' placeholder-class='placeholder'/>
         </view>      
     </view>
 
@@ -104,7 +104,8 @@
           <checkbox-group bindchange="checkboxChange">
             <checkbox value="value" class="ins_checkbox" id="ins_checkbox"/>
             <text class="fs12 fc-blue" style='text-decoration:underline' bindtap='installReady'>{{pickerType==-1?'':insType[pickerType]}}场地安装</text>
-            <text class="fs12"> 已准备就绪</text>              
+            <text class="fs12"> 已准备就绪</text>   
+            <text wx:if='{{pickerType==0||pickerType==2}}' class="fs12 fc-blue" style='text-decoration:underline' bindtap='skipToVideo'>(场地准备视频)</text>           
           </checkbox-group>
       </view>
       <!-- btn -->
@@ -117,8 +118,27 @@
             </meiqiaBtn>
           </view>
       </view>
-    </view>
-
-   
+    </view>  
 </form>
+<!-- 场地准备视频弹出框-->
+<view class="shLoading" wx:if="{{shVideo}}">
+  <view class="shLoading-mask1">
+  </view>
+  <view class="shLoading-pane flex alignc directionC">
+    <view class='shLoading-title bg-blue'>
+      {{pickerType==-1?'':insType[pickerType]}}场地准备视频
+      <image src='/images/close.png' class='shLoading-title-img' bindtap='cancelTap'></image>
+    </view>
+    <view class="shLoading-head">
+      <view class='video-item' data-id="{{playId}}" bindtap="videoPlay" data-vid='{{"video"+playId}}'>        
+        <!-- video -->
+        <video custom-cache="{{false}}"  wx:if="{{curr_id == playId}}" data-vid='{{"video"+playId}}' id="myVideo" src="{{videoUrls[playId].url}}" objectFit="contain" controls poster="{{videoUrls[playId].poster}}" autoplay='{{true}}' bindtimeupdate="goOnVideo"></video>
+        <!-- poster -->
+        <view wx:else>
+          <image class="video-img" mode="aspectFill" src="{{videoUrls[playId].poster}}"></image>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
 

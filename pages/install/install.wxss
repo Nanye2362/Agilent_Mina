@@ -253,4 +253,37 @@
   right:-10rpx;
   z-index:90;
 }
+.shLoading-pane{
+  width:605rpx;
+
+top:300rpx;
+left:50%;
+margin-left:-310rpx;
+background:#fff;
+border:1px solid #666;
+position:fixed;
+z-index:9999;
+border-radius:12rpx;
+padding-top:50rpx;
+}
+.video-img{
+    /* width: 100%; */
+    width:600rpx;
+  height:450rpx;
+}
+.video-item{
+  margin: 0 0;
+}
+
+.shLoading-head{
+  width:600rpx;
+  height:450rpx;
+}
+.placeholder{
+  z-index: 2;
+}
+video{
+  width:600rpx;
+  height:450rpx;
+}
 

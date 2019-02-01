@@ -20,6 +20,24 @@ Page({
     chooseCheckbox:[],
     showTextarea: true,
     imgUrl: config.Server +'images/install_bg.jpg',
+    shVideo:false,
+    curr_id:-1,
+    playId:'',
+    videoUrls: [
+      {
+        id: 1,
+        poster: '/images/cover.jpg',
+        title: '气相色谱场地准备视频',
+        url: 'https://download.chem.agilent.com/videos/Agilent-GC-Site-PrepVideo-English_920x518.mp4',
+      },
+      {
+        id: 2,
+        poster: '/images/cover.jpg',
+        title: '液相色谱场地准备视频',
+        url: 'https://download.chem.agilent.com/videos/Agilent-LC-Site-PrepVideo-English_920x518.mp4',
+      },
+
+    ]
   },
   //选择仪器类型
   bindPickerChange: function(e){
@@ -60,6 +78,78 @@ Page({
         }
       })
     }   
+  },
+  skipToVideo:function(e){
+    console.log('------dianji---',e)
+    var playId = this.data.playId;
+    // var shVideo = this.data.shVideo;
+    this.setData({
+      shVideo:true,
+      showTextarea:false
+    })
+    var that=this;
+    
+    if (that.data.pickerType==0){
+      that.setData({
+        playId:0,
+        // shVideo:true
+      })
+    }else{
+      that.setData({
+        playId: 1,
+        // shVideo: true
+      })
+    }
+  },
+
+  cancelTap: function () {
+    this.setData({
+      shVideo: false,
+      showTextarea:true,
+      playId: '', 
+      curr_id:-1
+    })
+  },
+
+  //视频播放
+  videoPlay: function (event) {
+    console.log('videoplay----')
+    console.log(event);
+    var videoId = event.currentTarget.dataset.vid;
+    console.log(videoId)
+    var that = this;
+    that.setData({
+      curr_id: event.currentTarget.dataset.id,
+    })
+    wx.getStorage({
+      key: videoId,
+      success: function (res) {
+        console.log("获取缓存成功！");
+        console.log(res.data)
+        that.videoContext.seek(res.data);
+      }
+    })
+    //that.videoContext.play()
+  },
+  //页面滑动暂停视频播放
+  handletouchmove: function () {
+    this.setData({
+      curr_id: '',
+    })
+    this.videoContext.pause()
+  },
+  //视频续播
+  goOnVideo: function (event) {
+    
+    var detail = event.detail;
+    var videoId = event.currentTarget.dataset.vid;
+    wx.setStorage({
+      key: videoId,
+      data: detail.currentTime,
+      success(res) {
+        console.log("保存成功！")
+      }
+    })
   },
 
   formSubmit: function (e) {
@@ -248,7 +338,8 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-  
+    //创建视频上下文对象
+    this.videoContext = wx.createVideoContext('myVideo');
   },
 
   /**
