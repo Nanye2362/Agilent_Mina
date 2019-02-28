@@ -103,25 +103,14 @@ Page({
             showCancel: false,
             success: function (res) {
               if (res.confirm) {
-                console.log('用户点击确定')
+                wx.switchTab({
+                  url: '../index/index',
+                })
               }
             }
           })
           //wx.hideLoading();
         }
-      },
-      fail: function (res) {
-        console.log(res);
-        wx.showModal({
-          title: '请求失败',
-          content: '请检查您的网络',
-          showCancel: false,
-          success: function (res) {
-            if (res.confirm) {
-              console.log('用户点击确定')
-            }
-          }
-        })
       }
     }) 
     console.log('onload' + option);

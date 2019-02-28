@@ -1,4 +1,5 @@
 var config = require('../config');
+var request = require('request');
 
 function formatTime(date) {
   var year = date.getFullYear()
@@ -18,185 +19,7 @@ function formatNumber(n) {
   return n[1] ? n : '0' + n
 }
 
-var urlArr = ["wechat-mini/wx-login", "api/check-lunch"];//未登录可以使用的url
-let ocrServer ="https://msd.coffeelandcn.cn/";
-//let ocrServer = "https://devops.coffeelandcn.cn/";
 let Server = config.Server; //UAT
-
-var arrRequest=[],isRequesting=false;
-function NetRequest({ url, data, success, fail, complete, method = "POST", showload = true, host = Server}) {
-  var obj = { url: url, data: data, success: success, fail: fail, complete: complete, method: method, showload: showload, host: host}; 
-  if (showload) {
-    wx.showLoading({
-      title: '加载中，请稍候',
-      mask: true
-    })
-  }
-  var app=getApp();
-  console.log(app.globalData.isLogin);
-  if (isRequesting || (!app.globalData.isLogin && !in_array(url,urlArr))){
-      arrRequest.push(obj);
-      return;
-   }
-  isRequesting=true;
-  _NetRequest(obj);
-}
-
-function in_array(stringToSearch, arrayToSearch) {
-  for (var s = 0; s < arrayToSearch.length; s++) {
-    var thisEntry = arrayToSearch[s].toString();
-    if (thisEntry == stringToSearch) {
-      return true;
-    }
-  }
-  return false;
-}
-
-function _NetRequest({ url, data, success, fail, complete, method = "POST", showload = true, host = Server}){
-  var tempUrl = url;
-  var app = getApp();
-  
-
-  if (!in_array(url,urlArr)&&app.globalData.needCheck){     
-     isRequesting = false;
-     app.alertInfo();
-     arrRequest=[];
-     return false;
-  }
-
-  var _csrf = wx.getStorageSync('csrf');
-  var version = config.version;
-  var csrfToken = wx.getStorageSync('csrfCookie')
-  if (typeof (data) == 'object') {
-    data._csrf = _csrf;
-    data.version = version;
-  } else {
-    data = { '_csrf': _csrf, 'version': version };
-  }
-
-  var session_id = wx.getStorageSync('PHPSESSID');//本地取存储的sessionID
-  if (session_id != "" && session_id != null) {
-    var header = { 'content-type': 'application/x-www-form-urlencoded', 'Cookie': 'PHPSESSID=' + session_id + ";" + csrfToken }
-  } else {
-    var header = { 'content-type': 'application/x-www-form-urlencoded' }
-  }
-
-  console.log(session_id);
-  url = host + url;
-  console.log(url);
-  wx.request({
-    url: url,
-    method: method,
-    data: data,
-    header: header,
-    success: res => {
-      if ((session_id == "" || session_id == null) && typeof (res.data.session_id) != "undefined") {
-        console.log(res.data.session_id);
-        wx.setStorageSync('PHPSESSID', res.data.session_id); //如果本地没有就说明第一次请求 把返回的session id 存入本地
-       
-        if (typeof (res.data.csrfToken) != 'undefined') {
-          wx.setStorageSync('csrf', res.data.csrfToken);
-          wx.setStorageSync('csrfCookie', res.data.csrfCookie);
-        }
-      }
-
-      console.log(res.data);
-      if (res.data == "no session") {
-        var aa = getApp();
-        arrRequest = [];
-        aa.wxlogin();
-        wx.switchTab({
-          url: '../index/index',
-        })
-        return;
-      }
-
-      if (!fail){
-        fail=function(){
-          wx.showModal({
-            title: '请求失败',
-            content: '发生错误，请联系客服。',
-            showCancel: false,
-            success: function (res) {
-              if (res.confirm) {
-                wx.switchTab({
-                  url: '../index/index',
-                })
-              }
-            }
-          })
-        }
-      }
-
-      let data = res.data
-      res['statusCode'] === 200 ? success(data) : fail(res)
-    },
-    fail: function (e) {
-      console.log("fail");
-      console.log(e);
-      
-      if (tempUrl != "wechat-mini/wx-login" && (e.errMsg == "request:fail timeout" || e.errMsg == "request:fail ")){
-        wx.hideLoading();
-        isRequesting = false; 
-        arrRequest = [];
-        wx.showModal({
-          title: '请求失败',
-          content: '请检查您的网络',
-          showCancel: false,
-          success: function (res) {
-            if (res.confirm) {
-              wx.switchTab({
-                url: '../index/index',
-              })
-            }
-          }
-        })
-        return;
-      }
-
-      if (typeof (fail) == 'function') {
-        fail(e);
-      }else{
-        isRequesting = false;
-        arrRequest = [];
-        wx.showModal({
-          title: '请求失败',
-          content: '请检查您的网络',
-          showCancel: false,
-          success: function (res) {
-            if (res.confirm) {
-              wx.switchTab({
-                url: '../index/index',
-              })
-            }
-          }
-        })
-      }
-    },
-    complete: function (res) {
-      console.log("complete");
-
-      if (arrRequest.length == 0) {
-        if (!app.globalData.isLoading && !app.globalData.isUploading) {
-          wx.hideLoading()
-        }
-        isRequesting = false;
-      }
-
-      if (typeof (complete) == 'function') {
-        complete();
-      }
-
-      if (arrRequest.length != 0) {
-        if (res['statusCode'] === 200) {
-          var obj = arrRequest.shift();
-          _NetRequest(obj);
-        }
-      }
-    }
-  })
-}
-
 
 function uploadImg(urlList,callback){
   var session_id = wx.getStorageSync('PHPSESSID');//本地取存储的sessionID
@@ -240,7 +63,7 @@ function uploadImg(urlList,callback){
 
 //判断是否绑定,true为绑定，false为未绑定
 function IsCertificate(success,fail){
-  NetRequest({
+  request.NetRequest({
     url: 'auth/check-bind',
     success: function (res) {
       if (res.success == true) {
@@ -261,7 +84,7 @@ function checkWorktime(callBack, showload=true) {
     }
   }
   console.log(showload);
-  NetRequest({
+  request.NetRequest({
     url: 'util/get-worktime',
     showload: showload,
     success: function (res) {
@@ -285,7 +108,7 @@ function checkEmpty(obj,arrInput){
 function getUserInfo(cb){
   var user=wx.getStorageSync('userInfo');
   if (user==""){//user不存在
-    NetRequest({
+    request.NetRequest({
       url: "api/get-userinfo", success: function (res) {
         if (res.success) {
           user = res.info;
@@ -358,10 +181,10 @@ function submitFormId(formId){
 
 module.exports = {
   formatTime: formatTime,
-  NetRequest: NetRequest,
+  NetRequest: request.NetRequest,
   IsCertificate: IsCertificate,
   Server: Server,
-  ocrServer: ocrServer,
+  ocrServer: request.ocrServer,
   uploadImg: uploadImg,
   checkEmpty: checkEmpty,
   getUserInfo: getUserInfo,
