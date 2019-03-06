@@ -1,12 +1,12 @@
-var util = require('../../utils/util.js'); 
+var util = require('../../utils/util.js');
 var newIns = require('../template/newIns.js')
 var app = getApp()
 var mobile = ''
 Page({
   data: {
     /** 
-        * 页面配置 
-        */
+     * 页面配置 
+     */
     winWidth: 0,
     winHeight: 0,
     // tab切换  
@@ -30,10 +30,11 @@ Page({
     /* 搜索弹框 */
     searchShow: false,
     searched: false,
-    searchValue:'',
-    inputValue:''
+    searchValue: '',
+    inputValue: '',
+    remarkSn: ''
   },
-  backHome: function () {
+  backHome: function() {
     util.backHome()
   },
 
@@ -41,7 +42,7 @@ Page({
 
 
 
-  onLoad: function () {
+  onLoad: function() {
     //腾讯mta统计开始
     var app = getApp();
     app.mta.Page.init();
@@ -53,13 +54,12 @@ Page({
 
   },
 
-  onShow: function () {
+  onShow: function() {
     var that = this;
     util.NetRequest({
       url: 'site-mini/my-instrument',
-      data: {
-      },
-      success: function (res) {
+      data: {},
+      success: function(res) {
         console.log(res)
         that.setData({
           displayState: true,
@@ -112,7 +112,7 @@ Page({
           LabelList: LabelList,
         })
       },
-      fail: function (err) {
+      fail: function(err) {
         console.log(err);
       }
     })
@@ -121,26 +121,25 @@ Page({
 
 
   //'设置'菜单隐藏
-  clickToSet: function (e) {
+  clickToSet: function(e) {
     for (var i = 0; i < this.data.InstrumentList.length; i++) {
       if (e.currentTarget.dataset.idx == i) {
         this.data.InstrumentList[i].setMask = true
-      }
-      else {
+      } else {
         this.data.InstrumentList[i].setMask = false
       }
     }
     this.setData(this.data)
   },
   /* 仪器总分组 */
-  gotoGroup: function () {
+  gotoGroup: function() {
     wx.navigateTo({
       url: '../ins_group/ins_group'
     })
   },
 
   /* 设置单独仪器分组 */
-  setGroup: function (e) {
+  setGroup: function(e) {
     var sn = e.currentTarget.dataset.sn;
     console.log(e.currentTarget.dataset.sn);
     wx.navigateTo({
@@ -148,7 +147,7 @@ Page({
     })
   },
   /* 添加标签 */
-  addLabel: function (e) {
+  addLabel: function(e) {
     var sn = e.currentTarget.dataset.sn;
     wx.navigateTo({
       url: '../add_label/add_label?sn=' + sn
@@ -157,16 +156,17 @@ Page({
 
 
   /* 修改备注 remark */
-  confirmRemark: function () {
+  confirmRemark: function(e) {
     console.log(this.data.inputValue)
+    console.log(e)
     var that = this;
     util.NetRequest({
       url: 'site-mini/edit-remark',
       data: {
-        'Remark': this.data.inputValue != '' ? this.data.inputValue :'无',
+        'Remark': this.data.inputValue != '' ? this.data.inputValue : '无',
         'SerialNo': this.data.remarkSn
       },
-      success: function (res) {
+      success: function(res) {
         console.log(res)
         if (res.result) {
           var instrumentlist = that.data.AllInstrument;
@@ -179,13 +179,12 @@ Page({
             AllInstrument: instrumentlist,
             //InstrumentList: instrumentlist
           })
-        }else{
+        } else {
           wx.showModal({
             title: '修改失败',
             content: '服务器错误，请重新尝试',
             showCancel: false,
-            success: function (res) {
-            }
+            success: function(res) {}
           })
         }
         that.setData({
@@ -193,35 +192,41 @@ Page({
         })
         that.submitfilter();
       },
-      fail: function (err) {
+      fail: function(err) {
         console.log(err);
       }
     })
   },
-  bindKeyInput: function (e) {
+  bindKeyInput: function(e) {
+    console.log(e);
     this.setData({
-      inputValue: e.detail.value
+      inputValue: e.detail.value,
     })
   },
-  clearRemark: function(){
+  clearRemark: function() {
     console.log('clear');
     this.setData({
-      remarkCon:'',
-      inputValue:'',
+      remarkCon: '',
+      inputValue: '',
     })
   },
-  Popup: function (e) {
+  Popup: function(e) {
+    console.log('POPOPOPOPOPOP');
+    console.log(e.currentTarget.dataset.sn);
     var popup = this.data.popup
     this.setData({
       popup: !popup,
+      remarkSn: e.currentTarget.dataset.sn
     })
   },
 
   //报修历史
-  clickToNext: function (event) {
+  clickToNext: function(event) {
     var sn = event.currentTarget.dataset.sn;
     var that = this;
-    this.setData({ 'sn': sn })
+    this.setData({
+      'sn': sn
+    })
     var that = this;
     util.NetRequest({
       url: 'sr/history',
@@ -229,7 +234,7 @@ Page({
         ContactId: this.data.ContactId,
         SerialNo: sn
       },
-      success: function (res) {
+      success: function(res) {
         if (res.success == true) {
           wx.navigateTo({
             url: '../service_list/service_list?sn=' + sn + '&contactId=' + that.data.ContactId,
@@ -239,7 +244,7 @@ Page({
             title: '提示',
             content: '该仪器三个月内无报修记录',
             showCancel: false,
-            success: function (res) {
+            success: function(res) {
               if (res.confirm) {
                 console.log('用户点击确定')
               }
@@ -247,14 +252,14 @@ Page({
           })
         }
       },
-      fail: function(err){
+      fail: function(err) {
         console.log(err);
       }
     });
   },
 
   //报修
-  clickToRepair: function (event) {
+  clickToRepair: function(event) {
     var sn = event.currentTarget.dataset.sn;
     util.NetRequest({
       url: 'sr/sr-confirm',
@@ -265,45 +270,44 @@ Page({
         account_id: this.data.AccountId,
         serial_number: sn
       },
-      success: function (res) {
+      success: function(res) {
         console.log(res);
         if (res.success == true) {
           wx.redirectTo({
             url: '../confirm_info/confirm_info' + '?ProductId=' + res.ProductId + '&ProductDesc=' + res.ProductDesc + '&SerialNo=' + res.SerialNo + '&CpName=' + res.CpName + '&ShipToName=' + res.ShipToName + "&needChat=1" + '&CanRepair=' + res.CanRepair,
           })
-        }else{
+        } else {
           wx.showModal({
             title: '连接失败',
             content: '服务器错误，请重新尝试',
             showCancel: false,
-            success: function (res) {
-            }
+            success: function(res) {}
           })
         }
       },
-      fail: function(err){
+      fail: function(err) {
         console.log(err);
       }
     })
   },
 
   //添加仪器
-  clickToAdd: function () {
+  clickToAdd: function() {
     util.chen_navigateTo('pages/serial_number/serial_number', '../serial_number/serial_number?mobile=' + mobile);
   },
 
   //删除仪器
-  clickToRemove: function (event) {
+  clickToRemove: function(event) {
     var that = this
     var sn = event.currentTarget.dataset.sn;
     var pi = event.currentTarget.dataset.pi;
     var idx = event.currentTarget.dataset.idx;
     console.log(sn + pi);
     var InstrumentList = this.data.AllInstrument;
-    wx.showModal({ 
+    wx.showModal({
       title: '提示',
       content: '确定要删除么',
-      success: function (res) {
+      success: function(res) {
         if (res.confirm) {
           util.NetRequest({
             url: 'sr/delete-instrument',
@@ -311,7 +315,7 @@ Page({
               'SerialNo': sn,
               'ProductId': pi,
             },
-            success: function (res) {
+            success: function(res) {
               console.log(res);
               if (res.success) {
                 for (var i in InstrumentList) {
@@ -331,18 +335,17 @@ Page({
 
                 that.submitfilter();
                 console.log('用户点击确定');
-              }else{
+              } else {
                 wx.showModal({
                   title: '删除失败',
                   content: '服务器错误，请重新尝试',
                   showCancel: false,
-                  success: function (res) {
-                  }
+                  success: function(res) {}
                 })
               }
 
             },
-            fail: function (err) {
+            fail: function(err) {
               wx.showToast({
                 title: '删除失败',
                 icon: 'fail',
@@ -360,21 +363,21 @@ Page({
   },
 
   /* 更多仪器分组 */
-  moreGroup: function () {
+  moreGroup: function() {
     this.setData({
       showMoreGroup: !this.data.showMoreGroup
     })
   },
 
   /* 筛选 */
-  clickfilter: function () {
+  clickfilter: function() {
     this.setData({
       showFilter: !this.data.showFilter
     })
   },
 
   /* 筛选仪器分组 */
-  filterGroup: function (e) {
+  filterGroup: function(e) {
     var selectGroup = e.currentTarget.dataset.id;
     this.setData({
       filterActive: true,
@@ -392,7 +395,7 @@ Page({
     this.setData(this.data);
     console.log(GroupList)
   },
-  allGroup: function (e) {
+  allGroup: function(e) {
     var GroupList = this.data.GroupList;
     for (var i in GroupList) {
       GroupList[i].filterActive = false;
@@ -406,7 +409,7 @@ Page({
   },
 
   /* 筛选仪器标签 */
-  filterLabel: function (e) {
+  filterLabel: function(e) {
     var selectLabel = e.currentTarget.dataset.labelname;
     this.setData({
       //filterActive: true,
@@ -425,7 +428,7 @@ Page({
   },
 
   /* 确定并筛选 */
-  submitfilter: function () {
+  submitfilter: function() {
     console.log('begin to filter')
     var str = JSON.stringify(this.data.AllInstrument); //序列化对象
     var InstrumentList = JSON.parse(str); //还原
@@ -442,7 +445,7 @@ Page({
     }
 
     if (selectLabel != '不限') {
-      for (var i=0;i<filterList.length;i++) {
+      for (var i = 0; i < filterList.length; i++) {
         var delLabel = true;
         for (var j in filterList[i].LabelList) {
           if (InstrumentList[i].LabelList[j].LabelName == selectLabel) {
@@ -459,10 +462,10 @@ Page({
 
     var searchCon = this.data.searchValue;
     var searchWord = searchCon;
-    if (searchCon!=''){
+    if (searchCon != '') {
       for (var i = 0; i < filterList.length; i++) {
         console.log(filterList[i])
-        if (filterList[i].SerialNo.indexOf(searchWord) < 0 && filterList[i].ProductId.indexOf(searchWord) < 0 && filterList[i].ProductDesc.indexOf(searchWord) < 0){
+        if (filterList[i].SerialNo.indexOf(searchWord) < 0 && filterList[i].ProductId.indexOf(searchWord) < 0 && filterList[i].ProductDesc.indexOf(searchWord) < 0) {
           filterList.splice(i, 1);
           i--;
         }
@@ -481,26 +484,26 @@ Page({
   },
 
   /* 搜索 */
-  bindSearchInput: function(e){
+  bindSearchInput: function(e) {
     this.setData({
       searchValue: e.detail.value,
     })
   },
-  Search: function(){
+  Search: function() {
     this.setData({
       searchShow: !this.data.searchShow,
-      searchValue:''
-    }) 
+      searchValue: ''
+    })
   },
-  gotoSearch: function () {
+  gotoSearch: function() {
     this.setData({
       searchShow: false,
       searchCon: this.data.searchValue
-    }) 
+    })
   },
-  
 
-  backHome: function () {
+
+  backHome: function() {
     util.backHome()
   },
-})  
+})
