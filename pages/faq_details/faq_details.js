@@ -1,6 +1,6 @@
 // pages/faq_details/faq_details.js
 var util = require('../../utils/util.js');
-
+var config = require("../../config.js");
 
 
 Page({
@@ -44,6 +44,12 @@ Page({
           that.setData({
             type:2,
             url: res.detail.answers[0].content
+          })
+          return;
+        } else if (res.detail.type == 2){
+          that.setData({
+            type: 2,
+            url: config.Server + "/site/faq-details?id=" + options.id
           })
           return;
         }else{
