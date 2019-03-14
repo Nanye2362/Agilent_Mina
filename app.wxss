@@ -106,6 +106,18 @@ view, text, input, button{ font-size: 32rpx; font-family: "MicroSoft Yahei"; col
     font-size: 1.5rem;
 }
 
+.fsrpx32{
+   font-size:32rpx;
+}
+
+.fsrpx28{
+   font-size:28rpx;
+}
+
+.fsrpx24{
+   font-size:24rpx;
+}
+
 /* font-color */
 
 .fc-333 {

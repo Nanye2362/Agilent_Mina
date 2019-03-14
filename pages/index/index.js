@@ -26,6 +26,11 @@ Page({
     imgUrls:
     [
       {
+          url: config.Server + 'images/mini/woman.png?version=20181019',
+          text: '安捷伦官方仪器租赁服务',
+          skipUrl: 'https://mp.weixin.qq.com/s/Nt_pdaPmnA4Xobm9VaJyxg',
+      },
+      {
         url: config.Server + 'images/slider2.jpg?version=20181019',
         text: '维修门诊 | 液相色谱步入送修时代!(附病例分析)',
         skipUrl: 'https://mp.weixin.qq.com/s/YHLs9IyMfFS8iLlDLuBAXw',

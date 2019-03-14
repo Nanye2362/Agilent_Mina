@@ -67,7 +67,10 @@ Page({
     imglist: [],
     finishTabload:[]
   },
-
+  MtaReport:function(e){
+    var app = getApp();
+    app.mta.Event.stat("meqia", { "group": e.target.dataset.meqia });
+  },
   // onLoad: function () {
   //   var app = getApp();
   //   app.mta.Page.init();
@@ -213,9 +216,6 @@ Page({
   // 点击联系客服事件
 
   showInputPanel: function (e) { // 点击弹出信息输入
-    console.log('showinputpanel');
-
-
     var that = this;
     // 检测工作时间
     util.checkWorktime(function () {

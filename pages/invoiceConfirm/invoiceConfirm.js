@@ -36,6 +36,7 @@ Page({
       "name": "寄送人姓名",
       "telephone": "联系电话",
       "address": "地址",
+      "mail":"电子邮箱(选填)"
     },
     currentInvoice:'',
     isConfirm:'',

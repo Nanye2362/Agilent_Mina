@@ -134,6 +134,7 @@ Page({
     sendInfo.name = invoiceinfo.Recipient;
     sendInfo.address = invoiceinfo.Address;
     sendInfo.telephone = invoiceinfo.Tel;
+    sendInfo.mail = invoiceinfo.mail;
     PO = invoiceinfo.POCode;
     needBill = invoiceinfo.AccountSales == 0 ? 'false' : true,
     invoiceType = invoiceinfo.InvoiceType == 0 ? 'normalInvoice' : 'specialInvoice';

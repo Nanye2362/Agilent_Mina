@@ -1,6 +1,6 @@
 
 <!--index.wxml-->
-<swiper indicator-dots="{{indicatorDots}}" indicator-active-color="{{indicatorActiveColor}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" style="width: 100%; height: 410rpx;" circular="{{true}}">
+<swiper indicator-dots="{{indicatorDots}}" indicator-active-color="{{indicatorActiveColor}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" style="width: 100%; height: 408rpx;" circular="{{true}}">
   <block wx:for="{{imgUrls}}" wx:key="{{img}}" wx:for-index='index'>
     <swiper-item bindtap='gotoPoster' data-type='url' data-url='{{item.skipUrl}}'>
       <image src="{{item.url}}" class="slide-image" mode='widthFix'></image>
@@ -17,7 +17,7 @@
 <!-- 近期服务更新 -->
 <view class='recent_service'>
   <!-- title -->
-  <view class='fs18'>最新服务更新</view>
+  <view class='fsrpx32'>最新服务更新</view>
   <!-- content -->
   <view class='rs_content flex alignc' bindtap='gotoSH'>
     <view class='rs_l'>
@@ -29,16 +29,16 @@
         </view>
         <!-- content -->
         <view class='flex directionC rs_con'>
-          <view class='rs_sno fs14'>咨询单号：{{ServiceRequestId}}</view>
+          <view class='rs_sno fsrpx24'>咨询单号：{{ServiceRequestId}}</view>
           <view class='rs_text'>
             <image style='width: 26rpx; margin-right: 10rpx;' src='/images/rs_status.png' mode='widthFix'></image>
-            <text  class='fc-777 fs14'>{{Title}}</text>
+            <text  class='fc-777 fsrpx24'>{{Title}}</text>
           </view>
         </view>
         <view class='fs12 rs_time fc-grey'>{{CreateTime}}</view>
       </view>
       <!-- no_Service -->
-      <view wx:else class='fc-grey'>尚无任何服务更新消息</view>
+      <view wx:else class='fsrpx28 fc-grey'>尚无任何服务更新消息</view>
     </view>
     <view class='rs_r text-right'>
       <image src='/images/arrow-r.png' mode='widthFix'></image>
@@ -55,7 +55,7 @@
   <view class="wxform icon_item blue_gradient" style='width:{{iconWidth1}}px' bindtap='gotoSS' >
     <button plain="true" class="formbtn h_service_item" form-type="submit" data-info="self_service" data-click="nevigateToNext" data-url="../self_service/self_service">
       <image src="/images/self.png"></image>
-      <view class="fs14 fc-fff">常见问题</view>  
+      <view class="fs12 fc-fff">常见问题</view>  
     </button>  
   </view>
   <!-- 我要报修 -->
@@ -63,7 +63,7 @@
     <meiqiaCheckWork data-info="serial_number"  showType="clickPanel" bindclickevent="clickToRepair" needBind="true">
       <button plain="true"  class="formbtn h_service_item service_repair" form-type="submit">
         <image src="/images/repair.png"></image>
-        <view class="fs14 fc-fff">我要报修</view>  
+        <view class="fs12 fc-fff">我要报修</view>  
       </button>  
     </meiqiaCheckWork>
   </form>
@@ -72,15 +72,23 @@
    <form class="wxform icon_item green_gradient" bindsubmit="formSubmit" report-submit="true" style='width:{{iconWidth3}}px'  >
     <button plain="true" class="formbtn h_service_item" form-type="submit" data-info="serviceOrder" data-click="nevigateToNext" data-url="../serviceOrder/serviceOrder">
       <image src="/images/install.png"></image>
-      <view class="fs14 fc-fff">服务预约</view>  
+      <view class="fs12 fc-fff">服务预约</view>  
     </button>  
   </form>
   <!-- elearning -->
   <view class="wxform icon_item purple_gradient" style='width:{{iconWidth4}}px' bindtap='skipHtml5Page' >
     <button plain="true" class="formbtn h_service_item" form-type="submit" data-info="elearning" data-click="skipHtml5Page">
       <image src="/images/myclass.png"></image>
-      <view class="fs14 fc-fff">培训中心</view>  
+      <view class="fs12 fc-fff">培训中心</view>  
     </button>  
   </view>
 </view>
+ <navigator
+    url="../second-buy/second-buy"
+    open-type="switchTab"
+  >
+<view class="banner_big">
+  <image src="https://qa.wechat.service.agilent.com/images/mini/banner_big.png"></image>
+</view>
+</navigator>
  <!-- <button bindtap='clearStorage'>清缓存</button>  -->

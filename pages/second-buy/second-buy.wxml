@@ -1,7 +1,4 @@
-<!--pages/second-buy/second-buy.wxml  wx:if="{{bannerShow}} {{lineFixed?'lineFix':''}}" {{curIndex == index ? '' : 'left-border'}} class="{{bannerShow?'':'banner-hidden'}}"  animation="{{bannerShow?ani2:ani1}}"  animation="{{bannerShow?ani22:ani21}}"-->
-
-
-  <image class="top-banner"  src="{{server+'images/banner.png'}}"></image>
+<image class="top-banner"  src="{{server+'images/banner.png'}}"></image>
 
 <view class="line-top {{leftFix?'left-fixed':''}}" id="line-top"></view>
 <view class="second-content">
@@ -46,34 +43,26 @@
             <view wx:if="{{itm.PRODUCT_NAME.length==0}}">
               <image-loader img-class='load_image' bindimageTap='skipHtml5Page'  default-image='/images/tempLoading.gif' img-link='{{itm.PRODUCT_LINK}}' mode='widthFix' original-image='{{server}}{{itm.PRODUCT_IMG}}' width="100%"  />
 
-              <!-- <image wx:if='{{!loadImg[curIndex].finishLoadFlag[0]&&idx==0}}' mode='widthFix' src='/images/tempLoading.gif' style='width:260rpx;' class='load_image'/>
-              <image  mode='widthFix' class='{{loadImg[curIndex].finishLoadFlag[0] ? "" : "before-load"}}' src='{{server}}{{itm.PRODUCT_IMG}}' bindload='loadFinish' style='{{loadImg[curIndex].finishLoadFlag[0] ? "width:100%;" : ""}}'  data-imglink="{{itm.PRODUCT_LINK}}" bindtap='skipHtml5Page'  /> -->
-
             </view>
             <view wx:if="{{itm.PRODUCT_NAME.length!=0}}">
               <image-loader bindimageTap='previewImage'  default-image='/images/tempLoading.gif' img-src='{{server}}{{itm.PRODUCT_DETAIL_IMG}}' mode='widthFix' original-image='{{server}}{{itm.PRODUCT_DETAIL_IMG}}' width="350rpx" />
-
-              <!-- <image wx:if='{{!(loadImg[curIndex].finishLoadFlag[imgFlag-1]||finishTabload[curIndex])}}' mode='widthFix' src='/images/tempLoading.gif' style='width:260rpx;' class='image-class'/>
-              <image mode='widthFix' class='{{loadImg[curIndex].finishLoadFlag[imgFlag-1]||finishTabload[curIndex] ? "" : "before-load"}}' src='{{server}}{{itm.PRODUCT_DETAIL_IMG}}' bindload='loadFinish' style='{{loadImg[curIndex].finishLoadFlag[imgFlag-1]||finishTabload[curIndex] ? "width:350rpx;" : ""}}'  data-src="{{server}}{{itm.PRODUCT_DETAIL_IMG}}" bindtap='previewImage'  /> -->
-
-              
+      
             </view>
             <!-- 产品详情 -->
             <view class="pro-describe" wx:if="{{itm.PRODUCT_DESC==null?false:true}}">{{itm.PRODUCT_DESC}}</view>
 
             <!--秒购方法联系客服按钮  -->
-            <view class="pro-btn" wx:if="{{itm.PROMOTION[0].length==0?false:true}}" bindtap="showInputPanel" data-Template="{{templete}}" data-checkfun="{{checkfun}}" data-desc="{{desc}}" data-tapfun="{{tapfun}}" data-meqia="{{item.PMENU_MEIQIA_GROUP}}" data-productid="{{itm.ID}}" data-productname="{{itm.PRODUCT_NAME}}">
+             <meiqiaBtn bindmeiqiaTap="MtaReport" wx:if="{{itm.PROMOTION[0].length==0?false:true}}" btn-class="pro-btn" handle-alert="{{false}}" session-from="{{item.PMENU_MEIQIA_GROUP}}_purchase:{{itm.ID}}," data-Template="{{templete}}" data-checkfun="{{checkfun}}" data-desc="{{desc}}" data-tapfun="{{tapfun}}" data-meqia="{{item.PMENU_MEIQIA_GROUP}}" data-productid="{{itm.ID}}" data-productname="{{itm.PRODUCT_NAME}}" >
               <view class="meth-btn">
-                <view class="big-meth {{itm.PROMOTION.length==2?'':'t-center'}}">{{itm.PROMOTION[0]}}</view>
-                <view class="small-meth">{{itm.PROMOTION[1]}}</view>
+                <view class="big-meth">{{itm.PROMOTION[0]}}</view>
+                <view class="small-meth">点此咨询</view>
               </view>
-            </view>
+            </meiqiaBtn>
             <!-- 联系客服悬浮按钮start -->
-            <view wx:if="{{item.PRODUCT_INFO[0].SHOW_TYPE=='0'?false:true}}" class="contactMeiqia flex alignc" bindtap="showInputPanel" data-Template="{{templete}}" data-checkfun="{{checkfun}}" data-desc="{{desc}}" data-tapfun="{{tapfun}}" data-meqia="{{item.PMENU_MEIQIA_GROUP}}"
-              data-productid="{{itm.ID}}" data-productname="{{itm.PRODUCT_NAME}}">
+             <meiqiaBtn bindmeiqiaTap="MtaReport" wx:if="{{item.PRODUCT_INFO[0].SHOW_TYPE=='0'?false:true}}" btn-class="contactMeiqia flex alignc padding0" handle-alert="{{false}}" session-from="{{item.PMENU_MEIQIA_GROUP}}_purchase:{{itm.ID}}," data-Template="{{templete}}" data-checkfun="{{checkfun}}" data-desc="{{desc}}" data-tapfun="{{tapfun}}" data-meqia="{{item.PMENU_MEIQIA_GROUP}}" >
               <image src='{{server}}images/advisory.png' class="c_img"></image>
               <text class="bh_text fs12 fc-fff">联系客服</text>
-            </view>
+            </meiqiaBtn>
             <!--联系客服悬浮按钮end-->
           </view>
           <view wx:if="{{item.PRODUCT_INFO[0].SHOW_TYPE=='0'?true:false}}" class="right_bottomline"></view>

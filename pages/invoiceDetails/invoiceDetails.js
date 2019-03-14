@@ -46,6 +46,7 @@ Page({
       "name": "寄送人姓名",
       "telephone": "联系电话",
       "address": "地址",
+      "mail":"电子邮箱(选填)"
     },
     sendTo:'me',
     invoiceType: '',
@@ -63,6 +64,7 @@ Page({
       'name':'',
       'telephone':'',
       'address':'',
+      'mail':''
     },
     PO:'',
     needBill: false,
@@ -184,7 +186,8 @@ Page({
       checkObjInvoice = ["title","taxNumber"];
     }
 
-    var checkObjSend = Object.keys(this.data.sendInfo);
+    var checkObjSend = ['name', 'telephone', 'address'];
+
     var checkInvoice = this.checkEmpty(this.data.invoiceInfo, checkObjInvoice);
     var checkSend = this.checkEmpty(this.data.sendInfo, checkObjSend);
     console.log(typeof errText[checkInvoice.fieldName] );
