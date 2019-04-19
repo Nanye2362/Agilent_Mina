@@ -77,7 +77,7 @@ function handleWorkTime(isAlert = false) {
         showCancel: false
       })
     } else {
-      wx.redirectTo({
+      wx.navigateTo({
         url: '../leave_message/leave_message',
       })
     }

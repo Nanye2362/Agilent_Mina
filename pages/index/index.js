@@ -23,25 +23,31 @@ Page({
     interval2: 20, // 时间间隔
     shSystem:true,
     system_text:"系统升级中，微信在线咨询通道暂时无法使用，您可以点击下方常见问题寻求解决方案，给您带来不便，敬请谅解。",
+    Server: config.Server,
     imgUrls:
     [
       {
-          url: config.Server + 'images/mini/woman.png?version=20181019',
+          url: config.Server + 'images/mini/woman.png?version=20190416',
           text: '安捷伦官方仪器租赁服务',
           skipUrl: 'https://mp.weixin.qq.com/s/Nt_pdaPmnA4Xobm9VaJyxg',
       },
+        {
+          url: config.Server + 'images/title1_March.png?version=20190416',
+          text: '选择“仪器维护保养课”，简单维护不求人！',
+          skipUrl: 'https://mp.weixin.qq.com/s/YCsIJpozJ56CT_qc8-F6zQ',
+        },
       {
-        url: config.Server + 'images/slider2.jpg?version=20181019',
+        url: config.Server + 'images/slider2.jpg?version=20190416',
         text: '维修门诊 | 液相色谱步入送修时代!(附病例分析)',
         skipUrl: 'https://mp.weixin.qq.com/s/YHLs9IyMfFS8iLlDLuBAXw',
       },
       {
-        url: config.Server + 'images/slider1.jpg?version=20181019',
+        url: config.Server + 'images/slider1.jpg?version=20190416',
         text: '搬迁服务 | 安捷伦为您多想一点',
         skipUrl: 'https://mp.weixin.qq.com/s/-q9UIjUUEgxTiM7vIh64eA',
       },
       {
-        url: config.Server + 'images/slider3.jpg?version=20181019',
+        url: config.Server + 'images/slider3.jpg?version=20190416',
         text: '记忆大师 | 数据备份追溯测试解决方案',
         skipUrl: 'https://mp.weixin.qq.com/s/wLJMsWpnAYAqoLPO06OhjA',
       }

@@ -80,7 +80,7 @@
   </view>
   <view class="shLoading-panel flex alignc directionC">
     <view class='shLoading-title left_row_on_0'>
-      服务快询
+      超值服务
       <image src='/images/close.png' class='shLoading-title-img' bindtap='cancelTap'></image>
     </view>
     <view class="shLoading-head-panel">
@@ -100,7 +100,7 @@
   </view>
   <view class="shLoading-panel flex alignc directionC">
     <view class='shLoading-title left_row_on_0'>
-      服务快询
+      超值服务
       <image src='/images/close.png' class='shLoading-title-img' bindtap='closeShLoading'></image>
     </view>
     <view class="shLoading-head-desc fs12 fc-ddd">

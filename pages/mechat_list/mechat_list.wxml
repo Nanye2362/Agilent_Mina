@@ -27,7 +27,7 @@
     url="../second-buy/second-buy"
     open-type="switchTab">
 <view class="banner_small">
-  <image src="https://qa.wechat.service.agilent.com/images/mini/banner_small.png"></image>
+  <image src="{{Server}}images/mini/banner_small.png"></image>
 </view>
 </navigator>
     </view>

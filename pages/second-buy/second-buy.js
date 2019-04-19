@@ -54,7 +54,7 @@ Page({
     templete: 'inputTemplate2',
     checkfun: 'checkSales',
     tapfun: 'salesTap',
-    desc: '服务快询相关事项咨询',
+    desc: '超值服务相关事项咨询',
     leftFix: false,
  
     finishLoadFlag: [],
@@ -70,6 +70,10 @@ Page({
   MtaReport:function(e){
     var app = getApp();
     app.mta.Event.stat("meqia", { "group": e.target.dataset.meqia });
+    app.mta.Event.stat("second_buy", {
+      "product": e.target.dataset.productname,
+      "productid": e.target.dataset.productid
+    });
   },
   // onLoad: function () {
   //   var app = getApp();

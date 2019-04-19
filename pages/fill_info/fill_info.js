@@ -247,13 +247,13 @@ Page({
       if (e.detail.value == 1){
         meiqiaGroup = "CB";
       }else{
-        meiqiaGroup = "N";
+        meiqiaGroup = "CB";
       }
     } else {//售后
         if (e.detail.value == 1) {
           meiqiaGroup = "CA";
         } else {
-          meiqiaGroup = "N";
+          meiqiaGroup = "CA";
         }
      }
     console.log(meiqiaGroup);

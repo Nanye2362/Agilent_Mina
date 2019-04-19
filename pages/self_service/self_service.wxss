@@ -62,7 +62,7 @@ page{
 }
 
 .ss_tab_item {
-    width: 180rpx;
+    width: 140rpx;
     float: left;
     height: 112rpx;
     line-height: 112rpx;
