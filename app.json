@@ -1,5 +1,12 @@
 {
   "pages": [
+    "pages/directional_push/directional_push_solve/directional_push_solve",
+    "pages/directional_push/directional_push_offer/directional_push_offer",
+    "pages/directional_push/directional_push_submit/directional_push_submit",
+
+
+    "pages/directional_push/directional_push_info/directional_push_info",
+
     "pages/index/index",
     "pages/repair/repair",
     "pages/invoiceConfirm/invoiceConfirm",
@@ -45,10 +52,9 @@
     "pages/second-buy/second-buy",
     "pages/contact_service/contact_service",
     "pages/test/test",
-    "pages/template/tarbar" ,
+    "pages/template/tarbar",
     "pages/template/template",
     "pages/service_details/service_details",
-    
     "pages/html/openHtml"
   ],
   "networkTimeout": {
@@ -60,7 +66,7 @@
     "navigationBarTitleText": "安捷伦售后服务小程序",
     "navigationBarTextStyle": "black"
   },
-  "usingComponents":{
+  "usingComponents": {
     "meiqiaCheckWork": "/components/meiqia/meiqiaCheckWork"
   },
   "tabBar": {
@@ -94,5 +100,6 @@
         "selectedIconPath": "images/my_c.png"
       }
     ]
-  }
+  },
+  "sitemapLocation": "sitemap.json"
 }

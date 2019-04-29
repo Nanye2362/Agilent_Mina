@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "服务进度详情",
+  "usingComponents": {
+    "directionalPushMark": "/components/directionalPushMark/directionalPushMark"
+  }
+}

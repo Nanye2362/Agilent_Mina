@@ -1,0 +1,28 @@
+<view class="container" wx:if="{{case1}}">
+    <view class="top_bg_view">
+        <image class="waring-img" src="/images/warning.png" />
+    </view>
+
+    <view class="content">
+        <text>感谢您的反馈，我们将事后在联系您。</text>
+    </view>
+
+    <view class="button">
+        <text>确认</text>
+    </view>
+</view>
+
+<view class="container" wx:if="{{case2}}">
+<view class="top_bg_view">
+    <image class="correct-img" src="/images/correct.png" />
+</view>
+
+<view class="content">
+    <text>您的确认信息已成功提交,感谢您的反馈!</text>
+</view>
+
+<view class="button">
+    <text>确认</text>
+</view>
+</view>
+

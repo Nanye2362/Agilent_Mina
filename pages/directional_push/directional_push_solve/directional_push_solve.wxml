@@ -1,0 +1,35 @@
+<view class="container" wx:if="{{case1}}">
+    <view class="top_bg_view">
+        <view class="contact">
+            <image class="contact-img" src="/images/cs.png" />
+        </view>
+
+        <view class="h1">请问您的问题是否已得到解决?</view>
+        <view class="item">咨询单号：0000001</view>
+        <view class="item">咨询内容：这是一段内容这是一段内容这是一段内容这是一段内容这是一段内容这是一段内容</view>
+        <view class="item">咨询日期：2019-01-01</view>
+    </view>
+
+    <view class="allbox">
+        <view class="box green">
+            <view class="box-left">
+                <image class="info" src="/images/resolved.png" />
+                <text>确认报价</text>
+            </view>
+        </view>
+        <view class="box blue">
+            <view class="box-left">
+                <image class="info" src="/images/cs.png" />
+                <text>未解决 - 立即咨询</text>
+            </view>
+        </view>
+        <view class="box blue">
+            <view class="box-left">
+                <image class="info" src="/images/unresloved.png" />
+                <text>未解决 - 其他</text>
+            </view>
+        </view>
+    </view>
+</view>
+<directionalPushMark show="true" title="取消报价原因" title_desc="您可以输入取消报价的原因" height='60%' bindcancel="modalCancel" bindconfirm='modalConfirm'></directionalPushMark>
+

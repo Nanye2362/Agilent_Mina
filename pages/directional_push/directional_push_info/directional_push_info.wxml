@@ -1,0 +1,30 @@
+<view class="container" wx:if="{{case1}}">
+    <view class="top_bg_view">
+        <image class="top_bg" src="/images/process.png" style="width:{{width}};height:{{height}}"/>
+    </view>
+
+    <view class="allbox">
+        <view class="box">
+            <view class="box-left">
+                <image class="info" src="/images/info.png" />
+                <text>上传补充图片及其他补充信息</text>
+            </view>
+            <image class="right" src="/images/rightA.png" />
+        </view>
+        <view class="box">
+            <view class="box-left">
+                <image class="info" src="/images/info.png" />
+                <text>常见问题</text>
+            </view>
+            <image class="right" src="/images/rightA.png" />
+        </view>
+        <view class="box">
+            <view class="box-left">
+                <image class="info" src="/images/info.png" />
+                <text>视频集锦</text>
+            </view>
+            <image class="right" src="/images/rightA.png" />
+        </view>
+    </view>
+</view>
+

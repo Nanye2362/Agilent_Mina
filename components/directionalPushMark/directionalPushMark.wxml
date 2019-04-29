@@ -1,0 +1,20 @@
+<!--components/modal/modal.wxml-->
+<!-- 蒙版 -->
+<view class="shLoading" wx:if="{{show}}">
+    <!--<image src="/images/close.png" class="close-img"/>-->
+  <view class="shLoading-mask1">
+  </view>
+  <view class="shLoading-panel">
+      <view class='shLoading-title'>
+        {{title}}
+      </view>
+    <view class="shLoading-head-panel">
+        <view class="text-title">{{title_desc}}</view>
+        <textarea></textarea>
+    </view>
+    <view class="shLoading-btn-panel">
+          <view class="shLoading-btn-cancel" bindtap="okTap">取消</view>
+          <view class="shLoading-btn-ok" bindtap="okTap">确定</view>
+    </view>
+  </view>
+</view>
