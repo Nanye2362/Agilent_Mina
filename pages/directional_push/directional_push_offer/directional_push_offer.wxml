@@ -1,9 +1,9 @@
-<view class="container" wx:if="{{case1}}">
+<view class="container">
     <view class="top_bg_view">
         <image class="top_bg" src="/images/process.png" style="width:{{width}};height:{{height}}"/>
     </view>
 
-    <view class="allbox">
+    <view class="allbox" wx:if="{{case}}">
         <view class="box">
             <view class="box-left">
                 <image class="info" src="/images/resolved.png" />
@@ -21,6 +21,14 @@
             <text>发起会话</text>
         </view>
     </view>
+    <view class="allbox" wx:else>
+        <view class="box">
+            <view class="box-left" style="margin:0 auto">
+                <image class="info" src="/images/cs.png" />
+                <text>立即与在线客服联系</text>
+            </view>
+        </view>
+    </view>
 </view>
 
-<directionalPushMark show="true" title="取消报价原因" title_desc="您可以输入取消报价的原因" height='60%' bindcancel="modalCancel" bindconfirm='modalConfirm'></directionalPushMark>
+<directionalPushMark title="取消报价原因" title_desc="您可以输入取消报价的原因" height='60%' bindcancel="modalCancel" bindconfirm='modalConfirm'></directionalPushMark>

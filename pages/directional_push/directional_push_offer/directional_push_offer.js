@@ -5,14 +5,18 @@ Page({
      * 页面的初始数据
      */
     data: {
-        case1:1,
+        case:true
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-
+        if(options.type == 1){ //跳转到选择确认报价页面
+            this.case = true
+        }else if(options.type == 2){ //跳转到立即与在线客服联系页面
+            this.case == false
+        }
     },
 
     /**

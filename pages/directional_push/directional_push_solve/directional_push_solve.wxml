@@ -31,5 +31,6 @@
         </view>
     </view>
 </view>
-<directionalPushMark show="true" title="取消报价原因" title_desc="您可以输入取消报价的原因" height='60%' bindcancel="modalCancel" bindconfirm='modalConfirm'></directionalPushMark>
+<directionalPushMark title="取消报价原因" title_desc="您可以输入取消报价的原因" height='60%' bindcancel="modalCancel" bindconfirm='modalConfirm'></directionalPushMark>
+<!--<meiqiaCheckWork> </meiqiaCheckWork>-->
 

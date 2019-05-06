@@ -1,13 +1,11 @@
 {
   "pages": [
-    "pages/directional_push/directional_push_solve/directional_push_solve",
-    "pages/directional_push/directional_push_offer/directional_push_offer",
-    "pages/directional_push/directional_push_submit/directional_push_submit",
-
-
-    "pages/directional_push/directional_push_info/directional_push_info",
-
     "pages/index/index",
+    "pages/directional_push/directional_push_submit/directional_push_submit",
+    "pages/directional_push/directional_push_solve/directional_push_solve",
+    "pages/directional_push/directional_push_info/directional_push_info",
+    "pages/directional_push/directional_push_offer/directional_push_offer",
+
     "pages/repair/repair",
     "pages/invoiceConfirm/invoiceConfirm",
     "pages/trackingNo/trackingNo",

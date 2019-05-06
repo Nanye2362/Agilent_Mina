@@ -5,15 +5,21 @@ Page({
      * 页面的初始数据
      */
     data: {
-        case1:0,
-        case2:1
+        case1:true,
+        case2:false
     },
 
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-
+        if(options.type == 1){ //未解决，其他
+            this.case1 = true;
+            this.case2 = false
+        }else if(options.type == 2){ //已解决
+            this.case1 = false;
+            this.case2 = true;
+        }
     },
 
     /**
