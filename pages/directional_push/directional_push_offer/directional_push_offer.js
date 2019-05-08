@@ -15,7 +15,7 @@ Page({
         if(options.type == 1){ //跳转到选择确认报价页面
             this.case = true
         }else if(options.type == 2){ //跳转到立即与在线客服联系页面
-            this.case == false
+            this.case = false
         }
     },
 
