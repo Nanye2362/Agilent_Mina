@@ -2,6 +2,6 @@
   "navigationBarTitleText": "服务进度详情",
   "usingComponents": {
     "directionalPushMark": "/components/directionalPushMark/directionalPushMark",
-    "meiqiaCheckWork": "/components/meiqia/meiqiaCheckWork"
+    "meiqiaBtn": "/components/meiqiaBtn/meiqiaBtn"
   }
 }

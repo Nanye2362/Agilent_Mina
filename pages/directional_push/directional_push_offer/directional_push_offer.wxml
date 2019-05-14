@@ -1,34 +1,74 @@
-<view class="container">
+<view class="container" wx:if="{{isShow}}">
     <view class="top_bg_view">
         <image class="top_bg" src="/images/process.png" style="width:{{width}};height:{{height}}"/>
     </view>
 
-    <view class="allbox" wx:if="{{case}}">
-        <view class="box">
+    <view wx:if="{{case3}}" style="font-size:34rpx">
+        <view style="text-align:center;">{{titleContent}}</view>
+        <view class="allbox" style="margin-top:50rpx" bindtap="toIndex">
+            <view class="box" bindtap="confirmTap" style="width:500rpx">
+                <view style="margin:0 auto">
+                    <text style="text-align:center;color:white">去首页</text>
+                </view>
+            </view>
+        </view>
+    </view>
+
+    <view class="allbox" wx:if="{{case1}}" >
+        <view class="box" bindtap="confirmTap">
             <view class="box-left">
                 <image class="info" src="/images/resolved.png" />
                 <text>确认报价</text>
             </view>
         </view>
-        <view class="box">
+        <view class="box" bindtap="closeTap">
             <view class="box-left">
                 <image class="info" src="/images/cancel.png" />
                 <text>取消报价</text>
             </view>
         </view>
         <view class="wechat">
-            <image class="wechat-b" src="/images/wechat_b.png" />
-            <text>发起会话</text>
+            <meiqiaBtn bindmeiqiaTap="MtaReport" btn-class="bc_chat_btn btn-meiqia" handle-alert="{{true}}" session-from="{{group}}_dpush:{{dpId}}">
+                <image class="wechat-b" src="/images/wechat_b.png" />
+                <text>发起会话</text>
+            </meiqiaBtn>
+            <!--<image class="wechat-b" src="/images/wechat_b.png" />
+            <text>发起会话</text>-->
         </view>
     </view>
-    <view class="allbox" wx:else>
-        <view class="box">
+    <view class="allbox" wx:if="{{case2}}">
+        <meiqiaBtn bindmeiqiaTap="MtaReport" btn-class="bc_chat_btn btn-meiqia" handle-alert="{{true}}" session-from="{{group}}_dpush:{{dpId}}">
+        <view class="box box1" style="line-height:1.5">
             <view class="box-left" style="margin:0 auto">
                 <image class="info" src="/images/cs.png" />
                 <text>立即与在线客服联系</text>
             </view>
         </view>
+        </meiqiaBtn>
     </view>
 </view>
 
-<directionalPushMark title="取消报价原因" title_desc="您可以输入取消报价的原因" height='60%' bindcancel="modalCancel" bindconfirm='modalConfirm'></directionalPushMark>
+<!--<directionalPushMark show="{{modalShow}}" title="取消报价原因" title_desc="您可以输入取消报价的原因" height='60%' bindcancel="modalCancel" bindconfirm='modalConfirm'></directionalPushMark>-->
+
+<view class="shLoading" wx:if="{{modalShow}}">
+<view class="shLoading-mask1">
+</view>
+<view class="shLoading-panel flex alignc directionC" style="border:none;border-radius:14rpx">
+    <view class='shLoading-title ' style="background-color:#399cdb">
+        取消报价原因
+        <image src='/images/close.png' class='shLoading-title-img' bindtap='infoCancelTap'></image>
+    </view>
+    <view class="shLoading-head-panel" style="margin-bottom:0rpx;">
+        <text class="shLoading-head-panel-info" style="margin-left:-150rpx;font-weight:normal">您可以输入取消报价的原因\r\n</text>
+    </view>
+    <textarea maxlength="50" style="border:1px solid #eee;width:85%;margin-bottom:30rpx;padding:20rpx" placeholder="50字内" value="{{content}}" bindinput='bindTextAreaBlur'>
+
+    </textarea>
+    <view class="shLoading-btn-panel">
+        <view class="shLoading-btn-cancel" bindtap="infoCancelTap">取消</view>
+        <view class="shLoading-btn-ok" bindtap="infoOkTap">确认
+
+        </view>
+    </view>
+</view>
+</view>

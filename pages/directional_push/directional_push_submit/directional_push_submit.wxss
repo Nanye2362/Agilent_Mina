@@ -1,13 +1,13 @@
 .container{
     display: flex;
-    background-color: #f9f9f9;
+    background-color: #fff;
     padding: 0;
     flex-direction: column;
     justify-content: normal;
 }
 .top_bg_view{
-    width: 200rpx;
-    height: 200rpx;
+    width: 180rpx;
+    height: 180rpx;
     background-color: #0287d2;
     border-radius: 128rpx;
     position: relative;
@@ -18,16 +18,16 @@
 .top_bg_view .waring-img{
     width: 15rpx;
     height: 100rpx;
-    left: 95rpx;
-    top: 51rpx;
+    left: 83rpx;
+    top: 43rpx;
     position: absolute;
 }
 
 .top_bg_view .correct-img{
-    width: 116rpx;
-    height: 100rpx;
-    left: 51rpx;
-    top: 51rpx;
+    width: 98rpx;
+    height: 70rpx;
+    left: 44rpx;
+    top: 56rpx;
     position: absolute;
 }
 
@@ -38,7 +38,7 @@
 .button{
     margin-top: 130rpx;
     width: 80%;
-    border: 1rpx solid #7ebfe8;
+    border: 2rpx solid #0287d2;
     padding: 20rpx;
     border-radius: 64rpx;
     font-size: 30rpx;
@@ -46,7 +46,7 @@
 }
 
 .button text{
-    color: #7ebfe8;
+    color: #0287d2;
 }
 
 

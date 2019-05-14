@@ -7,7 +7,7 @@
         <text>感谢您的反馈，我们将事后在联系您。</text>
     </view>
 
-    <view class="button">
+    <view class="button" bindtap="okTap">
         <text>确认</text>
     </view>
 </view>
@@ -21,7 +21,7 @@
     <text>您的确认信息已成功提交,感谢您的反馈!</text>
 </view>
 
-<view class="button">
+<view class="button" bindtap="okTap">
     <text>确认</text>
 </view>
 </view>

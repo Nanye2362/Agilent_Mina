@@ -5,8 +5,8 @@ Page({
      * 页面的初始数据
      */
     data: {
-        case1:true,
-        case2:false
+        case1:false,
+        case2:true
     },
 
     /**
@@ -14,11 +14,15 @@ Page({
      */
     onLoad: function (options) {
         if(options.type == 1){ //未解决，其他
-            this.case1 = true;
-            this.case2 = false
+            this.setData({
+                case1: true,
+                case2:false
+            })
         }else if(options.type == 2){ //已解决
-            this.case1 = false;
-            this.case2 = true;
+            this.setData({
+                case1: false,
+                case2:true
+            })
         }
     },
 
@@ -73,5 +77,11 @@ Page({
      */
     onShareAppMessage: function () {
 
+    },
+
+    okTap:function () {
+        wx.switchTab({
+            url:'../../index/index'
+        })
     }
 })

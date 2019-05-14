@@ -7,6 +7,7 @@
 }
 .top_bg_view{
     margin-bottom: 40rpx;
+    margin-top: 20rpx;
 }
 
 .allbox{
@@ -32,12 +33,13 @@
 }
 
 .box-left .info{
-    width: 62rpx;
-    height: 44rpx;
+    width: 50rpx;
+    height: 34rpx;
     margin-right: 40rpx;
     vertical-align: middle;
 }
 .right{
     width: 44rpx;
     height: 44rpx;
+    margin-top: 6rpx;
 }

@@ -1,6 +1,6 @@
 .container{
     display: flex;
-    background-color: #f9f9f9;
+    background-color: #fff;
     padding: 0;
     flex-direction: column;
     justify-content: normal;
@@ -8,7 +8,7 @@
 .top_bg_view{
     width: 90%;
     background-color: #eee;
-    margin: 40rpx 0 40rpx 0;
+    margin: 50rpx 0 40rpx 0;
     padding: 64rpx;
     border-radius: 18rpx;
     position: relative;
@@ -20,11 +20,11 @@
     border-radius: 64rpx;
     position: absolute;
     left: 28rpx;
-    top: -32rpx;
+    top: -48rpx;
 }
 
 .contact .contact-img{
-    width: 48rpx;
+    width: 42rpx;
     height: 48rpx;
     left: 26rpx;
     top: 22rpx;
@@ -55,10 +55,11 @@
     justify-content: space-between;
     border: 1rpx solid #fff;
     border-radius: 64rpx;
-    padding: 40rpx 20rpx 40rpx 40rpx;
-    margin-bottom: 50rpx;
-    height: 132rpx;
+
     box-shadow: 0 0 20rpx #ddd;
+    padding: 22rpx 20rpx 40rpx 40rpx;
+    margin-bottom: 45rpx;
+    height: 95rpx;
 }
 
 .box-left{
@@ -72,6 +73,13 @@
 
 .box-left .info{
     width: 40rpx;
+    height: 40rpx;
+    margin-right: 40rpx;
+    vertical-align: middle;
+}
+
+.box-left .info1{
+    width: 36rpx;
     height: 40rpx;
     margin-right: 40rpx;
     vertical-align: middle;

@@ -6,7 +6,8 @@
     justify-content: normal;
 }
 .top_bg_view{
-    margin-bottom: 40rpx;
+    margin-top: 20rpx;
+    margin-bottom: 80rpx;
 }
 
 .allbox{
@@ -19,11 +20,16 @@
     justify-content: space-between;
     border: 1rpx solid #fff;
     border-radius: 64rpx;
-    padding: 40rpx 20rpx 40rpx 40rpx;
-    margin-bottom: 30rpx;
-    height: 132rpx;
+    padding: 22rpx 20rpx 40rpx 40rpx;
+    margin-bottom: 45rpx;
+    height: 95rpx;
     box-shadow: 0 0 20rpx #ddd;
     background-color: #399cdb;
+}
+
+.box1{
+    width: 70%;
+    margin: 0 auto;
 }
 
 .box-left{
@@ -36,7 +42,7 @@
 }
 
 .box-left .info{
-    width: 40rpx;
+    width: 36rpx;
     height: 40rpx;
     margin-right: 40rpx;
     vertical-align: middle;
@@ -47,13 +53,13 @@
 }
 
 .wechat{
-    margin-top: 100rpx;
+    margin-top: 80rpx;
     display: flex;
     justify-content: center;
 }
 .wechat-b{
     width: 38rpx;
-    height: 38rpx;
+    height: 31rpx;
     vertical-align: middle;
     margin-right: 10rpx;
 }
