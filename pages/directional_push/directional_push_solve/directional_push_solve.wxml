@@ -28,7 +28,7 @@
         <view class="box blue" bindtap="noSolveTap">
             <view class="box-left">
                 <image class="info" src="/images/unresloved.png" />
-                <text>未解决 - 有需要在联系</text>
+                <text>未解决 - 有需要再联系</text>
             </view>
         </view>
     </view>

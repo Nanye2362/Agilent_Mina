@@ -4,7 +4,7 @@
     </view>
 
     <view class="content">
-        <text>感谢您的反馈，我们将事后在联系您。</text>
+        <text>感谢您的反馈，我们将事后再联系您。</text>
     </view>
 
     <view class="button" bindtap="okTap">
