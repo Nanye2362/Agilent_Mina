@@ -20,7 +20,7 @@ Page({
     //仪器使用 序列号
     input1_sn:"",
     //上传图片咨询
-    input5_ordersn:"",
+    input5_ordersn:"810",
     //消耗品咨询
     input2_name:"",
     input2_tel:"",

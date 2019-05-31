@@ -168,6 +168,7 @@ page{
   flex: .9;
   box-sizing: border-box;
   color: #8a8a8a;
+  font-size:0.84rem;
 }
 .faq_img{
   flex: .1;

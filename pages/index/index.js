@@ -29,26 +29,44 @@ Page({
       {
           url: config.Server + 'images/mini/woman.png?version=20190416',
           text: '安捷伦官方仪器租赁服务',
+          type:'url',
           skipUrl: 'https://mp.weixin.qq.com/s/Nt_pdaPmnA4Xobm9VaJyxg',
       },
         {
+          url: config.Server + 'images/title1_Apri.png?version=20190416',
+          text: '安捷伦预防性维护PM折扣券',
+          type: 'url',
+          skipUrl: 'https://mp.weixin.qq.com/s/BHixi4ebdwhRfXl-L9K8Ng',
+        },
+        {
+          url: config.Server + 'images/title2_Apri.png?version=20190416',
+          text: '溶出全流程耗材65折',
+          type: 'mini',
+          arg:'3',
+          skipUrl: '../second-buy/second-buy',
+        },
+        {
           url: config.Server + 'images/title1_March.png?version=20190416',
           text: '选择“仪器维护保养课”，简单维护不求人！',
+          type: 'url',
           skipUrl: 'https://mp.weixin.qq.com/s/YCsIJpozJ56CT_qc8-F6zQ',
         },
       {
         url: config.Server + 'images/slider2.jpg?version=20190416',
         text: '维修门诊 | 液相色谱步入送修时代!(附病例分析)',
+        type: 'url',
         skipUrl: 'https://mp.weixin.qq.com/s/YHLs9IyMfFS8iLlDLuBAXw',
       },
       {
         url: config.Server + 'images/slider1.jpg?version=20190416',
         text: '搬迁服务 | 安捷伦为您多想一点',
+        type: 'url',
         skipUrl: 'https://mp.weixin.qq.com/s/-q9UIjUUEgxTiM7vIh64eA',
       },
       {
         url: config.Server + 'images/slider3.jpg?version=20190416',
         text: '记忆大师 | 数据备份追溯测试解决方案',
+        type: 'url',
         skipUrl: 'https://mp.weixin.qq.com/s/wLJMsWpnAYAqoLPO06OhjA',
       }
     ],
@@ -313,15 +331,28 @@ Page({
   },
   gotoPoster: function (e) {
     var url = e.currentTarget.dataset.url;
-    wx.setStorage({
-      key: "openHtmlUrl",
-      data: url,
-      success: function () {
-        wx.navigateTo({
-          url: '../html/openHtml',
-        });
-      }
-    })
+    if (e.currentTarget.dataset.type=="url"){
+      wx.setStorage({
+        key: "openHtmlUrl",
+        data: url,
+        success: function () {
+          wx.navigateTo({
+            url: '../html/openHtml',
+          });
+        }
+      })
+    }else{
+      wx.setStorage({
+        key: "secound_buy_arg",
+        data: e.currentTarget.dataset.arg,
+        success: function () {
+          wx.switchTab({
+            url: url,
+          });
+        }
+      })
+    }
+   
   },
 
   //常见问题

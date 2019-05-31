@@ -35,11 +35,7 @@ Page({
               sn:""
             })
             var meiqiaGroup = "";
-            if (that.data.fromPage == 'salesBA_CB') {
-              meiqiaGroup = "CB";
-            } else {
-              meiqiaGroup = "N";
-            }
+            meiqiaGroup = "N";
             that.setData({
               meiqiaGroup: meiqiaGroup,
               userType:0,

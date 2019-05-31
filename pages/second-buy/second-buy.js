@@ -142,10 +142,20 @@ Page({
     app.mta.Page.init();
     console.log('onload curIndex');
     console.log(e);
+    var storageIndex = wx.getStorageSync('secound_buy_arg');
+    wx.removeStorageSync('secound_buy_arg');
+    console.log(storageIndex);
+
     if (typeof (e.index) != "undefined") {
       this.data.tabTap[e.index] = true;
       this.setData({
         curIndex: e.index,
+        tabTap: this.data.tabTap
+      })
+    } else if (storageIndex.length>0){
+      this.data.tabTap[storageIndex] = true;
+      this.setData({
+        curIndex: storageIndex,
         tabTap: this.data.tabTap
       })
     } else {
