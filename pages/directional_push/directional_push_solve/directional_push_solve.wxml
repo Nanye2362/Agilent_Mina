@@ -1,0 +1,61 @@
+<view class="container" wx:if="{{case1}}">
+    <view class="top_bg_view">
+        <view class="contact">
+            <image class="contact-img" src="/images/cs.png" />
+        </view>
+
+        <view class="h1">请问您的问题是否已得到解决?</view>
+        <view class="item">咨询单号：{{number}}</view>
+        <view class="item">咨询内容：{{content}}</view>
+        <view class="item">咨询日期：{{date}}</view>
+    </view>
+
+    <view class="allbox">
+        <view class="box green" bindtap="solveTap">
+            <view class="box-left">
+                <image class="info" src="/images/resolved.png" />
+                <text>已解决</text>
+            </view>
+        </view>
+        <meiqiaBtn bindmeiqiaTap="MtaReport" btn-class="bc_chat_btn btn-meiqia" handle-alert="{{true}}" session-from="{{group}}_dpush:{{dpId}}">
+        <view class="box blue">
+            <view class="box-left" style="line-height:1.55">
+                <image class="info1" src="/images/cs.png" />
+                <text>未解决 - 立即咨询</text>
+            </view>
+        </view>
+        </meiqiaBtn>
+        <view class="box blue" bindtap="noSolveTap">
+            <view class="box-left">
+                <image class="info" src="/images/unresloved.png" />
+                <text>未解决 - 有需要再联系</text>
+            </view>
+        </view>
+    </view>
+</view>
+<!--<directionalPushMark title="取消报价原因" title_desc="您可以输入取消报价的原因" height='60%' bindcancel="modalCancel" bindconfirm='modalConfirm'></directionalPushMark>-->
+<!--<meiqiaCheckWork> </meiqiaCheckWork>-->
+
+<view class="shLoading" wx:if="{{modalShow}}">
+<view class="shLoading-mask1">
+</view>
+<view class="shLoading-panel flex alignc directionC" style="border:none;border-radius:14rpx">
+    <view class='shLoading-title ' style="background-color:#399cdb">
+        备注
+        <image src='/images/close.png' class='shLoading-title-img' bindtap='infoCancelTap'></image>
+    </view>
+    <view class="shLoading-head-panel" style="margin-bottom:0rpx;">
+        <text class="shLoading-head-panel-info" style="margin-left:-270rpx;font-weight:normal">如需留言请输入\r\n</text>
+    </view>
+    <textarea maxlength="50" style="border:1px solid #eee;width:85%;margin-bottom:30rpx;padding:20rpx" placeholder="50字内" value="{{textContent}}" bindinput='bindTextAreaBlur'>
+
+    </textarea>
+    <view class="shLoading-btn-panel">
+        <view class="shLoading-btn-cancel" bindtap="infoCancelTap">取消</view>
+        <view class="shLoading-btn-ok" bindtap="infoOkTap">确认
+
+        </view>
+    </view>
+</view>
+</view>
+

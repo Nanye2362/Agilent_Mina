@@ -8,7 +8,7 @@ var config = {
   //Server: "https://prd.wechat.service.agilent.com/", //PRO
   //https://qa.wechat.service.agilent.com/
   //Server:"",
-  version: "3.4.19.1",
+  version: "3.5.17.1",
 
 };
 

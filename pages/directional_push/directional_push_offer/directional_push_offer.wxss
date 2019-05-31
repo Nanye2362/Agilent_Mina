@@ -1,0 +1,69 @@
+.container{
+    display: flex;
+    background-color: #FFFFFF;
+    padding: 0;
+    flex-direction: column;
+    justify-content: normal;
+}
+.top_bg_view{
+    margin-top: 20rpx;
+    margin-bottom: 80rpx;
+}
+
+.allbox{
+    width: 90%;
+}
+.allbox .box{
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border: 1rpx solid #fff;
+    border-radius: 64rpx;
+    padding: 22rpx 20rpx 40rpx 40rpx;
+    margin-bottom: 45rpx;
+    height: 95rpx;
+    box-shadow: 0 0 20rpx #ddd;
+    background-color: #399cdb;
+}
+
+.box1{
+    width: 70%;
+    margin: 0 auto;
+}
+
+.box-left{
+    margin-left: 44rpx;
+    height: 44rpx;
+}
+.box-left text{
+    color: #fff;
+    vertical-align: middle;
+}
+
+.box-left .info{
+    width: 36rpx;
+    height: 40rpx;
+    margin-right: 40rpx;
+    vertical-align: middle;
+}
+.right{
+    width: 44rpx;
+    height: 44rpx;
+}
+
+.wechat{
+    margin-top: 80rpx;
+    display: flex;
+    justify-content: center;
+}
+.wechat-b{
+    width: 38rpx;
+    height: 31rpx;
+    vertical-align: middle;
+    margin-right: 10rpx;
+}
+.wechat text{
+    vertical-align: middle;
+    color: #399cdb;
+}

@@ -1,0 +1,33 @@
+<view class="container" wx:if="{{isShow}}">
+    <view class="top_bg_view">
+        <image class="top_bg" src="/images/process.png" style="width:{{width}};height:{{height}}"/>
+    </view>
+
+    <view class="allbox">
+        <meiqiaBtn bindmeiqiaTap="MtaReport" btn-class="bc_chat_btn btn-meiqia" handle-alert="{{true}}" session-from="N_srId:{{srId}}">
+        <view class="box">
+            <view class="box-left" style="line-height:1.55">
+                <image class="info" src="/images/info.png" />
+                <text>上传补充图片及其他补充信息</text>
+            </view>
+            <image class="right" src="/images/rightA.png" />
+        </view>
+        </meiqiaBtn>
+
+        <view class="box" bindtap="jumpOtherQuestion">
+            <view class="box-left">
+                <image class="info" src="/images/commonquestion.png" />
+                <text>常见问题</text>
+            </view>
+            <image class="right" src="/images/rightA.png" />
+        </view>
+        <view class="box" bindtap="jumpVideo">
+            <view class="box-left">
+                <image class="info" src="/images/video.png" />
+                <text>视频集锦</text>
+            </view>
+            <image class="right" src="/images/rightA.png" />
+        </view>
+    </view>
+</view>
+

@@ -1,0 +1,113 @@
+.container{
+    display: flex;
+    background-color: #fff;
+    padding: 0;
+    flex-direction: column;
+    justify-content: normal;
+}
+.top_bg_view{
+    width: 90%;
+    background-color: #eee;
+    margin: 50rpx 0 40rpx 0;
+    padding: 64rpx;
+    border-radius: 18rpx;
+    position: relative;
+}
+.top_bg_view .contact{
+    width: 96rpx;
+    height: 96rpx;
+    background-color: #399cdb;
+    border-radius: 64rpx;
+    position: absolute;
+    left: 28rpx;
+    top: -48rpx;
+}
+
+.contact .contact-img{
+    width: 42rpx;
+    height: 48rpx;
+    left: 26rpx;
+    top: 22rpx;
+    position: absolute;
+}
+
+.top_bg_view .h1{
+    font-weight: bold;
+    font-size: 32rpx;
+    color: #000000;
+    padding-bottom: 30rpx;
+    border-bottom: 1rpx dashed #aaa;
+}
+
+.top_bg_view .item{
+    font-size: 28rpx;
+    padding-top: 30rpx;
+    color: #393939;
+}
+
+.allbox{
+    width: 90%;
+    margin-top: 80rpx;
+}
+.allbox .box{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border: 1rpx solid #fff;
+    border-radius: 64rpx;
+
+    box-shadow: 0 0 20rpx #ddd;
+    padding: 22rpx 20rpx 40rpx 40rpx;
+    margin-bottom: 45rpx;
+    height: 95rpx;
+}
+
+.box-left{
+    margin-left: 44rpx;
+    height: 44rpx;
+}
+.box-left text{
+    color: #ffffff;
+    vertical-align: middle;
+}
+
+.box-left .info{
+    width: 40rpx;
+    height: 40rpx;
+    margin-right: 40rpx;
+    vertical-align: middle;
+}
+
+.box-left .info1{
+    width: 36rpx;
+    height: 40rpx;
+    margin-right: 40rpx;
+    vertical-align: middle;
+}
+.right{
+    width: 44rpx;
+    height: 44rpx;
+}
+
+.wechat{
+    margin-top: 100rpx;
+    display: flex;
+    justify-content: center;
+}
+.wechat-b{
+    width: 38rpx;
+    height: 38rpx;
+    vertical-align: middle;
+    margin-right: 10rpx;
+}
+.wechat text{
+    vertical-align: middle;
+    color: #399cdb;
+}
+
+.green{
+    background-color: #049d31;
+}
+.blue{
+    background-color: #399cdb;
+}
