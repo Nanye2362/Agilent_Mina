@@ -11,11 +11,11 @@
     </view>
     <view class="bc_remind fc-777">您的服务报价已经生成，报价单编号为：<span>{{bqId}}</span>，请确保您已知晓，以便我们尽快为您提供相应服务</view>
     <view class="bc_order fc-blue" bindtap='openPDF'>
-        <image class="bc_order_icon" src="/images/pdf.png" mode='widthFix'></image> 
+        <image class="bc_order_icon" src="/images/pdf.png" mode='widthFix'></image>
         安捷伦维修收费标准说明书-报价单
     </view>
     <view class="bc_order flex alignc" bindtap='inputInvoice'>
-        <image class="bc_order_icon" src="/images/invoice.png" mode='widthFix'></image> 
+        <image class="bc_order_icon" src="/images/invoice.png" mode='widthFix'></image>
         <view class='bc_order_con'>
           <view class='invoiceInformation'>发票信息-<text class='fw {{invoiceInfo.title!=""?"":"fc-aaa"}}'>{{invoiceInfo.title!=''?currentInvoice=='normalInvoice'?'增值税普通发票':'增值税专用发票':'[未填写]'}}</text>
             <text class='fc-blue changeType' wx:if='{{currentInvoice!=""&&isConfirm==0?true:false}}' catchtap='changeInvoiceType'>[更改发票类型]</text>
@@ -63,9 +63,12 @@
        <block wx:else>
           <block wx:if="{{isConfirm==0}}">
             <block wx:if="{{price>=maxprice}}">
-              <view class="bq_checkbox_panel">
+              <view class="bq_checkbox_panel" wx:if="{{maxprice == 30000}}">
                 预算报价大于3万元，请联系客服以确认
               </view>
+                <view class="bq_checkbox_panel" wx:elif="{{maxprice == 69000}}">
+                    预算报价大于6.9万元，请联系客服以确认
+                </view>
             </block>
             <block wx:else>
                 <view class="bq_checkbox_panel">
@@ -109,6 +112,5 @@
       </view>
   </view>
 </view>
- 
 
- 
+
