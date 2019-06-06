@@ -32,6 +32,13 @@ Page({
           type:'url',
           skipUrl: 'https://mp.weixin.qq.com/s/Nt_pdaPmnA4Xobm9VaJyxg',
       },
+      {
+        url: config.Server + 'images/wechat_slider/wechat-20190606.jpg?version=20190606',
+        text: '经济型针头过滤器5折优惠',
+        type:'mini',
+        arg:'3',
+        skipUrl: '../second-buy/second-buy',
+      },
         {
           url: config.Server + 'images/title1_Apri.png?version=20190416',
           text: '安捷伦预防性维护PM折扣券',
@@ -106,7 +113,7 @@ Page({
     })
     var that = this;
     var text='';
-    
+
     util.NetRequest({
       url: 'api/check-lunch',
       data: {
@@ -123,7 +130,7 @@ Page({
               ServiceRequestId: res.CurrentSr.ServiceRequestId,
               Title: res.CurrentSr.Title,
             })
-          }         
+          }
           //wx.hideLoading();
         } else {
           wx.showModal({
@@ -141,7 +148,7 @@ Page({
           //wx.hideLoading();
         }
       }
-    }) 
+    })
     console.log('onload' + option);
     var that = this
     console.log(app);
@@ -272,31 +279,31 @@ Page({
         wx.navigateTo({
           url: '../leave_message/leave_message',
         })
-      }      
-    }, 
+      }
+    },
     //未绑定
     function(){
       if (event.detail.iswork) {
         //未绑定， 且不是工作时间
         wx.navigateTo({
           url: '../auth/auth?pageName=serial_number',
-        })       
+        })
       }else{
         //未绑定，是工作时间
         wx.navigateTo({
           url: '../auth/auth?pageName=leave_message',
         })
-      } 
+      }
     });
   },
 /*
 ** 安装申请 点击跳转
 */
   nevigateToNext: function(e){
- 
+
     var app=getApp();
     app.mta.Event.stat(e.dataset.info, {});
-    
+
     var url = e.dataset.url;
 
       util.IsCertificate(function () {
@@ -352,7 +359,7 @@ Page({
         }
       })
     }
-   
+
   },
 
   //常见问题
@@ -390,5 +397,5 @@ Page({
   onShareAppMessage: function () {
 
   }
-  
-}) 
+
+})
