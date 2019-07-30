@@ -47,40 +47,38 @@
 </view>
 
 
-
-
 <!-- 图标链接 -->
 <view class="h_icon flex">
   <!-- 常见问题 -->
   <view class="wxform icon_item blue_gradient" style='width:{{iconWidth1}}px' bindtap='gotoSS' >
     <button plain="true" class="formbtn h_service_item" form-type="submit" data-info="self_service" data-click="nevigateToNext" data-url="../self_service/self_service">
       <image src="/images/self.png"></image>
-      <view class="fs12 fc-fff">常见问题</view>  
-    </button>  
+      <view class="fs12 fc-fff">常见问题</view>
+    </button>
   </view>
   <!-- 我要报修 -->
     <form class="wxform icon_item orange_gradient" bindsubmit="formSubmit" report-submit="true" style='width:{{iconWidth2}}px' >
     <meiqiaCheckWork data-info="serial_number"  showType="clickPanel" bindclickevent="clickToRepair" needBind="true">
       <button plain="true"  class="formbtn h_service_item service_repair" form-type="submit">
         <image src="/images/repair.png"></image>
-        <view class="fs12 fc-fff">我要报修</view>  
-      </button>  
+        <view class="fs12 fc-fff">我要报修</view>
+      </button>
     </meiqiaCheckWork>
   </form>
-  
+
   <!-- 服务预约 -->
    <form class="wxform icon_item green_gradient" bindsubmit="formSubmit" report-submit="true" style='width:{{iconWidth3}}px'  >
     <button plain="true" class="formbtn h_service_item" form-type="submit" data-info="serviceOrder" data-click="nevigateToNext" data-url="../serviceOrder/serviceOrder">
       <image src="/images/install.png"></image>
-      <view class="fs12 fc-fff">服务预约</view>  
-    </button>  
+      <view class="fs12 fc-fff">服务预约</view>
+    </button>
   </form>
   <!-- elearning -->
   <view class="wxform icon_item purple_gradient" style='width:{{iconWidth4}}px' bindtap='skipHtml5Page' >
     <button plain="true" class="formbtn h_service_item" form-type="submit" data-info="elearning" data-click="skipHtml5Page">
       <image src="/images/myclass.png"></image>
-      <view class="fs12 fc-fff">培训中心</view>  
-    </button>  
+      <view class="fs12 fc-fff">培训中心</view>
+    </button>
   </view>
 </view>
  <navigator

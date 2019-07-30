@@ -365,7 +365,7 @@ Page({
   //常见问题
   gotoSS: function(){
     wx.navigateTo({
-      url: '../self_service/self_service',
+      url: '../self_service_new/self_service_new',
     });
   },
 

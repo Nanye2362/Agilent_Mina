@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "自助服务",
+  "usingComponents": {
+    "directionalPushMark": "/components/directionalPushMark/directionalPushMark",
+    "meiqiaBtn": "/components/meiqiaBtn/meiqiaBtn"
+  }
+}

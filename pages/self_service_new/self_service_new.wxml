@@ -1,0 +1,18 @@
+<view class="container1" wx:if="true">
+    <view class="top_bg_view">
+        <image class="top_bg" src="/images/self-service-new.png" style="width:{{width}};height:{{height}}"/>
+    </view>
+
+    <view class="allbox">
+        <view wx:for="{{menuList}}" wx:for-index="idx" wx:for-item="item">
+            <view class="box" bindtap="toPage" data-url="{{item.url}}" data-title="{{item.text}}">
+                <view class="box-left">
+                    <view class="info" style="background-color:{{item.color}}"> </view>
+                    <text>{{item.text}}</text>
+                </view>
+                <image class="right" src="/images/arrow-r1.png" />
+            </view>
+        </view>
+    </view>
+</view>
+
