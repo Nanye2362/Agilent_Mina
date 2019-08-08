@@ -1,0 +1,75 @@
+<view style="background-color: #FFFFFF;min-height:100%">
+    <view class="container1">
+        <image src="https://novel2.skycao.com/uploads/banner2.png" mode="widthFix" class="top-image"/>
+        <view class="trial">
+            <text class="trial-title">仪器购买总额</text>
+            <view class="trial-content">
+                <view class="trial-content-left">
+                    <input placeholder="请输入仪器购买总金额" placeholder-class="phcolor" class="trial-content-left-input" bindinput="bindValInput" type="number"/><text>万元</text>
+                </view>
+                <view class="trial-content-right" bindtap="clickTrial">点击试算</view>
+            </view>
+        </view>
+
+        <view class='line'></view>
+
+        <view class="trial-tables" wx:if="{{isShow}}">
+            <text class="trial-title">仪器购买总额<text class="color-blue">{{inputVal1}}万元</text>计算方案</text>
+
+            <view class="trial-table">
+                <view class="trial-table-th">
+                    <view class="trial-table-th-l"></view>
+                    <view class="trial-table-th-r">
+                        <view class="th-r-top">融资分期方案</view>
+                        <view class="th-r-button">月度金额</view>
+                    </view>
+                </view>
+                <view class="trial-table-td">
+                    <view class="trial-table-td-l">12个月</view>
+                    <view class="trial-table-td-r">
+                        <text class="td-r-font">{{series[0].data[0].value}}<text class="td-r-size">元/月</text></text>
+                    </view>
+                </view>
+                <view class="trial-table-td">
+                    <view class="trial-table-td-l">24个月</view>
+                    <view class="trial-table-td-r">
+                        <text class="td-r-font">{{series[0].data[1].value}}<text class="td-r-size">元/月</text></text>
+                    </view>
+                </view>
+                <view class="trial-table-td">
+                    <view class="trial-table-td-l">36个月</view>
+                    <view class="trial-table-td-r">
+                        <text class="td-r-font">{{series[0].data[2].value}}<text class="td-r-size">元/月</text></text>
+                    </view>
+                </view>
+                <view class="trial-table-td">
+                    <view class="trial-table-td-l">48个月</view>
+                    <view class="trial-table-td-r">
+                        <text class="td-r-font">{{series[0].data[3].value}}<text class="td-r-size">元/月</text></text>
+                    </view>
+                </view>
+                <view class="trial-table-td">
+                    <view class="trial-table-td-l">60个月</view>
+                    <view class="trial-table-td-r">
+                        <text class="td-r-font">{{series[0].data[4].value}}<text class="td-r-size">元/月</text></text>
+                    </view>
+                </view>
+            </view>
+            <view class='line'></view>
+            <view class="qiun-charts">
+                <canvas canvas-id="canvasColumn" id="canvasColumn" class="charts" bindtap="touchColumn"></canvas>
+            </view>
+            <view class='line'></view>
+        </view>
+        <meiqiaBtn bindmeiqiaTap="MtaReport" wx:if="{{isShow}}" btn-class="pro-btn" handle-alert="{{false}}" session-from="{{item.PMENU_MEIQIA_GROUP}}_purchase:{{itm.ID}}," data-Template="{{templete}}" data-checkfun="{{checkfun}}" data-desc="{{desc}}" data-tapfun="{{tapfun}}" data-meqia="{{item.PMENU_MEIQIA_GROUP}}" data-productid="{{itm.ID}}" data-productname="{{itm.PRODUCT_NAME}}" >
+            <view class="meth-btn">
+                <view class="small-meth">点此继续咨询</view>
+            </view>
+        </meiqiaBtn>
+
+        <view class="trial-rule">
+            <view class="trial-size">价格仅供参考,如有变更,怒不另行通知。本文所述信息并非优惠或承诺,凡涉及优惠或承诺需根据交易实际情况而定</view>
+        </view>
+    </view>
+
+</view>

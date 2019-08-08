@@ -56,7 +56,7 @@ Page({
     tapfun: 'salesTap',
     desc: '超值服务相关事项咨询',
     leftFix: false,
- 
+
     finishLoadFlag: [],
     loadImg:[],
 
@@ -120,7 +120,7 @@ Page({
           });
           that.setData({
             productList: res.data,
-            
+
             toView: res.data[that.data.curIndex]['ID'],
 
 
@@ -191,13 +191,13 @@ Page({
     console.log(curIndex);
     // console.log(this.data.imgNum[curIndex]);
 
-    
+
     // if (this.data.imgNum[curIndex] == '' || this.data.imgNum[curIndex] == undefined) {
     //   this.data.imgFlag = 0;
     //   this.data.finishLoadFlag=[];
     //   console.log('ppppppppppp');
     // }
-    
+
     var tabTap = this.data.tabTap;
     tabTap[curIndex] = true;
 
@@ -210,6 +210,12 @@ Page({
       tabTap: tabTap
     })
 
+  },
+
+  toTrial:function(){
+    wx.navigateTo({
+      url: '../trial_calculation/trial_calculation',
+    });
   },
 
   //美恰联系
@@ -488,8 +494,8 @@ Page({
     var that = this;
     console.log(imglist)
     wx.previewImage({
-      current: current, // 当前显示图片的http链接  
-      urls: imglist, // 需要预览的图片http链接列表  
+      current: current, // 当前显示图片的http链接
+      urls: imglist, // 需要预览的图片http链接列表
       success: function (res) {
         that.setData({
           isOnShow: false
@@ -516,7 +522,7 @@ Page({
     loadImg.splice(curIndex, 1, { finishLoadFlag });
     console.log('1111111111111222222');
     console.log(loadImg);
-    
+
     console.log("finishLoadFlag");
     console.log(this.data.finishLoadFlag);
     ++imgFlag;
@@ -527,7 +533,7 @@ Page({
         finishLoadFlag: finishLoadFlag,
         loadImg: loadImg
       })
-    
+
     console.log("imgFlag");
     console.log(this.data.imgFlag);
     // console.log(imgFlag);
@@ -540,11 +546,11 @@ Page({
       this.setData({
         imgNum: this.data.imgNum,
         finishTabload: finishTabload
-   
+
       })
     }
- 
- 
+
+
   },
   /**
    * 用户点击右上角分享

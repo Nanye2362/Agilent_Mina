@@ -1,4 +1,4 @@
-<image class="top-banner"  src="{{server+'images/banner.png'}}"></image>
+<image class="top-banner"  src="https://novel2.skycao.com/uploads/group4.png"></image>
 
 <view class="line-top {{leftFix?'left-fixed':''}}" id="line-top"></view>
 <view class="second-content">
@@ -32,45 +32,92 @@
   <view class="tab-right">
     <block wx:for="{{productList}}" wx:key='unique' wx:for-item="item">
       <view  wx:if='{{tabTap[index]}}' class="right-box {{toView == item.PRODUCT_INFO[0].PMENU_ID ? 'show':'hidden'}}">
-        <view class="right-title" wx:if="{{item.PRODUCT_INFO[0].SHOW_TYPE=='0'}}">
-          <view class="main-title">{{item.PMENU_TITLE}}</view>
-          <view class="sub-title">{{item.PMENU_SUBTITLE}}</view>
-        </view>
-        <view class="product" wx:for="{{item.PRODUCT_INFO}}" wx:key="idx" wx:for-item="itm" wx:for-index="idx">
-          <view class="product-list">
-            <view class="pro-name" wx:if="{{itm.PRODUCT_NAME.length==0?false:true}}">{{itm.PRODUCT_NAME}}</view>
-          <!-- 产品图片 -->
-            <view wx:if="{{itm.PRODUCT_NAME.length==0}}">
-              <image-loader img-class='load_image' bindimageTap='skipHtml5Page'  default-image='/images/tempLoading.gif' img-link='{{itm.PRODUCT_LINK}}' mode='widthFix' original-image='{{server}}{{itm.PRODUCT_IMG}}' width="100%"  />
-
+        <view wx:if="{{item.PMENU_NAME=='仪器租赁'}}" style="margin:0 auto;width:90%">
+          <view class="main-title1">{{item.PMENU_NAME}}</view>
+          <view class="main-content1">
+            <view class="main-content1-title color-blue">色谱</view>
+            <view class="main-content1-content">
+              <image src="https://novel2.skycao.com/uploads/zulin-image1.png" class="main-content1-content-image" mode="widthFix"/>
             </view>
-            <view wx:if="{{itm.PRODUCT_NAME.length!=0}}">
-              <image-loader bindimageTap='previewImage'  default-image='/images/tempLoading.gif' img-src='{{server}}{{itm.PRODUCT_DETAIL_IMG}}' mode='widthFix' original-image='{{server}}{{itm.PRODUCT_DETAIL_IMG}}' width="350rpx" />
-      
-            </view>
-            <!-- 产品详情 -->
-            <view class="pro-describe" wx:if="{{itm.PRODUCT_DESC==null?false:true}}">{{itm.PRODUCT_DESC}}</view>
-
-            <!--秒购方法联系客服按钮  -->
-             <meiqiaBtn bindmeiqiaTap="MtaReport" wx:if="{{itm.PROMOTION[0].length==0?false:true}}" btn-class="pro-btn" handle-alert="{{false}}" session-from="{{item.PMENU_MEIQIA_GROUP}}_purchase:{{itm.ID}}," data-Template="{{templete}}" data-checkfun="{{checkfun}}" data-desc="{{desc}}" data-tapfun="{{tapfun}}" data-meqia="{{item.PMENU_MEIQIA_GROUP}}" data-productid="{{itm.ID}}" data-productname="{{itm.PRODUCT_NAME}}" >
-              <view class="meth-btn">
-                <view class="big-meth">{{itm.PROMOTION[0]}}</view>
-                <view class="small-meth">点此咨询</view>
-              </view>
-            </meiqiaBtn>
-            <!-- 联系客服悬浮按钮start -->
-             <meiqiaBtn bindmeiqiaTap="MtaReport" wx:if="{{item.PRODUCT_INFO[0].SHOW_TYPE=='0'?false:true}}" btn-class="contactMeiqia flex alignc padding0" handle-alert="{{false}}" session-from="{{item.PMENU_MEIQIA_GROUP}}_purchase:{{itm.ID}}," data-Template="{{templete}}" data-checkfun="{{checkfun}}" data-desc="{{desc}}" data-tapfun="{{tapfun}}" data-meqia="{{item.PMENU_MEIQIA_GROUP}}" >
-              <image src='{{server}}images/advisory.png' class="c_img"></image>
-              <text class="bh_text fs12 fc-fff">联系客服</text>
-            </meiqiaBtn>
-            <!--联系客服悬浮按钮end-->
           </view>
-          <view wx:if="{{item.PRODUCT_INFO[0].SHOW_TYPE=='0'?true:false}}" class="right_bottomline"></view>
+          <view class="main-content1">
+            <view class="main-content1-title color-green">质谱</view>
+            <view class="main-content1-content">
+              <image src="https://novel2.skycao.com/uploads/zulin-image2.png" class="main-content1-content-image" mode="widthFix"/>
+            </view>
+          </view>
+          <view class="main-content1">
+            <view class="main-content1-title color-yellow">光谱</view>
+            <view class="main-content1-content">
+              <image src="https://novel2.skycao.com/uploads/zulin-image3.png" class="main-content1-content-image" mode="widthFix"/>
+            </view>
+          </view>
+          <!--秒购方法联系客服按钮  -->
+          <meiqiaBtn bindmeiqiaTap="MtaReport" wx:if="{{itm.PROMOTION[0].length==0?false:true}}" btn-class="pro-btn1" handle-alert="{{false}}" session-from="{{item.PMENU_MEIQIA_GROUP}}_purchase:{{itm.ID}}," data-Template="{{templete}}" data-checkfun="{{checkfun}}" data-desc="{{desc}}" data-tapfun="{{tapfun}}" data-meqia="{{item.PMENU_MEIQIA_GROUP}}" data-productid="{{itm.ID}}" data-productname="{{itm.PRODUCT_NAME}}">
+            <view class="meth-btn1">
+              <view class="big-meth">全新仪器、翻新仪器、原厂保修、免押金</view>
+              <view class="small-meth">点此咨询</view>
+            </view>
+          </meiqiaBtn>
+        </view>
+        <view wx:elif="{{item.PMENU_NAME=='融资分期购'}}">
+          <view class="right-content">
+            <view class="main-title1">{{item.PMENU_TITLE}}</view>
+            <view class="sub-title1">{{item.PMENU_SUBTITLE}}</view>
+
+          </view>
+          <image src="https://novel2.skycao.com/uploads/bannner_y.png" style="width:100%;display:flex; margin:30rpx auto" mode="widthFix"/>
+          <meiqiaBtn bindmeiqiaTap="MtaReport" wx:if="{{itm.PROMOTION[0].length==0?false:true}}" btn-class="pro-btn" handle-alert="{{false}}" session-from="{{item.PMENU_MEIQIA_GROUP}}_purchase:{{itm.ID}}," data-Template="{{templete}}" data-checkfun="{{checkfun}}" data-desc="{{desc}}" data-tapfun="{{tapfun}}" data-meqia="{{item.PMENU_MEIQIA_GROUP}}" data-productid="{{itm.ID}}" data-productname="{{itm.PRODUCT_NAME}}" >
+            <view class="meth-btn2">
+              <view class="small-meth2">点此咨询</view>
+            </view>
+          </meiqiaBtn>
+
+          <image src="https://novel2.skycao.com/uploads/Banner3.png" style="width:96%;display:flex;margin:0 auto;margin-top:66rpx;" mode="widthFix"/>
+
+          <view class="jump-btn" bindtap="toTrial">融资分期费用预估</view>
+        </view>
+        <view wx:else>
+          <view class="right-title" wx:if="{{item.PRODUCT_INFO[0].SHOW_TYPE=='0'}}">
+            <view class="main-title">{{item.PMENU_TITLE}}</view>
+            <view class="sub-title">{{item.PMENU_SUBTITLE}}</view>
+          </view>
+          <view class="product" wx:for="{{item.PRODUCT_INFO}}" wx:key="idx" wx:for-item="itm" wx:for-index="idx">
+            <view class="product-list">
+              <view class="pro-name" wx:if="{{itm.PRODUCT_NAME.length==0?false:true}}">{{itm.PRODUCT_NAME}}</view>
+              <!-- 产品图片 -->
+              <view wx:if="{{itm.PRODUCT_NAME.length==0}}">
+                <image-loader img-class='load_image' bindimageTap='skipHtml5Page'  default-image='/images/tempLoading.gif' img-link='{{itm.PRODUCT_LINK}}' mode='widthFix' original-image='{{server}}{{itm.PRODUCT_IMG}}' width="100%"  />
+
+              </view>
+              <view wx:if="{{itm.PRODUCT_NAME.length!=0}}">
+                <image-loader bindimageTap='previewImage'  default-image='/images/tempLoading.gif' img-src='{{server}}{{itm.PRODUCT_DETAIL_IMG}}' mode='widthFix' original-image='{{server}}{{itm.PRODUCT_DETAIL_IMG}}' width="350rpx" />
+
+              </view>
+              <!-- 产品详情 -->
+              <view class="pro-describe" wx:if="{{itm.PRODUCT_DESC==null?false:true}}">{{itm.PRODUCT_DESC}}</view>
+
+              <!--秒购方法联系客服按钮  -->
+              <meiqiaBtn bindmeiqiaTap="MtaReport" wx:if="{{itm.PROMOTION[0].length==0?false:true}}" btn-class="pro-btn" handle-alert="{{false}}" session-from="{{item.PMENU_MEIQIA_GROUP}}_purchase:{{itm.ID}}," data-Template="{{templete}}" data-checkfun="{{checkfun}}" data-desc="{{desc}}" data-tapfun="{{tapfun}}" data-meqia="{{item.PMENU_MEIQIA_GROUP}}" data-productid="{{itm.ID}}" data-productname="{{itm.PRODUCT_NAME}}" >
+                <view class="meth-btn">
+                  <view class="big-meth">{{itm.PROMOTION[0]}}</view>
+                  <view class="small-meth">点此咨询</view>
+                </view>
+              </meiqiaBtn>
+              <!-- 联系客服悬浮按钮start -->
+              <meiqiaBtn bindmeiqiaTap="MtaReport" wx:if="{{item.PRODUCT_INFO[0].SHOW_TYPE=='0'?false:true}}" btn-class="contactMeiqia flex alignc padding0" handle-alert="{{false}}" session-from="{{item.PMENU_MEIQIA_GROUP}}_purchase:{{itm.ID}}," data-Template="{{templete}}" data-checkfun="{{checkfun}}" data-desc="{{desc}}" data-tapfun="{{tapfun}}" data-meqia="{{item.PMENU_MEIQIA_GROUP}}" >
+                <image src='{{server}}images/advisory.png' class="c_img"></image>
+                <text class="bh_text fs12 fc-fff">联系客服</text>
+              </meiqiaBtn>
+              <!--联系客服悬浮按钮end-->
+            </view>
+            <view wx:if="{{item.PRODUCT_INFO[0].SHOW_TYPE=='0'?true:false}}" class="right_bottomline"></view>
+          </view>
         </view>
       </view>
     </block>
   </view>
- 
+
 </view>
 
 <!-- 未认证弹出的信息框通过showLoading控制 -->

@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "安捷伦融资计算器",
+  "usingComponents": {
+    "meiqiaBtn": "/components/meiqiaBtn/meiqiaBtn"
+  }
+}

@@ -10,8 +10,13 @@ page {
 }
 
 .top-banner {
-  width: 100%;
-  height: 308rpx;
+  width: 96%;
+  /*height: 308rpx;*/
+  height: 205rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
 }
 
 .banner-hidden {
@@ -52,7 +57,7 @@ page {
   /* padding: 10rpx 0; *//* border-left: 7px solid #ffffff;
   border-radius: 10rpx 10rpx 10rpx 10rpx; */
   padding-top: 24rpx;
- 
+
   box-sizing: border-box;
   position: relative;
 }
@@ -142,28 +147,28 @@ page {
   background-color: rgba(0, 133, 213, 0.3);
 }
 
-.left_row_1 {
+.left_row_2 {
   background-color: rgba(0, 133, 34, 0.3);
 }
 
-.left_row_2 {
+.left_row_3 {
   background-color: rgba(132, 189, 0, 0.3);
 }
 
-.left_row_3 {
+.left_row_4 {
   background-color: rgba(242, 169, 0, 0.3);
 }
 
-.left_row_4 {
+.left_row_5 {
   background-color: rgba(232, 119, 34, 0.3);
 }
 
-.left_row_5 {
+.left_row_6 {
   background-color: rgba(214, 0, 28, 0.3);
 }
 
-.left_row_6 {
-  background-color: rgba(206, 15, 105, 0.3);
+.left_row_1 {
+  background-color: rgba(0, 169, 224, 0.3);
 }
 
 .left_row_7 {
@@ -174,19 +179,19 @@ page {
   background-color: rgba(0, 133, 213, 1);
 }
 
-.left_row_on_1 {
+.left_row_on_2 {
   background-color: rgba(0, 133, 34, 0.9);
 }
 
-.left_row_on_2 {
+.left_row_on_3 {
   background-color: rgba(132, 189, 0, 0.9);
 }
 
-.left_row_on_3 {
+.left_row_on_4 {
   background-color: rgba(242, 169, 0, 0.9);
 }
 
-.left_row_on_4 {
+.left_row_on_5 {
   background-color: rgba(232, 119, 34, 0.9);
 }
 
@@ -194,11 +199,11 @@ page {
   background-color: rgba(214, 0, 28, 0.9);
 }
 
-.left_row_on_6 {
-  background-color: rgba(206, 15, 105, 0.9);
+.left_row_on_1 {
+  background-color: rgba(0, 169, 224, 0.9);
 }
 
-.left_row_on_5 {
+.left_row_on_6 {
   background-color: rgba(128, 39, 108, 0.9);
 }
 
@@ -226,17 +231,31 @@ page {
   box-sizing: border-box;
   margin-bottom: 50rpx;
 }
-
+.right-content{
+  margin-left: 20rpx;
+}
 .main-title {
   text-align: center;
   font-size: 32rpx;
   margin-top: 30rpx;
 }
+.main-title1 {
+   text-align: left;
+   font-size: 32rpx;
+   margin-top: 30rpx;
+ }
 
 .sub-title {
   text-align: center;
-  font-size: 24rpx;
+  font-size: 28rpx;
   color: #878787;
+}
+.sub-title1 {
+  text-align: left;
+  font-size: 28rpx;
+  color: #545454;
+  margin-top: 25rpx;
+  font-size: 28rpx;
 }
 
 .product {
@@ -289,6 +308,16 @@ page {
   border: none;
 }
 
+.pro-btn1{
+  border-radius:0;
+  background:#fff;
+  padding: 0;
+}
+
+.pro-btn1::after{
+  border: none;
+}
+
 .meth-btn {
   width: 400rpx;
   height: 80rpx;
@@ -297,6 +326,28 @@ page {
   border-radius: 25px;
   background-color: #0085d5;
   /* z-index: 100; */
+}
+.meth-btn1 {
+  height: 80rpx;
+  text-align: center;
+  border-radius: 25px;
+  background-color: #0085d5;
+  margin-top: 28rpx;
+  /* z-index: 100; */
+}
+.meth-btn2 {
+  height: 80rpx;
+  text-align: center;
+  border-radius: 25px;
+  border: 1rpx solid #ccc;
+  /* z-index: 100; */
+}
+.small-meth2{
+  text-align: center;
+  color: white;
+  /* padding-top: 4rpx; */
+  font-size: 32rpx;
+  color: #29b2e6;
 }
 
 .right-title {
@@ -316,8 +367,22 @@ page {
   text-align: center;
   color: white;
   /* padding-top: 4rpx; */
-  font-size: 20rpx;
+  font-size: 24rpx;
   line-height: 2;
+}
+
+.jump-btn{
+  width:90%;
+  background-color:#1689cf;
+  margin:0 auto;
+  text-align: center;
+  height: 80rpx;
+  border-radius: 64rpx;
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 30rpx;
 }
 
 .t-center {
@@ -360,4 +425,39 @@ page {
 }
 .load_image{
     margin-top: 300rpx;
+}
+
+.main-content1{
+  margin:30rpx auto;
+  display:flex;
+  flex-direction:column;
+
+}
+.main-content1-title{
+  text-align:center;
+  padding:10rpx 0;
+  border-radius:16rpx 16rpx 0 0;
+  box-shadow: 0 0 30px 0 rgba(183,183,183,0.50);
+  color: #fff;
+  font-size: 28rpx;
+  height: 54rpx;
+}
+.main-content1-content{
+  border-radius:0 0 16rpx 16rpx;
+  box-shadow: 0rpx 0rpx 10rpx 0rpx #ccc;
+  display: flex;
+  justify-content: center;
+}
+.main-content1-content-image{
+  width:90%;
+  padding: 20rpx;
+}
+.color-blue{
+  background-color:#00BAB3;
+}
+.color-green{
+  background-color:#008522;
+}
+.color-yellow{
+  background-color:#84BD00;
 }

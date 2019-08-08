@@ -1,6 +1,11 @@
 {
   "pages": [
+
+    "pages/trial_calculation/trial_calculation",
     "pages/index/index",
+
+    "pages/second-buy/second-buy",
+
     "pages/directional_push/directional_push_info/directional_push_info",
     "pages/directional_push/directional_push_offer/directional_push_offer",
     "pages/directional_push/directional_push_solve/directional_push_solve",
@@ -47,7 +52,7 @@
     "pages/service_guide/service_guide",
     "pages/personal_info/personal_info",
     "pages/logs/logs",
-    "pages/second-buy/second-buy",
+
     "pages/contact_service/contact_service",
     "pages/test/test",
     "pages/template/tarbar",
