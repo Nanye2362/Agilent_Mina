@@ -12,7 +12,7 @@ page {
 .top-banner {
   width: 96%;
   /*height: 308rpx;*/
-  height: 205rpx;
+  height: 182rpx;
   display: flex;
   justify-content: center;
   align-items: center;

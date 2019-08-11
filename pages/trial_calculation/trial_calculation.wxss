@@ -35,6 +35,7 @@
   padding: 10rpx;
   color: #000;
   margin-right: 10rpx;
+  width: 300rpx;
 }
 .trial-content-right{
   display: flex;

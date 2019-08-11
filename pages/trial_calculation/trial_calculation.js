@@ -1,4 +1,5 @@
 import uCharts from '../../Data/u-charts.min.js';
+var config = require('../../config.js');
 var _self;
 var canvaColumn = null;
 var app = getApp();
@@ -17,15 +18,14 @@ Page({
       }],
       inputVal:'',
       inputVal1:'',
-      isShow:false
+      isShow:false,
+      server: config.Server,
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function () {
-console.log(app.globalData.sysInfo.winWidth);
-      console.log(app.globalData.sysInfo.winHeight * 500 / 750);
       _self=this;
       this.setData({
           cWidth:app.globalData.sysInfo.winWidth,
@@ -114,12 +114,11 @@ console.log(app.globalData.sysInfo.winWidth);
         }else if(this.data.inputVal <= 9900){
             rate = 0.11;
         }
-        var total = this.data.inputVal  * (1 + rate) * 10000;
 
         var series1 = this.data.series;
 
         for (var i = 0; i < 5; i++) { //对应12月到60月5档
-            var perMonth = total / ((i + 1)*12);
+            var perMonth = this.pmt(rate / 12 , (i+1) * 12, -this.data.inputVal * 10000);
             series1[0].data[i].value = perMonth.toFixed(0);
         }
 
@@ -129,6 +128,22 @@ console.log(app.globalData.sysInfo.winWidth);
             inputVal1:this.data.inputVal
         });
         this.getServerData();
+    },
+
+    pmt:function(rate, nperiod, pv, fv, type) {
+        if (!fv) fv = 0;
+        if (!type) type = 0;
+
+        if (rate == 0) return -(pv + fv)/nperiod;
+
+        var pvif = Math.pow(1 + rate, nperiod);
+        var pmt = rate / (pvif - 1) * -(pv * pvif + fv);
+
+        if (type == 1) {
+            pmt /= (1 + rate);
+        };
+
+        return pmt;
     },
 
   /**

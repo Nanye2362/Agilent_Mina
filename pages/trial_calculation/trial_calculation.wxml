@@ -1,6 +1,6 @@
 <view style="background-color: #FFFFFF;min-height:100%">
     <view class="container1">
-        <image src="https://novel2.skycao.com/uploads/banner2.png" mode="widthFix" class="top-image"/>
+        <image src="{{server}}images/banner2.png" mode="widthFix" class="top-image"/>
         <view class="trial">
             <text class="trial-title">仪器购买总额</text>
             <view class="trial-content">
@@ -61,7 +61,7 @@
             </view>
             <view class='line'></view>
         </view>
-        <meiqiaBtn bindmeiqiaTap="MtaReport" wx:if="{{isShow}}" btn-class="pro-btn" handle-alert="{{false}}" session-from="{{item.PMENU_MEIQIA_GROUP}}_purchase:{{itm.ID}}," data-Template="{{templete}}" data-checkfun="{{checkfun}}" data-desc="{{desc}}" data-tapfun="{{tapfun}}" data-meqia="{{item.PMENU_MEIQIA_GROUP}}" data-productid="{{itm.ID}}" data-productname="{{itm.PRODUCT_NAME}}" >
+        <meiqiaBtn bindmeiqiaTap="MtaReport" wx:if="{{isShow}}" btn-class="pro-btn" handle-alert="{{false}}" session-from="K_dataid:0" data-Template="{{templete}}" data-checkfun="{{checkfun}}" data-desc="{{desc}}" data-tapfun="{{tapfun}}" data-meqia="{{item.PMENU_MEIQIA_GROUP}}" data-productid="{{itm.ID}}" data-productname="{{itm.PRODUCT_NAME}}" >
             <view class="meth-btn">
                 <view class="small-meth">点此继续咨询</view>
             </view>

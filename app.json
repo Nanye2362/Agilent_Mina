@@ -1,9 +1,7 @@
 {
   "pages": [
-
-    "pages/trial_calculation/trial_calculation",
     "pages/index/index",
-
+    "pages/trial_calculation/trial_calculation",
     "pages/second-buy/second-buy",
 
     "pages/directional_push/directional_push_info/directional_push_info",
