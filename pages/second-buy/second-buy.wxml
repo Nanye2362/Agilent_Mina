@@ -60,7 +60,7 @@
             </view>
           </meiqiaBtn>
         </view>
-        <view wx:elif="{{item.PMENU_NAME=='融资购买'}}">
+        <view wx:elif="{{item.PMENU_NAME=='融资购买' || item.PMENU_NAME=='融资分期购'}}">
           <view class="right-content">
             <view class="main-title1">{{item.PMENU_TITLE}}</view>
             <view class="sub-title1">{{item.PMENU_SUBTITLE}}</view>

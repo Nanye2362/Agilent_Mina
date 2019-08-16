@@ -14,7 +14,7 @@
         <image class="bc_order_icon" src="/images/pdf.png" mode='widthFix'></image>
         安捷伦维修收费标准说明书-报价单
     </view>
-    <view class="bc_order flex alignc" bindtap='inputInvoice'>
+    <view class="bc_order flex alignc" bindtap='inputInvoice'  wx:if="{{pageShow}}">
         <image class="bc_order_icon" src="/images/invoice.png" mode='widthFix'></image>
         <view class='bc_order_con'>
           <view class='invoiceInformation'>发票信息-<text class='fw {{invoiceInfo.title!=""?"":"fc-aaa"}}'>{{invoiceInfo.title!=''?currentInvoice=='normalInvoice'?'增值税普通发票':'增值税专用发票':'[未填写]'}}</text>
