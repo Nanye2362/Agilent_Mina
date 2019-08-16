@@ -14,13 +14,14 @@ page{
     line-height: 60rpx;
     color: #fff;
     text-indent: 20rpx;
+    font-size: 30rpx;
 }
 
 .h_alert_img image{ width: 30rpx; height: 30rpx; }
-.h_service_item { 
-  display: block; 
-  width: 100%; 
-  text-align: center; 
+.h_service_item {
+  display: block;
+  width: 100%;
+  text-align: center;
   padding: 20rpx;
 }
 
@@ -102,20 +103,20 @@ page{
 
 
 
-.wrapper{  
-    width:90%;  
+.wrapper{
+    width:90%;
     height:50px;
-    line-height: 50px;    
-    position: relative;  
-    overflow: hidden;  
-} 
-@keyframes horse  
-{  
-    0%   {left:250rpx;top:0px;}  
-    66%  {left:-1100rpx;top:0px;}  
+    line-height: 50px;
+    position: relative;
+    overflow: hidden;
+}
+@keyframes horse
+{
+    0%   {left:250rpx;top:0px;}
+    66%  {left:-1100rpx;top:0px;}
     66.5%{left:1100rpx;top:600rpx;}
-    67%  {left:1100rpx;top:0px;}  
-    100% {left:250rpx;top:0px;}  
+    67%  {left:1100rpx;top:0px;}
+    100% {left:250rpx;top:0px;}
 }
 
 

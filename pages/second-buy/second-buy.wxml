@@ -37,19 +37,19 @@
           <view class="main-content1">
             <view class="main-content1-title color-blue">色谱</view>
             <view class="main-content1-content">
-              <image src="{{server}}images/zulin-image1.png?v=1" class="main-content1-content-image" mode="widthFix"/>
+              <image src="../../images/zulin-image1.png" class="main-content1-content-image" mode="widthFix"/>
             </view>
           </view>
           <view class="main-content1">
             <view class="main-content1-title color-green">质谱</view>
             <view class="main-content1-content">
-              <image src="{{server}}images/zulin-image2.png?v=1" class="main-content1-content-image" mode="widthFix"/>
+              <image src="../../images/zulin-image2.png" class="main-content1-content-image" mode="widthFix"/>
             </view>
           </view>
           <view class="main-content1">
             <view class="main-content1-title color-yellow">光谱</view>
             <view class="main-content1-content">
-              <image src="{{server}}images/zulin-image3.png?v=1" class="main-content1-content-image" mode="widthFix"/>
+              <image src="../../images/zulin-image3.png" class="main-content1-content-image" mode="widthFix"/>
             </view>
           </view>
           <!--秒购方法联系客服按钮  -->
@@ -60,22 +60,22 @@
             </view>
           </meiqiaBtn>
         </view>
-        <view wx:elif="{{item.PMENU_NAME=='融资分期购'}}">
+        <view wx:elif="{{item.PMENU_NAME=='融资购买'}}">
           <view class="right-content">
             <view class="main-title1">{{item.PMENU_TITLE}}</view>
             <view class="sub-title1">{{item.PMENU_SUBTITLE}}</view>
 
           </view>
-          <image src="{{server}}images/bannner_y.png" style="width:100%;display:flex; margin:30rpx auto" mode="widthFix"/>
+          <image src="../../images/bannner_y.png" style="width:100%;display:flex; margin:30rpx auto" mode="widthFix"/>
           <meiqiaBtn bindmeiqiaTap="MtaReport" wx:if="{{itm.PROMOTION[0].length==0?false:true}}" btn-class="pro-btn" handle-alert="{{false}}" session-from="K_dataid:0" data-Template="{{templete}}" data-checkfun="{{checkfun}}" data-desc="{{desc}}" data-tapfun="{{tapfun}}" data-meqia="{{item.PMENU_MEIQIA_GROUP}}" data-productid="{{itm.ID}}" data-productname="{{itm.PRODUCT_NAME}}" >
             <view class="meth-btn2">
               <view class="small-meth2">点此咨询</view>
             </view>
           </meiqiaBtn>
 
-          <image src="{{server}}images/banner3.png" style="width:96%;display:flex;margin:0 auto;margin-top:66rpx;" mode="widthFix"/>
+          <image src="../../images/banner3.png" style="width:96%;display:flex;margin:0 auto;margin-top:66rpx;" mode="widthFix"/>
 
-          <view class="jump-btn" bindtap="toTrial">融资分期费用预估</view>
+          <view class="jump-btn" bindtap="toTrial">融资购买费用预估</view>
         </view>
         <view wx:else>
           <view class="right-title" wx:if="{{item.PRODUCT_INFO[0].SHOW_TYPE=='0'}}">

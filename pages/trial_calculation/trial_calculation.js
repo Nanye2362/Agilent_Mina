@@ -96,7 +96,7 @@ Page({
       if(this.data.inputVal >= 9900){
           wx.showModal({
               title: '提示',
-              content: '输入金额超过上限',
+              content: '输入金额超过上限!',
               showCancel:false,
               success (res) {
                   if (res.confirm) {
@@ -107,6 +107,20 @@ Page({
               }
           })
             return false;
+      }else if(this.data.inputVal == '' || this.data.inputVal == 0){
+          wx.showModal({
+              title: '提示',
+              content: '请输入有效金额!',
+              showCancel:false,
+              success (res) {
+                  if (res.confirm) {
+                      console.log('用户点击确定')
+                  } else if (res.cancel) {
+                      console.log('用户点击取消')
+                  }
+              }
+          })
+          return false;
       }
         var rate = 0;
         if(this.data.inputVal <= 25){

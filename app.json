@@ -3,7 +3,7 @@
     "pages/index/index",
     "pages/trial_calculation/trial_calculation",
     "pages/second-buy/second-buy",
-
+    "pages/self_service_new/self_service_new",
     "pages/directional_push/directional_push_info/directional_push_info",
     "pages/directional_push/directional_push_offer/directional_push_offer",
     "pages/directional_push/directional_push_solve/directional_push_solve",

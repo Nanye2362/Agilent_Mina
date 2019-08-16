@@ -11,6 +11,7 @@ Page({
     info: "加载中",
     checkBox: false,
     pageComplete: false,
+    pageShow: false, //本人显示，非本人不显示
     shInputInfo: false,
     //0:normalInvoice,1:specialInvoice
     invoicetype: [
@@ -69,7 +70,7 @@ Page({
           that.setData({
             hasInvoice: false,
           })
-        }       
+        }
         console.log(r.data.InvoiceInfo);
         console.log(currentInvoice);
 
@@ -93,10 +94,11 @@ Page({
           // }
           wx.setStorageSync('invoiceDetails', {});
         }
-        
-        if (r.status == 0) {         
+
+        if (r.status == 0) {
           that.setData({
             pageComplete: true,
+            pageShow: true,
             bqId: options.objectId,
             isConfirm: r.data.is_confirm,
             approval_button_enable: r.data.approval_button_enable,
@@ -105,10 +107,24 @@ Page({
             maxprice: r.data.max_price,
             accountId: r.data.accountId,
             ContactId: r.data.contactId,
-          })          
+          })
+        }else if(r.status == -90){
+          that.setData({
+            pageComplete: true,
+            pageShow: false,
+            bqId: options.objectId,
+            isConfirm: r.data.is_confirm,
+            approval_button_enable: r.data.approval_button_enable,
+            item_description: r.data.item_description,
+            price: r.data.accept_price,
+            maxprice: r.data.max_price,
+            accountId: r.data.accountId,
+            ContactId: r.data.contactId,
+          })
         } else {
           that.setData({
             pageComplete: false,
+            pageShow: false,
             info: r.errorInfo
           })
         }
@@ -147,7 +163,7 @@ Page({
     wx.setStorageSync('invoiceDetails', invoiceDetails);
     that.setData({
       invoiceDetails: invoiceDetails
-    })   
+    })
   },
   getInvoiceInfoStorage: function(that){
     var currentInvoice = that.data.currentInvoice;
@@ -171,7 +187,7 @@ Page({
     };
     wx.navigateTo({
       url: '../invoiceDetails/invoiceDetails?currentInvoice=' + currentInvoice
-    }) 
+    })
     this.changeInvoiceType();
   },
 
@@ -190,7 +206,7 @@ Page({
     })
   },
   contractConfirm:function(e){
-    this.setData({ 
+    this.setData({
       checkBox: e.detail.value.length==1
     })
   },
@@ -203,7 +219,7 @@ Page({
         title: '提交失败',
         content: '请确认发票信息的完整，并勾选已阅读并接收此报价单',
       })
-      //return false;  
+      //return false;
     }else{
       var invoicedetails = invoiceDetails;
       var currentInvoice = this.data.currentInvoice;
@@ -238,7 +254,7 @@ Page({
           }
         }
       })
-    } 
+    }
   },
   openPDF:function(){
     var url = util.Server + 'site/open-file?ServconfId=' + this.data.bqId;
@@ -281,19 +297,19 @@ Page({
     var app = getApp();
     app.mta.Event.stat("meqia", { "group": 'NONTECH' });
   },
-  
+
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-  
+
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {   
+  onShow: function () {
     if (this.data.currentInvoice != '' && wx.getStorageSync('invoiceDetails') != '' ) {
       this.getInvoiceInfoStorage(this);
     }
@@ -303,34 +319,34 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-  
+
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-  
+
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-  
+
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-  
+
   },
 
   /**
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-  
+
   }
 })

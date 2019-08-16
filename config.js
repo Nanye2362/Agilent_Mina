@@ -1,6 +1,6 @@
 var config = {
 
-  En: "DEV",
+  En: "PRD",
   // 下面的地址配合云端 Server 工作
   //Server: "https://devops.coffeelandcn.cn/",//UAT
   //https://qa.wechat.service.agilent.com/
@@ -8,7 +8,7 @@ var config = {
   //Server: "https://prd.wechat.service.agilent.com/", //PRO
   //https://qa.wechat.service.agilent.com/
   //Server:"",
-  version: "3.5.17.1",
+  version: "3.8.16.1",
 
 };
 

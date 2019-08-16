@@ -447,10 +447,12 @@ page {
   box-shadow: 0rpx 0rpx 10rpx 0rpx #ccc;
   display: flex;
   justify-content: center;
+  height: 170rpx;
 }
 .main-content1-content-image{
   width:90%;
   padding: 20rpx;
+  height: 100%;
 }
 .color-blue{
   background-color:#00BAB3;

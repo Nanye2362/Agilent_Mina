@@ -1,6 +1,6 @@
 <view style="background-color: #FFFFFF;min-height:100%">
     <view class="container1">
-        <image src="{{server}}images/banner2.png" mode="widthFix" class="top-image"/>
+        <image src="../../images/banner2.png" mode="widthFix" class="top-image" style="height:200rpx"/>
         <view class="trial">
             <text class="trial-title">仪器购买总额</text>
             <view class="trial-content">
@@ -20,7 +20,7 @@
                 <view class="trial-table-th">
                     <view class="trial-table-th-l"></view>
                     <view class="trial-table-th-r">
-                        <view class="th-r-top">融资分期方案</view>
+                        <view class="th-r-top">融资购买方案</view>
                         <view class="th-r-button">月度金额</view>
                     </view>
                 </view>

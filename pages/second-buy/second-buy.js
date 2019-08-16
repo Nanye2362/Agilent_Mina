@@ -130,12 +130,7 @@ Page({
       });
     };
     that.data.isOnShow = true;
-
-
-
   },
-
-
 
   onLoad: function (e) {
     var app = getApp();
