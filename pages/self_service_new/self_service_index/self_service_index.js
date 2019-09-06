@@ -14,8 +14,8 @@ Page({
   },
 
   isFolder: function (arr) {
-    const that = this;
-    for (let i = 0; i < arr.length; i++) {
+    var that = this;
+    for (var i = 0; i < arr.length; i++) {
       if (arr[i].children && arr[i].children.length > 0) {
         arr[i].isFolder = true;
         that.isFolder(arr[i].children);

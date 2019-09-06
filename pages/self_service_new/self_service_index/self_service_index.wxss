@@ -157,7 +157,7 @@ page{ min-height: 100%; background: #fff; }
     top: 200rpx;
     border-radius: 16rpx;
     border-top-left-radius: 8rpx;
-    box-shadow: 0 0 10rpx 5rpx rgba(42,42,42,0.50);
+
 }
 .video_shade .video_box .video_title {
     background-color: #3189d2;
@@ -172,14 +172,14 @@ page{ min-height: 100%; background: #fff; }
 }
 .video_shade .video_box .video_title .close_btn {
     background-color: #fff;
-    height: .6rem;
-    width: .6rem;
+    height: 50rpx;
+    width: 50rpx;
     border-radius: 50%;
     position: relative;
-    top: -1.2rem;
-    left: 5.6rem;
+    top: -87rpx;
+    left: 572rpx;
 }
-.video_shade .video_box .video_title .close_btn img {
+.video_shade .video_box .video_title .close_btn image {
     width: 100%;
     height: 100%;
 }
