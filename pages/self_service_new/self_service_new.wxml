@@ -1,8 +1,0 @@
-<view>
-    <view class="container">
-        <view class="search">
-            <input type="text" placeholder="搜索文档"/>
-            <image src="../../images/search_1.png" />
-        </view>
-    </view>
-</view>

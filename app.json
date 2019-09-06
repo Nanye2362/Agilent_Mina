@@ -1,9 +1,14 @@
 {
   "pages": [
+    "pages/self_service_new/self_service_new/self_service_new",
     "pages/index/index",
+    "pages/self_service_new/self_service_index/self_service_index",
+    "pages/self_service_new/self_service_detail/self_service_detail",
+    "pages/self_service_new/self_service_search/self_service_search",
+
     "pages/trial_calculation/trial_calculation",
     "pages/second-buy/second-buy",
-    "pages/self_service_new/self_service_new",
+
     "pages/directional_push/directional_push_info/directional_push_info",
     "pages/directional_push/directional_push_offer/directional_push_offer",
     "pages/directional_push/directional_push_solve/directional_push_solve",

@@ -1,0 +1,25 @@
+/* pages/search-list/search-list.wxss */
+@import '../../self_service/self_service.wxss';
+.faq_item {
+    padding: 30rpx 30rpx;
+    position: relative;
+    background: #fff;
+}
+
+.faq_item a {
+    display: flex;
+}
+.searchResult{
+  width: 40rpx;
+  height: 40rpx;
+  vertical-align: middle;
+}
+.search_title{
+  height: 80rpx;
+  line-height: 80rpx;
+  background: #f7f7f7;
+  border-top: 1px solid #e2e2e2;
+  border-bottom: 1px solid #e2e2e2;
+  padding: 0 35rpx;
+  margin-bottom: 20rpx;
+}

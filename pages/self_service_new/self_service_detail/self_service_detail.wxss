@@ -1,0 +1,92 @@
+@import '../../self_service/self_service.wxss';
+/* ====================faq_details====================== */
+page{
+  background: #fff;
+}
+.fd{padding-bottom:102rpx;}
+.fd_ans{
+    padding: 40rpx 40rpx;
+    line-height: 50rpx;
+}
+rich-text img{
+  width: 100%;
+}
+.fd_ques {
+    width: 100%;
+    border-bottom: 2rpx solid #e7e6e7;
+    padding: 30rpx 40rpx;
+    position: relative;
+}
+
+.fd_ques:before {
+    content: "";
+    position: absolute;
+    width: 12rpx;
+    height: 12rpx;
+    border-radius: 50%;
+    background: #0085d5;
+    top: 50%;
+    margin-top:-6rpx;
+    left: 40rpx;
+}
+
+.fd_ques_con {
+    margin-left: 30rpx;
+}
+
+.fd_reminder {
+    padding: 0 40rpx;
+    line-height: 50rpx;
+}
+
+.fd_notification {
+     position: fixed;
+    height: 100rpx;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    line-height: 100rpx;
+    border-top: 2rpx solid #e7e7e7;
+    background: white;
+}
+
+.fd_not {
+    width: 100%;
+    line-height: 100rpx;
+}
+
+.fd_useful {
+    width: 100%;
+}
+
+.fd_useful_item {
+    flex: .5;
+    border-right: 2rpx solid #d9d9d9;
+    border-top: 2rpx solid #d9d9d9;
+    padding: 30rpx 0;
+    background: #f7f7f7;
+}
+
+.fd_useful_item  image {
+    width: 34rpx;
+    height: 34rpx;
+    vertical-align: sub;
+    margin-right: 10rpx;
+}
+.fd_mask{
+    width: 100%;
+    height:50%;
+    position: absolute;
+    bottom: 0;
+    background: red;
+    z-index: 999;
+}
+.fd_video{
+  width: 300px;
+  height: 225px;
+}
+.fd_video video{
+  position: absolute;
+  top:0;
+  left:0;
+}

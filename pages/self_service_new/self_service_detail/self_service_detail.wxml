@@ -1,0 +1,36 @@
+<!-- 回到首页 -->
+<import  src="../template/template"/>
+<template is="backHome" bindtap="backHome"/>
+<block wx:if="{{type==1}}">
+<view class="fd">
+    <!-- question -->
+    <view class="fd_ques">
+        <view class="fd_ques_con fc-blue fs18">
+          <rich-text nodes="{{questions}}">
+          </rich-text>
+        </view>
+    </view>
+    <!-- answer -->
+    <view class="fd_ans">
+       <block wx:for="{{answersList}}">
+
+                <block wx:if="{{item.type == 'text'}}" wx:key='key' >
+                  <view >
+                      <rich-text nodes="{{item.content}}"></rich-text>
+                  </view>
+              </block>
+               <block wx:elif="{{item.type == 'img'}}">
+                  <view>
+                      <image mode="widthFix" style="max-width:100%;" src='{{item.content}}'></image>
+                  </view>
+               </block>
+               <block wx:elif="{{item.type == 'video'}}">
+                <view class='fd_video' style='position:relative;'>
+                    <video src="{{item.content}}" controls="true"></video>
+                </view>
+               </block>
+        </block>
+    </view>
+
+</view>
+</block>

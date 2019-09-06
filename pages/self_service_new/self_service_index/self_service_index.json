@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "自助服务",
+  "usingComponents": {
+    "z-tree": "/components/tree/z-tree"
+  }
+}
