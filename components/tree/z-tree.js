@@ -14,7 +14,9 @@ Component({
    * 组件的初始数据
    */
   data: {
-    treeData: []
+    treeData: [],
+    url:'',
+    showVideo : false
   },
 
   ready: function () {
@@ -54,6 +56,20 @@ Component({
         }
       }
       return arr;
+    },
+
+    clickVideo:function (e) {
+      this.setData({
+        url:e.currentTarget.dataset.url,
+        showVideo:true
+      })
+    },
+
+    closeBtn:function (e) {
+      this.setData({
+        url:'',
+        showVideo:false
+      })
     }
   }
 })

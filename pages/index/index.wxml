@@ -55,7 +55,7 @@
   <view class="wxform icon_item blue_gradient" style='width:{{iconWidth1}}px' bindtap='gotoSS' >
     <button plain="true" class="formbtn h_service_item" form-type="submit" data-info="self_service" data-click="nevigateToNext" data-url="../self_service_new/self_service_new/self_service_new">
       <image src="/images/self.png"></image>
-      <view class="fs12 fc-fff">常见问题</view>
+      <view class="fs12 fc-fff">自助服务</view>
     </button>
   </view>
   <!-- 我要报修 -->

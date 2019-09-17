@@ -22,7 +22,7 @@ Page({
       } else {
         arr[i].isFolder = false;
       }
-      arr[i].isOpen = false;
+      arr[i].isOpen = true;
     }
     return arr;
   },
@@ -31,11 +31,21 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    options.id = 1;
     var modeType = options.id;
 
     var _this = this;
+    if(modeType == 1){
+      wx.setNavigationBarTitle({
+        title: '场地准备'//页面标题为路由参数
+      })
+    }else if(modeType == 2){
+      wx.setNavigationBarTitle({
+        title: "现场培训教材"//页面标题为路由参数
+      })
+    }
 
-    util.NetRequest({
+    /*util.NetRequest({
       url: 'site-mini/pdf-collection-class?id='+modeType,
       data: {
 
@@ -51,7 +61,26 @@ Page({
       complete: function () {
         wx.hideLoading();
       },
-    });
+    });*/
+
+    wx.request({
+      url: 'http://agilent.test/site-mini/pdf-collection-class?id='+modeType, //仅为示例，并非真实的接口地址
+      data: {},
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      success (res) {
+        var tree = _this.isFolder(res.data.children);
+        _this.setData({
+          tree:tree,
+          isShow:true,
+          name:res.data.name
+        });
+      },
+      complete: function () {
+        wx.hideLoading();
+      },
+    })
 
   },
   clickToSearch: function (e) {

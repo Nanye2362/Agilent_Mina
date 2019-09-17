@@ -1,8 +1,12 @@
 {
   "pages": [
-    "pages/self_service_new/self_service_new/self_service_new",
     "pages/index/index",
     "pages/self_service_new/self_service_index/self_service_index",
+
+
+    "pages/self_service_new/self_service_new/self_service_new",
+
+
     "pages/self_service_new/self_service_detail/self_service_detail",
     "pages/self_service_new/self_service_search/self_service_search",
 

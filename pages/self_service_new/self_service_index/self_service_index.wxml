@@ -6,67 +6,11 @@
                 <image src="../../../images/search_1.png" />
             </view>
         </view>
-        <view class="title">
-            <h3>{{name}}</h3>
-        </view>
+
 
         <view>
             <z-tree tree="{{ tree }}"></z-tree>
         </view>
 
-
-        <!--<view id="video_shade_panel" class="video_shade" data-video-no="" style="display:block">
-            <view class="video_box">
-                <view class="video_title">
-                    <text>123</text>
-                    <view class="close_btn" data-video-no="">
-                        <image src="/images/video_close.png"></image>
-                    </view>
-                </view>
-                <video id="myVideo" src="http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400" bindfullscreenchange="true"  danmu-btn controls></video>
-            </view>
-        </view>-->
-
-
-
-        <!--<view class="menu1" wx:for="{{options.tree}}" wx:for-index="idx" wx:for-item="item">
-            <view class="menu2">
-                    <view class="menu2-li" bindtap="menu2Show" data-index="{{idx}}">
-                        <text>{{item.name}}</text>
-                        <image src="../../../images/arrow_d.png"></image>
-                    </view>
-
-                    <view class="menu3" wx:if="{{item.is_more}}">
-                        <view wx:for="{{item.children}}" wx:for-index="idx1" wx:for-item="item1">
-                            <view class="menu3-li">
-                            <view class="open"></view>
-                            <text>{{item1.name}}</text>
-                        </view>
-
-                        <view class="menu4">
-                            <view wx:if="{{item1.is_more}}">
-                                <view wx:for="{{item1.children}}" wx:for-index="idx2" wx:for-item="item2">
-                                    <view wx:if="{{item2.is_more}}">
-                                        <view class="menu5-li">
-                                            <view class="open"></view>
-                                            <text>{{item2.name}}</text>
-                                        </view>
-                                        <view wx:for="{{item2.children}}" wx:for-index="idx3" wx:for-item="item3" class="menu6">
-                                            <view class="menu6">
-                                                <view class="menu6-li">{{item3.name}}</view>
-                                            </view>
-                                        </view>
-                                    </view>
-                                    <view wx:else>
-                                        <view class="menu6-li">{{item2.name}}</view>
-                                    </view>
-                                </view>
-                            </view>
-                        </view>
-                    </view>
-                </view>
-            </view>
-
-        </view>-->
     </view>
 </view>
