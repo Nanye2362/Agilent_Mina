@@ -31,7 +31,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    options.id = 1;
     var modeType = options.id;
 
     var _this = this;
@@ -45,7 +44,7 @@ Page({
       })
     }
 
-    /*util.NetRequest({
+    util.NetRequest({
       url: 'site-mini/pdf-collection-class?id='+modeType,
       data: {
 
@@ -61,26 +60,8 @@ Page({
       complete: function () {
         wx.hideLoading();
       },
-    });*/
+    });
 
-    wx.request({
-      url: 'http://agilent.test/site-mini/pdf-collection-class?id='+modeType, //仅为示例，并非真实的接口地址
-      data: {},
-      header: {
-        'content-type': 'application/json' // 默认值
-      },
-      success (res) {
-        var tree = _this.isFolder(res.data.children);
-        _this.setData({
-          tree:tree,
-          isShow:true,
-          name:res.data.name
-        });
-      },
-      complete: function () {
-        wx.hideLoading();
-      },
-    })
 
   },
   clickToSearch: function (e) {
