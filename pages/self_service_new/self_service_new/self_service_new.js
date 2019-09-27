@@ -8,7 +8,7 @@ Page({
     data: {
         menuList:[
             {color:'#00A9E0',text:"场地准备",url:'/pages/self_service_new/self_service_index/self_service_index?id=1'},
-            {color:'#84BD00',text:"现场培训教材",url:'/pages/self_service_new/self_service_index/self_service_index?id=2'},
+            // {color:'#84BD00',text:"现场培训教材",url:'/pages/self_service_new/self_service_index/self_service_index?id=2'},
             {color:'#008522',text:"视频集锦",url:'/pages/html/openHtml'},
             {color:'#00BAB3',text:"常见问题",url:'/pages/self_service/self_service'}
         ]

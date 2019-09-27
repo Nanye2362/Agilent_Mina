@@ -72,7 +72,9 @@ Page({
 
   },
   backHome: function () {
-    util.backHome()
+    wx.switchTab({
+      url: '../../index/index',
+    })
   },
 
   unusefulClick:function(){

@@ -1,5 +1,5 @@
 <!-- 回到首页 -->
-<import  src="../template/template"/>
+<import  src="../../template/template"/>
 <template is="backHome" bindtap="backHome"/>
 <block wx:if="{{type==1}}">
 <view class="fd">

@@ -10,7 +10,7 @@
                     <view class="info" style="background-color:{{item.color}}"> </view>
                     <text>{{item.text}}</text>
                 </view>
-                <image class="right" src="/images/arrow-r1.png" />
+                <image class="right" src="/images/arrow-r.png" />
             </view>
         </view>
     </view>
