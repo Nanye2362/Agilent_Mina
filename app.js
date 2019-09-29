@@ -1,4 +1,11 @@
 //app.js
+/*const monitor = require('./agilent/tingyun-mp-agent.js');
+monitor.config({
+  beacon: 'https://beacon-mp.tingyun.com',
+  key: 'ZyzpwHhZRY4',
+  id: 'kt3ZSav_Wzc',
+  sampleRate: 1
+});*/
 var util = require('/utils/util.js');
 var miniAppupdate=require("/utils/miniAppupdate.js");
 
@@ -11,16 +18,16 @@ var userMobile={};
 console.log(userMobile);
 App({
   onLaunch: function (e) {
-    
+
     miniAppupdate.checkUpdate();//检测小程序版本
 
     mta.App.init({
         "appID": "500539156",
         "eventID": "500539161",
     });
- 
+
     this.mta = mta;
-    
+
     this.globalData.isLoading = true;
     try {
       var res = wx.getSystemInfoSync();
@@ -36,7 +43,7 @@ App({
     }
     console.log(userMobile);
     this.wxlogin();
-    
+
     var that = this;
     wx.getSystemInfo({
       success: function (res) {
@@ -61,15 +68,18 @@ App({
     var nowDate = new Date();
     var lastDate=wx.getStorageSync("sessionDate");
     var that = this;
-    
+
     if (that.globalData.needCheck){
       that.wxlogin();
-    }else if (lastDate && nowDate - lastDate>=60*60*1000){//毫秒  1小时   
+    }else if (lastDate && nowDate - lastDate>=60*60*1000){//毫秒  1小时
       if (!that.globalData.isSetOption && !that.globalData.isFirstLunch) {
         that.wxlogin();
       }
     }
     that.globalData.isFirstLunch = false;
+    if(that.globalData.syncFlag == false){
+      that.syncUserInfo();
+    }
   },
   onHide:function () {
     this.globalData.appShow=false;
@@ -91,7 +101,7 @@ App({
     });
   },
   globalData: {
-    miniApp_env: miniApp_env,// prod或uat 
+    miniApp_env: miniApp_env,// prod或uat
     userInfo: null,
     requestList: [],
     isLoading: false,
@@ -130,7 +140,8 @@ App({
         }
       ],
       position: "bottom"
-    }  
+    },
+    syncFlag:false,
     //token: wx.getStorageSync('token')
   },
   /*
@@ -152,6 +163,7 @@ App({
         mask: true
       })
     }
+    that.globalData.syncFlag = true;
     wx.login({
       success: function (res) {
         console.log(res);
@@ -174,6 +186,9 @@ App({
                 wx.setStorageSync('OPENID', r.openid);
                 that.globalData.isLogin = true;
                 //that.gotoIndex();
+
+                that.syncUserInfo();
+                that.globalData.syncFlag = false;
               } else if (typeof (r.error_msg) !="undefined"){
                 that.globalData.needCheck = true;
                 that.alertInfo(r.error_msg);
@@ -181,11 +196,11 @@ App({
                 that.globalData.needCheck = true;
                 if (wx.canIUse('web-view')){
                   wx.navigateTo({
-                    url: '../user_guidelines/user_guidelines' 
+                    url: '../user_guidelines/user_guidelines'
                   });
                 }else{
                   that.alertInfo('为了更好的体验，请更新微信到最新版本后使用。');
-                }  
+                }
                 console.log(r.error_msg);
               }
             },
@@ -213,7 +228,23 @@ App({
 
       }
     })
-  }
+  },
+
+  syncUserInfo:function(){
+    var _this = this;
+
+    util.NetRequest({
+      url: 'site-mini/search-user-by-union-id',
+      data:{},
+      showload: false,
+      success:function (r1) {
+
+      },
+      fail:function(){
+
+      }
+    });
+  },
 
   /*
   showTips: function () {

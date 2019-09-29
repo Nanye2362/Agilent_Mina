@@ -27,34 +27,40 @@ Page({
     imgUrls:
     [
       {
-          url: config.Server + 'images/20190816/image1.jpg',
+        url: config.Server + 'images/20190822/banner1.jpg',
+        text: '火辣八月 特大促销 | 安捷伦Intuvo GC火热租赁持续中',
+        type:'url',
+        skipUrl: 'http://mp.weixin.qq.com/s?__biz=MjM5Njk2MjI3Mw==&mid=503652875&idx=1&sn=b384ccd7e67bebfe77396a2f05ab0adc&chksm=3d10c8850a674193e1c9fa0652ee583536cdd5eef342e59ad76175b6e4724723021e4803adce#rd',
+      },
+      {
+          url: config.Server + 'images/20190816/image1.jpg?v=1',
           text: 'Win7停更，软件分析何去何从?',
           type:'url',
           skipUrl: 'http://mp.weixin.qq.com/s?__biz=MjM5Njk2MjI3Mw==&mid=503652870&idx=1&sn=ef912f661357c447847d8523e3d3c14e&chksm=3d10c8880a67419e8f3a311b8f200f7d12be7e544740f3e466f6956ea390b832a30c3ae1754a#rd',
       },
       {
-        url: config.Server + 'images/20190816/image2.jpg',
+        url: config.Server + 'images/20190816/image2.jpg?v=1',
         text: '保存资金在我手 提升企业现金流|安捷伦融资购买方案',
         type:'mini',
         arg:'1',
         skipUrl: '../second-buy/second-buy',
       },
       {
-        url: config.Server + 'images/20190816/image3.jpg',
+        url: config.Server + 'images/20190816/image3.jpg?v=1',
         text: '【新客专享】金银铜牌 买二享三',
         type: 'mini',
         arg:'5',
         skipUrl: '../second-buy/second-buy',
       },
       {
-        url: config.Server + 'images/20190816/image4.jpg',
+        url: config.Server + 'images/20190816/image4.jpg?v=1',
         text: '安捷伦官方仪器租赁服务"全新"升级，"赁"您满意',
         type: 'mini',
         arg:'0',
         skipUrl: '../second-buy/second-buy',
       },
       {
-        url: config.Server + 'images/20190816/image5.jpg',
+        url: config.Server + 'images/20190816/image5.jpg?v=1',
         text: '2019给您的仪器增添活力，安捷伦助力仪器新生',
         type: 'mini',
         arg:'2',

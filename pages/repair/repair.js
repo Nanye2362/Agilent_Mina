@@ -37,39 +37,45 @@ Page({
         id:1,
         poster: '/images/cover.jpg',
         title: '1.安捷伦液相色谱仪-完整装机步骤',
-        url: 'http://video.coffeelandcn.cn/739d12cd3b2547048102634ab2f662ba/ecd446d6446b48d3966edaa7eebc0495-5287d2089db37e62345123a1be272f8b.mp4',
+        //url: 'http://video.coffeelandcn.cn/739d12cd3b2547048102634ab2f662ba/ecd446d6446b48d3966edaa7eebc0495-5287d2089db37e62345123a1be272f8b.mp4',
+        url: 'https://prd-public-content.wechat.learn.agilent.com/target/eservice/videos/完整装机步骤.mp4',
       },
       {
         id: 2,
         poster: '/images/cover.jpg',
         title: '2.安捷伦液相色谱仪-完整拆机步骤',
-        url: 'http://video.coffeelandcn.cn/6767776904074295b4a0e535af471034/26298d82bb9e4bdf9e30081b2248d946-5287d2089db37e62345123a1be272f8b.mp4',
+        //url: 'http://video.coffeelandcn.cn/6767776904074295b4a0e535af471034/26298d82bb9e4bdf9e30081b2248d946-5287d2089db37e62345123a1be272f8b.mp4',
+        url: 'https://prd-public-content.wechat.learn.agilent.com/target/eservice/videos/完整拆机步骤.mp4',
       },
       {
         id: 3,
         poster: '/images/cover.jpg',
         title: '3.安捷伦液相色谱仪拆装机-G1367E自动进样器',
-        url: 'http://video.coffeelandcn.cn/c91e9ed964474eb18c2d04b110b6eb13/c12a056418dc43a49263a38f16f69d4c-5287d2089db37e62345123a1be272f8b.mp4',
+        //url: 'http://video.coffeelandcn.cn/c91e9ed964474eb18c2d04b110b6eb13/c12a056418dc43a49263a38f16f69d4c-5287d2089db37e62345123a1be272f8b.mp4',
+        url: 'https://prd-public-content.wechat.learn.agilent.com/target/eservice/videos/G1367拆卸步骤.mp4',
       },
       {
         id: 4,
         poster: '/images/cover.jpg',
         title: '4.安捷伦液相色谱仪拆装机-四元泵',
-        url: 'http://video.coffeelandcn.cn/da32a6eb8a9f44a0b84fae1a42876549/ec7336319b044ed8b1da8530c2e6945e-5287d2089db37e62345123a1be272f8b.mp4',
+        //url: 'http://video.coffeelandcn.cn/da32a6eb8a9f44a0b84fae1a42876549/ec7336319b044ed8b1da8530c2e6945e-5287d2089db37e62345123a1be272f8b.mp4',
+        url: 'https://prd-public-content.wechat.learn.agilent.com/target/eservice/videos/G1311内置脱气机拆卸步骤.mp4',
       },
       {
         id: 5,
         poster: '/images/cover.jpg',
         title: '5.安捷伦液相色谱仪-CAN线LAN线连接步骤',
-        url: 'http://video.coffeelandcn.cn/911e14c70705404d915889c83aed2b1c/bd47ee8fca9c4ff4bb081ad4a78e5c3e-5287d2089db37e62345123a1be272f8b.mp4',
+        //url: 'http://video.coffeelandcn.cn/911e14c70705404d915889c83aed2b1c/bd47ee8fca9c4ff4bb081ad4a78e5c3e-5287d2089db37e62345123a1be272f8b.mp4',
+        url: 'https://prd-public-content.wechat.learn.agilent.com/target/eservice/videos/CAN线LAN线连接步骤.mp4',
       },
       {
         id: 6,
         poster: '/images/cover.jpg',
         title: '6.安捷伦液相色谱仪拆装-seal-wash管线拆卸',
-        url: 'http://video.coffeelandcn.cn/d3ce83f0428c4af4bc86e997c07e2b5c/f1eb247348e841bca7fd5ba44e33e47b-5287d2089db37e62345123a1be272f8b.mp4',
+        //url: 'http://video.coffeelandcn.cn/d3ce83f0428c4af4bc86e997c07e2b5c/f1eb247348e841bca7fd5ba44e33e47b-5287d2089db37e62345123a1be272f8b.mp4',
+        url: 'https://prd-public-content.wechat.learn.agilent.com/target/eservice/videos/Seal-wash拆卸步骤.mp4',
       }
-     
+
     ]
   },
 
@@ -98,7 +104,7 @@ Page({
   videoPlay: function(event) {
     var videoId = event.currentTarget.dataset.vid;
     console.log(videoId)
-    var that = this; 
+    var that = this;
     that.setData({
       curr_id: event.currentTarget.dataset.id,
     })
@@ -109,7 +115,7 @@ Page({
         console.log(res.data)
         that.videoContext.seek(res.data);
       }
-    })       
+    })
     //that.videoContext.play()
   },
   //页面滑动暂停视频播放
@@ -124,7 +130,7 @@ Page({
     app.mta.Event.stat("meqia", { "group": 'NONTECH' });
   },
   //视频续播
-  goOnVideo: function(event){ 
+  goOnVideo: function(event){
     var detail = event.detail;
     var videoId = event.currentTarget.dataset.vid;
     wx.setStorage({
