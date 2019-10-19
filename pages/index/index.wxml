@@ -3,6 +3,9 @@
 <swiper indicator-dots="{{indicatorDots}}" indicator-active-color="{{indicatorActiveColor}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" style="width: 100%; height: 408rpx;" circular="{{true}}">
   <block wx:for="{{imgUrls}}" wx:key="{{img}}" wx:for-index='index'>
     <swiper-item bindtap='gotoPoster' data-arg='{{item.arg}}' data-type='{{item.type}}' data-url='{{item.skipUrl}}'>
+      <block wx:if="{{item.type == 1}}" style="width: 100%">
+        <video src="{{item.url}}"  bindtap='gotoNextMiniProgram' style="width: 100%;" loop='true' autoplay='true' object-fit="fill"></video>
+      </block>
       <image src="{{item.url}}" class="slide-image" mode='widthFix'></image>
       <view class='swiper_text'>{{item.text}}</view>
     </swiper-item>
@@ -75,7 +78,20 @@
       <view class="fs12 fc-fff">服务预约</view>
     </button>
   </form>
+
   <!-- elearning -->
+  <view class="wxform icon_item purple_gradient" style='width:{{iconWidth4}}px' bindtap='gotoNextMiniProgram' >
+    <button plain="true" class="formbtn h_service_item" form-type="submit" data-info="elearning" data-click="skipHtml5Page">
+    <view style="position:relative;">
+      <image src="/images/Path5.png" style="position:absolute; top: -20rpx; left: -20rpx;"></image>
+      <image src="/images/Path4.png" style="position:absolute;  bottom: -47rpx; right: -20rpx"></image>
+      <image src="/images/myclass.png" ></image>
+    </view>
+      <view class="fs12 fc-fff">微学堂</view>
+    </button>
+  </view>
+ 
+<!--
   <view class="wxform icon_item purple_gradient" style='width:{{iconWidth4}}px' bindtap='skipHtml5Page' >
     <button plain="true" class="formbtn h_service_item" form-type="submit" data-info="elearning" data-click="skipHtml5Page">
       <image src="/images/myclass.png"></image>
@@ -83,12 +99,17 @@
     </button>
   </view>
 </view>
+-->
+</view> 
  <navigator
     url="../second-buy/second-buy"
     open-type="switchTab"
   >
-<view class="banner_big">
+<!-- <view class="banner_big">
   <image src="{{Server}}/images/mini/banner_big.png"></image>
+</view> -->
+<view class="banner_big">
+  <image src="/images/Group6.png"></image>
 </view>
 </navigator>
  <!-- <button bindtap='clearStorage'>清缓存</button>  -->

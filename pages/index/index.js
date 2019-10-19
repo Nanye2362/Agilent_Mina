@@ -25,7 +25,19 @@ Page({
     system_text:"系统升级中，微信在线咨询通道暂时无法使用，您可以点击下方常见问题寻求解决方案，给您带来不便，敬请谅解。",
     Server: config.Server,
     imgUrls:
-    [
+    [ 
+      {
+        url: config.Server + 'images/20191019/cover.mp4',
+        text: 'E起学习 微来可期 | 安捷伦微学堂微信小程序荣耀上线',
+        type: 1,
+        skipUrl: ''
+      },
+      {
+        url: config.Server + 'images/20191019/banner2.jpg',
+        text: '液相变"闲"为宝，成倍提高效率！限时优惠，欢迎围观',
+        type:'url',
+        skipUrl: 'https://mp.weixin.qq.com/s/xyKkngaG8TcT8dmZTQUAhg'
+      },
       {
         url: config.Server + 'images/20190822/banner1.jpg',
         text: '火辣八月 特大促销 | 安捷伦Intuvo GC火热租赁持续中',
@@ -65,21 +77,21 @@ Page({
         type: 'mini',
         arg:'2',
         skipUrl: '../second-buy/second-buy',
-      },
-      {
-        url: config.Server + 'images/wechat_slider/wechat-20190606.jpg?version=20190606',
-        text: '经济型针头过滤器5折优惠',
-        type:'mini',
-        arg:'4',
-        skipUrl: '../second-buy/second-buy',
-      },
-      {
-        url: config.Server + 'images/title2_Apri.png?version=20190416',
-        text: '溶出全流程耗材65折',
-        type: 'mini',
-        arg:'4',
-        skipUrl: '../second-buy/second-buy',
       }
+      // {
+      //   url: config.Server + 'images/wechat_slider/wechat-20190606.jpg?version=20190606',
+      //   text: '经济型针头过滤器5折优惠',
+      //   type:'mini',
+      //   arg:'4',
+      //   skipUrl: '../second-buy/second-buy',
+      // },
+      // {
+      //   url: config.Server + 'images/title2_Apri.png?version=20190416',
+      //   text: '溶出全流程耗材65折',
+      //   type: 'mini',
+      //   arg:'4',
+      //   skipUrl: '../second-buy/second-buy',
+      // }
     ],
     indicatorDots: true,
     autoplay: true,
@@ -267,6 +279,17 @@ Page({
 /*
 **  我要报修跳转
 */
+gotoNextMiniProgram: function(event){
+  console.log("哈哈哈")
+  wx.navigateToMiniProgram({
+    appId: 'wx6907f6b39946942d',
+    path: 'pages/welcome/welcome',
+    success(res) {
+      // 打开成功
+    }
+  })
+},
+
   clickToRepair: function (event) {
 
     var app = getApp();
@@ -329,6 +352,17 @@ Page({
   /*
     在线学习
    */
+  gotoNextMiniProgram: function(event){
+    console.log("哈哈哈")
+    wx.navigateToMiniProgram({
+      appId: 'wx6907f6b39946942d',
+      path: 'pages/welcome/welcome',
+      success(res) {
+        // 打开成功
+      }
+    })
+  },
+  
   skipHtml5Page: function (e) {
     wx.setStorage({
       key: "openHtmlUrl",

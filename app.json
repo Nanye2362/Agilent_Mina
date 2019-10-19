@@ -2,22 +2,15 @@
   "pages": [
     "pages/index/index",
     "pages/self_service_new/self_service_index/self_service_index",
-
-
     "pages/self_service_new/self_service_new/self_service_new",
-
-
     "pages/self_service_new/self_service_detail/self_service_detail",
     "pages/self_service_new/self_service_search/self_service_search",
-
     "pages/trial_calculation/trial_calculation",
     "pages/second-buy/second-buy",
-
     "pages/directional_push/directional_push_info/directional_push_info",
     "pages/directional_push/directional_push_offer/directional_push_offer",
     "pages/directional_push/directional_push_solve/directional_push_solve",
     "pages/directional_push/directional_push_submit/directional_push_submit",
-
     "pages/repair/repair",
     "pages/invoiceConfirm/invoiceConfirm",
     "pages/trackingNo/trackingNo",
@@ -59,7 +52,6 @@
     "pages/service_guide/service_guide",
     "pages/personal_info/personal_info",
     "pages/logs/logs",
-
     "pages/contact_service/contact_service",
     "pages/test/test",
     "pages/template/tarbar",
@@ -79,6 +71,7 @@
   "usingComponents": {
     "meiqiaCheckWork": "/components/meiqia/meiqiaCheckWork"
   },
+  "navigateToMiniProgramAppIdList":["wx6907f6b39946942d"],
   "tabBar": {
     "color": "#a9b7b7",
     "selectedColor": "#0085d5",
