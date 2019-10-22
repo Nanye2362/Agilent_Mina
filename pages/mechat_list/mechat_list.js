@@ -28,17 +28,20 @@ Page({
     Server:config.Server,
     //showDesc:"",
     //showInfo:[false,false,false,false,false,false,false,false,false],
-    list: [{ title: '分析仪器报修/咨询', img: 'repair', class: 'widthFix', color: 'blue', templete: 'inputTemplate1', checkfun: 'checkSales', tapfun: 'srTap', meqia: 'T', desc:'售后仪器操作，故障咨询'},  
-      { title: '消耗品咨询/购买', img: 'buy', class: 'widthFix', color: 'green', templete: 'inputTemplate2', checkfun: 'checkSales', tapfun: 'salesBATap', meqia: 'CB', desc: '购买消耗品相关问题咨询' },
-      { title: '色谱柱/前处理售后', img: 'afterbuy', class: 'widthFix', color: 'green', templete: 'inputTemplate2', checkfun: 'checkSales', tapfun: 'salesBATap', class: 'widthFix', meqia: 'CA', desc: '消耗品应用相关咨询' },
-      { title: '实验室仪器采购', img: 'purchase', color: 'tree', templete: 'inputTemplate2', checkfun: 'checkSales', tapfun: 'salesTap', class: 'widthFix', meqia: 'K', desc: '实验室分析仪器购买咨询'},
+    list: [{ title: '分析仪器报修/咨询', img: 'repair', class: 'widthFix', color: 'blue', templete: 'inputTemplate1', checkfun: 'checkSales', tapfun: 'srTap', meqia: 'T', desc:'售后仪器操作，故障咨询'},
+      { title: '消耗品咨询/购买', id: '8', img: 'buy', class: 'widthFix', color: 'green', templete: 'inputTemplate2', checkfun: 'checkSales', tapfun: 'salesBATap', meqia: 'CB', desc: '购买消耗品相关问题咨询' },
+      { title: '色谱柱/前处理售后', id: '9', img: 'afterbuy', class: 'widthFix', color: 'green', templete: 'inputTemplate2', checkfun: 'checkSales', tapfun: 'salesBATap', class: 'widthFix', meqia: 'CA', desc: '消耗品应用相关咨询' },
+      { title: '实验室仪器采购', id: '12', img: 'purchase', color: 'tree', templete: 'inputTemplate2', checkfun: 'checkSales', tapfun: 'salesTap', class: 'widthFix', meqia: 'K', desc: '实验室分析仪器购买咨询'},
       // { title: '实验室服务方案', img: 'solution', color: 'tree', templete: 'inputTemplate2', class: 'widthFix', checkfun: 'checkSales', tapfun: 'salesTap', meqia: 'S', desc: '实验室企业级服务、整体搬迁、法规认证、分析仪器维修/维护合同等' },
-      { title: '电话工单补充图片', desc: '已有服务单号快速入口', class: 'widthFix', templete: 'inputTemplate5', checkfun: 'checkOrder', tapfun: 'orderTap', meqia: 'N', img: 'solution', color: 'tree', },
-      { title: '售后服务合同', img: 'contract', color: 'yellow', class: 'widthFix', templete: 'inputTemplate2', checkfun: 'checkSales', tapfun: 'salesTap', meqia: 'S', desc: '售后服务合同相关事项咨询' },
-      { title: '实验室法规认证', img: 'OQ', color: 'yellow', templete: 'inputTemplate2', checkfun: 'checkSales', class: 'widthFix', tapfun: 'salesTap', meqia: 'S', desc: '实验室法规认证等咨询' }, 
-      { title: '送修及翻新服务', img: 'renew', color: 'orange', templete: 'inputTemplate2', checkfun: 'checkSales', class: 'widthFix', tapfun: 'repairTap', meqia: 'T', desc: '仪器送修及翻新等咨询'}, 
-      { title: '安捷伦大学培训', img: 'myclass', color: 'purple', templete: 'inputTemplate2', checkfun: 'checkSales', class: 'widthFix', tapfun: 'salesTap', meqia: 'E', desc: '培训名额、定制培训、课程注册等咨询' },  
-    ]
+      { title: '电话工单补充图片', id: '7', desc: '已有服务单号快速入口', class: 'widthFix', templete: 'inputTemplate5', checkfun: 'checkOrder', tapfun: 'orderTap', meqia: 'N', img: 'solution', color: 'tree', },
+      { title: '售后服务合同', id: '11', img: 'contract', color: 'yellow', class: 'widthFix', templete: 'inputTemplate2', checkfun: 'checkSales', tapfun: 'salesTap', meqia: 'S', desc: '售后服务合同相关事项咨询' },
+      { title: '实验室法规认证', id: '11',  img: 'OQ', color: 'yellow', templete: 'inputTemplate2', checkfun: 'checkSales', class: 'widthFix', tapfun: 'salesTap', meqia: 'S', desc: '实验室法规认证等咨询' },
+      { title: '送修及翻新服务', id: '13', img: 'renew', color: 'orange', templete: 'inputTemplate2', checkfun: 'checkSales', class: 'widthFix', tapfun: 'repairTap', meqia: 'T', desc: '仪器送修及翻新等咨询'},
+      { title: '安捷伦大学培训', id: '10', img: 'myclass', color: 'purple', templete: 'inputTemplate2', checkfun: 'checkSales', class: 'widthFix', tapfun: 'salesTap', meqia: 'E', desc: '培训名额、定制培训、课程注册等咨询' },
+    ],
+    nickName: '',
+    avatarUrl: '',
+    transferAction: ''
   },
   // showDesc:function(e){
   //   this.closeDesc();//关闭其他
@@ -65,15 +68,20 @@ Page({
   //       });
   //   }
   // },
-  startChat:function(e){ 
 
-    console.log('----------',e);
+  //transferAction:
+  //'[{"actionType":"to_group","deciId":"xxx","optionId":"3","spillId":"4"},{"actionType":"to_group","deciId":"xxx","optionId":"4"}]'
+
+  startChat:function(e){
     var app = getApp();
     app.mta.Event.stat("meqia", { "group": e.detail.currentTarget.dataset.group});
+
     this.setData({
       shInputInfo: false,
-      sessionId:0
+      sessionId:0,
     });
+
+
   },
   getInputInfo:function(){
     console.log(this.data.checkFun);
@@ -115,7 +123,7 @@ Page({
             'data': userInputInfo
           })
         }
-      
+
         that.setData({
           shLoading: false,
           shInputInfo: true,
@@ -123,7 +131,7 @@ Page({
           sessionId:res.id
         })
       }
-    })  
+    })
   },
   cancelTap:function(){
     this.setData({
@@ -165,8 +173,12 @@ Page({
     });
   },
   showInputPanel:function(e){// 点击弹出信息输入
-    console.log('showinputpanel');
     var that=this;
+
+    this.setData({
+      transferAction: util.sobotTransfer(e.currentTarget.dataset.id)
+    });
+
     if(e.detail.iswork){
       switch (e.currentTarget.dataset.tapfun){
         case "salesTap":
@@ -183,7 +195,7 @@ Page({
           break;
         case "repairTap":
           that.repairTap(e);
-          break; 
+          break;
       }
     }else{
       switch (e.currentTarget.dataset.tapfun) {
@@ -208,7 +220,7 @@ Page({
           break;
       }
     };
-    
+
   },
   salesTap:function(e){
 
@@ -220,7 +232,7 @@ Page({
       meqiaGroup: e.currentTarget.dataset.meqia,
       showDesc: e.currentTarget.dataset.desc,
       titleColor: e.currentTarget.dataset.color,
-      titleCon: e.currentTarget.dataset.title,
+      titleCon: e.currentTarget.dataset.title
     })
     console.log(e.currentTarget.dataset.meqia)
     util.IsCertificate(function () {
@@ -378,56 +390,74 @@ Page({
     this.setData({
       iconWidth: (app.globalData.sysInfo.winWidth-30)/3,
       winWidth: app.globalData.sysInfo.winWidth
-    })   
+    });
+
+    this.setData({
+      nickName: app.globalData.nickName,
+      avatarUrl: app.globalData.avatarUrl
+    });
+
+    // var that = this;
+
+    // util.NetRequest({
+    //   url: 'site-mini/meqia-getuserinfo',
+    //   success: function (res) {
+    //     console.log(res);
+    //     that.setData({
+    //       nickName: res.userinfo.name,
+    //       avatarUrl: res.userinfo.avatarUrl
+    //     })
+    //   }
+    // })
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-  
+
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-          
+
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-  
+
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-  
+
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-  
+
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-  
+
   },
 
   /**
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-  
+
   },
   showOfflineText:function(){
       wx.showModal({
@@ -435,7 +465,7 @@ Page({
         content: '感谢您一直以来对我们工作的关注和支持。我们的工作时间是周一至周五的 8:30-17:30，双休日（除节假日外）仅提供紧急电话技术支持，服务时间为：9:00-17:00。',
         showCancel: false,
         success: function (res) {
-            
+
         }
       })
   }

@@ -243,9 +243,9 @@
     </view>
     </block>
     <!-- fileList -->
-       <meiqiaBtn bindmeiqiaTap="isWorkTime" btn-class="sn_btn btn btn-primary" handle-alert="{{false}}" session-from="{{Soft}}">
+       <meiqiaBtn bindmeiqiaTap="isWorkTime" btn-class="sn_btn btn btn-primary" handle-alert="{{false}}" session-from="{{Soft}}|transferAction={{transferAction}}">
         软件咨询 </meiqiaBtn>
-         <meiqiaBtn bindmeiqiaTap="isWorkTimee" btn-class="sn_btn btn btn-primary" handle-alert="{{false}}" session-from="{{Hard}}">
+         <meiqiaBtn bindmeiqiaTap="isWorkTimee" btn-class="sn_btn btn btn-primary" handle-alert="{{false}}" session-from="{{Hard}}|transferAction={{transferAction}}">
         仪器咨询 </meiqiaBtn>
   </view>
 </view>

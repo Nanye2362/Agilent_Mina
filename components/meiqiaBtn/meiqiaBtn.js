@@ -1,5 +1,6 @@
 // components/meiqiaBtn/meiqiaBtn.js
 var workTime = require('../../utils/workTime.js');
+var util = require('../../utils/util.js');
 
 
 Component({
@@ -23,21 +24,33 @@ Component({
   data: {
     isWork:true,
     showModal:false,
-    canUse:true
+    canUse:true,
+    params: '',
+    nickName:'',
+    avatarUrl:''
+  },
+
+  lifetimes: {
+    attached: function() {
+      this.setData({
+        nickName: wx.getStorageSync("sobot_nickname"),
+        avatarUrl:wx.getStorageSync("sobot_avatarUrl"),
+      })
+    }
   },
   /**
    * 组件的方法列表
    */
   methods: {
     meiqiaBtnTap:function(e){
-      
+
       if (!this.data.canUse){
         this.setData({
           showModal:true
         })
       }else{
         workTime.handleWorkTime(this.data.handleAlert);
-        this.triggerEvent('meiqiaTap', e); 
+        this.triggerEvent('meiqiaTap', e);
         console.log('meiqiaBtnTap', e)
       }
     }

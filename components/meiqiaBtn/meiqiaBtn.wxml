@@ -1,7 +1,17 @@
 <!--components/meiqiaBtn/meiqiaBtn.wxml-->
-<button class="btn-class" bindtap="meiqiaBtnTap" open-type='{{isWork?"contact":""}}' session-from='{{sessionFrom}}' data-group="{{meqiaGroup}}"
+<!--<button class="btn-class" bindtap="meiqiaBtnTap" open-type='{{isWork?"contact":""}}' session-from='{{sessionFrom}}' data-group="{{meqiaGroup}}"
 formType="{{formType}}" disabled="{{disabled}}" >
   <slot></slot>
+</button>-->
+
+<button class="btn-class" 
+        bindtap="meiqiaBtnTap" 
+        open-type='{{isWork?"contact":""}}' 
+        session-from="sobot|{{nickName}}|{{avatarUrl}}|{{sessionFrom}}"
+        data-group="{{meqiaGroup}}"
+        formType="{{formType}}" 
+        disabled="{{disabled}}">
+<slot></slot>
 </button>
 
  <meiqiaNoWorkModal showModal="{{showModal}}"></meiqiaNoWorkModal>

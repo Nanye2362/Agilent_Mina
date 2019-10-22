@@ -11,17 +11,6 @@ Page({
     NewNotificationCount: 0,
   },
 
-  gotoNextMiniProgram: function(event){
-    console.log("哈哈哈")
-    wx.navigateToMiniProgram({
-      appId: 'wx6907f6b39946942d',
-      path: 'pages/welcome/welcome',
-      success(res) {
-        // 打开成功
-      }
-    })
-  },
-
   gotoNext: function(event){
     var is_auth = this.data.is_auth;
     var needauth = event.currentTarget.dataset.needauth;

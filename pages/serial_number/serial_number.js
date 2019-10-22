@@ -20,7 +20,10 @@ Page({
     shLoading_alert:false,
     shLoading_title:"",
     shLoading_body:"",
-    SerialNumber:0
+    SerialNumber:0,
+    nickName: '',
+    avatarUrl: '',
+    transferAction: ''
   },
   shClose:function(){
     this.setData({
@@ -38,20 +41,19 @@ Page({
       //未绑定， 且不是工作时间
       wx.navigateTo({
         url: '../auth/auth?pageName=serial_number',
-      }) 
+      })
     }else{
       console.log(mobile);
     }
 
-
-
     console.log(options);
-    
+
     if (typeof (options.GroupID) !='undefined'){
       this.setData({
         GroupID: options.GroupID
       })
     }
+
     //腾讯mat统计开始
     var app = getApp();
     app.mta.Page.init();
@@ -70,7 +72,7 @@ Page({
         })
       }
     })
-    
+
     util.NetRequest({
       url: 'site-mini/my-count',
       data: {},
@@ -80,15 +82,33 @@ Page({
           SerialNumber: res.InstrumentCount
         });
       }
+    })
+
+    // util.NetRequest({
+    //   url: 'site-mini/meqia-getuserinfo',
+    //   success: function (res) {
+    //     console.log(res);
+    //     that.setData({
+    //       nickName: res.userinfo.name,
+    //       avatarUrl: res.userinfo.avatarUrl
+    //     })
+    //   }
+    // })
+
+
+    this.setData({
+       nickName: app.globalData.nickName,
+       avatarUrl: app.globalData.avatarUrl
     });
   },
+
   onUnload: function () {
     console.log('************closethepage***********');
 
   },
 
   MtaReport: function () {
-  
+
     var app = getApp();
     app.mta.Event.stat("meqia", { "group": 'WLA' });
   },
@@ -97,16 +117,16 @@ Page({
     var app = getApp();
     app.mta.Event.stat("meqia", { "group": 'NONTECH' });
   },
-  
+
   chooseimage: function () {
-    
+
     var _this = this;
     var app=getApp();
     app.globalData.isUploading = true;
     wx.chooseImage({
-      count: 1, // 默认9  
-      sizeType: ['compressed'], // 可以指定是原图还是压缩图，默认二者都有  
-      sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有  
+      count: 1, // 默认9
+      sizeType: ['compressed'], // 可以指定是原图还是压缩图，默认二者都有
+      sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
       success: function (res) {
         //上传图片
         /*
@@ -131,12 +151,12 @@ Page({
           filePath: tempFilePaths[0],
           name: 'file',
           header: header,
-          success: function (res) {			
+          success: function (res) {
             console.log(res)
             var endTime = new Date();
             var ocrSpend = endTime-startTime;
             console.log(ocrSpend);
-            
+
             util.NetRequest({
               host: util.ocrServer,
               url: 'api/ocr-spend',
@@ -149,11 +169,11 @@ Page({
               success: function (res) {
               }
             })
-            
+
             var value = JSON.parse(res.data).result;
 			      var app = getApp();
 			      app.mta.Event.stat("sn_ocr", { "sn": value });
-            // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片  
+            // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
             if (value){
               _this.setData({
                 cameraValue: value,
@@ -209,8 +229,8 @@ Page({
       value: value.replace(value, value.toUpperCase()),
       cursor: pos
     }
-     
-    
+
+
     /*
     var inputValue = e.detail.value.toUpperCase()
     console.log(inputValue)
@@ -219,8 +239,59 @@ Page({
     */
   },
 
+  // RtransferAction: function(r) {
+  //   console.log("进入")
+  //   var result = []
+  //   var keys = Object.keys(r)
+  //   console.log(keys);
+  //   if(keys.length <= 2) {
+  //     return JSON.stringify(result)
+  //   } else {
+  //     var n = (keys.length -2) / 2;
+  //     console.log(n)
+  //     for (var i = 1; i < n; i++) {
+  //       var gn_type = 'g' + `${i}` + '_type';
+  //       console.log(gn_type);
+  //       var gn = 'g' + `${i}`;
+  //       var o = {};
+  //       if (r[gn_type] == '1') {
+  //         o["actionType"] = "to_group";
+  //         o["deciId"] = r[gn];
+  //         o["optionId"] = "3";
+  //         o["spillId"] = '7';
+  //       } else if (r[gn_type] == '2') {
+  //         o["actionType"] = "to_service";
+  //         o["deciId"] = r[gn];
+  //         o["optionId"] = "1";
+  //         o["spillId"] = '3';
+  //       }
+  //       result.push(o);
+  //     }
+
+  //     var o1 = {};
+  //     var gn_type1 = 'g' + `${n}` + '_type';
+  //     var gn1 = 'g' + `${n}`;
+
+  //     if (r[gn_type1] == '1') {
+  //       o1["actionType"] = "to_group";
+  //       o1["deciId"] = r[gn1];
+  //       o1["optionId"] = "4";
+  //       o1["spillId"] = '7';
+  //     } else if (r[gn_type1] == '2') {
+  //       o1["actionType"] = "to_service";
+  //       o1["deciId"] = r[gn1];
+  //       o1["optionId"] = "2";
+  //       o1["spillId"] = '3';
+  //     }
+
+  //     result.push(o1)
+
+  //     return JSON.stringify(result)
+  //   }
+  // },
+
   clickToSubmit: function (event) {
-	
+
     var that = this;
     var serNum = this.data.inputValue;
     var contactguid = event.currentTarget.dataset.contactguid;
@@ -239,12 +310,18 @@ Page({
         GroupID: that.data.GroupID
       },
       success: function (res) {
-        console.log(res);
         if (res.success == true) {
           wx.redirectTo({
-            url: '../confirm_info/confirm_info' + '?ProductId=' + res.ProductId + '&ProductDesc=' + res.ProductDesc + '&SerialNo=' + res.SerialNo + '&CpName=' + res.CpName + '&ShipToName=' + res.ShipToName + "&aglNum=" + res.AglSN + '&CanRepair=' + res.CanRepair,
+            url: '../confirm_info/confirm_info' + '?ProductId=' + res.ProductId + '&ProductDesc=' + res.ProductDesc + '&SerialNo=' + res.SerialNo + '&CpName=' + res.CpName + '&ShipToName=' + res.ShipToName + "&aglNum=" + res.AglSN + '&CanRepair=' + res.CanRepair + '&group=' + JSON.stringify(res.group),
           })
         } else {
+          //transferAction:
+          //'[{"actionType":"to_group","deciId":"xxx","optionId":"3","spillId":"4"},{"actionType":"to_group","deciId":"xxx","optionId":"4"}]'
+
+          that.setData({
+            transferAction: util.RtransferAction(res.group)
+          });
+
           var errorInfo = "您输入的序列号为：" + that.data.inputValue+"\n";
           if(res.check_sn == false){
             that.setData({
@@ -262,10 +339,11 @@ Page({
             })
 
           }
-          
+
         }
       }
     })
   },
-  
+
 })
+

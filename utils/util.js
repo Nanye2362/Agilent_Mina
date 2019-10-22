@@ -21,6 +21,72 @@ function formatNumber(n) {
 
 let Server = config.Server; //UAT
 
+//sobot传技能客服租逻辑2
+//transferAction: 
+//'[{"actionType":"to_group","deciId":"xxx","optionId":"3","spillId":"4"},{"actionType":"to_group","deciId":"xxx","optionId":"4"}]'
+function sobotTransfer(id) {
+  var app = getApp();
+  var r = app.globalData.sobotData;
+  return RtransferAction(r[id -1])
+}
+
+//sobot传技能客服组逻辑
+function RtransferAction(r) {
+  if (r == undefined || r == null) {
+    return ''
+  } else {
+    console.log("进入")
+    var result = []
+    var keys = Object.keys(r)
+    console.log(keys);
+    if(keys.length <= 2) {
+      return JSON.stringify(result);
+    } else {
+      var n = (keys.length -2) / 2;
+      console.log(n)
+      for (var i = 1; i < n; i++) {
+        var gn_type = 'g' + `${i}` + '_type';
+        console.log(gn_type);
+        var gn = 'g' + `${i}`;
+        var o = {};
+        if (r[gn_type] == '1') {
+          o["actionType"] = "to_group";
+          o["deciId"] = r[gn];
+          o["optionId"] = "3";
+          o["spillId"] = '7';
+        } else if (r[gn_type] == '2') {
+          o["actionType"] = "to_service";
+          o["deciId"] = r[gn];
+          o["optionId"] = "1";
+          o["spillId"] = '3';
+        }
+        result.push(o);
+      }
+  
+      var o1 = {};
+      var gn_type1 = 'g' + `${n}` + '_type';
+      var gn1 = 'g' + `${n}`;
+  
+      if (r[gn_type1] == '1') {
+        o1["actionType"] = "to_group";
+        o1["deciId"] = r[gn1];
+        o1["optionId"] = "4";
+        o1["spillId"] = '7';
+      } else if (r[gn_type1] == '2') {
+        o1["actionType"] = "to_service";
+        o1["deciId"] = r[gn1];
+        o1["optionId"] = "2";
+        o1["spillId"] = '3';
+      }
+  
+      result.push(o1)
+      console.log(JSON.stringify(result))
+      return JSON.stringify(result)
+    }
+  }
+}
+
+
 function uploadImg(urlList,callback){
   var session_id = wx.getStorageSync('PHPSESSID');//本地取存储的sessionID
   if (session_id != "" && session_id != null) {
@@ -135,6 +201,22 @@ function getUserInfo(cb){
   }
 }
 
+ 
+//获取用户信息头像昵称
+function getUserName() {
+  util.NetRequest({
+    url: 'site-mini/meqia-getuserinfo',
+    success: function (res) {
+      console.log(res);
+      that.setData({
+        nickName: res.userinfo.name,
+        avatarUrl: res.userinfo.avatarUrl
+      })
+    }
+  })
+}
+
+
 function backHome(){
   console.log('backHome')
   wx.switchTab({
@@ -191,5 +273,8 @@ module.exports = {
   checkWorktime: checkWorktime,
   backHome: backHome,
   chen_navigateTo: chen_navigateTo,
-  submitFormId:submitFormId
+  submitFormId:submitFormId,
+  getUserName: getUserName,
+  RtransferAction: RtransferAction,
+  sobotTransfer: sobotTransfer
 }

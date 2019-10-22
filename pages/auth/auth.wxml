@@ -45,7 +45,7 @@
       </view>
       <view class="shLoading-btn-panel">
           <view class="shLoading-btn-cancel" bindtap="">发起会话
-           <meiqiaBtn bindmeiqiaTap="isWorkTime" btn-class="shLoading-btn-contact" session-from="N">
+           <meiqiaBtn bindmeiqiaTap="isWorkTime" btn-class="shLoading-btn-contact" session-from="N|transferAction={{transferAction}}">
             </meiqiaBtn>
            </view>
            <view class="shLoading-btn-ok" bindtap="skipFillInfo">完成</view>

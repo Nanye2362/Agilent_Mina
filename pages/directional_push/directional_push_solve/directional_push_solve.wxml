@@ -17,7 +17,7 @@
                 <text>已解决</text>
             </view>
         </view>
-        <meiqiaBtn bindmeiqiaTap="MtaReport" btn-class="bc_chat_btn btn-meiqia" handle-alert="{{true}}" session-from="{{group}}_dpush:{{dpId}}">
+        <meiqiaBtn bindmeiqiaTap="MtaReport" btn-class="bc_chat_btn btn-meiqia" handle-alert="{{true}}" session-from="{{group}}_dpush:{{dpId}}|transferAction={{transferAction}}">
         <view class="box blue">
             <view class="box-left" style="line-height:1.55">
                 <image class="info1" src="/images/cs.png" />

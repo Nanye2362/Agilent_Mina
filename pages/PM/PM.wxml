@@ -128,7 +128,8 @@
       <!-- gotoChat -->
       <view class="cs_con ">
           <view class="text-center fs12">如有任何疑问，请
-            <meiqiaBtn bindmeiqiaTap="MtaReport" btn-class="fc-blue bc_chat_btn btn-meiqia" handle-alert="{{true}}" session-from="{{WLA}}">
+            <!-- <meiqiaBtn bindmeiqiaTap="MtaReport" btn-class="fc-blue bc_chat_btn btn-meiqia" handle-alert="{{true}}" session-from="{{WLA}}"> -->
+            <meiqiaBtn bindmeiqiaTap="MtaReport" btn-class="fc-blue bc_chat_btn btn-meiqia" handle-alert="{{true}}" session-from="{{WLA}}|transferAction={{transferAction}}">
                 <image src="/images/wechat_b.png"></image>
                 <text class='fc-blue'>发起会话</text>
             </meiqiaBtn>

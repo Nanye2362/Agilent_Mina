@@ -8,6 +8,9 @@ Page({
    * 页面的初始数据
    */
   data: {
+    nickName:'',
+    avatarUrl: '',
+    transferAction: '',
     uploadBtn: true,
     photoURL: [],
     hasError:false,
@@ -331,6 +334,12 @@ Page({
         company: user.company,
         mobile: user.mobile
       })
+    });
+
+    this.setData({
+      nickName: app.globalData.nickName,
+      avatarUrl: app.globalData.avatarUrl,
+      transferAction: util.sobotTransfer(5)
     });
   },
 

@@ -16,7 +16,7 @@
     <!-- btn -->
     <view wx:if='{{sn==""}}' class="btn btn-primary" bindtap='noSn'>送修服务咨询</view>
     <view wx:else class='btn btn-primary'>    
-      <meiqiaBtn bindmeiqiaTap="MtaReport" btn-class="btn btn-primary" handle-alert="{{false}}" session-from="{{TECH+sn}}">
+      <meiqiaBtn bindmeiqiaTap="MtaReport" btn-class="btn btn-primary" handle-alert="{{false}}" session-from="{{TECH+sn}}|transferAction={{transferAction}}">
         送修服务咨询
       </meiqiaBtn>
     </view>
@@ -38,7 +38,7 @@
     <!-- btn -->
     <view wx:if='{{sn==""}}' class="btn btn-primary" bindtap='noSn'>送修服务咨询</view>
     <view wx:else class='btn btn-primary'>         
-      <meiqiaBtn bindmeiqiaTap="MtaReport" btn-class="btn btn-primary" handle-alert="{{false}}" session-from="{{TECH+sn}}">
+      <meiqiaBtn bindmeiqiaTap="MtaReport" btn-class="btn btn-primary" handle-alert="{{false}}" session-from="{{TECH+sn}}|transferAction={{transferAction}}">
         送修服务咨询
       </meiqiaBtn>
     </view>

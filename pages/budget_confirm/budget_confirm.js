@@ -7,6 +7,9 @@ Page({
    * 页面的初始数据
    */
   data: {
+    nickName:'',
+    avatarUrl: '',
+    transferAction: '',
     bqId: "",
     info: "加载中",
     checkBox: false,
@@ -47,6 +50,11 @@ Page({
     //腾讯mat统计开始
     var app = getApp();
     var that = this;
+    this.setData({
+      nickName: app.globalData.nickName,
+      avatarUrl: app.globalData.avatarUrl,
+      transferAction: util.sobotTransfer(4)
+    });
     app.mta.Page.init();
     //腾讯mat统计结束
     console.log(options);

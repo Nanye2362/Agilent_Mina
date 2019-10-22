@@ -87,9 +87,9 @@
 
 
 <view class="bc_chat padding text-center fs12" wx:if="{{pageShow}}">如果对报价有任何问题，请<image class="chatimg" src="/images/wechat_b.png"></image>
-   <meiqiaBtn bindmeiqiaTap="MtaReport" btn-class="fc-blue bc_chat_btn btn-meiqia" handle-alert="{{true}}" session-from="W_bqobjectid:{{bqId}}">
+   <meiqiaBtn bindmeiqiaTap="MtaReport" btn-class="fc-blue bc_chat_btn btn-meiqia" handle-alert="{{true}}" session-from="W_bqobjectid:{{bqId}}|transferAction={{transferAction}}">
               发起会话
-           </meiqiaBtn>
+  </meiqiaBtn>
 </view>
 </block>
 

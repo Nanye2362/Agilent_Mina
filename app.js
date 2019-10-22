@@ -45,6 +45,7 @@ App({
     this.wxlogin();
 
     var that = this;
+
     wx.getSystemInfo({
       success: function (res) {
         that.globalData.sysInfo = {
@@ -54,9 +55,40 @@ App({
         }
       }
     });
-  },
+
+    setTimeout(function() {
+      util.NetRequest({
+        url: 'wechat-mini/get-global-group',
+        success: function (res) {
+          that.globalData.sobotData = res.data;
+       }
+    });
+    }, 1000)
+
+    setTimeout(function() {
+      util.NetRequest({
+        url: 'site-mini/sobot-getuserinfo',
+        success: function (res) {
+          wx.setStorageSync('sobot_nickname', res.userinfo.name);
+          wx.setStorageSync('sobot_avatarUrl', res.userinfo.avatarUrl);
+        }
+      })
+    }, 1000)
+
+  //   util.NetRequest({
+  //     url: 'wechat-mini/get-global-group',
+  //     data:{},
+  //     success: function (res) {
+  //       console.log(res);
+  //       that.globalData.sobotData = res.data;
+  //    }
+  // });
+
+},
+
   onShow: function (res) {
     this.globalData.appShow = true;
+
     console.log(res);
     //如果已在后台启动并且是客服链接过来的，就打开指定页面
     if (!this.globalData.isFirstLunch && (res.scene == 1081 || res.scene == 1082) && res.path.length != 0) {
@@ -101,6 +133,9 @@ App({
     });
   },
   globalData: {
+    nickName:'',
+    avatarUrl: '',
+    sobotData:[],
     miniApp_env: miniApp_env,// prod或uat
     userInfo: null,
     requestList: [],

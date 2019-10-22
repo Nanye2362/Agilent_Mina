@@ -1,5 +1,5 @@
 // pages/labQC/labQC.js
-var util = require('../../utils/util.js'); 
+var util = require('../../utils/util.js');
 var app = getApp()
 Page({
 
@@ -11,7 +11,7 @@ Page({
     ISENGINEER: -1,
     winWidth: 0,
     winHeight: 0,
-    // tab切换 
+    // tab切换
     currentTab: 0,
     popup: false,
     Soft:'',
@@ -19,14 +19,27 @@ Page({
     isDown: false,
     percent: 0,
     inputValue: '',
+    transferAction:''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var scene = decodeURIComponent(options.scene)  
-    console.log(scene); 
+    var that = this;
+    util.NetRequest({
+      url: 'wechat-mini/get-global-group',
+      success: function (res) {
+        app.globalData.sobotData = res.data;
+        that.setData({
+          transferAction:util.sobotTransfer(1)
+        });
+      }
+    });
+
+    var scene = decodeURIComponent(options.scene)
+
+    console.log(scene);
     if (typeof(options.scene)!='undefined'){
       this.setData({
         scene: scene,
@@ -35,7 +48,7 @@ Page({
       wx.switchTab({
         url: '../index/index',
       })
-    }  
+    }
     /* 获取系统信息 */
     var that = this;
     wx.getSystemInfo({
@@ -101,12 +114,12 @@ onShow: function (options) {
             url: '../auth/auth?pageName=labQC'
           })
         }
-      }         
+      }
     },
     fail: function (err) {
       console.log(err);
     }
-  }) 
+  })
 },
 
 /* tab */
@@ -147,7 +160,7 @@ openFile: function (event) {
         success: function (res) {
           console.log(res)
           console.log('open success!!!!');
-        }, 
+        },
         fail: function (res) {
           console.log('open fail')
           console.log(res)
@@ -231,7 +244,7 @@ confirmAdd: function(){
       }
     })
   }
-  
+
 },
 
 Popup: function (e) {
@@ -257,7 +270,7 @@ isWorkTimee: function () {
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-  
+
   },
 
 
@@ -265,35 +278,35 @@ isWorkTimee: function () {
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-  
+
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-  
+
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-  
+
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-  
+
   },
 
   /**
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-  
+
   },
 
 })

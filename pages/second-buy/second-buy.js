@@ -28,6 +28,9 @@ Page({
    * 页面的初始数据
    */
   data: {
+    nickName: '',
+    avatarUrl: '',
+    transferAction: '',
 
     isOnShow: true,
     curIndex: 0,
@@ -68,6 +71,8 @@ Page({
     finishTabload:[]
   },
   MtaReport:function(e){
+    console.log("hehhe");
+    console.log(e);
     var app = getApp();
     app.mta.Event.stat("meqia", { "group": e.target.dataset.meqia });
     app.mta.Event.stat("second_buy", {
@@ -105,6 +110,44 @@ Page({
         success: function (res) {
           console.log(res); //后台获取到的mycount数据
 
+          //    "融资购买"
+          //   "送修及翻新"
+          //     "消耗品促销"
+          //     "标准服务"
+          //     "安捷伦大学
+          // var o = {
+          //   "仪器租赁":
+          //   "融资购买"
+          //   "送修及翻新"
+          //   "消耗品促销"
+          //   "标准服务"
+          //   "安捷伦大学
+          // }
+
+          var list = [];
+
+          for(var i = 0; i < res.data.length; i++) {
+             var n = res.data[i]
+             if (n["PMENU_NAME"] == "仪器租赁") {
+               n["transferAction"] = util.sobotTransfer(14)
+             } else if (n["PMENU_NAME"] == "融资购买") {
+              n["transferAction"] = util.sobotTransfer(14)
+             } else if (n["PMENU_NAME"] == "送修及翻新") {
+              n["transferAction"] = util.sobotTransfer(15)
+             } else if (n["PMENU_NAME"] == "智能实验室") {
+              n["transferAction"] = util.sobotTransfer(16)
+            }else if (n["PMENU_NAME"] == "消耗品促销") {
+              n["transferAction"] = util.sobotTransfer(17)
+            } else if (n["PMENU_NAME"] == "标准服务") {
+              n["transferAction"] = util.sobotTransfer(18)
+            } else if (n["PMENU_NAME"] == "安捷伦大学") {
+              n["transferAction"] = util.sobotTransfer(19)
+            }
+            list.push(n)
+          }
+          console.log('---------------------------')
+          console.log(list)
+
           wx.loadFontFace({
             family: 'iconfont',
             source: 'url("//at.alicdn.com/t/' + res.fontUrl + '.woff")',
@@ -118,12 +161,12 @@ Page({
               console.log(res.status)
             }
           });
+
+
+
           that.setData({
-            productList: res.data,
-
-            toView: res.data[that.data.curIndex]['ID'],
-
-
+            productList: list,
+            toView: res.data[that.data.curIndex]['ID']
           })
 
         }
@@ -134,6 +177,7 @@ Page({
 
   onLoad: function (e) {
     var app = getApp();
+
     app.mta.Page.init();
     console.log('onload curIndex');
     console.log(e);

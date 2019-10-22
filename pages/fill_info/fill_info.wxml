@@ -70,7 +70,7 @@
       </view>
       <view class="shLoading-btn-panel">
           <view class="shLoading-btn-ok" bindtap="">进入会话
-           <meiqiaBtn bindmeiqiaTap="isWorkTime" btn-class="shLoading-btn-contact" session-from="{{meiqiaGroup}}" handle-alert="{{true}}">
+           <meiqiaBtn bindmeiqiaTap="isWorkTime" btn-class="shLoading-btn-contact" session-from="{{meiqiaGroup}}|transferAction={{transferAction}}" handle-alert="{{true}}">
             </meiqiaBtn>
            </view>
       </view>

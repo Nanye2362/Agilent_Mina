@@ -9,6 +9,9 @@ Page({
    * 页面的初始数据
    */
   data: {
+    nickName:'',
+    avatarUrl: '',
+    transferAction: '',
     mobile: '',
     verification_code: '',
     disabled: true,
@@ -56,6 +59,11 @@ Page({
   onLoad: function (options, e) {
     //腾讯mat统计开始
     var app = getApp();
+
+    this.setData({
+      nickName: app.globalData.nickName,
+      avatarUrl: app.globalData.avatarUrl
+    });
     app.mta.Page.init();
     //腾讯mat统计结束
     console.log(options.pageName);
@@ -67,13 +75,13 @@ Page({
     if (typeof (options.pagelabel) !='undefined'){
       pagelabel = options.pagelabel;
     }
-    this.setData({ 
+    this.setData({
       pageName: pageName,
-      pagelabel: pagelabel, 
+      pagelabel: pagelabel,
     });
   },
-  
-  
+
+
 
   registrationSubmit: function (e) {
     var pageName = this.data.pageName;
@@ -91,7 +99,6 @@ Page({
         disabled: true,
       },
       success: function (res) {
-        console.log(res);
         if (res.success == true) {
           wx.setStorageSync('mobile', mobile)
           if (pageName == 'myhome' || pageName == 'index') {
@@ -103,7 +110,7 @@ Page({
             var allPages = getCurrentPages();
             allPages[allPages.length - 2].setData({
               shLoading: true
-            }); 
+            });
             if (that.data.pagelabel == 'salesBA_CA' || that.data.pagelabel == 'salesBA_CB'){
               allPages[allPages.length - 2].getCusInfo()
             }
@@ -140,7 +147,7 @@ Page({
               shLoading_body: err_msg,
               skipFlag: res.noskip
             })
-          }       
+          }
         }
       },
       fail: function (err) {
@@ -176,7 +183,7 @@ Page({
       alertWithImgData: {
         shLoading_foreign: true,
       }
-    })  
+    })
   },
   //获取验证码
   getSMSCode: function (e) {

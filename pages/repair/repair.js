@@ -8,6 +8,9 @@ Page({
    * 页面的初始数据
    */
   data: {
+    nickName:'',
+    avatarUrl: '',
+    transferAction: '',
     winWidth: 0,
     winHeight: 0,
     currentTab: 0,
@@ -83,6 +86,12 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var app = getApp();
+    this.setData({
+      nickName: app.globalData.nickName,
+      avatarUrl: app.globalData.avatarUrl,
+      transferAction: util.sobotTransfer(13)
+    });
     console.log(options)
     if(options.sn!=undefined){
       this.setData({

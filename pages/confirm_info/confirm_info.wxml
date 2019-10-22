@@ -48,13 +48,13 @@
     </view>
     <block  wx:if="{{needChat}}" >
       <view class="pd_btn">
-          <meiqiaBtn bindmeiqiaTap="MtaReport" btn-class="btn btn-primary" handle-alert="{{false}}" session-from="{{TECH+aglNum}}">
+          <meiqiaBtn bindmeiqiaTap="MtaReport" btn-class="btn btn-primary" handle-alert="{{false}}" session-from="{{TECH+aglNum}}|transferAction={{transferAction}}">
             立即咨询
             <image class='btn_img' mode='widthFix' src="../../images/repari.png"></image>
           </meiqiaBtn>
       </view>
       <view class='pd_btn' wx:if='{{CanRepair==1}}' >
-          <meiqiaBtn bindmeiqiaTap="MtaReport" btn-class="btn btn-primary" handle-alert="{{false}}" session-from="{{RTECH}}">
+          <meiqiaBtn bindmeiqiaTap="MtaReport" btn-class="btn btn-primary" handle-alert="{{false}}" session-from="{{RTECH}}|transferAction={{transferAction}}">
             送修并开始咨询
             <image class='btn_img' mode='widthFix' src="../../images/repaire.png"></image> 
           </meiqiaBtn>

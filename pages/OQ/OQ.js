@@ -8,6 +8,9 @@ Page({
    * 页面的初始数据
    */
   data: {
+    nickName:'',
+    avatarUrl: '',
+    transferAction: '', 
     displayTips: false,
     chooseDate: '',
     inputValue:'',
@@ -30,7 +33,10 @@ Page({
       that.setData({
         name: user.name,
         company: user.company,
-        mobile: user.mobile
+        mobile: user.mobile,
+        nickName: app.globalData.nickName,
+        avatarUrl: app.globalData.avatarUrl,
+        transferAction: util.sobotTransfer(5)
       })
     });
   },

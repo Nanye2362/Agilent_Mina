@@ -4,7 +4,7 @@
     </view>
 
     <view class="allbox">
-        <meiqiaBtn bindmeiqiaTap="MtaReport" btn-class="bc_chat_btn btn-meiqia" handle-alert="{{true}}" session-from="N_srId:{{srId}}">
+        <meiqiaBtn bindmeiqiaTap="MtaReport" btn-class="bc_chat_btn btn-meiqia" handle-alert="{{true}}" session-from="N_srId:{{srId}}|transferAction={{transferAction}}">
         <view class="box">
             <view class="box-left" style="line-height:1.55">
                 <image class="info" src="/images/info.png" />

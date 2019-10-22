@@ -71,7 +71,6 @@
   "usingComponents": {
     "meiqiaCheckWork": "/components/meiqia/meiqiaCheckWork"
   },
-  "navigateToMiniProgramAppIdList":["wx6907f6b39946942d"],
   "tabBar": {
     "color": "#a9b7b7",
     "selectedColor": "#0085d5",

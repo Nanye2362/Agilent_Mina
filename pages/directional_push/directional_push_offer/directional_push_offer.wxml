@@ -28,7 +28,7 @@
             </view>
         </view>
         <view class="wechat">
-            <meiqiaBtn bindmeiqiaTap="MtaReport" btn-class="bc_chat_btn btn-meiqia" handle-alert="{{true}}" session-from="{{group}}_dpush:{{dpId}}">
+            <meiqiaBtn bindmeiqiaTap="MtaReport" btn-class="bc_chat_btn btn-meiqia" handle-alert="{{true}}" session-from="{{group}}_dpush:{{dpId}}|transferAction={{transferAction}}">
                 <image class="wechat-b" src="/images/wechat_b.png" />
                 <text>发起会话</text>
             </meiqiaBtn>
@@ -37,7 +37,7 @@
         </view>
     </view>
     <view class="allbox" wx:if="{{case2}}">
-        <meiqiaBtn bindmeiqiaTap="MtaReport" btn-class="bc_chat_btn btn-meiqia" handle-alert="{{true}}" session-from="{{group}}_dpush:{{dpId}}">
+        <meiqiaBtn bindmeiqiaTap="MtaReport" btn-class="bc_chat_btn btn-meiqia" handle-alert="{{true}}" session-from="{{group}}_dpush:{{dpId}}|transferAction={{transferAction}}">
         <view class="box box1" style="line-height:1.5">
             <view class="box-left" style="margin:0 auto">
                 <image class="info" src="/images/cs.png" />
