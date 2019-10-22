@@ -65,15 +65,8 @@ App({
     });
     }, 1000)
 
-    setTimeout(function() {
-      util.NetRequest({
-        url: 'site-mini/sobot-getuserinfo',
-        success: function (res) {
-          wx.setStorageSync('sobot_nickname', res.userinfo.name);
-          wx.setStorageSync('sobot_avatarUrl', res.userinfo.avatarUrl);
-        }
-      })
-    }, 1000)
+    util.getUserInfoSobot();
+
 
   //   util.NetRequest({
   //     url: 'wechat-mini/get-global-group',

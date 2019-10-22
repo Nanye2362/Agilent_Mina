@@ -14,6 +14,19 @@ function formatTime(date) {
   return [year, month, day].map(formatNumber).join('/') + ' ' + [hour, minute, second].map(formatNumber).join(':')
 }
 
+function getUserInfoSobot() {
+  var that=this;
+  setTimeout(function () {
+    that.NetRequest({
+      url: 'site-mini/sobot-getuserinfo',
+      success: function (res) {
+        wx.setStorageSync('sobot_nickname', res.userinfo.name);
+        wx.setStorageSync('sobot_avatarUrl', res.userinfo.avatarUrl);
+      }
+    })
+  }, 1000)
+}
+
 function formatNumber(n) {
   n = n.toString()
   return n[1] ? n : '0' + n
@@ -270,6 +283,7 @@ module.exports = {
   uploadImg: uploadImg,
   checkEmpty: checkEmpty,
   getUserInfo: getUserInfo,
+  getUserInfoSobot: getUserInfoSobot,
   checkWorktime: checkWorktime,
   backHome: backHome,
   chen_navigateTo: chen_navigateTo,

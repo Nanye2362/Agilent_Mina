@@ -27,7 +27,8 @@ Component({
     canUse:true,
     params: '',
     nickName:'',
-    avatarUrl:''
+    avatarUrl:'',
+    sessionFromFormat:""
   },
 
   lifetimes: {
@@ -71,5 +72,17 @@ Component({
   },
   detached:function(){
     workTime.removeHandleArr(this.__wxExparserNodeId__);
+  },
+  observers: {
+    'sessionFrom': function (value) {
+      
+      var strArr = value.split('|');
+
+      strArr[0] = '"' + strArr[0].replace(/\"/g, "")+'"'
+      this.setData({
+        sessionFromFormat: strArr.join("|")
+      })
+    },
   }
+
 })

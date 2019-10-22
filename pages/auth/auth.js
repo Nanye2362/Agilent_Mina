@@ -100,6 +100,8 @@ Page({
       },
       success: function (res) {
         if (res.success == true) {
+          util.getUserInfoSobot();
+
           wx.setStorageSync('mobile', mobile)
           if (pageName == 'myhome' || pageName == 'index') {
             wx.setStorageSync("MOBILE", mobile);
