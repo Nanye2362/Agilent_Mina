@@ -39,7 +39,7 @@ Page({
             that.setData({
               meiqiaGroup: meiqiaGroup,
               userType:0,
-              userTypeV:true 
+              userTypeV:true
             })
           }else{
             snV = true;
@@ -85,7 +85,7 @@ Page({
       this.setData({
         'mobile': mobile
       })
-      
+
     },
     backHome: function () {
       util.backHome()
@@ -179,7 +179,7 @@ Page({
       if (e.detail.value == null || e.detail.value == "") {
         this.setData({ nameV: false })
       } else {
-        this.setData({ 
+        this.setData({
           nameV: true,
           name: e.detail.value
          })
@@ -190,7 +190,7 @@ Page({
       if (e.detail.value == null || e.detail.value == "") {
         this.setData({ companyV: false })
       } else {
-        this.setData({ 
+        this.setData({
           companyV: true,
           company: e.detail.value
          })
@@ -202,7 +202,7 @@ Page({
       if (e.detail.value == null || e.detail.value == "") {
         this.setData({ snV: false })
       } else {
-        this.setData({ 
+        this.setData({
           snV: true,
           sn: sn
          })
@@ -219,7 +219,7 @@ Page({
           mobile: mobile
         })
       }
-    },    
+    },
     getother: function (e) {
       this.setData({
         other: e.detail.value
@@ -257,5 +257,10 @@ Page({
       meiqiaGroup: meiqiaGroup
     })
     console.log(this.data.meiqiaGroup);
+  },
+  toHome:function (e) {
+    wx.switchTab({
+      url: '../index/index'
+    })
   }
-}) 
+})

@@ -129,7 +129,7 @@ Page({
           for(var i = 0; i < res.data.length; i++) {
              var n = res.data[i]
              if (n["PMENU_NAME"] == "仪器租赁") {
-               n["transferAction"] = util.sobotTransfer(14)
+               n["transferAction"] = util.sobotTransfer(41)
              } else if (n["PMENU_NAME"] == "融资购买") {
               n["transferAction"] = util.sobotTransfer(14)
              } else if (n["PMENU_NAME"] == "送修及翻新") {

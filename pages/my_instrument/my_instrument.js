@@ -4,12 +4,12 @@ var app = getApp()
 var mobile = ''
 Page({
   data: {
-    /** 
-     * 页面配置 
+    /**
+     * 页面配置
      */
     winWidth: 0,
     winHeight: 0,
-    // tab切换  
+    // tab切换
     currentTab: 0,
     displayState: false,
     InstrumentCount: 0,
@@ -274,7 +274,7 @@ Page({
         console.log(res);
         if (res.success == true) {
           wx.redirectTo({
-            url: '../confirm_info/confirm_info' + '?ProductId=' + res.ProductId + '&ProductDesc=' + res.ProductDesc + '&SerialNo=' + res.SerialNo + '&CpName=' + res.CpName + '&ShipToName=' + res.ShipToName + "&needChat=1" + '&CanRepair=' + res.CanRepair,
+            url: '../confirm_info/confirm_info' + '?ProductId=' + res.ProductId + '&ProductDesc=' + res.ProductDesc + '&SerialNo=' + res.SerialNo + '&CpName=' + res.CpName + '&ShipToName=' + res.ShipToName + "&needChat=1" + '&CanRepair=' + res.CanRepair + '&group=' + JSON.stringify(res.group),
           })
         } else {
           wx.showModal({

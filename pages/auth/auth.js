@@ -124,9 +124,6 @@ Page({
           }
 
         } else {
-          console.log(res.noskip)
-          console.log(res.error_msg)
-
           var err_msg = res.error_msg;
 
           if (err_msg =="foreigner"){

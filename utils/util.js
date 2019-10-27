@@ -35,12 +35,17 @@ function formatNumber(n) {
 let Server = config.Server; //UAT
 
 //sobot传技能客服租逻辑2
-//transferAction: 
+//transferAction:
 //'[{"actionType":"to_group","deciId":"xxx","optionId":"3","spillId":"4"},{"actionType":"to_group","deciId":"xxx","optionId":"4"}]'
 function sobotTransfer(id) {
   var app = getApp();
   var r = app.globalData.sobotData;
-  return RtransferAction(r[id -1])
+  for(var i = 0; i < r.length; i++){
+    if(r[i]['id'] == id){
+      return RtransferAction(r[i])
+    }
+  }
+
 }
 
 //sobot传技能客服组逻辑
@@ -75,11 +80,11 @@ function RtransferAction(r) {
         }
         result.push(o);
       }
-  
+
       var o1 = {};
       var gn_type1 = 'g' + `${n}` + '_type';
       var gn1 = 'g' + `${n}`;
-  
+
       if (r[gn_type1] == '1') {
         o1["actionType"] = "to_group";
         o1["deciId"] = r[gn1];
@@ -91,7 +96,7 @@ function RtransferAction(r) {
         o1["optionId"] = "2";
         o1["spillId"] = '3';
       }
-  
+
       result.push(o1)
       console.log(JSON.stringify(result))
       return JSON.stringify(result)
@@ -214,7 +219,7 @@ function getUserInfo(cb){
   }
 }
 
- 
+
 //获取用户信息头像昵称
 function getUserName() {
   util.NetRequest({

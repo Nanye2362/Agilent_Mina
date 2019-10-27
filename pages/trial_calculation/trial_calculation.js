@@ -1,5 +1,6 @@
 import uCharts from '../../Data/u-charts.min.js';
 var config = require('../../config.js');
+var util = require('../../utils/util.js');
 var _self;
 var canvaColumn = null;
 var app = getApp();
@@ -30,8 +31,10 @@ Page({
       this.setData({
           cWidth:app.globalData.sysInfo.winWidth,
           cHeight:500 / 750 * app.globalData.sysInfo.winHeight,
+          transferAction: util.sobotTransfer(14)
       });
       this.getServerData();
+
   },
     getServerData: function() {
         let Column = { categories: [], series: [] };

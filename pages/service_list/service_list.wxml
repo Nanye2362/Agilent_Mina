@@ -2,21 +2,21 @@
 <!-- history-filter 搜索 -->
 <view class="weui-search-bar " id="searchBar">
     <view class="search-bar-top flex">
-      <input class="searchInput" placeholder="请输入状态、故障描述、服务单号、序列号搜索" 
+      <input class="searchInput" placeholder="请输入状态、故障描述、服务单号、序列号搜索"
       bindinput="bindInput" value="{{inputValue}}" placeholder-class='search-placeholder'/>
       <view class='searchBtn bg-primary flex' bindtap='clickToSearch'>
         <image class="search-bar-icon" src="/images/search.png" mode='widthFix'></image>
-      </view>   
+      </view>
   </view>
 </view>
 
 <view  wx:if="{{dropdown}}"  class="faq_mask" bindtap="clickToHide"></view>
 <!-- tab_filter -->
- <view class="sl_tab flex bg-primary">    
-        <view class="sl_tab_item {{currentTab==0 ? 'on' : ''}}" circular="true" data-current="0" bindtap="swichNav">进行中<span class='circle_icon'>{{unCompleteListL}}</span><view class="{{currentTab==0 ? 'on_tab' : ''}}"></view></view>  
-        <view class="sl_tab_item {{currentTab==1 ? 'on' : ''}}" circular="true" data-current="1" bindtap="swichNav">待确认<span class='circle_icon'>{{unConfirmListL}}</span><view class="{{currentTab==1 ? 'on_tab' : ''}}"></view></view>  
+ <view class="sl_tab flex bg-primary">
+        <view class="sl_tab_item {{currentTab==0 ? 'on' : ''}}" circular="true" data-current="0" bindtap="swichNav">进行中<span class='circle_icon'>{{unCompleteListL}}</span><view class="{{currentTab==0 ? 'on_tab' : ''}}"></view></view>
+        <view class="sl_tab_item {{currentTab==1 ? 'on' : ''}}" circular="true" data-current="1" bindtap="swichNav">待确认<span class='circle_icon'>{{unConfirmListL}}</span><view class="{{currentTab==1 ? 'on_tab' : ''}}"></view></view>
 
-         <view class="sl_tab_item {{currentTab==2 ? 'on' : ''}}" circular="true" data-current="2" bindtap="swichNav">待评价<span class='circle_icon'>{{unsubmmitListL}}</span><view class="{{currentTab==2 ? 'on_tab' : ''}}"></view></view>  
+         <view class="sl_tab_item {{currentTab==2 ? 'on' : ''}}" circular="true" data-current="2" bindtap="swichNav">待评价<span class='circle_icon'>{{unsubmmitListL}}</span><view class="{{currentTab==2 ? 'on_tab' : ''}}"></view></view>
         <!-- <view class="sl_tab_item {{currentTab==3 ? 'on' : ''}}" circular="true" data-current="3" bindtap="swichNav">全部</view>  -->
         <view class="sl_tab_item text-right" style="display: inline; z-index: 1000;">
               <wxs module="m1">
@@ -31,7 +31,7 @@
                     }
                      module.exports.textChange = textChange;
                 </wxs>
-              
+
               <view class="sl_dropdown text-center {{currentTab==3 ? 'on' : ''}}"><span circular="true" data-current="3" bindtap="swichNav">{{m1.textChange(getSn)}}</span><image src="/images/down.png"  bindtap="tagShow"></image></view>
               <view class="{{currentTab==3 ? 'on_tab' : ''}}"></view>
                 <view wx:if="{{dropdown}}" class="faq_select">
@@ -43,13 +43,13 @@
                               {{item.SerialNo}}
                         </view>
                     </block>
-                </view>                
-      
-        
-        </view> 
+                </view>
 
 
-</view> 
+        </view>
+
+
+</view>
 <!-- filter_head -->
 
 <!-- <view class="sl_filter bg-primary">
@@ -76,7 +76,7 @@
                     }
                      module.exports.textChange = textChange;
                 </wxs>
-              
+
               <view class="sl_dropdown text-right fc-blue">{{m1.textChange(getSn)}}<image src="/images/down.png"></image></view>
                 <view wx:if="{{dropdown}}" class="faq_select">
                   <view class="text-overflow" data-id='{{getContactId}}' data-num='' bindtap='clickToChoose'>
@@ -87,8 +87,8 @@
                               {{item.SerialNo}}
                         </view>
                     </block>
-                </view>                
-      
+                </view>
+
         </view>
     </view>
 </view> -->
@@ -96,33 +96,33 @@
 <!-- notification -->
 <!-- <view class="fc-aaa text-center fs14 sl_notifi">以下显示最近三个月记录</view> -->
 <!-- content -->
-    <swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:{{winHeight - 31}}px;" bindchange="bindChange" >      
-        <!-- 进行中 -->   
-        <swiper-item class="flex directionC" style="overflow: scroll;">     
+    <swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:{{winHeight - 31}}px;" bindchange="bindChange" >
+        <!-- 进行中 -->
+        <swiper-item class="flex directionC" style="overflow: scroll;">
                <block wx:for="{{unCompleteList}}" wx:for-item="item">
-                  <template is="sl-template" data="{{item}}"/>
+                  <template is="sl-template" data="{{item,...transferAction}}"/>
               </block>
-        </swiper-item> 
-        <!-- 待确认 -->   
-        <swiper-item class="flex directionC" style="overflow: scroll;">     
+        </swiper-item>
+        <!-- 待确认 -->
+        <swiper-item class="flex directionC" style="overflow: scroll;">
                <block wx:for="{{unConfirmList}}" wx:for-item="item">
-                  <template is="sl-template" data="{{item}}"/>
+                  <template is="sl-template" data="{{item,...transferAction}}"/>
               </block>
-        </swiper-item> 
+        </swiper-item>
 
-        <!-- 待评价 -->   
-        <swiper-item class="flex directionC" style="overflow: scroll;">     
+        <!-- 待评价 -->
+        <swiper-item class="flex directionC" style="overflow: scroll;">
                 <block wx:for="{{unsubmmitList}}" wx:for-item="item">
                   <template is="sl-template" data="{{item}}"/>
               </block>
-        </swiper-item> 
+        </swiper-item>
 
-         <!-- 全部 -->   
+         <!-- 全部 -->
         <swiper-item class="flex directionC" style="overflow: scroll;">
               <block wx:for="{{HistoryResults}}" wx:for-item="item">
                   <template is="sl-template" data="{{item}}"/>
               </block>
-        </swiper-item>  
+        </swiper-item>
     </swiper>
 
 <!-- <block wx:if='{{isSearch}}' wx:for="{{resultList}}" wx:for-item="item">

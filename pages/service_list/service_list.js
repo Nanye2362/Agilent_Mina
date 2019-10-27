@@ -28,7 +28,8 @@ Page({
     TECH: 'N_srid:',
     SN: ';sn:',
     searchValue: '',
-    isFirst:true
+    isFirst:true,
+    transferAction:''
   },
   onShow: function () {
     var that = this;
@@ -66,13 +67,14 @@ Page({
           winHeight: res.windowHeight
         });
       }
+    });
 
+    this.setData({
+      transferAction: util.sobotTransfer(6)
     });
 
     //若有传参，则调取gethistory接口， 若没有传参，调取server-list接口
     if (option.sn) {
-      console.log(option.length)
-      console.log(option)
       this.setData({
         getSn: option.sn,
         getContactId: option.contactId,
@@ -169,7 +171,7 @@ Page({
         'SerialNo': serialNu,
         'index': that.data.currentTab
       },
-      
+
       success: function (res) {
         //history数据分类
         console.log('choose' + res)
@@ -209,6 +211,7 @@ Page({
     for (var i = 0; i < ListAll.length; i++) {
       ListAll[i].TECH = TECH;
       ListAll[i].SN = SN;
+      ListAll[i].transferAction = this.data.transferAction;
       if (ListAll[i].SrStatus == 'WIP' && ListAll[i].notConfirmed == 0) {
         unCompleteList.push(ListAll[i]);
       }
@@ -362,7 +365,7 @@ Page({
     //     var resultList = res.HistoryFilter;
     //     var isSearch=true;
     //     that.setData({
-     
+
     //       resultList: resultList,
     //       isSearch: isSearch
     //     })
@@ -397,4 +400,4 @@ Page({
       url: '../service_details/service_details?SrId=' + SrId
     })
   },
-}) 
+})

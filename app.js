@@ -56,18 +56,6 @@ App({
       }
     });
 
-    setTimeout(function() {
-      util.NetRequest({
-        url: 'wechat-mini/get-global-group',
-        success: function (res) {
-          that.globalData.sobotData = res.data;
-       }
-    });
-    }, 1000)
-
-    util.getUserInfoSobot();
-
-
   //   util.NetRequest({
   //     url: 'wechat-mini/get-global-group',
   //     data:{},
@@ -82,7 +70,6 @@ App({
   onShow: function (res) {
     this.globalData.appShow = true;
 
-    console.log(res);
     //如果已在后台启动并且是客服链接过来的，就打开指定页面
     if (!this.globalData.isFirstLunch && (res.scene == 1081 || res.scene == 1082) && res.path.length != 0) {
       wx.redirectTo({
@@ -105,6 +92,8 @@ App({
     if(that.globalData.syncFlag == false){
       that.syncUserInfo();
     }
+
+    util.getUserInfoSobot();
   },
   onHide:function () {
     this.globalData.appShow=false;
@@ -208,7 +197,6 @@ App({
               that.globalData.isLoading = false;
               console.log(r);
               if (r.success == true) {
-                console.log(that);
                 that.globalData.needCheck = false;
                 wx.setStorageSync('MOBILE', r.mobile);
                 wx.setStorageSync('OPENID', r.openid);
@@ -217,6 +205,15 @@ App({
 
                 that.syncUserInfo();
                 that.globalData.syncFlag = false;
+
+                setTimeout(function() {
+                  util.NetRequest({
+                    url: 'wechat-mini/get-global-group',
+                    success: function (res1) {
+                      that.globalData.sobotData = res1.data;
+                    }
+                  });
+                }, 1000)
               } else if (typeof (r.error_msg) !="undefined"){
                 that.globalData.needCheck = true;
                 that.alertInfo(r.error_msg);
