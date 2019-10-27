@@ -3,10 +3,10 @@
 <swiper indicator-dots="{{indicatorDots}}" indicator-active-color="{{indicatorActiveColor}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" style="width: 100%; height: 408rpx;" circular="{{true}}">
   <block wx:for="{{imgUrls}}" wx:key="{{img}}" wx:for-index='index'>
     <swiper-item bindtap='gotoPoster' data-arg='{{item.arg}}' data-type='{{item.type}}' data-url='{{item.skipUrl}}'>
-      <block wx:if="{{item.type == 1}}" style="width: 100%">
-        <video src="{{item.url}}"  bindtap='gotoNextMiniProgram' style="width: 100%;" loop='true' autoplay='true' object-fit="fill"></video>
+      <block wx:if="{{item.showType == 'video'}}" style="width: 100%">
+        <video src="{{item.url}}"  style="width: 100%;" loop='true' autoplay='true' object-fit="fill"></video>
       </block>
-      <image src="{{item.url}}" class="slide-image" mode='widthFix'></image>
+      <image wx:if="{{item.showType == 'image'}}" src="{{item.url}}" class="slide-image" mode='widthFix'></image>
       <view class='swiper_text'>{{item.text}}</view>
     </swiper-item>
   </block>
@@ -90,7 +90,7 @@
       <view class="fs12 fc-fff">微学堂</view>
     </button>
   </view>
- 
+
 <!--
   <view class="wxform icon_item purple_gradient" style='width:{{iconWidth4}}px' bindtap='skipHtml5Page' >
     <button plain="true" class="formbtn h_service_item" form-type="submit" data-info="elearning" data-click="skipHtml5Page">
@@ -100,7 +100,7 @@
   </view>
 </view>
 -->
-</view> 
+</view>
  <navigator
     url="../second-buy/second-buy"
     open-type="switchTab"

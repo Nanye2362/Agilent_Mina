@@ -25,30 +25,34 @@ Page({
     system_text:"系统升级中，微信在线咨询通道暂时无法使用，您可以点击下方常见问题寻求解决方案，给您带来不便，敬请谅解。",
     Server: config.Server,
     imgUrls:
-    [ 
+    [
       {
         url: config.Server + 'images/20191019/cover.mp4',
         text: 'E起学习 微来可期 | 安捷伦微学堂微信小程序荣耀上线',
-        type: 1,
-        skipUrl: ''
+        type: 'url',
+        skipUrl: 'https://mp.weixin.qq.com/s/n6jMKGgEorx-T9xz49Cpyg',
+        showType:'video'
       },
       {
         url: config.Server + 'images/20191019/banner2.jpg',
         text: '液相变"闲"为宝，成倍提高效率！限时优惠，欢迎围观',
         type:'url',
-        skipUrl: 'https://mp.weixin.qq.com/s/xyKkngaG8TcT8dmZTQUAhg'
+        skipUrl: 'https://mp.weixin.qq.com/s/xyKkngaG8TcT8dmZTQUAhg',
+        showType:'image'
       },
       {
         url: config.Server + 'images/20190822/banner1.jpg',
         text: '火辣八月 特大促销 | 安捷伦Intuvo GC火热租赁持续中',
         type:'url',
         skipUrl: 'http://mp.weixin.qq.com/s?__biz=MjM5Njk2MjI3Mw==&mid=503652875&idx=1&sn=b384ccd7e67bebfe77396a2f05ab0adc&chksm=3d10c8850a674193e1c9fa0652ee583536cdd5eef342e59ad76175b6e4724723021e4803adce#rd',
+        showType:'image'
       },
       {
-          url: config.Server + 'images/20190816/image1.jpg?v=1',
-          text: 'Win7停更，软件分析何去何从?',
-          type:'url',
-          skipUrl: 'http://mp.weixin.qq.com/s?__biz=MjM5Njk2MjI3Mw==&mid=503652870&idx=1&sn=ef912f661357c447847d8523e3d3c14e&chksm=3d10c8880a67419e8f3a311b8f200f7d12be7e544740f3e466f6956ea390b832a30c3ae1754a#rd',
+        url: config.Server + 'images/20190816/image1.jpg?v=1',
+        text: 'Win7停更，软件分析何去何从?',
+        type:'url',
+        skipUrl: 'http://mp.weixin.qq.com/s?__biz=MjM5Njk2MjI3Mw==&mid=503652870&idx=1&sn=ef912f661357c447847d8523e3d3c14e&chksm=3d10c8880a67419e8f3a311b8f200f7d12be7e544740f3e466f6956ea390b832a30c3ae1754a#rd',
+        showType:'image'
       },
       {
         url: config.Server + 'images/20190816/image2.jpg?v=1',
@@ -56,6 +60,7 @@ Page({
         type:'mini',
         arg:'1',
         skipUrl: '../second-buy/second-buy',
+        showType:'image'
       },
       {
         url: config.Server + 'images/20190816/image3.jpg?v=1',
@@ -63,6 +68,7 @@ Page({
         type: 'mini',
         arg:'5',
         skipUrl: '../second-buy/second-buy',
+        showType:'image'
       },
       {
         url: config.Server + 'images/20190816/image4.jpg?v=1',
@@ -70,6 +76,7 @@ Page({
         type: 'mini',
         arg:'0',
         skipUrl: '../second-buy/second-buy',
+        showType:'image'
       },
       {
         url: config.Server + 'images/20190816/image5.jpg?v=1',
@@ -77,6 +84,7 @@ Page({
         type: 'mini',
         arg:'2',
         skipUrl: '../second-buy/second-buy',
+        showType:'image'
       }
       // {
       //   url: config.Server + 'images/wechat_slider/wechat-20190606.jpg?version=20190606',
@@ -279,8 +287,7 @@ Page({
 /*
 **  我要报修跳转
 */
-gotoNextMiniProgram: function(event){
-  console.log("哈哈哈")
+/*gotoNextMiniProgram: function(event){
   wx.navigateToMiniProgram({
     appId: 'wx6907f6b39946942d',
     path: 'pages/welcome/welcome',
@@ -288,7 +295,7 @@ gotoNextMiniProgram: function(event){
       // 打开成功
     }
   })
-},
+},*/
 
   clickToRepair: function (event) {
 
@@ -362,7 +369,7 @@ gotoNextMiniProgram: function(event){
       }
     })
   },
-  
+
   skipHtml5Page: function (e) {
     wx.setStorage({
       key: "openHtmlUrl",
