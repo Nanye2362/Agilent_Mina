@@ -6,7 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    head_img_url: '../../images / no - avatar.png',
+    head_img_url: '../../images/no-avatar.png',
     InstrumentCount: 0,
     NewNotificationCount: 0,
   },
@@ -14,17 +14,25 @@ Page({
   gotoNext: function(event){
     var is_auth = this.data.is_auth;
     var needauth = event.currentTarget.dataset.needauth;
-    console.log(needauth)
     if (needauth==0 && is_auth==0){
       wx.navigateTo({
         url: '../auth/auth?pageName=myhome'
       })
     } else {
-      console.log(event.currentTarget.dataset.url + '?pageName=myhome');
       wx.navigateTo({
         url: event.currentTarget.dataset.url + '?pageName=myhome'
       })
-    }    
+    }
+  },
+
+  gotoNextMiniProgram: function(event){
+    wx.navigateToMiniProgram({
+      appId: 'wx6907f6b39946942d',
+      path: 'pages/welcome/welcome',
+      success(res) {
+        // 打开成功
+      }
+    })
   },
 
   //解绑
@@ -34,7 +42,6 @@ Page({
       content: '请注意，所有的记录都将被删除，您确认要解除绑定吗？',
       success: function (sm) {
         if (sm.confirm) {
-          console.log('点击确认')
           //请求后台接口
           util.NetRequest({
             url: 'auth/user-unbind',
@@ -43,13 +50,9 @@ Page({
               ContactGuid: e.currentTarget.dataset.contact_guid
             },
             success: function (res) {
-              console.log(res);
               if (res.success == true) {
                 wx.removeStorageSync('MOBILE');
                 util.getUserInfoSobot();
-                
-
-
                 wx.showModal({
                   title: '解绑成功',
                   content: '您已解绑成功',
