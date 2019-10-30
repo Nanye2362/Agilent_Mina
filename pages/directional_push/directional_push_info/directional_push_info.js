@@ -1,13 +1,15 @@
 var app = getApp();
 var config = require('../../../config');
+var util = require('../../../utils/util.js');
 Page({
 
     /**
      * 页面的初始数据
      */
     data: {
-        isShow:true,
+        isShow:false,
         srId:'',
+        transferAction:'',
     },
 
     /**
@@ -15,8 +17,9 @@ Page({
      */
     onLoad: function (options) {
         app.mta.Page.init();
+
         this.setData({
-            srId:options.srId
+            srId:options.srId,
         })
     },
 
@@ -36,6 +39,21 @@ Page({
             width: (sysinfo.winWidth * 0.7) +'px',
             height:(sysinfo.winWidth * 0.7  * 1.1)+'px'
         })
+        var that = this;
+        util.NetRequest({
+            url: 'wechat-mini/get-global-group',
+            success: function (res) {
+                app.globalData.sobotData = res.data;
+                util.getUserInfoSobot(function () {
+                    that.setData({
+                        isShow:true
+                    });
+                });
+                that.setData({
+                    transferAction:util.sobotTransfer(6)
+                });
+            }
+        });
     },
     MtaReport: function () {
         console.log(1);

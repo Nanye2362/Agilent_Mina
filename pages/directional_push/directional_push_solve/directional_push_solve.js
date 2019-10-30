@@ -6,7 +6,7 @@ Page({
      * 页面的初始数据
      */
     data: {
-        case1:true,
+        case1:false,
         isConfirm:false,
         number:'',
         content:'',
@@ -56,7 +56,21 @@ Page({
                     })
                 }
             }
-        })
+        });
+        util.NetRequest({
+            url: 'wechat-mini/get-global-group',
+            success: function (res) {
+                app.globalData.sobotData = res.data;
+                util.getUserInfoSobot(function () {
+                    _this.setData({
+                        case1:true
+                    });
+                });
+                _this.setData({
+                    transferAction:util.sobotTransfer(6)
+                });
+            }
+        });
     },
     MtaReport: function () {
         app.mta.Event.stat("meqia", { "group": this.group });

@@ -18,19 +18,19 @@
 
 <view  wx:if='{{ISENGINEER > -1}}' style='overflow: hidden'>
 
-  
+
   <!-- engineer -->
   <view wx:if='{{roleInfo.ISENGINEER>0}}' class='CN'>
     <!-- tab -->
-    <view class="sl_tab flex">    
-        <view class="sl_tab_item  {{currentTab==0 ? 'on' : ''}}" circular="true" data-current="0" bindtap="swichNav">软件安装信息</view>  
+    <view class="sl_tab flex">
+        <view class="sl_tab_item  {{currentTab==0 ? 'on' : ''}}" circular="true" data-current="0" bindtap="swichNav">软件安装信息</view>
         <view class="sl_tab_item  {{currentTab==1 ? 'on' : ''}}" circular="true" data-current="1" bindtap="swichNav">维修记录</view>
-    </view> 
+    </view>
 
     <!-- content -->
-    <swiper current="{{currentTab}}" class="swiper-box" duration="300"  bindchange="bindChange" style="height:{{winHeight - 31}}px;"> 
+    <swiper current="{{currentTab}}" class="swiper-box" duration="300"  bindchange="bindChange" style="height:{{winHeight - 31}}px;">
       <!-- customer_informations -->
-      <swiper-item> 
+      <swiper-item>
         <view class='flex directionC swiperContent'>
 
           <!-- title -->
@@ -74,7 +74,7 @@
           <!-- contactPerson -->
 
 
-          
+
 
           <!-- title -->
           <view class='flex cnTitle'>
@@ -151,10 +151,10 @@
 
 
 
-        </view> 
+        </view>
       </swiper-item>
-      <!-- repair_records --> 
-      <swiper-item> 
+      <!-- repair_records -->
+      <swiper-item>
         <view id='record'>
           <block wx:for="{{mrInfo}}" wx:for-item="item" wx:key='unique' wx:for-index="idx">
             <view class='record'>
@@ -163,24 +163,24 @@
                 <view class="flex directionC recordDetails">
                   <view class="flex">
                       <view class="fs14 {{idx==0?'fc-blue':''}}">{{item.SubmitTime}}</view>
-                  </view> 
+                  </view>
                   <view class="flex">
                     <view class=" fs13 rd-l">维修人：</view>
                     <view class=" fs13 rd-r">{{item.SubmitPerson}}</view>
-                  </view>  
+                  </view>
                   <view class="flex">
                       <view class=" fs13 rd-l">维修记录：</view>
                       <view class=" fs13 rd-r">{{item.MaintenanceContent}}</view>
-                  </view>              
+                  </view>
                 </view>
                 <!-- recordLabel -->
-                <view class='{{idx==0?"firstLabel":"recordLabel"}}' ></view>        
+                <view class='{{idx==0?"firstLabel":"recordLabel"}}' ></view>
                 <view class='{{idx==0?"secondLabel":""}}' ></view>
               </view>
             </view>
           </block>
         </view>
-        
+
         <!-- addNew_Btn -->
         <button class="repair_btn btn btn-primary" bindtap="Popup">新增维修记录</button>
       </swiper-item>
@@ -243,10 +243,12 @@
     </view>
     </block>
     <!-- fileList -->
+      <view wx:if="{{isShow}}">
        <meiqiaBtn bindmeiqiaTap="isWorkTime" btn-class="sn_btn btn btn-primary" handle-alert="{{false}}" session-from="{{Soft}}|transferAction={{transferAction}}">
         软件咨询 </meiqiaBtn>
          <meiqiaBtn bindmeiqiaTap="isWorkTimee" btn-class="sn_btn btn btn-primary" handle-alert="{{false}}" session-from="{{Hard}}|transferAction={{transferAction}}">
         仪器咨询 </meiqiaBtn>
+      </view>
   </view>
 </view>
 

@@ -19,7 +19,8 @@ Page({
     isDown: false,
     percent: 0,
     inputValue: '',
-    transferAction:''
+    transferAction:'',
+    isShow:false
   },
 
   /**
@@ -27,15 +28,22 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
+
     util.NetRequest({
       url: 'wechat-mini/get-global-group',
       success: function (res) {
         app.globalData.sobotData = res.data;
+        util.getUserInfoSobot(function () {
+          that.setData({
+            isShow:true
+          });
+        });
         that.setData({
           transferAction:util.sobotTransfer(1)
         });
       }
     });
+
 
     var scene = decodeURIComponent(options.scene)
 

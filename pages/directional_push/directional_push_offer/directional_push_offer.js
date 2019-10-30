@@ -21,6 +21,7 @@ Page({
         textContent:'',
         dpId:'',
         titleContent:'',
+        transferAction:''
     },
 
     /**
@@ -52,8 +53,7 @@ Page({
                             objectId: res.data.objectid,
                             isConfirm:res.data.isConfirm,
                             group:res.data.group,
-                            pushId:_this.pushId,
-                            isShow:true
+                            pushId:_this.pushId
                         });
                         if(res.data.isConfirm == 1){
                             _this.setData({
@@ -96,6 +96,21 @@ Page({
                 }
             })
         }
+
+        util.NetRequest({
+            url: 'wechat-mini/get-global-group',
+            success: function (res) {
+                app.globalData.sobotData = res.data;
+                util.getUserInfoSobot(function () {
+                    _this.setData({
+                        isShow:true
+                    });
+                });
+                _this.setData({
+                    transferAction:util.sobotTransfer(4)
+                });
+            }
+        });
     },
 
     /**

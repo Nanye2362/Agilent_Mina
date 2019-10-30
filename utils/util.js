@@ -14,7 +14,7 @@ function formatTime(date) {
   return [year, month, day].map(formatNumber).join('/') + ' ' + [hour, minute, second].map(formatNumber).join(':')
 }
 
-function getUserInfoSobot() {
+function getUserInfoSobot(fun) {
   var that=this;
   setTimeout(function () {
     that.NetRequest({
@@ -22,6 +22,9 @@ function getUserInfoSobot() {
       success: function (res) {
         wx.setStorageSync('sobot_nickname', res.userinfo.name);
         wx.setStorageSync('sobot_avatarUrl', res.userinfo.avatarUrl);
+        if(typeof(fun)=="function"){
+           fun();
+        }
       }
     })
   }, 1000)

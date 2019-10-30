@@ -15,6 +15,8 @@ Page({
     server: config.Server,
     TECH: 'N_srid:',
     SN: ';sn:',
+    isShow:false,
+    transferAction:''
   },
 
   /**
@@ -26,20 +28,32 @@ Page({
     util.NetRequest({
       url: 'site-mini/service-details',
       data: {
-        'SrId': options.SrId,  
+        'SrId': options.SrId,
       },
       success: function (res) {
         //history数据分类
-        console.log(res);
-        console.log(res.SrHistoryDetails);
-        console.log(res.SrHistoryDetails.SrHistory);
         that.setData({
           details: res.SrHistoryDetails,
           history: res.SrHistoryDetails.SrHistory
         })
       }
-    })
-    
+    });
+    var _this = this;
+    util.NetRequest({
+      url: 'wechat-mini/get-global-group',
+      success: function (res) {
+        app.globalData.sobotData = res.data;
+        util.getUserInfoSobot(function () {
+          _this.setData({
+            isShow:true
+          });
+        });
+        _this.setData({
+          transferAction:util.sobotTransfer(6)
+        });
+      }
+    });
+
   },
 
   /**
