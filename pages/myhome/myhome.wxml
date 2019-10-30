@@ -9,7 +9,7 @@
       <view class="mc_avatar">
         <view class='mc_avatar_con'>
           <image src="{{head_img_url}}"></image>
-        </view>        
+        </view>
       </view>
       <!-- 信息 -->
       <view class="mc_info">
@@ -22,7 +22,7 @@
       <!-- 修改信息 -->
       <view class='mc_edit text-center' bindtap="gotoNext" data-url="../personal_info/personal_info?head_img_url={{head_img_url}}&name={{name}}&sex=1&mobile={{mobile}}&company={{company}}&email={{email}}">
         <image src='/images/arrow-r.png' mode='widthFix'></image>
-      </view>     
+      </view>
     </view>
     <!-- 解绑 -->
     <view class='mh_func flex'>
@@ -34,8 +34,8 @@
         <image src='/images/unbind.png' mode='widthFix'></image>
         <text class='fs12'>解绑</text>
       </view>
-    </view>  
-    
+    </view>
+
   </block>
   <!-- 未认证 -->
   <block wx:elif="{{is_auth == 0 || is_auth == null}}">
@@ -46,7 +46,7 @@
         <image class='mc_id_btn_img' src="../../images/binded.png"  mode='widthFix'></image>
         <text>身份认证</text>
       </view>
-    </view>   
+    </view>
   </block>
 </view>
 
@@ -57,8 +57,8 @@
     <view class="mc_icon">
       <view class="mc_icon_con flex alignc blue">
         <image src="/images/myins.png" class="mc_icon_img"></image>
-      </view>      
-    </view>   
+      </view>
+    </view>
     <view class="flex directionC mc_con">
       <text class="mc_con_title">我的仪器</text>
       <view wx:if='{{is_auth==0||is_auth==null}}' class="fc-aaa fs12">请先身份认证后查看当前仪器</view>
@@ -68,15 +68,15 @@
     </view>
     <view class="mc_arrow text-right">
       <image src="/images/arrow-r.png" class="mc_arrow_img" mode='widthFix'></image>
-    </view>   
+    </view>
   </view>
   <!-- ==========我的预约============ -->
   <view class="mc_items flex alignc" bindtap="gotoNext" data-url="../orderList/orderList" data-needauth='0'>
     <view class="mc_icon">
       <view class="mc_icon_con flex alignc blue">
         <image src="/images/install.png" class="mc_icon_img"></image>
-      </view>      
-    </view>   
+      </view>
+    </view>
     <view class="flex directionC mc_con">
       <text class="mc_con_title">我的预约</text>
       <view wx:if='{{is_auth==0||is_auth==null}}' class="fc-aaa fs12">近期我的服务预约记录</view>
@@ -86,15 +86,15 @@
     </view>
     <view class="mc_arrow text-right">
       <image src="/images/arrow-r.png" class="mc_arrow_img" mode='widthFix'></image>
-    </view>   
+    </view>
   </view>
   <!-- ==========服务历史============ -->
   <view class="mc_items flex alignc" bindtap="gotoNext" data-url="../service_list/service_list" data-needauth='0'>
     <view class="mc_icon">
       <view class="mc_icon_con flex alignc green">
         <image src="/images/history.png" class="mc_icon_img"></image>
-      </view>      
-    </view>   
+      </view>
+    </view>
     <view class="flex directionC mc_con">
       <text class="mc_con_title">服务历史</text>
       <view class="fc-aaa fs12">近期服务的历史记录</view>
@@ -102,51 +102,37 @@
     <view class="mc_arrow text-right">
       <image src="/images/arrow-r.png" class="mc_arrow_img" mode='widthFix'></image>
     </view>
-    <view class='newServiceHistory fs12' wx:if='{{NewNotificationCount==0?false:true}}'>{{NewNotificationCount}}</view>   
+    <view class='newServiceHistory fs12' wx:if='{{NewNotificationCount==0?false:true}}'>{{NewNotificationCount}}</view>
   </view>
     <!-- ==========我的课程============ -->
-  <!-- <view class="mc_items flex alignc" bindtap="gotoNext" data-needauth='1'>
-    <view class="mc_icon">
-      <view class="mc_icon_con flex alignc purple">
-        <image src="/images/myclass.png" class="mc_icon_img"></image>
-      </view>      
-    </view>   
-    <view class="flex directionC mc_con">
-      <text class="mc_con_title">我的课程</text>
-      <text class="fc-aaa fs12">在线学习课程入口</text>
-    </view>
-    <view class="mc_arrow text-right">
-      <image src="/images/arrow-r.png" class="mc_arrow_img" mode='widthFix'></image>
-    </view>   
-  </view> -->
   <!-- ==========报修指南============ -->
   <view class="mc_items flex alignc" bindtap="gotoNext" data-url="../service_guide/service_guide" data-needauth='1'>
     <view class="mc_icon">
       <view class="mc_icon_con flex alignc grass">
         <image src="/images/guideline.png" class="mc_icon_img"></image>
-      </view>      
-    </view>   
+      </view>
+    </view>
     <view class="flex directionC mc_con">
       <text class="mc_con_title">报修指南</text>
       <text class="fc-aaa fs12">小程序报修服务指南</text>
     </view>
     <view class="mc_arrow text-right">
       <image src="/images/arrow-r.png" class="mc_arrow_img" mode='widthFix'></image>
-    </view>   
+    </view>
   </view>
   <!-- ==========送修指南============ -->
   <view class="mc_items flex alignc" bindtap="gotoNext" data-url="../repair/repair" data-needauth='1'>
     <view class="mc_icon">
       <view class="mc_icon_con flex alignc grass">
         <image src="/images/sendforrepair.png" class="mc_icon_img"></image>
-      </view>      
-    </view>   
+      </view>
+    </view>
     <view class="flex directionC mc_con">
       <text class="mc_con_title">送修指南</text>
       <text class="fc-aaa fs12">小程序送修服务指南</text>
     </view>
     <view class="mc_arrow text-right">
       <image src="/images/arrow-r.png" class="mc_arrow_img" mode='widthFix'></image>
-    </view>   
+    </view>
   </view>
 </view>
