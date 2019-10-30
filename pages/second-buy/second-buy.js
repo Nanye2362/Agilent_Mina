@@ -142,11 +142,12 @@ Page({
               n["transferAction"] = util.sobotTransfer(18)
             } else if (n["PMENU_NAME"] == "安捷伦大学") {
               n["transferAction"] = util.sobotTransfer(19)
-            }
+            } else if (n["PMENU_NAME"] == "方法与应用") {
+               n["transferAction"] = util.sobotTransfer(18)
+             }
             list.push(n)
           }
           console.log('---------------------------')
-          console.log(list)
 
           wx.loadFontFace({
             family: 'iconfont',
