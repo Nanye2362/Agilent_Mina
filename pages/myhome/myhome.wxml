@@ -104,7 +104,21 @@
     </view>
     <view class='newServiceHistory fs12' wx:if='{{NewNotificationCount==0?false:true}}'>{{NewNotificationCount}}</view>
   </view>
-    <!-- ==========我的课程============ -->
+  <!-- ==========我的课程============ -->
+   <view class="mc_items flex alignc" bindtap="gotoNextMiniProgram" data-needauth='1'>
+    <view class="mc_icon">
+      <view class="mc_icon_con flex alignc purple">
+        <image src="/images/myclass.png" class="mc_icon_img"></image>
+      </view>
+    </view>
+    <view class="flex directionC mc_con">
+      <text class="mc_con_title">我的课程</text>
+      <text class="fc-aaa fs12">在线学习课程入口</text>
+    </view>
+    <view class="mc_arrow text-right">
+      <image src="/images/arrow-r.png" class="mc_arrow_img" mode='widthFix'></image>
+    </view>
+  </view>
   <!-- ==========报修指南============ -->
   <view class="mc_items flex alignc" bindtap="gotoNext" data-url="../service_guide/service_guide" data-needauth='1'>
     <view class="mc_icon">
