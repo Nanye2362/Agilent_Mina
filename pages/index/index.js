@@ -284,19 +284,6 @@ Page({
     }
   },
 
-/*
-**  我要报修跳转
-*/
-/*gotoNextMiniProgram: function(event){
-  wx.navigateToMiniProgram({
-    appId: 'wx6907f6b39946942d',
-    path: 'pages/welcome/welcome',
-    success(res) {
-      // 打开成功
-    }
-  })
-},*/
-
   clickToRepair: function (event) {
 
     var app = getApp();

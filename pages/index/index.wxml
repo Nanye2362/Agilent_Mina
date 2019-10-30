@@ -91,23 +91,12 @@
     </button>
   </view>
 
-<!--
-  <view class="wxform icon_item purple_gradient" style='width:{{iconWidth4}}px' bindtap='skipHtml5Page' >
-    <button plain="true" class="formbtn h_service_item" form-type="submit" data-info="elearning" data-click="skipHtml5Page">
-      <image src="/images/myclass.png"></image>
-      <view class="fs12 fc-fff">培训中心</view>
-    </button>
-  </view>
-</view>
--->
 </view>
  <navigator
     url="../second-buy/second-buy"
     open-type="switchTab"
   >
-<!-- <view class="banner_big">
-  <image src="{{Server}}/images/mini/banner_big.png"></image>
-</view> -->
+
 <view class="banner_big">
   <image src="/images/Group6.png"></image>
 </view>
