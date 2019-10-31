@@ -75,13 +75,18 @@ Component({
   },
   observers: {
     'sessionFrom': function (value) {
-      
+      var _this = this;
       var strArr = value.split('|');
 
       strArr[0] = '"' + strArr[0].replace(/\"/g, "")+'"'
-      this.setData({
-        sessionFromFormat: strArr.join("|")
-      })
+
+        _this.setData({
+          sessionFromFormat: strArr.join("|")
+        });
+
+
+
+      console.log('session:'+this.data.sessionFromFormat);
     },
   }
 
