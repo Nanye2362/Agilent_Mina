@@ -1,5 +1,6 @@
 // pages/myhome/myhome.js
 var util = require('../../utils/util.js');
+var config = require('../../config.js');
 Page({
 
   /**
@@ -27,7 +28,7 @@ Page({
 
   gotoNextMiniProgram: function(event){
     wx.navigateToMiniProgram({
-      appId: 'wx6907f6b39946942d',
+      appId: config.elearningAppid,
       path: 'pages/welcome/welcome',
       success(res) {
         // 打开成功

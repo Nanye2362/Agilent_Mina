@@ -12,10 +12,12 @@ var config = {
 
 };
 
-if (config.En =="DEV"){
+if (config.En =="PRD"){
   config.Server ="https://qa.wechat.service.agilent.com/";
+  config.elearningAppid = "wx4026dcacf268c5b2";
 }else{
   config.Server = "https://prd.wechat.service.agilent.com/";
+  config.elearningAppid = "wx6907f6b39946942d";
 }
 
 module.exports = config

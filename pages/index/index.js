@@ -27,7 +27,7 @@ Page({
     imgUrls:
     [
       {
-        url: config.Server + 'images/20191019/cover.mp4',
+        url: config.Server + 'images/20191019/cover.mp4?v=1',
         text: 'E起学习 微来可期 | 安捷伦微学堂微信小程序荣耀上线',
         type: 'url',
         skipUrl: 'https://mp.weixin.qq.com/s/n6jMKGgEorx-T9xz49Cpyg',
@@ -335,7 +335,7 @@ Page({
    */
   gotoNextMiniProgram: function(event){
     wx.navigateToMiniProgram({
-      appId: 'wx6907f6b39946942d',
+      appId: config.elearningAppid,
       path: 'pages/welcome/welcome',
       success(res) {
         // 打开成功
