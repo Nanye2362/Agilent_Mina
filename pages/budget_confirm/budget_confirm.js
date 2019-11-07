@@ -50,11 +50,17 @@ Page({
     //腾讯mat统计开始
     var app = getApp();
     var that = this;
-    this.setData({
-      nickName: app.globalData.nickName,
-      avatarUrl: app.globalData.avatarUrl,
-      transferAction: util.sobotTransfer(4)
+    util.NetRequest({
+      url: 'wechat-mini/get-global-group',
+      success: function (res) {
+        app.globalData.sobotData = res.data;
+        util.getUserInfoSobot();
+        that.setData({
+          transferAction:util.sobotTransfer(4)
+        });
+      }
     });
+
     app.mta.Page.init();
     //腾讯mat统计结束
     console.log(options);

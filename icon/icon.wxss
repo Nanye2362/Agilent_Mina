@@ -7,69 +7,73 @@
   -moz-osx-font-smoothing: grayscale;
 }
 .icon-0:before{
-  content: '\e615';
+  content: '\e61a';
+
   color:rgba(0, 133, 213,0.3);
 }
 .on-0:before{
-  content: '\e615';
+  content: '\e61a';
+
   color:rgba(0, 133, 213,1);
 }
 .icon-1:before{
-  content: '\e61b';
+  content: '\e615';
   color:rgba(0, 169, 224, 0.3);
 }
 .on-1:before{
-  content: '\e61b';
+  content: '\e615';
   color:rgba(0, 169, 224, 1);
 }
 .icon-2:before{
-  content: '\e616';
+  content: '\e61b';
   color:rgba(0, 133, 34, 0.3);
 }
 .on-2:before{
-  content: '\e616';
+  content: '\e61b';
   color:rgba(0, 133, 34, 1);
 }
-.icon-6:before{
-  content: '\e61c';
-  color: rgba(214, 0, 28, 0.3);
-}
-.on-6:before{
-  content: '\e61c';
-  color: rgba(214, 0, 28, 1)
-}
 .icon-3:before{
-  content: '\e617';
+  content: '\e616';
   color:rgba(132, 189, 0, 0.3);
 }
 .on-3:before{
-  content: '\e617';
+  content: '\e616';
   color:rgba(132, 189, 0, 1);
 }
 .icon-4:before{
-  content: '\e618';
+  content: '\e617';
   color:rgba(242, 169, 0, 0.3);
 }
 .on-4:before{
-  content: '\e618';
+  content: '\e617';
   color:rgba(242, 169, 0, 1);
 }
 .icon-5:before{
-  content: '\e619';
+  content: '\e618';
   color:rgba(232, 119, 34, 0.3);
 }
 .on-5:before{
-  content: '\e619';
+  content: '\e618';
   color:rgba(232, 119, 34, 1);
 }
+.icon-6:before{
+  content: '\e619';
+  color: rgba(214, 0, 28, 0.3);
+}
+.on-6:before{
+  content: '\e619';
+  color: rgba(214, 0, 28, 1)
+}
 .icon-7:before{
-  content: '\e61a';
+  content: '\e61c';
   color:rgba(128, 39, 108, 0.3);
 }
 .on-7:before{
-  content: '\e61a';
+  content: '\e61c';
   color:rgba(128, 39, 108, 1);
 }
+
+/*
 .icon-8:before{
   content: '\e61c';
   color:rgba(214, 0, 28, 0.3);
@@ -78,4 +82,5 @@
   content: '\e61c';
   color:rgba(214, 0, 28,  1);
 }
+*/
 

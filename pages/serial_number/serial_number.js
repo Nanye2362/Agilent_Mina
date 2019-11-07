@@ -23,7 +23,8 @@ Page({
     SerialNumber:0,
     nickName: '',
     avatarUrl: '',
-    transferAction: ''
+    transferAction: '',
+    transferAction1: '',
   },
   shClose:function(){
     this.setData({
@@ -45,8 +46,6 @@ Page({
     }else{
       console.log(mobile);
     }
-
-    console.log(options);
 
     if (typeof (options.GroupID) !='undefined'){
       this.setData({
@@ -95,10 +94,8 @@ Page({
     //   }
     // })
 
-
     this.setData({
-       nickName: app.globalData.nickName,
-       avatarUrl: app.globalData.avatarUrl
+      transferAction1:util.sobotTransfer(3)
     });
   },
 

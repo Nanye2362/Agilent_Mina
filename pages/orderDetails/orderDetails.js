@@ -40,6 +40,7 @@ Page({
   data: {
     orderArry:orderArry,
     orderType:"",
+    transferAction: '',
   },
 
   /**
@@ -50,7 +51,8 @@ Page({
     console.log(options);
 
     this.setData({
-      orderType: options.orderType
+      orderType: options.orderType,
+      transferAction: util.sobotTransfer(5)
     })
     util.NetRequest({
       url: 'site-mini/appointment-details',
@@ -59,7 +61,7 @@ Page({
         orderType: options.orderType,
       },
       success: function (res) {
-        var details = res.AppointmentDetails;        
+        var details = res.AppointmentDetails;
         console.log(details);
         that.setData({
           orderDetails: details,
@@ -77,48 +79,48 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-  
+
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-  
+
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-  
+
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-  
+
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-  
+
   },
 
   /**
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-  
+
   }
 })

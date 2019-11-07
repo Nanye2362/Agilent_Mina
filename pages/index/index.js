@@ -27,11 +27,18 @@ Page({
     imgUrls:
     [
       {
-        url: config.Server + 'images/20191019/cover.mp4?v=1',
+        url: config.Server + 'images/20191106/banner1.jpg',
+        text: '【双十一巨惠】培训课程低至5折，双重惊喜，“课”不容缓',
+        type: 'url',
+        skipUrl: 'https://mp.weixin.qq.com/s/c7v21BCCUN3P31wRd3vBpw',
+        showType:'image'
+      },
+      {
+        url: config.Server + 'images/20191019/cover.gif?v=1',
         text: 'E起学习 微来可期 | 安捷伦微学堂微信小程序荣耀上线',
         type: 'url',
         skipUrl: 'https://mp.weixin.qq.com/s/n6jMKGgEorx-T9xz49Cpyg',
-        showType:'video'
+        showType:'image'
       },
       {
         url: config.Server + 'images/20191019/banner2.jpg',

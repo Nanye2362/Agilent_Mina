@@ -4,9 +4,9 @@
   <block wx:for="{{imgUrls}}" wx:key="{{img}}" wx:for-index='index'>
     <swiper-item bindtap='gotoPoster' data-arg='{{item.arg}}' data-type='{{item.type}}' data-url='{{item.skipUrl}}'>
       <block wx:if="{{item.showType == 'video'}}" style="width: 100%">
-        <video src="{{item.url}}"  style="width: 100%;" loop='true' autoplay='true' object-fit="fill"></video>
+        <video src="{{item.url}}"  style="width: 100%;height: 408rpx;" loop='true' autoplay='true' object-fit="fill" class="slide-image"></video>
       </block>
-      <image wx:if="{{item.showType == 'image'}}" src="{{item.url}}" class="slide-image" mode='widthFix'></image>
+      <image wx:if="{{item.showType == 'image'}}" src="{{item.url}}" class="slide-image" mode='widthFix' style="height: 408rpx;"></image>
       <view class='swiper_text'>{{item.text}}</view>
     </swiper-item>
   </block>
@@ -103,7 +103,8 @@
     open-type="switchTab"
   >
  <view class="banner_big">
-     <image src="/images/Group6.png"></image>
- </view>
+  <image src="/images/Group6.png"></image>
+</view>
+
 </navigator>
  <!-- <button bindtap='clearStorage'>清缓存</button>  -->

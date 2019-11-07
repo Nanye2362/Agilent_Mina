@@ -21,14 +21,14 @@
 </view>
 <button class="sn_btn btn btn-primary" data-contactguid="{{ContactGuid}}" data-contactid="{{ContactId}}" data-accountguid="{{AccountGuid}}" data-accountid="{{AccountId}}" bindtap='clickToSubmit'>确定</button>
 
-<!-- 上传了的图片 --> 
-<image src="{{tempFilePaths }}" mode="aspecFill" style="width: 100%; height: 450rpx; display: none"></image> 
+<!-- 上传了的图片 -->
+<image src="{{tempFilePaths }}" mode="aspecFill" style="width: 100%; height: 450rpx; display: none"></image>
 
 
 <!-- gotoChat -->
 <view class="cs_con" hidden="{{!chat}}">
     <view class="text-center fs12">如果您有任何问题，请
-      <meiqiaBtn bindmeiqiaTap="MtaReport" btn-class="fc-blue bc_chat_btn btn-meiqia" handle-alert="{{false}}" meiqia-group="{{meqiaGroup}}" session-from="{{NONTECH+inputValue}}|transferAction={{transferAction}}"><image src="/images/wechat_b.png"></image>发起会话</meiqiaBtn> 
+      <meiqiaBtn bindmeiqiaTap="MtaReport" btn-class="fc-blue bc_chat_btn btn-meiqia" handle-alert="{{false}}" meiqia-group="{{meqiaGroup}}" session-from="{{NONTECH+inputValue}}|transferAction={{transferAction1}}"><image src="/images/wechat_b.png"></image>发起会话</meiqiaBtn>
 </view>
 </view>
 
@@ -43,8 +43,8 @@
       </view>
       <view class="shLoading-btn-panel">
           <view class="shLoading-btn-cancel" bindtap="">发起会话
-           <!-- <meiqiaBtn bindmeiqiaTap="MtaReportt" btn-class="shLoading-btn-contact" handle-alert="{{false}}" meiqia-group="{{meqiaGroup}}" session-from="{{NONTECH+inputValue}}"></meiqiaBtn> -->  
-           <meiqiaBtn bindmeiqiaTap="MtaReportt" btn-class="shLoading-btn-contact" handle-alert="{{false}}" meiqia-group="{{meqiaGroup}}" session-from="{{NONTECH+inputValue}}|transferAction={{transferAction}}"></meiqiaBtn>     
+           <!-- <meiqiaBtn bindmeiqiaTap="MtaReportt" btn-class="shLoading-btn-contact" handle-alert="{{false}}" meiqia-group="{{meqiaGroup}}" session-from="{{NONTECH+inputValue}}"></meiqiaBtn> -->
+           <meiqiaBtn bindmeiqiaTap="MtaReportt" btn-class="shLoading-btn-contact" handle-alert="{{false}}" meiqia-group="{{meqiaGroup}}" session-from="{{NONTECH+inputValue}}|transferAction={{transferAction}}"></meiqiaBtn>
            </view>
           <view class="shLoading-btn-ok" bindtap="shClose">重新上传</view>
       </view>

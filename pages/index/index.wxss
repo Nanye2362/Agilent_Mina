@@ -14,10 +14,10 @@ page{
     line-height: 60rpx;
     color: #fff;
     text-indent: 20rpx;
-    font-size: 30rpx;
+    font-size: 28rpx;
 }
 
-.h_alert_img image{ width: 30rpx; height: 30rpx; }
+.h_alert_img image{ width: 30rpx; height: 30rpx;}
 .h_service_item {
   display: block;
   width: 100%;
