@@ -296,6 +296,18 @@ Page({
     var accountguid = event.currentTarget.dataset.accountguid;
     var accountid = event.currentTarget.dataset.accountid;
 
+    if(serNum == ''){
+      wx.showModal({
+        title: '提示',
+        content:'输入的序列号不能为空!',
+        showCancel:false,
+        success (res) {
+
+        }
+      })
+      return false;
+    }
+
     util.NetRequest({
       url: 'sr/sr-confirm',
       data: {

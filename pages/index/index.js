@@ -27,10 +27,10 @@ Page({
     imgUrls:
     [
       {
-        url: config.Server + 'images/20191106/banner1.jpg',
-        text: '【双十一巨惠】培训课程低至5折，双重惊喜，“课”不容缓',
+        url: config.Server + 'images/20191115/banner1.png',
+        text: '双11狂欢之后要吃“土”？免费微课升级补一补！',
         type: 'url',
-        skipUrl: 'https://mp.weixin.qq.com/s/c7v21BCCUN3P31wRd3vBpw',
+        skipUrl: 'https://mp.weixin.qq.com/s/b-3DvF3DOwMnl61GH5cfOQ',
         showType:'image'
       },
       {
