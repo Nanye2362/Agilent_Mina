@@ -1,6 +1,6 @@
 var config = {
 
-  En: "DEV",
+  En: "PRD",
   // 下面的地址配合云端 Server 工作
   //Server: "https://devops.coffeelandcn.cn/",//UAT
   //https://qa.wechat.service.agilent.com/
@@ -12,7 +12,7 @@ var config = {
 
 };
 
-if (config.En =="PRD"){
+if (config.En =="DEV"){
   config.Server ="https://qa.wechat.service.agilent.com/";
   config.elearningAppid = "wx4026dcacf268c5b2";
 }else{
