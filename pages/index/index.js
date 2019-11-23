@@ -27,13 +27,6 @@ Page({
     imgUrls:
     [
       {
-        url: config.Server + 'images/20191115/banner1.png',
-        text: '双11狂欢之后要吃“土”？免费微课升级补一补！',
-        type: 'url',
-        skipUrl: 'https://mp.weixin.qq.com/s/b-3DvF3DOwMnl61GH5cfOQ',
-        showType:'image'
-      },
-      {
         url: config.Server + 'images/20191019/cover.gif?v=1',
         text: 'E起学习 微来可期 | 安捷伦微学堂微信小程序荣耀上线',
         type: 'url',
