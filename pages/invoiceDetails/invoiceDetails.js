@@ -69,18 +69,34 @@ Page({
     PO:'',
     needBill: false,
     currentInvoice:'',
-    
+    transferAction:'',
+    pageShow:false
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options);
+    var app = getApp();
+    var that = this;
+    util.NetRequest({
+      url: 'wechat-mini/get-global-group',
+      success: function (res) {
+        app.globalData.sobotData = res.data;
+        util.getUserInfoSobot();
+        that.setData({
+          transferAction:util.sobotTransfer(4),
+          pageShow:true
+        });
+      }
+    });
+
+//    options.currentInvoice = 'normalInvoice';
     var currentInvoice = options.currentInvoice;
-    invoiceDetails = wx.getStorageSync('invoiceDetails');  
+    var title = options.title;
+
+    invoiceDetails = wx.getStorageSync('invoiceDetails');
     if (invoiceDetails[currentInvoice]!=undefined){
-      console.log(invoiceDetails[currentInvoice]);
       this.setData({
         invoiceInfo: invoiceDetails[currentInvoice].invoiceInfo,
         invoice: invoiceArry[currentInvoice],
@@ -89,14 +105,18 @@ Page({
         currentInvoice: options.currentInvoice,
         invoiceDetails: invoiceDetails,
       })
+
     }else{
+      var invoiceInfo = this.data.invoiceInfo;
+      invoiceInfo.title = title;
       this.setData({
         currentInvoice: options.currentInvoice,
         invoice: invoiceArry[options.currentInvoice],
         invoiceDetails: invoiceDetails,
+        invoiceInfo:invoiceInfo
       })
-    }   
-    this.getMeInfo(); 
+    }
+    this.getMeInfo();
   },
   //获取用户自己信息
   getMeInfo: function(){
@@ -117,7 +137,7 @@ Page({
       this.setData({
         sendInfo: sendInfo,
       })
-    }   
+    }
   },
   //从微信中获取发票信息
   chooseInvoice: function () {
@@ -179,7 +199,7 @@ Page({
     })
   },
   //提交
-  submit: function(){  
+  submit: function(){
     var that = this;
     var checkObjInvoice = Object.keys(invoiceArry[this.data.currentInvoice]);
     if (this.data.currentInvoice =="normalInvoice"){
@@ -210,7 +230,7 @@ Page({
       wx.navigateTo({
         url: '../invoiceConfirm/invoiceConfirm?url=invoiceDetails&&currentInvoice=' + currentInvoice
       })
-    }   
+    }
   },
   checkEmpty: function (obj, arrInput){
     var isEmpty = false;
@@ -224,13 +244,13 @@ Page({
     }
     return { isEmpty: isEmpty, fieldName: fieldName };
   },
-  
+
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-  
+
   },
 
   /**
@@ -243,34 +263,34 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-  
+
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-  
+
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-  
+
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-  
+
   },
 
   /**
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-  
+
   }
 })

@@ -25,6 +25,12 @@ page{
     margin-right: 8rpx;
     align-self: flex-start;
 }
+.bc_order_icon1 {
+    width: 44rpx;
+    vertical-align: sub;
+    margin-right: -5rpx;
+    align-self: flex-start;
+}
 
 .bc_order {
     margin-top: 40rpx;
@@ -89,4 +95,12 @@ page{
   position: absolute;
   right: -10rpx;
   top: 0;
+}
+.shLoading-panel{
+    top: 400rpx;
+}
+.Pdf_link{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }

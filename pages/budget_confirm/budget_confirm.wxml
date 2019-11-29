@@ -10,9 +10,15 @@
       <image src='/images/bq.png' mode='widthFix'></image>
     </view>
     <view class="bc_remind fc-777">您的服务报价已经生成，报价单编号为：<span>{{bqId}}</span>，请确保您已知晓，以便我们尽快为您提供相应服务</view>
-    <view class="bc_order fc-blue" bindtap='openPDF'>
-        <image class="bc_order_icon" src="/images/pdf.png" mode='widthFix'></image>
-        安捷伦维修收费标准说明书-报价单
+    <view class="bc_order fc-blue Pdf_link">
+        <view bindtap='openPDF'>
+            <image class="bc_order_icon" src="/images/pdf.png" mode='widthFix'></image>
+            安捷伦维修收费标准说明书-报价单
+        </view>
+        <view bindtap="copyTBL">
+            <image class="bc_order_icon1" src="/images/download.jpg" mode='widthFix'></image>
+            下载
+        </view>
     </view>
     <view class="bc_order flex alignc" bindtap='inputInvoice'  wx:if="{{pageShow}}">
         <image class="bc_order_icon" src="/images/invoice.png" mode='widthFix'></image>
@@ -111,6 +117,26 @@
           <view class="shLoading-cancel" bindtap="changeInvoiceType">取消</view>
       </view>
   </view>
+</view>
+
+<view class="shLoading" wx:if="{{confirmShow}}">
+<view class="shLoading-mask1">
+</view>
+<view class="shLoading-panel flex alignc directionC" style="border:none;border-radius:14rpx;">
+    <view class='shLoading-title ' style="background-color:#399cdb">
+        系统提示
+    </view>
+    <view class="shLoading-head-panel" style="margin-bottom:0rpx;">
+        <text class="shLoading-head-panel-info" style="font-weight:normal">是否最终确认报价?\r\n</text>
+    </view>
+
+    <view class="shLoading-btn-panel">
+        <view class="shLoading-btn-cancel" bindtap="infoCancelTap">取消</view>
+        <view class="shLoading-btn-ok" bindtap="infoOkTap">确认
+
+        </view>
+    </view>
+</view>
 </view>
 
 

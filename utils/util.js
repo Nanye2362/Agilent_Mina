@@ -22,6 +22,7 @@ function getUserInfoSobot(fun) {
       success: function (res) {
         wx.setStorageSync('sobot_nickname', res.userinfo.name);
         wx.setStorageSync('sobot_avatarUrl', res.userinfo.avatarUrl);
+        wx.setStorageSync('sobot_company', res.userinfo.meta.company);
         if(typeof(fun)=="function"){
            fun();
         }

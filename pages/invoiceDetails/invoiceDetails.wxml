@@ -1,14 +1,14 @@
 <!--pages/invoiceDetails/invoiceDetails.wxml-->
-<view class='invoiceCon'>
+<view class='invoiceCon' wx:if="{{pageShow}}">
   <!-- 发票信息 -->
   <view class='invoiceInfo'>
     <view class='invTitle fw'>
-        <image class="invTitle_icon" src="/images/invoice.png" mode='widthFix'></image> 
+        <image class="invTitle_icon" src="/images/invoice.png" mode='widthFix'></image>
         增值税{{currentInvoice=='normalInvoice'?'普通':'专用'}}发票
     </view>
     <!-- 提醒 -->
     <view class='invRemind text-center'>
-        <image class="invRemind_icon" src="/images/remind1.png" mode='widthFix'></image> 
+        <image class="invRemind_icon" src="/images/remind1.png" mode='widthFix'></image>
         <text class='fs12' style='margin:0 20rpx;'>应税劳务名称将按照实际服务内容开具</text>
         <blueQuestion style='margin-top: -12rpx'>
           <view class="ins_o_title text-left padding">关于发票应税劳务名称的说明</view>
@@ -25,16 +25,30 @@
       <block wx:for="{{invoice}}" wx:for-item="item" wx:for-index="idx" wx:key='unique'>
         <view class='invInfo_item flex alignc'>
           <view class='invInfo_left fs13'>{{item}}：</view>
-          <view class='invInfo_right'>
-            <input class='fs13' type='text' placeholder='请输入{{item}}' bindinput='bindInvoiceInput' data-type='{{idx}}' value="{{invoiceInfo[idx]}}"></input>
+          <view class='invInfo_right' wx:if="{{item == '发票抬头'}}">
+            <input class='fs13' type='text' placeholder='请输入{{item}}' bindinput='bindInvoiceInput' data-type='{{idx}}' value="{{invoiceInfo[idx]}}" disabled='disabled'></input>
           </view>
+            <view class='invInfo_right' wx:else>
+                <input class='fs13' type='text' placeholder='请输入{{item}}' bindinput='bindInvoiceInput' data-type='{{idx}}' value="{{invoiceInfo[idx]}}"></input>
+            </view>
         </view>
       </block>
     </view>
     <!-- 微信获取发票信息 -->
-    <view class='invTitle text-right fc-blue' bindtap='chooseInvoice'>        
-        <image class="invTitle_icon" src="/images/wechatFull.png" mode='widthFix'></image>  
-        从微信中获取发票信息   
+    <view class='invTitle text-right invButton'>
+        <view>
+            <view class="mini">其他抬头请点击</view>
+            <view class="fc-blue">
+                <meiqiaBtn bindmeiqiaTap="MtaReport" btn-class="fc-blue bc_chat_btn btn-meiqia" handle-alert="{{true}}" session-from="W_invoice|transferAction={{transferAction}}">
+                    <image src="/images/wechat_b.png" mode='widthFix' class="invTitle_icon"></image>发起会话
+                </meiqiaBtn>
+            </view>
+
+        </view>
+        <view class="fc-blue" bindtap='chooseInvoice'>
+            <image class="invTitle_icon" src="/images/wechatFull.png" mode='widthFix'></image>
+            获取发票信息
+        </view>
     </view>
   </view>
 
@@ -45,7 +59,7 @@
   <view class='sendInfo'>
     <!-- title -->
     <view class='invTitle fw'>
-        <image class="invTitle_icon" src="/images/sendInfo.png" mode='widthFix'></image> 
+        <image class="invTitle_icon" src="/images/sendInfo.png" mode='widthFix'></image>
         发票寄送信息
     </view>
     <!-- 具体信息 -->
@@ -68,7 +82,7 @@
     </view>
     <!-- 提醒 -->
     <view class='invRemind'>
-        <image class="invRemind_icon" src="/images/remind1.png" mode='widthFix'></image> 
+        <image class="invRemind_icon" src="/images/remind1.png" mode='widthFix'></image>
         <text class='fs12' style='margin:0 20rpx;'>如贵司的PO号码必须显示在发票上，或有其他特殊开票要求，请务必填写于此</text>
     </view>
 
@@ -97,6 +111,6 @@
 
 
 <!-- btn -->
-<view class="group_btn">
+<view class="group_btn" wx:if="{{pageShow}}">
     <button class="btn btn-primary" id="confirm" bindtap='submit'>提交</button>
 </view>

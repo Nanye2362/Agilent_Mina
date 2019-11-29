@@ -156,6 +156,22 @@ Page({
     })
   },
 
+  copyTBL:function(e){
+    var url = util.Server + 'site/open-file?ServconfId=' + e.currentTarget.dataset.servconfId;
+    wx.setClipboardData({
+      data: url,
+      success:function (res) {
+        wx.hideToast();
+        wx.showModal({
+          title: '提示',
+          content: '服务报告链接已黏贴到剪贴板，请打开浏览器后下载',
+          showCancel: false
+        });
+      }
+
+    });
+  },
+
   //查看我的评价
   clickToMyComment: function (e) {
     var Surveyid = e.currentTarget.dataset.surveyid;

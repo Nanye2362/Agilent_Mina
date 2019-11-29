@@ -41,6 +41,7 @@ Page({
     invoiceDetails:{},
     currentInvoice:'',
     hasInvoice: true,
+    confirmShow:false,
   },
 
   /**
@@ -56,7 +57,7 @@ Page({
         app.globalData.sobotData = res.data;
         util.getUserInfoSobot();
         that.setData({
-          transferAction:util.sobotTransfer(4)
+          transferAction:util.sobotTransfer(4),
         });
       }
     });
@@ -65,7 +66,7 @@ Page({
     //腾讯mat统计结束
     console.log(options);
     util.getUserInfo(function (user) {
-      console.log(user);
+
     });
     util.NetRequest({
       url: 'site-mini/get-budget',
@@ -194,13 +195,15 @@ Page({
   radioChange: function (e) {
     console.log('radio发生change事件，携带value值为：', e.detail.value);
     var currentInvoice;
+    var title = wx.getStorageSync('sobot_company');
     if(e.detail.value==0){
       currentInvoice ='normalInvoice';
     }else{
       currentInvoice = 'specialInvoice';
     };
+
     wx.navigateTo({
-      url: '../invoiceDetails/invoiceDetails?currentInvoice=' + currentInvoice
+      url: '../invoiceDetails/invoiceDetails?currentInvoice=' + currentInvoice + '&title=' + title
     })
     this.changeInvoiceType();
   },
@@ -224,51 +227,67 @@ Page({
       checkBox: e.detail.value.length==1
     })
   },
-  confirm:function(){
+  infoOkTap:function(){
     var that=this;
     console.log(invoiceDetails);
     console.log(Object.keys(invoiceDetails).length)
+
+    var invoicedetails = invoiceDetails;
+    var currentInvoice = this.data.currentInvoice;
+    console.log(invoicedetails);
+    invoicedetails[currentInvoice].needBill = invoiceDetails.needBill==true?1:0;
+    invoicedetails[currentInvoice].invoiceType = invoiceDetails[currentInvoice].invoiceType=='specialInvoice'?1:0;
+    util.NetRequest({
+      url: 'site-mini/confirm-budget',
+      data: {
+        BudgetoryquoteId: this.data.bqId,
+        AccountId: this.data.accountId,
+        ContactId: this.data.ContactId,
+        invoiceDetails: JSON.stringify(invoicedetails[currentInvoice]),
+      },
+      success: function (r) {
+        if (r.success) {
+          wx.showToast({
+            title: '成功',
+            icon: 'success',
+            duration: 2000
+          })
+          that.setData({
+            isConfirm: 1,
+            confirmShow:false,
+          })
+          //wx.removeStorageSync('invoiceDetails');
+        } else {
+          wx.showToast({
+            title: '失败',
+            icon: 'fail',
+            duration: 2000
+          })
+          that.setData({
+            confirmShow:false,
+          })
+        }
+      }
+    })
+
+  },
+  infoCancelTap:function(){
+    this.setData({
+      confirmShow : false
+    })
+  },
+  confirm:function(){
     if (!this.data.checkBox || Object.keys(invoiceDetails).length == 0){
       wx.showModal({
         title: '提交失败',
         content: '请确认发票信息的完整，并勾选已阅读并接收此报价单',
       })
+      return false;
       //return false;
-    }else{
-      var invoicedetails = invoiceDetails;
-      var currentInvoice = this.data.currentInvoice;
-      console.log(invoicedetails);
-      invoicedetails[currentInvoice].needBill = invoiceDetails.needBill==true?1:0;
-      invoicedetails[currentInvoice].invoiceType = invoiceDetails[currentInvoice].invoiceType=='specialInvoice'?1:0;
-      util.NetRequest({
-        url: 'site-mini/confirm-budget',
-        data: {
-          BudgetoryquoteId: this.data.bqId,
-          AccountId: this.data.accountId,
-          ContactId: this.data.ContactId,
-          invoiceDetails: JSON.stringify(invoicedetails[currentInvoice]),
-        },
-        success: function (r) {
-          if (r.success) {
-            wx.showToast({
-              title: '成功',
-              icon: 'success',
-              duration: 2000
-            })
-            that.setData({
-              isConfirm: 1
-            })
-            //wx.removeStorageSync('invoiceDetails');
-          } else {
-            wx.showToast({
-              title: '失败',
-              icon: 'fail',
-              duration: 2000
-            })
-          }
-        }
-      })
     }
+    this.setData({
+      confirmShow : true
+    })
   },
   openPDF:function(){
     var url = util.Server + 'site/open-file?ServconfId=' + this.data.bqId;
@@ -305,6 +324,22 @@ Page({
         });
       }
     })
+  },
+  copyTBL:function(){
+    var url = util.Server + 'site/open-file?ServconfId=' + this.data.bqId;
+    var self=this;
+    wx.setClipboardData({
+      data: url,
+      success:function (res) {
+        wx.hideToast();
+        wx.showModal({
+          title: '提示',
+          content: '报价单链接已黏贴到剪贴板，请打开浏览器后下载',
+          showCancel: false
+        });
+      }
+
+    });
   },
   //检测工作时间
   MtaReport: function () {

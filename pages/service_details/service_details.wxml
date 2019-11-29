@@ -49,6 +49,7 @@
                      module.exports.reportShowOrNot = reportShowOrNot;
                 </wxs>
                 <view href="javascript:;" class="sl_chat_btn fs12" wx:if="{{m1.reportShowOrNot(details.ServconfId)}}" data-Servconf-id='{{details.ServconfId}}' bindtap='clickToReport'>查看服务报告</view>
+                <view href="javascript:;" class="sl_chat_btn fs12" wx:if="{{m1.reportShowOrNot(details.ServconfId)}}" data-Servconf-id='{{details.ServconfId}}' bindtap='copyTBL'>下载报告</view>
                 <view href="javascript:;" class="sl_chat_btn blue_status fs12" wx:if="{{m1.reportShowOrNot(details.bqId)}}" data-Servconf-id='{{details.bqId}}' bindtap='clickToReport'>预估报价单</view>
             </view>
 
