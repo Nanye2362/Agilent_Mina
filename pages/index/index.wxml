@@ -6,7 +6,7 @@
       <block wx:if="{{item.showType == 'video'}}" style="width: 100%">
         <video src="{{item.url}}"  style="width: 100%;height: 408rpx;" loop='true' autoplay='true' object-fit="fill" class="slide-image"></video>
       </block>
-      <image wx:if="{{item.showType == 'image'}}" src="{{item.url}}" class="slide-image" mode='widthFix' style="height: 408rpx;"></image>
+      <image wx:if="{{item.showType == 'image'}}" src="{{Server + item.url}}" class="slide-image" mode='widthFix' style="height: 408rpx;"></image>
       <view class='swiper_text'>{{item.text}}</view>
     </swiper-item>
   </block>
@@ -18,6 +18,12 @@
 <meiqiaCheckWork showType="showText"></meiqiaCheckWork>
 
 <!-- 近期服务更新 -->
+<view class="tui-rolling-news" wx:if="{{notice_active}}">
+<tui-icon tui-icon-class="tui-rolling-icon" name-="news-fill" size='28' color='#0085d5'></tui-icon>
+<view class="tui-scorll-view" bindtap='detail'>
+    <view class="tui-notice {{true?'tui-animation':''}}">{{notice}}</view>
+</view>
+</view>
 <view class='recent_service'>
   <!-- title -->
   <view class='fsrpx32'>最新服务更新</view>

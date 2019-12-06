@@ -24,69 +24,7 @@ Page({
     shSystem:true,
     system_text:"系统升级中，微信在线咨询通道暂时无法使用，您可以点击下方常见问题寻求解决方案，给您带来不便，敬请谅解。",
     Server: config.Server,
-    imgUrls:
-    [
-      {
-        url: config.Server + 'images/20191019/cover.gif?v=1',
-        text: 'E起学习 微来可期 | 安捷伦微学堂微信小程序荣耀上线',
-        type: 'url',
-        skipUrl: 'https://mp.weixin.qq.com/s/n6jMKGgEorx-T9xz49Cpyg',
-        showType:'image'
-      },
-      {
-        url: config.Server + 'images/20191019/banner2.jpg',
-        text: '液相变"闲"为宝，成倍提高效率！限时优惠，欢迎围观',
-        type:'url',
-        skipUrl: 'https://mp.weixin.qq.com/s/xyKkngaG8TcT8dmZTQUAhg',
-        showType:'image'
-      },
-      {
-        url: config.Server + 'images/20190822/banner1.jpg',
-        text: '火辣八月 特大促销 | 安捷伦Intuvo GC火热租赁持续中',
-        type:'url',
-        skipUrl: 'http://mp.weixin.qq.com/s?__biz=MjM5Njk2MjI3Mw==&mid=503652875&idx=1&sn=b384ccd7e67bebfe77396a2f05ab0adc&chksm=3d10c8850a674193e1c9fa0652ee583536cdd5eef342e59ad76175b6e4724723021e4803adce#rd',
-        showType:'image'
-      },
-      {
-        url: config.Server + 'images/20190816/image1.jpg?v=1',
-        text: 'Win7停更，软件分析何去何从?',
-        type:'url',
-        skipUrl: 'http://mp.weixin.qq.com/s?__biz=MjM5Njk2MjI3Mw==&mid=503652870&idx=1&sn=ef912f661357c447847d8523e3d3c14e&chksm=3d10c8880a67419e8f3a311b8f200f7d12be7e544740f3e466f6956ea390b832a30c3ae1754a#rd',
-        showType:'image'
-      },
-      {
-        url: config.Server + 'images/20190816/image2.jpg?v=1',
-        text: '保存资金在我手 提升企业现金流|安捷伦融资购买方案',
-        type:'mini',
-        arg:'1',
-        skipUrl: '../second-buy/second-buy',
-        showType:'image'
-      },
-      {
-        url: config.Server + 'images/20190816/image3.jpg?v=1',
-        text: '【新客专享】金银铜牌 买二享三',
-        type: 'mini',
-        arg:'5',
-        skipUrl: '../second-buy/second-buy',
-        showType:'image'
-      },
-      {
-        url: config.Server + 'images/20190816/image4.jpg?v=1',
-        text: '安捷伦官方仪器租赁服务"全新"升级，"赁"您满意',
-        type: 'mini',
-        arg:'0',
-        skipUrl: '../second-buy/second-buy',
-        showType:'image'
-      },
-      {
-        url: config.Server + 'images/20190816/image5.jpg?v=1',
-        text: '2019给您的仪器增添活力，安捷伦助力仪器新生',
-        type: 'mini',
-        arg:'2',
-        skipUrl: '../second-buy/second-buy',
-        showType:'image'
-      }
-    ],
+    imgUrls:[],
     indicatorDots: true,
     autoplay: true,
     interval: 5000,
@@ -99,6 +37,8 @@ Page({
     HeaderStatus:'',
     ServiceRequestId:'',
     Title:'',
+    notice:'',
+    notice_active:false
   },
   //事件处理函数
   bindViewTap: function () {
@@ -157,6 +97,20 @@ Page({
           })
           //wx.hideLoading();
         }
+      }
+    });
+
+
+    util.NetRequest({
+      url: 'site/banner',
+      data: {
+      },
+      success: function (res) {
+        that.setData({
+          imgUrls: res.data.banner,
+          notice: res.data.notice,
+          notice_active: res.data.notice_active
+        })
       }
     })
     console.log('onload' + option);
@@ -337,7 +291,9 @@ Page({
     wx.navigateToMiniProgram({
       appId: config.elearningAppid,
       path: 'pages/welcome/welcome',
+      envVersion:'trial',
       success(res) {
+        console.log(res)
         // 打开成功
       }
     })

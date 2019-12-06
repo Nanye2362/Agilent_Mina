@@ -1,3 +1,6 @@
 {
-  "navigationBarTitleText": "安捷伦售后服务小程序"
+  "navigationBarTitleText": "安捷伦售后服务小程序",
+  "usingComponents": {
+    "tui-icon": "../../components/thorui/icon/icon"
+  }
 }
