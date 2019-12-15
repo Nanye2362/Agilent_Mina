@@ -1,16 +1,19 @@
 <!--pages/service_result/service_result.wxml-->
 <import src="../service_list/service-list-template/service-list-template.wxml"/>
 <!-- history-filter 搜索 -->
+<view wx:if="{{isShow}}">
 <view class="weui-search-bar " id="searchBar">
     <view class="search-bar-top flex">
-      <input class="searchInput" placeholder="请输入状态、故障描述、服务单号、序列号搜索" 
-      bindinput="bindInput" value="{{inputValue}}" placeholder-class='search-placeholder'/>
-      <view class='searchBtn bg-primary flex' bindtap='clickToSearch'>
-        <image class="search-bar-icon" src="/images/search.png" mode='widthFix'></image>
-      </view>   
-  </view>
+        <input class="searchInput" placeholder="请输入状态、故障描述、服务单号、序列号搜索"
+               bindinput="bindInput" value="{{inputValue}}" placeholder-class='search-placeholder'/>
+        <view class='searchBtn bg-primary flex' bindtap='clickToSearch'>
+            <image class="search-bar-icon" src="/images/search.png" mode='widthFix'></image>
+        </view>
+    </view>
 </view>
 
 <block wx:for="{{resultList}}" wx:for-item="item">
     <template is="sl-template" data="{{item}}"/>
 </block>
+</view>
+

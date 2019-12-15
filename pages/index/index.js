@@ -99,8 +99,21 @@ Page({
         }
       }
     });
+    that.getBanner();
 
-
+    console.log('onload' + option);
+    var that = this
+    console.log(app);
+  },
+  // 是否显示系统故障
+  showSystem:function(){
+    var shSystem = this.data.shSystem;
+    this.setData({
+      shSystem: !shSystem
+    })
+  },
+  getBanner:function(){
+    var that = this;
     util.NetRequest({
       url: 'site/banner',
       data: {
@@ -112,16 +125,6 @@ Page({
           notice_active: res.data.notice_active
         })
       }
-    })
-    console.log('onload' + option);
-    var that = this
-    console.log(app);
-  },
-  // 是否显示系统故障
-  showSystem:function(){
-    var shSystem = this.data.shSystem;
-    this.setData({
-      shSystem: !shSystem
     })
   },
 

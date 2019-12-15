@@ -59,7 +59,11 @@ Component({
   externalClasses: ['btn-class'],
   attached:function(){
      let that=this;
-    workTime.startWorkTime(function (workTimeStatus, canUse){
+    that.setData({
+      isWork: true,
+      canUse: true
+    })
+    /*workTime.startWorkTime(function (workTimeStatus, canUse){
       if (!canUse){
         workTimeStatus=false;
       }
@@ -68,10 +72,10 @@ Component({
          isWork: workTimeStatus,
          canUse: canUse
        })
-     }, this.__wxExparserNodeId__);
+     }, this.__wxExparserNodeId__);*/
   },
   detached:function(){
-    workTime.removeHandleArr(this.__wxExparserNodeId__);
+    /*workTime.removeHandleArr(this.__wxExparserNodeId__);*/
   },
   observers: {
     'sessionFrom': function (value) {

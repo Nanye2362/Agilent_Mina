@@ -48,7 +48,7 @@ Component({
       }else{
         that.triggerFun(e);
       }
-     
+
     },
     triggerFun:function(e){
       if (!this.data.canUse) {//先判断是否可用,不可用弹出模态
@@ -65,15 +65,19 @@ Component({
   },
   attached: function () {
     let that = this;
-    workTime.startWorkTime(function (workTimeStatus,canUse) {
+    that.setData({
+      isWork: true,
+      canUse: true
+    });
+    /*workTime.startWorkTime(function (workTimeStatus,canUse) {
       console.log(canUse);
       that.setData({
         isWork: workTimeStatus,
         canUse: canUse
       })
-    }, this.__wxExparserNodeId__);
+    }, this.__wxExparserNodeId__);*/
   },
   detached: function () {
-    workTime.removeHandleArr(this.__wxExparserNodeId__);
+    /*workTime.removeHandleArr(this.__wxExparserNodeId__);*/
   }
 })

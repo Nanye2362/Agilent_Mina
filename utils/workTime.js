@@ -41,31 +41,31 @@ function handle(workTimeStatus,canUse){
 var requestTime=0;
 
 function checkWorktime(shLoading = false) {
-  var date = new Date();
+  /*var date = new Date();
   var app=getApp();
   if ((startRequest && date.getTime() - requestTime <= 60 * 1000) || !app.globalData.appShow){
     return false;
   }
-  
+
   if(!timeF){
     timeF=setInterval(checkWorktime, 60000);
   }
 
   startRequest=true;
   requestTime=date.getTime();
-  
+
   util.checkWorktime(function (res) {
     setWorkStatus(res.isworktime, res.meiqia_isWork);
     handle(res.isworktime, res.meiqia_isWork);
     startRequest=false;
     console.log("----chen chektime----");
-  },shLoading);
+  },shLoading);*/
 }
 
 function handleWorkTime(isAlert = false) {
-  var meiqiaObj = getWorkStatus();
+  /*var meiqiaObj = getWorkStatus();
   if (meiqiaObj.canUse){
-   
+
   }
   if (meiqiaObj.workStatus) {
     return true;
@@ -81,7 +81,7 @@ function handleWorkTime(isAlert = false) {
         url: '../leave_message/leave_message',
       })
     }
-  }
+  }*/
 }
 
 module.exports = {

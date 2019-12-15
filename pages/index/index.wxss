@@ -11,10 +11,13 @@ page{
     background: rgba(000, 000, 000, .4);
     bottom: 0;
     left: 0;
-    line-height: 60rpx;
+    line-height: 35rpx;
     color: #fff;
-    text-indent: 20rpx;
+
     font-size: 28rpx;
+    padding-top: 10rpx;
+    padding-left: 20rpx;
+
 }
 
 .h_alert_img image{ width: 30rpx; height: 30rpx;}

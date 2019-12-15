@@ -8,8 +8,11 @@ Page({
    */
   data: {
     value: '',
-   
-    resultList: []
+    TECH: 'N_srid:',
+    SN: ';sn:',
+    transferAction:"",
+    resultList: [],
+    isShow:true,
   },
 
   /**
@@ -22,23 +25,30 @@ Page({
     //腾讯mat统计结束
     var value = options.value;
     var that = this;
-    console.log(value)
+    var resultListNew = [];
+
     util.NetRequest({
       url: 'sr/history-filter',
       data: {
         'keywords': value
       },
       success: function (res) {
-        console.log(res);
         var resultList = res.HistoryFilter;
 
+        for(var j = 0,len=resultList.length; j < len; j++) {
+          resultListNew[j] = resultList[j];
+          resultListNew[j]['TECH'] = that.data.TECH;
+          resultListNew[j]['SN'] = that.data.SN;
+          resultListNew[j]['transferAction'] = util.sobotTransfer(6)
+        }
         that.setData({
-         
-          resultList: resultList,
-        
+
+          resultList: resultListNew,
+
         })
       }
     });
+
   },
 
   /**
