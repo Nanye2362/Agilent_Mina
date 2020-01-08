@@ -19,6 +19,12 @@ page{
     border-bottom: 1px solid #e2e2e2;
 }
 
+.bc_remind1{
+    padding-top: 40rpx;
+    line-height:1.5;
+    font-size: 22rpx;
+}
+
 .bc_order_icon {
     width: 44rpx;
     vertical-align: sub;
@@ -30,6 +36,13 @@ page{
     vertical-align: sub;
     margin-right: -5rpx;
     align-self: flex-start;
+}
+.bc_order_icon2 {
+    width: 30rpx;
+}
+.bc_order_icon3 {
+    width: 20rpx;
+    margin-right: 10rpx;
 }
 
 .bc_order {

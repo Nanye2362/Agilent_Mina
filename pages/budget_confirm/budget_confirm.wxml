@@ -9,7 +9,8 @@
     <view class="bc_title fs20 text-center">
       <image src='/images/bq.png' mode='widthFix'></image>
     </view>
-    <view class="bc_remind fc-777">您的服务报价已经生成，报价单编号为：<span>{{bqId}}</span>，请确保您已知晓，以便我们尽快为您提供相应服务</view>
+    <view class="bc_remind fc-777" wx:if="{{!isConfirm}}">当前报价已经生成，BQ编号为：<span>{{bqId}}</span>，请确保您已知晓并接受，以便我们安排工程师为您服务。</view>
+    <view class="bc_remind fc-777" wx:else > <image class="bc_order_icon2" src="/images/remind1.png" mode='widthFix'></image>上门维修报价单预计在您确认后6个工作日内上门,实际安排以您收到的微信小程序推送或短信为准。</view>
     <view class="bc_order fc-blue Pdf_link">
         <view bindtap='openPDF'>
             <image class="bc_order_icon" src="/images/pdf.png" mode='widthFix'></image>
@@ -36,6 +37,7 @@
           <image src='/images/arrow_grey.png' mode='widthFix' style='width: 20rpx'></image>
         </view>
     </view>
+    <view class="bc_remind1" wx:if="{{!isConfirm}}"> <image class="bc_order_icon3" src="/images/remind1.png" mode='widthFix'></image>上门维修报价单预计在您确认后6个工作日内上门,实际安排以您收到的微信小程序推送或短信为准。</view>
 </view>
 
 <view class="bq_status_panel" wx:if="{{pageShow}}">

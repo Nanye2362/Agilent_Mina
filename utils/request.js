@@ -1,6 +1,6 @@
 var config = require('../config');
 var urlArr = ["wechat-mini/wx-login", "api/check-lunch"];//未登录可以使用的url
-let ocrServer = "https://msd.coffeelandcn.cn/";
+let ocrServer = "https://ocr.wechat.learn.agilent.com/";
 let Server = config.Server; //UAT
 
 var arrRequest = [], isRequesting = false;
@@ -160,7 +160,7 @@ function _NetRequest({ url, data, success, fail, complete, method = "POST", show
             var obj = arrRequest.shift();
             _NetRequest(obj);
         }
-      } 
+      }
     }
   })
 }
