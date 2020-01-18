@@ -21,7 +21,7 @@
             下载
         </view>
     </view>
-    <view class="bc_order flex alignc" bindtap='inputInvoice'  wx:if="{{pageShow}}">
+    <view class="bc_order flex alignc" bindtap='inputInvoice'  wx:if="{{pageShow && item_description!='pts'}}">
         <image class="bc_order_icon" src="/images/invoice.png" mode='widthFix'></image>
         <view class='bc_order_con'>
           <view class='invoiceInformation'>发票信息-<text class='fw {{invoiceInfo.title!=""?"":"fc-aaa"}}'>{{invoiceInfo.title!=''?currentInvoice=='normalInvoice'?'增值税普通发票':'增值税专用发票':'[未填写]'}}</text>
@@ -61,7 +61,7 @@
       <block wx:if="{{item_description=='pts'}}">
         <block wx:if="{{isConfirm==0}}">
             <view class="bq_checkbox_panel">
-              单独备件支持的报价单暂不支持在线接受，请联系客服确认
+              您的报价单暂不支持在线确认，请联系客服确认
             </view>
         </block>
         <block wx:else>
