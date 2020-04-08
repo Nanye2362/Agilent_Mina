@@ -9,7 +9,6 @@ var config = {
   //https://qa.wechat.service.agilent.com/
   //Server:"",
   version: "3.8.16.1",
-
 };
 
 if (config.En =="DEV"){
