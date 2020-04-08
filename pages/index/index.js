@@ -104,6 +104,11 @@ Page({
     console.log('onload' + option);
     var that = this
     console.log(app);
+
+    if(app.globalData.isFollow == false){
+      that.alertInfo("请先关注安捷伦售后服务号,可点击右上角关于小程序里进行关注");
+      app.globalData.isFollow = true;
+    }
   },
   // 是否显示系统故障
   showSystem:function(){
@@ -372,6 +377,17 @@ Page({
    */
   onShareAppMessage: function () {
 
-  }
+  },
+
+  alertInfo: function(text){
+    wx.showModal({
+      title: '温馨提示',
+      content: text,
+      showCancel: false,
+      success: function (res) {
+
+      }
+    })
+  },
 
 })

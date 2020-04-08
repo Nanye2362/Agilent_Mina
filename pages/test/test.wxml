@@ -4,6 +4,8 @@
   <!-- 这部分内容将被放置在组件 <slot> 的位置上 -->
   <!-- <text>testtesttesttest</text>
 </questionMark> -->
-<modal show="{{showModal}}" bindcancelTap="modalCancel" bindokTap='modalConfirm'>
+<!--<modal show="{{showModal}}" bindcancelTap="modalCancel" bindokTap='modalConfirm'>
      <view>这是一个<view bindtap="tapTest">13774494464</view>弹窗测试</view>
-</modal>
+</modal>-->
+
+<web-view src="https://qa.wechat.service.agilent.com/test/test135"></web-view>

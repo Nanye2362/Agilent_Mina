@@ -1,0 +1,17 @@
+<!--pages/initiate/initiate.wxml-->
+<view>
+    <view class="mod-text">
+        <view class="text-l">
+            <view class="text">Ш 路 领 先</view>
+        </view>
+        <view class="text-r">
+            <view class="text">﹁ 微 ﹂ 您 服 务</view>
+        </view>
+    </view>
+    <view>
+        <view class="flex alignc justify-center" style="padding:150rpx 0rpx 23rpx 0rpx;margin-right:50rpx;">
+            <image src='/images/welcomeLogo.png' class="logo_icon"></image>
+        </view>
+        <view style="font-size:26rpx;text-align:center;color:white">安捷伦售后服务在中国</view>
+    </view>
+</view>

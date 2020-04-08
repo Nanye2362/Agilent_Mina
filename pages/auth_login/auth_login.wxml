@@ -1,0 +1,2 @@
+<!--pages/auth_login/auth_login.wxml-->
+<web-view src="{{url}}"></web-view>

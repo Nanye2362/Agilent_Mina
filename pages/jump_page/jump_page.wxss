@@ -1,0 +1,4 @@
+/* pages/jump_page/jump_page.wxss */
+page{
+    background-color: white;
+}

@@ -1,0 +1,41 @@
+<!--pages/login/login.wxml-->
+<view class="home-container">
+    <view class="section1">
+        <view class="section1-title">E路领先 "微"您服务</view>
+        <view class="section1-desc">欢迎使用安捷伦售后服务小程序，您将可享受到以下功能:</view>
+    </view>
+    <view class="section2">
+        <view class="row">
+            <view class="func">
+                <image src="/images/login/cs.png" class="icon-img"/>
+                <text>智能客服</text>
+            </view>
+            <view class="func">
+                <image src="/images/login/repair.png" class="icon-img"/>
+                <text>我要报修</text>
+            </view>
+            <view class="func">
+                <image src="/images/login/install.png" class="icon-img"/>
+                <text>安装申请</text>
+            </view>
+        </view>
+        <view class="row">
+            <view class="func">
+                <image src="/images/login/self.png" class="icon-img"/>
+                <text>自助服务</text>
+            </view>
+            <view class="func">
+                <image src="/images/login/history.png" class="icon-img"/>
+                <text>服务历史</text>
+            </view>
+            <view class="func">
+                <image src="/images/login/service.png" class="icon-img"/>
+                <text>超值服务</text>
+            </view>
+        </view>
+    </view>
+    <view class="screen-shot">
+        <image src="/images/login/screen-shot.png" class="screen-shot-img"></image>
+    </view>
+    <view class="wx-auth" bindtap="authConfirm">微信授权</view>
+</view>

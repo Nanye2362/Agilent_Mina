@@ -1,0 +1,6 @@
+<!--pages/jump_page/jump_page.wxml-->
+<view>
+    <view style="text-align: center;line-height: 800rpx;">
+        正在跳转中...
+    </view>
+</view>

@@ -21,7 +21,7 @@
             下载
         </view>
     </view>
-    <view class="bc_order flex alignc" bindtap='inputInvoice'  wx:if="{{pageShow && item_description!='pts'}}">
+    <view class="bc_order flex alignc" bindtap='inputInvoice'  wx:if="{{pageShow}}">
         <image class="bc_order_icon" src="/images/invoice.png" mode='widthFix'></image>
         <view class='bc_order_con'>
           <view class='invoiceInformation'>发票信息-<text class='fw {{invoiceInfo.title!=""?"":"fc-aaa"}}'>{{invoiceInfo.title!=''?currentInvoice=='normalInvoice'?'增值税普通发票':'增值税专用发票':'[未填写]'}}</text>
@@ -58,17 +58,7 @@
       </block>
   </block>
   <block wx:else>
-      <block wx:if="{{item_description=='pts'}}">
-        <block wx:if="{{isConfirm==0}}">
-            <view class="bq_checkbox_panel">
-              您的报价单暂不支持在线确认，请联系客服确认
-            </view>
-        </block>
-        <block wx:else>
-            <button class="btn btn-primary" disabled="disabled" >您已确认</button>
-        </block>
-      </block>
-       <block wx:else>
+       <block>
           <block wx:if="{{isConfirm==0}}">
             <block wx:if="{{price>=maxprice}}">
               <view class="bq_checkbox_panel" wx:if="{{maxprice == 30000}}">
@@ -90,9 +80,6 @@
       </block>
   </block>
 </view>
-
-
-
 
 <view class="bc_chat padding text-center fs12" wx:if="{{pageShow}}">如果对报价有任何问题，请<image class="chatimg" src="/images/wechat_b.png"></image>
    <meiqiaBtn bindmeiqiaTap="MtaReport" btn-class="fc-blue bc_chat_btn btn-meiqia" handle-alert="{{true}}" session-from="W_bqobjectid:{{bqId}}|transferAction={{transferAction}}">

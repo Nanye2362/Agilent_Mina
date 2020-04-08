@@ -19,6 +19,7 @@ function getUserInfoSobot(fun) {
   setTimeout(function () {
     that.NetRequest({
       url: 'site-mini/sobot-getuserinfo',
+      showload: false,
       success: function (res) {
         wx.setStorageSync('sobot_nickname', res.userinfo.name);
         wx.setStorageSync('sobot_avatarUrl', res.userinfo.avatarUrl);

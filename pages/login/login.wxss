@@ -1,0 +1,68 @@
+/* pages/login/login.wxss */
+page{
+    background-color:#1586d3;
+}
+.home-container{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+.section1{
+    padding: 50rpx 0 0 0;
+    height: 15%;
+}
+.section1-title{
+    font-size: 64rpx;
+    color: white;
+    text-align: center;
+}
+.section1-desc{
+    font-size: 26rpx;
+    color: white;
+    text-align: center;
+    margin-top: 10rpx;
+}
+.icon-img{
+    width: 100rpx;
+    height: 100rpx;
+    margin: 10rpx auto;
+}
+text{
+    color: white;
+    font-size: 30rpx;
+}
+.section2{
+    display: flex;
+    flex-direction: column;
+    padding: 0 110rpx;
+    height: 30%;
+}
+.section2 .row{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 20rpx 0;
+}
+.section2 .row .func{
+    display: flex;
+    flex-direction: column;
+}
+.screen-shot{
+    margin: 50rpx auto;
+    height: 25%;
+}
+.screen-shot-img{
+    width: 680rpx;
+    height: 388rpx;
+}
+.wx-auth{
+    color: white;
+    margin: 80rpx auto;
+    border: 1rpx solid white;
+    width: 360rpx;
+    height: 90rpx;
+    line-height: 90rpx;
+    font-size: 32rpx;
+    text-align: center;
+    border-radius: 45rpx;
+}

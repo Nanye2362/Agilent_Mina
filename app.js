@@ -6,6 +6,7 @@ monitor.config({
   id: 'kt3ZSav_Wzc',
   sampleRate: 1
 });*/
+import regeneratorRuntime from 'agilent/regenerator-runtime/runtime'
 var util = require('/utils/util.js');
 var miniAppupdate=require("/utils/miniAppupdate.js");
 
@@ -29,20 +30,21 @@ App({
     this.mta = mta;
 
     this.globalData.isLoading = true;
+    this.globalData.isFollow = true;
     try {
       var res = wx.getSystemInfoSync();
-      userMobile.brand = res.brand;
-      userMobile.model = res.model;
-      userMobile.language = res.language;
-      userMobile.version = res.version;
-      userMobile.platform = res.platform;
-      userMobile.SDKVersion = res.SDKVersion;
-      userMobile.system = res.system;
+      this.globalData.userMobile.brand = res.brand;
+      this.globalData.userMobile.model = res.model;
+      this.globalData.userMobile.language = res.language;
+      this.globalData.userMobile.version = res.version;
+      this.globalData.userMobile.platform = res.platform;
+      this.globalData.userMobile.SDKVersion = res.SDKVersion;
+      this.globalData.userMobile.system = res.system;
     } catch (e) {
       // Do something when catch error
     }
-    console.log(userMobile);
-    this.wxlogin();
+    //console.log(userMobile);
+    //this.wxlogin();
 
     var that = this;
 
@@ -67,7 +69,7 @@ App({
 
 },
 
-  onShow: function (res) {
+  async onShow(res) {
     this.globalData.appShow = true;
 
     //如果已在后台启动并且是客服链接过来的，就打开指定页面
@@ -82,18 +84,22 @@ App({
     var that = this;
 
     if (that.globalData.needCheck){
-      that.wxlogin();
+      wx.redirectTo({
+        url: '/pages/initiate/initiate'
+      });
     }else if (lastDate && nowDate - lastDate>=60*60*1000){//毫秒  1小时
       if (!that.globalData.isSetOption && !that.globalData.isFirstLunch) {
-        that.wxlogin();
+        wx.redirectTo({
+          url: '/pages/initiate/initiate'
+        });
       }
     }
+    await util.getUserInfoSobot();
+
     that.globalData.isFirstLunch = false;
     if(that.globalData.syncFlag == false){
-      that.syncUserInfo();
+      await that.syncUserInfo();
     }
-
-    util.getUserInfoSobot();
   },
   onHide:function () {
     this.globalData.appShow=false;
@@ -171,15 +177,9 @@ App({
       })
     }
   },*/
-  wxlogin: function () {
+ wxlogin() {
     var that = this;
 
-    if (!that.globalData.isUploading){
-       wx.showLoading({
-        title: '加载中，请稍候',
-        mask: true
-      })
-    }
     that.globalData.syncFlag = true;
     wx.login({
       success: function (res) {
@@ -206,14 +206,15 @@ App({
                 that.syncUserInfo();
                 that.globalData.syncFlag = false;
 
-                setTimeout(function() {
-                  util.NetRequest({
-                    url: 'wechat-mini/get-global-group',
-                    success: function (res1) {
-                      that.globalData.sobotData = res1.data;
-                    }
-                  });
-                }, 1000)
+
+                util.NetRequest({
+                  url: 'wechat-mini/get-global-group',
+                  success: function (res1) {
+                    that.globalData.sobotData = res1.data;
+
+                  }
+                });
+
               } else if (typeof (r.error_msg) !="undefined"){
                 that.globalData.needCheck = true;
                 that.alertInfo(r.error_msg);

@@ -1,0 +1,45 @@
+/* pages/initiate/initiate.wxss */
+page{
+    background-color:#1586d3
+}
+.mod-text{
+    display:flex;
+    flex-direction:column;
+    width: 100%;
+    height:60%;
+    writing-mode:vertical-rl;
+    -webkit-writing-mode:vertical-rl;
+}
+.mod-text .text-l{
+    width: 50%;
+    position: relative;
+}
+.mod-text .text-r{
+    width: 50%;
+    position: relative;
+}
+.mod-text .text-l .text{
+    position: absolute;
+    left: 25rpx;
+    bottom: 250rpx;
+}
+.mod-text .text-r .text{
+    position: absolute;
+    right: 25rpx;
+    bottom: 0;
+}
+
+.mod-text .text{
+    display:block;
+    color: white;
+    font-size: 72rpx;
+}
+.logo_icon{
+    width: 240.5rpx;
+    height:97rpx;
+    margin-right: 8rpx;
+}
+.font-e{
+    color: white;
+    font-size: 72rpx;
+}
