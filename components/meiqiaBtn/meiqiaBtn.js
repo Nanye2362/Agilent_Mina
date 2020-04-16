@@ -85,8 +85,10 @@ Component({
       });
       var strArr = value.split('|');
 
-      strArr[0] = '"' + strArr[0].replace(/\"/g, "")+'"'
-
+      var params = "{\"name\":\""+ _this.data.nickName+"\",\"contactId\":\"123245\",\"from\":\""+ strArr[0]+"\"}";
+      strArr[0] = params;
+      console.log(strArr);
+      console.log(value);
       _this.setData({
         sessionFromFormat: strArr.join("|")
       });

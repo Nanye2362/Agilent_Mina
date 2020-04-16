@@ -94,6 +94,9 @@ App({
         });
       }
     }
+    if(res.path != 'pages/initiate/initiate'){ //不是正常页进入
+      that.wxlogin();
+    }
     await util.getUserInfoSobot();
 
     that.globalData.isFirstLunch = false;
@@ -217,17 +220,7 @@ App({
 
               } else if (typeof (r.error_msg) !="undefined"){
                 that.globalData.needCheck = true;
-                that.alertInfo(r.error_msg);
-              } else {
-                that.globalData.needCheck = true;
-                if (wx.canIUse('web-view')){
-                  wx.navigateTo({
-                    url: '../user_guidelines/user_guidelines'
-                  });
-                }else{
-                  that.alertInfo('为了更好的体验，请更新微信到最新版本后使用。');
-                }
-                console.log(r.error_msg);
+
               }
             },
             fail:function(){
@@ -240,21 +233,7 @@ App({
       }
     });
   },
-  alertInfo: function(text){
-    var that=this;
-    if (typeof (text) !="undefined"){
-      that.globalData.loginText = text;
-    }
-    wx.hideLoading();
-    wx.showModal({
-      title: '温馨提示',
-      content: that.globalData.loginText,
-      showCancel: false,
-      success: function (res) {
 
-      }
-    })
-  },
 
   syncUserInfo:function(){
     var _this = this;

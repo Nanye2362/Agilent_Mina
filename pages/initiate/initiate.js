@@ -119,7 +119,7 @@ Page({
               }else {
                 app.globalData.needCheck = true;
                 app.globalData.isFollow = false;
-                wx.navigateTo({
+                wx.redirectTo({
                   url: '/pages/login/login'
                 });
               }

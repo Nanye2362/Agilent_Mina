@@ -35,7 +35,7 @@ text{
     display: flex;
     flex-direction: column;
     padding: 0 110rpx;
-    height: 30%;
+
 }
 .section2 .row{
     display: flex;
@@ -58,7 +58,7 @@ text{
 .wx-auth{
     color: white;
     margin: 80rpx auto;
-    border: 1rpx solid white;
+    border: 1px solid white;
     width: 360rpx;
     height: 90rpx;
     line-height: 90rpx;
