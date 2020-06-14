@@ -1,19 +1,18 @@
-// pages/login/login.js
+// pages/login/privacy-policy.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    url:"",
-    checked:"0"
+     
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
+
   },
 
   /**
@@ -63,24 +62,5 @@ Page({
    */
   onShareAppMessage: function () {
 
-  },
-
-  authConfirm:function () {
-    var checked = this.data.checked;
-    if(checked == "1"){
-      wx.navigateTo({
-        url: '/pages/auth_login/auth_login'
-      });
-    }else{
-      wx.showToast({
-        title: '请勾选了解并接受“安捷伦客户隐私声明”',
-        icon:"none"
-      })
-    }
-  },
-  checkboxChange:function(e){
-    this.setData({
-      checked: e.detail.value[0]
-    })
   }
 })

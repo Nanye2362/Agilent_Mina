@@ -326,9 +326,9 @@ Page({
         } else {
           //transferAction:
           //'[{"actionType":"to_group","deciId":"xxx","optionId":"3","spillId":"4"},{"actionType":"to_group","deciId":"xxx","optionId":"4"}]'
-
           that.setData({
-            transferAction: util.RtransferAction(res.group)
+            transferAction1: util.RtransferAction(res.group),
+            transferAction: util.RtransferAction(res.group),
           });
 
           var errorInfo = "您输入的序列号为：" + that.data.inputValue+"\n";

@@ -57,7 +57,7 @@ text{
 }
 .wx-auth{
     color: white;
-    margin: 80rpx auto;
+    margin: 60rpx auto 20rpx;
     border: 1px solid white;
     width: 360rpx;
     height: 90rpx;
@@ -65,4 +65,13 @@ text{
     font-size: 32rpx;
     text-align: center;
     border-radius: 45rpx;
+}
+.wx-privacy{
+    text-align: center;
+    color: #efefef;
+    font-size:25rpx;
+}
+checkbox .wx-checkbox-input {
+    width: 20rpx;
+    height: 20rpx;
 }

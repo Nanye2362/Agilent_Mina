@@ -1,0 +1,151 @@
+<view>
+  <view class="privacyTitle">安捷伦客户隐私声明</view>
+    <view class="divLine"></view>
+    <view class="privacyContent" style="font-style: italic;">本隐私声明最新修订于 2018 年 5 月 22 日。</view>
+    <view class="privacyContent">安捷伦科技有限公司及其子公司（本文中又称为“安捷伦科技”、“安捷伦”、“我们”、“我们的”和“我们”）致力于保护并维护您的隐私。安捷伦科技有限公司成立于美国，注册办事处位于美国加利福尼亚州圣克拉拉市史蒂文斯河大道 5301，
+    CA 95051。就《通用数据保护条例》（以下简称“GDPR”）而言，我们是与本网站相关的所有已处理信息的数据控制方。与您签订合同的子公司将成为为达到市场营销目的以及提供安捷伦服务而提供的信息的数据控制方。本隐私声明（以下简称“隐私声明”）旨在让您了解我们的隐私惯例、我们通过您收集到的信息类型以及当您通过网址
+    www.agilent.com 使用我们的网站和客户门户网站（以下简称“网站”）或就提供或接收商品和/或服务与我们线下互动时如何使用这些信息。为便于您访问本声明，各个安捷伦网页的底部均提供有本声明的链接。</view>
+    <view class="privacyContent">如果您希望就您的个人信息或本隐私声明联系安捷伦，请通过 data-protection.officer@agilent.com 联系我们的数据保护官员。</view>
+
+    <view class="privacyContent">本隐私声明适用于安捷伦自客户、供应商、供货商、与安捷伦存在业务关系的其他实体处取得的任何个人信息的收集、处理和使用。</view>
+
+    <view class="privacyContent">本隐私声明并不适用于非我们所拥有或控制的第三方的惯例，包括但不限于您选择通过我们网站进行访问的任何第三方网站、服务和应用程序。</view>
+
+    <view class="privacyContent">若您不同意本隐私声明或其任何一部分，则应停止访问本网站。请花几分钟时间查看下文所述的安捷伦政策和惯例。</view>
+
+    <view class="privacyContent">在本隐私声明全文中，“个人信息”指的是可以（单独或与其他信息一起）识别出您身份的任何信息，如您的姓名、地址、电子邮件地址和电话号码等。</view>
+  
+<view class="privacyH1">1. 我们收集哪些信息</view>
+
+<view class="privacyH2">1.1 客户和供货商</view>
+
+  <view class="privacyContent">在您与我们存在此关系期间，我们会收集诸如您的姓名、邮政地址、电话号码、传真号码、电子邮件地址、联系和付费信息、交易历史记录（包括订单、销售线索、演示和服务/维修历史记录）和信用卡或其他财务信息（应予加密）等个人信息。</view>
+  <view class="privacyContent">通过您与安捷伦进行的面对面交流和/或在线互动，我们会要求您提供与您个人或职业兴趣、人口统计学、我们产品体验以及优先联系方式等有关的信息。我们会将您通过各种交流和联系渠道提供给我们的信息进行组合，例如将在线收集的数据与离线提供的信息加以组合。此外，我们网站某些施加限制的部分，必须提供个人信息才能确定您是否具有访问资格。</view>
+  <view class="privacyContent">我们所收集信息的进一步分类已在下方的 第 2 部分（我们如何使用您的个人信息 列出.</view>
+
+<view class="privacyH2">1.2 安捷伦网站的所有访问者</view>
+   <view class="privacyContent">在您访问我们的网站时，我们可能会收集某些有关您的浏览会话的技术数据，例如 IP 地址、浏览器类型和语言、浏览我们网站的次数以及您访问的超链接。</view>
+   <view class="privacyContent">除下面一段所示外，我们以不识别您的个人身份的综合方式，将此类技术数据用于安捷伦自身的报告、统计、网站改进以及信息安全等用途。</view>
+   <view class="privacyContent">在您持续与安捷伦互动的期间，通过网站导航可能识别出您的个人身份的登录或其他跟踪信息会被短期保存，已备技术安全、网站改进和保持客户关系之需。</view>
+   <view class="privacyContent">请参阅下文的 第 8 部分（如何使用 cookie）, 了解我们如何使用 cookie 和类似技术。</view>
+
+<view class="privacyH1">2. 我们如何使用您的个人信息</view>
+  <view class="privacyContent">安捷伦将使用我们通过您收集到的个人信息用于以下列出的一般用途。对您的要求作出回应是为我们的合法利益考虑，为确保我们的产品和企业正常工作并为您提供更好的服务，我们将按照如下方式使用您的个人信息。</view>
+     <view class="privacyContent1">我们将使用您的联系方式和登录信息，如您的姓名、邮政地址、电话号码、传真号码和电子邮件地址，以实现以下目的：</view>
+     <view class="privacyContent2">与您沟通交流，如果您已提交查询或请求报价。</view>
+     <view class="privacyContent2">确定您是否具有我们网站某些施加限制部分的访问资格。</view>
+     <view class="privacyContent2">让您注册，如果您订阅接收我们的实时通讯或内容，或者如果您注册参加我们的网络研讨会。</view>
+     <view class="privacyContent1">当您与我们的服务部门（如诊断和基因组学集团 (DGG)、安捷伦 CrossLab 集团 (ACG) 或生命科学与应用市场集团 (LSAG)）互动时，我们还会使用您的联系方式和登录信息：</view>
+      <view class="privacyContent2">为您提供一系列服务，包括提供报价、提案、示范以及生成合同。</view>
+      <view class="privacyContent2">为您提供客户服务，包括产品设置与安装、处理和调查投诉、提供专业服务培训和认证。</view>
+      <view class="privacyContent2">进行研究和开发，提供质量保证和产品验证。</view>
+      <view class="privacyContent2">处理我们医疗器械方面的监管备案文件。</view>
+      <view class="privacyContent2">遵守我们的法规要求以实现遵从性目的。</view>
+      <view class="privacyContent2">为我们的产品履行服务并提供支持。</view>
+      <view class="privacyContent2">改进我们的服务与产品。</view>
+      <view class="privacyContent2">推进我们的年度研讨会。</view>
+      <view class="privacyContent2">提供邮件列表，方便通过论坛对我们的产品展开讨论。</view>
+      <view class="privacyContent2">在征得您同意的情况下向您提供营销传播，改进我们的品牌管理并开展市场调研。</view>
+
+<view class="privacyContent">如需了解关于我们服务部门数据处理的更多详情，包括我们凭借的法律依据的信息，请点击 此处 查看。</view>
+    <view class="privacyContent1">我们将利用您的使用信息，如您的 IP 地址、浏览器类型、访问我们网站的次数以及超链接，以实现以下目的：</view>
+      <view class="privacyContent2">响应技术或服务问题；</view>
+      <view class="privacyContent2">个性化设计我们的网站和通讯；</view>
+      <view class="privacyContent2">确保将我们网站的内容以最有效的方式呈现给您和您的设备；</view>
+      <view class="privacyContent2">监控并分析与我们网站有关的趋势、使用和活动，同时改进我们的网站;</view>
+      <view class="privacyContent2">管理网站和内部运营，以便进行故障排除、数据分析、测试、研究、统计和调查分析；</view>
+      <view class="privacyContent2">确保网站安全可靠；以及</view>
+      <view class="privacyContent2">衡量并了解我们为您和他人所提供的内容的有效性。</view>
+    <view class="privacyContent1">作为我们所遵守的法律和监管义务的一部分，我们也可能使用您的联系方式、使用情况和付款信息来履行该等义务，并遵守政府和监管决策。</view>
+    <view class="privacyContent1">我们将使用您的个人信息旨在更好地了解您的需求，为您提供更优质的服务，包括回复您的信件，并提供服务和利益的最新信息。</view>
+    <view class="privacyContent1">我们收集信用卡号码或其他财务数据时，仅将数据用于支付处理目的，而不会保留用于其他目的。</view>
+<view class="privacyContent">根据适用法律，我们可能也会不时使用您的信息与您联系，以进行市场调研或向您提供我们认为可能引起您特别兴趣的营销信息。如需取消订阅促销电子邮件，请点击 此处 或 参阅下文第 3 部分（营销沟通） 以了解更多信息。</view>
+<view class="privacyH2">用户论坛</view>
+ <view class="privacyContent">本网站可能包含用户可以发送或粘贴消息的区域，如博客、聊天室、电子公告栏或用户论坛。您应当意识到，您在此类区域提交的任何个人信息能够被其他用户阅读、收集或使用，并可能会被用于向您发送未经请求的消息。对于您决定在这种公共区域提交的个人信息，我们概不承担任何责任。</view>
+  <view class="privacyContent">如需进一步了解在我们的业务范围内我们如何处理个人数据，请点击 此处</view>
+   <view class="privacyContent">我们注意到，在我们的若干部门中，提供服务时我们作为数据处理方对个人数据进行处理。我们根据客户的说明并按照我们的服务协议和客户合同的条款处理此类数据。</view>
+
+<view class="privacyH1">3. 营销沟通</view>
+<view class="privacyContent">在适用法律允许的范围内（包括仅在适用法律要求的情况下征得您的同意），我们会定期从安捷伦向您发送营销消息，包括通讯、促销和特殊优惠。我们会使用您的姓名、邮政地址、电话号码、传真号码、社交媒体资料和电子邮件地址将这些消息发送给您。您可以按照每封电子邮件中提供的取消订阅说明，取消接收这类消息，而不会对您与安捷伦之间的关系带来任何负面影响。但是，请您注意，取消接收此类信息将会阻止您接收与更新、改进或特殊优惠有关的电子邮件消息。如果您选择取消接收这类营销消息，我们会继续向您发送非营销电子邮件，比如与您和我方之间业务有关的电子邮件。此外，我们保留在认为有必要时（包括法律要求的情况下）与您联系的权利。</view>
+<view class="privacyContent">我们还会为您提供机会，让我们了解您是否希望随时取消与安捷伦的其他联系方式但不给您与安捷伦的关系带来任何负面影响，我们将竭尽所能实现此类请求。此项选择将在我们发送给您的在线或离线通讯的底部以及我们的网站注册页面上提供。</view>
+<view class="privacyContent">如果选择取消遇到困难，请填写此取消订阅 表.</view>
+
+<view class="privacyH1">4. 我们保存您的个人信息的位置以及我们与谁共享此信息</view>
+ <view class="privacyContent">我们关于我们网站的条款通过您收集到的个人信息将由安捷伦科技公司转移至美国进行处理，以便我们能够履行与您的合同义务。</view>
+ <view class="privacyContent">我们关于销售我们的产品和服务通过您收集到的个人信息将受到您签订合同的当地安捷伦子公司的条款约束。在适用 GDPR 的情况下，依照第 2004/915/EC 和 2010/87/EU 号决定，根据欧盟委员会关于将个人数据转移给第三国的示范合同（即标准合同条款）（以下简称“示范条款”），这些个人信息将由安捷伦科技公司转移至美国进行处理。如果您希望查阅示范条款副本，请联系 privacy_advocate@agilent.com。</view>
+ <view class="privacyContent">除此之外，安捷伦的全球组织结构决定了会在安捷伦公司集团范围内对个人信息进行全球性的转移。因此，全球公司的高效运作符合我们的合法权益，在适用法律允许的情况下，您提供给我们的个人信息会被跨州界或跨国界转移，包括转移至您居住区国家/地以外的国家/地区（包括转移至 EEA 以外的国家/地区），以便合并数据存储、简化信息管理或在同步全球的客户关系活动。如下所示，它还会被您居住国家/地区以外（包括 EEA 以外的国家/地区）的为我们或为我们其中一个转售商、分销商、服务提供商或供应商工作的人员进行处理。</view>
+ <view class="privacyContent">我们与选定的收件人分享您的信息。这些类别的收件人包括：</view>
+       <view class="privacyContent2">存储您提供的个人信息并提供灾难恢复服务的云存储提供商；</view>
+       <view class="privacyContent2">为我们提供客户关系管理服务的服务提供商；</view>
+       <view class="privacyContent2">为我们提供调查服务的服务提供商；</view>
+       <view class="privacyContent2">为我们提供市场调研服务的服务提供商；</view>
+       <view class="privacyContent2">为我们提供技术服务的代理商和供应商；</view>
+       <view class="privacyContent2">现场服务工程方面的授权服务提供商；</view>
+       <view class="privacyContent2">我们产品和服务的经销商；</view>
+       <view class="privacyContent2">为我们提供 SaaS 服务的销售管理服务提供商；</view>
+       <view class="privacyContent2">服务提供商，包括为我们提供开票服务；和</view>
+       <view class="privacyContent2">我们的专业顾问、审计师和业务合作伙伴；</view>
+       <view class="privacyContent2">提供客户支持服务的支持提供商。</view>
+ <view class="privacyContent">如果 GDPR 适用且您的个人信息的接收方位于欧洲经济区（以下简称“EEA”）以外的地区，该等转移将为：(i) 获得美国商务部欧盟-美国隐私保护协议认证的接收方；或 (ii) 遵从示范条款。有关欧盟-美国隐私保护协议框架的更多信息，请访问美国商务部的隐私护盾网站。如果您希望查阅示范条款副本，请联系 privacy_advocate@agilent.com.</view>
+ <view class="privacyContent">除本隐私声明所述者外，安捷伦不会向他人出售、出借或租借您的个人信息。</view>
+ <view class="privacyContent">此外，安捷伦将在下列情况下披露您的个人信息：(i) 法律要求我们进行披露时；
+(ii) 我们认为执行或运用我们的使用条款和其他协议，或另行保护和捍卫安捷伦或我们客户的权利、财产或安全所必需时；(iii) 为遵守司法程序、法院指令或其他法律义务或政府质询时；或 (iv) 披露给通过合并、分立、收购、重组或出售资产等方式取得安捷伦当前业务中任何部分的任何实体时。有关您个人信息所有权或使用情况的任何变动，以及您就您的个人信息可能作出的任何选择，都会通过电子邮件和/或我们网站上的醒目通知告知予您。</view>
+ <view class="privacyContent">我们将采取一切合理必要的措施，确保您的数据会依照本隐私声明得到安全的处理。</view>
+
+<view class="privacyH1">5. 我们对您的个人信息的保存期限</view>
+<view class="privacyContent">我们将按照前面第 1 部分（我们收集哪些信息）的表格中列出的保留期来保留您的个人信息, 点击此处.</view>
+
+
+<view class="privacyH1">6. 您的权利</view>
+<view class="privacyH2">访问和可移植性：
+ <view class="privacyContent">您有权要求我们访问我们所持有的关于您的个人数据，并向您提供有关我们如何使用您的个人数据以及我们与谁分享这些数据的特定信息。
+
+在征得您同意的情况下您向我们提供了您的个人数据，您有权要求我们以结构化、机器可读的格式提供一份此数据副本，并要求我们将此数据分享（通过端口）给另一数据控制方。</view>
+ </view>
+ <view class="privacyH2">更正:
+  <view class="privacyContent">此外，您还有权要求我们对您不准确或不完整的个人数据进行更正。</view>
+   </view>
+ <view class="privacyH2">删除权利：
+  <view class="privacyContent">: 在某些情况下，您有权要求我们删除我们持有的关于您的个人数据。在此处了解关于您的删除权利的更多信息</view>
+ </view>
+ <view class="privacyH2">限制:
+    <view class="privacyContent">在某些情况下，您有权要求我们限制（停止任何主动情况下的）处理您的个人数据。在此处了解您在限制数据处理的能力方面的详细 信息</view>
+    <view class="privacyContent">此外，您可以反对我们基于我们的合法利益处理您的个人数据，除非我们能够给出不可抗拒的合法理由，否则我们将不再处理您的个人数据。</view>
+    <view class="privacyContent">如需行使上述任一权利，请点击此处。此外，您有权向信息专员办公室或其他适用的数据保护监督机构投诉。</view>
+    <view class="privacyContent">请注意，这些权利是有限的，例如，满足您的要求会对其他个人或公司商业机密或知识产权造成不利影响，存在最重要的公共利益原因或按法律规定我们需保留您的个人数据。</view>
+    <view class="privacyContent">您可以点击 此处随时取消您的同意.</view>
+    <view class="privacyContent">任何时候，您都有权利反对我们为向您发送营销信息而处理关于您的数据，包括为该等目的而构建个人档案，并且我们将停止出于该目的的数据处理。</view>
+    <view class="privacyContent">如果您希望就我们如何处理您的个人信息提出投诉，首先请通过 privacy_advocate@agilent.com 与我们取得联系，我们将尽全力尽快处理您的请求。 如果您认为我们侵犯了数据保护法，这不会妨碍您向您所居住或工作的国家/地区的 相关监管机构提出投诉的权利。</view>
+ </view>
+
+<view class="privacyH1">7. 我们如何保护您个人信息的安全</view>
+      <view class="privacyContent">安捷伦致力于确保您个人信息的安全。为防止未经授权的访问或披露、维护数据准确性和确保个人信息的妥善使用，我们已将合适的物理、电子和组织措施落实到位以保护和保障您的个人信息。我们会将个人信息保存在处于我们直接控制之外的场所（如保存在由主机托管服务提供商负责的代管服务器或数据库中），并确保我们已针对这类提供商将合适的技术和组织措施落实到位。</view>
+        <view class="privacyContent">我们已为您提供（或您已选定）密码以便您能访问我们网站特定部分的情况下，您应负责对该密码保密。我们要求您不得与其他任何人共享该密码。</view>
+          <view class="privacyContent">很遗憾，互联网上的信息传输并非百分之百地安全。我们不能担保您传输到我们网站上的信息的安全；任何传输风险将由您自行承担。</view>
+            <view class="privacyContent">如果您对我们网站的安全有任何疑问，可通过 privacy_advocate@agilent.com联系我们.</view>
+
+<view class="privacyH1">8. 我们如何使用 COOKIE</view>
+  <view class="privacyContent">在您访问我们的网站时，我们会收集有关您的浏览会话的技术数据，例如 IP 地址、浏览器类型和语言、浏览我们网站的次数以及您访问的超链接。</view>
+    <view class="privacyContent">我们采用不识别您的个人身份的综合方式，将此类技术数据用于安捷伦自身的报告、统计、网站改进以及信息安全等用途。</view>
+      <view class="privacyContent">有关我们通过 cookie 收集的数据、其用途以及您与 cookie 有关的选择的详细信息，请参阅 此处 </view>
+
+<view class="privacyH1">9. 其他信息</view>
+<view class="privacyH2">第三方网站链接</view>
+      <view class="privacyContent">为便于您的使用，第三方网站链接均单独提供。如果您使用这些链接，您将离开安捷伦网站。安捷伦未曾审查也并不控制这些网站、其内容或其隐私声明，对此并不负责。因此，有关这些网站、任何信息、软件或网站中的其他产品或材料、或使用网站的任何后果，我们既不提供背书亦不作出任何声明。如果您决定访问任何一个链接至安捷伦网站的第三方站点，您将完全自行承担风险。</view>
+<view class="privacyH2">Jobs@Agilent</view>
+        <view class="privacyContent">当您选择邮寄简历至我们的网站并申请成为安捷伦团队的一员时，请注意，您将会被引导至第三方 URL(jobs.agilent.com)，这些网页附有 Agilent 商标。您通过该 URL 提供的信息将仅用于提供信息时的目的（包括处理您的申请），并将在遵守安捷伦法定和管理要求所必需的期间内予以保留。在简历的适用范围内，在这些托管页面上收集和使用的信息须受本隐私声明的下列各部分的规定限制：我们如何使用 cookie；我们与谁分享您的个人信息；我们保存您的个人信息的持续时间；以及我们如何保护您的个人信息安全。</view>
+          <view class="privacyContent">对于申请欧洲职位的求职者，请参阅我们的 求职者隐私声明 此声明提供了安捷伦如何使用您的个人信息的相关信息.</view>
+<view class="privacyH2">通过电子邮件发送页面</view>
+        <view class="privacyContent">如果您选择使用我们的“通过电子邮件发送页面 (Email a Page)”服务，您所提供的您的姓名、意见和电子邮件地址将不会用于完成此页面转发处理之外的任何其他目的。</view>
+<view class="privacyH2">隐私声明变更</view>
+      <view class="privacyContent">本隐私声明自本隐私声明起始处所载日期起生效。我们保留通过在我们的网站上发布经修订政策和更新本隐私声明起始处的声明最新修订日期的方法，随时修改本隐私声明的权利，因此请务必经常查阅。如果我们对本隐私声明作出重大变更，我们会通过电子邮件或在我们的首页提供醒目通知的方式来告知您。除非我们要求您明确同意我们政策的某些条款，否则我们认为您继续使用我们的网站即表明您接受本隐私声明的条款。</view>
+<view class="privacyH2">联系信息</view>
+      <view class="privacyContent">您对我们的隐私惯例如有任何疑问或意见/如需联系我们，请使用下列电子邮件地址：</view>
+        <view class="privacyContent">请通过 data-protection.officer@agilent.com 联系我们的数据保护官员。</view>
+
+ <view class="privacyH2">Agilent Technologies, Inc.</view>
+  <view class="privacyH2">5301 Stevens Creek Blvd.</view>
+   <view class="privacyH2">Santa Clara, CA 95051</view>
+    <view class="privacyH2">USA</view>
+  <view class="privacyH2">电话： (408) 553 -4417</view>
+</view>

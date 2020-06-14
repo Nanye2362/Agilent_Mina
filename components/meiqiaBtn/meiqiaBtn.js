@@ -28,6 +28,7 @@ Component({
     params: '',
     nickName:'',
     avatarUrl:'',
+    contactId:'',
     sessionFromFormat:""
   },
 
@@ -36,6 +37,7 @@ Component({
       this.setData({
         nickName: wx.getStorageSync("sobot_nickname"),
         avatarUrl:wx.getStorageSync("sobot_avatarUrl"),
+        contactId:wx.getStorageSync("sobot_contactid"),
       })
     }
   },
@@ -78,20 +80,21 @@ Component({
     /*workTime.removeHandleArr(this.__wxExparserNodeId__);*/
   },
   observers: {
-    'sessionFrom': function (value) {
+    'sessionFrom'(value) {
       var _this = this;
       _this.setData({
         sessionFromFormat: ''
       });
       var strArr = value.split('|');
 
-      var params = "{\"name\":\""+ _this.data.nickName+"\",\"contactId\":\"123245\",\"from\":\""+ strArr[0]+"\"}";
+      var params = "{\"name\":\""+ _this.data.nickName+"\",\"contactId\":\""+ _this.data.contactId +"\",\"from\":\""+ strArr[0]+"\"}";
       strArr[0] = params;
-      console.log(strArr);
-      console.log(value);
-      _this.setData({
+      console.log('strArr:',strArr);
+      console.log('sessionFrom value:',value);
+      this.setData({
         sessionFromFormat: strArr.join("|")
       });
+
 
       console.log('session:'+this.data.sessionFromFormat);
     },

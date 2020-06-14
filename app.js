@@ -251,6 +251,22 @@ App({
     });
   },
 
+  alertInfo: function(text){
+    var that=this;
+    if (typeof (text) !="undefined"){
+      that.globalData.loginText = text;
+    }
+    wx.hideLoading();
+    wx.showModal({
+      title: '温馨提示',
+      content: that.globalData.loginText,
+      showCancel: false,
+      success: function (res) {
+
+      }
+    })
+  }
+
   /*
   showTips: function () {
     var displayTips = this.data.displayTips

@@ -44,7 +44,7 @@
       <view class="shLoading-btn-panel">
           <view class="shLoading-btn-cancel" bindtap="">发起会话
            <!-- <meiqiaBtn bindmeiqiaTap="MtaReportt" btn-class="shLoading-btn-contact" handle-alert="{{false}}" meiqia-group="{{meqiaGroup}}" session-from="{{NONTECH+inputValue}}"></meiqiaBtn> -->
-           <meiqiaBtn bindmeiqiaTap="MtaReportt" btn-class="shLoading-btn-contact" handle-alert="{{false}}" meiqia-group="{{meqiaGroup}}" session-from="{{NONTECH+inputValue}}|transferAction={{transferAction}}"></meiqiaBtn>
+           <meiqiaBtn bindmeiqiaTap="MtaReportt" btn-class="shLoading-btn-contact" handle-alert="{{false}}" meiqia-group="{{meqiaGroup}}" session-from="{{NONTECH+inputValue}}|transferAction={{transferAction1}}"></meiqiaBtn>
            </view>
           <view class="shLoading-btn-ok" bindtap="shClose">重新上传</view>
       </view>

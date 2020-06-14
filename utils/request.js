@@ -57,7 +57,7 @@ function _NetRequest({ url, data, success, fail, complete, method = "POST", show
 
   if (!in_array(url, urlArr) && app.globalData.needCheck) {
     isRequesting = false;
-    app.alertInfo();
+
     arrRequest = [];
     return false;
   }

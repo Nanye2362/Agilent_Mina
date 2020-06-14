@@ -1,0 +1,62 @@
+/* pages/login/privacy-policy.wxss */
+.divLine{
+  background: #E0E3DA;
+  width: 100%;
+  height: 5rpx;
+ }
+
+.privacyTitle{
+  font-size: 24px;
+  color: #444;
+  margin:50rpx auto;
+  padding:0 20rpx;
+  font-weight: bold;
+
+}
+
+.privacyH1{
+  font-size: 15px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    color: #444;
+    margin:20rpx auto;
+    padding:0 20rpx;
+}
+
+.privacyH2{
+  font-size: 12px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    color: #444;
+    margin:20rpx auto;
+    padding:0 20rpx;
+}
+.privacyContent{
+   
+   font-size: 12px;
+   margin:20rpx auto;
+   font-family: Arial, Helvetica, sans-serif;
+   color: #444;
+   font-weight: 200;
+   padding:0 20rpx;
+   
+}
+.privacyContent1{
+  font-style: italic;
+  font-size: 12px;
+  margin:20rpx auto;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #444;
+  font-weight: 200;
+  padding:0 20rpx 0 50rpx;
+  
+}
+.privacyContent2{
+  font-style: italic;
+  font-size: 12px;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #444;
+  font-weight: 200;
+  padding:0 20rpx 0 100rpx;
+  
+}

@@ -38,4 +38,12 @@
         <image src="/images/login/screen-shot.png" class="screen-shot-img"></image>
     </view>
     <view class="wx-auth" bindtap="authConfirm">微信授权</view>
+
+    <view class="wx-privacy" style="display:flex;justify-content:center;align-items:center;">
+        <checkbox-group   bindchange="checkboxChange">
+            <checkbox  value="1">我已了解并接受安捷伦客户</checkbox>
+        </checkbox-group>
+        <navigator  url="/pages/privacy-policy/privacy-policy" style="text-decoration:underline;font-size:23rpx">隐私声明</navigator >
+
+    </view>
 </view>
