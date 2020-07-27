@@ -120,14 +120,16 @@ Page({
   getBanner:function(){
     var that = this;
     util.NetRequest({
-      url: 'site/banner',
+      url: 'api/v1/slider/info',
       data: {
       },
+      method:'GET',
       success: function (res) {
+        console.log(res);
         that.setData({
-          imgUrls: res.data.banner,
-          notice: res.data.notice,
-          notice_active: res.data.notice_active
+          imgUrls: res.banner,
+          notice: res.notice,
+          notice_active: res.notice_active
         })
       }
     })

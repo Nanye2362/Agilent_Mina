@@ -32,7 +32,7 @@ Page({
       success: function (res) {
         console.log(res);
         that.setData({
-          tabListtabList: res,
+          tabList: res.list,
         })
       }
     });

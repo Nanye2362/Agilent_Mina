@@ -101,14 +101,19 @@ Page({
     var that = this;
     util.NetRequest({
       showload: false,
-      url: "sr/preventive-maintenance", 
+      url: "api/v1/reservation", 
       data: {
-        UserName: that.data.name,
-        Company: that.data.company,
-        from: 'wechat',
-        SerialNo: that.data.inputValue,
-        ConfigInfo: that.data.desc,
-        ExpectedDate: that.data.chooseDate,
+        type:1,
+        expected_date: that.data.chooseDate,
+        mobile:that.data.mobile,
+        name: that.data.name,
+        company: that.data.company,
+        order_no:'',
+        serial_no: that.data.inputValue,
+        configration_information: that.data.desc,
+        instrument_type:'',
+        additional_information:'',
+        images:[]
       }, 
       fail: function (e) {
         console.log(e);
@@ -117,7 +122,7 @@ Page({
       success: function (res) {
         isSend = false;
         console.log(res);
-        if (res.success) {
+        if (res.status) {
           wx.showModal({
             title: '提交成功',
             content: '您的安装申请已提交成功，服务调度中心将会与您联系确认服务时间以及工程师安排事宜',

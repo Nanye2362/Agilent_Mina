@@ -26,20 +26,21 @@ Component({
     orderDate: function(){
       var that = this;
       util.NetRequest({
-        url: 'util/api-get-worktime',
+        url: 'api/v1/calender/work',
         data: {
         },
+        method:'GET',
         success: function (res) {
           console.log(res);
           var dateArry = [];
           var firstDay = '';
           var year = '';
-          for(var i in res){
+          for(var i in res.work_list){
             var obj = {};
             obj.date = i.substring(i.length-2);
             obj.year = i.substring(0,4);
             obj.month = i.substr(4,2);
-            obj.optional = res[i];
+            obj.optional = res.work_list[i];
             if(obj.optional==0 && firstDay ==''){
               firstDay = 'firstDay';
               year = i.substring(0, 4);

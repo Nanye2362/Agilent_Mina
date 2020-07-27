@@ -96,20 +96,25 @@ Page({
     var that = this;
     util.NetRequest({
       showload: false,
-      url: "sr/legal-certification",  
+      url: "api/v1/reservation",  
       data: {
-        UserName: that.data.name,
-        Company: that.data.company,
-        from: 'wechat',
-        SerialNo: that.data.inputValue,
-        ExpectedDate: that.data.chooseDate,
+        type:2,
+        expected_date: that.data.chooseDate,
+        mobile:that.data.mobile,
+        name: that.data.name,
+        company: that.data.company,
+        order_no:'',
+        instrument_type:'',
+        additional_information:'',
+        images:[],
+        serial_no: that.data.inputValue
       }, fail: function (e) {
         console.log(e);
         isSend = false;
       }, success: function (res) {
         isSend = false;
         console.log(res);
-        if (res.success) {
+        if (res.status) {
           wx.showModal({
             title: '提交成功',
             content: '您的安装申请已提交成功，服务调度中心将会与您联系确认服务时间以及工程师安排事宜',

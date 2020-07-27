@@ -225,26 +225,24 @@ Page({
     var that = this;
     util.NetRequest({
       showload: false,
-      url: "sr/sr-instal", 
+      url: "api/v1/reservation", 
       data: {
-        InsType: that.data.insType[that.data.pickerType],
-        orderno: that.data.orderno,
-        username: that.data.name,
+        type:0,
+        expected_date: that.data.chooseDate,
+        mobile:that.data.mobile,
+        name: that.data.name,
         company: that.data.company,
-        from: 'wechat',
-        img_1: imgUrlList[0],
-        img_2: imgUrlList[1],
-        img_3: imgUrlList[2],
-        img_4: imgUrlList[3],
-        ExpectedDate: that.data.chooseDate,
-        AdditionalInfo: that.data.desc,
+        orderno: that.data.orderno,
+        instrument_type: that.data.insType[that.data.pickerType],
+        additional_information: that.data.desc,   
+        images:[imgUrlList[0],imgUrlList[1],imgUrlList[2],imgUrlList[3]]
       }, fail:function(e){
         console.log(e);
         isSend=false;
       },success: function (res) {
         isSend=false;
         console.log(res);
-        if (res.success) {
+        if (res.status) {
           wx.showModal({
             title: '提交成功',
             content: '您的安装申请已提交成功，服务调度中心将会与您联系确认服务时间以及工程师安排事宜',

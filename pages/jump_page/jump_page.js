@@ -77,7 +77,7 @@ Page({
         if (res.code) {
           //发起网络请求
           util.NetRequest({
-            url: 'wechat-mini/wx-login',
+            url: 'wechat-api/v1/wechat/login/wx-login',
             data: {
               code: res.code,
               userMobile: JSON.stringify(app.userMobile)

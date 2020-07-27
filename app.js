@@ -190,7 +190,7 @@ App({
         if (res.code) {
           //发起网络请求
           util.NetRequest({
-            url: 'wechat-mini/wx-login',
+            url: 'api/v1/wechat/login',
             data: {
               code: res.code,
               userMobile: JSON.stringify(userMobile)

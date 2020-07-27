@@ -2,31 +2,31 @@
 var util = require('../../utils/util.js');
 var orderArry={
   "install":{
-    "CreateTime":"预约日期",
-    "OrderNo":"订单号",
+    "created_at":"预约日期",
+    "order_no":"订单号",
     "InsType":"仪器类型",
-    "UserName":"姓名",
-    "Company":"公司名称",
-    "MOBILE":"手机号",
-    "ExpectedDate":"期望日期",
-    "AdditionalInfo":"附加信息"
+    "name":"姓名",
+    "company":"公司名称",
+    "mobile":"手机号",
+    "expected_date":"期望日期",
+    "additional_information":"附加信息"
   },
   "pm":{
-    "CreateTime":"预约日期",
-    "SerialNo":"序列号",
-    "UserName":"姓名",
-    "Company":"公司名称",
-    "MOBILE":"手机号",
-    "ExpectedDate":"期望日期",
-    "ConfigInfo":"配置信息"
+    "created_at":"预约日期",
+    "serial_no":"序列号",
+    "name":"姓名",
+    "company":"公司名称",
+    "mobile":"手机号",
+    "expected_date":"期望日期",
+    "configration_information":"配置信息"
   },
   "oq":{
-    "CreateTime":"预约日期",
-    "SerialNo":"序列号",
-    "UserName":"姓名",
-    "Company":"公司名称",
-    "MOBILE":"手机号",
-    "ExpectedDate":"期望日期"
+    "created_at":"预约日期",
+    "serial_no":"序列号",
+    "name":"姓名",
+    "company":"公司名称",
+    "mobile":"手机号",
+    "expected_date":"期望日期"
   }
 }
 
@@ -55,16 +55,17 @@ Page({
       transferAction: util.sobotTransfer(5)
     })
     util.NetRequest({
-      url: 'site-mini/appointment-details',
-      data: {
-        id: options.orderID,
-        orderType: options.orderType,
-      },
+      url: 'api/v1/reservation/'+options.orderID,
+      // data: {
+      //   id: options.orderID,
+      //   orderType: options.orderType,
+      // },
+      method:'GET',
       success: function (res) {
-        var details = res.AppointmentDetails;
-        console.log(details);
+        // var details = res.AppointmentDetails;
+        console.log(res);
         that.setData({
-          orderDetails: details,
+          orderDetails: res,
         })
       }
     });
