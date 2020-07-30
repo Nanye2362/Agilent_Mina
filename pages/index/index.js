@@ -127,9 +127,9 @@ Page({
       success: function (res) {
         console.log(res);
         that.setData({
-          imgUrls: res.banner,
-          notice: res.notice,
-          notice_active: res.notice_active
+          imgUrls: res.data.banner,
+          notice: res.data.notice,
+          notice_active: res.data.notice_active
         })
       }
     })

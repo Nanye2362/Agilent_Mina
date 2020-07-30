@@ -33,7 +33,7 @@ Page({
       success: function (res) {
         console.log(res);
         that.setData({
-          tabList: res.list,
+          tabList: res.data.list,
         })
       }
     });

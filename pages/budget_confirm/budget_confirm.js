@@ -78,20 +78,20 @@ Page({
         console.log(r);
         var invoiceDetails = {},
             currentInvoice = '';
-        console.log(r.data.InvoiceInfo)
-        if (typeof(r.data.InvoiceInfo)!="undefined"){
-          currentInvoice = r.data.InvoiceInfo.InvoiceType == 0 ? 'normalInvoice' : 'specialInvoice';
+        console.log(r.invoice)
+        if (typeof(r.invoice)!="undefined"){
+          currentInvoice = r.invoice.InvoiceType == 0 ? 'normalInvoice' : 'specialInvoice';
         }else{
           that.setData({
             hasInvoice: false,
           })
         }
-        console.log(r.data.InvoiceInfo);
+        console.log(r.invoice);
         console.log(currentInvoice);
 
-        if (r.data.InvoiceInfo.length!=''){
+        if (r.invoice.length!=''){
           //for (var i in r.data.InvoiceInfo){
-            that.setInvoiceInfo(r.data.InvoiceInfo)
+            that.setInvoiceInfo(r.invoice)
           //}
           invoiceDetails = that.data.invoiceDetails
           console.log(invoiceDetails);

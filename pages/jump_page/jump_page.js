@@ -88,8 +88,8 @@ Page({
               console.log(r);
               if (r.success == true) {
                 app.globalData.needCheck = false;
-                wx.setStorageSync('MOBILE', r.mobile);
-                wx.setStorageSync('OPENID', r.openid);
+                wx.setStorageSync('MOBILE', r.data.mobile);
+                wx.setStorageSync('OPENID', r.data.openid);
                 app.globalData.isLogin = true;
                 //that.gotoIndex();
 

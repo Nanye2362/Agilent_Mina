@@ -28,12 +28,13 @@ Page({
     var resultListNew = [];
 
     util.NetRequest({
-      url: 'sr/history-filter',
-      data: {
-        'keywords': value
-      },
+      url: 'api/v1/sr/history?keywords=' + value,
+      // data: {
+      //   'keywords': value
+      // },
+      method:'GET',
       success: function (res) {
-        var resultList = res.HistoryFilter;
+        var resultList = res.history_list;
 
         for(var j = 0,len=resultList.length; j < len; j++) {
           resultListNew[j] = resultList[j];

@@ -201,8 +201,8 @@ App({
               console.log(r);
               if (r.success == true) {
                 that.globalData.needCheck = false;
-                wx.setStorageSync('MOBILE', r.mobile);
-                wx.setStorageSync('OPENID', r.openid);
+                wx.setStorageSync('MOBILE', r.data.mobile);
+                wx.setStorageSync('OPENID', r.data.openid);
                 that.globalData.isLogin = true;
                 //that.gotoIndex();
 
