@@ -230,13 +230,28 @@ Page({
     invoicedetails[currentInvoice].needBill = invoiceDetails.needBill==true?1:0;
     invoicedetails[currentInvoice].invoiceType = invoiceDetails[currentInvoice].invoiceType=='specialInvoice'?1:0;
     util.NetRequest({
-      url: 'site-mini/confirm-budget',
+      url: 'api/v1/sr/bq',
       data: {
         bq_id: this.data.bqId,
-        invoice: JSON.stringify(invoicedetails[currentInvoice]),
+        invoice: {
+          "type": invoicedetails[currentInvoice].invoiceInfo.type,
+          "title": invoicedetails[currentInvoice].invoiceInfo.title,
+          "taxpayer_recognition_number":invoicedetails[currentInvoice].invoiceInfo.taxNumber,
+          "bank": invoicedetails[currentInvoice].invoiceInfo.bankName,
+          "bank_account":invoicedetails[currentInvoice].invoiceInfo.bankAccount, 
+          "registered_address": invoicedetails[currentInvoice].invoiceInfo.companyAddress,
+          "registered_phone": invoicedetails[currentInvoice].invoiceInfo.telephone,
+          "recipient":invoicedetails[currentInvoice].sendInfo.name,
+          "mail":invoicedetails[currentInvoice].sendInfo.mail,
+          "tel": invoicedetails[currentInvoice].sendInfo.telephone,
+          "address": invoicedetails[currentInvoice].sendInfo.address,
+          "po_code": invoicedetails[currentInvoice].PO,
+          "sales_list":invoicedetails[currentInvoice].needBill
+        }
+        //JSON.stringify(invoicedetails[currentInvoice]),
       },
       success: function (r) {
-        if (r.success) {
+        if (r.status) {
           wx.showToast({
             title: '成功',
             icon: 'success',
