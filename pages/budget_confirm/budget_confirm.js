@@ -69,29 +69,30 @@ Page({
 
     });
     util.NetRequest({
-      url: 'site-mini/get-budget',
-      data: {
-        srId: options.srId,
-        objectId: options.objectId
-      },
+      url: 'api/v1/sr/bq?object_id='+options.objectId,
+      // data: {
+      //   srId: options.srId,
+      //   objectId: options.objectId
+      // },
+      method:'GET',
       success: function (r) {
         console.log(r);
         var invoiceDetails = {},
             currentInvoice = '';
-        console.log(r.data.InvoiceInfo)
-        if (typeof(r.data.InvoiceInfo)!="undefined"){
-          currentInvoice = r.data.InvoiceInfo.InvoiceType == 0 ? 'normalInvoice' : 'specialInvoice';
+        console.log(r.data.invoice)
+        if (typeof(r.data.invoice)!="undefined"){
+          currentInvoice = r.data.invoice.InvoiceType == 0 ? 'normalInvoice' : 'specialInvoice';
         }else{
           that.setData({
             hasInvoice: false,
           })
         }
-        console.log(r.data.InvoiceInfo);
+        console.log(r.data.invoice);
         console.log(currentInvoice);
 
-        if (r.data.InvoiceInfo.length!=''){
+        if (r.data.invoice.length!=''){
           //for (var i in r.data.InvoiceInfo){
-            that.setInvoiceInfo(r.data.InvoiceInfo)
+            that.setInvoiceInfo(r.data.invoice[0])
           //}
           invoiceDetails = that.data.invoiceDetails
           console.log(invoiceDetails);
@@ -110,31 +111,23 @@ Page({
           wx.setStorageSync('invoiceDetails', {});
         }
 
-        if (r.status == 0) {
+        if (r.status == true) {
           that.setData({
             pageComplete: true,
             pageShow: true,
             bqId: options.objectId,
-            isConfirm: r.data.is_confirm,
+            isConfirm: r.data.is_confirmed,
             approval_button_enable: r.data.approval_button_enable,
             item_description: r.data.item_description,
-            price: r.data.accept_price,
-            maxprice: r.data.max_price,
-            accountId: r.data.accountId,
-            ContactId: r.data.contactId,
           })
         }else if(r.status == -90){
           that.setData({
             pageComplete: true,
             pageShow: false,
             bqId: options.objectId,
-            isConfirm: r.data.is_confirm,
+            isConfirm: r.data.is_confirmed,
             approval_button_enable: r.data.approval_button_enable,
             item_description: r.data.item_description,
-            price: r.data.accept_price,
-            maxprice: r.data.max_price,
-            accountId: r.data.accountId,
-            ContactId: r.data.contactId,
           })
         } else {
           that.setData({
@@ -155,27 +148,26 @@ Page({
         PO = that.data.PO,
         invoiceType = that.data.invoiceType,
         needBill = that.data.needBill;
-
-    invoiceInfo.title = invoiceinfo.InvoiceTitle;
-    invoiceInfo.companyAddress = invoiceinfo.RegisteredAddress;
-    invoiceInfo.taxNumber = invoiceinfo.TaxpayerRecognitionNumber;
-    invoiceInfo.bankName = invoiceinfo.Bank;
-    invoiceInfo.bankAccount = invoiceinfo.BankAccount;
-    invoiceInfo.telephone = invoiceinfo.RegisteredPhone;
-    sendInfo.name = invoiceinfo.Recipient;
-    sendInfo.address = invoiceinfo.Address;
-    sendInfo.telephone = invoiceinfo.Tel;
-    sendInfo.mail = invoiceinfo.mail;
-    PO = invoiceinfo.POCode;
-    needBill = invoiceinfo.AccountSales == 0 ? 'false' : true,
-    invoiceType = invoiceinfo.InvoiceType == 0 ? 'normalInvoice' : 'specialInvoice';
-    invoiceDetails[invoiceType] = {}
-    invoiceDetails[invoiceType].invoiceInfo = invoiceInfo;
-    invoiceDetails[invoiceType].sendInfo = sendInfo;
-    invoiceDetails[invoiceType].PO = PO;
-    invoiceDetails[invoiceType].needBill = needBill;
-    invoiceDetails[invoiceType].invoiceType = invoiceType;
-    wx.setStorageSync('invoiceDetails', invoiceDetails);
+        invoiceInfo.title = invoiceinfo.title;
+        invoiceInfo.companyAddress = invoiceinfo.registered_address;
+        invoiceInfo.taxNumber = invoiceinfo.taxpayer_recognition_number;
+        invoiceInfo.bankName = invoiceinfo.bank;
+        invoiceInfo.bankAccount = invoiceinfo.bank_account;
+        invoiceInfo.telephone = invoiceinfo.registered_phone;
+        sendInfo.name = invoiceinfo.recipient;
+        sendInfo.address = invoiceinfo.address;
+        sendInfo.telephone = invoiceinfo.tel;
+        sendInfo.mail = invoiceinfo.mail;
+        PO = invoiceinfo.po_code;
+        needBill = invoiceinfo.sales_list == 0 ? 'false' : true,
+        invoiceType = invoiceinfo.type == 0 ? 'normalInvoice' : 'specialInvoice';
+        invoiceDetails[invoiceType] = {}
+        invoiceDetails[invoiceType].invoiceInfo = invoiceInfo;
+        invoiceDetails[invoiceType].sendInfo = sendInfo;
+        invoiceDetails[invoiceType].PO = PO;
+        invoiceDetails[invoiceType].needBill = needBill;
+        invoiceDetails[invoiceType].invoiceType = invoiceType;
+        wx.setStorageSync('invoiceDetails', invoiceDetails);
     that.setData({
       invoiceDetails: invoiceDetails
     })
@@ -238,15 +230,28 @@ Page({
     invoicedetails[currentInvoice].needBill = invoiceDetails.needBill==true?1:0;
     invoicedetails[currentInvoice].invoiceType = invoiceDetails[currentInvoice].invoiceType=='specialInvoice'?1:0;
     util.NetRequest({
-      url: 'site-mini/confirm-budget',
+      url: 'api/v1/sr/bq',
       data: {
-        BudgetoryquoteId: this.data.bqId,
-        AccountId: this.data.accountId,
-        ContactId: this.data.ContactId,
-        invoiceDetails: JSON.stringify(invoicedetails[currentInvoice]),
+        bq_id: this.data.bqId,
+        invoice: {
+          "type": invoicedetails[currentInvoice].invoiceInfo.type,
+          "title": invoicedetails[currentInvoice].invoiceInfo.title,
+          "taxpayer_recognition_number":invoicedetails[currentInvoice].invoiceInfo.taxNumber,
+          "bank": invoicedetails[currentInvoice].invoiceInfo.bankName,
+          "bank_account":invoicedetails[currentInvoice].invoiceInfo.bankAccount, 
+          "registered_address": invoicedetails[currentInvoice].invoiceInfo.companyAddress,
+          "registered_phone": invoicedetails[currentInvoice].invoiceInfo.telephone,
+          "recipient":invoicedetails[currentInvoice].sendInfo.name,
+          "mail":invoicedetails[currentInvoice].sendInfo.mail,
+          "tel": invoicedetails[currentInvoice].sendInfo.telephone,
+          "address": invoicedetails[currentInvoice].sendInfo.address,
+          "po_code": invoicedetails[currentInvoice].PO,
+          "sales_list":invoicedetails[currentInvoice].needBill
+        }
+        //JSON.stringify(invoicedetails[currentInvoice]),
       },
       success: function (r) {
-        if (r.success) {
+        if (r.status) {
           wx.showToast({
             title: '成功',
             icon: 'success',

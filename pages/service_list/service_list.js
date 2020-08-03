@@ -37,12 +37,13 @@ Page({
     if (!this.data.isFirst){
       //请求后台接口 data:{SrId:} site-mini/service-details
       util.NetRequest({
-        url: 'site-mini/service-list',
+        url: 'api/v1/sr/history',
+        method:'GET',
         success: function (res) {
           console.log(res);
           that.sortHistory(res);
           that.setData({
-            getContactId: res.SerialNo_list[0].ContactId
+            getContactId: res.data.SerialNo_list[0].ContactId
           });
         }
       });
@@ -122,12 +123,13 @@ Page({
     } else {
       //请求后台接口
       util.NetRequest({
-        url: 'site-mini/service-list',
+        url: 'api/v1/sr/history',
+        method:'GET',
         success: function (res) {
           console.log(res);
           that.sortHistory(res);
           that.setData({
-            getContactId: res.SerialNo_list[0] == undefined ? '' : res.SerialNo_list[0].ContactId
+            getContactId: res.data.SerialNo_list[0] == undefined ? '' : res.data.SerialNo_list[0].ContactId
           });
         }
       });
@@ -206,11 +208,16 @@ Page({
   sortHistory: function (res) {
     console.log(res);
     //history数据分类
-    var ListAll = res.HistoryResults;
+    var ListAll;
+    //接口不同，判断history接口的情况
+    if(res.data.history_list===undefined){
+      ListAll = res.HistoryResults;
+    }
+    ListAll = res.data.history_list;
     var unCompleteList = [];
     var unsubmmitList = [];
     var unConfirmList = [];
-    var getSerialNo_list = res.SerialNo_list;
+    var getSerialNo_list = res.data.SerialNo_list;
     var SerialNo_list = this.data.SerialNo_listFlag;
     var TECH = this.data.TECH;
     var SN = this.data.SN;
@@ -242,8 +249,8 @@ Page({
     var unsubmmitListL = unsubmmitList.length;
     var unConfirmListL = unConfirmList.length;
     this.setData({
-      InstrumentCount: res.InstrumentCount,
-      HistoryResults: res.HistoryResults,
+      InstrumentCount: res.data.InstrumentCount,
+      HistoryResults: res.data.history_list,
       unCompleteList: unCompleteList,
       unsubmmitList: unsubmmitList,
       unConfirmList: unConfirmList,

@@ -35,12 +35,12 @@ Component({
           var dateArry = [];
           var firstDay = '';
           var year = '';
-          for(var i in res.work_list){
+          for(var i in res.data.work_list){
             var obj = {};
             obj.date = i.substring(i.length-2);
             obj.year = i.substring(0,4);
             obj.month = i.substr(4,2);
-            obj.optional = res.work_list[i];
+            obj.optional = res.data.work_list[i];
             if(obj.optional==0 && firstDay ==''){
               firstDay = 'firstDay';
               year = i.substring(0, 4);

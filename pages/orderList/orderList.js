@@ -26,13 +26,14 @@ Page({
       }
     });
     util.NetRequest({
-      url: 'site-mini/my-appointment',
+      url: 'api/v1/reservation/list',
       data: {
       },
+      method:'GET',
       success: function (res) {
         console.log(res);
         that.setData({
-          tabList: res.list,
+          tabList: res.data.list,
         })
       }
     });

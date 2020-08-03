@@ -65,7 +65,7 @@ Page({
         // var details = res.AppointmentDetails;
         console.log(res);
         that.setData({
-          orderDetails: res,
+          orderDetails: res.data,
         })
       }
     });
