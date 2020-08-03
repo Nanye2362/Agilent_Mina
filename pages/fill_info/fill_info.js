@@ -109,12 +109,12 @@ Page({
       }
       isupload = true;
       util.NetRequest({
-        url: 'auth/info-setup',
+        url: 'api/v1/user/fill',//auth/info-setup
         data: {
-          'username': name,
+          'name': name,
           'mobile': mobile,
           'company': company,
-          'serial_no': sn,
+          'sn': sn,
           'remark':other,
           'fromPage': fromPage,
           "userType":userType
@@ -122,7 +122,7 @@ Page({
         success: function (res) {
           console.log(that.data);
           console.log(res);
-          if (res.success == true) {
+          if (res.status == true) {
             wx.setStorageSync('infoSetup', that.data);
             if(!res.isworktime){//非工作时间
               wx.showModal({

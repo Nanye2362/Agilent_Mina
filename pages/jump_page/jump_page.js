@@ -15,7 +15,20 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.wxlogin();
+    // this.wxlogin();
+    console.log("wx.getStorageSync('AuthFromPage'):",wx.getStorageSync('AuthFromPage'));
+    if( wx.getStorageSync('AuthFromPage')!= ''){
+      wx.navigateTo({
+        url:'/'+wx.getStorageSync('AuthFromPage') ,
+      })
+      wx.removeStorageSync('AuthFromPage');
+    }else{
+      wx.removeStorageSync('AuthFromPage');
+      wx.switchTab({
+        url: '/pages/index/index',
+      });
+    } 
+
   },
 
   /**

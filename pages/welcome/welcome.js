@@ -27,8 +27,8 @@ Page({
       data: {
       },
       success: function (res) {
-        if (res.success) {
-          wx.setStorageSync('wrapper_text', res.text);
+        if (res.status) {
+          wx.setStorageSync('wrapper_text', res.data.text);
           app.globalData.isWelcomeAuth=true;
           app.gotoIndex();
         } else {

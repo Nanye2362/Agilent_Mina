@@ -92,14 +92,13 @@ Page({
     var vfcode = e.detail.value.verification_code
     var that = this;
     util.NetRequest({
-      url: 'auth/auth?mobile=' + mobile,
+      url: 'api/v1/users/bind',//'auth/auth?mobile=' + mobile
       data: {
         'mobile': mobile,
-        'verification_code': vfcode,
-        disabled: true,
+        'code': vfcode
       },
       success: function (res) {
-        if (res.success == true) {
+        if (res.status == true) {
           util.getUserInfoSobot();
 
           wx.setStorageSync('mobile', mobile)
@@ -124,13 +123,13 @@ Page({
           }
 
         } else {
-          var err_msg = res.error_msg;
+          var err_msg = res.data.err_msg;
 
-          if (err_msg =="foreigner"){
+          if (res.data.error_type =="-2"){
             that.showForeign();
             return;
           }
-          if(res.noskip==0){
+          if(res.data.error_type=="-1"){
             var args = "";
             if (that.data.pagelabel.length > 0) {
               args = "&pagelabel=" + that.data.pagelabel;
@@ -138,13 +137,13 @@ Page({
             wx.navigateTo({
               url: '../fill_info/fill_info?mobile=' + that.data.mobile + args,
             })
-          } else if (res.noskip == 1)  {
-            that.errCon(err_msg);
+          } else {
+            err_msg=that.errCon(err_msg);
             that.setData({
               shLoading: true,
               shLoading_title: '认证失败',
               shLoading_body: err_msg,
-              skipFlag: res.noskip
+              // skipFlag: res.noskip
             })
           }
         }
@@ -159,21 +158,27 @@ Page({
     switch (err_msg) {
       case 'UB001':
         err_msg = '身份认证通过';
+        return err_msg;
         break;
       case 'UB002':
         err_msg = '身份认证通过，您的联系信息关联多家单位，我们将根据您第一次报修的仪器序列号为您关联单位名称';
+        return err_msg;
         break;
       case 'UB003':
         err_msg = '身份认证失败，您的手机号在系统中关联了多个联系人，请点击下方发起会话确认';
+        return err_msg;
         break;
       case 'UB004':
         err_msg = '您已经通过身份认证';
+        return err_msg;
         break;
       case 'UB005':
         err_msg = '您的手机在系统中未关联任何联系人，请提供相关的信息，我们尽快为您建档';
+        return err_msg;
         break;
       case 'UB006':
         err_msg = 'UB006';
+        return err_msg;
         break;
     }
   },
@@ -202,13 +207,13 @@ Page({
       clock = setInterval(that.doLoop, 1000);
       console.log(that.data.mobile);
       util.NetRequest({
-        url: 'auth/get-smscode',
+        url: 'api/v1/user/get-code',//'auth/get-smscode'
         data: {
           'mobile': mobile
         },
         success: function (res) {
           console.log(res);
-          if (res.status == 1) {
+          if (res.status == true) {
             wx.showToast({
               title: '发送成功',
               icon: 'success',

@@ -15,7 +15,7 @@ Page({
   gotoNext: function(event){
     var is_auth = this.data.is_auth;
     var needauth = event.currentTarget.dataset.needauth;
-    if (needauth==0 && is_auth==0){
+    if (needauth==0 && is_auth==false){
       wx.navigateTo({
         url: '../auth/auth?pageName=myhome'
       })
@@ -45,13 +45,14 @@ Page({
         if (sm.confirm) {
           //请求后台接口
           util.NetRequest({
-            url: 'auth/user-unbind',
+            url: 'api/v1/users/bind',//auth/user-unbind
+            method:'DELETE',
             data: {
               wxopenid: wx.getStorageSync('OPENID'),
               ContactGuid: e.currentTarget.dataset.contact_guid
             },
             success: function (res) {
-              if (res.success == true) {
+              if (res.status == true) {
                 wx.removeStorageSync('MOBILE');
                 util.getUserInfoSobot();
                 wx.showModal({
@@ -108,21 +109,22 @@ Page({
   onShow: function () {
     var that = this;
     util.NetRequest({
-      url: 'site-mini/my-count',
+      url: 'api/v1/user/service-num',//site-mini/my-count
       data: {},
+      method:'GET',
       success: function (res) {
-        console.log(res); //后台获取到的mycount数据
+        console.log('service-num',res); //后台获取到的mycount数据
         that.setData({
-          ContactGuid: res.ContactGuid,
-          InstrumentCount: res.InstrumentCount,
-          company: res.company,
-          email: res.email,
-          head_img_url: res.head_img_url,
-          is_auth: res.is_auth == null ? 0 : res.is_auth,
-          mobile: res.mobile,
-          name: res.name,
-          AppointmentCount: res.AppointmentCount,
-          NewNotificationCount: res.NewNotificationCount,
+          ContactGuid: res.data.ContactGuid,
+          InstrumentCount: res.data.intrument_num,
+          company: res.data.company,
+          email: res.data.email,
+          head_img_url: res.data.users.head_url,
+          is_auth:  res.data.users.isBind == null ? false :  res.data.users.isBind,
+          mobile:  res.data.users.mobile,
+          name:  res.data.users.name,
+          AppointmentCount:  res.data.reservation_num,
+          NewNotificationCount:  res.data.NewNotificationCount,
         });
       }
     });

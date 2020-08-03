@@ -9,7 +9,7 @@ monitor.config({
 import regeneratorRuntime from 'agilent/regenerator-runtime/runtime'
 var util = require('/utils/util.js');
 var miniAppupdate=require("/utils/miniAppupdate.js");
-
+var loginApi = require('/utils/login.js');
 //var aldstat = require("./utils/ald-stat.js");
 var mta = require('/utils/mta_analysis.js');
 var miniApp_env = "prod";// prod或uat
@@ -43,11 +43,10 @@ App({
     } catch (e) {
       // Do something when catch error
     }
+
     //console.log(userMobile);
-    //this.wxlogin();
-
+    loginApi.login(this);
     var that = this;
-
     wx.getSystemInfo({
       success: function (res) {
         that.globalData.sysInfo = {
@@ -57,7 +56,6 @@ App({
         }
       }
     });
-
   //   util.NetRequest({
   //     url: 'wechat-mini/get-global-group',
   //     data:{},
@@ -66,7 +64,6 @@ App({
   //       that.globalData.sobotData = res.data;
   //    }
   // });
-
 },
 
   async onShow(res) {
@@ -94,9 +91,9 @@ App({
         });
       }
     }
-    if(res.path != 'pages/initiate/initiate'){ //不是正常页进入
-      that.wxlogin();
-    }
+    // if(res.path != 'pages/initiate/initiate'){ //不是正常页进入
+    //   that.wxlogin();
+    // }
     await util.getUserInfoSobot();
 
     that.globalData.isFirstLunch = false;
@@ -205,11 +202,8 @@ App({
                 wx.setStorageSync('OPENID', r.openid);
                 that.globalData.isLogin = true;
                 //that.gotoIndex();
-
                 that.syncUserInfo();
                 that.globalData.syncFlag = false;
-
-
                 util.NetRequest({
                   url: 'wechat-mini/get-global-group',
                   success: function (res1) {
@@ -217,10 +211,8 @@ App({
 
                   }
                 });
-
               } else if (typeof (r.error_msg) !="undefined"){
                 that.globalData.needCheck = true;
-
               }
             },
             fail:function(){
@@ -237,16 +229,13 @@ App({
 
   syncUserInfo:function(){
     var _this = this;
-
     util.NetRequest({
       url: 'site-mini/search-user-by-union-id',
       data:{},
       showload: false,
       success:function (r1) {
-
       },
       fail:function(){
-
       }
     });
   },

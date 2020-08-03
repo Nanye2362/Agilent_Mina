@@ -69,16 +69,16 @@ Page({
       data: {
       },
       success: function (res) {
-        if (res.success) {
+        if (res.status) {
           console.log(res)
-          if (res.CurrentSr.length!=0){
-            var headStatus = that.headStatus(res.CurrentSr.HeaderStatus);
+          if (res.data.CurrentSr.length!=0){
+            var headStatus = that.headStatus(res.data.CurrentSr.HeaderStatus);
             console.log(headStatus)
             that.setData({
-              CreateTime: res.CurrentSr.CreateTime,
+              CreateTime: res.data.CurrentSr.CreateTime,
               HeaderStatus: headStatus,
-              ServiceRequestId: res.CurrentSr.ServiceRequestId,
-              Title: res.CurrentSr.Title,
+              ServiceRequestId: res.data.CurrentSr.ServiceRequestId,
+              Title: res.data.CurrentSr.Title,
             })
           }
           //wx.hideLoading();
@@ -127,9 +127,9 @@ Page({
       success: function (res) {
         console.log(res);
         that.setData({
-          imgUrls: res.banner,
-          notice: res.notice,
-          notice_active: res.notice_active
+          imgUrls: res.data.banner,
+          notice: res.data.notice,
+          notice_active: res.data.notice_active
         })
       }
     })

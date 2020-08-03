@@ -3,6 +3,7 @@ var urlArr = ["api/v1/wechat/login", "api/check-lunch"];//未登录可以使用�
 let ocrServer = "https://ocr.wechat.learn.agilent.com/";
 let Server = config.Server; //UAT
 
+
 var arrRequest = [], isRequesting = false;
 var currObj={};
 
@@ -13,15 +14,16 @@ function showLoading(){
   })
 }
 
+
 function NetRequest({ url, data, success, fail, complete, method = "POST", showload = true, host = Server }) {
   var obj = { url: url, data: data, success: success, fail: fail, complete: complete, method: method, showload: showload, host: host };
-  console.log(obj);
-  console.log(data);
+  // console.log(obj);
+  // console.log(data);
   if (showload) {
     showLoading();
   }
   var app = getApp();
-  console.log("request url" + obj.url);
+  console.log("request url：" + obj.url);
   console.log("isloagin:" + app.globalData.isLogin);
   console.log("isRequesting:" + isRequesting);
   if (isRequesting || (!app.globalData.isLogin && !in_array(url, urlArr))) {
@@ -64,27 +66,10 @@ function _NetRequest({ url, data, success, fail, complete, method = "POST", show
     return false;
   }
 
-  // var _csrf = wx.getStorageSync('csrf');
-  // var version = config.version;
-  // var csrfToken = wx.getStorageSync('csrfCookie')
-  // if (typeof (data) == 'object') {
-  //   data._csrf = _csrf;
-  //   data.version = version;
-  // } else {
-  //   data = { '_csrf': _csrf, 'version': version };
-  // }
-
-  // var session_id = wx.getStorageSync('PHPSESSID');//本地取存储的sessionID
-  // if (session_id != "" && session_id != null) {
-  //   var header = { 'content-type': 'application/x-www-form-urlencoded', 'Cookie': 'PHPSESSID=' + session_id + ";" + csrfToken }
-  // } else {
-  //   var header = { 'content-type': 'application/x-www-form-urlencoded' }
-  // }
-
   //替换成token
   var token = wx.getStorageSync('token');
   if(token != "" && token != null){
-    var header = {'content-type': 'application/x-www-form-urlencoded', 'Authorization':token}
+    var header = {'content-type': 'application/x-www-form-urlencoded', 'Authorization':"Bearer "+token}
   }else {
     var header = { 'content-type': 'application/x-www-form-urlencoded' }
   }
@@ -97,50 +82,65 @@ function _NetRequest({ url, data, success, fail, complete, method = "POST", show
     data: data,
     header: header,
     success: res => {
-      // if ((session_id == "" || session_id == null) && typeof (res.data.session_id) != "undefined") {
-      //   console.log(res.data.session_id);
-      //   wx.setStorageSync('PHPSESSID', res.data.session_id); //如果本地没有就说明第一次请求 把返回的session id 存入本地
-
-      //   if (typeof (res.data.csrfToken) != 'undefined') {
-      //     wx.setStorageSync('csrf', res.data.csrfToken);
-      //     wx.setStorageSync('csrfCookie', res.data.csrfCookie);
-      //   }
-      // }
-      if ((token == "" || token == null) && typeof (res.data.token) != "undefined") {
-        console.log(res.data.token);
-        wx.setStorageSync('token', res.data.token); //如果本地没有就说明第一次请求 把返回的token存入本地
-
-        if (typeof (res.data.openid) != 'undefined') {
-          wx.setStorageSync('openid', res.data.openid);
-        }
-      }
-      console.log(res.data);
+      // console.log(res.data);
       console.log(res);
-      if (res.data == "no session") { //未登录
-        var aa = getApp();
+      if(res.statusCode<=300){
+        success(res.data);
+      }else if(res.statusCode==400){
+        console.log('400:',res);
+        wx.showModal({
+          title: '请求失败',
+          content: res.data.error,
+          showCancel: false,
+          success: function (response) {
+            console.log('400:',response);
+            if (response.confirm) {
+              wx.switchTab({
+                url: '../index/index',
+              })
+            }
+          }
+        })
+        // fail(res.data.error)
+      }else if(res.statusCode==401){
+        wx.removeStorageSync('token');
+        var loginApi = require('login');
         isRequesting=false;
         arrRequest.unshift(currObj);
-        aa.wxlogin();
+        var aa = getApp();
+        loginApi.login(getApp());   
         return;
-      }
-
-      fail = function () {
-          wx.showModal({
-            title: '请求失败',
-            content: '发生错误，请联系客服。',
-            showCancel: false,
-            success: function (res) {
-              if (res.confirm) {
-                wx.switchTab({
-                  url: '../index/index',
-                })
-              }
+      }else if(res.statusCode==403){
+        wx.showModal({
+          title: '无权限',
+          content: res.data.error,
+          showCancel: false,
+          success: function (response) {
+            console.log('403:',response);
+            if (response.confirm) {
+              wx.navigateTo({
+                url: '../auth/auth',
+              })
             }
-          })
+          }
+        })
+      }else{
+        wx.showModal({
+          title: '请求失败',
+          content: res.statusText,
+          showCancel: false,
+          success: function (response) {
+            if (response.confirm) {
+              wx.switchTab({
+                url: '../index/index',
+              })
+            }
+          }
+        })
+        // fail(res.statusText)
       }
-
-      let data = res.data
-      res['statusCode'] === 200 ? success(data) : fail(res)
+      
+      // res['statusCode'] === 200 ? success(data) : fail(res);
     },
     fail: function (e) {
       wx.hideLoading();
