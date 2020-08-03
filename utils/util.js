@@ -272,6 +272,7 @@ function chen_navigateTo(name,url){
 }
 
 function submitFormId(formId){
+  return true;
   if (formId.length == 0 || formId =="the formId is a mock one"){
     return false;
   }

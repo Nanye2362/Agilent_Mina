@@ -76,7 +76,8 @@
 					"id": 1,
 					"name": "labqc",
 					"pathName": "pages/labqc/labqc",
-					"query": "scene=000001"
+					"query": "scene=000001",
+					"scene": null
 				},
 				{
 					"id": -1,

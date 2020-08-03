@@ -47,10 +47,10 @@ Page({
           util.NetRequest({
             url: 'api/v1/users/bind',//auth/user-unbind
             method:'DELETE',
-            data: {
-              wxopenid: wx.getStorageSync('OPENID'),
-              ContactGuid: e.currentTarget.dataset.contact_guid
-            },
+            // data: {
+            //   wxopenid: wx.getStorageSync('OPENID'),
+            //   ContactGuid: e.currentTarget.dataset.contact_guid
+            // },
             success: function (res) {
               if (res.status == true) {
                 wx.removeStorageSync('MOBILE');
