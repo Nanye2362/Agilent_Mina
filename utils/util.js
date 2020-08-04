@@ -155,9 +155,10 @@ function uploadImg(urlList,callback){
 //判断是否绑定,true为绑定，false为未绑定
 function IsCertificate(success,fail){
   request.NetRequest({
-    url: 'auth/check-bind',
+    url: 'api/v1/user/service-num',//auth/check-bind
+    method:'GET',
     success: function (res) {
-      if (res.success == true) {
+      if (res.data.users.isBind) {
         success();
       } else {
         fail();
@@ -200,9 +201,10 @@ function getUserInfo(cb){
   var user=wx.getStorageSync('userInfo');
   if (user==""){//user不存在
     request.NetRequest({
-      url: "api/get-userinfo", success: function (res) {
-        if (res.success) {
-          user = res.info;
+      // api/get-userinfo
+      url: "api/v1/users/service-num", success: function (res) {
+        if (res.status) {
+          user = res.data.users;
           wx.setStorageSync('userInfo',user);
           cb(user);
         } else {

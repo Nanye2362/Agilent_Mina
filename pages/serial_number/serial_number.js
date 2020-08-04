@@ -73,12 +73,12 @@ Page({
     })
 
     util.NetRequest({
-      url: 'site-mini/my-count',
+      url: 'api/v1/users/service-num',// site-mini/my-count
       data: {},
       success: function (res) {
         console.log(res); //后台获取到的mycount数据
         that.setData({
-          SerialNumber: res.InstrumentCount
+          SerialNumber: res.data.intrument_num
         });
       }
     })
@@ -142,9 +142,9 @@ Page({
         } else {
           var header = { 'content-type': 'application/x-www-form-urlencoded' }
         }
-        console.log(util.ocrServer + 'api/ocr-scan');
+        console.log(util.ocrServer + 'api/v1/instrument/ocr');//api/ocr-scan
         wx.uploadFile({
-          url: util.ocrServer + 'api/ocr-scan',
+          url: util.ocrServer + 'api/v1/instrument/ocr',//api/ocr-scan
           filePath: tempFilePaths[0],
           name: 'file',
           header: header,

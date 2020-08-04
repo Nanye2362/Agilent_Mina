@@ -20,7 +20,9 @@ function login(params) {
           showload: true,
           success: function (response) {
             console.log('login:',response);
-            that.globalData.isLoading = false;     
+            that.globalData.isLoading = false;            
+            var pages = getCurrentPages(); //获取加载的页面
+            var currentPage = pages[pages.length - 1]; //获取当前页面的对象  
             if (response.status == true) {
               that.globalData.needCheck = false;
               wx.setStorageSync('token', response.data.token);
@@ -29,9 +31,11 @@ function login(params) {
               that.globalData.isLogin = true;
               //that.gotoIndex();
               that.globalData.syncFlag = false;
-              wx.switchTab({
-                url: '/pages/index/index',
-              });
+              if(currentPage.route == 'pages/initiate/initiate'){
+                wx.switchTab({
+                  url: '/pages/index/index',
+                });
+              }         
               // util.NetRequest({
               //   url: 'wechat-mini/get-global-group',
               //   showload: false,
@@ -46,8 +50,6 @@ function login(params) {
             }else {
               that.globalData.needCheck = true;
               that.globalData.isFollow = false;
-              var pages = getCurrentPages(); //获取加载的页面
-              var currentPage = pages[pages.length - 1]; //获取当前页面的对象
               wx.setStorageSync('AuthFromPage',currentPage.route );
               wx.redirectTo({
                 url: '/pages/login/login'
