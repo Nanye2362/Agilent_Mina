@@ -76,20 +76,18 @@ Page({
 onShow: function (options) {
   var that = this
   util.NetRequest({
-    url: 'labqc/get-forminfo',
-    data: {
-      lid: this.data.scene,
-    },
+    url: 'api/v1/lab/'+this.data.scene,
+    method:'GET',
     success: function (res) {
       console.log(res)
-      if (res.roleInfo.ISENGINEER > 0){
+      if (res.data.is_engineer > 0){
         console.log(1111);
         that.setData({
-          roleInfo: res.roleInfo,
-          ldInfo: res.ldInfo,
-          mrInfo: res.mrInfo,
+          roleInfo: res.data,
+          ldInfo: res.data.lab,
+          mrInfo: res.data.maintenance,
           fileList: res.fileList,
-          ISENGINEER: res.roleInfo.ISENGINEER,
+          ISENGINEER: res.data.is_engineer,
         })
       }else{
         if (res.roleInfo.ISAUTH == 1) {
