@@ -17,9 +17,9 @@ Page({
   onLoad: function (options) {
     // this.wxlogin();
     console.log("wx.getStorageSync('AuthFromPage'):",wx.getStorageSync('AuthFromPage'));
-    if( wx.getStorageSync('AuthFromPage')!= ''){
+    if( wx.getStorageSync('AuthFromPage')!= ''&& wx.getStorageSync('AuthFromPage')!= 'pages/initiate/initiate'){
       wx.navigateTo({
-        url:'/'+wx.getStorageSync('AuthFromPage') ,
+        url:'/'+ wx.getStorageSync('AuthFromPage') ,
       })
       wx.removeStorageSync('AuthFromPage');
     }else{

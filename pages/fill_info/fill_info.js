@@ -101,8 +101,8 @@ Page({
       var company = this.data.company
       var sn = this.data.sn
       var other = this.data.other
-      var fromPage = this.data.fromPage;
-      var userType=this.data.userType;
+      var fromPage = this.data.fromPage;//
+      var userType=this.data.userType;//有序列号
       var isupload = false;
       if (isupload) {
         return false;
