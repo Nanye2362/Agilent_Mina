@@ -80,27 +80,34 @@ onShow: function (options) {
     method:'GET',
     success: function (res) {
       console.log(res)
+      //添加后缀
+      var str = res.data.lab.attachments;
+      for(let i = 0;i < str.length;i++){
+        var index = res.data.lab.attachments[i].name.lastIndexOf("\.");
+        str[i].file_ext = str[i].name.substring(index+1,str[i].name.length);
+      }
+      //添加后缀
       if (res.data.is_engineer > 0){
         console.log(1111);
         that.setData({
           roleInfo: res.data,
           ldInfo: res.data.lab,
           mrInfo: res.data.maintenance,
-          fileList: res.fileList,
+          fileList: res.data.lab.attachments,
           ISENGINEER: res.data.is_engineer,
         })
       }else{
-        if (res.roleInfo.ISAUTH == 1) {
-          if (res.roleInfo.CpKeyword) {
+        if (res.data.permission) {
+          if (res.data.lab.keyword) {
             that.setData({
-              roleInfo: res.roleInfo,
-              ldInfo: res.ldInfo,
-              mrInfo: res.mrInfo,
-              fileList: res.fileList,
-              ISAUTH: res.roleInfo.ISAUTH,
-              ISENGINEER: res.roleInfo.ISENGINEER,
-              Soft: 'SW_lid:' + res.ldInfo.LaboratoryID,
-              Hard: 'W_lid:' + res.ldInfo.LaboratoryID,
+              roleInfo: res.data,
+              ldInfo: res.data.lab,
+              mrInfo: res.data.maintenance,
+              fileList: res.data.lab.attachments,
+              ISAUTH: res.data.permission,
+              ISENGINEER: res.data.is_engineer,
+              Soft: 'SW_lid:' + res.data.lab.id,
+              Hard: 'W_lid:' + res.data.lab.id,
             })
           } else {
             wx.showModal({
@@ -204,25 +211,25 @@ bindKeyInput: function (e) {
   })
 },
 confirmAdd: function(){
-  console.log(this.data.ldInfo.LaboratoryID)
+  console.log(this.data.ldInfo.id)
   var that = this
   if(this.data.inputValue!=''){
     util.NetRequest({
-      url: 'labqc/create-mrecord',
+      url: 'api/v1/maintenance',
       data: {
-        MaintenanceContent: that.data.inputValue,
-        SubmitPerson: that.data.roleInfo.ENGINEERNAME,
-        LaboratoryID: that.data.ldInfo.LaboratoryID,
+        content: that.data.inputValue,
+        name: that.data.roleInfo.lab.engineer,
+        lab_id: that.data.ldInfo.id,
       },
       success: function (res) {
         console.log(res)
-        if (res.create_result) {
+        if (res.status) {
           var obj = {
-            MaintenanceContent: that.data.inputValue,
-            SubmitPerson: that.data.roleInfo.ENGINEERNAME,
-            LaboratoryID: that.data.ldInfo.LaboratoryID,
-            SubmitTime: res.SubmitTime,
-            ID: res.ID,
+            content: that.data.inputValue,
+            name: that.data.roleInfo.lab.engineer,
+            lab_id: that.data.ldInfo.id,
+            created_at: res.data.create_at,
+            id: res.data.id,
           }
           that.data.mrInfo.unshift(obj);
           that.setData(that.data);

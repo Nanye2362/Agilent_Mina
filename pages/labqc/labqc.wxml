@@ -133,10 +133,10 @@
                 <image class='fileImg' src='/images/file.jpg'></image>
               </view>
               <view class=" fs13 fileC flex directionC">
-                <view class='fc-aaa fs13'>{{item.file_name}}</view>
-                <view class='fs12'>{{item.file_size}}kb-{{item.file_ext}}</view>
+                <view class='fc-aaa fs13'>{{item.name}}</view>
+                <view class='fs12'>{{item.size}}kb-{{item.file_ext}}</view>
               </view>
-              <view class=" fileR" bindtap='openFile' data-url='{{item.file_path}}'>
+              <view class=" fileR" bindtap='openFile' data-url='{{item.url}}'>
                 <view class='fs13 fc-blue fileBtn'>查看</view>
               </view>
           </view>
