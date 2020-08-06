@@ -1,5 +1,5 @@
 var config = require('../config');
-var urlArr = ["api/v1/wechat/login", "api/check-lunch"];//未登录可以使用的url
+var urlArr = ["api/v1/wechat/login", "api/v1/check-lunch"];//未登录可以使用的url
 let ocrServer = "https://ocr.wechat.learn.agilent.com/";
 let Server = config.Server; //UAT
 
