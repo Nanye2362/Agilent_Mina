@@ -26,7 +26,7 @@ function login(params) {
             if (response.status == true) {
               that.globalData.needCheck = false;
               wx.setStorageSync('token', response.data.token);
-              wx.setStorageSync('MOBILE', response.data.mobile);
+              wx.setStorageSync('MOBILE', response.data.user.mobile);
               wx.setStorageSync('OPENID', response.data.openid);
               that.globalData.isLogin = true;
               //that.gotoIndex();

@@ -37,7 +37,7 @@ Page({
       success: function (res) {
         console.log(res)
         var GroupList = [];
-        var gl = res.GroupList
+        var gl = res.data.GroupList
         for (var i in gl) {
           gl[i].editting = false;
           gl[i].idx = i;
@@ -46,7 +46,7 @@ Page({
         }
         console.log(GroupList)
         that.setData({
-          GroupCount: res.GroupCount,
+          GroupCount: res.data.GroupList.length,
           GroupList: GroupList
         })
       },
@@ -152,7 +152,7 @@ Page({
       },
       success: function (res) {
         console.log(res)
-        if(res.result){
+        if(res.data.result){
           util.NetRequest({
             url: 'site-mini/ins-group',
             data: {
@@ -160,7 +160,7 @@ Page({
             success: function (res) {
               console.log(res);
               var GroupList = [];
-              var gl = res.GroupList
+              var gl = res.data.GroupList
               for (var i in gl) {
                 gl[i].editting = false;
                 gl[i].idx = i;
@@ -168,7 +168,7 @@ Page({
                 GroupList.push(gl[i]);
               }
               that.setData({
-                GroupCount: res.GroupCount,
+                GroupCount: res.data.GroupList.length,
                 GroupList: GroupList,
               })
             },
@@ -231,8 +231,8 @@ Page({
         success: function (res) {
           console.log(res);
           console.log(that.data.GroupList)
-          if(res.CurrentGroup.ID){
-            var curGroup = { GroupID: res.CurrentGroup.ID, GroupName: res.CurrentGroup.GroupName, GroupSnCount: "0", deleted: true, editting: false, idx: that.data.GroupList.length }
+          if(res.data.CurrentGroup.ID){
+            var curGroup = { GroupID: res.data.CurrentGroup.ID, GroupName: res.data.CurrentGroup.GroupName, GroupSnCount: "0", deleted: true, editting: false, idx: that.data.GroupList.length }
             var gl = that.data.GroupList.concat(curGroup);
             console.log(gl)
             console.log(gl.length)

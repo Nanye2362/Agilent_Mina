@@ -64,7 +64,7 @@
     "pages/privacy-policy/privacy-policy"
   ],
   "networkTimeout": {
-    "request": 30000
+    "request": 180000
   },
   "window": {
     "backgroundTextStyle": "light",

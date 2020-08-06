@@ -79,8 +79,8 @@ Page({
       },
       success: function (res) {
         console.log(res);
-        if(res.CurrentGroup.ID){
-          var gl = that.data.groupList.concat(res.CurrentGroup);
+        if(res.data.CurrentGroup.ID){
+          var gl = that.data.groupList.concat(res.data.CurrentGroup);
           console.log(gl)
           that.setData({
             groupList: gl
@@ -121,7 +121,7 @@ Page({
       },
       success: function (res) {
         console.log(res);
-        if(res.result){
+        if(res.data.result){
           wx.navigateBack({
             delta: 1
           })
