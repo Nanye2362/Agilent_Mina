@@ -18,7 +18,7 @@ function showLoading(){
 function NetRequest({ url, data, success, fail, complete, method = "POST", showload = true, host = Server }) {
   var obj = { url: url, data: data, success: success, fail: fail, complete: complete, method: method, showload: showload, host: host };
   // console.log(obj);
-  // console.log(data);
+  console.log(data);
   if (showload) {
     showLoading();
   }

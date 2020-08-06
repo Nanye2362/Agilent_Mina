@@ -20,7 +20,7 @@
 
 
   <!-- engineer -->
-  <view wx:if='{{roleInfo.ISENGINEER>0}}' class='CN'>
+  <view wx:if='{{roleInfo.is_engineer>0}}' class='CN'>
     <!-- tab -->
     <view class="sl_tab flex">
         <view class="sl_tab_item  {{currentTab==0 ? 'on' : ''}}" circular="true" data-current="0" bindtap="swichNav">软件安装信息</view>
@@ -43,32 +43,32 @@
 
           <view class="flex cusName">
               <view class=" fs13 cnL">客户名称：</view>
-              <view class=" fs13 cnR">{{ldInfo.CustomerName}}</view>
+              <view class=" fs13 cnR">{{ldInfo.customer_name}}</view>
           </view>
 
 
 
           <!-- contactPerson -->
-          <block  wx:for="{{ldInfo.UserInfo}}" wx:for-item="item" wx:key='unique'  wx:for-index="idx">
+          <block  wx:for="{{ldInfo.contacts}}" wx:for-item="item" wx:key='unique'  wx:for-index="idx">
             <view class="flex cusName">
                 <view class=" fs13 cnL">联系人{{idx+1}}：</view>
-                <view class=" fs13 cnR">{{item.UserName}}</view>
+                <view class=" fs13 cnR">{{item.name}}</view>
             </view>
             <view class="flex cusName">
                 <view class=" fs13 cnL">部门：</view>
-                <view class=" fs13 cnR">{{item.Department}}</view>
+                <view class=" fs13 cnR">{{item.department}}</view>
             </view>
             <view class="flex cusName">
                 <view class=" fs13 cnL">职位：</view>
-                <view class=" fs13 cnR">{{item.UserJob}}</view>
+                <view class=" fs13 cnR">{{item.job}}</view>
             </view>
             <view class="flex cusName">
                 <view class=" fs13 cnL">手机号：</view>
-                <view class=" fs13 cnR">{{item.UserMobile}}</view>
+                <view class=" fs13 cnR">{{item.mobile}}</view>
             </view>
             <view class="flex cusName">
                 <view class=" fs13 cnL">邮箱：</view>
-                <view class=" fs13 cnR">{{item.UserEmail}}</view>
+                <view class=" fs13 cnR">{{item.email}}</view>
             </view>
           </block>
           <!-- contactPerson -->
@@ -85,35 +85,35 @@
           <!-- title -->
           <view class="flex cusName">
               <view class=" fs13 cnL">安装工程师名字：</view>
-              <view class=" fs13 cnR">{{ldInfo.InsEngineerName}}</view>
+              <view class=" fs13 cnR">{{ldInfo.engineer}}</view>
           </view>
           <view class="flex cusName">
               <view class=" fs13 cnL">手机：</view>
-              <view class=" fs13 cnR">{{ldInfo.InsEngineerMobile}}</view>
+              <view class=" fs13 cnR">{{ldInfo.mobile}}</view>
           </view>
           <view class="flex cusName">
               <view class=" fs13 cnL">邮箱：</view>
-              <view class=" fs13 cnR">{{ldInfo.InsEngineerEmail}}</view>
+              <view class=" fs13 cnR">{{ldInfo.email}}</view>
           </view>
           <view class="flex cusName">
               <view class=" fs13 cnL">安装完成时间：</view>
-              <view class=" fs13 cnR">{{ldInfo.InsFinishTime}}</view>
+              <view class=" fs13 cnR">{{ldInfo.installation_finished_date}}</view>
           </view>
           <view class="flex cusName">
               <view class=" fs13 cnL">网络版安装架构：</view>
-              <view class=" fs13 cnR">{{ldInfo.OnlineEditionInstallInfo}}</view>
+              <view class=" fs13 cnR">{{ldInfo.online_edition_installation_info}}</view>
           </view>
           <view class="flex cusName">
               <view class=" fs13 cnL">销售信息：</view>
-              <view class=" fs13 cnR">{{ldInfo.AgilentMarketingInfo}}</view>
+              <view class=" fs13 cnR">{{ldInfo.salesman_info}}</view>
           </view>
           <view class="flex cusName">
               <view class=" fs13 cnL">Subscribenet登录名：</view>
-              <view class=" fs13 cnR">{{ldInfo.SubscribenetLoginName}}</view>
+              <view class=" fs13 cnR">{{ldInfo.subscribenet_account}}</view>
           </view>
           <view class="flex cusName">
               <view class=" fs13 cnL">密码：</view>
-              <view class=" fs13 cnR">{{ldInfo.SubscribenetPwd}}</view>
+              <view class=" fs13 cnR">{{ldInfo.subscribenet_password}}</view>
           </view>
 
 
@@ -133,10 +133,10 @@
                 <image class='fileImg' src='/images/file.jpg'></image>
               </view>
               <view class=" fs13 fileC flex directionC">
-                <view class='fc-aaa fs13'>{{item.file_name}}</view>
-                <view class='fs12'>{{item.file_size}}kb-{{item.file_ext}}</view>
+                <view class='fc-aaa fs13'>{{item.name}}</view>
+                <view class='fs12'>{{item.size}}kb-{{item.file_ext}}</view>
               </view>
-              <view class=" fileR" bindtap='openFile' data-url='{{item.file_path}}'>
+              <view class=" fileR" bindtap='openFile' data-url='{{item.url}}'>
                 <view class='fs13 fc-blue fileBtn'>查看</view>
               </view>
           </view>
@@ -162,15 +162,15 @@
                 <!-- recordDetails -->
                 <view class="flex directionC recordDetails">
                   <view class="flex">
-                      <view class="fs14 {{idx==0?'fc-blue':''}}">{{item.SubmitTime}}</view>
+                      <view class="fs14 {{idx==0?'fc-blue':''}}">{{item.created_at}}</view>
                   </view>
                   <view class="flex">
                     <view class=" fs13 rd-l">维修人：</view>
-                    <view class=" fs13 rd-r">{{item.SubmitPerson}}</view>
+                    <view class=" fs13 rd-r">{{item.name}}</view>
                   </view>
                   <view class="flex">
                       <view class=" fs13 rd-l">维修记录：</view>
-                      <view class=" fs13 rd-r">{{item.MaintenanceContent}}</view>
+                      <view class=" fs13 rd-r">{{item.content}}</view>
                   </view>
                 </view>
                 <!-- recordLabel -->
@@ -189,7 +189,7 @@
 
 
   <!-- user -->
-  <view wx:if='{{roleInfo.ISENGINEER==0}}' class='CN'>
+  <view wx:if='{{roleInfo.is_engineer==0}}' class='CN'>
     <!-- title -->
     <view class='flex cnTitle'>
       <view class='cnT'></view>
@@ -200,7 +200,7 @@
     <view class='flex directionC'>
       <view class="flex cusName">
           <view class=" fs13 cnL">服务工程师：</view>
-          <view class=" fs13 cnR">{{ldInfo.InsEngineerName}}</view>
+          <view class=" fs13 cnR">{{ldInfo.engineer}}</view>
       </view>
       <!-- <view class="flex cusName">
           <view class=" fs13 cnL">手机：</view>
@@ -208,15 +208,15 @@
       </view> -->
       <view class="flex cusName">
           <view class=" fs13 cnL">邮箱：</view>
-          <view class=" fs13 cnR">{{ldInfo.InsEngineerEmail}}</view>
+          <view class=" fs13 cnR">{{ldInfo.email}}</view>
       </view>
       <view class="flex cusName">
           <view class=" fs13 cnL">服务完成时间：</view>
-          <view class=" fs13 cnR">{{ldInfo.InsFinishTime}}</view>
+          <view class=" fs13 cnR">{{ldInfo.installation_finished_date}}</view>
       </view>
       <view class="flex cusName">
           <view class=" fs13 cnL">网络版安装架构：</view>
-          <view class=" fs13 cnR">{{ldInfo.OnlineEditionInstallInfo}}</view>
+          <view class=" fs13 cnR">{{ldInfo.online_edition_installation_info}}</view>
       </view>
     </view>
 
