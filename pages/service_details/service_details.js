@@ -26,15 +26,14 @@ Page({
     console.log('历史详情' + options.SrId);
     var that=this;
     util.NetRequest({
-      url: 'site-mini/service-details',
-      data: {
-        'SrId': options.SrId,
-      },
+      url: 'api/v1/sr/detail?srid='+options.SrId,
+      method:'GET',
       success: function (res) {
         //history数据分类
+        console.log(res);
         that.setData({
-          details: res.SrHistoryDetails,
-          history: res.SrHistoryDetails.SrHistory
+          details: res.data.history_details[0],
+          history: res.data.history_details[0].SrHistory
         })
       }
     });

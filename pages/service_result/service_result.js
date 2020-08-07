@@ -34,7 +34,7 @@ Page({
       // },
       method:'GET',
       success: function (res) {
-        var resultList = res.history_list;
+        var resultList = res.data.history_list;
 
         for(var j = 0,len=resultList.length; j < len; j++) {
           resultListNew[j] = resultList[j];
