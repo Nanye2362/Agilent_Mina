@@ -106,8 +106,8 @@ Page({
         },
         success: function (res) {
           console.log(res);
-          if(res.CurrentLabel.ID){
-            var ll = that.data.LabelList.concat(res.CurrentLabel);
+          if(res.data.CurrentLabel.ID){
+            var ll = that.data.LabelList.concat(res.data.CurrentLabel);
             console.log(ll)
             that.setData({
               LabelList: ll
@@ -213,7 +213,7 @@ Page({
       },
       success: function (res) {
         console.log(res);
-        if(res.result){
+        if(res.status){
           wx.navigateBack({
             delta: 1
           })
@@ -250,12 +250,13 @@ Page({
     var selectLabel=[];
     util.NetRequest({
       url: 'site-mini/show-label',
+      method:"GET",
       data: {
         'SerialNo': this.data.sn
       },
       success: function (res) {
-        console.log(res.LabelList)
-        var labelList = res.LabelList
+        console.log(res.data.LabelList)
+        var labelList = res.data.LabelList
         var LabelList = [];
         for (var i in labelList) {
           labelList[i].idx = i;

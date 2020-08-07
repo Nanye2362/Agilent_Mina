@@ -79,11 +79,12 @@ Page({
     var that = this
     util.NetRequest({
       url: 'site-mini/show-label',
+      method:"GET",
       data: {
       },
       success: function (res) {
-        console.log(res.LabelList)
-        var labelList = res.LabelList
+        console.log(res.data.LabelList)
+        var labelList = res.data.LabelList
         var LabelList = [];
         for (var i in labelList) {
           labelList[i].idx = i;
@@ -204,6 +205,7 @@ Page({
     console.log(that.data.inputValue)
     util.NetRequest({
       url: 'site-mini/edit-label',
+      method:"PUT",
       data: {
         'LabelName': that.data.inputValue != '' ? that.data.inputValue: that.data.lastLabel,
         'LabelColor': that.data.LabelColor != '' ? that.data.LabelColor : that.data.lastColor,
@@ -211,7 +213,7 @@ Page({
       },
       success: function (res) {
         console.log(res);
-        if(res.result){
+        if(res.status){
           var labelList = that.data.LabelList;
           for (var i in labelList) {
             if (labelList[i].ID == that.data.eID) {

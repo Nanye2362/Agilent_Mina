@@ -137,10 +137,11 @@ Page({
       success: function (res) {
         if (res.confirm) {
           util.NetRequest({
-            url: 'sr/delete-instrument',
+            url: ' api/v1/instrument/'+InstrumentList[index].id,//sr/delete-instrument
+            method:"DELETE",
             data: {
-              'SerialNo': InstrumentList[index].SerialNo,
-              'ProductId': InstrumentList[index].ProductId,
+              // 'SerialNo': InstrumentList[index].SerialNo,
+              // 'ProductId': InstrumentList[index].ProductId,
             },
             success: function (res) {
               var InstrumentCount = that.data.InstrumentCount;

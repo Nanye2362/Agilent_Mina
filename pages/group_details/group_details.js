@@ -261,7 +261,7 @@ Page({
   //删除仪器
   clickToRemove: function (event) {
     var that = this
-    var sn = event.currentTarget.dataset.sn;
+    var id = event.currentTarget.dataset.id;
     var pi = event.currentTarget.dataset.pi;
     var idx = event.currentTarget.dataset.idx;
     console.log(sn + pi);
@@ -272,16 +272,17 @@ Page({
       success: function (res) {
         if (res.confirm) {
           util.NetRequest({
-            url: 'sr/delete-instrument',
+            url: ' api/v1/instrument/'+id,//sr/delete-instrument
+            method:"DELETE",
             data: {
-              'SerialNo': sn,
-              'ProductId': pi,
+              // 'SerialNo': sn,
+              // 'ProductId': pi,
             },
             success: function (res) {
               console.log(res);
-              if (res.success) {
+              if (res.status) {
                 for (var i in detailList) {
-                  if (detailList[i].SerialNo == sn) {
+                  if (detailList[i].id == id) {
                     detailList.splice(i, 1)
                   }
                 }
