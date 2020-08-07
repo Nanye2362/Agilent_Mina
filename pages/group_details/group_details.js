@@ -11,6 +11,7 @@ Page({
     addConfirm: false,
     popup: false,
     remarkCon: '',
+    remarkId:''
   },
 
   /**
@@ -35,8 +36,8 @@ Page({
         GroupID: this.data.GroupID
       },
       success: function (res) {
-        console.log(res.DetailList)
-        var detaillist = res.DetailList;
+        console.log(res.data.DetailList)
+        var detaillist = res.data.DetailList;
         var DetailList = [];
         for (var i in detaillist) {
           detaillist[i].setMask = false;
@@ -46,11 +47,11 @@ Page({
         }
         that.setData({
           detailList: DetailList,
-          ListCount: res.ListCount,
-          ContactGuid: res.ContactGuid,
-          ContactId: res.ContactId,
-          AccountGuid: res.AccountGuid,
-          AccountId: res.AccountId,
+          ListCount: res.data.ListCount,
+          ContactGuid: res.data.ContactGuid,
+          ContactId: res.data.ContactId,
+          AccountGuid: res.data.AccountGuid,
+          AccountId: res.data.AccountId,
         })
       },
       fail: function (err) {
@@ -122,14 +123,15 @@ Page({
   confirmRemark: function () {
     var that = this;
     util.NetRequest({
-      url: 'site-mini/edit-remark',
+      url: 'api/v1/instrument/'+this.data.remarkId,//site-mini/edit-remark
+      method:"PUT",
       data: {
-        'Remark': this.data.inputValue != '' ? this.data.inputValue : '无',
-        'SerialNo': this.data.remarkSn
+        'remark': this.data.inputValue != '' ? this.data.inputValue : '无',
+        // 'SerialNo': this.data.remarkSn
       },
       success: function (res) {
         console.log(res)
-        if (res.result) {
+        if (res.status) {
           var detaillist = that.data.detailList;
           for (var i in detaillist) {
             if (detaillist[i].SerialNo == that.data.remarkSn) {
@@ -165,11 +167,13 @@ Page({
   },
   Popup: function (e) {
     var remarkSn = e.currentTarget.dataset.sn
+    console.log(e.currentTarget.dataset.id);
     var popup = this.data.popup
     this.setData({
       popup: !popup,
       remarkSn: remarkSn,
-      remarkCon: e.currentTarget.dataset.remark
+      remarkCon: e.currentTarget.dataset.remark,
+      remarkId: e.currentTarget.dataset.id
     })
   }, 
   clearRemark: function () {
@@ -220,20 +224,23 @@ Page({
     console.log(this.data.contactGuid)
     console.log(this.data.contactId)
     util.NetRequest({
-      url: 'sr/sr-confirm?needChat=1',
+      url: 'api/v1/instrument/check',//sr/sr-confirm?needChat=1
       data: {
-        contact_guid: this.data.ContactGuid,
-        contact_id: this.data.ContactId,
-        account_guid: this.data.AccountGuid,
-        account_id: this.data.AccountId,
-        serial_number: sn
+        // contact_guid: this.data.ContactGuid,
+        // contact_id: this.data.ContactId,
+        // account_guid: this.data.AccountGuid,
+        // account_id: this.data.AccountId,
+        sn: sn
       },
       success: function (res) {
         console.log(res);
-        if (res.success == true) {
+        if (res.status == true) {
           wx.redirectTo({
-            url: '../confirm_info/confirm_info' + '?ProductId=' + res.ProductId + '&ProductDesc=' + res.ProductDesc + '&SerialNo=' + res.SerialNo + '&CpName=' + res.CpName + '&ShipToName=' + res.ShipToName,
+            url: '../confirm_info/confirm_info' + '?id=' + res.data+"&aglNum=" + res.data.AglSN + '&CanRepair=' + res.data.CanRepair + '&group=' + JSON.stringify(res.data.group),
           })
+          // wx.redirectTo({
+          //   url: '../confirm_info/confirm_info' + '?ProductId=' + res.ProductId + '&ProductDesc=' + res.ProductDesc + '&SerialNo=' + res.SerialNo + '&CpName=' + res.CpName + '&ShipToName=' + res.ShipToName,
+          // })
         }else{
           wx.showModal({
             title: '连接失败',

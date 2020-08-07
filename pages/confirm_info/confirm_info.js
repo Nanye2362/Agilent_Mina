@@ -11,8 +11,8 @@ Page({
     ProductId:'',
     ProductDesc:'',
     SerialNo: '',
-    CpName: '',
-    ShipToName: '',
+    name: '',
+    company: '',
     aglNum:'',
     userInfo: {},
     TECH:'',
@@ -73,18 +73,24 @@ Page({
       transferAction: util.RtransferAction(JSON.parse(options.group))
     });
 
-
-    //腾讯mta统计结束
-    this.setData({
-      ProductId: options.ProductId,
-      ProductDesc: options.ProductDesc,
-      SerialNo: options.SerialNo,
-      CpName: options.CpName,
-      ShipToName: options.ShipToName,
-      TECH: 'T_psn:' + options.SerialNo,
-      RTECH: 'T_rsn:' + options.SerialNo,
-      NONTECH: 'T_psn:' + options.SerialNo
+    util.NetRequest({
+      url: 'api/v1/instrument/'+options.id,
+      method:"GET",
+      success:function (res) {
+        //腾讯mta统计结束
+        that.setData({
+          ProductId: res.data.product_id,
+          ProductDesc: res.data.product_desc,
+          SerialNo: res.data.SN,
+          name: res.data.name,
+          company: res.data.company,
+          TECH: 'T_psn:' + res.data.SN,
+          RTECH: 'T_rsn:' + res.data.SN,
+          NONTECH: 'T_psn:' + res.data.SN
+        })
+      }
     })
+
   },
 
   backHome: function () {

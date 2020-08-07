@@ -97,20 +97,23 @@ Page({
     var accountId = event.currentTarget.dataset.accountid;
 
     util.NetRequest({
-      url: 'sr/sr-confirm',
+      url: 'api/v1/instrument/check',//sr/sr-confirm
       data: {
-        contact_guid: contactGuid,
-        contact_id: contactId,
-        account_guid: accountGuid,
-        account_id: accountId,
-        serial_number: sn
+        // contact_guid: contactGuid,
+        // contact_id: contactId,
+        // account_guid: accountGuid,
+        // account_id: accountId,
+        sn: sn
       },
       success: function (res) {
         console.log(res);
-        if (res.success == true) {
-          wx.redirectTo({
-            url: '../confirm_info/confirm_info' + '?ProductId=' + res.ProductId + '&ProductDesc=' + res.ProductDesc + '&SerialNo=' + res.SerialNo + '&CpName=' + res.CpName + '&ShipToName=' + res.ShipToName,
+        if (res.status == true) {
+          wx.navigateTo({
+            url: '../confirm_info/confirm_info' + '?id=' + res.data+"&aglNum=" + res.data.AglSN + '&CanRepair=' + res.data.CanRepair + '&group=' + JSON.stringify(res.data.group),
           })
+          // wx.navigateTo({
+          //   url: '../confirm_info/confirm_info' + '?ProductId=' + res.ProductId + '&ProductDesc=' + res.ProductDesc + '&SerialNo=' + res.SerialNo + '&CpName=' + res.CpName + '&ShipToName=' + res.ShipToName + '&CanRepair=' + res.CanRepair,
+          // })
         }
       }
     })

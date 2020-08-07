@@ -15,6 +15,7 @@ function formatTime(date) {
 }
 
 function getUserInfoSobot(fun) {
+  return true;
   var that=this;
   setTimeout(function () {
     that.NetRequest({

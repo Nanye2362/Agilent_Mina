@@ -28,8 +28,8 @@ Page({
       data: {
       },
       success: function (res) {
-        console.log(res.DetailList)
-        var detaillist = res.DetailList;
+        console.log(res.data.DetailList)
+        var detaillist = res.data.DetailList;
         var DetailList = [];
         for (var i in detaillist) {
           detaillist[i].GroupID = that.data.GroupID;
@@ -37,7 +37,7 @@ Page({
         }
         that.setData({
           detailList: DetailList,
-          ListCount: res.ListCount
+          ListCount: DetailList.length
         })
       },
       fail: function (err) {

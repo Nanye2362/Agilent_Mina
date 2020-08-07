@@ -32,7 +32,7 @@ Page({
     searched: false,
     searchValue: '',
     inputValue: '',
-    remarkSn: ''
+    remarkId: ''
   },
   backHome: function() {
     util.backHome()
@@ -57,23 +57,24 @@ Page({
   onShow: function() {
     var that = this;
     util.NetRequest({
-      url: 'site-mini/my-instrument',
+      url: 'api/v1/instrument/list',//site-mini/my-instrument
       data: {},
+      method:"GET",
       success: function(res) {
-        console.log(res)
+        console.log('api/v1/instrument/list:',res)
         that.setData({
           displayState: true,
         })
 
-        var instrumentlist = res.InstrumentList;
+        var oldinstrumentlist = res.data.list;//InstrumentList
         var instrumentList = [];
-        for (var i in instrumentlist) {
-          instrumentlist[i].setMask = false;
-          instrumentlist[i].idx = i;
-          instrumentList.push(instrumentlist[i]);
-        }
-
-        var gl = res.GroupList;
+        for (var i in oldinstrumentlist) {
+          oldinstrumentlist[i].setMask = false;//设置菜单是否展开
+          oldinstrumentlist[i].idx = i;
+          instrumentList.push(oldinstrumentlist[i]);
+        }      
+        // var gl = res.data.GroupList;
+        var gl=[{ID: "22", MOBILE: "13524148616", GroupName: "GC实验室"},{ID: "23", MOBILE: "13524148616", GroupName: "LC001"},{ID: "21", MOBILE: "13524148616", GroupName: "LC实验室1"}];
         var GroupList = [];
         for (var i in gl) {
           gl[i].filterActive = false;
@@ -81,7 +82,8 @@ Page({
           GroupList.push(gl[i]);
         }
 
-        var ll = res.LabelList;
+        // var ll = res.data.LabelList;
+        var tempLabelList=[{ID: "43", LabelName: "运行中", LabelColor: "yellow"},{ID: "44", LabelName: "故障中", LabelColor: "red"}];
         var LabelList = [];
         var object = {
           ID: '',
@@ -92,25 +94,26 @@ Page({
           labelView: false,
         }
         LabelList.unshift(object);
-        for (var i in ll) {
-          ll[i].filterActive = false;
-          ll[i].idx = parseInt(i) + 1;
-          ll[i].labelView = true;
-          LabelList.push(ll[i]);
+        for (var i in tempLabelList) {
+          tempLabelList[i].filterActive = false;
+          tempLabelList[i].idx = parseInt(i) + 1;
+          tempLabelList[i].labelView = true;
+          LabelList.push(tempLabelList[i]);
         }
 
         that.setData({
-          InstrumentCount: res.InstrumentCount,
+          InstrumentCount: res.data.list.length,
           InstrumentList: instrumentList,
           AllInstrument: instrumentList,
-          ContactGuid: res.ContactGuid,
-          ContactId: res.ContactId,
-          AccountGuid: res.AccountGuid,
-          AccountId: res.AccountId,
-          GroupCount: res.GroupCount,
-          GroupList: GroupList,
-          LabelList: LabelList,
+          // ContactGuid: res.data.ContactGuid,//可删
+          // ContactId: res.data.ContactId,//可删
+          // AccountGuid: res.data.AccountGuid,//可删
+          // AccountId: res.data.AccountId,//可删
+          GroupCount: GroupList.length,
+          GroupList: GroupList,//仪器筛选仪器分组
+          LabelList: LabelList,//仪器筛选标签分组
         })
+        console.log('instrumentList:',instrumentList,this.data.InstrumentCount);
       },
       fail: function(err) {
         console.log(err);
@@ -161,22 +164,23 @@ Page({
     console.log(e)
     var that = this;
     util.NetRequest({
-      url: 'site-mini/edit-remark',
+      url: 'api/v1/instrument/'+this.data.remarkId,//site-mini/edit-remark
+      method:"PUT",
       data: {
-        'Remark': this.data.inputValue != '' ? this.data.inputValue : '无',
-        'SerialNo': this.data.remarkSn
+        'remark': this.data.inputValue != '' ? this.data.inputValue : '无'
+        // 'SerialNo': this.data.remarkSn
       },
       success: function(res) {
         console.log(res)
-        if (res.result) {
-          var instrumentlist = that.data.AllInstrument;
-          for (var i in instrumentlist) {
-            if (instrumentlist[i].SerialNo == that.data.remarkSn) {
-              instrumentlist[i].Remark = that.data.inputValue != '' ? that.data.inputValue : '无';
+        if (res.status) {
+          var tempinstrumentlist = that.data.AllInstrument;
+          for (var i in tempinstrumentlist) {
+            if (tempinstrumentlist[i].id == that.data.remarkId) {
+              tempinstrumentlist[i].remark = that.data.inputValue != '' ? that.data.inputValue : '无';
             }
           }
           that.setData({
-            AllInstrument: instrumentlist,
+            AllInstrument: tempinstrumentlist,
             //InstrumentList: instrumentlist
           })
         } else {
@@ -212,11 +216,11 @@ Page({
   },
   Popup: function(e) {
     console.log('POPOPOPOPOPOP');
-    console.log(e.currentTarget.dataset.sn);
+    console.log(e.currentTarget.dataset.id);
     var popup = this.data.popup
     this.setData({
       popup: !popup,
-      remarkSn: e.currentTarget.dataset.sn
+      remarkId: e.currentTarget.dataset.id
     })
   },
 
@@ -262,20 +266,23 @@ Page({
   clickToRepair: function(event) {
     var sn = event.currentTarget.dataset.sn;
     util.NetRequest({
-      url: 'sr/sr-confirm',
+      url: 'api/v1/instrument/check',//sr/sr-confirm
       data: {
-        contact_guid: this.data.ContactGuid,
-        contact_id: this.data.ContactId,
-        account_guid: this.data.AccountGuid,
-        account_id: this.data.AccountId,
-        serial_number: sn
+        // contact_guid: this.data.ContactGuid,
+        // contact_id: this.data.ContactId,
+        // account_guid: this.data.AccountGuid,
+        // account_id: this.data.AccountId,
+        sn: sn
       },
       success: function(res) {
         console.log(res);
-        if (res.success == true) {
+        if (res.status == true) {
           wx.redirectTo({
-            url: '../confirm_info/confirm_info' + '?ProductId=' + res.ProductId + '&ProductDesc=' + res.ProductDesc + '&SerialNo=' + res.SerialNo + '&CpName=' + res.CpName + '&ShipToName=' + res.ShipToName + "&needChat=1" + '&CanRepair=' + res.CanRepair + '&group=' + JSON.stringify(res.group),
+            url: '../confirm_info/confirm_info' + '?id=' + res.data+"&aglNum=" + res.data.AglSN + '&CanRepair=' + res.data.CanRepair + '&group=' + JSON.stringify(res.data.group),
           })
+          // wx.redirectTo({
+          //   url: '../confirm_info/confirm_info' + '?ProductId=' + res.ProductId + '&ProductDesc=' + res.ProductDesc + '&SerialNo=' + res.SerialNo + '&CpName=' + res.CpName + '&ShipToName=' + res.ShipToName + "&needChat=1" + '&CanRepair=' + res.CanRepair + '&group=' + JSON.stringify(res.group),
+          // })
         } else {
           wx.showModal({
             title: '连接失败',

@@ -92,7 +92,7 @@ Page({
     var vfcode = e.detail.value.verification_code
     var that = this;
     util.NetRequest({
-      url: 'api/v1/users/bind',//'auth/auth?mobile=' + mobile
+      url: 'api/v1/user/bind',//'auth/auth?mobile=' + mobile
       data: {
         'mobile': mobile,
         'code': vfcode

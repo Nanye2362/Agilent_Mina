@@ -79,16 +79,19 @@ Page({
   clickToRepairAgain: function (e) {
     var sn = e.currentTarget.dataset.sn;
     util.NetRequest({
-      url: 'sr/sr-confirm',
+      url: 'api/v1/instrument/check',//sr/sr-confirm
       data: {
-        serial_number: sn
+        sn: sn
       },
       success: function (res) {
         console.log(res);
-        if (res.success == true) {
+        if (res.status == true) {
           wx.navigateTo({
-            url: '../confirm_info/confirm_info' + '?ProductId=' + res.ProductId + '&ProductDesc=' + res.ProductDesc + '&SerialNo=' + res.SerialNo + '&CpName=' + res.CpName + '&ShipToName=' + res.ShipToName + '&CanRepair=' + res.CanRepair,
+            url: '../confirm_info/confirm_info' + '?id=' + res.data+"&aglNum=" + res.data.AglSN + '&CanRepair=' + res.data.CanRepair + '&group=' + JSON.stringify(res.data.group),
           })
+          // wx.navigateTo({
+          //   url: '../confirm_info/confirm_info' + '?ProductId=' + res.ProductId + '&ProductDesc=' + res.ProductDesc + '&SerialNo=' + res.SerialNo + '&CpName=' + res.CpName + '&ShipToName=' + res.ShipToName + '&CanRepair=' + res.CanRepair,
+          // })
         }
       }
     })

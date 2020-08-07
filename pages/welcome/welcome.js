@@ -23,7 +23,8 @@ Page({
     var app = getApp();
     app.globalData.isLoading = true;
     util.NetRequest({
-      url: 'api/check-lunch',
+      url: 'api/v1/check-lunch',
+      method:"GET",
       data: {
       },
       success: function (res) {

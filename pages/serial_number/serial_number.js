@@ -58,22 +58,23 @@ Page({
     app.mta.Page.init();
     //腾讯mat统计结束
     var that = this;
-    util.NetRequest({
-      url: 'site-mini/serial-no',
-      data: '',
-      success: function (res) {
-        console.log(res);
-        that.setData({
-          ContactGuid: res.ContactGuid,
-          ContactId: res.ContactId,
-          AccountGuid: res.AccountGuid,
-          AccountId: res.AccountId
-        })
-      }
-    })
+    // util.NetRequest({
+    //   url: 'site-mini/serial-no',
+    //   data: '',
+    //   success: function (res) {
+    //     console.log(res);
+    //     that.setData({
+    //       ContactGuid: res.ContactGuid,
+    //       ContactId: res.ContactId,
+    //       AccountGuid: res.AccountGuid,
+    //       AccountId: res.AccountId
+    //     })
+    //   }
+    // })
 
     util.NetRequest({
-      url: 'api/v1/users/service-num',// site-mini/my-count
+      url: 'api/v1/user/service-num',// site-mini/my-count
+      method:"GET",
       data: {},
       success: function (res) {
         console.log(res); //后台获取到的mycount数据
@@ -286,7 +287,7 @@ Page({
   //     return JSON.stringify(result)
   //   }
   // },
-
+// 提交
   clickToSubmit: function (event) {
 
     var that = this;
@@ -309,20 +310,37 @@ Page({
     }
 
     util.NetRequest({
-      url: 'sr/sr-confirm',
+      url: 'api/v1/instrument/check',//sr/sr-confirm
       data: {
-        contact_guid: contactguid,
-        contact_id: contactid,
-        account_guid: accountguid,
-        account_id: accountid,
-        serial_number: serNum,
-        GroupID: that.data.GroupID
+        sn:serNum
+        // contact_guid: contactguid,
+        // contact_id: contactid,
+        // account_guid: accountguid,
+        // account_id: accountid,
+        // serial_number: serNum,
+        // GroupID: that.data.GroupID
       },
       success: function (res) {
-        if (res.success == true) {
+        console.log('clickToSubmit：',res);
+        if (res.status == true) {
+          // if (this.pageNameis == "myInstrument") {
+          //   this.$router.push({
+          //     path: "/serial-number-confirm",
+          //     query: { pagename: "myInstrument", id: res.data }
+          //   });
+          // } else {
+          //   this.$router.push({
+          //     path: "/serial-number-confirm",
+          //     query: { id: res.data }
+          //   });
+          // }
+          console.log('clickToSubmit2：',res);
           wx.redirectTo({
-            url: '../confirm_info/confirm_info' + '?ProductId=' + res.ProductId + '&ProductDesc=' + res.ProductDesc + '&SerialNo=' + res.SerialNo + '&CpName=' + res.CpName + '&ShipToName=' + res.ShipToName + "&aglNum=" + res.AglSN + '&CanRepair=' + res.CanRepair + '&group=' + JSON.stringify(res.group),
+            url: '../confirm_info/confirm_info' + '?id=' + res.data+"&aglNum=" + res.data.AglSN + '&CanRepair=' + res.data.CanRepair + '&group=' + JSON.stringify(res.data.group),
           })
+          // wx.redirectTo({
+          //   url: '../confirm_info/confirm_info' + '?ProductId=' + res.ProductId + '&ProductDesc=' + res.ProductDesc + '&SerialNo=' + res.SerialNo + '&CpName=' + res.CpName + '&ShipToName=' + res.ShipToName + "&aglNum=" + res.AglSN + '&CanRepair=' + res.CanRepair + '&group=' + JSON.stringify(res.group),
+          // })
         } else {
           //transferAction:
           //'[{"actionType":"to_group","deciId":"xxx","optionId":"3","spillId":"4"},{"actionType":"to_group","deciId":"xxx","optionId":"4"}]'

@@ -36,14 +36,14 @@
             <view class="weui-cell__hd ">
                 <label class="pd_label fc-aaa">姓 名:</label>
             </view>
-            <view class="weui-cell__hd ">{{CpName}}</view>
+            <view class="weui-cell__hd ">{{name}}</view>
         </view>
 
         <view class="pd_cell">
             <view class="weui-cell__hd ">
                 <label class="pd_label fc-aaa">单位名称:</label>
             </view>
-            <view class="weui-cell__hd ">{{ShipToName}}</view>
+            <view class="weui-cell__hd ">{{company}}</view>
         </view>
     </view>
     <block  wx:if="{{needChat}}" >

@@ -45,7 +45,7 @@ Page({
         if (sm.confirm) {
           //请求后台接口
           util.NetRequest({
-            url: 'api/v1/users/bind',//auth/user-unbind
+            url: 'api/v1/user/bind',//auth/user-unbind
             method:'DELETE',
             // data: {
             //   wxopenid: wx.getStorageSync('OPENID'),
