@@ -97,7 +97,7 @@ Page({
       //请求后台接口
   // sr/history-filter
       util.NetRequest({
-        url: 'sr/get-history-formini',
+        url: 'api/v1/sr/history',
         data: {
           'ContactId': option.contactId,
           'SerialNo': option.sn
@@ -129,7 +129,7 @@ Page({
           console.log(res);
           that.sortHistory(res);
           that.setData({
-            getContactId: res.data.SerialNo_list[0] == undefined ? '' : res.data.SerialNo_list[0].ContactId
+            getContactId: res.data.serial_no_list[0] == undefined ? '' : res.data.serial_no_list[0].ContactId
           });
         }
       });
@@ -180,7 +180,7 @@ Page({
     var that = this;
 
     util.NetRequest({
-      url: 'sr/get-history-formini',
+      url: 'api/v1/sr/history',
       data: {
         'ContactId': ID,
         'SerialNo': serialNu,
@@ -204,20 +204,16 @@ Page({
     })
   },
 
-  //将数据根据不同状态分类
+  
   sortHistory: function (res) {
     console.log(res);
     //history数据分类
-    var ListAll;
-    //接口不同，判断history接口的情况
-    if(res.data.history_list===undefined){
-      ListAll = res.HistoryResults;
-    }
-    ListAll = res.data.history_list;
+    var ListAll = res.data.history_list;
+
     var unCompleteList = [];
     var unsubmmitList = [];
     var unConfirmList = [];
-    var getSerialNo_list = res.data.SerialNo_list;
+    var getSerialNo_list = res.data.serial_no_list;
     var SerialNo_list = this.data.SerialNo_listFlag;
     var TECH = this.data.TECH;
     var SN = this.data.SN;
@@ -232,13 +228,13 @@ Page({
       ListAll[i].TECH = TECH;
       ListAll[i].SN = SN;
       ListAll[i].transferAction = this.data.transferAction;
-      if (ListAll[i].SrStatus == 'WIP' && ListAll[i].notConfirmed == 0) {
+      if (ListAll[i].SrStatus == 'WIP' && ListAll[i].unconfirmed == 0) {
         unCompleteList.push(ListAll[i]);
       }
       if (ListAll[i].SrStatus == 'CPLT' && ListAll[i].SurveySubmitted == 'N')       {
         unsubmmitList.push(ListAll[i]);
       }
-      if (ListAll[i].notConfirmed == 1) {
+      if (ListAll[i].unconfirmed == 1) {
         unConfirmList.push(ListAll[i]);
       }
       // unConfirmList待确认历史表
