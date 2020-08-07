@@ -17,13 +17,13 @@
          <view class="sr_right_details">
             <view class="sr_history_time fc-9d">
               <image src="/images/{{index==0?'time_b':'time'}}.png" style='width:26rpx;' mode='widthFix'></image>
-              <text class="fs12 {{index==0?'fc-d7':'fc-9d'}} marginL text-alignC">{{item.CreateTime}}</text>
+              <text class="fs12 {{index==0?'fc-d7':'fc-9d'}} marginL text-alignC">{{item.created_at}}</text>
             </view>
             <view class="sr_history_status {{index==0?'fc-d7':''}}">
-            {{item.ChineseHeaderStatus}}
+            {{item.title}}
             </view>
             <view wx:if="{{index==0}}" class="sr_first_status {{index==0?'fc-9a':''}}">
-            {{item.ChineseMsg}}
+            {{item.message}}
             </view>
             <!-- 按钮 session-from="{{item.TECH+item.SrId+item.SN+item.SerialNo}}"还没处理-->
             <view wx:if="{{index==0}}" class="sl_list_item_bottom {{details.SrStatus == 'WIP'&& details.notConfirmed == 0?'padding123':'padding48'}}">

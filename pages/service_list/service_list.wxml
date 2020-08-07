@@ -35,12 +35,12 @@
               <view class="sl_dropdown text-center {{currentTab==3 ? 'on' : ''}}"><span circular="true" data-current="3" bindtap="swichNav">{{m1.textChange(getSn)}}</span><image src="/images/down.png"  bindtap="tagShow"></image></view>
               <view class="{{currentTab==3 ? 'on_tab' : ''}}"></view>
                 <view wx:if="{{dropdown}}" class="faq_select">
-                  <view class="text-overflow" data-id='{{getContactId}}' data-num='' bindtap='clickToChoose'>
+                  <view class="text-overflow" data-sn='' bindtap='clickToChoose'>
                               全部
                         </view>
-                    <block wx:for="{{SerialNo_listFlag}}" wx:for-item="item">
-                        <view class="text-overflow {{item.changeColor?'selected':''}}" data-index="{{index}}" data-id='{{item.ContactId}}' data-num='{{item.SerialNo}}' bindtap='clickToChoose'>
-                              {{item.SerialNo}}
+                    <block wx:for="{{serialNoFilterList}}" wx:for-item="item">
+                        <view class="text-overflow {{item.changeColor?'selected':''}}" data-index="{{index}}"  data-sn='{{item.serialNo}}' bindtap='clickToChoose'>
+                              {{item.serialNo}}
                         </view>
                     </block>
                 </view>
@@ -82,7 +82,7 @@
                   <view class="text-overflow" data-id='{{getContactId}}' data-num='' bindtap='clickToChoose'>
                               全部
                         </view>
-                    <block wx:for="{{SerialNo_listFlag}}" wx:for-item="item">
+                    <block wx:for="{{serialNoFilterList}}" wx:for-item="item">
                         <view class="text-overflow {{item.changeColor?'selected':''}}" data-index="{{index}}" data-id='{{item.ContactId}}' data-num='{{item.SerialNo}}' bindtap='clickToChoose'>
                               {{item.SerialNo}}
                         </view>

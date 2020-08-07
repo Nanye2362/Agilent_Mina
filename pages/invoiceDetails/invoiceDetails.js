@@ -79,17 +79,17 @@ Page({
   onLoad: function (options) {
     var app = getApp();
     var that = this;
-    util.NetRequest({
-      url: 'wechat-mini/get-global-group',
-      success: function (res) {
-        app.globalData.sobotData = res.data;
-        util.getUserInfoSobot();
-        that.setData({
-          transferAction:util.sobotTransfer(4),
-          pageShow:true
-        });
-      }
-    });
+    // util.NetRequest({
+    //   url: 'wechat-mini/get-global-group',
+    //   success: function (res) {
+    //     app.globalData.sobotData = res.data;
+    //     util.getUserInfoSobot();
+    //     that.setData({
+    //       transferAction:util.sobotTransfer(4),
+    //       pageShow:true
+    //     });
+    //   }
+    // });
 
 //    options.currentInvoice = 'normalInvoice';
     var currentInvoice = options.currentInvoice;
