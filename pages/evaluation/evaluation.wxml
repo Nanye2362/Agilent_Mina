@@ -31,8 +31,6 @@
     </view>
 </view>
 
-
-
 <!-- other_suggestion -->
 <view class="s-repair fs14 padding bg-primary">
     <textarea class="s-textarea fs13" maxlength="20" disabled='disabled'>{{QuestionsSet_Comments.AnswervaluesSet.results[0].Value}}</textarea>

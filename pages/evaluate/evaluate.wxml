@@ -1,49 +1,58 @@
 <!-- 回到首页 -->
-<import  src="../template/template"/>
-<template is="backHome" bindtap="backHome"/>
+<import src="../template/template" />
+<template is="backHome" bindtap="backHome" />
 <!-- grade_result -->
 <view class="ev_grade flex">
-  <!-- avatar -->
-  <view class="ev_grade_avatar self-center">
-    <image class="self-center" src="/images/avatar.png"></image>
-  </view>
-  <!-- information -->
-  <view class="ev_grade_info">
-    <view class="fs-15 marginB-6">安捷伦售后服务在中国</view>
-    <view class="fs13 fc-aaa flex">
-      总体评分：
-      <view class="flex e-stars">
-        <block wx:for="{{drawAverageStars}}" wx:for-item="star">
-          <view class="aver_stars" data-index="{{i}}">
-            <image class="aver_e_star" src="../../images/{{star.src}}.png"></image>
-          </view>
-        </block>
-      </view>
-      <span class="fc-orange fs12">{{averageNum}}分</span>
-    </view>
-  </view>
+	<!-- avatar -->
+	<view class="ev_grade_avatar self-center">
+		<image class="self-center" src="/images/avatar.png"></image>
+	</view>
+	<!-- information -->
+	<view class="ev_grade_info">
+		<view class="fs-15 marginB-6">安捷伦售后服务在中国</view>
+		<view class="fs13 fc-aaa flex">
+			总体评分：
+			<view class="flex e-stars">
+				<block wx:for="{{[1,2,3,4,5]}}">
+					<view class="aver_stars">
+						<!--全黄星星-->
+						<image class="aver_e_star" wx:if="{{averageNum>=index+0.5}}" src="../../images/star_1.png"></image>
+						<!--半黄半灰星星-->
+						<image class="aver_e_star" wx:elif="{{averageNum/10>=index && averageNum%10!=0}}" src='../../images/star_half.png' />
+						<!--全灰星星-->
+						<image class="aver_e_star" wx:else src='../../images/star_0.png' />
+					</view>
+				</block>
+			</view>
+			<span class="fc-orange fs12">{{averageNum}}分</span>
+		</view>
+	</view>
 </view>
 <view class="evaluate-list flex padding directionC bg-primary">
-  <view wx:for="{{stars}}" wx:for-index="i" class="flex evaluate-item">
-    <view class="e-title">{{item.title}}</view>
-    <view class="flex e-stars">
-      <block wx:for="{{item.data}}" wx:for-item="star">
-        <view class="stars" id="{{index}}" data-index="{{i}}" data-valueid="{{star.Valueid}}" bindtap='markStarSelect'>
-          <image class="e_star" src="../../images/{{star.src}}.png"></image>
-        </view>
-      </block>
-    </view>
-    <view  wx:if="{{item.currentCount >= 0}}" class="e-count">{{item.currentCount}}星</view>
-  </view>
+	<view wx:for="{{surveyList}}" class="flex evaluate-item">
+		<view class="e-title">{{item.questionDesc}}</view>
+		<view class="flex e-stars">
+			<block wx:for="{{[1,2,3,4,5]}}" wx:for-index="i" wx:for-item="itm">
+				<!-- bindtap='markStarSelect' -->
+				<view class="stars" data-id="{{index}}" data-itm="{{item.answervaluesSet}}" data-key="{{itm}}" bindtap="{{surveySubmitted?'':'surveyChange'}}">
+					<!--全黄星星-->
+					<image class="e_star" wx:if="{{surveyStar[index]>=i+0.5}}" src="../../images/star_1.png"></image>
+					<!--半黄半灰星星-->
+					<image class="e_star" wx:elif="{{surveyStar[index]/10>=i && surveyStar[index]%10!=0}}" src='../../images/star_half.png' />
+					<!--全灰星星-->
+					<image class="e_star" wx:else src='../../images/star_0.png' />
+				</view>
+			</block>
+		</view>
+		<view class="e-count">{{surveyStar[index]}}星</view>
+	</view>
 </view>
-
-
 
 <!-- other_suggestion -->
 <view class="s-repair fs14 padding bg-primary">
-  <textarea class="s-textarea fs13" bindinput="desNo" maxlength="100" placeholder="请说说您对本次服务的体验吧！您的反馈将成为我们不断改进的动力。" data-question_id='{{QuestionsSet_Comments.QuestionId}}' data-questionDesc='{{QuestionsSet_Comments.QuestionDesc}}' data-answerId='{{QuestionsSet_Comments.AnswerId}}'
-    data-value="{{QuestionsSet_Comments.AnswervaluesSet.results[0].Value}}" data-value_id="{{QuestionsSet_Comments.AnswervaluesSet.results[0].Valueid}}" data-value_selected="{{QuestionsSet_Comments.AnswervaluesSet.results[0].ValueSelected}}" />
-  <view class="text-right fc-aaa">{{describeNo}}/100</view>
+<!-- bindinput="desNo" -->
+	<textarea class="s-textarea fs13" disabled='{{surveySubmitted}}' bindinput="desNo" maxlength="100" placeholder="请说说您对本次服务的体验吧！您的反馈将成为我们不断改进的动力。" value="{{feedback.value}}" />
+	<view class="text-right fc-aaa">{{describeNo}}/100</view>
 </view>
 <!-- button -->
-<button class="btn btn-primary submit_evaluation" bindtap='clickToSubmmit'>提交评论</button>
+<button wx:if="{{!surveySubmitted}}" class="btn btn-primary submit_evaluation" bindtap='ratingSubmit'>提交评论</button>

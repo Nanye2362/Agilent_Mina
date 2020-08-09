@@ -88,6 +88,7 @@ function _NetRequest({ url, data, success, fail, complete, method = "POST", show
         success(res.data);
       }else if(res.statusCode==400){
         console.log('400:',res);
+        wx.hideLoading();
         wx.showModal({
           title: '请求失败',
           content: res.data.error,

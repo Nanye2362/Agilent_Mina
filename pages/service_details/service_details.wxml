@@ -29,25 +29,18 @@
             <view wx:if="{{index==0}}" class="sl_list_item_bottom {{details.SrStatus == 'WIP'&& details.notConfirmed == 0?'padding123':'padding48'}}">
                 <block wx:if="{{details.SrStatus == 'WIP'}}">
                      <!-- <meiqiaBtn bindmeiqiaTap="MtaReport" btn-class="sl_chat fs12 self-center" wx:if="{{details.notConfirmed == 0}}" style="width:34%;" handle-alert="{{true}}"  session-from="{{TECH+details.SrId+SN+details.SerialNo}}">联系客服</meiqiaBtn>  -->
-                     <meiqiaBtn bindmeiqiaTap="MtaReport" btn-class="sl_chat blue_status fs12 self-center" wx:if="{{details.notConfirmed == 1}}" style="width:34%;" handle-alert="{{true}}"  session-from="{{TECH+details.SrId+SN+details.SerialNo}}|transferAction={{transferAction}}">反馈结果</meiqiaBtn>
-                     <view wx:if="{{details.Delivery_no!=''}}" class="sl_chat_btn blue_status fs12" data-Surveyid='{{details.Surveyid}}' data-SrId='{{details.SrId}}' bindtap='trackingNo' data-deliveryno='{{details.Delivery_no}}' data-sn='{{details.SerialNo}}'>查看物流</view>
+                     <meiqiaBtn bindmeiqiaTap="MtaReport" btn-class="sl_chat blue_status fs12 self-center" style="width:34%;" handle-alert="{{true}}"  session-from="{{TECH+details.SrId+SN+details.SerialNo}}|transferAction={{transferAction}}">反馈结果</meiqiaBtn>
+                     <!-- <view wx:if="{{details.Delivery_no!=''}}" class="sl_chat_btn blue_status fs12" data-Surveyid='{{details.Surveyid}}' data-SrId='{{details.SrId}}' bindtap='trackingNo' data-deliveryno='{{details.Delivery_no}}' data-sn='{{details.SerialNo}}'>查看物流</view> -->
                 </block>
                 <block wx:elif="{{details.SrStatus == 'CPLT'}}">
                     <view class="sl_chat_btn fs12" data-index="{{index}}" data-sn="{{details.SerialNo}}" bindtap='clickToRepairAgain' >再次报修</view>
                     <view wx:if="{{details.SurveySubmitted=='N'}}" class="sl_chat_btn blue_status fs12" data-Surveyid='{{details.Surveyid}}' data-SrId='{{details.SrId}}' bindtap='clickToEvaluate'>前往评价</view>
                     <view wx:if="{{details.SurveySubmitted=='Y'}}" class="sl_chat_btn blue_status fs12" data-Surveyid='{{details.Surveyid}}' data-SrId='{{details.SrId}}' bindtap='clickToMyComment'>查看评价</view>
                 </block>
-                <!-- ||typeof(ServconfId)=="undefined" -->
-                <wxs module="m1">
-                    var reportShowOrNot = function(ServconfId){
-                        var reportFlag = true;
-                        if(ServconfId == ''||typeof(ServconfId)=="undefined"){
-                          reportFlag = false;
-                        }
-                        return reportFlag;
-                    }
-                     module.exports.reportShowOrNot = reportShowOrNot;
-                </wxs>
+                 <view href="javascript:;" class="sl_chat_btn fs12" wx:if="{{details.servconfId!=null}}" data-Servconf-id='{{item.servconfId}}' bindtap='clickToReport'>查看服务报告</view>
+                <view href="javascript:;" class="sl_chat_btn fs12" wx:if="{{details.servconfId!=null}}" data-Servconf-id='{{item.servconfId}}' bindtap="copyTBL">下载报告</view>
+                <view href="javascript:;" class="sl_chat_btn blue_status fs12" wx:if="{{item.header_status=='BQ_SENT'||item.header_status=='DBQ_SENT'}}" data-ObjectId='{{item.object_id}}' data-SrId='{{item.srId}}' bindtap='clickToBudgetConfirm'>预估报价单</view>
+                <!--  -->
                 <view href="javascript:;" class="sl_chat_btn fs12" wx:if="{{m1.reportShowOrNot(details.ServconfId)}}" data-Servconf-id='{{details.ServconfId}}' bindtap='clickToReport'>查看服务报告</view>
                 <view href="javascript:;" class="sl_chat_btn fs12" wx:if="{{m1.reportShowOrNot(details.ServconfId)}}" data-Servconf-id='{{details.ServconfId}}' bindtap='copyTBL'>下载报告</view>
                 <view href="javascript:;" class="sl_chat_btn blue_status fs12" wx:if="{{m1.reportShowOrNot(details.bqId)}}" data-Servconf-id='{{details.bqId}}' bindtap='clickToReport'>预估报价单</view>

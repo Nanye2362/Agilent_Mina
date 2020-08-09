@@ -247,6 +247,19 @@ Page({
       url: '../evaluate/evaluate?Surveyid=' + Surveyid + '&&SerialNo=' + SerialID
     })
   },
+  
+  //查看我的评价
+  clickToMyComment: function (e) {
+    console.log('查看我的评价:',e);
+    var Surveyid = e.currentTarget.dataset.surveyid;
+    var SerialID = e.currentTarget.dataset.srid;
+    wx.navigateTo({
+      url: '../evaluate/evaluate?Surveyid=' + Surveyid + '&&SerialNo=' + SerialID
+    })
+    // wx.navigateTo({
+    //   url: '../evaluation/evaluation?Surveyid=' + Surveyid + '&&SerialNo=' + SerialID
+    // })
+  },
 
   //查看物流
   trackingNo: function(e){
@@ -315,14 +328,6 @@ Page({
     });
   },
 
-  //跳转我的评价
-  clickToMyComment: function (e) {
-    var Surveyid = e.currentTarget.dataset.surveyid;
-    var SerialID = e.currentTarget.dataset.srid;
-    wx.navigateTo({
-      url: '../evaluation/evaluation?Surveyid=' + Surveyid + '&&SerialNo=' + SerialID
-    })
-  },
 // 搜索服务列表
   clickToSearch: function (e) {
     //腾讯mta记录搜索事件开始

@@ -179,7 +179,10 @@ Page({
     var Surveyid = e.currentTarget.dataset.surveyid;
     var SerialID = e.currentTarget.dataset.srid;
     wx.navigateTo({
-      url: '../evaluation/evaluation?Surveyid=' + Surveyid + '&&SerialNo=' + SerialID
+      url: '../evaluate/evaluate?Surveyid=' + Surveyid + '&&SerialNo=' + SerialID
     })
+    // wx.navigateTo({
+    //   url: '../evaluation/evaluation?Surveyid=' + Surveyid + '&&SerialNo=' + SerialID
+    // })
   },
 })

@@ -1,34 +1,18 @@
 // pages/evaluate/evaluate.js
 var util = require('../../utils/util.js');
 var initData = {
-  //评论计数
-  describeNo: "0",
-  describe: "",
-  stars: [],
-  averageList: [],
+  surveySubmitted: false,
+  describeNo: 0,
   averageNum: 0,
-  Surveyid: '',
-  SerialNo: '',
-  arrTitle: [],
-  questionSet_result: [],
-  QuestionsSet_Comments: {},
-  QuestionsSet: [], // 存储评论后的信息
-  drawAverageStars: [{
-    count: 0,
-    src: 'star_0'
-  }, {
-    count: 1,
-    src: 'star_0'
-  }, {
-    count: 2,
-    src: 'star_0'
-  }, {
-    count: 3,
-    src: 'star_0'
-  }, {
-    count: 4,
-    src: 'star_0'
-  }]
+  suveryid: '',
+  srid: '',
+  feedback: {      //textarea单独存储，方便提交评价时验证星星数组长度，必填验证
+    value: '',
+    valueid: ''
+  },
+  surveyStar: {}, //绑定元素存储几星 {0：4，1：3}
+  surveyResult: {},   //存储选择后的星级选择对象，提交时整理数据顺序
+  surveyList: [],   //存储星级问题列表，渲染list
 }
 
 
@@ -48,177 +32,149 @@ Page({
     //腾讯mta统计结束
     var that = this;
     this.setData({
-      Surveyid: option.Surveyid,
-      SerialNo: option.SerialNo,
+      suveryid: option.Surveyid,
+      srid: option.SerialNo,
     })
+    that.getSuvery();
 
-    util.NetRequest({
-      url: 'site-mini/evaluation?survey_id=' + option.Surveyid + '&servicereq_id=' + option.SerialNo,
-      success: function (res) {
-        console.log(res);
-        var questionSet_result = res.QuestionsSet_results;
-        var QuestionsSet_Comments = res.QuestionsSet_Comments;
-        var questionList = that.sortQuestionDesc(questionSet_result);
-        that.setData({
-          arrTitle: questionList,
-          questionSet_result: questionSet_result,
-          QuestionsSet_Comments: QuestionsSet_Comments
-        })
-        that.sortStarList();
-      }
-    })
   },
   backHome: function () {
     util.backHome()
   },
-
-  //生成stars
-  sortStarList: function () {
-    var arrTitle = this.data.arrTitle;
-    var arrTitleL = arrTitle.length;
-    var questionSet_result = this.data.questionSet_result;
-    var stars = [];
-    for (var i = 0; i < arrTitleL; i++) {
-      var tempObj = {
-        title: arrTitle[i],
-        currentCount: 0,
-        QuestionId: questionSet_result[i].QuestionId,
-        AnswerId: questionSet_result[i].AnswerId,
-        QuestionDesc: questionSet_result[i].AnswerId,
-        answer_value_id: '',
-        ValueSelectedF: false,
-        data: [{
-          count: 0,
-          Valueid: questionSet_result[i].AnswervaluesSet.results[0].Valueid,
-          src: 'star_0'
-        }, {
-          count: 1,
-          Valueid: questionSet_result[i].AnswervaluesSet.results[1].Valueid,
-          src: 'star_0'
-        }, {
-          count: 2,
-          Valueid: questionSet_result[i].AnswervaluesSet.results[2].Valueid,
-          src: 'star_0'
-        }, {
-          count: 3,
-          Valueid: questionSet_result[i].AnswervaluesSet.results[3].Valueid,
-          src: 'star_0'
-        }, {
-          count: 4,
-          Valueid: questionSet_result[i].AnswervaluesSet.results[4].Valueid,
-          src: 'star_0'
-        }]
+  // 评价查询
+  getSuvery: function () {
+    var that = this;
+    util.NetRequest({
+      url: '/api/v1/sr/suvery?suveryid=' + that.data.suveryid + '&srid=' + that.data.srid,///site-mini/evaluation
+      method: "GET",
+      success: function (res) {
+        console.log('to survey:', res);
+        that.data.surveySubmitted = res.data.is_submitted;  
+        res.data.survey.forEach((item, index) => {
+          if (item.answerStyle === 'Field') {
+            that.data.feedback.valueid = item.answervaluesSet.results[0].valueid;
+            if (that.data.surveySubmitted === true) {
+              that.data.feedback.value = item.answervaluesSet.results[0].value || '';
+            }
+          } else if (item.answerStyle === 'RadioButton') {
+            that.data.surveyList.push(item)
+            if (that.data.surveySubmitted === true) {
+              //已评价，渲染数据:surveyStar
+              that.data.surveyStar[index] = Number(item.answervaluesSet.results[0].value);
+              that.getAverageRate();
+            } else {
+              //未评价，初始化 surveyStar为0
+              that.data.surveyStar[index] = 0;
+            }
+          }
+        })
+        that.setData({
+          surveyList: that.data.surveyList,
+          surveyStar: that.data.surveyStar,
+          feedback: that.data.feedback,
+          surveySubmitted:that.data.surveySubmitted
+        })
       }
-      stars.push(tempObj);
+    })
+  },
+  //计算总体评分取平均值
+  getAverageRate: function () {
+    var that = this;
+    let num = 0;
+    let total = 0;
+    for (let i in this.data.surveyStar) {
+      if (Number(this.data.surveyStar[i]) != 0) {
+        num = num + 1;
+        total = Number(total) + Number(this.data.surveyStar[i]);
+        that.data.averageNum = Number((total / num).toFixed(1));
+      }
     }
+    that.setData({
+      averageNum: that.data.averageNum,
+    })
+  },
 
+  //点击评分
+  surveyChange(e) {
+    //item: 当前问题的列表，index: 第几个问题
+    console.log('点击评分:',e);
+    var index=e.currentTarget.dataset.id;
+    var item=e.currentTarget.dataset.itm;
+    var key=e.currentTarget.dataset.key;
+    this.data.surveyStar[index]=key;
     this.setData({
-      stars: stars
-    })
+      surveyStar: this.data.surveyStar 
+     })
+    let json = {};
+    json.value = this.data.surveyStar[index];
+    //查找选择的答案的answerID
+    json.valueid = item.results[json.value - 1].valueid;
+    this.data.surveyResult[index] = json;
+    this.getAverageRate();
   },
-  //提取question_description
-  sortQuestionDesc: function (list) {
-    var questionList = [];
-    for (var i = 0; i < list.length; i++) {
-      questionList.push(list[i].QuestionDesc);
-    }
-    return questionList;
-  },
-
-  //星星评价
-  markStarSelect: function (e) {
-    var that = this
-    var num = Number(e.currentTarget.id) + 1;
-    var index = e.currentTarget.dataset.index;
-    var answerValueID = e.currentTarget.dataset.valueid;
-    console.log('here' + answerValueID);
-    var arr = []
-
-    for (var k in that.data.stars[index].data) {
-      var obj = {}
-      if (k < num) {
-        obj.count = that.data.stars[index].data[k].count;
-        obj.Valueid = that.data.stars[index].data[k].Valueid;
-        obj.src = 'star_1';
-        arr.push(obj);
-      } else {
-        obj.count = that.data.stars[index].data[k].count;
-        obj.Valueid = that.data.stars[index].data[k].Valueid;
-        obj.src = 'star_0';
-        arr.push(obj);
-      }
-    }
-
-    var thisstars = that.data.stars;
-    console.log(thisstars[index]);
-    thisstars[index].currentCount = num;
-    thisstars[index].answer_value_id = answerValueID;
-    thisstars[index].ValueSelectedF = true;
-    thisstars[index].data = arr;
-    that.setData({
-      stars: thisstars,
-    })
-    var averageNum = this.averageCalculate();
-    that.setData({
-      averageNum: averageNum,
-    })
-    this.drawAverageStars(averageNum);
-  },
-
   //反馈textarea
   desNo: function (e) {
     console.log(e);
+    this.data.feedback.value = e.detail.value;
     this.setData({
       describeNo: e.detail.cursor,
-      describe: e.detail.value
+      feedback: this.data.feedback
     });
   },
 
-  //平均值星星渲染
-  drawAverageStars: function (averNum) {
-    var num = parseInt(averNum);
-    var remainder = (averNum - num);
-    var drawAverageStars = this.data.drawAverageStars;
-    for (var k in drawAverageStars) {
-      if (drawAverageStars[k].count < num) {
-        drawAverageStars[k].src = 'star_1'
-      } else {
-        drawAverageStars[k].src = 'star_0';
-      }
+  // 评分提交
+  ratingSubmit: function () {
+    let ratingArray = [];
+    for (let i in this.data.surveyResult) {
+      ratingArray.push(this.data.surveyResult[i])
     }
-    if (remainder) {
-      drawAverageStars[num].src = 'star_half'
+    if (ratingArray.length === this.data.surveyList.length) {
+      ratingArray.push(this.data.feedback);
+      console.log('answer',ratingArray);
+      var that = this;
+      util.NetRequest({
+        url: '/api/v1/sr/suvery?suveryid=' + that.data.suveryid + '&srid=' + that.data.srid,///site-mini/evaluation
+        method: "POST",
+        data: {
+          srid: this.data.srid,
+          suveryid: this.data.suveryid,
+          answer: JSON.stringify(ratingArray)
+        },
+        success: function (res) {
+          that.setData({
+            surveyList: [],
+            surveySubmitted: true
+          })
+          //提示用户：评价成功
+          wx.showModal({
+            title: '评价成功',
+            content: '感谢您的评价',
+            showCancel: false,
+            success: function (res) {
+              if (res.confirm) {
+                wx.navigateBack({
+                  delta: 1
+                })
+              }
+            }
+          })
+        }
+      })
+    } else {
+      wx.showToast({
+        title: '评价未完成',
+        icon: 'loading',
+        duration: 2000
+      })
     }
 
-    this.setData({
-      drawAverageStars: drawAverageStars
-    })
   },
-
-  //平均值计算
-  averageCalculate: function () {
-    var averageArr = [];
-    var sum = 0;
-    var starsInfo = this.data.stars;
-    var averageNum = 0;
-    for (var i = 0; i < starsInfo.length; i++) {
-      console.log(starsInfo[i].currentCount)
-      var grade = starsInfo[i].currentCount;
-      if (grade != 0) {
-        averageArr.push(grade);
-      }
-      sum += Number(grade);
-    }
-    averageNum = (sum / (averageArr.length)).toFixed(2);
-    return averageNum;
-  },
-
   //提交评论
   clickToSubmmit: function () {
-    var stars = this.data.stars;
-    console.log(stars);
-    for (var i in stars) {
-      if (stars[i].ValueSelectedF == false) {
+    var surveyList = this.data.surveyList;
+    console.log(surveyList);
+    for (var i in surveyList) {
+      if (surveyList[i].ValueSelectedF == false) {
         wx.showToast({
           title: '评价未完成',
           icon: 'loading',
@@ -234,7 +190,7 @@ Page({
     var QuestionsSet_Comments = this.data.QuestionsSet_Comments;
     var openID = wx.getStorageSync('OPENID');
     var that = this;
-    console.log('questionSet_result.length'+questionSet_result.length)
+    console.log('questionSet_result.length' + questionSet_result.length)
     for (var i = 0; i < questionSet_result.length; i++) {
       var a = {
         "QuestionId": questionSet_result[i].QuestionId,
@@ -242,12 +198,12 @@ Page({
         "AnswerId": questionSet_result[i].AnswerId,
         "AnswervaluesSet": [{
           "AnswerId": questionSet_result[i].AnswerId,
-          "Value": stars[i].currentCount + " Star",
-          "Valueid": stars[i].answer_value_id,
+          "Value": surveyList[i].currentCount + " Star",
+          "Valueid": surveyList[i].answer_value_id,
           "ValueSelected": "X"
         }]
       };
-      console.log("a的QuestionId:"+a.QuestionId);
+      console.log("a的QuestionId:" + a.QuestionId);
       QuestionsSet.push(a);
     }
 
