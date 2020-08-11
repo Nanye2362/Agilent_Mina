@@ -161,7 +161,7 @@ Page({
   /* 修改备注 remark */
   confirmRemark: function(e) {
     console.log(this.data.inputValue)
-    console.log(e)
+    console.log('修改备注 remark:',this.data.remarkId)
     var that = this;
     util.NetRequest({
       url: 'api/v1/instrument/'+this.data.remarkId,//site-mini/edit-remark
@@ -306,7 +306,7 @@ Page({
   //删除仪器
   clickToRemove: function(event) {
     var that = this
-    var sn = event.currentTarget.dataset.sn;
+    var id = event.currentTarget.dataset.id;
     var pi = event.currentTarget.dataset.pi;
     var idx = event.currentTarget.dataset.idx;
     console.log(sn + pi);
@@ -317,16 +317,17 @@ Page({
       success: function(res) {
         if (res.confirm) {
           util.NetRequest({
-            url: 'sr/delete-instrument',
+            url: ' api/v1/instrument/'+id,//sr/delete-instrument
+            method:"DELETE",
             data: {
-              'SerialNo': sn,
-              'ProductId': pi,
+              // 'SerialNo': sn,
+              // 'ProductId': pi,
             },
             success: function(res) {
               console.log(res);
-              if (res.success) {
+              if (res.status) {
                 for (var i in InstrumentList) {
-                  if (InstrumentList[i].SerialNo == sn) {
+                  if (InstrumentList[i].id == id) {
                     InstrumentList.splice(i, 1)
                   }
                   // if (InstrumentList[i].idx > idx) {

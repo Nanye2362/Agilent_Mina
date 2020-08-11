@@ -31,9 +31,10 @@ Page({
     })
 
     util.NetRequest({
-      url: 'site-mini/evaluation?survey_id=' + option.Surveyid + '&servicereq_id=' + option.SerialNo,
+      url: '/api/v1/sr/suvery?suveryid=' + option.Surveyid + '&srid=' + option.SerialNo,///site-mini/evaluation
+      method:"GET",
       success: function (res) {
-        console.log(res);
+        console.log('suvery:',res);
         var questionSet_result = res.QuestionsSet_results;
         var QuestionsSet_Comments = res.QuestionsSet_Comments;
         var describeNoleng = QuestionsSet_Comments.AnswervaluesSet.results[0].Value.length;

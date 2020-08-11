@@ -51,16 +51,16 @@ Page({
     //腾讯mat统计开始
     var app = getApp();
     var that = this;
-    util.NetRequest({
-      url: 'wechat-mini/get-global-group',
-      success: function (res) {
-        app.globalData.sobotData = res.data;
-        util.getUserInfoSobot();
-        that.setData({
-          transferAction:util.sobotTransfer(4),
-        });
-      }
-    });
+    // util.NetRequest({
+    //   url: 'wechat-mini/get-global-group',
+    //   success: function (res) {
+    //     app.globalData.sobotData = res.data;
+    //     util.getUserInfoSobot();
+    //     that.setData({
+    //       transferAction:util.sobotTransfer(4),
+    //     });
+    //   }
+    // });
 
     app.mta.Page.init();
     //腾讯mat统计结束
@@ -81,7 +81,7 @@ Page({
             currentInvoice = '';
         console.log(r.data.invoice)
         if (typeof(r.data.invoice)!="undefined"){
-          currentInvoice = r.data.invoice.InvoiceType == 0 ? 'normalInvoice' : 'specialInvoice';
+          currentInvoice = r.data.invoice[0].type == 0 ? 'normalInvoice' : 'specialInvoice';
         }else{
           that.setData({
             hasInvoice: false,
@@ -140,7 +140,7 @@ Page({
     })
 
   },
-  setInvoiceInfo: function (invoiceinfo){
+  setInvoiceInfo: function (info){
     var that = this;
     var invoiceDetails = that.data.invoiceDetails,
         invoiceInfo = that.data.invoiceInfo,
@@ -148,19 +148,19 @@ Page({
         PO = that.data.PO,
         invoiceType = that.data.invoiceType,
         needBill = that.data.needBill;
-        invoiceInfo.title = invoiceinfo.title;
-        invoiceInfo.companyAddress = invoiceinfo.registered_address;
-        invoiceInfo.taxNumber = invoiceinfo.taxpayer_recognition_number;
-        invoiceInfo.bankName = invoiceinfo.bank;
-        invoiceInfo.bankAccount = invoiceinfo.bank_account;
-        invoiceInfo.telephone = invoiceinfo.registered_phone;
-        sendInfo.name = invoiceinfo.recipient;
-        sendInfo.address = invoiceinfo.address;
-        sendInfo.telephone = invoiceinfo.tel;
-        sendInfo.mail = invoiceinfo.mail;
-        PO = invoiceinfo.po_code;
-        needBill = invoiceinfo.sales_list == 0 ? 'false' : true,
-        invoiceType = invoiceinfo.type == 0 ? 'normalInvoice' : 'specialInvoice';
+        invoiceInfo.title = info.title;
+        invoiceInfo.companyAddress = info.registered_address;
+        invoiceInfo.taxNumber = info.taxpayer_recognition_number;
+        invoiceInfo.bankName = info.bank;
+        invoiceInfo.bankAccount = info.bank_account;
+        invoiceInfo.telephone = info.registered_phone;
+        sendInfo.name = info.recipient;
+        sendInfo.address = info.address;
+        sendInfo.telephone = info.tel;
+        sendInfo.mail = info.mail;
+        PO = info.po_code;
+        needBill = info.sales_list == 0 ? 'false' : true,
+        invoiceType = info.type == 0 ? 'normalInvoice' : 'specialInvoice';
         invoiceDetails[invoiceType] = {}
         invoiceDetails[invoiceType].invoiceInfo = invoiceInfo;
         invoiceDetails[invoiceType].sendInfo = sendInfo;
@@ -231,6 +231,7 @@ Page({
     invoicedetails[currentInvoice].invoiceType = invoiceDetails[currentInvoice].invoiceType=='specialInvoice'?1:0;
     util.NetRequest({
       url: 'api/v1/sr/bq',
+      method:"POST",
       data: {
         bq_id: this.data.bqId,
         invoice: {

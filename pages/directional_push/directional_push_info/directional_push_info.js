@@ -40,20 +40,20 @@ Page({
             height:(sysinfo.winWidth * 0.7  * 1.1)+'px'
         })
         var that = this;
-        util.NetRequest({
-            url: 'wechat-mini/get-global-group',
-            success: function (res) {
-                app.globalData.sobotData = res.data;
-                util.getUserInfoSobot(function () {
-                    that.setData({
-                        isShow:true
-                    });
-                });
-                that.setData({
-                    transferAction:util.sobotTransfer(6)
-                });
-            }
-        });
+        // util.NetRequest({
+        //     url: 'wechat-mini/get-global-group',
+        //     success: function (res) {
+        //         app.globalData.sobotData = res.data;
+        //         util.getUserInfoSobot(function () {
+        //             that.setData({
+        //                 isShow:true
+        //             });
+        //         });
+        //         that.setData({
+        //             transferAction:util.sobotTransfer(6)
+        //         });
+        //     }
+        // });
     },
     MtaReport: function () {
         console.log(1);

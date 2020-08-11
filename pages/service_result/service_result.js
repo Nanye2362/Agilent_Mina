@@ -26,7 +26,6 @@ Page({
     var value = options.value;
     var that = this;
     var resultListNew = [];
-
     util.NetRequest({
       url: 'api/v1/sr/history?keywords=' + value,
       // data: {

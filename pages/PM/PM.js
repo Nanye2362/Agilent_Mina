@@ -165,9 +165,9 @@ Page({
         } else {
           var header = { 'content-type': 'application/x-www-form-urlencoded' }
         }
-        console.log(util.ocrServer + 'api/v1/instrument/ocr');//api/ocr-scan
+        console.log(util.ocrServer + 'api/ocr-scan');//api/ocr-scan
         wx.uploadFile({
-          url: util.ocrServer + 'api/v1/instrument/ocr',//api/ocr-scan
+          url: util.ocrServer + 'api/ocr-scan',//api/ocr-scan
           filePath: tempFilePaths[0],
           name: 'file',
           header: header,

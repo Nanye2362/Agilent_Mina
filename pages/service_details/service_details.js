@@ -15,7 +15,7 @@ Page({
     server: config.Server,
     TECH: 'N_srid:',
     SN: ';sn:',
-    isShow:false,
+    isShow:true,
     transferAction:''
   },
 
@@ -38,20 +38,20 @@ Page({
       }
     });
     var _this = this;
-    util.NetRequest({
-      url: 'wechat-mini/get-global-group',
-      success: function (res) {
-        app.globalData.sobotData = res.data;
-        util.getUserInfoSobot(function () {
-          _this.setData({
-            isShow:true
-          });
-        });
-        _this.setData({
-          transferAction:util.sobotTransfer(6)
-        });
-      }
-    });
+    // util.NetRequest({
+    //   url: 'wechat-mini/get-global-group',
+    //   success: function (res) {
+    //     app.globalData.sobotData = res.data;
+    //     util.getUserInfoSobot(function () {
+    //       _this.setData({
+    //         isShow:true
+    //       });
+    //     });
+    //     _this.setData({
+    //       transferAction:util.sobotTransfer(6)
+    //     });
+    //   }
+    // });
 
   },
 
@@ -179,7 +179,10 @@ Page({
     var Surveyid = e.currentTarget.dataset.surveyid;
     var SerialID = e.currentTarget.dataset.srid;
     wx.navigateTo({
-      url: '../evaluation/evaluation?Surveyid=' + Surveyid + '&&SerialNo=' + SerialID
+      url: '../evaluate/evaluate?Surveyid=' + Surveyid + '&&SerialNo=' + SerialID
     })
+    // wx.navigateTo({
+    //   url: '../evaluation/evaluation?Surveyid=' + Surveyid + '&&SerialNo=' + SerialID
+    // })
   },
 })

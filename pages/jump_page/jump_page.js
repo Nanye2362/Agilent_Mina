@@ -108,17 +108,17 @@ Page({
 
                 app.globalData.syncFlag = false;
 
-                util.NetRequest({
-                  url: 'wechat-mini/get-global-group',
-                  showload: false,
-                  success: function (res1) {
-                    app.globalData.sobotData = res1.data;
+                // util.NetRequest({
+                //   url: 'wechat-mini/get-global-group',
+                //   showload: false,
+                //   success: function (res1) {
+                //     app.globalData.sobotData = res1.data;
 
-                    wx.switchTab({
-                      url: '/pages/index/index',
-                    });
-                  }
-                });
+                //     wx.switchTab({
+                //       url: '/pages/index/index',
+                //     });
+                //   }
+                // });
 
               }else {
                 app.globalData.needCheck = true;

@@ -21,7 +21,7 @@ Page({
     unsubmmitListL: 0,
     unConfirmList:[],
     unConfirmListL:0,
-    SerialNo_listFlag: [],
+    serialNoFilterList: [],
     getSn: '',
     getContactId: '',
     isSearch:false,
@@ -70,70 +70,106 @@ Page({
       }
     });
 
-    if(Object.keys(app.globalData.sobotData).length === 0){
-      util.NetRequest({
-        url: 'wechat-mini/get-global-group',
-        success: function (res) {
-          app.globalData.sobotData = res.data;
-          util.getUserInfoSobot();
-          that.setData({
-            transferAction:util.sobotTransfer(6),
-          });
-        }
-      });
-    }else{
-      this.setData({
-        transferAction: util.sobotTransfer(6)
-      });
-    }
+    // if(Object.keys(app.globalData.sobotData).length === 0){
+    //   util.NetRequest({
+    //     url: 'wechat-mini/get-global-group',
+    //     success: function (res) {
+    //       app.globalData.sobotData = res.data;
+    //       util.getUserInfoSobot();
+    //       that.setData({
+    //         transferAction:util.sobotTransfer(6),
+    //       });
+    //     }
+    //   });
+    // }else{
+    //   this.setData({
+    //     transferAction: util.sobotTransfer(6)
+    //   });
+    // }
 
     //若有传参，则调取gethistory接口， 若没有传参，调取server-list接口
-    if (option.sn) {
       this.setData({
-        getSn: option.sn,
-        getContactId: option.contactId,
-        currentTab: 2
+        getSn: option.sn?option.sn:'',
+        // getContactId: option.contactId,
+        // currentTab: 2
       });
       //请求后台接口
-  // sr/history-filter
-      util.NetRequest({
-        url: 'api/v1/sr/history',
-        data: {
-          'ContactId': option.contactId,
-          'SerialNo': option.sn
-        },
-        success: function (res) {
-          //history数据分类
-          console.log('choose' + res)
-          that.sortHistory(res);
-
-          var SerialNo_list = that.data.SerialNo_listFlag;
-          for (var i = 0; i < SerialNo_list.length; i++) {
-            if (option.sn == SerialNo_list[i].SerialNo) {
-              SerialNo_list[i].changeColor = true;
-            }
-          }
-
-          that.setData({
-            getSn: option.sn,
-            SerialNo_listFlag: SerialNo_list
-          })
-        }
-      })
-    } else {
-      //请求后台接口
-      util.NetRequest({
-        url: 'api/v1/sr/history',
-        method:'GET',
-        success: function (res) {
-          console.log(res);
-          that.sortHistory(res);
-          that.setData({
-            getContactId: res.data.serial_no_list[0] == undefined ? '' : res.data.serial_no_list[0].ContactId
-          });
-        }
-      });
+      // sr/history-filter
+      console.log('getServiceHistory:',this.data.getSn);
+      that.getServiceHistory();
+  },
+  getServiceHistory:function(){
+    var that=this;
+    util.NetRequest({
+      url: 'api/v1/sr/history'+'?serial_no='+that.data.getSn+'&keywords='+that.data.searchValue,
+      method:'GET',
+      success: function (res) {
+        //history数据分类
+        console.log('sr/history:' , res)
+        that.sortHistory(res);
+      }
+    })
+  },
+  
+//处理数据 
+  sortHistory: function (res) {
+    console.log(res);
+    //history数据分类
+    var ListAll = res.data.history_list;
+    var unCompleteList = [];
+    var unsubmmitList = [];
+    var unConfirmList = [];
+    var TECH = this.data.TECH;
+    var SN = this.data.SN;
+    var serialNoFilterList = this.addcolorFlag(res.data.serial_no_list);
+    for (var i = 0; i < ListAll.length; i++) {
+      ListAll[i].TECH = TECH;
+      ListAll[i].SN = SN;
+      ListAll[i].transferAction = this.data.transferAction;
+      if (ListAll[i].srStatus == 'WIP' && ListAll[i].unconfirmed == 0) {
+        unCompleteList.push(ListAll[i]);
+      }
+      if (ListAll[i].srStatus == 'CPLT' && ListAll[i].surveySubmitted == 'N')       {
+        unsubmmitList.push(ListAll[i]);
+      }
+      if (ListAll[i].unconfirmed == 1) {
+        unConfirmList.push(ListAll[i]);
+      }
+      // unConfirmList待确认历史表
     }
+    console.log('serialNoFilterList:',serialNoFilterList);
+    var HistoryResultsL = ListAll.length;
+    var unCompleteListL = unCompleteList.length;
+    var unsubmmitListL = unsubmmitList.length;
+    var unConfirmListL = unConfirmList.length;
+    this.setData({
+      HistoryResults: res.data.history_list,
+      unCompleteList: unCompleteList,
+      unsubmmitList: unsubmmitList,
+      unConfirmList: unConfirmList,
+      serialNoFilterList: serialNoFilterList,
+      HistoryResultsL: HistoryResultsL,
+      unCompleteListL: unCompleteListL,
+      unsubmmitListL: unsubmmitListL,
+      unConfirmListL: unConfirmListL
+    });
+  },
+
+  //序列号列表加入changecolor标识
+  addcolorFlag: function (list) {
+    var that=this;
+    var data = [{}];
+    for (var i = 0; i < list.length; i++) {
+      if (that.data.getSn == list[i]) {
+        data[i].changeColor = true;
+        data[i].serialNo=list[i];
+      }else{
+        data[i].changeColor = false;
+        data[i].serialNo=list[i];
+
+      }
+    }
+    return data;
   },
   /**
    * 滑动切换tab
@@ -174,100 +210,11 @@ Page({
 
   //序列号选择
   clickToChoose: function (e) {
-    var ID = e.currentTarget.dataset.id;
-    var serialNu = e.currentTarget.dataset.num;
-    var index = e.currentTarget.dataset.index;
+    this.data.getSn = e.currentTarget.dataset.sn;
     var that = this;
-
-    util.NetRequest({
-      url: 'api/v1/sr/history',
-      data: {
-        'ContactId': ID,
-        'SerialNo': serialNu,
-        'index': that.data.currentTab
-      },
-
-      success: function (res) {
-        //history数据分类
-        console.log('choose' + res)
-        that.sortHistory(res);
-
-        var SerialNo_list = that.data.SerialNo_listFlag;
-        if (index != undefined) {
-          SerialNo_list[index].changeColor = true;
-        }
-        that.setData({
-          getSn: serialNu,
-          SerialNo_listFlag: SerialNo_list
-        })
-      }
-    })
+    that.getServiceHistory();
   },
 
-  
-  sortHistory: function (res) {
-    console.log(res);
-    //history数据分类
-    var ListAll = res.data.history_list;
-
-    var unCompleteList = [];
-    var unsubmmitList = [];
-    var unConfirmList = [];
-    var getSerialNo_list = res.data.serial_no_list;
-    var SerialNo_list = this.data.SerialNo_listFlag;
-    var TECH = this.data.TECH;
-    var SN = this.data.SN;
-    if (getSerialNo_list == null || getSerialNo_list.length < SerialNo_list.length) {
-      getSerialNo_list = SerialNo_list;
-    }
-
-
-    var SerialNo_listFlag = this.addcolorFlag(getSerialNo_list);
-
-    for (var i = 0; i < ListAll.length; i++) {
-      ListAll[i].TECH = TECH;
-      ListAll[i].SN = SN;
-      ListAll[i].transferAction = this.data.transferAction;
-      if (ListAll[i].SrStatus == 'WIP' && ListAll[i].unconfirmed == 0) {
-        unCompleteList.push(ListAll[i]);
-      }
-      if (ListAll[i].SrStatus == 'CPLT' && ListAll[i].SurveySubmitted == 'N')       {
-        unsubmmitList.push(ListAll[i]);
-      }
-      if (ListAll[i].unconfirmed == 1) {
-        unConfirmList.push(ListAll[i]);
-      }
-      // unConfirmList待确认历史表
-    }
-    console.log('unConfirmList',unConfirmList);
-    var HistoryResultsL = ListAll.length;
-    var unCompleteListL = unCompleteList.length;
-    var unsubmmitListL = unsubmmitList.length;
-    var unConfirmListL = unConfirmList.length;
-    this.setData({
-      InstrumentCount: res.data.InstrumentCount,
-      HistoryResults: res.data.history_list,
-      unCompleteList: unCompleteList,
-      unsubmmitList: unsubmmitList,
-      unConfirmList: unConfirmList,
-      SerialNo_listFlag: SerialNo_listFlag,
-      HistoryResultsL: HistoryResultsL,
-      unCompleteListL: unCompleteListL,
-      unsubmmitListL: unsubmmitListL,
-      unConfirmListL: unConfirmListL
-
-    });
-  },
-
-  //序列号列表加入changecolor标识
-  addcolorFlag: function (list) {
-    var SerialNo_list_flag = list;
-    for (var i = 0; i < list.length; i++) {
-      SerialNo_list_flag[i].changeColor = false;
-    }
-    console.log(SerialNo_list_flag)
-    return SerialNo_list_flag;
-  },
 
   //再次报修
   clickToRepairAgain: function (e) {
@@ -299,6 +246,19 @@ Page({
     wx.navigateTo({
       url: '../evaluate/evaluate?Surveyid=' + Surveyid + '&&SerialNo=' + SerialID
     })
+  },
+  
+  //查看我的评价
+  clickToMyComment: function (e) {
+    console.log('查看我的评价:',e);
+    var Surveyid = e.currentTarget.dataset.surveyid;
+    var SerialID = e.currentTarget.dataset.srid;
+    wx.navigateTo({
+      url: '../evaluate/evaluate?Surveyid=' + Surveyid + '&&SerialNo=' + SerialID
+    })
+    // wx.navigateTo({
+    //   url: '../evaluation/evaluation?Surveyid=' + Surveyid + '&&SerialNo=' + SerialID
+    // })
   },
 
   //查看物流
@@ -368,14 +328,6 @@ Page({
     });
   },
 
-  //跳转我的评价
-  clickToMyComment: function (e) {
-    var Surveyid = e.currentTarget.dataset.surveyid;
-    var SerialID = e.currentTarget.dataset.srid;
-    wx.navigateTo({
-      url: '../evaluation/evaluation?Surveyid=' + Surveyid + '&&SerialNo=' + SerialID
-    })
-  },
 // 搜索服务列表
   clickToSearch: function (e) {
     //腾讯mta记录搜索事件开始
