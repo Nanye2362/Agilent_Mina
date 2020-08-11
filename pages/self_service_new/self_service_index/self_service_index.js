@@ -50,6 +50,7 @@ Page({
 
       },
       success: function (res) {
+        console.log(res);
         var tree = _this.isFolder(res.children);
         _this.setData({
           tree:tree,

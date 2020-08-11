@@ -35,13 +35,14 @@ Page({
     var that = this;
 
     util.NetRequest({
-      url: 'site-mini/self-service',
+      url: 'api/v1/guide',
       success: function (res) {
+        console.log(res);
         console.log("objectkeys");
-        that.data.objKeys = Object.keys(res.data);
+        that.data.objKeys = Object.keys(res.data.tree);
         console.log('that.data.objKeys:',that.data.objKeys);
         var data = that.sortList(res);
-        that.getshowSoftList(res.data);
+        that.getshowSoftList(res.data.tree);
         
         console.log(data);
         that.setData({
@@ -84,8 +85,8 @@ Page({
 
   sortList: function (list) {
     console.log('list', list)
-    var data = list.data;
-    var hots = list.hots;
+    var data = list.data.tree;
+    var hots = list.data.hots;
     for (let i in data) {
       for (let key in hots) {
         if (data[i].id == key) {
@@ -105,7 +106,7 @@ Page({
     console.log('Showlist data：', data);
     for(let i in data){
       var currentSwiper = objKeys.indexOf(i);
-      console.log('处理数据currentSwiper:', currentSwiper);
+      //console.log('处理数据currentSwiper:', currentSwiper);
       if (typeof (data[i].children) != "undefined") {
         
         var softList = data[i].children;
@@ -148,7 +149,7 @@ Page({
       for (let keys in softList) {
         let i = softKeys.indexOf(keys);
         console.log('i', i);
-        softListName[i] = softList[keys].name;
+        softListName[i] = softList[keys].category_name;
       }
       console.log("softListName");
       console.log(softListName);

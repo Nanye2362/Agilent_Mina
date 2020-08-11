@@ -23,10 +23,10 @@
   <view class="ss_hot_issue bg-primary">
     <view class="ss_hi_con fc-blue">
       <block wx:for="{{result}}" wx:key='unique' wx:for-item="item">
-        <view  class='faq_con' data-id='{{item.id}}' bindtap='clickToFaqDetails'>
+        <view  class='faq_con' data-id='{{item.article_id}}' bindtap='clickToFaqDetails'>
           <view class="flex faq_con_in">
             <view class="faq_item_con">
-                <rich-text class="" nodes="{{item.questions}}">
+                <rich-text class="" nodes="{{item.article_title}}">
                 </rich-text>
             </view>
             <view class='faq_img text-center'>

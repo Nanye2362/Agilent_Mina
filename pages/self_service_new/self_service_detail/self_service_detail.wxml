@@ -16,17 +16,17 @@
 
                 <block wx:if="{{item.type == 'text'}}" wx:key='key' >
                   <view >
-                      <rich-text nodes="{{item.content}}"></rich-text>
+                      <rich-text nodes="{{item.article_content}}"></rich-text>
                   </view>
               </block>
                <block wx:elif="{{item.type == 'img'}}">
                   <view>
-                      <image mode="widthFix" style="max-width:100%;" src='{{item.content}}'></image>
+                      <image mode="widthFix" style="max-width:100%;" src='{{item.article_content}}'></image>
                   </view>
                </block>
                <block wx:elif="{{item.type == 'video'}}">
                 <view class='fd_video' style='position:relative;'>
-                    <video src="{{item.content}}" controls="true"></video>
+                    <video src="{{item.article_content}}" controls="true"></video>
                 </view>
                </block>
         </block>
