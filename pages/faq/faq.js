@@ -23,28 +23,35 @@ Page({
     var app = getApp();
     app.mta.Page.init();
     //腾讯mta统计结束
-    console.log("option");
     console.log(option);
     var id = option.id;
     var sid = option.sid;
     var that = this;
     util.NetRequest({
-      url: 'site-mini/faq',
-      data: {
-        'id': id,
-      },
+      url: 'api/v1/guide?type=0&category_path='+sid+'_'+id,
+      method:'GET',
       success: function (res) {
         console.log(res);
         that.setData({
           getid: id,
           getsid: sid
         })
-        var dropDownlist = that.addSelectedFlag(res.types);
+        
+        var tree = wx.getStorageSync('tree');
+        var type = [];
+        //对象转化为数组
+        for(let key of Object.keys(tree[sid].children)){
+          type.push(tree[sid].children[key]);
+        }
+        console.log(type);
+        var dropDownlist = that.addSelectedFlag(type);
+        console.log(dropDownlist);
         that.setData({
           dropDownlist: dropDownlist,
           questionsList: res.data,
-          dataList: res.parents,
+          dataList: tree,
         })
+        console.log(that.data.dropDownlist);
       }
     });
   },
@@ -61,7 +68,7 @@ Page({
         if (getid == listFlag[i].id){
           listFlag[i].changeColor = 'true';
           this.setData({
-            chooseCont: listFlag[i].name
+            chooseCont: listFlag[i].category_name
           })
         }else{
           listFlag[i].changeColor = false;
@@ -84,17 +91,15 @@ Page({
     var that = this;
     var id = e.currentTarget.dataset.id;
     util.NetRequest({
-      url: 'site-mini/faq',
-      data: {
-        'id': id
-      },
+      url: 'api/v1/guide?type=0&category_path='+that.data.getsid+'_'+id,
+      method:'GET',
       success: function (res) {
         console.log(res);
         var dropList = that.data.dropDownlist;
         var chooseCont='';
         for (var i = 0; i < dropList.length; i++){
           if (id == dropList[i].id){
-            chooseCont = dropList[i].name;
+            chooseCont = dropList[i].category_name;
             dropList[i].changeColor = true;
             }else{
             dropList[i].changeColor = false;

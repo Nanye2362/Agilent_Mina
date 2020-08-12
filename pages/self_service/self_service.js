@@ -35,7 +35,8 @@ Page({
     var that = this;
 
     util.NetRequest({
-      url: 'api/v1/guide',
+      url: 'api/v1/guide?type=0',
+      method:'GET',
       success: function (res) {
         console.log(res);
         console.log("objectkeys");
@@ -246,8 +247,10 @@ Page({
     */
   clickToFaq: function (e) {
     console.log(e);
+    var that = this;
     var id = e.currentTarget.dataset.id;
     var sid = e.currentTarget.dataset.sid;
+    wx.setStorageSync('tree', that.data.dataList);
     wx.navigateTo({
       url: '../faq/faq?id=' + id + '&sid=' + sid,
     })

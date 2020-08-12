@@ -27,7 +27,7 @@ Page({
     var that = this;
     console.log(value)
     util.NetRequest({
-      url: 'api/v1/guide/article/search/keyword'+value+'/type/0',
+      url: 'api/v1/guide/article/search?keyword='+value+'&type=0',
       success: function (res) {
         console.log(res);
         var resultList = res.data.search_results;
