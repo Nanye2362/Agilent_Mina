@@ -134,7 +134,12 @@ Page({
         console.log('处理后showSoft:', showSoft)
       }
     }
-    this.getSoftName(data[objKeys[0]].children, 0);
+    //判断没有children的情况
+    if(data[objKeys[0]].hasOwnProperty('children')){
+      this.getSoftName(data[objKeys[0]].children, 0);
+    }else{
+      this.getSoftName(data[objKeys[0]], 0);
+    }
   },
   // 处理当前tab的显示的softlist
   getSoftName: function (softList,currentSwiper){
@@ -218,7 +223,13 @@ Page({
         currentTab: e.target.dataset.current,
         currentSwiper: currentSwiper,
       });
-      this.getSoftName(this.data.dataList[e.target.dataset.current].children,currentSwiper);
+      //判断没有children的情况
+      if(this.data.dataList[e.target.dataset.current].hasOwnProperty('children')){
+        this.getSoftName(this.data.dataList[e.target.dataset.current].children,currentSwiper);
+      }else{
+        this.getSoftName(this.data.dataList[e.target.dataset.current],currentSwiper);
+      }
+     
     }
   },
 
