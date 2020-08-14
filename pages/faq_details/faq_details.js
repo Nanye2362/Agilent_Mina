@@ -32,24 +32,22 @@ Page({
     var meiqiaInfo = wx.getStorageSync('meiqia');
 
     util.NetRequest({
-      url: 'site-mini/faq-details',
-      data: {
-        'id': options.id
-      },
+      url: 'admin/v1/guide/article/'+options.id,
+      method:'GET',
       success: function (res) {
         var app = getApp();
-        app.mta.Event.stat("self_service_question", { "title": res.detail.questions });
+        app.mta.Event.stat("self_service_question", { "title": res.data.article_title });
         console.log(res);
-        if (res.detail.type==1){
+        if (res.data.type==1){
           that.setData({
             type:2,
-            url: res.detail.answers[0].content
+            url: res.data.article_title
           })
           return;
-        } else if (res.detail.type == 2){
+        } else if (res.data.type == 2){
           that.setData({
             type: 2,
-            url: config.Server + "/site/faq-details?id=" + options.id
+            url: config.Server + 'admin/v1/guide/article/'+options.id,
           })
           return;
         }else{
@@ -63,8 +61,8 @@ Page({
           mask: true
         })
         that.setData({
-          answersList: res.detail.answers,
-          questions: res.detail.questions,
+          answersList: res.data,
+          questions: res.data.article_title,
         })   
       },
       complete: function () {

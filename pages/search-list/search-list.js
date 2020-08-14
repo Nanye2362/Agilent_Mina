@@ -27,18 +27,15 @@ Page({
     var that = this;
     console.log(value)
     util.NetRequest({
-      url: 'site-mini/search-result',
-      data:{
-          'key_word':value
-      },
+      url: 'api/v1/guide/article/search?keyword='+value+'&type=0',
       success: function (res) {
         console.log(res);
-        var resultList = res.result;
+        var resultList = res.data.search_results;
       
         that.setData({
           value:value,
           resultList: resultList,
-          resultLength: res.count,          
+          resultLength: res.data.total_records,          
         })
       }
     });

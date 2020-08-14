@@ -3,21 +3,21 @@
   <view catchtap='toggle' data-id="{{item.id}}" data-isFolder="{{item.isFolder}}" data-url='{{item.url}}'>
 
     <view class="menu2-li" wx:if="{{item.pid == 0}}">
-      <text>{{item.name}}</text>
+      <text>{{item.category_name}}</text>
       <image src="/images/arrow_d.png"></image>
     </view>
 
     <view wx:else>
       <view class="menu3-li" wx:if="{{item.isFolder}}">
         <view class="{{item.isOpen?'open':'plus'}}"></view>
-        <text>{{item.name}}</text>
+        <text>{{item.category_name}}</text>
       </view>
       <view wx:else class="menu6">
           <view wx:if="{{item.type == 1}}">
-            <view class="menu6-li" data-url="{{item.answers}}" bindtap="clickVideo">{{item.name}}</view>
+            <view class="menu6-li" data-url="{{item.answers}}" bindtap="clickVideo">{{item.category_name}}</view>
           </view>
           <view wx:else >
-            <navigator url="/pages/self_service_new/self_service_detail/self_service_detail?id={{item.id}}" class="menu6-li">{{item.name}}</navigator>
+            <navigator url="/pages/self_service_new/self_service_detail/self_service_detail?id={{item.id}}" class="menu6-li">{{item.category_name}}</navigator>
           </view>
 
       </view>
@@ -26,7 +26,7 @@
     <view id="video_shade_panel" class="video_shade" data-video-no="" wx:if="{{showVideo}}" style="display:block">
       <view class="video_box">
         <view class="video_title">
-          <text>{{item.name}}</text>
+          <text>{{item.category_name}}</text>
           <view class="close_btn" bindtap="closeBtn">
             <image src="/images/video_close.png"></image>
           </view>

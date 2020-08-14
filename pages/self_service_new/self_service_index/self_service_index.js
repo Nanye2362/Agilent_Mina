@@ -45,16 +45,34 @@ Page({
     }
 
     util.NetRequest({
-      url: 'site-mini/pdf-collection-class?id='+modeType,
+      url: 'api/v1/guide?type=1',
       data: {
 
       },
       success: function (res) {
-        var tree = _this.isFolder(res.children);
+        console.log(res);
+        //对象转化为数组
+        var outArr = [];
+        var inArr = [];
+        //外层数组
+        for(let outKey of Object.keys(res.data.tree)){
+          if(res.data.tree[outKey].hasOwnProperty('children')){
+            //内层数组
+            for(let inKey of Object.keys(res.data.tree[outKey].children)){
+              inArr.push(res.data.tree[outKey].children[inKey]);
+            }
+            res.data.tree[outKey].children = inArr;
+            inArr = [];
+          }
+          outArr.push(res.data.tree[outKey]);
+        }
+        console.log(outArr);
+        var tree = _this.isFolder(outArr);
+        console.log(tree);
         _this.setData({
           tree:tree,
           isShow:true,
-          name:res.name
+          name:'场地准备'
         });
       },
       complete: function () {

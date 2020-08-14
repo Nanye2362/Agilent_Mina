@@ -17,7 +17,7 @@
 <movable-area class="ss_tab_content">
    <movable-view class="ss_tab bg-primary" x="{{x}}" y="{{y}}" direction="horizontal" inertia="true"	out-of-bounds="false" damping="50">   
         <block wx:for="{{dataList}}" wx:key='unique' wx:for-index='index' >
-              <view class="ss_tab_item fs15 {{item.id==getsid ? 'ss_tab_item_active' : ''}}" bindtap="gotoTab" data-id='{{item.id}}' data-index='{{index}}'>{{item.name}}</view>
+              <view class="ss_tab_item fs15 {{item.id==getsid ? 'ss_tab_item_active' : ''}}" bindtap="gotoTab" data-id='{{item.id}}' data-index='{{index}}'>{{item.category_name}}</view>
         </block>    
     </movable-view> 
 
@@ -45,7 +45,7 @@
         <view wx:if="{{dropdown}}" class="faq_select">
           <block wx:for="{{dropDownlist}}">
             <view class="text-overflow fs12 {{item.changeColor?'selected':''}}" data-id='{{item.id}}' bindtap='changeChoose'>
-              {{item.name}}
+              {{item.category_name}}
             </view>
           </block>
         </view>
@@ -59,7 +59,7 @@
           <view class='faq_con' bindtap='clickTodetails' data-id='{{item.id}}'>
             <view class='flex faq_con_in'>
               <!-- questionCon -->
-              <view class="faq_item_con">{{item.questions}}
+              <view class="faq_item_con">{{item.article_title}}
               </view>
               <!-- arrow-right -->
               <view class="faq_img text-center">
