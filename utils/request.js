@@ -133,7 +133,7 @@ function _NetRequest({ url, data, success, fail, complete, method = "POST", show
         wx.hideLoading();
         wx.showModal({
           title: '请求失败',
-          content:response.data.error,
+          content:res.data.error,
           showCancel: false,
           success: function (response) {
             if (response.confirm) {
