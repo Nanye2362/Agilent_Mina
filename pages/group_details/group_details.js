@@ -30,13 +30,10 @@ Page({
   onShow: function (options) {
     var that = this;
     util.NetRequest({
-      url: 'site-mini/group-details',
-      data: {
-        GroupName: this.data.GroupName,
-        GroupID: this.data.GroupID
-      },
+      url: 'api/v1/instrument/groups/'+that.data.GroupID+'/details',//site-mini/group-details
+      method:'GET',
       success: function (res) {
-        console.log(res.data.DetailList)
+        console.log('group-details:',res.data.DetailList)
         var detaillist = res.data.DetailList;
         var DetailList = [];
         for (var i in detaillist) {
@@ -48,10 +45,10 @@ Page({
         that.setData({
           detailList: DetailList,
           ListCount: res.data.ListCount,
-          ContactGuid: res.data.ContactGuid,
-          ContactId: res.data.ContactId,
-          AccountGuid: res.data.AccountGuid,
-          AccountId: res.data.AccountId,
+          // ContactGuid: res.data.ContactGuid,
+          // ContactId: res.data.ContactId,
+          // AccountGuid: res.data.AccountGuid,
+          // AccountId: res.data.AccountId,
         })
       },
       fail: function (err) {

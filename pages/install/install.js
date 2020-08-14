@@ -213,13 +213,13 @@ Page({
       mask: true
     })
     if (URLArr.length > 0) {
+      // 上传图片
       util.uploadImg(URLArr, function (imgUrlList) {
         that._submit(imgUrlList);
       })
     } else {
       that._submit([]);
     }
- 
   },
   _submit: function (imgUrlList) {
     var that = this;
@@ -232,7 +232,7 @@ Page({
         mobile:that.data.mobile,
         name: that.data.name,
         company: that.data.company,
-        orderno: that.data.orderno,
+        order_no: that.data.orderno,
         instrument_type: that.data.insType[that.data.pickerType],
         additional_information: that.data.desc,   
         images:[imgUrlList[0],imgUrlList[1],imgUrlList[2],imgUrlList[3]]

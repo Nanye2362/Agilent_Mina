@@ -114,30 +114,30 @@ function RtransferAction(r) {
 
 
 function uploadImg(urlList,callback){
-  var session_id = wx.getStorageSync('PHPSESSID');//本地取存储的sessionID
-  if (session_id != "" && session_id != null) {
-    var header = { 'content-type': 'application/x-www-form-urlencoded', 'Cookie': 'PHPSESSID=' + session_id }
+  var token = wx.getStorageSync('token');
+  if (token != "" && token != null) {
+    var header = { 'content-type': 'application/x-www-form-urlencoded', 'Authorization':"Bearer "+token }
   } else {
     var header = { 'content-type': 'application/x-www-form-urlencoded' }
   }
-
-  //console.log(session_id);
-  var url = Server + "api/upload-img";
+  
+  var url = Server + "api/v1/reservation/upload-img";//api/upload-img
   var completeNum=0;
   var returnUrlList=[];
+  console.log('urlList:',urlList);
   for (var i in urlList){
     wx.uploadFile({
       url: url,
       filePath: urlList[i],
       name: 'img',
       formData:{
-          key:i
+          "key":i
       },
       header: header,
       success:function(res){
         completeNum++;
         var obj = JSON.parse(res.data);
-        returnUrlList[obj.key] = obj.url;
+        returnUrlList[obj.key-1] = obj.url;
         if (urlList.length == completeNum) {
           callback(returnUrlList);
         }
@@ -203,7 +203,9 @@ function getUserInfo(cb){
   if (user==""){//user不存在
     request.NetRequest({
       // api/get-userinfo
-      url: "api/v1/users/service-num", success: function (res) {
+      url: "api/v1/user/service-num", 
+      method:"GET",
+      success: function (res) {
         if (res.status) {
           user = res.data.users;
           wx.setStorageSync('userInfo',user);

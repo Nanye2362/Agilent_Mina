@@ -31,9 +31,8 @@ Page({
   onShow: function () {
     var that = this 
     util.NetRequest({
-      url: 'site-mini/ins-group',
-      data: {
-      },
+      url: 'api/v1/instrument/ins-groups',//site-mini/ins-group
+      method:"GET",
       success: function (res) {
         console.log(res)
         var GroupList = [];
@@ -145,18 +144,17 @@ Page({
       editGroup: true,
     })
     util.NetRequest({
-      url: 'site-mini/edit-group',
+      url: 'api/v1/instrument/batch-edit-groups',//site-mini/edit-group
       data: {
         DelList: dl,
         EditList: el
       },
       success: function (res) {
         console.log(res)
-        if(res.data.result){
+        if(res.status){
           util.NetRequest({
-            url: 'site-mini/ins-group',
-            data: {
-            },
+            url: 'api/v1/instrument/ins-groups',//site-mini/ins-group
+            method:"GET",
             success: function (res) {
               console.log(res);
               var GroupList = [];
@@ -224,7 +222,7 @@ Page({
     console.log(that.data.inputValue)
     if (that.data.inputValue!=''){
       util.NetRequest({
-        url: 'site-mini/create-group',
+        url: 'api/v1/instrument/groups',//site-mini/create-group
         data: {
           'GroupName': that.data.inputValue
         },

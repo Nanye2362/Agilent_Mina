@@ -1,7 +1,6 @@
 // pages/orderDetails/orderDetails.js
 var util = require('../../utils/util.js');
-var orderArry={
-  "install":{
+var orderArry=[{
     "created_at":"预约日期",
     "order_no":"订单号",
     "InsType":"仪器类型",
@@ -10,8 +9,7 @@ var orderArry={
     "mobile":"手机号",
     "expected_date":"期望日期",
     "additional_information":"附加信息"
-  },
-  "pm":{
+  },{
     "created_at":"预约日期",
     "serial_no":"序列号",
     "name":"姓名",
@@ -19,8 +17,7 @@ var orderArry={
     "mobile":"手机号",
     "expected_date":"期望日期",
     "configration_information":"配置信息"
-  },
-  "oq":{
+  },{
     "created_at":"预约日期",
     "serial_no":"序列号",
     "name":"姓名",
@@ -28,7 +25,7 @@ var orderArry={
     "mobile":"手机号",
     "expected_date":"期望日期"
   }
-}
+]
 
 
 
@@ -49,7 +46,7 @@ Page({
   onLoad: function (options) {
     var that = this;
     console.log(options);
-
+//orderType 0:安装申请 1：PM 2：OQ
     this.setData({
       orderType: options.orderType,
       transferAction: util.sobotTransfer(5)

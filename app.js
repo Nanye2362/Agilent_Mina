@@ -229,6 +229,7 @@ App({
 
   syncUserInfo:function(){
     var _this = this;
+    return;
     util.NetRequest({
       url: 'site-mini/search-user-by-union-id',
       data:{},

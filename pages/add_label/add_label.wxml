@@ -4,12 +4,12 @@
     <checkbox-group class='radio-group' bindchange="checkboxChange">
       <label class="radio flex group_item" wx:for="{{LabelList}}" wx:key='multiple' data-idx='{{item.idx}}'>
         <view class='group_item_details flex'>
-          <view class='label_Color {{item.LabelColor}}'></view>
-          <text>{{item.LabelName}}</text>
+          <view class='label_Color {{item.labelColor}}'></view>
+          <text>{{item.labelName}}</text>
         </view>
         <!-- set -->
         <view class="flex justify-end group_item_details" >
-          <checkbox color='#0085d5' value="{{item.ID}}" checked='{{item.Checked}}'/> 
+          <checkbox color='#0085d5' value="{{item.id}}" checked='{{item.Checked}}'/> 
         </view>
         <!-- set -->
       </label > 

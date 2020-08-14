@@ -69,9 +69,9 @@ function _NetRequest({ url, data, success, fail, complete, method = "POST", show
   //替换成token
   var token = wx.getStorageSync('token');
   if(token != "" && token != null){
-    var header = {'content-type': 'application/x-www-form-urlencoded', 'Authorization':"Bearer "+token}
+    var header = {'content-type': 'application/json', 'Authorization':"Bearer "+token}
   }else {
-    var header = { 'content-type': 'application/x-www-form-urlencoded' }
+    var header = { 'content-type': 'application/json' }
   }
 
   url = host + url;
@@ -79,7 +79,7 @@ function _NetRequest({ url, data, success, fail, complete, method = "POST", show
   wx.request({
     url: url,
     method: method,
-    data: data,
+    data: JSON.stringify(data),
     header: header,
     success: res => {
       // console.log(res.data);
@@ -87,7 +87,7 @@ function _NetRequest({ url, data, success, fail, complete, method = "POST", show
       if(res.statusCode<=300){
         success(res.data);
       }else if(res.statusCode==400){
-        console.log('400:',res);
+        console.log('res.statusCode:',res.statusCode)
         wx.hideLoading();
         wx.showModal({
           title: '请求失败',
@@ -104,6 +104,8 @@ function _NetRequest({ url, data, success, fail, complete, method = "POST", show
         })
         // fail(res.data.error)
       }else if(res.statusCode==401){
+        console.log('res.statusCode:',res.statusCode)
+        wx.hideLoading();
         wx.removeStorageSync('token');
         var loginApi = require('login');
         isRequesting=false;
@@ -112,6 +114,7 @@ function _NetRequest({ url, data, success, fail, complete, method = "POST", show
         loginApi.login(getApp());   
         return;
       }else if(res.statusCode==403){
+        console.log('res.statusCode:',res.statusCode)
         wx.showModal({
           title: '无权限',
           content: res.data.error,
@@ -125,6 +128,22 @@ function _NetRequest({ url, data, success, fail, complete, method = "POST", show
             }
           }
         })
+      }else if(res.statusCode==404){
+        console.log('res.statusCode:',res.statusCode)
+        wx.hideLoading();
+        wx.showModal({
+          title: '请求失败',
+          content:response.data.error,
+          showCancel: false,
+          success: function (response) {
+            if (response.confirm) {
+              wx.switchTab({
+                url: '../index/index',
+              })
+            }
+          }
+        })
+        // fail(res.statusText)
       }else{
         wx.showModal({
           title: '请求失败',
@@ -180,6 +199,8 @@ function _NetRequest({ url, data, success, fail, complete, method = "POST", show
             var obj = arrRequest.shift();
             _NetRequest(obj);
         }
+      }else if(res['statusCode'] === 400){
+        wx.hideLoading()
       }
     }
   })

@@ -49,7 +49,7 @@ Page({
       method: "GET",
       success: function (res) {
         console.log('to survey:', res);
-        that.data.surveySubmitted = res.data.is_submitted;  
+        that.data.surveySubmitted = res.data.is_submitted;
         res.data.survey.forEach((item, index) => {
           if (item.answerStyle === 'Field') {
             that.data.feedback.valueid = item.answervaluesSet.results[0].valueid;
@@ -72,7 +72,7 @@ Page({
           surveyList: that.data.surveyList,
           surveyStar: that.data.surveyStar,
           feedback: that.data.feedback,
-          surveySubmitted:that.data.surveySubmitted
+          surveySubmitted: that.data.surveySubmitted
         })
       }
     })
@@ -97,14 +97,14 @@ Page({
   //点击评分
   surveyChange(e) {
     //item: 当前问题的列表，index: 第几个问题
-    console.log('点击评分:',e);
-    var index=e.currentTarget.dataset.id;
-    var item=e.currentTarget.dataset.itm;
-    var key=e.currentTarget.dataset.key;
-    this.data.surveyStar[index]=key;
+    console.log('点击评分:', e);
+    var index = e.currentTarget.dataset.id;
+    var item = e.currentTarget.dataset.itm;
+    var key = e.currentTarget.dataset.key;
+    this.data.surveyStar[index] = key;
     this.setData({
-      surveyStar: this.data.surveyStar 
-     })
+      surveyStar: this.data.surveyStar
+    })
     let json = {};
     json.value = this.data.surveyStar[index];
     //查找选择的答案的answerID
@@ -130,16 +130,17 @@ Page({
     }
     if (ratingArray.length === this.data.surveyList.length) {
       ratingArray.push(this.data.feedback);
-      console.log('answer',ratingArray);
+      console.log('answer', ratingArray);
+      let params = {
+        srid: this.data.srid,
+        suveryid: this.data.suveryid,
+        answer: ratingArray
+      };
       var that = this;
       util.NetRequest({
-        url: '/api/v1/sr/suvery?suveryid=' + that.data.suveryid + '&srid=' + that.data.srid,///site-mini/evaluation
+        url: 'api/v1/sr/suvery',///site-mini/evaluation
         method: "POST",
-        data: {
-          srid: this.data.srid,
-          suveryid: this.data.suveryid,
-          answer: JSON.stringify(ratingArray)
-        },
+        data:params ,
         success: function (res) {
           that.setData({
             surveyList: [],

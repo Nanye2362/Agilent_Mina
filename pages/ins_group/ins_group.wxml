@@ -22,8 +22,8 @@
   <!-- group_list -->
   <view wx:if='{{editGroup}}' class='ins_container'>
     <block wx:for='{{GroupList}}' wx:for-item="item" wx:for-index="idx" wx:key='unique'>
-      <view class='gl flex' bindtap='groupDetails' data-id='{{item.GroupID}}' data-gn='{{item.GroupName}}'data-idx='{{idx}}'>
-        <view class='g_item'>{{item.GroupName}}</view>
+      <view class='gl flex' bindtap='groupDetails' data-id='{{item.id}}' data-gn='{{item.groupName}}'data-idx='{{idx}}'>
+        <view class='g_item'>{{item.groupName}}</view>
         <view class='g_item fc-777 fs12 flex justify-end'>{{item.GroupSnCount}}个序列号
           <image src='/images/rightA.png' class='g_image'></image>
         </view>
@@ -38,14 +38,14 @@
       <view class='gl flex' wx:if='{{item.deleted}}' data-idx='{{idx}}'>
         <!-- editGroup -->
         <view class='g_item flex alignc'>
-          <view wx:if='{{item.editting==false}}'>{{item.GroupName}}</view>
-          <input placeholder="{{item.GroupName}}" bindinput="bindKeyInput"   wx:if='{{item.editting}}'/>
+          <view wx:if='{{item.editting==false}}'>{{item.groupName}}</view>
+          <input placeholder="{{item.groupName}}" bindinput="bindKeyInput"   wx:if='{{item.editting}}'/>
         </view>
         <!-- edit&deleteGroup -->
         <view class='g_item flex justify-end alignc'>
           <image src='/images/edit.png' class='edit_image edit_image1' bindtap='edGroup' wx:if='{{item.editting==false}}' data-idx='{{item.idx}}'></image>
-          <text class='fs12 fc-blue edit_image1' wx:if='{{item.editting}}' bindtap='edConfirm' data-id='{{item.GroupID}}' data-idx='{{item.idx}}'>确定</text>
-          <image src='/images/del1.png' class='edit_image' bindtap='delGroup'  data-id='{{item.GroupID}}' data-idx='{{item.idx}}'></image>
+          <text class='fs12 fc-blue edit_image1' wx:if='{{item.editting}}' bindtap='edConfirm' data-id='{{item.id}}' data-idx='{{item.idx}}'>确定</text>
+          <image src='/images/del1.png' class='edit_image' bindtap='delGroup'  data-id='{{item.id}}' data-idx='{{item.idx}}'></image>
         </view>
       </view>
     </block>

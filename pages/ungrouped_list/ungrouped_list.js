@@ -59,7 +59,7 @@ Page({
   /* 确认添加 */
   submit: function(){
     util.NetRequest({
-      url: 'site-mini/set-group',
+      url: 'api/v1/instrument/set-groups',//site-mini/set-group
       data: {
         GroupName: this.data.GroupName,
         GroupID: this.data.GroupID,

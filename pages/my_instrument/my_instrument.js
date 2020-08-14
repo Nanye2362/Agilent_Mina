@@ -102,18 +102,14 @@ Page({
         }
 
         that.setData({
-          InstrumentCount: res.data.list.length,
+          InstrumentCount: res.data.InstrumentCount,
           InstrumentList: instrumentList,
           AllInstrument: instrumentList,
-          // ContactGuid: res.data.ContactGuid,//可删
-          // ContactId: res.data.ContactId,//可删
-          // AccountGuid: res.data.AccountGuid,//可删
-          // AccountId: res.data.AccountId,//可删
-          GroupCount: GroupList.length,
+          GroupCount: res.data.GroupCount,
           GroupList: GroupList,//仪器筛选仪器分组
           LabelList: LabelList,//仪器筛选标签分组
         })
-        console.log('instrumentList:',instrumentList,this.data.InstrumentCount);
+        console.log('instrumentList:',instrumentList);
       },
       fail: function(err) {
         console.log(err);
@@ -309,7 +305,6 @@ Page({
     var id = event.currentTarget.dataset.id;
     var pi = event.currentTarget.dataset.pi;
     var idx = event.currentTarget.dataset.idx;
-    console.log(sn + pi);
     var InstrumentList = this.data.AllInstrument;
     wx.showModal({
       title: '提示',
@@ -317,7 +312,7 @@ Page({
       success: function(res) {
         if (res.confirm) {
           util.NetRequest({
-            url: ' api/v1/instrument/'+id,//sr/delete-instrument
+            url: 'api/v1/instrument/'+id,//sr/delete-instrument
             method:"DELETE",
             data: {
               // 'SerialNo': sn,

@@ -9,30 +9,30 @@
   <!-- content -->
   <swiper current="{{currentTab}}" class="swiper-box" duration="300"  bindchange="bindChange" style="height:{{winHeight - 31}}px;"> 
     <!-- records --> 
-    <block  wx:for="{{tabList}}" wx:for-item="item" wx:key='unique' wx:for-index="idx">
+    <block  wx:for="{{tabList}}" wx:key='unique'>
       <swiper-item> 
         <view id='record'>
           <block wx:for="{{item}}" wx:for-item="record" wx:key='unique' wx:for-index="idx">
-            <view class='record' data-id='{{record.id}}' bindtap='gotoDetails' data-orderType='{{record.orderType}}'>
+            <view class='record' data-id='{{record.id}}' bindtap='gotoDetails' data-orderType='{{record.type}}'>
               <view class='recordCon'>
                 <!-- recordDetails -->
                 <view class="flex directionC recordDetails">
                   <view class="flex alignc">
-                    <view class="{{idx==0?'fc-blue':''}}">{{record.orderTime}}</view>
+                    <view class="{{idx==0?'fc-blue':''}}">{{record.created_at}}</view>
                   </view> 
                   <view class="flex alignc">
                     <view class=" fs13 rd-l">服务类型：</view>
-                    <view class=" fs13 rd-r">{{record.orderType=='pm'?'预防性维护':record.orderType=='install'?'安装申请':'法规认证'}}</view>
+                    <view class=" fs13 rd-r">{{record.typeName}}</view>
                   </view>  
                   <view class="flex alignc">
-                    <view class=" fs13 rd-l">{{record.orderType=='install'?'订单号':'序列号'}}：</view>
-                    <view class=" fs13 rd-r">{{record.orderSn}}</view>
+                    <view class=" fs13 rd-l">{{record.type==0?'订单号':'序列号'}}：</view>
+                    <view class=" fs13 rd-r">{{record.type==0?record.order_no:record.serial_no}}</view>
                   </view>
                   <view class="flex alignc">
                     <view class=" fs13 rd-l">预约状态：</view>
                     <view class=" fs13 rd-r">
                       <view class='fs12 order_status {{record.orderStatus==0?"bg-blue":record.orderStatus==1?"bg-green":"bg-orange"}}'>
-                        {{record.orderStatus==0?'未处理':record.orderStatus==1?'已预约':'处理中'}}
+                        {{record.status==0?'未处理':record.status==1?'已预约':'处理中'}}
                       </view>
                     </view>
                   </view>  

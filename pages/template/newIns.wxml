@@ -8,9 +8,9 @@
                   <view class="mi_item_r fs13 flex" >
                     <view class="fs13">{{item.model}}</view>
                     <!-- label -->
-                    <!-- <block  wx:for="{{item.LabelList}}" wx:for-item="labelItem" wx:key='unique'>
-                      <view class='mi_label {{labelItem.LabelColor}}'>{{labelItem.LabelName}}</view>
-                    </block> -->
+                    <block  wx:for="{{item.LabelList}}" wx:for-item="labelItem" wx:key='unique'>
+                      <view class='mi_label {{labelItem.labelColor}}'>{{labelItem.labelName}}</view>
+                    </block>
                   <!-- label -->
                 </view>
               </view>

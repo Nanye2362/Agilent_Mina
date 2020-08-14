@@ -21,13 +21,12 @@ Page({
 
     var that = this;
     util.NetRequest({
-      url: 'site-mini/show-group',
-      data: {
-      },
+      url: 'api/v1/instrument/groups',//site-mini/show-group
+      method:"GET",
       success: function (res) {
-        console.log(res.GroupList)
+        console.log(res.data.GroupList)
         that.setData({
-          groupList: res.GroupList
+          groupList: res.data.GroupList
         })
       },
       fail: function (err) {
@@ -73,7 +72,7 @@ Page({
     var that = this;
     console.log(that.data.inputValue)
     util.NetRequest({
-      url: 'site-mini/create-group',
+      url: 'api/v1/instrument/groups',//site-mini/create-group
       data: {
         'GroupName' : that.data.inputValue
       },
@@ -113,7 +112,7 @@ Page({
 
   submit: function(){
     util.NetRequest({
-      url: 'site-mini/set-group',
+      url: 'api/v1/instrument/set-groups',//site-mini/set-group
       data: {
         'GroupName': this.data.GroupName,
         'SerialNo': this.data.sn,
@@ -121,7 +120,7 @@ Page({
       },
       success: function (res) {
         console.log(res);
-        if(res.data.result){
+        if(res.status){
           wx.navigateBack({
             delta: 1
           })

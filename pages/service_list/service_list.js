@@ -36,17 +36,7 @@ Page({
     console.log(this.data.isFirst);
     if (!this.data.isFirst){
       //请求后台接口 data:{SrId:} site-mini/service-details
-      util.NetRequest({
-        url: 'api/v1/sr/history',
-        method:'GET',
-        success: function (res) {
-          console.log(res);
-          that.sortHistory(res);
-          that.setData({
-            getContactId: res.data.SerialNo_list[0].ContactId
-          });
-        }
-      });
+      that.getServiceHistory();
     }
     this.data.isFirst = false;
   },
