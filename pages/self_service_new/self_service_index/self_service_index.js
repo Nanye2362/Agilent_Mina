@@ -51,19 +51,29 @@ Page({
         console.log(res);
         //对象转化为数组
         var outArr = [];
+        var midArr = [];
         var inArr = [];
         //外层数组
         for(let outKey of Object.keys(res.data.tree)){
           if(res.data.tree[outKey].hasOwnProperty('children')){
-            //内层数组
-            for(let inKey of Object.keys(res.data.tree[outKey].children)){
-              inArr.push(res.data.tree[outKey].children[inKey]);
+            //中层数组
+            for(let midKey of Object.keys(res.data.tree[outKey].children)){
+              if(res.data.tree[outKey].children[midKey].hasOwnProperty('children')){
+                //内层数组
+                for(let inKey of Object.keys(res.data.tree[outKey].children[midKey].children)){
+                  inArr.push(res.data.tree[outKey].children[midKey].children[inKey])
+                }
+                res.data.tree[outKey].children[midKey].children = inArr;
+                inArr = [];
+              }
+              midArr.push(res.data.tree[outKey].children[midKey]);
             }
-            res.data.tree[outKey].children = inArr;
-            inArr = [];
+            res.data.tree[outKey].children = midArr;
+            midArr = [];
           }
           outArr.push(res.data.tree[outKey]);
         }
+        
         console.log(outArr);
         var tree = _this.isFolder(outArr);
         console.log(tree);
