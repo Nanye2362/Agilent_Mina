@@ -137,7 +137,7 @@ function uploadImg(urlList,callback){
       success:function(res){
         completeNum++;
         var obj = JSON.parse(res.data);
-        returnUrlList[obj.key-1] = obj.url;
+        returnUrlList[i] = obj.url;
         if (urlList.length == completeNum) {
           callback(returnUrlList);
         }

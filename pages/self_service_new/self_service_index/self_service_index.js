@@ -46,9 +46,7 @@ Page({
 
     util.NetRequest({
       url: 'api/v1/guide?type=1',
-      data: {
-
-      },
+      method:"GET",
       success: function (res) {
         console.log(res);
         //对象转化为数组

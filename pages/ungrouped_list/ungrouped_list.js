@@ -24,9 +24,8 @@ Page({
 
     var that = this;
     util.NetRequest({
-      url: 'site-mini/ungrouped-list',
-      data: {
-      },
+      url: 'api/v1/instrument/groups/0/details/1',//site-mini/ungrouped-list
+      method:"GET",
       success: function (res) {
         console.log(res.data.DetailList)
         var detaillist = res.data.DetailList;
