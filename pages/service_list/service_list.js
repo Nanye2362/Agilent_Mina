@@ -60,22 +60,23 @@ Page({
       }
     });
 
-    // if(Object.keys(app.globalData.sobotData).length === 0){
-    //   util.NetRequest({
-    //     url: 'wechat-mini/get-global-group',
-    //     success: function (res) {
-    //       app.globalData.sobotData = res.data;
-    //       util.getUserInfoSobot();
-    //       that.setData({
-    //         transferAction:util.sobotTransfer(6),
-    //       });
-    //     }
-    //   });
-    // }else{
-    //   this.setData({
-    //     transferAction: util.sobotTransfer(6)
-    //   });
-    // }
+    if(Object.keys(app.globalData.sobotData).length === 0){
+      util.NetRequest({
+        url: 'api/v1/wechat/get-global-group',//wechat-mini/get-global-group
+        method:"GET",
+        success: function (res) {
+          app.globalData.sobotData = res.data;
+          util.getUserInfoSobot();
+          that.setData({
+            transferAction:util.sobotTransfer(6),
+          });
+        }
+      });
+    }else{
+      this.setData({
+        transferAction: util.sobotTransfer(6)
+      });
+    }
 
     //若有传参，则调取gethistory接口， 若没有传参，调取server-list接口
       this.setData({

@@ -52,16 +52,17 @@ Page({
     //腾讯mat统计开始
     var app = getApp();
     var that = this;
-    // util.NetRequest({
-    //   url: 'wechat-mini/get-global-group',
-    //   success: function (res) {
-    //     app.globalData.sobotData = res.data;
-    //     util.getUserInfoSobot();
-    //     that.setData({
-    //       transferAction:util.sobotTransfer(4),
-    //     });
-    //   }
-    // });
+    util.NetRequest({
+      url: 'api/v1/wechat/get-global-group',//wechat-mini/get-global-group
+      method:"GET",
+      success: function (res) {
+        app.globalData.sobotData = res.data;
+        util.getUserInfoSobot();
+        that.setData({
+          transferAction:util.sobotTransfer(4),
+        });
+      }
+    });
 
     app.mta.Page.init();
     //腾讯mat统计结束

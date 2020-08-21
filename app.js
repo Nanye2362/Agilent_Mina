@@ -56,14 +56,15 @@ App({
         }
       }
     });
-  //   util.NetRequest({
-  //     url: 'wechat-mini/get-global-group',
-  //     data:{},
-  //     success: function (res) {
-  //       console.log(res);
-  //       that.globalData.sobotData = res.data;
-  //    }
-  // });
+    util.NetRequest({
+      url: 'api/v1/wechat/get-global-group',//wechat-mini/get-global-group
+      method:"GET",
+      data:{},
+      success: function (res) {
+        console.log(res);
+        that.globalData.sobotData = res.data;
+     }
+  });
 },
 
   async onShow(res) {
@@ -205,7 +206,8 @@ App({
                 that.syncUserInfo();
                 that.globalData.syncFlag = false;
                 util.NetRequest({
-                  url: 'wechat-mini/get-global-group',
+                  url: 'api/v1/wechat/get-global-group',//wechat-mini/get-global-group
+                  method:"GET",
                   success: function (res1) {
                     that.globalData.sobotData = res1.data;
 

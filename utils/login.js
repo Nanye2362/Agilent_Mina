@@ -36,16 +36,17 @@ function login(params) {
                   url: '/pages/index/index',
                 });
               }         
-              // util.NetRequest({
-              //   url: 'wechat-mini/get-global-group',
-              //   showload: false,
-              //   success: function (res1) {
-              //     that.globalData.sobotData = res1.data;
-              //     wx.switchTab({
-              //       url: '/pages/index/index',
-              //     });
-              //   }
-              // });
+              util.NetRequest({
+                url: 'api/v1/wechat/get-global-group',//wechat-mini/get-global-group
+                method:"GET",
+                showload: false,
+                success: function (res1) {
+                  that.globalData.sobotData = res1.data;
+                  wx.switchTab({
+                    url: '/pages/index/index',
+                  });
+                }
+              });
 
             }else {
               that.globalData.needCheck = true;
