@@ -128,7 +128,7 @@ Page({
       success: function (res) {
         console.log(res);
         that.setData({
-          imgUrls: res.data.banner,
+          imgUrls: res.data.list,
           notice: res.data.notice,
           notice_active: res.data.notice_active
         })
@@ -322,7 +322,7 @@ Page({
   },
   gotoPoster: function (e) {
     var url = e.currentTarget.dataset.url;
-    if (e.currentTarget.dataset.type=="url"){
+    if (e.currentTarget.dataset.type==0){
       wx.setStorage({
         key: "openHtmlUrl",
         data: url,
