@@ -7,14 +7,14 @@
     <scroll-view class="{{leftFix?'left-fixed':''}}" style="height:100%;width:160rpx;" scroll-y="true">
     <view class="tab-left-panel">
       <block wx:for="{{productList}}" wx:key="{{index}}">
-        <view data-id="{{item.ID}}" data-current="{{index}}" bindtap="switchTab" class="left-list {{curIndex == index ? 'on-right' : ''}}">
+        <view data-id="{{item.id}}" data-current="{{index}}" bindtap="switchTab" class="left-list {{curIndex == index ? 'on-right' : ''}}">
           <view class="line-border left_row_{{curIndex == index ? 'on_'+index : index}}"></view>
           <view class="left_menu">
             <!-- 引入图标 -->
             <view class="iconfont icon-{{index}} {{curIndex == index ? 'on-'+index : ''}}"></view>
             <!-- 左栏类目名 -->
             <view class="left_row_body  fc-777">
-              {{item.PMENU_NAME}}
+              {{item.pmenu_name}}
             </view>
           </view>
           <view class="line-bottom"></view>
@@ -31,9 +31,9 @@
   <!-- <scroll-view class="tab-right" scroll-y="{{isScroll}}" scroll-into-view="{{toView}}" scroll-with-animation="true"> -->
   <view class="tab-right">
     <block wx:for="{{productList}}" wx:key='unique' wx:for-item="item">
-      <view  wx:if='{{tabTap[index]}}' class="right-box {{toView == item.PRODUCT_INFO[0].PMENU_ID ? 'show':'hidden'}}">
-        <view wx:if="{{item.PMENU_NAME=='仪器租赁'}}" style="margin:0 auto;width:90%">
-          <view class="main-title1">{{item.PMENU_NAME}}</view>
+      <view  wx:if='{{tabTap[index]}}' class="right-box {{toView == item.product_info[0].pmenu_id ? 'show':'hidden'}}">
+        <view wx:if="{{item.pmenu_name=='仪器租赁'}}" style="margin:0 auto;width:90%">
+          <view class="main-title1">{{item.pmenu_name}}</view>
           <view class="main-content1">
             <view class="main-content1-title color-blue">色谱</view>
             <view class="main-content1-content">
@@ -53,22 +53,22 @@
             </view>
           </view>
           <!--秒购方法联系客服按钮  -->
-          <meiqiaBtn bindmeiqiaTap="MtaReport" wx:if="{{itm.PROMOTION[0].length==0?false:true}}" btn-class="pro-btn1" handle-alert="{{false}}" session-from="{{item.PMENU_MEIQIA_GROUP}}_purchase:{{item.PRODUCT_INFO[0].ID}}|transferAction={{item.transferAction}}" data-Template="{{templete}}" data-checkfun="{{checkfun}}" data-desc="{{desc}}" data-tapfun="{{tapfun}}" data-meqia="{{item.PMENU_MEIQIA_GROUP}}" data-productid="{{itm.ID}}" data-productname="{{itm.PRODUCT_NAME}}">
+          <meiqiaBtn bindmeiqiaTap="MtaReport" wx:if="{{itm.promotion[0].length==0?false:true}}" btn-class="pro-btn1" handle-alert="{{false}}" session-from="{{item.pmenu_meiqia_group}}_purchase:{{item.product_info[0].id}}|transferAction={{item.transferAction}}" data-Template="{{templete}}" data-checkfun="{{checkfun}}" data-desc="{{desc}}" data-tapfun="{{tapfun}}" data-meqia="{{item.pmenu_meiqia_group}}" data-productid="{{itm.id}}" data-productname="{{itm.product_name}}">
             <view class="meth-btn1">
               <view class="big-meth">全新仪器、翻新仪器、原厂保修、免押金</view>
               <view class="small-meth">点此咨询</view>
             </view>
           </meiqiaBtn>
         </view>
-        <view wx:elif="{{item.PMENU_NAME=='融资购买' || item.PMENU_NAME=='融资分期购'}}">
+        <view wx:elif="{{item.pmenu_name=='融资购买' || item.pmenu_name=='融资分期购'}}">
           <view class="right-content">
-            <view class="main-title1">{{item.PMENU_TITLE}}</view>
-            <view class="sub-title1">{{item.PMENU_SUBTITLE}}</view>
+            <view class="main-title1">{{item.pmenu_title}}</view>
+            <view class="sub-title1">{{item.pmenu_subtitle}}</view>
 
           </view>
           <image src="../../images/bannner_y.png" style="width:100%;display:flex; margin:30rpx auto" mode="widthFix"/>
           <!-- <meiqiaBtn bindmeiqiaTap="MtaReport" wx:if="{{itm.PROMOTION[0].length==0?false:true}}" btn-class="pro-btn" handle-alert="{{false}}" session-from="K_dataid:0" data-Template="{{templete}}" data-checkfun="{{checkfun}}" data-desc="{{desc}}" data-tapfun="{{tapfun}}" data-meqia="{{item.PMENU_MEIQIA_GROUP}}" data-productid="{{itm.ID}}" data-productname="{{itm.PRODUCT_NAME}}" > -->
-          <meiqiaBtn bindmeiqiaTap="MtaReport" wx:if="{{itm.PROMOTION[0].length==0?false:true}}" btn-class="pro-btn" handle-alert="{{false}}" session-from="K_dataid:0|transferAction={{item.transferAction}}" data-Template="{{templete}}" data-checkfun="{{checkfun}}" data-desc="{{desc}}" data-tapfun="{{tapfun}}" data-meqia="{{item.PMENU_MEIQIA_GROUP}}" data-productid="{{itm.ID}}" data-productname="{{itm.PRODUCT_NAME}}" >
+          <meiqiaBtn bindmeiqiaTap="MtaReport" wx:if="{{itm.promotion[0].length==0?false:true}}" btn-class="pro-btn" handle-alert="{{false}}" session-from="K_dataid:0|transferAction={{item.transferAction}}" data-Template="{{templete}}" data-checkfun="{{checkfun}}" data-desc="{{desc}}" data-tapfun="{{tapfun}}" data-meqia="{{item.pmenu_meiqia_group}}" data-productid="{{itm.id}}" data-productname="{{itm.product_name}}" >
             <view class="meth-btn2">
               <view class="small-meth2">点此咨询</view>
             </view>
@@ -79,42 +79,42 @@
           <view class="jump-btn" bindtap="toTrial">融资购买费用预估</view>
         </view>
         <view wx:else>
-          <view class="right-title" wx:if="{{item.PRODUCT_INFO[0].SHOW_TYPE=='0'}}">
-            <view class="main-title">{{item.PMENU_TITLE}}</view>
-            <view class="sub-title">{{item.PMENU_SUBTITLE}}</view>
+          <view class="right-title" wx:if="{{item.product_info[0].show_type=='0'}}">
+            <view class="main-title">{{item.pmenu_title}}</view>
+            <view class="sub-title">{{item.pmenu_subtitle}}</view>
           </view>
-          <view class="product" wx:for="{{item.PRODUCT_INFO}}" wx:key="idx" wx:for-item="itm" wx:for-index="idx">
+          <view class="product" wx:for="{{item.product_info}}" wx:key="idx" wx:for-item="itm" wx:for-index="idx">
             <view class="product-list">
-              <view class="pro-name" wx:if="{{itm.PRODUCT_NAME.length==0?false:true}}">{{itm.PRODUCT_NAME}}</view>
+              <view class="pro-name" wx:if="{{itm.product_name.length==0?false:true}}">{{itm.product_name}}</view>
               <!-- 产品图片 -->
-              <view wx:if="{{itm.PRODUCT_NAME.length==0}}">
-                <image-loader img-class='load_image' bindimageTap='skipHtml5Page'  default-image='/images/tempLoading.gif' img-link='{{itm.PRODUCT_LINK}}' mode='widthFix' original-image='{{server}}{{itm.PRODUCT_IMG}}' width="100%"  />
+              <view wx:if="{{itm.product_name.length==0}}">
+                <image-loader img-class='load_image' bindimageTap='skipHtml5Page'  default-image='/images/tempLoading.gif' img-link='{{itm.product_link}}' mode='widthFix' original-image='{{server}}{{itm.product_img}}' width="100%"  />
 
               </view>
-              <view wx:if="{{itm.PRODUCT_NAME.length!=0}}">
-                <image-loader bindimageTap='previewImage'  default-image='/images/tempLoading.gif' img-src='{{server}}{{itm.PRODUCT_DETAIL_IMG}}' mode='widthFix' original-image='{{server}}{{itm.PRODUCT_DETAIL_IMG}}' width="350rpx" />
+              <view wx:if="{{itm.product_name.length!=0}}">
+                <image-loader bindimageTap='previewImage'  default-image='/images/tempLoading.gif' img-src='{{server}}{{itm.product_detail_img}}' mode='widthFix' original-image='{{server}}{{itm.product_detail_img}}' width="350rpx" />
 
               </view>
               <!-- 产品详情 -->
-              <view class="pro-describe" wx:if="{{itm.PRODUCT_DESC==null?false:true}}">{{itm.PRODUCT_DESC}}</view>
+              <view class="pro-describe" wx:if="{{itm.product_desc==null?false:true}}">{{itm.product_desc}}</view>
 
               <!--秒购方法联系客服按钮  -->
               <!-- <meiqiaBtn bindmeiqiaTap="MtaReport" wx:if="{{itm.PROMOTION[0].length==0?false:true}}" btn-class="pro-btn" handle-alert="{{false}}" session-from="{{item.PMENU_MEIQIA_GROUP}}_purchase:{{itm.ID}}," data-Template="{{templete}}" data-checkfun="{{checkfun}}" data-desc="{{desc}}" data-tapfun="{{tapfun}}" data-meqia="{{item.PMENU_MEIQIA_GROUP}}" data-productid="{{itm.ID}}" data-productname="{{itm.PRODUCT_NAME}}" > -->
-              <meiqiaBtn bindmeiqiaTap="MtaReport" wx:if="{{itm.PROMOTION[0].length==0?false:true}}" btn-class="pro-btn" handle-alert="{{false}}" session-from="{{item.PMENU_MEIQIA_GROUP}}_purchase:{{itm.ID}},|transferAction={{item.transferAction}}" data-Template="{{templete}}" data-checkfun="{{checkfun}}" data-desc="{{desc}}" data-tapfun="{{tapfun}}" data-meqia="{{item.PMENU_MEIQIA_GROUP}}" data-productid="{{itm.ID}}" data-productname="{{itm.PRODUCT_NAME}}" >
+              <meiqiaBtn bindmeiqiaTap="MtaReport" wx:if="{{itm.promotion[0].length==0?false:true}}" btn-class="pro-btn" handle-alert="{{false}}" session-from="{{item.pmenu_meiqia_group}}_purchase:{{itm.id}},|transferAction={{item.transferAction}}" data-Template="{{templete}}" data-checkfun="{{checkfun}}" data-desc="{{desc}}" data-tapfun="{{tapfun}}" data-meqia="{{item.pmenu_meiqia_group}}" data-productid="{{itm.id}}" data-productname="{{itm.product_name}}" >
                 <view class="meth-btn">
-                  <view class="big-meth">{{itm.PROMOTION[0]}}</view>
+                  <view class="big-meth">{{itm.promotion[0]}}</view>
                   <view class="small-meth">点此咨询</view>
                 </view>
               </meiqiaBtn>
               <!-- 联系客服悬浮按钮start -->
               <!-- <meiqiaBtn bindmeiqiaTap="MtaReport" wx:if="{{item.PRODUCT_INFO[0].SHOW_TYPE=='0'?false:true}}" btn-class="contactMeiqia flex alignc padding0" handle-alert="{{false}}" session-from="{{item.PMENU_MEIQIA_GROUP}}_purchase:{{itm.ID}}," data-Template="{{templete}}" data-checkfun="{{checkfun}}" data-desc="{{desc}}" data-tapfun="{{tapfun}}" data-meqia="{{item.PMENU_MEIQIA_GROUP}}" > -->
-              <meiqiaBtn bindmeiqiaTap="MtaReport" wx:if="{{itm.PROMOTION[0].length==0?false:true}}" btn-class="pro-btn" handle-alert="{{false}}" session-from="{{item.PMENU_MEIQIA_GROUP}}_purchase:{{itm.ID}},|transferAction={{item.transferAction}}" data-Template="{{templete}}" data-checkfun="{{checkfun}}" data-desc="{{desc}}" data-tapfun="{{tapfun}}" data-meqia="{{item.PMENU_MEIQIA_GROUP}}" data-productid="{{itm.ID}}" data-productname="{{itm.PRODUCT_NAME}}" >
+              <meiqiaBtn bindmeiqiaTap="MtaReport" wx:if="{{itm.promotion[0].length==0?false:true}}" btn-class="pro-btn" handle-alert="{{false}}" session-from="{{item.pmenu_meiqia_group}}_purchase:{{itm.id}},|transferAction={{item.transferAction}}" data-Template="{{templete}}" data-checkfun="{{checkfun}}" data-desc="{{desc}}" data-tapfun="{{tapfun}}" data-meqia="{{item.pmenu_meiqia_group}}" data-productid="{{itm.id}}" data-productname="{{itm.product_name}}" >
                 <image src='{{server}}images/advisory.png' class="c_img"></image>
                 <text class="bh_text fs12 fc-fff">联系客服</text>
               </meiqiaBtn>
               <!--联系客服悬浮按钮end-->
             </view>
-            <view wx:if="{{item.PRODUCT_INFO[0].SHOW_TYPE=='0'?true:false}}" class="right_bottomline"></view>
+            <view wx:if="{{item.product_info[0].show_type=='0'?true:false}}" class="right_bottomline"></view>
           </view>
         </view>
       </view>

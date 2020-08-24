@@ -128,21 +128,21 @@ Page({
 
           for(var i = 0; i < res.data.length; i++) {
              var n = res.data[i]
-             if (n["PMENU_NAME"] == "仪器租赁") {
+             if (n["pmenu_name"] == "仪器租赁") {
                n["transferAction"] = util.sobotTransfer(41)
-             } else if (n["PMENU_NAME"] == "融资购买") {
+             } else if (n["pmenu_name"] == "融资购买") {
               n["transferAction"] = util.sobotTransfer(14)
-             } else if (n["PMENU_NAME"] == "送修及翻新") {
+             } else if (n["pmenu_name"] == "送修及翻新") {
               n["transferAction"] = util.sobotTransfer(15)
-             } else if (n["PMENU_NAME"] == "智能实验室") {
+             } else if (n["pmenu_name"] == "智能实验室") {
               n["transferAction"] = util.sobotTransfer(16)
-            }else if (n["PMENU_NAME"] == "消耗品促销") {
+            }else if (n["pmenu_name"] == "消耗品促销") {
               n["transferAction"] = util.sobotTransfer(17)
-            } else if (n["PMENU_NAME"] == "标准服务") {
+            } else if (n["pmenu_name"] == "标准服务") {
               n["transferAction"] = util.sobotTransfer(18)
-            } else if (n["PMENU_NAME"] == "安捷伦大学") {
+            } else if (n["pmenu_name"] == "安捷伦大学") {
               n["transferAction"] = util.sobotTransfer(19)
-            } else if (n["PMENU_NAME"] == "方法与应用") {
+            } else if (n["pmenu_name"] == "方法与应用") {
                n["transferAction"] = util.sobotTransfer(18)
              }
             list.push(n)

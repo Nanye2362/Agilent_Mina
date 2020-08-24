@@ -48,7 +48,7 @@ Page({
         console.log(dropDownlist);
         that.setData({
           dropDownlist: dropDownlist,
-          questionsList: res.data,
+          questionsList: res.data.tree.article_list,
           dataList: tree,
         })
         console.log(that.data.dropDownlist);
@@ -80,9 +80,19 @@ Page({
   clickTodetails: function(e){
     console.log(e);
     var id = e.currentTarget.dataset.id;
-    wx.navigateTo({
-      url: '../faq_details/faq_details?id=' + id,
+    wx.setStorage({
+      key: "openHtmlUrl",
+      data: 'https://qa.wechat.service.agilent.com/wechat/h5/faq/details/'+id,
+      success: function () {
+          wx.navigateTo({
+              url: '../html/openHtml',
+          });
+      }
     })
+    return false;
+    // wx.navigateTo({
+    //   url: '../faq_details/faq_details?id=' + id,
+    // })
   },
   /**
      * 页面的初始数据
@@ -105,9 +115,6 @@ Page({
             dropList[i].changeColor = false;
             }
         }
-
-
-
         that.setData({
           dropDownlist: dropList,
           questionsList: res.data,
