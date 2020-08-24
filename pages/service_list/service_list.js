@@ -43,7 +43,7 @@ Page({
           console.log(res);
           that.sortHistory(res);
           that.setData({
-            getContactId: res.data.SerialNo_list[0].ContactId
+            //getContactId: res.data.SerialNo_list[0].ContactId
           });
         }
       });

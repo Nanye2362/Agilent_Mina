@@ -32,7 +32,8 @@ Page({
     var meiqiaInfo = wx.getStorageSync('meiqia');
 
     util.NetRequest({
-      url: 'admin/v1/guide/article/'+options.id,
+      //url: 'admin/v1/guide/article/'+options.id,
+      url: 'wechat/h5/faq/details/1',
       method:'GET',
       success: function (res) {
         var app = getApp();
@@ -47,7 +48,8 @@ Page({
         } else if (res.data.type == 2){
           that.setData({
             type: 2,
-            url: config.Server + 'admin/v1/guide/article/'+options.id,
+            //url: config.Server + 'admin/v1/guide/article/'+options.id,
+            url: config.Server + 'wechat/h5/faq/details/1',
           })
           return;
         }else{
@@ -69,6 +71,10 @@ Page({
         wx.hideLoading();
       },
     });
+    // that.setData({
+    //     type:2,
+    //     url: 'https://qa.wechat.service.agilent.com/wechat/h5/faq/details/'+options.id
+    // })
   
   },
 

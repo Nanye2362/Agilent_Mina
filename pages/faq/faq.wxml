@@ -56,7 +56,7 @@
     <view style="overflow: scroll;" class='ss_hot_issue'>
       <view class="ss_hi_con">
         <block wx:for="{{questionsList}}" wx:key='unique'>
-          <view class='faq_con' bindtap='clickTodetails' data-id='{{item.id}}'>
+          <view class='faq_con' bindtap='clickTodetails' data-id='{{item.article_id}}'>
             <view class='flex faq_con_in'>
               <!-- questionCon -->
               <view class="faq_item_con">{{item.article_title}}
