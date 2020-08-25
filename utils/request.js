@@ -19,7 +19,7 @@ function clearRequestArr() {
   arrRequest = [];
 }
 
-function NetRequest({ url, data, success, fail, complete, method = "POST", showload = true, host = Server }) {
+function NetRequest({ url, data, success, fail, complete, method = "POST", showload = true, host = Server}) {
   var obj = { url: url, data: data, success: success, fail: fail, complete: complete, method: method, showload: showload, host: host };
   // console.log(obj);
   console.log(data);
@@ -28,7 +28,7 @@ function NetRequest({ url, data, success, fail, complete, method = "POST", showl
   }
   var app = getApp();
   console.log("request url：" + obj.url);
-  console.log("isloagin:" + app.globalData.isLogin);
+  console.log("isloagin:" ,app);
   console.log("isRequesting:" + isRequesting);
   if (isRequesting || (!app.globalData.isLogin && !in_array(url, urlArr))) {
     var hasUrl = false;
@@ -61,7 +61,7 @@ function in_array(stringToSearch, arrayToSearch) {
 function _NetRequest({ url, data, success, fail, complete, method = "POST", showload = true, host = Server }) {
   currObj = { url: url, data: data, success: success, fail: fail, complete: complete, method: method, showload: showload, host: host };
   var tempUrl = url;
-  var app = getApp();
+  let app = getApp();
 
   if (!in_array(url, urlArr) && app.globalData.needCheck) {
     isRequesting = false;

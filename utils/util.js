@@ -200,6 +200,7 @@ function checkEmpty(obj,arrInput){
 
 function getUserInfo(cb){
   var user=wx.getStorageSync('userInfo');
+  console.log("getUserInfo:",user);
   if (user==""){//user不存在
     request.NetRequest({
       // api/get-userinfo
@@ -208,6 +209,7 @@ function getUserInfo(cb){
       success: function (res) {
         if (res.status) {
           user = res.data.users;
+          console.log("userInfo:",user);
           wx.setStorageSync('userInfo',user);
           cb(user);
         } else {
