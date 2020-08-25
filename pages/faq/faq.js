@@ -117,7 +117,7 @@ Page({
         }
         that.setData({
           dropDownlist: dropList,
-          questionsList: res.data,
+          questionsList: res.data.tree.article_list,
           chooseCont: chooseCont
         })
       }

@@ -48,9 +48,16 @@ Page({
   clickToFaqDetails: function (e) {
     console.log(e)
     var id = e.currentTarget.dataset.id;
-    wx.navigateTo({
-      url: '../faq_details/faq_details?id=' + id,
+    wx.setStorage({
+      key: "openHtmlUrl",
+      data: 'https://qa.wechat.service.agilent.com/wechat/h5/faq/details/'+id,
+      success: function () {
+          wx.navigateTo({
+              url: '../html/openHtml',
+          });
+      }
     })
+    return false;
 
   },
 })
