@@ -70,6 +70,20 @@ Component({
         url:'',
         showVideo:false
       })
+    },
+    clickToDetail:function (e) {
+      console.log(e);
+      const id = e.currentTarget.dataset.id;
+      wx.setStorage({
+        key: "openHtmlUrl",
+        data: 'https://qa.wechat.service.agilent.com/wechat/h5/faq/details/'+id,
+        success: function () {
+            wx.navigateTo({
+                url: '/pages/html/openHtml',
+            });
+        }
+      })
+      return false;
     }
   }
 })

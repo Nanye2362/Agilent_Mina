@@ -126,6 +126,12 @@ Page({
       },
       method:'GET',
       success: function (res) {
+        var notice_active_flag;
+        if(res.data.notice==''){
+          notice_active_flag = false;
+        }else{
+          notice_active_flag = true;
+        }
         console.log(res);
         that.setData({
           imgUrls: res.data.list,
