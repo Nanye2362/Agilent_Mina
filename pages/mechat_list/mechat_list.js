@@ -110,7 +110,8 @@ Page({
     }
     var that=this;
     util.NetRequest({
-      url: 'site-mini/meqia-postdata',
+      url: 'api/v1/wechat/sobot/postdata',//site-mini/meqia-postdata
+      method:"POST",
       data: {
         'info': JSON.stringify(returnObj.obj),
       },
@@ -271,13 +272,14 @@ Page({
   getCusInfo: function(e){
     var that = this;
     util.NetRequest({
-      url: 'site-mini/meqia-getuserinfo',
+      url: 'api/v1/wechat/sobot/user-info',//site-mini/meqia-getuserinfo   
+      method:"GET",
       success: function (res) {
         console.log(res);
         that.setData({
-          input2_name: res.userinfo.name,
-          input2_tel: res.userinfo.tel,
-          input2_company: res.userinfo.meta.company
+          input2_name: res.data.name,
+          input2_tel: res.data.tel,
+          input2_company: res.data.company
         })
 
         var showInfo = "";

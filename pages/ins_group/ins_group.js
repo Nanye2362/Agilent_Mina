@@ -230,7 +230,7 @@ Page({
           console.log(res);
           console.log(that.data.GroupList)
           if(res.data.CurrentGroup.ID){
-            var curGroup = { GroupID: res.data.CurrentGroup.ID, GroupName: res.data.CurrentGroup.GroupName, GroupSnCount: "0", deleted: true, editting: false, idx: that.data.GroupList.length }
+            var curGroup = { id: res.data.CurrentGroup.ID, groupName: res.data.CurrentGroup.GroupName, GroupSnCount: "0", deleted: true, editting: false, idx: that.data.GroupList.length }
             var gl = that.data.GroupList.concat(curGroup);
             console.log(gl)
             console.log(gl.length)

@@ -106,7 +106,7 @@ Page({
         },
         success: function (res) {
           console.log(res);
-          if (res.data.CurrentLabel.ID) {
+          if (res.data.CurrentLabel.id) {
             // var ll = that.data.LabelList.concat(res.data.CurrentLabel);
             // console.log(ll)
             // that.setData({

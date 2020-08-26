@@ -15,18 +15,18 @@ function formatTime(date) {
 }
 
 function getUserInfoSobot(fun) {
-  return true;
   var that=this;
   setTimeout(function () {
     that.NetRequest({
-      url: 'site-mini/sobot-getuserinfo',
+      url: 'api/v1/wechat/sobot/user-info?check_vip=1',//site-mini/sobot-getuserinfo
+      method:'GET',
       showload: false,
       success: function (res) {
         console.log(res);
-        wx.setStorageSync('sobot_nickname', res.userinfo.name);
-        wx.setStorageSync('sobot_avatarUrl', res.userinfo.avatarUrl);
-        wx.setStorageSync('sobot_company', res.userinfo.meta.company);
-        wx.setStorageSync('sobot_contactid', res.userinfo.meta.ContactId);
+        wx.setStorageSync('sobot_nickname', res.data.name);
+        wx.setStorageSync('sobot_avatarUrl', res.data.avatarUrl);
+        wx.setStorageSync('sobot_company', res.data.company);
+        wx.setStorageSync('sobot_contactid', res.data.ContactId);
         if(typeof(fun)=="function"){
            fun();
         }
@@ -237,12 +237,13 @@ function getUserInfo(cb){
 //获取用户信息头像昵称
 function getUserName() {
   util.NetRequest({
-    url: 'site-mini/meqia-getuserinfo',
+    url: 'api/v1/wechat/sobot/user-info',//site-mini/meqia-getuserinfo   
+    method:"GET",
     success: function (res) {
       console.log(res);
       that.setData({
-        nickName: res.userinfo.name,
-        avatarUrl: res.userinfo.avatarUrl
+        nickName: res.data.name,
+        // avatarUrl: res.data.userinfo.avatarUrl
       })
     }
   })

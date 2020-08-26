@@ -326,7 +326,8 @@ Page({
   getCusInfo: function (e) {
     var that = this;
     util.NetRequest({
-      url: 'site-mini/meqia-getuserinfo',
+      url: 'api/v1/wechat/sobot/user-info',//site-mini/meqia-getuserinfo   
+      method:"GET",
       success: function (res) {
         console.log(res);
         that.setData({
@@ -444,7 +445,8 @@ Page({
     }
     var that = this;
     util.NetRequest({
-      url: 'site-mini/meqia-postdata',
+      url: 'api/v1/wechat/sobot/postdata',//site-mini/meqia-postdata
+      method:"POST",
       data: {
         'info': JSON.stringify(returnObj.obj),
         'email': email // 多传一个参数email
