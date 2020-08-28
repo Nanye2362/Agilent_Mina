@@ -126,8 +126,8 @@ Page({
 
           var list = [];
 
-          for(var i = 0; i < res.data.length; i++) {
-             var n = res.data[i]
+          for(var i = 0; i < res.data.list.length; i++) {
+             var n = res.data.list[i]
              if (n["pmenu_name"] == "仪器租赁") {
                n["transferAction"] = util.sobotTransfer(41)
              } else if (n["pmenu_name"] == "融资购买") {
