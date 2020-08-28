@@ -118,7 +118,7 @@ Page({
         that.setData({
           ContactGuid: res.data.ContactGuid,
           InstrumentCount: res.data.intrument_num,
-          company: res.data.company,
+          company: res.data.users.company,
           email: res.data.email,
           head_img_url: res.data.users.head_url,
           is_auth:  res.data.users.isBind == null ? false :  res.data.users.isBind,

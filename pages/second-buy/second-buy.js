@@ -105,8 +105,8 @@ Page({
 
     if (that.data.isOnShow) {
       util.NetRequest({
-        url: 'purchase/get-purchase-list',
-        data: {},
+        url: 'api/v1/purchase/list',
+        method:'GET',
         success: function (res) {
           console.log(res); //后台获取到的mycount数据
 
@@ -126,8 +126,8 @@ Page({
 
           var list = [];
 
-          for(var i = 0; i < res.data.length; i++) {
-             var n = res.data[i]
+          for(var i = 0; i < res.data.list.length; i++) {
+             var n = res.data.list[i]
              if (n["pmenu_name"] == "仪器租赁") {
                n["transferAction"] = util.sobotTransfer(41)
              } else if (n["pmenu_name"] == "融资购买") {
@@ -151,7 +151,7 @@ Page({
 
           wx.loadFontFace({
             family: 'iconfont',
-            source: 'url("//at.alicdn.com/t/' + res.fontUrl + '.woff")',
+            source: 'url("//at.alicdn.com/t/' + res.data.font_url + '.woff")',
             success(res) {
 
             },
@@ -167,7 +167,7 @@ Page({
 
           that.setData({
             productList: list,
-            toView: res.data[that.data.curIndex]['ID']
+            toView: res.data.list[that.data.curIndex]['id']
           })
 
         }

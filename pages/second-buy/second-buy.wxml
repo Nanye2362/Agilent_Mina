@@ -64,7 +64,6 @@
           <view class="right-content">
             <view class="main-title1">{{item.pmenu_title}}</view>
             <view class="sub-title1">{{item.pmenu_subtitle}}</view>
-
           </view>
           <image src="../../images/bannner_y.png" style="width:100%;display:flex; margin:30rpx auto" mode="widthFix"/>
           <!-- <meiqiaBtn bindmeiqiaTap="MtaReport" wx:if="{{itm.PROMOTION[0].length==0?false:true}}" btn-class="pro-btn" handle-alert="{{false}}" session-from="K_dataid:0" data-Template="{{templete}}" data-checkfun="{{checkfun}}" data-desc="{{desc}}" data-tapfun="{{tapfun}}" data-meqia="{{item.PMENU_MEIQIA_GROUP}}" data-productid="{{itm.ID}}" data-productname="{{itm.PRODUCT_NAME}}" > -->
