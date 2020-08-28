@@ -336,7 +336,7 @@ Page({
           // }
           console.log('clickToSubmit2：',res);
           wx.redirectTo({
-            url: '../confirm_info/confirm_info' + '?id=' + res.data.id+"&aglNum=" + res.data.AglSN + '&CanRepair=' + res.data.CanRepair + '&group=' + JSON.stringify(res.data.group),
+            url: '../confirm_info/confirm_info' + '?id=' + res.data.id+"&aglNum=" + res.data.AglSN + '&CanRepair=' + res.data.canRepair + '&group=' + JSON.stringify(res.data.group),
           })
           // wx.redirectTo({
           //   url: '../confirm_info/confirm_info' + '?ProductId=' + res.ProductId + '&ProductDesc=' + res.ProductDesc + '&SerialNo=' + res.SerialNo + '&CpName=' + res.CpName + '&ShipToName=' + res.ShipToName + "&aglNum=" + res.AglSN + '&CanRepair=' + res.CanRepair + '&group=' + JSON.stringify(res.group),

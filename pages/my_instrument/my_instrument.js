@@ -229,13 +229,10 @@ Page({
     })
     var that = this;
     util.NetRequest({
-      url: 'sr/history',
-      data: {
-        ContactId: this.data.ContactId,
-        SerialNo: sn
-      },
+      url: 'api/v1/sr/history',//sr/history
+      method:'GET',
       success: function(res) {
-        if (res.success == true) {
+        if (res.data.history_list.length>0) {
           wx.navigateTo({
             url: '../service_list/service_list?sn=' + sn + '&contactId=' + that.data.ContactId,
           })
@@ -274,7 +271,7 @@ Page({
         console.log(res);
         if (res.status == true) {
           wx.redirectTo({
-            url: '../confirm_info/confirm_info' + '?id=' + res.data+"&aglNum=" + res.data.AglSN + '&CanRepair=' + res.data.CanRepair + '&group=' + JSON.stringify(res.data.group),
+            url: '../confirm_info/confirm_info' + '?id=' + res.data.id+"&aglNum=" + res.data.AglSN + '&CanRepair=' + res.data.canRepair + '&group=' + JSON.stringify(res.data.group),
           })
           // wx.redirectTo({
           //   url: '../confirm_info/confirm_info' + '?ProductId=' + res.ProductId + '&ProductDesc=' + res.ProductDesc + '&SerialNo=' + res.SerialNo + '&CpName=' + res.CpName + '&ShipToName=' + res.ShipToName + "&needChat=1" + '&CanRepair=' + res.CanRepair + '&group=' + JSON.stringify(res.group),
