@@ -1,7 +1,7 @@
 @import '../labqc/labqc';
 .order_status{
   width: 150rpx;
-  height: 100%;
+  line-height: 1.5;
   border-radius: 8rpx;
   color: #fff;
 }

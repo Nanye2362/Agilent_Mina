@@ -54,6 +54,7 @@ Page({
             success: function (res) {
               if (res.status == true) {
                 wx.removeStorageSync('MOBILE');
+                wx.removeStorageSync('userInfo');
                 util.getUserInfoSobot();
                 wx.showModal({
                   title: '解绑成功',

@@ -48,7 +48,7 @@
 					<!-- group_list -->
 					<view class='group_list' wx:if='{{showMoreGroup}}'>
 						<block wx:for='{{GroupList}}' wx:for-item="item" wx:for-index="idx" wx:key='unique'>
-							<view class='group_item fs12 {{item.filterActive? "filterActive":""}}' data-id='{{item.ID}}' bindtap='filterGroup' data-idx='{{item.idx}}'>{{item.GroupName}}</view>
+							<view class='group_item fs12 {{item.filterActive? "filterActive":""}}' data-id='{{item.id}}' bindtap='filterGroup' data-idx='{{item.idx}}'>{{item.groupName}}</view>
 						</block>
 					</view>
 					<!-- 收起 -->
@@ -64,9 +64,9 @@
 				<view class='sub_title fc-777'>标签</view>
 				<view class='filter_con flex'>
 					<block wx:for='{{LabelList}}' wx:for-item="item" wx:for-index="idx" wx:key='unique'>
-						<view class='justify-center flex filter_item {{item.filterActive ? "filterActive" : ""}}' bindtap='filterLabel' data-labelname='{{item.LabelName}}' data-idx='{{item.idx}}'>
-							<view class='{{item.labelView? "label_view" : ""}} flex align-center {{item.LabelColor}}'></view>
-							<view class='fs12'>{{item.LabelName}}</view>
+						<view class='justify-center flex filter_item {{item.filterActive ? "filterActive" : ""}}' bindtap='filterLabel' data-labelname='{{item.labelName}}' data-idx='{{item.idx}}'>
+							<view class='{{item.labelView? "label_view" : ""}} flex align-center {{item.labelColor}}'></view>
+							<view class='fs12'>{{item.labelName}}</view>
 						</view>
 					</block>
 				</view>

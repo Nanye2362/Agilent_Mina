@@ -118,7 +118,8 @@ Page({
                 app.globalData.syncFlag = false;
 
                 util.NetRequest({
-                  url: 'wechat-mini/get-global-group',
+                  url: 'api/v1/wechat/get-global-group',//wechat-mini/get-global-group
+                  method:"GET",
                   showload: false,
                   success: function (res1) {
                     app.globalData.sobotData = res1.data;

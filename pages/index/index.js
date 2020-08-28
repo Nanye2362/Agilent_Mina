@@ -136,7 +136,7 @@ Page({
         that.setData({
           imgUrls: res.data.list,
           notice: res.data.notice,
-          notice_active: notice_active_flag
+         // notice_active: res.data.notice_active
         })
       }
     })
@@ -339,9 +339,10 @@ Page({
         }
       })
     }else{
+      console.log("second-buy type:",e.currentTarget.dataset.url.split("?tab="))
       wx.setStorage({
         key: "secound_buy_arg",
-        data: e.currentTarget.dataset.arg,
+        data: e.currentTarget.dataset.url.split("?tab=")[1],
         success: function () {
           wx.reLaunch({
             url: url,

@@ -15,18 +15,18 @@ function formatTime(date) {
 }
 
 function getUserInfoSobot(fun) {
-  return true;
   var that=this;
   setTimeout(function () {
     that.NetRequest({
-      url: 'site-mini/sobot-getuserinfo',
+      url: 'api/v1/wechat/sobot/user-info?check_vip=1',//site-mini/sobot-getuserinfo
+      method:'GET',
       showload: false,
       success: function (res) {
         console.log(res);
-        wx.setStorageSync('sobot_nickname', res.userinfo.name);
-        wx.setStorageSync('sobot_avatarUrl', res.userinfo.avatarUrl);
-        wx.setStorageSync('sobot_company', res.userinfo.meta.company);
-        wx.setStorageSync('sobot_contactid', res.userinfo.meta.ContactId);
+        wx.setStorageSync('sobot_nickname', res.data.name);
+        wx.setStorageSync('sobot_avatarUrl', res.data.avatarUrl);
+        wx.setStorageSync('sobot_company', res.data.company);
+        wx.setStorageSync('sobot_contactid', res.data.ContactId);
         if(typeof(fun)=="function"){
            fun();
         }
@@ -114,30 +114,30 @@ function RtransferAction(r) {
 
 
 function uploadImg(urlList,callback){
-  var session_id = wx.getStorageSync('PHPSESSID');//本地取存储的sessionID
-  if (session_id != "" && session_id != null) {
-    var header = { 'content-type': 'application/x-www-form-urlencoded', 'Cookie': 'PHPSESSID=' + session_id }
+  var token = wx.getStorageSync('token');
+  if (token != "" && token != null) {
+    var header = { 'content-type': 'application/x-www-form-urlencoded', 'Authorization':"Bearer "+token }
   } else {
     var header = { 'content-type': 'application/x-www-form-urlencoded' }
   }
-
-  //console.log(session_id);
-  var url = Server + "api/upload-img";
+  
+  var url = Server + "api/v1/reservation/upload-img";//api/upload-img
   var completeNum=0;
   var returnUrlList=[];
+  console.log('urlList:',urlList);
   for (var i in urlList){
     wx.uploadFile({
       url: url,
       filePath: urlList[i],
       name: 'img',
       formData:{
-          key:i
+          "key":i
       },
       header: header,
       success:function(res){
         completeNum++;
         var obj = JSON.parse(res.data);
-        returnUrlList[obj.key] = obj.url;
+        returnUrlList[i] = obj.url;
         if (urlList.length == completeNum) {
           callback(returnUrlList);
         }
@@ -200,14 +200,16 @@ function checkEmpty(obj,arrInput){
 
 function getUserInfo(cb){
   var user=wx.getStorageSync('userInfo');
+  console.log("getUserInfo:",user);
   if (user==""){//user不存在
     request.NetRequest({
       // api/get-userinfo
       url: "api/v1/user/service-num", 
-      method:'GET',
+      method:"GET",
       success: function (res) {
         if (res.status) {
           user = res.data.users;
+          console.log("userInfo:",user);
           wx.setStorageSync('userInfo',user);
           cb(user);
         } else {
@@ -235,12 +237,13 @@ function getUserInfo(cb){
 //获取用户信息头像昵称
 function getUserName() {
   util.NetRequest({
-    url: 'site-mini/meqia-getuserinfo',
+    url: 'api/v1/wechat/sobot/user-info',//site-mini/meqia-getuserinfo   
+    method:"GET",
     success: function (res) {
       console.log(res);
       that.setData({
-        nickName: res.userinfo.name,
-        avatarUrl: res.userinfo.avatarUrl
+        nickName: res.data.name,
+        // avatarUrl: res.data.userinfo.avatarUrl
       })
     }
   })

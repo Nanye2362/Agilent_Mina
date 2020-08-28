@@ -10,6 +10,7 @@ Page({
     currentTab: 0,
     winWidth: 0,
     winHeight: 0,
+    tabList: []
   },
 
   /**
@@ -25,18 +26,8 @@ Page({
         });
       }
     });
-    util.NetRequest({
-      url: 'api/v1/reservation/list',
-      data: {
-      },
-      method:'GET',
-      success: function (res) {
-        console.log(res);
-        that.setData({
-          tabList: res.data.list,
-        })
-      }
-    });
+    that.getCurrentTabReservation(0);
+    that.getCurrentTabReservation(1);
     /* 
       预约状态的后台四种模式，前端三种
       后台：0-未处理 1-已处理 2-忽略 3-锁定
@@ -60,7 +51,37 @@ Page({
     //   }
     // });
   },
-  gotoDetails: function(e){
+  getCurrentTabReservation(currentTab) {
+    var that = this;
+    util.NetRequest({
+      url: 'api/v1/reservation/list?type=' + currentTab,
+      method: 'GET',
+      success: function (res) {
+        console.log(res);
+        if (res.data) {
+          let resList = res.data.list;
+          var temList=[];
+          resList.forEach(function (item) {
+            console.log('resList item:',item);
+            if (item.type === 0) {
+              item.typeName = '安装申请'
+            } else if (item.type === 1) {
+              item.typeName = '预防性维护'
+            } else if (item.type === 2) {
+              item.typeName = '法规认证'
+            }
+            temList.push(item);
+          })
+          that.data.tabList[currentTab]=temList;
+          that.setData({
+            tabList: that.data.tabList
+          })
+          console.log("tabList:", that.data.tabList);
+        }
+      }
+    });
+  },
+  gotoDetails: function (e) {
     var id = e.currentTarget.dataset.id;
     var orderType = e.currentTarget.dataset.ordertype;
     console.log(orderType);
@@ -73,15 +94,17 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-  
+
   },
 
   /* tab */
   bindChange: function (e) {
+    console.log("bindChange:",e);
     var that = this;
     that.setData({ currentTab: e.detail.current });
   },
   swichNav: function (e) {
+    console.log("swichNav:",e);
     var that = this;
     if (this.data.currentTab === e.target.dataset.current) {
       return false;
@@ -96,41 +119,41 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-  
+
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-  
+
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-  
+
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-  
+
   },
 
   /**
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-  
+
   }
 })

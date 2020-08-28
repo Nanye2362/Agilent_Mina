@@ -39,7 +39,7 @@ Component({
             var obj = {};
             obj.date = i.substring(i.length-2);
             obj.year = i.substring(0,4);
-            obj.month = i.substr(4,2);
+            obj.month = i.substr(5,2);
             obj.optional = res.data.work_list[i];
             if(obj.optional==0 && firstDay ==''){
               firstDay = 'firstDay';
@@ -65,6 +65,7 @@ Component({
     chooseDate: function(e){
        var pages = getCurrentPages();
        var _this = pages[pages.length - 1];
+       console.log("chooseDate",e);
        var chooseDate = e.currentTarget.dataset.date;
        var optional = e.currentTarget.dataset.optional;
        if(optional==0){

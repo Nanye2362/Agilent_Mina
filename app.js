@@ -56,14 +56,6 @@ App({
         }
       }
     });
-  //   util.NetRequest({
-  //     url: 'wechat-mini/get-global-group',
-  //     data:{},
-  //     success: function (res) {
-  //       console.log(res);
-  //       that.globalData.sobotData = res.data;
-  //    }
-  // });
 },
 
   async onShow(res) {
@@ -177,58 +169,60 @@ App({
       })
     }
   },*/
- wxlogin() {
-    var that = this;
+//  wxlogin() {
+//     var that = this;
 
-    that.globalData.syncFlag = true;
-    wx.login({
-      success: function (res) {
-        console.log(res);
-        if (res.code) {
-          //发起网络请求
-          util.NetRequest({
-            url: 'api/v1/wechat/login',
-            data: {
-              code: res.code,
-              userMobile: JSON.stringify(userMobile)
-            },
-            showload: false,
-            success: function (r) {
-              that.globalData.isLoading = false;
-              console.log(r);
-              if (r.success == true) {
-                that.globalData.needCheck = false;
-                wx.setStorageSync('MOBILE', r.data.mobile);
-                wx.setStorageSync('OPENID', r.data.openid);
-                that.globalData.isLogin = true;
-                //that.gotoIndex();
-                that.syncUserInfo();
-                that.globalData.syncFlag = false;
-                util.NetRequest({
-                  url: 'wechat-mini/get-global-group',
-                  success: function (res1) {
-                    that.globalData.sobotData = res1.data;
+//     that.globalData.syncFlag = true;
+//     wx.login({
+//       success: function (res) {
+//         console.log(res);
+//         if (res.code) {
+//           //发起网络请求
+//           util.NetRequest({
+//             url: 'api/v1/wechat/login',
+//             data: {
+//               code: res.code,
+//               userMobile: JSON.stringify(userMobile)
+//             },
+//             showload: false,
+//             success: function (r) {
+//               that.globalData.isLoading = false;
+//               console.log(r);
+//               if (r.success == true) {
+//                 that.globalData.needCheck = false;
+//                 wx.setStorageSync('MOBILE', r.data.mobile);
+//                 wx.setStorageSync('OPENID', r.data.openid);
+//                 that.globalData.isLogin = true;
+//                 //that.gotoIndex();
+//                 that.syncUserInfo();
+//                 that.globalData.syncFlag = false;
+//                 util.NetRequest({
+//                   url: 'api/v1/wechat/get-global-group',//wechat-mini/get-global-group
+//                   method:"GET",
+//                   success: function (res1) {
+//                     that.globalData.sobotData = res1.data;
 
-                  }
-                });
-              } else if (typeof (r.error_msg) !="undefined"){
-                that.globalData.needCheck = true;
-              }
-            },
-            fail:function(){
-              that.wxlogin();
-            }
-          })
-        } else {
-          console.log('获取用户登录态失败！' + res.errMsg)
-        }
-      }
-    });
-  },
+//                   }
+//                 });
+//               } else if (typeof (r.error_msg) !="undefined"){
+//                 that.globalData.needCheck = true;
+//               }
+//             },
+//             fail:function(){
+//               that.wxlogin();
+//             }
+//           })
+//         } else {
+//           console.log('获取用户登录态失败！' + res.errMsg)
+//         }
+//       }
+//     });
+//   },
 
 
   syncUserInfo:function(){
     var _this = this;
+    return;
     util.NetRequest({
       url: 'site-mini/search-user-by-union-id',
       data:{},

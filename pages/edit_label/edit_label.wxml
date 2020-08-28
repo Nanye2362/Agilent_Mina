@@ -7,13 +7,13 @@
   <view class='gl flex' wx:if='{{item.deleted}}'>
     <!-- editGroup -->
     <view class='g_item flex alignc'>
-      <view class='label_Color {{item.LabelColor}}'></view>
-      <text>{{item.LabelName}}</text>
+      <view class='label_Color {{item.labelColor}}'></view>
+      <text>{{item.labelName}}</text>
     </view>
     <!-- edit&deleteGroup -->
     <view class='g_item flex justify-end alignc'>
-      <image src='/images/edit.png' class='edit_image edit_image1' bindtap='Popup' wx:if='{{item.editting==false}}' data-idx='{{idx}}' data-id='{{item.ID}}' data-labelname='{{item.LabelName}}' data-labelcolor='{{item.LabelColor}}'></image>
-      <image src='/images/del1.png' class='edit_image' bindtap='delGroup'  data-id='{{item.ID}}' data-idx='{{idx}}'></image>
+      <image src='/images/edit.png' class='edit_image edit_image1' bindtap='Popup'  wx:if='{{item.editting==false}}' data-idx='{{idx}}' data-id='{{item.id}}' data-labelname='{{item.labelName}}' data-labelcolor='{{item.labelColor}}'></image>
+      <image src='/images/del1.png' class='edit_image' bindtap='delGroup'  data-id='{{item.id}}' data-idx='{{idx}}'></image>
     </view>
   </view>
 </block>

@@ -42,6 +42,7 @@ Page({
     currentInvoice:'',
     hasInvoice: true,
     confirmShow:false,
+    objectid:''
   },
 
   /**
@@ -51,25 +52,27 @@ Page({
     //腾讯mat统计开始
     var app = getApp();
     var that = this;
-    // util.NetRequest({
-    //   url: 'wechat-mini/get-global-group',
-    //   success: function (res) {
-    //     app.globalData.sobotData = res.data;
-    //     util.getUserInfoSobot();
-    //     that.setData({
-    //       transferAction:util.sobotTransfer(4),
-    //     });
-    //   }
-    // });
+    util.NetRequest({
+      url: 'api/v1/wechat/get-global-group',//wechat-mini/get-global-group
+      method:"GET",
+      success: function (res) {
+        app.globalData.sobotData = res.data;
+        util.getUserInfoSobot();
+        that.setData({
+          transferAction:util.sobotTransfer(4),
+        });
+      }
+    });
 
     app.mta.Page.init();
     //腾讯mat统计结束
     console.log(options);
-    util.getUserInfo(function (user) {
+    // util.getUserInfo(function (user) {
 
-    });
+    // });
+    this.data.objectid=options.objectId;
     util.NetRequest({
-      url: 'api/v1/sr/bq?object_id='+options.objectId,
+      url: 'api/v1/sr/bq?objectid='+options.objectId,
       // data: {
       //   srId: options.srId,
       //   objectId: options.objectId
@@ -296,7 +299,10 @@ Page({
     })
   },
   openPDF:function(){
-    var url = util.Server + 'site/open-file?ServconfId=' + this.data.bqId;
+    // '/api/v1/sr/bq-file?objectid='+item.ServconfId+'&token='+token
+    // var url = util.Server + 'site/open-file?ServconfId=' + this.data.bqId;
+    var token=wx.getStorageSync('token');
+    var url = util.Server + 'api/v1/sr/bq-file?objectid=' + this.data.objectid+'&token='+token;
     console.log(url);
     var downloadTask = wx.downloadFile({
       url: url,
@@ -332,7 +338,8 @@ Page({
     })
   },
   copyTBL:function(){
-    var url = util.Server + 'site/open-file?ServconfId=' + this.data.bqId;
+    var token=wx.getStorageSync('token');
+    var url = util.Server + 'api/v1/sr/bq-file?objectid=' + this.data.objectid+'&token='+token;
     var self=this;
     wx.setClipboardData({
       data: url,

@@ -5,17 +5,21 @@ let Server = config.Server; //UAT
 
 
 var arrRequest = [], isRequesting = false;
-var currObj={};
+var currObj = {};
 
-function showLoading(){
+function showLoading() {
   wx.showLoading({
     title: '加载中，请稍候',
     mask: true
   })
 }
+function clearRequestArr() {
+  wx.hideLoading();
+  isRequesting = false;
+  arrRequest = [];
+}
 
-
-function NetRequest({ url, data, success, fail, complete, method = "POST", showload = true, host = Server }) {
+function NetRequest({ url, data, success, fail, complete, method = "POST", showload = true, host = Server}) {
   var obj = { url: url, data: data, success: success, fail: fail, complete: complete, method: method, showload: showload, host: host };
   // console.log(obj);
   console.log(data);
@@ -24,17 +28,17 @@ function NetRequest({ url, data, success, fail, complete, method = "POST", showl
   }
   var app = getApp();
   console.log("request url：" + obj.url);
-  console.log("isloagin:" + app.globalData.isLogin);
+  console.log("isloagin:" ,app);
   console.log("isRequesting:" + isRequesting);
   if (isRequesting || (!app.globalData.isLogin && !in_array(url, urlArr))) {
-    var hasUrl=false;
-    for (var i in arrRequest){
-      if(arrRequest[i].url==obj.url){
-        hasUrl=true;
-        console.log("this url had waiting."+obj.url);
+    var hasUrl = false;
+    for (var i in arrRequest) {
+      if (arrRequest[i].url == obj.url) {
+        hasUrl = true;
+        console.log("this url had waiting." + obj.url);
       }
     }
-    if (!hasUrl){
+    if (!hasUrl) {
       arrRequest.push(obj);
     }
     console.log(arrRequest);
@@ -57,7 +61,7 @@ function in_array(stringToSearch, arrayToSearch) {
 function _NetRequest({ url, data, success, fail, complete, method = "POST", showload = true, host = Server }) {
   currObj = { url: url, data: data, success: success, fail: fail, complete: complete, method: method, showload: showload, host: host };
   var tempUrl = url;
-  var app = getApp();
+  let app = getApp();
 
   if (!in_array(url, urlArr) && app.globalData.needCheck) {
     isRequesting = false;
@@ -68,10 +72,10 @@ function _NetRequest({ url, data, success, fail, complete, method = "POST", show
 
   //替换成token
   var token = wx.getStorageSync('token');
-  if(token != "" && token != null){
-    var header = {'content-type': 'application/x-www-form-urlencoded', 'Authorization':"Bearer "+token}
-  }else {
-    var header = { 'content-type': 'application/x-www-form-urlencoded' }
+  if (token != "" && token != null) {
+    var header = { 'content-type': 'application/json', 'Authorization': "Bearer " + token }
+  } else {
+    var header = { 'content-type': 'application/json' }
   }
 
   url = host + url;
@@ -79,22 +83,22 @@ function _NetRequest({ url, data, success, fail, complete, method = "POST", show
   wx.request({
     url: url,
     method: method,
-    data: data,
+    data: JSON.stringify(data),
     header: header,
     success: res => {
       // console.log(res.data);
       console.log(res);
-      if(res.statusCode<=300){
+      if (res.statusCode <= 300) {
         success(res.data);
-      }else if(res.statusCode==400){
-        console.log('400:',res);
-        wx.hideLoading();
+      } else if (res.statusCode == 400) {
+        console.log('res.statusCode:', res.statusCode)
+        clearRequestArr();
         wx.showModal({
           title: '请求失败',
           content: res.data.error,
           showCancel: false,
           success: function (response) {
-            console.log('400:',response);
+            console.log('400:', response);
             if (response.confirm) {
               wx.switchTab({
                 url: '../index/index',
@@ -103,21 +107,25 @@ function _NetRequest({ url, data, success, fail, complete, method = "POST", show
           }
         })
         // fail(res.data.error)
-      }else if(res.statusCode==401){
+      } else if (res.statusCode == 401) {
+        console.log('res.statusCode:', res.statusCode)
+        wx.hideLoading();
         wx.removeStorageSync('token');
         var loginApi = require('login');
-        isRequesting=false;
+        isRequesting = false;
         arrRequest.unshift(currObj);
         var aa = getApp();
-        loginApi.login(getApp());   
+        loginApi.login(getApp());
         return;
-      }else if(res.statusCode==403){
+      } else if (res.statusCode == 403) {
+        console.log('res.statusCode:', res.statusCode)
+        clearRequestArr();
         wx.showModal({
           title: '无权限',
           content: res.data.error,
           showCancel: false,
           success: function (response) {
-            console.log('403:',response);
+            console.log('403:', response);
             if (response.confirm) {
               wx.navigateTo({
                 url: '../auth/auth',
@@ -125,7 +133,24 @@ function _NetRequest({ url, data, success, fail, complete, method = "POST", show
             }
           }
         })
-      }else{
+      } else if (res.statusCode == 404) {
+        console.log('res.statusCode:', res.statusCode)
+        clearRequestArr();
+        wx.showModal({
+          title: '请求失败',
+          content: res.data.error,
+          showCancel: false,
+          success: function (response) {
+            if (response.confirm) {
+              wx.switchTab({
+                url: '../index/index',
+              })
+            }
+          }
+        })
+        // fail(res.statusText)
+      } else {
+        clearRequestArr();
         wx.showModal({
           title: '请求失败',
           content: res.statusText,
@@ -138,33 +163,30 @@ function _NetRequest({ url, data, success, fail, complete, method = "POST", show
             }
           }
         })
-        // fail(res.statusText)
       }
-      
-      // res['statusCode'] === 200 ? success(data) : fail(res);
     },
     fail: function (e) {
       wx.hideLoading();
       wx.showModal({
-          title: '请求失败',
-          content: '请检查您的网络',
-          showCancel: false,
-          success: function (res) {
-            if (res.confirm) {
-              console.log(currObj.showload);
-              if (currObj.showload){
-                showLoading();
-              }
-              _NetRequest(currObj);
+        title: '请求失败',
+        content: '请检查您的网络',
+        showCancel: false,
+        success: function (res) {
+          if (res.confirm) {
+            console.log(currObj.showload);
+            if (currObj.showload) {
+              showLoading();
             }
+            _NetRequest(currObj);
           }
+        }
       })
       return;
     },
     complete: function (res) {
       console.log("complete");
       console.log(res);
-      if (res['statusCode'] === 200){
+      if (res['statusCode'] === 200) {
         if (arrRequest.length == 0) {
           if (!app.globalData.isLoading && !app.globalData.isUploading) {
             wx.hideLoading()
@@ -177,8 +199,8 @@ function _NetRequest({ url, data, success, fail, complete, method = "POST", show
         }
 
         if (arrRequest.length != 0) {
-            var obj = arrRequest.shift();
-            _NetRequest(obj);
+          var obj = arrRequest.shift();
+          _NetRequest(obj);
         }
       }
     }

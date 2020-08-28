@@ -55,7 +55,7 @@ Page({
     selectLabel: '',
     error: false,
     //selectColor: '',
-    LabelColor:'yellow',
+    LabelColor: 'yellow',
   },
 
   /**
@@ -82,7 +82,7 @@ Page({
     var popup = this.data.popup
     this.setData({
       popup: !popup,
-      inputValue:'',
+      inputValue: '',
     })
   },
   /* 跳转编辑标签 */
@@ -97,22 +97,23 @@ Page({
   confirmAddLabel: function () {
     var that = this;
     console.log(that.data.inputValue)
-    if (that.data.inputValue!=''){
+    if (that.data.inputValue != '') {
       util.NetRequest({
-        url: 'site-mini/create-label',
+        url: 'api/v1/instrument/labels',//site-mini/create-label
         data: {
           'LabelName': that.data.inputValue,
           'LabelColor': that.data.LabelColor
         },
         success: function (res) {
           console.log(res);
-          if(res.data.CurrentLabel.ID){
-            var ll = that.data.LabelList.concat(res.data.CurrentLabel);
-            console.log(ll)
-            that.setData({
-              LabelList: ll
-            })
-          }else{
+          if (res.data.CurrentLabel.id) {
+            // var ll = that.data.LabelList.concat(res.data.CurrentLabel);
+            // console.log(ll)
+            // that.setData({
+            //   LabelList: ll
+            // })
+            that.getLabelList();
+          } else {
             wx.showModal({
               title: '添加失败',
               content: '服务器错误，请重新尝试',
@@ -127,12 +128,12 @@ Page({
         }
       })
       that.Popup()
-    }else{
+    } else {
       that.setData({
         error: true
       })
     }
-    
+
   },
 
   /* 选择标签 */
@@ -206,18 +207,18 @@ Page({
   /* 确认提交 */
   submit: function () {
     util.NetRequest({
-      url: 'site-mini/set-label',
+      url: 'api/v1/instrument/set-labels',//site-mini/set-label
       data: {
         'ID': this.data.selectLabel,
         'SerialNo': this.data.sn,
       },
       success: function (res) {
         console.log(res);
-        if(res.status){
+        if (res.status) {
           wx.navigateBack({
             delta: 1
           })
-        }else{
+        } else {
           wx.showModal({
             title: '添加失败',
             content: '服务器错误，请重新尝试',
@@ -226,7 +227,7 @@ Page({
             }
           })
         }
-        
+
       },
       fail: function (err) {
         console.log(err);
@@ -246,14 +247,14 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    this.getLabelList();
+  },
+  getLabelList() {
     var that = this;
-    var selectLabel=[];
+    var selectLabel = [];
     util.NetRequest({
-      url: 'site-mini/show-label',
-      method:"GET",
-      data: {
-        'SerialNo': this.data.sn
-      },
+      url: 'api/v1/instrument/labels',//site-mini/show-label
+      method: "GET",
       success: function (res) {
         console.log(res.data.LabelList)
         var labelList = res.data.LabelList
@@ -261,8 +262,8 @@ Page({
         for (var i in labelList) {
           labelList[i].idx = i;
           LabelList.push(labelList[i]);
-          if (LabelList[i].Checked){
-            selectLabel.push(LabelList[i].ID);
+          if (LabelList[i].Checked) {
+            selectLabel.push(LabelList[i].id);
           }
         }
         that.setData({
@@ -275,7 +276,6 @@ Page({
       }
     })
   },
-
   /**
    * 生命周期函数--监听页面隐藏
    */
