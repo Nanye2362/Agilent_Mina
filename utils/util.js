@@ -203,7 +203,9 @@ function getUserInfo(cb){
   if (user==""){//user不存在
     request.NetRequest({
       // api/get-userinfo
-      url: "api/v1/user/service-num", success: function (res) {
+      url: "api/v1/user/service-num", 
+      method:'GET',
+      success: function (res) {
         if (res.status) {
           user = res.data.users;
           wx.setStorageSync('userInfo',user);
