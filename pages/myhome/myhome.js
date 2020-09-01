@@ -12,10 +12,10 @@ Page({
     NewNotificationCount: 0,
   },
 
-  gotoNext: function(event){
+  gotoNext: function (event) {
     var is_auth = this.data.is_auth;
     var needauth = event.currentTarget.dataset.needauth;
-    if (needauth==0 && is_auth==false){
+    if (needauth == 0 && is_auth == false) {
       wx.navigateTo({
         url: '../auth/auth?pageName=myhome'
       })
@@ -26,7 +26,7 @@ Page({
     }
   },
 
-  gotoNextMiniProgram: function(event){
+  gotoNextMiniProgram: function (event) {
     wx.navigateToMiniProgram({
       appId: config.elearningAppid,
       path: 'pages/welcome/welcome',
@@ -46,7 +46,7 @@ Page({
           //请求后台接口
           util.NetRequest({
             url: 'api/v1/user/bind',//auth/user-unbind
-            method:'DELETE',
+            method: 'DELETE',
             // data: {
             //   wxopenid: wx.getStorageSync('OPENID'),
             //   ContactGuid: e.currentTarget.dataset.contact_guid
@@ -55,6 +55,11 @@ Page({
               if (res.status == true) {
                 wx.removeStorageSync('MOBILE');
                 wx.removeStorageSync('userInfo');
+                wx.removeStorageSync('sobot_nickname');
+                wx.removeStorageSync('sobot_avatarUrl');
+                wx.removeStorageSync('sobot_company');
+                wx.removeStorageSync('sobot_contactid');
+                wx.removeStorageSync('mobile');              
                 util.getUserInfoSobot();
                 wx.showModal({
                   title: '解绑成功',
@@ -112,20 +117,20 @@ Page({
     util.NetRequest({
       url: 'api/v1/user/service-num',//site-mini/my-count
       data: {},
-      method:'GET',
+      method: 'GET',
       success: function (res) {
-        console.log('service-num',res); //后台获取到的mycount数据
+        console.log('service-num', res); //后台获取到的mycount数据
         that.setData({
           ContactGuid: res.data.ContactGuid,
           InstrumentCount: res.data.intrument_num,
           company: res.data.users.company,
           email: res.data.email,
           head_img_url: res.data.users.head_url,
-          is_auth:  res.data.users.isBind == null ? false :  res.data.users.isBind,
-          mobile:  res.data.users.mobile,
-          name:  res.data.users.name,
-          AppointmentCount:  res.data.reservation_num,
-          NewNotificationCount:  res.data.NewNotificationCount,
+          is_auth: res.data.users.isBind == null ? false : res.data.users.isBind,
+          mobile: res.data.users.mobile,
+          name: res.data.users.name,
+          AppointmentCount: res.data.reservation_num,
+          NewNotificationCount: res.data.NewNotificationCount,
         });
       }
     });

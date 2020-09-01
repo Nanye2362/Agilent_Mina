@@ -28,8 +28,8 @@
             <!-- 按钮 session-from="{{item.TECH+item.SrId+item.SN+item.SerialNo}}"还没处理-->
             <view wx:if="{{index==0}}" class="sl_list_item_bottom {{details.SrStatus == 'WIP'&& details.notConfirmed == 0?'padding123':'padding48'}}">
                 <block wx:if="{{details.SrStatus == 'WIP'}}">
-                     <!-- <meiqiaBtn bindmeiqiaTap="MtaReport" btn-class="sl_chat fs12 self-center" wx:if="{{details.notConfirmed == 0}}" style="width:34%;" handle-alert="{{true}}"  session-from="{{TECH+details.SrId+SN+details.SerialNo}}">联系客服</meiqiaBtn>  -->
-                     <meiqiaBtn bindmeiqiaTap="MtaReport" btn-class="sl_chat blue_status fs12 self-center" style="width:34%;" handle-alert="{{true}}"  session-from="{{TECH+details.SrId+SN+details.SerialNo}}|transferAction={{transferAction}}">反馈结果</meiqiaBtn>
+                     <meiqiaBtn bindmeiqiaTap="MtaReport" btn-class="sl_chat fs12 self-center" wx:if="{{details.notConfirmed == 0}}" style="width:34%;" handle-alert="{{true}}"  session-from="{{TECH+details.SrId+SN+details.SerialNo}}">联系客服</meiqiaBtn> 
+                     <meiqiaBtn bindmeiqiaTap="MtaReport" btn-class="sl_chat blue_status fs12 self-center" style="width:34%;" handle-alert="{{true}}"  session-from="{{TECH+details.SrId+SN+details.SerialNo}}|transferAction={{transferAction}}">联系客服</meiqiaBtn>
                      <!-- <view wx:if="{{details.Delivery_no!=''}}" class="sl_chat_btn blue_status fs12" data-Surveyid='{{details.Surveyid}}' data-SrId='{{details.SrId}}' bindtap='trackingNo' data-deliveryno='{{details.Delivery_no}}' data-sn='{{details.SerialNo}}'>查看物流</view> -->
                 </block>
                 <block wx:elif="{{details.SrStatus == 'CPLT'}}">
