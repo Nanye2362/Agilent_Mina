@@ -91,7 +91,7 @@
 
               </view>
               <view wx:if="{{itm.product_name.length!=0}}">
-                <image-loader bindimageTap='previewImage'  default-image='/images/tempLoading.gif' img-src='{{server}}{{itm.product_detail_img}}' mode='widthFix' original-image='{{server}}{{itm.product_detail_img}}' width="350rpx" />
+                <image-loader bindimageTap='previewImage'  default-image='/images/tempLoading.gif' img-src='{{itm.product_detail_img}}' mode='widthFix' original-image='{{itm.product_detail_img}}' width="350rpx" />
 
               </view>
               <!-- 产品详情 -->
