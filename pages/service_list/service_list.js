@@ -29,7 +29,7 @@ Page({
     SN: ';sn:',
     searchValue: '',
     isFirst:true,
-    transferAction:''
+    transferAction:'',
   },
   onShow: function () {
     var that = this;
@@ -148,18 +148,26 @@ Page({
 
   //序列号列表加入changecolor标识
   addcolorFlag: function (list) {
+    console.log('list='+list[1]);
     var that=this;
-    var data = [{}];
-    for (var i = 0; i < list.length; i++) {
+    console.log('getSn='+that.data.getSn);
+    var data = [];
+    var tempObj = {
+      changeColor:true,
+      serialNo:''
+    }
+    for (let i = 0; i < list.length; i++) {
       if (that.data.getSn == list[i]) {
-        data[i].changeColor = true;
-        data[i].serialNo=list[i];
+        tempObj.changeColor = true;
+        tempObj.serialNo=list[i];
+        data.push(tempObj);
       }else{
-        data[i].changeColor = false;
-        data[i].serialNo=list[i];
-
+        tempObj.changeColor = false;
+        tempObj.serialNo=list[i];
+        data.push(tempObj);
       }
     }
+    console.log(data);
     return data;
   },
   /**
