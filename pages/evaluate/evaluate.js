@@ -31,9 +31,10 @@ Page({
     app.mta.Page.init();
     //腾讯mta统计结束
     var that = this;
+    console.log('surveyid option:',option);
     this.setData({
-      suveryid: option.Surveyid,
-      srid: option.SerialNo,
+      suveryid: option.surveyid,
+      srid: option.srid,
     })
     that.getSuvery();
 
