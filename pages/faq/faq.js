@@ -1,6 +1,7 @@
 // pages/faq/faq.js
 
 var util = require('../../utils/util.js');
+const config = require("../../config.js");
 
 Page({
 
@@ -82,7 +83,7 @@ Page({
     var id = e.currentTarget.dataset.id;
     wx.setStorage({
       key: "openHtmlUrl",
-      data: 'https://qa.wechat.service.agilent.com/wechat/h5/faq/details/'+id,
+      data: config.Server+'wechat/h5/faq/details/'+id,//https://qa.wechat.service.agilent.com/
       success: function () {
           wx.navigateTo({
               url: '../html/openHtml',

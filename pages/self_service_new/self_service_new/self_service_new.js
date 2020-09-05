@@ -17,7 +17,7 @@ Page({
         if(e.currentTarget.dataset.title == '视频集锦'){
             wx.setStorage({
                 key: "openHtmlUrl",
-                data: 'https://qa.wechat.service.agilent.com/site/video-collection-index',
+                data: config.Server+'site/video-collection-index',//https://qa.wechat.service.agilent.com/
                 success: function () {
                     wx.navigateTo({
                         url: '../../html/openHtml',

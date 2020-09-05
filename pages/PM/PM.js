@@ -125,7 +125,7 @@ Page({
         if (res.status) {
           wx.showModal({
             title: '提交成功',
-            content: '您的安装申请已提交成功，服务调度中心将会与您联系确认服务时间以及工程师安排事宜',
+            content: '您的预防性维护已提交成功，服务调度中心将会与您联系确认服务时间以及工程师安排事宜',
             showCancel: false,
             success: function (res) {
               if (res.confirm) {
