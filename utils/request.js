@@ -1,5 +1,6 @@
 var config = require('../config');
-var urlArr = ["wechat-mini/wx-login", "api/check-lunch"];//未登录可以使用的url
+// var urlArr = ["wechat-mini/wx-login", "api/check-lunch"];//未登录可以使用的url
+var urlArr = ["api/v1/wechat/login", "api/check-lunch"];//未登录可以使用的url
 let ocrServer = "https://ocr.wechat.learn.agilent.com/";
 let Server = config.Server; //UAT
 
@@ -62,20 +63,32 @@ function _NetRequest({ url, data, success, fail, complete, method = "POST", show
     return false;
   }
 
-  var _csrf = wx.getStorageSync('csrf');
-  var version = config.version;
-  var csrfToken = wx.getStorageSync('csrfCookie')
-  if (typeof (data) == 'object') {
-    data._csrf = _csrf;
-    data.version = version;
-  } else {
-    data = { '_csrf': _csrf, 'version': version };
-  }
+  //都不要下
+  // var _csrf = wx.getStorageSync('csrf');
+  // var version = config.version;
+  // var csrfToken = wx.getStorageSync('csrfCookie')
+  // if (typeof (data) == 'object') {
+  //   data._csrf = _csrf;
+  //   data.version = version;
+  // } else {
+  //   data = { '_csrf': _csrf, 'version': version };
+  // }
+//都不要上
 
-  var session_id = wx.getStorageSync('PHPSESSID');//本地取存储的sessionID
-  if (session_id != "" && session_id != null) {
-    var header = { 'content-type': 'application/x-www-form-urlencoded', 'Cookie': 'PHPSESSID=' + session_id + ";" + csrfToken }
-  } else {
+  //头请求
+  // var session_id = wx.getStorageSync('PHPSESSID');//本地取存储的sessionID
+  // if (session_id != "" && session_id != null) {
+  //   var header = { 'content-type': 'application/x-www-form-urlencoded', 'Cookie': 'PHPSESSID=' + session_id + ";" + csrfToken }
+  // } else {
+  //   var header = { 'content-type': 'application/x-www-form-urlencoded' }
+  // }
+
+
+  //替换成token
+  var token = wx.getStorageSync('token');
+  if(token != "" && token != null){
+    var header = {'content-type': 'application/x-www-form-urlencoded', 'token':'token='+token+';'}
+  }else {
     var header = { 'content-type': 'application/x-www-form-urlencoded' }
   }
 
@@ -87,17 +100,26 @@ function _NetRequest({ url, data, success, fail, complete, method = "POST", show
     data: data,
     header: header,
     success: res => {
-      if ((session_id == "" || session_id == null) && typeof (res.data.session_id) != "undefined") {
-        console.log(res.data.session_id);
-        wx.setStorageSync('PHPSESSID', res.data.session_id); //如果本地没有就说明第一次请求 把返回的session id 存入本地
+      // if ((session_id == "" || session_id == null) && typeof (res.data.session_id) != "undefined") {
+      //   console.log(res.data.session_id);
+      //   wx.setStorageSync('PHPSESSID', res.data.session_id); //如果本地没有就说明第一次请求 把返回的session id 存入本地
 
-        if (typeof (res.data.csrfToken) != 'undefined') {
-          wx.setStorageSync('csrf', res.data.csrfToken);
-          wx.setStorageSync('csrfCookie', res.data.csrfCookie);
+      //   if (typeof (res.data.csrfToken) != 'undefined') {
+      //     wx.setStorageSync('csrf', res.data.csrfToken);
+      //     wx.setStorageSync('csrfCookie', res.data.csrfCookie);
+      //   }
+      // }
+      //修改为新的登陆方式++++++++++
+      if ((token == "" || token == null) && typeof (res.data.token) != "undefined") {
+        console.log(res.data.token);
+        wx.setStorageSync('token', res.data.token); //如果本地没有就说明第一次请求 把返回的token存入本地
+
+        if (typeof (res.data.openid) != 'undefined') {
+          wx.setStorageSync('openid', res.data.openid);
         }
       }
-
       console.log(res.data);
+
       if (res.data == "no session") { //未登录
         var aa = getApp();
         isRequesting=false;
