@@ -8,6 +8,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    WLA:'W',
     nickName:'',
     avatarUrl: '',
     transferAction: '', 
