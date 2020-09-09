@@ -1,6 +1,6 @@
 var config = {
 
-  En: "STG",
+  En: "DEV",
   // 下面的地址配合云端 Server 工作
   //Server: "https://devops.coffeelandcn.cn/",//UAT
   //https://qa.wechat.service.agilent.com/
@@ -12,15 +12,12 @@ var config = {
 
 };
 
-if (config.En == "DEV") {
-  config.Server = "https://qa.wechat.service.agilent.com/";
+if (config.En =="DEV"){
+  config.Server ="https://www.tst.kakao.service.agilent.com/";
   //https://qa.wechat.service.agilent.com/
   // https://www.tst.kakao.service.agilent.com/
   config.elearningAppid = "wx4026dcacf268c5b2";
-} else if (config.En == 'STG') {
-  config.Server = "https://stg.wechat.service.agilent.com/";
-  config.elearningAppid = "wx4026dcacf268c5b2";
-} else {
+}else{
   config.Server = "https://prd.wechat.service.agilent.com/";
   config.elearningAppid = "wx6907f6b39946942d";
 }
