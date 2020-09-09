@@ -40,6 +40,7 @@ Page({
   onShow: function () {
     var token = wx.getStorageSync('token');
     if (token != '') {
+      console.log('token:',token)
       if (getApp().globalData.needCheck == true) {
         loginApi.login({ showLoad: false })
       } else {
