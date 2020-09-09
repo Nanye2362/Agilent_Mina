@@ -21,6 +21,9 @@ Page({
     var url="";
     if (config.En=="DEV"){
       url ="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxbed9f0dd30870bab&redirect_uri=https%3a%2f%2fqa.wechat.service.agilent.com%2fsite%2fuser-guidelines&response_type=code&scope=snsapi_userinfo&state=123#wechat_redirect";
+    }else if (config.En == 'STG') {
+      config.Server = "https://stg.wechat.service.agilent.com/";
+      config.elearningAppid = "wx4026dcacf268c5b2";
     }else{
       url ="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxf939d5b301703b2f&redirect_uri=https%3a%2f%2fprd.wechat.service.agilent.com%2fsite%2fuser-guidelines&response_type=code&scope=snsapi_userinfo&state=123#wechat_redirect"
     }

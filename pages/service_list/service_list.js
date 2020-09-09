@@ -19,22 +19,22 @@ Page({
     unCompleteListL: 0,
     unsubmmitList: [],   //待评价
     unsubmmitListL: 0,
-    unConfirmList:[],
-    unConfirmListL:0,
+    unConfirmList: [],
+    unConfirmListL: 0,
     serialNoFilterList: [],
     getSn: '',
     getContactId: '',
-    isSearch:false,
+    isSearch: false,
     TECH: 'N_srid:',
     SN: ';sn:',
     searchValue: '',
-    isFirst:true,
-    transferAction:'',
+    isFirst: true,
+    transferAction: ''
   },
   onShow: function () {
     var that = this;
     console.log(this.data.isFirst);
-    if (!this.data.isFirst){
+    if (!this.data.isFirst) {
       //请求后台接口 data:{SrId:} site-mini/service-details
       that.getServiceHistory();
     }
@@ -60,49 +60,49 @@ Page({
       }
     });
 
-    if(Object.keys(app.globalData.sobotData).length === 0){
+    if (Object.keys(app.globalData.sobotData).length === 0) {
       util.NetRequest({
         url: 'api/v1/wechat/get-global-group',//wechat-mini/get-global-group
-        method:"GET",
+        method: "GET",
         success: function (res) {
           app.globalData.sobotData = res.data;
           util.getUserInfoSobot();
           that.setData({
-            transferAction:util.sobotTransfer(6),
+            transferAction: util.sobotTransfer(6),
           });
         }
       });
-    }else{
+    } else {
       this.setData({
         transferAction: util.sobotTransfer(6)
       });
     }
 
     //若有传参，则调取gethistory接口， 若没有传参，调取server-list接口
-      this.setData({
-        getSn: option.sn?option.sn:'',
-        // getContactId: option.contactId,
-        // currentTab: 2
-      });
-      //请求后台接口
-      // sr/history-filter
-      console.log('getServiceHistory:',this.data.getSn);
-      that.getServiceHistory();
+    this.setData({
+      getSn: option.sn ? option.sn : '',
+      // getContactId: option.contactId,
+      // currentTab: 2
+    });
+    //请求后台接口
+    // sr/history-filter
+    console.log('getServiceHistory:', this.data.getSn);
+    that.getServiceHistory();
   },
-  getServiceHistory:function(){
-    var that=this;
+  getServiceHistory: function () {
+    var that = this;
     util.NetRequest({
-      url: 'api/v1/sr/history'+'?serial_no='+that.data.getSn+'&keywords='+that.data.searchValue,
-      method:'GET',
+      url: 'api/v1/sr/history' + '?serial_no=' + that.data.getSn + '&keywords=' + that.data.searchValue,
+      method: 'GET',
       success: function (res) {
         //history数据分类
-        console.log('sr/history:' , res)
+        console.log('sr/history:', res)
         that.sortHistory(res);
       }
     })
   },
-  
-//处理数据 
+
+  //处理数据 
   sortHistory: function (res) {
     console.log(res);
     //history数据分类
@@ -120,7 +120,7 @@ Page({
       if (ListAll[i].srStatus == 'WIP' && ListAll[i].unconfirmed == 0) {
         unCompleteList.push(ListAll[i]);
       }
-      if (ListAll[i].srStatus == 'CPLT' && ListAll[i].surveySubmitted == 'N')       {
+      if (ListAll[i].srStatus == 'CPLT' && ListAll[i].surveySubmitted == 'N') {
         unsubmmitList.push(ListAll[i]);
       }
       if (ListAll[i].unconfirmed == 1) {
@@ -128,7 +128,7 @@ Page({
       }
       // unConfirmList待确认历史表
     }
-    console.log('serialNoFilterList:',serialNoFilterList);
+    console.log('serialNoFilterList:', serialNoFilterList);
     var HistoryResultsL = ListAll.length;
     var unCompleteListL = unCompleteList.length;
     var unsubmmitListL = unsubmmitList.length;
@@ -148,26 +148,19 @@ Page({
 
   //序列号列表加入changecolor标识
   addcolorFlag: function (list) {
-    console.log('list='+list[1]);
-    var that=this;
-    console.log('getSn='+that.data.getSn);
+    console.log('addcolorFlag:', list)
+    var that = this;
     var data = [];
-    var tempObj = {
-      changeColor:true,
-      serialNo:''
-    }
-    for (let i = 0; i < list.length; i++) {
+    for (var i = 0; i < list.length; i++) {
+      data[i] = new Object();
       if (that.data.getSn == list[i]) {
-        tempObj.changeColor = true;
-        tempObj.serialNo=list[i];
-        data.push(tempObj);
-      }else{
-        tempObj.changeColor = false;
-        tempObj.serialNo=list[i];
-        data.push(tempObj);
+        data[i].changeColor = true;
+        data[i].serialNo = list[i];
+      } else {
+        data[i].changeColor = false;
+        data[i].serialNo = list[i];
       }
     }
-    console.log(data);
     return data;
   },
   /**
@@ -178,7 +171,7 @@ Page({
     that.setData({ currentTab: e.detail.current });
   },
 
-  MtaReport: function(){
+  MtaReport: function () {
     var app = getApp();
     app.mta.Event.stat("meqia", { "group": 'TECH' });
   },
@@ -210,7 +203,7 @@ Page({
   //序列号选择
   clickToChoose: function (e) {
     this.setData({
-      getSn:e.currentTarget.dataset.sn
+      getSn: e.currentTarget.dataset.sn
     })
     var that = this;
     that.getServiceHistory();
@@ -229,7 +222,7 @@ Page({
         console.log(res);
         if (res.status == true) {
           wx.redirectTo({
-            url: '../confirm_info/confirm_info' + '?id=' + res.data.id+"&aglNum=" + res.data.AglSN + '&CanRepair=' + res.data.canRepair + '&group=' + JSON.stringify(res.data.group),
+            url: '../confirm_info/confirm_info' + '?id=' + res.data.id + "&aglNum=" + res.data.AglSN + '&CanRepair=' + res.data.canRepair + '&group=' + JSON.stringify(res.data.group),
           })
           // wx.navigateTo({
           //   url: '../confirm_info/confirm_info' + '?ProductId=' + res.ProductId + '&ProductDesc=' + res.ProductDesc + '&SerialNo=' + res.SerialNo + '&CpName=' + res.CpName + '&ShipToName=' + res.ShipToName + '&CanRepair=' + res.CanRepair + '&group=' + JSON.stringify(res.group),
@@ -242,17 +235,17 @@ Page({
 
   //前往评价
   clickToEvaluate: function (e) {
-    console.log('surveyid:',e);
+    console.log('surveyid:', e);
     var suveryid = e.currentTarget.dataset.surveyid;
     var srid = e.currentTarget.dataset.srid;
     wx.navigateTo({
       url: '../evaluate/evaluate?surveyid=' + suveryid + '&&srid=' + srid
     })
   },
-  
+
   //查看我的评价
   clickToMyComment: function (e) {
-    console.log('查看我的评价:',e);
+    console.log('查看我的评价:', e);
     var suveryid = e.currentTarget.dataset.surveyid;
     var srid = e.currentTarget.dataset.srid;
     wx.navigateTo({
@@ -264,7 +257,7 @@ Page({
   },
 
   //查看物流
-  trackingNo: function(e){
+  trackingNo: function (e) {
     var deliveryno = e.currentTarget.dataset.deliveryno;
     var sn = e.currentTarget.dataset.sn;
     wx.navigateTo({
@@ -314,11 +307,11 @@ Page({
     })
   },
 
-  copyTBL:function(e){
+  copyTBL: function (e) {
     var url = util.Server + 'site/open-file?ServconfId=' + e.currentTarget.dataset.servconfId;
     wx.setClipboardData({
       data: url,
-      success:function (res) {
+      success: function (res) {
         wx.hideToast();
         wx.showModal({
           title: '提示',
@@ -330,7 +323,7 @@ Page({
     });
   },
 
-// 搜索服务列表
+  // 搜索服务列表
   clickToSearch: function (e) {
     //腾讯mta记录搜索事件开始
     // var app = getApp();
@@ -378,7 +371,7 @@ Page({
       url: '../budget_confirm/budget_confirm?srId=' + srId + '&&objectId=' + objectId
     })
   },
-// 点击跳转历史详情 data:{SrId:} site-mini/service-details
+  // 点击跳转历史详情 data:{SrId:} site-mini/service-details
   clickToDetail: function (e) {
     console.log(e);
     var SrId = e.currentTarget.dataset.srid;

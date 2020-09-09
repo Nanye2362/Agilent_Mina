@@ -102,12 +102,7 @@ Page({
         })
     },
     jumpVideo:function () {
-        var url = '';
-        if (config.En=="DEV"){
-            url = "https://qa.wechat.service.agilent.com/site/video-collection-index";
-        }else{
-            url = "https://prd.wechat.service.agilent.com/site/video-collection-index"
-        }
+        var url = config.Server+'site/video-collection-index';
         wx.setStorage({
             key: 'openHtmlUrl',
             data:url

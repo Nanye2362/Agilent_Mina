@@ -6,14 +6,14 @@ Page({
      * 页面的初始数据
      */
     data: {
-        case1:false,
-        isConfirm:false,
-        number:'',
-        content:'',
-        textContent:'',
-        date:'',
-        modalShow:false,
-        dpId:''
+        case1: false,
+        isConfirm: false,
+        number: '',
+        content: '',
+        textContent: '',
+        date: '',
+        modalShow: false,
+        dpId: ''
     },
 
     /**
@@ -23,52 +23,50 @@ Page({
         var _this = this;
         _this.pushId = options.dpId; //推送id
         _this.setData({
-            dpId:_this.pushId
+            dpId: _this.pushId
         });
 
         app.mta.Page.init();
         util.NetRequest({
-            url: 'directional-push/is-issue-solve',
-            data: {
-                pushid: options.dpId
-            },
+            url: 'directional-push/is-issue-solve?pushId=' + _this.pushId,
+            method: 'GET',
             success: function (res) {
-                if(res.success == 0){
-                    if(res.data.isConfirm == 1){
+                if (res.status) {
+                    if (res.data.isConfirm == 1) {
                         wx.redirectTo({
-                            url:'../directional_push_submit/directional_push_submit?type=2'
+                            url: '../directional_push_submit/directional_push_submit?type=2'
                         });
                         return false;
                     }
-                    if(res.data.isConfirm == -2){
+                    if (res.data.isConfirm == -2) {
                         wx.redirectTo({
-                            url:'../directional_push_submit/directional_push_submit?type=1'
+                            url: '../directional_push_submit/directional_push_submit?type=1'
                         });
                         return false;
                     }
 
                     _this.setData({
-                        number:res.data.number,
-                        content:res.data.content,
-                        date:res.data.date,
-                        isConfirm:res.data.isConfirm,
-                        group:res.data.group
+                        number: res.data.number,
+                        content: res.data.content,
+                        date: res.data.date,
+                        isConfirm: res.data.isConfirm,
+                        group: res.data.group
                     })
                 }
             }
         });
         util.NetRequest({
             url: 'api/v1/wechat/get-global-group',//wechat-mini/get-global-group
-            method:"GET",
+            method: "GET",
             success: function (res) {
                 app.globalData.sobotData = res.data;
                 util.getUserInfoSobot(function () {
                     _this.setData({
-                        case1:true
+                        case1: true
                     });
                 });
                 _this.setData({
-                    transferAction:util.sobotTransfer(6)
+                    transferAction: util.sobotTransfer(6)
                 });
             }
         });
@@ -90,8 +88,8 @@ Page({
     onShow: function () {
         var sysinfo = app.globalData.sysInfo;
         this.setData({
-            width: (sysinfo.winWidth * 0.8) +'px',
-            height:(sysinfo.winWidth * 0.8  * 1.1)+'px'
+            width: (sysinfo.winWidth * 0.8) + 'px',
+            height: (sysinfo.winWidth * 0.8 * 1.1) + 'px'
         })
     },
 
@@ -131,56 +129,56 @@ Page({
     },
 
     //已解决
-    solveTap:function () {
+    solveTap: function () {
         var _this = this;
         util.NetRequest({
             url: 'directional-push/submit-confirm',
             data: {
                 pushid: _this.pushId,
-                code:1
+                code: 1
             },
             success: function (res) {
-                if(res.success == 0){
+                if (res.status) {
                     wx.redirectTo({
-                        url:'../directional_push_submit/directional_push_submit'
+                        url: '../directional_push_submit/directional_push_submit'
                     })
                 }
             }
         })
     },
 
-    bindTextAreaBlur:function (e) {
+    bindTextAreaBlur: function (e) {
         console.log(e.detail.value);
         this.setData({
             textContent: e.detail.value
         })
     },
 
-    noSolveTap:function () {
+    noSolveTap: function () {
         this.setData({
-            modalShow : true
+            modalShow: true
         })
     },
 
-    infoCancelTap:function () {
+    infoCancelTap: function () {
         this.setData({
-            modalShow : false
+            modalShow: false
         })
     },
 
-    infoOkTap:function(){
+    infoOkTap: function () {
         var _this = this;
         util.NetRequest({
             url: 'directional-push/submit-confirm',
             data: {
-                pushid: _this.pushId,
-                code:-2,
-                reason:_this.data.textContent
+                pushId: _this.pushId,
+                code: -2,
+                reason: _this.data.textContent
             },
             success: function (res) {
-                if(res.success == 0){
+                if (res.status) {
                     wx.redirectTo({
-                        url:'../directional_push_submit/directional_push_submit?type=1'
+                        url: '../directional_push_submit/directional_push_submit?type=1'
                     })
                 }
             }
