@@ -53,7 +53,7 @@ Page({
       data:config.Server+'wechat/h5/faq/details/'+id,
       success: function () {
           wx.navigateTo({
-              url: '../html/openHtml',
+              url: '../../html/openHtml',
           });
       }
     })
