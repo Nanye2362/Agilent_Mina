@@ -25,7 +25,7 @@ Page({
     }else{
       wx.removeStorageSync('AuthFromPage');
       wx.switchTab({
-        url: '/pages/index/index',
+        url: '../index/index',
       });
     } 
 

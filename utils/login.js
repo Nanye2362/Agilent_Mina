@@ -51,7 +51,7 @@ function login(params) {
             }else {
               that.globalData.needCheck = true;
               that.globalData.isFollow = false;
-              wx.setStorageSync('AuthFromPage',currentPage.route );
+              wx.setStorageSync('AuthFromPage',currentPage.route);
               wx.redirectTo({
                 url: '/pages/login/login'
               });

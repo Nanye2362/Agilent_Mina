@@ -73,8 +73,7 @@ Page({
           oldinstrumentlist[i].idx = i;
           instrumentList.push(oldinstrumentlist[i]);
         }      
-        // var gl = res.data.GroupList;
-        var gl=[{ID: "22", MOBILE: "13524148616", GroupName: "GC实验室"},{ID: "23", MOBILE: "13524148616", GroupName: "LC001"},{ID: "21", MOBILE: "13524148616", GroupName: "LC实验室1"}];
+        var gl = res.data.GroupList;
         var GroupList = [];
         for (var i in gl) {
           gl[i].filterActive = false;
@@ -82,13 +81,12 @@ Page({
           GroupList.push(gl[i]);
         }
 
-        // var ll = res.data.LabelList;
-        var tempLabelList=[{ID: "43", LabelName: "运行中", LabelColor: "yellow"},{ID: "44", LabelName: "故障中", LabelColor: "red"}];
+        var tempLabelList = res.data.LabelList;
         var LabelList = [];
         var object = {
-          ID: '',
-          LabelName: '不限',
-          LabelColor: '',
+          id: '',
+          labelName: '不限',
+          labelColor: '',
           filterActive: true,
           idx: 0,
           labelView: false,

@@ -42,15 +42,13 @@ Page({
             });
 
             util.NetRequest({
-                url: 'directional-push/get-offer-status',
-                data: {
-                    pushid: _this.pushId
-                },
+                url: 'directional-push/get-offer-status?pushId='+_this.pushId,
+                method:'GET',
                 success: function (res) {
-                    if(res.success == 0){
+                    if(res.status){
                         _this.setData({
-                            srId:res.data.srid,
-                            objectId: res.data.objectid,
+                            srId:res.data.srId,
+                            objectId: res.data.objectId,
                             isConfirm:res.data.isConfirm,
                             group:res.data.group,
                             pushId:_this.pushId
@@ -83,12 +81,10 @@ Page({
             });
 
             util.NetRequest({
-                url: 'directional-push/is-issue-solve',
-                data: {
-                    pushid: _this.pushId
-                },
+                url: 'directional-push/is-issue-solve?pushId='+_this.pushId,
+                method:'GET',
                 success: function (res) {
-                    if(res.success == 0){
+                    if(res.status){
                         _this.setData({
                             group:res.data.group
                         });
@@ -149,11 +145,11 @@ Page({
         util.NetRequest({
             url: 'directional-push/submit-confirm',
             data: {
-                pushid: _this.pushId,
+                pushId: _this.pushId,
                 code:1
             },
             success: function (res) {
-                if(res.success == 0){
+                if(res.status){
                     wx.redirectTo({
                         url:'../../budget_confirm/budget_confirm?srId='+_this.data.srId+'&objectId='+_this.data.objectId
                     })
@@ -173,7 +169,7 @@ Page({
                 reason:_this.data.textContent
             },
             success: function (res) {
-                if(res.success == 0){
+                if(res.status){
                     wx.switchTab({
                         url:'../../index/index'
                     })

@@ -83,7 +83,7 @@ Page({
         var invoiceDetails = {},
             currentInvoice = '';
         console.log(r.data.invoice)
-        if (typeof(r.data.invoice)!="undefined"){
+        if (r.data.invoice.length>0){
           currentInvoice = r.data.invoice[0].type == 0 ? 'normalInvoice' : 'specialInvoice';
         }else{
           that.setData({
@@ -123,7 +123,7 @@ Page({
             approval_button_enable: r.data.approval_button_enable,
             item_description: r.data.item_description,
           })
-        }else if(r.status == -90){
+        }else if(r.status == false){
           that.setData({
             pageComplete: true,
             pageShow: false,
@@ -132,13 +132,7 @@ Page({
             approval_button_enable: r.data.approval_button_enable,
             item_description: r.data.item_description,
           })
-        } else {
-          that.setData({
-            pageComplete: false,
-            pageShow: false,
-            info: r.errorInfo
-          })
-        }
+        } 
       }
     })
 
@@ -236,7 +230,7 @@ Page({
       url: 'api/v1/sr/bq',
       method:"POST",
       data: {
-        bq_id: this.data.bqId,
+        objectid:that.data.objectid,
         invoice: {
           "type": invoicedetails[currentInvoice].invoiceInfo.type,
           "title": invoicedetails[currentInvoice].invoiceInfo.title,

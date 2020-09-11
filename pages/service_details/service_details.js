@@ -101,10 +101,10 @@ Page({
 
   //前往评价
   clickToEvaluate: function (e) {
-    var Surveyid = e.currentTarget.dataset.surveyid;
-    var SerialID = e.currentTarget.dataset.srid;
+    var suveryid = e.currentTarget.dataset.surveyid;
+    var srid = e.currentTarget.dataset.srid;
     wx.navigateTo({
-      url: '../evaluate/evaluate?Surveyid=' + Surveyid + '&&SerialNo=' + SerialID
+      url: '../evaluate/evaluate?surveyid=' + suveryid + '&&srid=' + srid
     })
   },
 
@@ -177,10 +177,10 @@ Page({
 
   //查看我的评价
   clickToMyComment: function (e) {
-    var Surveyid = e.currentTarget.dataset.surveyid;
-    var SerialID = e.currentTarget.dataset.srid;
+    var suveryid = e.currentTarget.dataset.surveyid;
+    var srid = e.currentTarget.dataset.srid;
     wx.navigateTo({
-      url: '../evaluate/evaluate?Surveyid=' + Surveyid + '&&SerialNo=' + SerialID
+      url: '../evaluate/evaluate?surveyid=' + suveryid + '&&srid=' + srid
     })
     // wx.navigateTo({
     //   url: '../evaluation/evaluation?Surveyid=' + Surveyid + '&&SerialNo=' + SerialID
