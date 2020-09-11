@@ -12,7 +12,7 @@ var config = {
 
 };
 
-if (config.En =="STG"){
+if (config.En =="DEV"){
   config.Server ="https://qa.wechat.service.agilent.com/";
   //https://qa.wechat.service.agilent.com/
   // https://www.tst.kakao.service.agilent.com/
