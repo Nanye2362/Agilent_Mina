@@ -73,8 +73,7 @@ Page({
           oldinstrumentlist[i].idx = i;
           instrumentList.push(oldinstrumentlist[i]);
         }      
-        // var gl = res.data.GroupList;
-        var gl=[{ID: "22", MOBILE: "13524148616", GroupName: "GC实验室"},{ID: "23", MOBILE: "13524148616", GroupName: "LC001"},{ID: "21", MOBILE: "13524148616", GroupName: "LC实验室1"}];
+        var gl = res.data.GroupList;
         var GroupList = [];
         for (var i in gl) {
           gl[i].filterActive = false;

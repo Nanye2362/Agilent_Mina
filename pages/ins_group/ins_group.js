@@ -229,8 +229,8 @@ Page({
         success: function (res) {
           console.log(res);
           console.log(that.data.GroupList)
-          if(res.data.CurrentGroup.ID){
-            var curGroup = { id: res.data.CurrentGroup.ID, groupName: res.data.CurrentGroup.GroupName, GroupSnCount: "0", deleted: true, editting: false, idx: that.data.GroupList.length }
+          if(res.data.CurrentGroup.id){
+            var curGroup = { id: res.data.CurrentGroup.id, groupName: res.data.CurrentGroup.groupName, GroupSnCount: "0", deleted: true, editting: false, idx: that.data.GroupList.length }
             var gl = that.data.GroupList.concat(curGroup);
             console.log(gl)
             console.log(gl.length)
