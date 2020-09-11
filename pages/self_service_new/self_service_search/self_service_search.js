@@ -1,6 +1,6 @@
 // pages/search-list/search-list.js
 var util = require('../../../utils/util.js');
-
+const config = require("../../../config.js");
 Page({
 
   /**
@@ -48,9 +48,16 @@ Page({
   clickToFaqDetails: function (e) {
     console.log(e)
     var id = e.currentTarget.dataset.id;
-    wx.navigateTo({
-      url: '../self_service_detail/self_service_detail?id=' + id,
+    wx.setStorage({
+      key: "openHtmlUrl",
+      data:config.Server+'wechat/h5/faq/details/'+id,
+      success: function () {
+          wx.navigateTo({
+              url: '../html/openHtml',
+          });
+      }
     })
+    return false;
 
   },
 })

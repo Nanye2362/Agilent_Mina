@@ -13,16 +13,35 @@ Page({
     name:''
   },
 
-  isFolder: function (arr) {
+  isFolder: function (arr,lazer) {
     var that = this;
-    for (var i = 0; i < arr.length; i++) {
-      if (arr[i].children && arr[i].children.length > 0) {
+    for (let i = 0; i < arr.length; i++) {
+      if (arr[i].children && arr[i].children.length > 0 ) {
         arr[i].isFolder = true;
-        that.isFolder(arr[i].children);
+        arr[i].lazerNum = lazer;
+        arr[i].hasChildren = true;
+        arr[i].isOpen = true;
+        if(arr[i].hasOwnProperty('article_list') && arr[i].article_list.length > 0){
+          arr[i].hasArticle = true;
+          arr[i].isOpen = false;
+          //加lazer层
+          for(let j = 0;j < arr[i].article_list.length;j++){
+            arr[i].article_list[j].lazerNum = lazer + 1;
+          }
+        }
+        that.isFolder(arr[i].children,lazer+1);
+      } else if(arr[i].hasOwnProperty('article_list') && arr[i].article_list.length > 0){
+        arr[i].isFolder = true;
+        arr[i].lazerNum = lazer;
+        arr[i].hasArticle = true;
+        arr[i].isOpen = false;
+        //加lazer层
+        for(let j = 0;j < arr[i].article_list.length;j++){
+          arr[i].article_list[j].lazerNum = lazer + 1;
+        }
       } else {
         arr[i].isFolder = false;
       }
-      arr[i].isOpen = true;
     }
     return arr;
   },
@@ -75,7 +94,7 @@ Page({
         }
         
         console.log(outArr);
-        var tree = _this.isFolder(outArr);
+        var tree = _this.isFolder(outArr,1);
         console.log(tree);
         _this.setData({
           tree:tree,

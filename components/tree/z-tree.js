@@ -1,3 +1,4 @@
+const config = require("../../config.js");
 // components/tree/tree.js
 Component({
   /**
@@ -55,6 +56,7 @@ Component({
           that._findChild(id, arr[i].children)
         }
       }
+      console.log(arr);
       return arr;
     },
 
@@ -76,7 +78,7 @@ Component({
       const id = e.currentTarget.dataset.id;
       wx.setStorage({
         key: "openHtmlUrl",
-        data: 'https://qa.wechat.service.agilent.com/wechat/h5/faq/details/'+id,
+        data:config.Server+'wechat/h5/faq/details/'+id,
         success: function () {
             wx.navigateTo({
                 url: '/pages/html/openHtml',
