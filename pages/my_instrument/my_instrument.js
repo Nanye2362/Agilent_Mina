@@ -82,13 +82,12 @@ Page({
           GroupList.push(gl[i]);
         }
 
-        // var ll = res.data.LabelList;
-        var tempLabelList=[{ID: "43", LabelName: "运行中", LabelColor: "yellow"},{ID: "44", LabelName: "故障中", LabelColor: "red"}];
+        var tempLabelList = res.data.LabelList;
         var LabelList = [];
         var object = {
-          ID: '',
-          LabelName: '不限',
-          LabelColor: '',
+          id: '',
+          labelName: '不限',
+          labelColor: '',
           filterActive: true,
           idx: 0,
           labelView: false,
