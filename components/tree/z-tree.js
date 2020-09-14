@@ -52,6 +52,9 @@ Component({
       for (let i = 0; i < arr.length; i++) {
         if (arr[i].id == id) {
           arr[i].isOpen = !arr[i].isOpen;
+          if(arr[i].hasOwnProperty('hasBoth2')){
+            arr[i].hasBoth2 = !arr[i].hasBoth2;
+          }
           break;
         }
         if (arr[i].children && arr[i].children.length > 0) {

@@ -24,6 +24,10 @@ Page({
         if(arr[i].hasOwnProperty('article_list') && arr[i].article_list.length > 0){
           arr[i].hasArticle = true;
           arr[i].isOpen = false;
+          if(arr[i].hasChildren){
+            arr[i].hasBoth = true;
+            arr[i].hasBoth2 = true;
+          }
           //加lazer层
           for(let j = 0;j < arr[i].article_list.length;j++){
             arr[i].article_list[j].lazerNum = lazer + 1;
