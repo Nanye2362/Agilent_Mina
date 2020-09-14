@@ -87,7 +87,7 @@
               <view class="pro-name" wx:if="{{itm.product_name.length==0?false:true}}">{{itm.product_name}}</view>
               <!-- 产品图片 -->
               <view wx:if="{{itm.product_name.length==0}}">
-                <image-loader img-class='load_image' bindimageTap='skipHtml5Page'  default-image='/images/tempLoading.gif' img-link='{{itm.product_link}}' mode='widthFix' original-image='{{server}}{{itm.product_img}}' width="100%"  />
+                <image-loader img-class='load_image' bindimageTap='skipHtml5Page'  default-image='/images/tempLoading.gif' img-link='{{itm.product_link}}' mode='widthFix' original-image='{{itm.product_img}}' width="100%"  />
 
               </view>
               <view wx:if="{{itm.product_name.length!=0}}">
