@@ -37,6 +37,7 @@ Component({
       const url = e.currentTarget.dataset.url;
       if (isFolder) {
         const treeData = this._findChild(id, this.data.treeData);
+        console.log(treeData);
         this.setData({
           treeData: treeData
         })
