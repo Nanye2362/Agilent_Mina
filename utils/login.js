@@ -7,7 +7,6 @@ function login(params) {
   console.log('params:', params);
   var that = params;
   that.globalData.syncFlag = true;
-
   wx.login({
     success: function (res) {
       console.log(res);
@@ -28,29 +27,16 @@ function login(params) {
               if (!res1.available) {
                 wx.redirectTo({
                   url: '/pages/system-update/system-update'
-                });//发起网络请求
-                // wx.showModal({
-                //   title: '提示',
-                //   content: '系统维护中...暂时无法登录，给您造成不便，敬请谅解！',
-                //   success(res) {
-                //     return;
-                //     if (res.confirm) { 
-                //       console.log('用户点击确定')
-                //     } else if (res.cancel) {
-                //       console.log('用户点击取消')
-                //     }
-                //   }
-                // })
-
+                });
               } else {
                 // 请求后台login接口
-                wxlogin(res);
+                wxlogin(res,that);
               }
             }
           })
         } else {
           // 请求后台login接口
-          wxlogin(res);
+          wxlogin(res,that);
         }
 
       } else {
@@ -59,7 +45,7 @@ function login(params) {
     }
   });
 }
-function wxlogin(res) {
+function wxlogin(res,that) {
   //发起网络请求
   util.NetRequest({
     url: 'api/v1/wechat/login',
