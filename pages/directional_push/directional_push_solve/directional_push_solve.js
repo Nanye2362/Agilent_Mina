@@ -28,7 +28,7 @@ Page({
 
         app.mta.Page.init();
         util.NetRequest({
-            url: 'directional-push/is-issue-solve?pushId=' + _this.pushId,
+            url: 'api/v1/directional-push/is-issue-solve?pushId=' + _this.pushId,
             method: 'GET',
             success: function (res) {
                 if (res.status) {
@@ -132,9 +132,9 @@ Page({
     solveTap: function () {
         var _this = this;
         util.NetRequest({
-            url: 'directional-push/submit-confirm',
+            url: 'api/v1/directional-push/submit-confirm',
             data: {
-                pushid: _this.pushId,
+                pushId: _this.pushId,
                 code: 1
             },
             success: function (res) {
@@ -169,7 +169,7 @@ Page({
     infoOkTap: function () {
         var _this = this;
         util.NetRequest({
-            url: 'directional-push/submit-confirm',
+            url: 'api/v1/directional-push/submit-confirm',
             data: {
                 pushId: _this.pushId,
                 code: -2,
