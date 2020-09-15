@@ -1,0 +1,4 @@
+<!--pages/system-update/system-update.wxml-->
+<view class="welcome">
+    <view class="right">系统维护中...暂时无法登录，给您造成不便，敬请谅解！</view> 
+</view>

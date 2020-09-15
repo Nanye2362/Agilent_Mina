@@ -1,6 +1,7 @@
 var config = require('../config');
 var request = require('request');
 
+
 function formatTime(date) {
   var year = date.getFullYear()
   var month = date.getMonth() + 1
@@ -17,7 +18,7 @@ function formatTime(date) {
 function getUserInfoSobot(fun) {
   var that=this;
   setTimeout(function () {
-    that.NetRequest({
+    request.NetRequest({
       url: 'api/v1/wechat/sobot/user-info?check_vip=1',//site-mini/sobot-getuserinfo
       method:'GET',
       showload: false,

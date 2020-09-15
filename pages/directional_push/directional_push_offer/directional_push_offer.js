@@ -42,7 +42,7 @@ Page({
             });
 
             util.NetRequest({
-                url: 'directional-push/get-offer-status?pushId='+_this.pushId,
+                url: 'api/v1/directional-push/get-offer-status?pushId='+_this.pushId,
                 method:'GET',
                 success: function (res) {
                     if(res.status){
@@ -81,7 +81,7 @@ Page({
             });
 
             util.NetRequest({
-                url: 'directional-push/is-issue-solve?pushId='+_this.pushId,
+                url: 'api/v1/directional-push/is-issue-solve?pushId='+_this.pushId,
                 method:'GET',
                 success: function (res) {
                     if(res.status){
@@ -143,7 +143,7 @@ Page({
     confirmTap:function(){
         var _this = this;
         util.NetRequest({
-            url: 'directional-push/submit-confirm',
+            url: 'api/v1/directional-push/submit-confirm',
             data: {
                 pushId: _this.pushId,
                 code:1
@@ -162,7 +162,7 @@ Page({
     infoOkTap:function(){
         var _this = this;
         util.NetRequest({
-            url: 'directional-push/submit-confirm',
+            url: 'api/v1/directional-push/submit-confirm',
             data: {
                 pushid: _this.data.pushId,
                 code:2,

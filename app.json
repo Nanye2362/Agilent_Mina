@@ -61,7 +61,8 @@
     "pages/service_details/service_details",
     "pages/html/openHtml",
     "pages/auth_login/auth_login",
-    "pages/privacy-policy/privacy-policy"
+    "pages/privacy-policy/privacy-policy",
+    "pages/system-update/system-update"
   ],
   "networkTimeout": {
     "request": 180000

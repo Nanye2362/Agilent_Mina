@@ -11,17 +11,7 @@ page{
   box-sizing: border-box;
   position: relative;
 }
-.avatar{ width: 600rpx; height: 130rpx; }
-.motto{
-  margin-top: 50rpx;
-  color: #eee;
-}
-.bg{ 
-  position: absolute;
-  bottom: 100rpx;
-  width: 750rpx;
-  height: 381rpx;
- }
+
  .right{
    width: 400rpx;
    position: absolute;
@@ -30,20 +20,4 @@ page{
    left: 50%;
    margin-left: -200rpx;
    text-align: center;
- }
- .notReady{
-   margin-top: 50rpx;
- }
- .enter{
-   width: 300rpx;
-   height: 80rpx;
-   box-shadow: 0px 0px 1px 2px #AED1EE;
-   position: absolute;
-   bottom: 200rpx;
-   border-radius: 5px;
-   text-align: center;
-   line-height: 80rpx;
-   color: #eee;
-   left: 50%;
-   margin-left: -150rpx;
  }
