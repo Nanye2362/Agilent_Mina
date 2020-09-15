@@ -1,7 +1,6 @@
-var config = require('../config');
-var urlArr = ["api/v1/wechat/login", "api/v1/check-lunch"];//未登录可以使用的url
+
+var urlArr = ["api/v1/wechat/login", "api/v1/check-lunch","check-version"];//未登录可以使用的url
 let ocrServer = "https://ocr.wechat.learn.agilent.com/";
-let Server = config.Server; //UAT
 
 
 var arrRequest = [], isRequesting = false;
@@ -19,17 +18,17 @@ function clearRequestArr() {
   arrRequest = [];
 }
 
-function NetRequest({ url, data, success, fail, complete, method = "POST", showload = true, host = Server}) {
+function NetRequest({ url, data, success, fail, complete, method = "POST", showload = true, host = ''}) {
   var obj = { url: url, data: data, success: success, fail: fail, complete: complete, method: method, showload: showload, host: host };
   // console.log(obj);
-  console.log(data);
+  // console.log(data);
   if (showload) {
     showLoading();
   }
   var app = getApp();
   console.log("request url：" + obj.url);
   console.log("isloagin:" ,app);
-  console.log("isRequesting:" + isRequesting);
+  console.log("isRequesting:" , isRequesting,!in_array(url, urlArr));
   if (isRequesting || (!app.globalData.isLogin && !in_array(url, urlArr))) {
     var hasUrl = false;
     for (var i in arrRequest) {
@@ -58,7 +57,7 @@ function in_array(stringToSearch, arrayToSearch) {
   return false;
 }
 
-function _NetRequest({ url, data, success, fail, complete, method = "POST", showload = true, host = Server }) {
+function _NetRequest({ url, data, success, fail, complete, method = "POST", showload = true, host = '' }) {
   currObj = { url: url, data: data, success: success, fail: fail, complete: complete, method: method, showload: showload, host: host };
   var tempUrl = url;
   let app = getApp();
@@ -77,16 +76,19 @@ function _NetRequest({ url, data, success, fail, complete, method = "POST", show
   } else {
     var header = { 'content-type': 'application/json' }
   }
-
+  if(host==''){
+    var config = require('../config');
+    host = config.Server; //UAT
+  }
   url = host + url;
-
+  console.log('host:',host);
   wx.request({
     url: url,
     method: method,
     data: JSON.stringify(data),
     header: header,
     success: res => {
-      // console.log(res.data);
+      console.log('res url:',url);
       console.log(res);
       if (res.statusCode <= 300) {
         success(res.data);
@@ -109,9 +111,9 @@ function _NetRequest({ url, data, success, fail, complete, method = "POST", show
         // fail(res.data.error)
       } else if (res.statusCode == 401) {
         console.log('res.statusCode:', res.statusCode)
-        wx.hideLoading();
         wx.removeStorageSync('token');
         var loginApi = require('login');
+        wx.hideLoading();
         isRequesting = false;
         arrRequest.unshift(currObj);
         var aa = getApp();

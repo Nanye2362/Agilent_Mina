@@ -7,14 +7,14 @@ monitor.config({
   sampleRate: 1
 });*/
 import regeneratorRuntime from 'agilent/regenerator-runtime/runtime'
-var util = require('/utils/util.js');
+
 var miniAppupdate=require("/utils/miniAppupdate.js");
 var loginApi = require('/utils/login.js');
 //var aldstat = require("./utils/ald-stat.js");
 var mta = require('/utils/mta_analysis.js');
 var miniApp_env = "prod";// prod或uat
 var userMobile={};
-
+var util = require('/utils/util.js');
 
 console.log(userMobile);
 App({

@@ -61,18 +61,20 @@
       <z-tree tree="{{item.article_list}}"></z-tree>
     </view> -->
 
-    <view wx:if="{{item.isFolder && item.isOpen}}" class="item">
+    <view wx:if="{{item.isFolder && item.isOpen && !item.hasBoth}}" class="item">
       <z-tree tree="{{item.children}}"></z-tree>
     </view>
     <view wx:else class="item">
-      <view wx:if="{{item.hasArticle && item.hasChildren}}" class="item">
+      <view wx:if="{{item.hasArticle && item.hasChildren && item.hasBoth2}}" class="item">
         <z-tree tree="{{item.article_list}}"></z-tree> 
       </view>
-      <view wx:if="{{item.hasArticle && item.hasChildren}}" class="item">
+      <view wx:if="{{item.hasArticle && item.hasChildren && item.hasBoth2}}" class="item">
         <z-tree tree="{{item.children}}"></z-tree>
       </view>
       <view wx:else class="item">
-        <z-tree tree="{{item.article_list}}"></z-tree>
+        <view wx:if="{{!item.hasBoth}}">
+          <z-tree tree="{{item.article_list}}"></z-tree>
+        </view>
       </view>
     </view>
 
