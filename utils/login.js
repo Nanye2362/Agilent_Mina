@@ -1,7 +1,8 @@
 
 var config = require('../config');
 var util = require('util');
-var firstCheck = true;
+var firstCheck=true;
+var available=true;
 
 function login(params) {
   console.log('params:', params);
@@ -24,6 +25,7 @@ function login(params) {
               check.checkVersion(config);
               console.log('config:', config);
               firstCheck = null;
+              available=res1.available;
               if (!res1.available) {
                 wx.redirectTo({
                   url: '/pages/system-update/system-update'
@@ -36,7 +38,11 @@ function login(params) {
           })
         } else {
           // 请求后台login接口
-          wxlogin(res,that);
+          if(available){
+            wxlogin(res,that);
+          }else{
+            return;
+          }
         }
 
       } else {
@@ -56,6 +62,7 @@ function wxlogin(res,that) {
     showload: true,
     success: function (response) {
       console.log('login:', response);
+      available=false;
       that.globalData.isLoading = false;
       var pages = getCurrentPages(); //获取加载的页面
       var currentPage = pages[pages.length - 1]; //获取当前页面的对象  
