@@ -32,6 +32,10 @@ page{
    margin-left: -200rpx;
    text-align: center;
  }
+
+ .right view{
+  color: #fff;
+ }
  .notReady{
    margin-top: 50rpx;
  }

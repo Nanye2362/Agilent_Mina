@@ -75,11 +75,7 @@ function wxlogin(res,that) {
         that.globalData.isLogin = true;
         //that.gotoIndex();
         that.globalData.syncFlag = false;
-        if (currentPage.route == 'pages/initiate/initiate') {
-          wx.switchTab({
-            url: '/pages/index/index',
-          });
-        }
+        
         util.NetRequest({
           url: 'api/v1/wechat/get-global-group',//wechat-mini/get-global-group
           method: "GET",
@@ -89,6 +85,11 @@ function wxlogin(res,that) {
           }
         });
 
+        if (currentPage.route == 'pages/initiate/initiate') {
+          wx.switchTab({
+            url: '/pages/index/index',
+          });
+        }
       } else {
         that.globalData.needCheck = true;
         that.globalData.isFollow = false;     

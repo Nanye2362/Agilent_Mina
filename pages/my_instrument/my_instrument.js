@@ -446,7 +446,7 @@ Page({
       for (var i = 0; i < filterList.length; i++) {
         var delLabel = true;
         for (var j in filterList[i].LabelList) {
-          if (InstrumentList[i].LabelList[j].LabelName == selectLabel) {
+          if (InstrumentList[i].LabelList[j].labelName == selectLabel) {
             delLabel = false;
           }
         }

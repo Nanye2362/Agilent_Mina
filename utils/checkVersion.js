@@ -1,6 +1,6 @@
 // 检测版本的通用方法
 function checkVersion(config) {
-  if (config.En == "DEV") {
+  if (config.En == "QA") {
     config.Server = "https://qa.wechat.service.agilent.com/";
     //https://qa.wechat.service.agilent.com/
     // https://www.tst.kakao.service.agilent.com/

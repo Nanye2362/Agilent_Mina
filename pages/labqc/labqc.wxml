@@ -20,7 +20,7 @@
 
 
   <!-- engineer -->
-  <view wx:if='{{roleInfo.is_engineer>0}}' class='CN'>
+  <view wx:if='{{roleInfo.is_engineer}}' class='CN'>
     <!-- tab -->
     <view class="sl_tab flex">
         <view class="sl_tab_item  {{currentTab==0 ? 'on' : ''}}" circular="true" data-current="0" bindtap="swichNav">软件安装信息</view>

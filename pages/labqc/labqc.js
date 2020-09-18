@@ -83,10 +83,13 @@ onShow: function (options) {
       console.log(res)
       //添加后缀
       var str = res.data.lab.attachments;
-      for(let i = 0;i < str.length;i++){
-        var index = res.data.lab.attachments[i].name.lastIndexOf("\.");
-        str[i].file_ext = str[i].name.substring(index+1,str[i].name.length);
+      console.log(str);
+    
+      for(var i in str ){
+          var index = res.data.lab.attachments[i].name.lastIndexOf("\.");
+          str[i].file_ext = str[i].name.substring(index+1,str[i].name.length);
       }
+
       //添加后缀
       if (res.data.is_engineer > 0){
         console.log(1111);
@@ -98,14 +101,14 @@ onShow: function (options) {
           ISENGINEER: res.data.is_engineer,
         })
       }else{
-        if (res.data.permission) {
-          if (res.data.lab.keyword) {
+        if (!res.data.needAuth) {
+          if (res.data.permission) {
             that.setData({
               roleInfo: res.data,
               ldInfo: res.data.lab,
               mrInfo: res.data.maintenance,
               fileList: res.data.lab.attachments,
-              ISAUTH: res.data.permission,
+              ISAUTH: !res.data.needAuth,
               ISENGINEER: res.data.is_engineer,
               Soft: 'SW_lid:' + res.data.lab.id,
               Hard: 'W_lid:' + res.data.lab.id,
@@ -216,7 +219,7 @@ confirmAdd: function(){
   var that = this
   if(this.data.inputValue!=''){
     util.NetRequest({
-      url: 'api/v1/maintenance',
+      url: 'api/v1/lab/maintenance',
       data: {
         content: that.data.inputValue,
         name: that.data.roleInfo.lab.engineer,
