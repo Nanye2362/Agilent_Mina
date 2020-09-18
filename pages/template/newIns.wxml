@@ -81,33 +81,33 @@
           <view class="mi_ti_l_item flex">
               <view class="mi_item_l fs13 fc-aaa">型号：</view>
               <view class="mi_item_r fs13 flex">
-                <view class='fs13'>{{item.ProductId}}</view>
+                <view class='fs13'>{{item.model}}</view>
                 <!-- label -->
                 <block  wx:for="{{item.LabelList}}" wx:for-item="labelItem" wx:key='unique'>
-                  <view class='mi_label {{labelItem.LabelColor}}'>{{labelItem.LabelName}}</view>
+                  <view class='mi_label {{labelItem.labelColor}}'>{{labelItem.labelName}}</view>
                 </block>
                 <!-- label -->
               </view>
           </view>
           <view class="mi_ti_l_item flex">
               <view class="mi_item_l fs13 fc-aaa">序列号：</view>
-              <view class="mi_item_r fs13">{{item.SerialNo}}</view>
+              <view class="mi_item_r fs13">{{item.sn}}</view>
           </view>         
           <view class="mi_ti_l_item flex">
               <view class="mi_item_l fs13 fc-aaa">描述：</view>
               <view class="mi_item_r fs13 flex">
-                  <view class="fs13">{{item.ProductDesc}}</view>
+                  <view class="fs13">{{item.product_desc}}</view>
                   
               </view>
           </view>
           <view class="mi_ti_l_item flex">
               <view class="mi_item_l fs13 fc-aaa">备注：</view>
-              <view class="mi_item_r fs13">{{item.Remark}}</view>
+              <view class="mi_item_r fs13">{{item.remark}}</view>
           </view>
       </view>
       <!-- set -->
       <view class="mi_ti_right text-center repair_history" >
-        <checkbox color='#0085d5' value="{{item.SerialNo}}" checked="{{item.checked}}"/> 
+        <checkbox color='#0085d5' value="{{item.sn}}" checked="{{item.checked}}"/> 
       </view>
       <!-- set -->
     </label >
