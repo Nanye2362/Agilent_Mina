@@ -22,7 +22,7 @@ Page({
     }else if(config.En=="STG"){
       url="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxbed9f0dd30870bab&redirect_uri=https%3a%2f%2fstg.wechat.service.agilent.com%2fwechat%2fh5%2fauth-login&response_type=code&scope=snsapi_userinfo&state=123#wechat_redirect"
     }else{
-      url ="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxf939d5b301703b2f&redirect_uri=https%3a%2f%2fprd.wechat.service.agilent.com%2fsite%2fauth-login&response_type=code&scope=snsapi_userinfo&state=123#wechat_redirect"
+      url ="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxf939d5b301703b2f&redirect_uri=https%3a%2f%2fprd.wechat.service.agilent.com%2fwechat%2fh5%2fauth-login&response_type=code&scope=snsapi_userinfo&state=123#wechat_redirect"
     }
 
     this.setData({

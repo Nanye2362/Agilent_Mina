@@ -83,38 +83,38 @@ Page({
         var invoiceDetails = {},
             currentInvoice = '';
         console.log(r.data.invoice)
-        if (r.data.invoice.length>0){
-          currentInvoice = r.data.invoice[0].type == 0 ? 'normalInvoice' : 'specialInvoice';
-        }else{
-          that.setData({
-            hasInvoice: false,
-          })
-        }
-        console.log(r.data.invoice);
-        console.log(currentInvoice);
-
-        if (r.data.invoice.length!=''){
-          //for (var i in r.data.InvoiceInfo){
-            that.setInvoiceInfo(r.data.invoice[0])
-          //}
-          invoiceDetails = that.data.invoiceDetails
-          console.log(invoiceDetails);
-          that.setData({
-            invoiceInfo: invoiceDetails[currentInvoice].invoiceInfo,
-            sendInfo: invoiceDetails[currentInvoice].sendInfo,
-            needBill: invoiceDetails[currentInvoice].needBill,
-            PO: invoiceDetails[currentInvoice].PO,
-            currentInvoice: currentInvoice,
-          })
-        }
-        else{
-          // if (wx.getStorageSync('invoiceDetails') != '') {
-          //   that.getInvoiceInfoStorage(that);
-          // }
-          wx.setStorageSync('invoiceDetails', {});
-        }
-
-        if (r.status == true) {
+      
+        if (r.data.status != false) {
+          if (r.data.invoice.length>0){
+            currentInvoice = r.data.invoice[0].type == 0 ? 'normalInvoice' : 'specialInvoice';
+          }else{
+            that.setData({
+              hasInvoice: false,
+            })
+          }
+          console.log(r.data.invoice);
+          console.log(currentInvoice);
+  
+          if (r.data.invoice.length!=''){
+            //for (var i in r.data.InvoiceInfo){
+              that.setInvoiceInfo(r.data.invoice[0])
+            //}
+            invoiceDetails = that.data.invoiceDetails
+            console.log(invoiceDetails);
+            that.setData({
+              invoiceInfo: invoiceDetails[currentInvoice].invoiceInfo,
+              sendInfo: invoiceDetails[currentInvoice].sendInfo,
+              needBill: invoiceDetails[currentInvoice].needBill,
+              PO: invoiceDetails[currentInvoice].PO,
+              currentInvoice: currentInvoice,
+            })
+          }
+          else{
+            // if (wx.getStorageSync('invoiceDetails') != '') {
+            //   that.getInvoiceInfoStorage(that);
+            // }
+            wx.setStorageSync('invoiceDetails', {});
+          }
           that.setData({
             pageComplete: true,
             pageShow: true,
@@ -123,7 +123,7 @@ Page({
             approval_button_enable: r.data.approval_button_enable,
             item_description: r.data.item_description,
           })
-        }else if(r.status == false){
+        }else if(r.data.status == false){
           that.setData({
             pageComplete: true,
             pageShow: false,
@@ -185,6 +185,7 @@ Page({
     console.log('radio发生change事件，携带value值为：', e.detail.value);
     var currentInvoice;
     var title = wx.getStorageSync('sobot_company');
+    
     if(e.detail.value==0){
       currentInvoice ='normalInvoice';
     }else{
@@ -232,7 +233,7 @@ Page({
       data: {
         objectid:that.data.objectid,
         invoice: {
-          "type": invoicedetails[currentInvoice].invoiceInfo.type,
+          "type": invoicedetails[currentInvoice].invoiceType,
           "title": invoicedetails[currentInvoice].invoiceInfo.title,
           "taxpayer_recognition_number":invoicedetails[currentInvoice].invoiceInfo.taxNumber,
           "bank": invoicedetails[currentInvoice].invoiceInfo.bankName,
