@@ -120,6 +120,8 @@ Page({
             pageShow: true,
             bqId: options.objectId,
             isConfirm: r.data.is_confirmed,
+            price: r.data.gross_value,
+            maxprice:r.data.max_price,
             approval_button_enable: r.data.approval_button_enable,
             item_description: r.data.item_description,
           })
@@ -129,6 +131,8 @@ Page({
             pageShow: false,
             bqId: options.objectId,
             isConfirm: r.data.is_confirmed,
+            price: r.data.gross_value,
+            maxprice:r.data.max_price,
             approval_button_enable: r.data.approval_button_enable,
             item_description: r.data.item_description,
           })
