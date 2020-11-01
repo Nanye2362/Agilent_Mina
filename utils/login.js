@@ -71,7 +71,7 @@ function wxlogin(res,that) {
         that.globalData.needCheck = false;
         wx.setStorageSync('token', response.data.token);
         wx.setStorageSync('MOBILE', response.data.user.mobile);
-        wx.setStorageSync('OPENID', response.data.openid);
+        wx.setStorageSync('mini_openid', response.data.user.mini_openid);
         that.globalData.isLogin = true;
         //that.gotoIndex();
         that.globalData.syncFlag = false;
@@ -81,7 +81,9 @@ function wxlogin(res,that) {
           method: "GET",
           showload: false,
           success: function (res1) {
-            that.globalData.sobotData = res1.data;
+            if(res1.status === true){
+              that.globalData.sobotData = res1.data;
+            }
           }
         });
 

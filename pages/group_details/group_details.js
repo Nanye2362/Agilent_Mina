@@ -230,7 +230,7 @@ Page({
         console.log(res);
         if (res.status == true) {
           wx.redirectTo({
-            url: '../confirm_info/confirm_info' + '?id=' + res.data.id+"&aglNum=" + res.data.AglSN + '&CanRepair=' + res.data.canRepair + '&group=' + JSON.stringify(res.data.group),
+            url: '../confirm_info/confirm_info' + '?id=' + res.data.id+"&aglNum=" + res.data.AglSN + '&CanRepair=' + res.data.canRepair + '&group=' + JSON.stringify(res.data.group) + '&needChat=1',
           })
           // wx.redirectTo({
           //   url: '../confirm_info/confirm_info' + '?ProductId=' + res.ProductId + '&ProductDesc=' + res.ProductDesc + '&SerialNo=' + res.SerialNo + '&CpName=' + res.CpName + '&ShipToName=' + res.ShipToName,
@@ -258,7 +258,7 @@ Page({
     var id = event.currentTarget.dataset.id;
     var pi = event.currentTarget.dataset.pi;
     var idx = event.currentTarget.dataset.idx;
-    console.log(sn + pi);
+
     var detailList = this.data.detailList;
     wx.showModal({
       title: '提示',
@@ -266,7 +266,7 @@ Page({
       success: function (res) {
         if (res.confirm) {
           util.NetRequest({
-            url: ' api/v1/instrument/'+id,//sr/delete-instrument
+            url: 'api/v1/instrument/'+id,//sr/delete-instrument
             method:"DELETE",
             data: {
               // 'SerialNo': sn,
