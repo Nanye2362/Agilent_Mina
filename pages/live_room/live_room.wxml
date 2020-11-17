@@ -1,0 +1,29 @@
+<view class="tui-container">
+    <swiper indicator-dots="true" autoplay="true" interval="5000" duration="150" class="tui-banner-swiper" circular="{{true}}">
+        <swiper-item wx:for="{{banner}}" wx:key="{{index}}" catchtap="bannerDetail">
+            <view class="tui-banner-title">{{item.title}}</view>
+            <image src="{{item.img}}" class="tui-slide-image" mode="widthFix" />
+        </swiper-item>
+    </swiper>
+
+    <view class="news-list">
+        <block wx:for="{{newsList}}" wx:key="{{index}}">
+            <view class="list-item">
+                <view class="list-title">{{item.title}}</view>
+                <view class="list-content">
+                    <image src="{{item.img}}" mode="widthFix" class="list-image"></image>
+                    <view class="list-content-right">
+                        <view class="series">{{item.source}}</view>
+                        <view class="button-t" bindtap="toPlayBack">
+                            <view class="button-r"></view>
+                            <tui-tag  tui-tag-class="tui-white" >
+                                精彩回顾
+                            </tui-tag>
+                        </view>
+
+                    </view>
+                </view>
+            </view>
+        </block>
+    </view>
+</view>

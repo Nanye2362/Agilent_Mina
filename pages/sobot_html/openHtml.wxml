@@ -1,0 +1,2 @@
+<!--pages/html/openHtml.wxml-->
+<web-view src="{{openHtmlUrl}}"></web-view>

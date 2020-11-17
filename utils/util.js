@@ -51,6 +51,7 @@ function sobotTransfer(id) {
   var r = app.globalData.sobotData;
   for(var i = 0; i < r.length; i++){
     if(r[i]['id'] == id){
+      console.log('sobot-transfer:',r[i])
       return RtransferAction(r[i])
     }
   }
@@ -63,6 +64,7 @@ function RtransferAction(r) {
     return ''
   } else {
     console.log("进入")
+    console.log(r)
     var result = []
     var keys = Object.keys(r)
     console.log(keys);
