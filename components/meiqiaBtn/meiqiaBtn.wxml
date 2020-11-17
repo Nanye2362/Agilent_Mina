@@ -6,11 +6,13 @@ formType="{{formType}}" disabled="{{disabled}}" >
 
 <button class="btn-class" 
         bindtap="meiqiaBtnTap" 
-        open-type='{{isWork?"contact":""}}' 
+
         session-from="sobot|{{nickName}}|{{avatarUrl}}|{{sessionFromFormat}}"
         data-group="{{meqiaGroup}}"
         formType="{{formType}}" 
-        disabled="{{disabled}}">
+        disabled="{{disabled}}"
+        robotid="{{robotid}}"
+>
 <slot></slot>
 </button>
 

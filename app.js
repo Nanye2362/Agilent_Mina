@@ -60,6 +60,19 @@ App({
         }
       }
     });
+    wx.onAppRoute((route) => {
+      console.log('onAppRoute:', route);
+      console.log('that.globalData.needCheck:', that.globalData.needCheck);
+      if (route.openType != 'switchTab'&& route.path != 'pages/initiate/initiate' && route.path != 'pages/login/login' && route.path != 'pages/auth_login/auth_login'&&route.path!='pages/privacy-policy/privacy-policy'&&route.path!='pages/jump_page/jump_page') {
+        if (that.globalData.needCheck) {
+          console.log('reLaunch:', route.path);
+          wx.reLaunch({
+            url: '/pages/login/login'
+          })
+        }
+      }
+      return false;
+    })
 },
 
   async onShow(res) {

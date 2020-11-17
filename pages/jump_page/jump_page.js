@@ -17,7 +17,7 @@ Page({
   onLoad: function (options) {
     // this.wxlogin();
     console.log("wx.getStorageSync('AuthFromPage'):",wx.getStorageSync('AuthFromPage'));
-    if( wx.getStorageSync('AuthFromPage')!= ''&& wx.getStorageSync('AuthFromPage')!= 'pages/initiate/initiate'){
+    if( wx.getStorageSync('AuthFromPage')!= ''&& wx.getStorageSync('AuthFromPage')!= 'pages/initiate/initiate'&& wx.getStorageSync('AuthFromPage')!= 'pages/index/index'){
       wx.navigateTo({
         url:'/'+ wx.getStorageSync('AuthFromPage') ,
       })
@@ -80,62 +80,4 @@ Page({
 
   },
 
-  wxlogin() {
-    var that = this;
-
-    app.globalData.syncFlag = true;
-    wx.login({
-      success: function (res) {
-        console.log(res);
-        if (res.code) {
-          //发起网络请求
-          util.NetRequest({
-            url: 'wechat-api/v1/wechat/login/wx-login',
-            data: {
-              code: res.code,
-              userMobile: JSON.stringify(app.userMobile)
-            },
-            showload: false,
-            success: function (r) {
-              app.globalData.isLoading = false;
-              console.log(r);
-              if (r.success == true) {
-                app.globalData.needCheck = false;
-                wx.setStorageSync('MOBILE', r.data.mobile);
-                wx.setStorageSync('OPENID', r.data.openid);
-                app.globalData.isLogin = true;
-                //that.gotoIndex();
-
-                app.globalData.syncFlag = false;
-
-                util.NetRequest({
-                  url: 'api/v1/wechat/get-global-group',//wechat-mini/get-global-group
-                  method:"GET",
-                  showload: false,
-                  success: function (res1) {
-                    app.globalData.sobotData = res1.data;
-
-                    wx.switchTab({
-                      url: '/pages/index/index',
-                    });
-                  }
-                });
-
-              }else {
-                app.globalData.needCheck = true;
-                wx.navigateTo({
-                  url: '/pages/login/login'
-                });
-              }
-            },
-            fail:function(){
-              that.wxlogin();
-            }
-          })
-        } else {
-          console.log('获取用户登录态失败！' + res.errMsg)
-        }
-      }
-    });
-  },
 })

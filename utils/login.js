@@ -61,12 +61,12 @@ function wxlogin(res,that) {
     },
     showload: true,
     success: function (response) {
-      console.log('login:', response);
       available=false;
       that.globalData.isLoading = false;
       var pages = getCurrentPages(); //获取加载的页面
       var currentPage = pages[pages.length - 1]; //获取当前页面的对象  
       wx.setStorageSync('AuthFromPage', currentPage.route);
+      console.log('login:', response,currentPage.route);
       if (response.status == true) {
         that.globalData.needCheck = false;
         wx.setStorageSync('token', response.data.token);
@@ -94,10 +94,14 @@ function wxlogin(res,that) {
         }
       } else {
         that.globalData.needCheck = true;
-        that.globalData.isFollow = false;     
-        wx.redirectTo({
-          url: '/pages/login/login'
-        });//发起网络请求
+        that.globalData.isFollow = false;   
+        wx.switchTab({
+          url: '/pages/index/index',
+        });
+        // 新用户授权页
+        // wx.redirectTo({
+        //   url: '/pages/login/login'
+        // });//发起网络请求
       }
     },
     fail: function () {

@@ -1,93 +1,74 @@
-// pages/initiate/initiate.js
-import regeneratorRuntime from '../../agilent/regenerator-runtime/runtime'
-var util = require('../../utils/util.js');
-var app = getApp();
+// pages/html/openHtml.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    openHtmlUrl:""
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    // var _this = this;
-    // setTimeout(function () {
-    //   _this.wxlogin();
-    //   /*wx.redirectTo({
-    //     url: '/pages/login/login'
-    //   });*/
-    // }, 1000)
-
-
-    //
+    var that=this;
+    wx.getStorage({
+      key: 'sobotHtmlUrl',
+      success: function (res) {
+        that.setData({
+          openHtmlUrl:res.data
+        })
+      }
+    })
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+  
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    var token = wx.getStorageSync('token');
-    if (token != '') {
-      console.log('token:',token)
-      if (getApp().globalData.needCheck == true) {
-        loginApi.login({ showLoad: false })
-      } else {
-        setTimeout(
-          function () {
-            wx.switchTab({
-              url: '../index/index',
-            })
-            console.log('welcome页面正在跳转');
-          }, 3000);
-      }
-    }
+  
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-
+  
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-
+  
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+  
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+  
   },
 
   /**
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-
-  },
-
+  
+  }
 })
