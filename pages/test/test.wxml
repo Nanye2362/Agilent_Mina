@@ -8,4 +8,5 @@
      <view>这是一个<view bindtap="tapTest">13774494464</view>弹窗测试</view>
 </modal>-->
 
-<web-view src="https://qa.wechat.service.agilent.com/test/test135"></web-view>
+<!-- <web-view src="https://qa.wechat.service.agilent.com/test/test135"></web-view> -->
+<signature></signature>

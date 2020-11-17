@@ -86,7 +86,7 @@
         "pagePath": "pages/index/index",
         "text": "首页",
         "iconPath": "/images/home.png",
-        "selectedIconPath": "images/home_c.png"
+        "selectedIconPath": "/images/home_c.png"
       },
       {
         "pagePath": "pages/mechat_list/mechat_list",
@@ -103,8 +103,8 @@
       {
         "pagePath": "pages/myhome/myhome",
         "text": "我的",
-        "iconPath": "images/my.png",
-        "selectedIconPath": "images/my_c.png"
+        "iconPath": "/images/my.png",
+        "selectedIconPath": "/images/my_c.png"
       }
     ]
   },
