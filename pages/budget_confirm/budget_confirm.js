@@ -7,6 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    showSignature:false,
     nickName:'',
     avatarUrl: '',
     transferAction: '',
@@ -352,6 +353,12 @@ Page({
       }
 
     });
+  },
+  // 签名
+  toSignature:function(){
+    this.setData({
+      showSignature:true
+    })
   },
   //检测工作时间
   MtaReport: function () {

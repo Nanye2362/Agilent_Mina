@@ -85,7 +85,7 @@ page{
 }
 
 .bq_checkbox_panel{
-  margin-top: 120rpx;
+  /* margin-top: 120rpx; */
   padding: 0 50rpx;
 }
 
@@ -116,4 +116,12 @@ page{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+}
+.signature_panel{
+}
+.signature_content{
+  width:100%;
+  height: 200rpx;
+  margin-top: 12rpx ;
+  border: 2rpx solid #cbcbcb;
 }

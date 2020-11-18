@@ -1,5 +1,5 @@
 <!--components/signature/signature.wxml-->
-<view class="wrapper">
+<view class="wrapper" wx:if="{{showSignature}}">
   <view class="handBtn">
     <button catchtap="goBack" class="returnBtn delBtn">返回</button> 
     <button catchtap="retDraw" class="delBtn">清除</button>

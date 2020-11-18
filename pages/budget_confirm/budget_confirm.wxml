@@ -1,9 +1,8 @@
 <!--pages/budget_confirm/budget_confirm.wxml-->
+<signature showSignature="{{showSignature}}"></signature>
 <block wx:if="{{!pageComplete}}">
 	<view>{{info}}</view>
 </block>
-
-
 <block wx:if="{{pageComplete}}">
 	<view class="budget_confirm padding">
 		<view class="bc_title fs20 text-center">
@@ -47,6 +46,11 @@
 	<view class="bq_status_panel" wx:if="{{pageShow}}">
 		<block wx:if="{{approval_button_enable=='Y'}}">
 			<block wx:if="{{isConfirm==0}}">
+				<!-- 签名区域 -->
+				<view class='signature_panel padding'>
+					<label>联系人签字</label>
+					<view class="signature_content" bindtap="toSignature"></view>
+				</view>
 				<view class="bq_checkbox_panel">
 					<checkbox-group bindchange="contractConfirm">
 						<label class="checkbox">
@@ -111,7 +115,7 @@
 		</view>
 	</view>
 </view>
-
+<!-- 是否确认报价单弹窗 -->
 <view class="shLoading" wx:if="{{confirmShow}}">
 	<view class="shLoading-mask1">
 	</view>

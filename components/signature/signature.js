@@ -4,7 +4,10 @@ Component({
    * 组件的属性列表
    */
   properties: {
-
+    showSignature:{
+      type:Boolean,
+      value:false
+    }
   },
 
   /**
@@ -342,6 +345,9 @@ Component({
     // 返回
     goBack(){
       console.log('返回:');
+      this.setData({
+        showSignature:false
+      })
     },
     // 清除
     retDraw() {
@@ -353,6 +359,7 @@ Component({
     // 完成 上传图片
     subCanvas(e) {
       console.log('上传图片:', e);
+      var that=this;
       // 保存到相册
       wx.canvasToTempFilePath({
         canvasId: 'handWriting',
@@ -369,6 +376,9 @@ Component({
                 icon: 'success',
                 duration: 2000
               });
+              that.setData({
+                showSignature:false
+              })
             },
             fail: function (err) {
               console.log('保存图片失败：', err);
