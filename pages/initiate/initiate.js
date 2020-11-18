@@ -44,7 +44,7 @@ Page({
     if (token != '') {
       console.log('initiate有token:',token)
       if (getApp().globalData.needCheck == true) {
-        loginApi.login({ showLoad: false })
+        loginApi.login();
       } else {
         setTimeout(
           function () {
@@ -54,9 +54,6 @@ Page({
             console.log('welcome页面正在跳转');
           }, 3000);
       }
-    }else{
-      console.log('initiate没有token');
-      loginApi.login({ showLoad: false })
     }
   },
 
