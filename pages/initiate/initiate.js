@@ -1,6 +1,7 @@
 // pages/initiate/initiate.js
 import regeneratorRuntime from '../../agilent/regenerator-runtime/runtime'
 var util = require('../../utils/util.js');
+var loginApi = require('/utils/login.js');
 var app = getApp();
 Page({
 
@@ -39,8 +40,9 @@ Page({
    */
   onShow: function () {
     var token = wx.getStorageSync('token');
+    console.log('initiate token',token);
     if (token != '') {
-      console.log('token:',token)
+      console.log('initiate有token:',token)
       if (getApp().globalData.needCheck == true) {
         loginApi.login({ showLoad: false })
       } else {
