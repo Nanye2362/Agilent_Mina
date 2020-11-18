@@ -44,7 +44,7 @@ Page({
     if (token != '') {
       console.log('initiate有token:',token)
       if (getApp().globalData.needCheck == true) {
-        loginApi.login();
+        loginApi.login(this);
       } else {
         setTimeout(
           function () {
