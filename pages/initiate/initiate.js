@@ -1,7 +1,7 @@
 // pages/initiate/initiate.js
 import regeneratorRuntime from '../../agilent/regenerator-runtime/runtime'
 var util = require('../../utils/util.js');
-var loginApi = require('/utils/login.js');
+var loginApi = require('../../utils/login.js');
 var app = getApp();
 Page({
 
