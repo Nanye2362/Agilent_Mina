@@ -17,6 +17,8 @@ Page({
   onLoad: function (options) {
     // this.wxlogin();
     console.log("wx.getStorageSync('AuthFromPage'):",wx.getStorageSync('AuthFromPage'));
+    getApp().globalData.needCheck = false;
+    getApp().globalData.isFollow = true;
     if( wx.getStorageSync('AuthFromPage')!= ''&& wx.getStorageSync('AuthFromPage')!= 'pages/initiate/initiate'&& wx.getStorageSync('AuthFromPage')!= 'pages/index/index'){
       wx.navigateTo({
         url:'/'+ wx.getStorageSync('AuthFromPage') ,
