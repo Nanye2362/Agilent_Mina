@@ -39,6 +39,7 @@ function login(params) {
         } else {
           // 请求后台login接口
           if(available){
+            available=false;
             wxlogin(res,that);
           }else{
             return;
@@ -61,7 +62,6 @@ function wxlogin(res,that) {
     },
     showload: true,
     success: function (response) {
-      available=false;
       that.globalData.isLoading = false;
       var pages = getCurrentPages(); //获取加载的页面
       var currentPage = pages[pages.length - 1]; //获取当前页面的对象  
@@ -93,8 +93,12 @@ function wxlogin(res,that) {
           });
         }
       } else {
+        // 登录失败需要
         that.globalData.needCheck = true;
+        // 提醒新用户关注公众号
         that.globalData.isFollow = false;   
+        that.globalData.isLogin = true;
+        wx.setStorageSync('token', response.data.token);
         wx.switchTab({
           url: '/pages/index/index',
         });
@@ -106,6 +110,9 @@ function wxlogin(res,that) {
     },
     fail: function () {
       login();
+    },
+    complete:function(){
+      available=true;
     }
   })
 }

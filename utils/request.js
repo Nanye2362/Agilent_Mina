@@ -1,5 +1,5 @@
-
-var urlArr = ["api/v1/wechat/login", "api/v1/check-lunch","check-version"];//未登录可以使用的url
+// "api/v1/check-lunch",
+var urlArr = ["api/v1/wechat/login", "check-version"];//未登录可以使用的url
 let ocrServer = "https://ocr.wechat.learn.agilent.com/";
 
 
@@ -26,11 +26,12 @@ function NetRequest({ url, data, success, fail, complete, method = "POST", showl
     showLoading();
   }
   var app = getApp();
-  console.log("request url：" + obj.url);
-  console.log("isloagin:" ,app);
-  console.log("isRequesting:" , isRequesting,!in_array(url, urlArr));
+  console.log("request url：" + url);
+  console.log("isRequesting:" , isRequesting,!app.globalData.isLogin,!in_array(url, urlArr));
+  // (!app.globalData.isLogin && !in_array(url, urlArr))
   if (isRequesting || (!app.globalData.isLogin && !in_array(url, urlArr))) {
     var hasUrl = false;
+    console.log('arrRequest前：',arrRequest);
     for (var i in arrRequest) {
       if (arrRequest[i].url == obj.url) {
         hasUrl = true;
@@ -38,9 +39,10 @@ function NetRequest({ url, data, success, fail, complete, method = "POST", showl
       }
     }
     if (!hasUrl) {
-      arrRequest.push(obj);
+      console.log('arrRequest添加的Url;',obj);
+      arrRequest.push(obj); 
+      console.log('arrRequest后：',arrRequest);
     }
-    console.log(arrRequest);
     return;
   }
   isRequesting = true;
@@ -62,12 +64,11 @@ function _NetRequest({ url, data, success, fail, complete, method = "POST", show
   var tempUrl = url;
   let app = getApp();
 
-  if (!in_array(url, urlArr) && app.globalData.needCheck) {
-    isRequesting = false;
-
-    arrRequest = [];
-    return false;
-  }
+  // if (!in_array(url, urlArr) && app.globalData.needCheck) {
+  //   isRequesting = false;
+  //   arrRequest = [];
+  //   return false;
+  // }
 
   //替换成token
   var token = wx.getStorageSync('token');
@@ -115,7 +116,9 @@ function _NetRequest({ url, data, success, fail, complete, method = "POST", show
         var loginApi = require('login');
         wx.hideLoading();
         isRequesting = false;
-        arrRequest.unshift(currObj);
+        // 401向请求队列添加请求
+        arrRequest.push(currObj);
+        console.log('token过期后arrRequest：',arrRequest[0],arrRequest.length);
         var aa = getApp();
         loginApi.login(getApp());
         return;
@@ -199,9 +202,11 @@ function _NetRequest({ url, data, success, fail, complete, method = "POST", show
         if (typeof (complete) == 'function') {
           complete();
         }
-
+        
         if (arrRequest.length != 0) {
+          console.log('complete的arrRequest前:',arrRequest);
           var obj = arrRequest.shift();
+          console.log('complete的arrRequest后:',arrRequest);
           _NetRequest(obj);
         }
       }
