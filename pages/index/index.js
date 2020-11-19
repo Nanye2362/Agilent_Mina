@@ -63,7 +63,7 @@ Page({
     })
     var that = this;
     var text='';
-
+    console.log('index页面栈：',getCurrentPages())
     util.NetRequest({
       url: 'api/v1/check-lunch',
       method:"GET",
