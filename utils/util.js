@@ -237,22 +237,6 @@ function getUserInfo(cb){
 }
 
 
-//获取用户信息头像昵称
-function getUserName() {
-  util.NetRequest({
-    url: 'api/v1/wechat/sobot/user-info',//site-mini/meqia-getuserinfo   
-    method:"GET",
-    success: function (res) {
-      console.log(res);
-      that.setData({
-        nickName: res.data.name,
-        // avatarUrl: res.data.userinfo.avatarUrl
-      })
-    }
-  })
-}
-
-
 function backHome(){
   console.log('backHome')
   wx.switchTab({
@@ -312,7 +296,6 @@ module.exports = {
   backHome: backHome,
   chen_navigateTo: chen_navigateTo,
   submitFormId:submitFormId,
-  getUserName: getUserName,
   RtransferAction: RtransferAction,
   sobotTransfer: sobotTransfer
 }
