@@ -17,7 +17,8 @@ Component({
     meqiaGroup:String,
     disabled:String,
     formType:String,
-    robotid:String
+    robotid:String,
+    sobotType:String
   },
 
   /**
@@ -51,9 +52,15 @@ Component({
   methods: {
     meiqiaBtnTap:function(e){
       var robotid = 1;
-      if(this.data.robotid != undefined){
-        robotid = this.data.robotid
-      }
+      var sobotType = ''; //接入类型
+      //目前指定到1号机器人
+      // if(this.data.robotid != undefined){
+      //   robotid = this.data.robotid
+      // }
+
+       if(this.data.sobotType != undefined){
+         sobotType = this.data.sobotType
+       }
 
       if (!this.data.canUse){
         this.setData({
@@ -79,7 +86,8 @@ Component({
           params: paramJson,
           transfer_action : transfer_action,
           robotid : robotid,
-          top_bar_flag:1
+          top_bar_flag:1,
+          type:sobotType
         }
 
         Object.keys(searchParams).map((key)=>{
@@ -88,15 +96,20 @@ Component({
         url = url.substring(url.length-1,-1)
         url = url.replace(/transferAction=/g, "")
         url = encodeURI(url);
-        wx.setStorage({
-          key: "sobotHtmlUrl",
-          data: url,
-          success: function () {
-            wx.navigateTo({
-              url: '/pages/sobot_html/openHtml',
-            });
-          }
-        })
+
+        wx.navigateTo({
+          url: '/pages/sobot_html/openHtml?url='+encodeURIComponent(url),
+        });
+
+        // wx.setStorage({
+        //   key: "sobotHtmlUrl",
+        //   data: url,
+        //   success: function () {
+        //     wx.navigateTo({
+        //       url: '/pages/sobot_html/openHtml',
+        //     });
+        //   }
+        // })
 
       }
     }

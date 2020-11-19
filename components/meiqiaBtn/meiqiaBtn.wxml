@@ -12,6 +12,7 @@ formType="{{formType}}" disabled="{{disabled}}" >
         formType="{{formType}}" 
         disabled="{{disabled}}"
         robotid="{{robotid}}"
+        sobotType="{{sobotType}}"
 >
 <slot></slot>
 </button>
