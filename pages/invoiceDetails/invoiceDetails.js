@@ -201,6 +201,20 @@ Page({
   },
   //提交
   submit: function(){
+    // /api/v1/user/invoice POST
+    //  "type": invoicedetails[currentInvoice].invoiceType,
+    // "title": invoicedetails[currentInvoice].invoiceInfo.title,
+    // "taxpayer_recognition_number":invoicedetails[currentInvoice].invoiceInfo.taxNumber,
+    // "bank": invoicedetails[currentInvoice].invoiceInfo.bankName,
+    // "bank_account":invoicedetails[currentInvoice].invoiceInfo.bankAccount, 
+    // "registered_address": invoicedetails[currentInvoice].invoiceInfo.companyAddress,
+    // "registered_phone": invoicedetails[currentInvoice].invoiceInfo.telephone,
+    // "recipient":invoicedetails[currentInvoice].sendInfo.name,
+    // "mail":invoicedetails[currentInvoice].sendInfo.mail,
+    // "tel": invoicedetails[currentInvoice].sendInfo.telephone,
+    // "address": invoicedetails[currentInvoice].sendInfo.address,
+    // "po_code": invoicedetails[currentInvoice].PO,
+    // "sales_list":invoicedetails[currentInvoice].needBill
     var that = this;
     var checkObjInvoice = Object.keys(invoiceArry[this.data.currentInvoice]);
     if (this.data.currentInvoice =="normalInvoice"){

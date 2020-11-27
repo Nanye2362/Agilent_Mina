@@ -1,0 +1,60 @@
+<!--pages/invoice_list/invoice_list.wxml-->
+<view class="invoice_list">
+  <block wx:for="{{invoiceList}}">
+    <view class="invoice_item">
+      <view class="flex alignc justify-space">
+        <view class="item_left flex">
+          <view class="left_img flex">
+            <view data-idx="{{index}}" bindtap="selectInvoice"
+              class="marginR circle_out {{index==currentIdx?'blue_border':'grey_border'}}">
+              <view class="circle_in {{index==currentIdx?'blue_bg':'grey_bg'}}"></view>
+            </view>
+            <image class="bc_order_icon" src="/images/invoice.png" mode='widthFix'></image>
+          </view>
+          <view class="item_content">
+            <view class="invoiceT">发票信息-{{item.type==0?'增值税普通发票':'增值税专用发票'}}</view>
+            <view class='fs12 invoiceD'>发票抬头：{{item.title}}</view>
+            <view class='fs12 invoiceD'>纳税人识别号：{{item.taxNumber}}</view>
+            <view class='fs12 invoiceD'>寄送人姓名：{{item.sendName}}</view>
+          </view>
+        </view>
+        <view class="item_right">
+          <image src='/images/arrow_grey.png' mode='widthFix' style='width: 18rpx'></image>
+        </view>
+      </view>
+      <view class="delete_area">
+        <image src='/images/delete-2.png' mode='widthFix' style='width: 36rpx'></image>
+      </view>
+    </view>
+  </block>
+</view>
+<view class="add_btn_area" bindtap="showInvoiceType">
+  <view class="add_btn">新增发票及寄送人地址</view>
+</view>
+<view class="bc_btn_area">
+  <button class="btn bg-blue fc-fff" bindtap='submit'>选择并确认</button>
+</view>
+<view class="bc_chat padding text-center fs12">如果对报价有任何问题，请<image class="chatimg" src="/images/wechat_b.png"></image>
+  <meiqiaBtn bindmeiqiaTap="MtaReport" btn-class="fc-blue bc_chat_btn btn-meiqia" handle-alert="{{true}}"
+    session-from="W_bqobjectid:{{bqId}}|transferAction={{transferAction}}">
+    发起会话
+  </meiqiaBtn>
+</view>
+<!-- 新增发票选择发票类型弹窗 -->
+<view class="shLoading" wx:if="{{showTypeModal}}">
+	<view class="shLoading-mask1" bindtap='showInvoiceType'>
+	</view>
+	<view class="shLoading-panel flex alignc directionC">
+		<view class='shLoading-title blue'>选择发票类型</view>
+		<view class="shLoading-head-panel">
+			<radio-group class="radio-group flex directionC" bindchange="radioChange">
+				<label class="radio invoiceType" wx:for="{{invoiceTypeList}}">
+					<radio color='#0085d5' value="{{item.name}}" checked="{{item.checked}}" />{{item.value}}
+				</label>
+			</radio-group>
+		</view>
+		<view class="shLoading-btn-panel">
+			<view class="shLoading-cancel" bindtap="showInvoiceType">取消</view>
+		</view>
+	</view>
+</view>

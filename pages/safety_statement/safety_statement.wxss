@@ -1,0 +1,61 @@
+/* pages/safety_statement/safety_statement.wxss */
+
+.statement_contain {
+  background: #fff;
+  width: 100%;
+  padding:0 20rpx 20rpx 20rpx;
+}
+
+.header_title {
+  font-size: 28rpx;
+  font-weight: bold;
+  line-height: 3;
+  text-align: center;
+}
+
+.header_text {
+  font-size: 24rpx;
+}
+.statement_content{
+  margin-top: 40rpx;
+}
+.stateInfo {
+  padding: 0 10rpx;
+  border: 3px solid #bfd9f7;
+  position: relative;
+  margin: 30rpx 0;
+}
+
+.stateInfo::before {
+  content: '';
+  height: 0;
+  width: 0;
+  border-top: 30rpx solid #0085d5;
+  border-right: 30rpx solid transparent;
+  border-bottom: 30rpx solid transparent;
+  border-left: 30rpx solid #0085d5;
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform: rotate('90');
+}
+
+.stateInfo_item {
+  font-size: 28rpx;
+  padding: 20rpx 30rpx;
+  display: block;
+}
+
+.stateInfo_item:not(:last-child) {
+  border-bottom: 1px dashed #d8d8d8;
+}
+.btn-area{
+  
+}
+/* checkbox未选中时样式 */
+checkbox .wx-checkbox-input {
+  height: 28rpx;
+  width: 28rpx;
+  margin-top: -4rpx;
+  margin-right: 10rpx;
+}

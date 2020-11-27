@@ -1,0 +1,83 @@
+/* pages/budget_confrim_info/budget_confirm_info.wxss */
+page{
+  background: #fff;
+}
+.budget_confirm_info {
+  padding: 0 20rpx 60rpx 20rpx;
+}
+.fs38{
+  font-size: 38rpx;
+}
+.bc_remind{
+  padding: 28rpx 0rpx;
+}
+.bc_header {
+  border-bottom: 1px solid #e2e2e2;
+}
+
+.bc_title {
+  margin: 40rpx 0;
+}
+
+.bc_title image {
+  width: 200rpx;
+}
+
+.bc_content {
+  padding: 40rpx 10rpx;
+  border-bottom: 1px dashed #e2e2e2;
+  margin-bottom:40rpx;
+}
+
+.bc_item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.bc_item_left{
+  margin-right: 40rpx;
+}
+.bc_order_icon {
+  width: 44rpx;
+  vertical-align: sub;
+  margin-right: 8rpx;
+  align-self: flex-start;
+}
+
+.bc_btn_tip{
+  margin-bottom:40rpx;
+}
+.fc-red {
+  color: #d81e06;
+}
+
+.btn {
+  border-radius: 12rpx;
+  text-align: center;
+  height: 90rpx;
+  width: 100%;
+  color: #fff;
+  line-height: 90rpx;
+  margin:20rpx auto;
+}
+.bc_chat {
+  width: 100%;
+  height: 80rpx;
+  line-height: 80rpx;
+}
+
+.bc_chat_btn {
+  text-decoration: underline;
+}
+.chatimg{ width: 50rpx; height: 38rpx; vertical-align: sub;margin-right: 6rpx; margin-left: 10rpx;}
+
+#confirm:disabled {
+    background: #a6d5f1;
+}
+
+.bq_checkbox_panel{
+  margin-top: 20rpx;
+}
+.fs28{
+  font-size: 28rpx;
+}

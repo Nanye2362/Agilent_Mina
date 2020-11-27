@@ -1,4 +1,4 @@
-// pages/trackingNo/trackingNo.js
+// pages/transport_info/transport_info.js
 var util = require('../../utils/util.js');
 Page({
 
@@ -6,32 +6,31 @@ Page({
    * 页面的初始数据
    */
   data: {
-    deliveryno: '',
-    istracking: false,
+    tracking_id:'',
+    trackingInfoList:[]
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var deliveryno = options.deliveryno;
+    var tracking_id = options.tracking_id;
     var sn = options.sn;
     this.setData({
-      deliveryno: deliveryno,
+      tracking_id: tracking_id,
       sn: options.sn
     })
     var that = this;
     console.log(options);
-    wx.request({
-      url: 'https://www.kuaidi100.com/query?type=shunfeng&postid=' + deliveryno,
-      success(res) {
-        console.log(res);
-        if (res.data.status=='200') {
-          that.setData({
-            istracking: true,
-            tracking: res.data.data,
-          })
-        }
+    // GET api/v1/sr/get-tracking?tracking_id=
+    util.NetRequest({
+      url: 'api/v1/sr/get-tracking?tracking_id='+tracking_id,
+      method: "GET",
+      success: function (r) {
+        console.log('物流信息：',r);
+        that.setData({
+          trackingInfoList:r.data.routes
+        })
       }
     })
   },

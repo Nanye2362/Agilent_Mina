@@ -29,7 +29,13 @@ Page({
     SN: ';sn:',
     searchValue: '',
     isFirst: true,
-    transferAction: ''
+    transferAction: '',
+    showBQSelectModal: false,
+    bqTypeList: [
+      { name: '0', value: '送修报价单' },
+      { name: '1', value: '上门服务报价单' },
+    ],
+    objectId: ''
   },
   onShow: function () {
     var that = this;
@@ -261,7 +267,7 @@ Page({
     var deliveryno = e.currentTarget.dataset.deliveryno;
     var sn = e.currentTarget.dataset.sn;
     wx.navigateTo({
-      url: '../trackingNo/trackingNo?deliveryno=' + deliveryno + '&sn=' + sn
+      url: '../trackingNo/trackingNo?tracking_id=' + deliveryno + '&sn=' + sn
     })
   },
 
@@ -362,14 +368,51 @@ Page({
       searchValue: value
     })
   },
+  // 选择报价单弹窗显示
+  showBQType: function () {
+    this.setData({
+      showBQSelectModal: !this.data.showBQSelectModal,
+    })
+  },
+  // 选择新增发票类型
+  radioChange: function (e) {
+    console.log('radio发生change事件，携带value值为：', e.detail.value);
+    if (e.detail.value == 0) {
+      wx.navigateTo({
+        url: '../repair_budget_confirm/repair_budget_confirm?objectId=' + this.data.objectId
+      })
+    } else {
+      wx.navigateTo({
+        url: '../budget_confirm/budget_confirm?objectId=' + this.data.objectId
+      })
+    };
+
+
+    this.showBQType();
+  },
   //前往预估报价单确认页面
   clickToBudgetConfirm: function (e) {
-    var objectId = e.currentTarget.dataset.objectid;
-    console.log(objectId);
-    var srId = e.currentTarget.dataset.srid;
-    wx.navigateTo({
-      url: '../budget_confirm/budget_confirm?srId=' + srId + '&&objectId=' + objectId
+    this.data.objectId = e.currentTarget.dataset.objectid;
+    var bqsent = e.currentTarget.dataset.bqsent;
+    this.data.bqTypeList = [];
+    for (let i in bqsent) {
+      if (bqsent[i].send_to_repair == 1) {
+        this.data.bqTypeList.push(
+          { name: '0', value: '送修报价单' }
+        );
+      } else {
+        this.data.bqTypeList.push(
+          { name: '1', value: '上门服务报价单' }
+        );
+      }
+    }
+    this.setData({
+      bqTypeList:this.data.bqTypeList
     })
+    this.showBQType();
+    // wx.navigateTo({
+    //   url: '../budget_confirm/budget_confirm?srId=' + srId + '&&objectId=' + objectId
+    // })
   },
   // 点击跳转历史详情 data:{SrId:} site-mini/service-details
   clickToDetail: function (e) {

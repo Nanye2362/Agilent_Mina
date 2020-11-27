@@ -1,0 +1,50 @@
+<!--pages/budget_confrim_info/budget_confirm_info.wxml-->
+<modalTip show="{{showModalTip}}">
+  <text>{{tipText}}</text>
+</modalTip>
+<view class='budget_confirm_info'>
+  <view class="bc_header">
+    <view class="bc_title fs20 text-center">
+      <image src='/images/bq.png' mode='widthFix'></image>
+    </view>
+    <view class="text-center fs38">您已确认如下报价</view>
+    <view class="bc_remind">BQ编号为:{{objectid}}</view>
+  </view>
+  <view class="bc_content">
+    <view class="bc_item" bindtap='openPDF' style="margin-bottom:20rpx;">
+      <view class="bc_item_left">
+        <image class="bc_order_icon" src="/images/pdf.png" mode='widthFix'></image>
+        <span class="fc-blue">安捷伦送修服务报价单</span>
+      </view>
+      <view class="bc_item_right">
+        <image class="bc_order_icon" src="/images/download.jpg" mode='widthFix'></image>
+        <span class="fc-blue">下载</span>
+      </view>
+    </view>
+    <view class="bc_item" bindtap='openPDF'>
+      <view class="bc_item_left">
+        <image class="bc_order_icon" src="/images/pdf.png" mode='widthFix'></image>
+        <span class="fc-blue">安捷伦健康安全声明</span>
+      </view>
+      <view class="bc_item_right">
+        <image class="bc_order_icon" src="/images/download.jpg" mode='widthFix'></image>
+        <span class="fc-blue">下载</span>
+      </view>
+    </view>
+  </view>
+  <view class="bc_btn_tip flex alignc">
+    <image class="bc_order_icon" src="/images/red_tip.png" mode="widthFix"></image>
+    <span class="fc-red">您还需填写并确认发票信息以便安排后续服务</span>
+  </view>
+  <view class="bc_btn_area">
+    <button class="btn bg-blue fc-fff" data-confirm="1" bindtap='submit'>去确认发票</button>
+    <button class="btn bg-primary fc-blue" data-confirm="0" bindtap='submit'>暂不确认发票</button>
+  </view>
+  <view class="bc_chat padding text-center fs12">如果对报价有任何问题，请<image class="chatimg"
+			src="/images/wechat_b.png"></image>
+		<meiqiaBtn bindmeiqiaTap="MtaReport" btn-class="fc-blue bc_chat_btn btn-meiqia" handle-alert="{{true}}"
+			session-from="W_bqobjectid:{{bqId}}|transferAction={{transferAction}}">
+			发起会话
+		</meiqiaBtn>
+	</view>
+</view>

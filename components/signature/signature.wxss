@@ -1,8 +1,6 @@
 /* components/signature/signature.wxss */
 page {
-  background: #fbfbfb;
   height: auto;
-  overflow: hidden;
 }
 
 .wrapper {
@@ -61,6 +59,7 @@ page {
   margin-bottom: 150rpx;
   transform: rotate(90deg);
   color: #666;
+  background-color: #fff; 
 }
 
 .delBtn image {

@@ -56,7 +56,7 @@ Page({
       }
     }else{
       console.log('initiate没有token');
-      loginApi.login({ showLoad: false })
+      loginApi.login(getApp());
     }
   },
 

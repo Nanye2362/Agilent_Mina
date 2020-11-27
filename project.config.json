@@ -6,7 +6,7 @@
   "setting": {
     "urlCheck": false,
     "es6": true,
-    "enhance": false,
+    "enhance": true,
     "postcss": true,
     "preloadBackgroundData": false,
     "minified": true,
@@ -295,17 +295,45 @@
           "scene": null
         },
         {
-          "id": -1,
+          "id": 33,
           "name": "pages/budget_confirm/budget_confirm",
           "pathName": "pages/budget_confirm/budget_confirm",
-          "query": "objectId=3000383466&srId=8102836079",
+          "query": "objectId=3000435445",
+          "scene": null
+        },
+        {
+          "id": 35,
+          "name": "pages/safety_statement/safety_statement",
+          "pathName": "pages/safety_statement/safety_statement",
+          "query": "isConfirmed=0",
+          "scene": null
+        },
+        {
+          "id": 36,
+          "name": "pages/budget_confirm_info/budget_confirm_info",
+          "pathName": "pages/budget_confirm_info/budget_confirm_info",
+          "query": "objectId=3000386373",
+          "scene": null
+        },
+        {
+          "id": 36,
+          "name": "pages/repair_budget_confirm/repair_budget_confirm",
+          "pathName": "pages/repair_budget_confirm/repair_budget_confirm",
+          "query": "objectId=3000435445",
           "scene": null
         },
         {
           "id": -1,
-          "name": "pages/index/index",
-          "pathName": "pages/index/index",
-          "query": "objectId=3000383466&srId=8102836079",
+          "name": "pages/invoice_list/invoice_list",
+          "pathName": "pages/invoice_list/invoice_list",
+          "query": "objectId=3000386373",
+          "scene": null
+        },
+        {
+          "id": 38,
+          "name": "pages/trackingNo/trackingNo",
+          "pathName": "pages/trackingNo/trackingNo",
+          "query": "tracking_id=322829430310",
           "scene": null
         }
       ]

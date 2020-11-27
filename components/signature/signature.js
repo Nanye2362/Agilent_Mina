@@ -347,7 +347,8 @@ Component({
       console.log('返回:');
       this.setData({
         showSignature:false
-      })
+      });
+      this.triggerEvent('closeSignature');
     },
     // 清除
     retDraw() {
@@ -367,63 +368,69 @@ Component({
         quality: 1, //图片质量
         success(res) {
           console.log('canvas生成图片地址：', res.tempFilePath);
-          wx.saveImageToPhotosAlbum({
-            filePath: res.tempFilePath,
-            success: function (data) {
-              console.log('保存图片成功：', data);
-              wx.showToast({
-                title: '保存成功',
-                icon: 'success',
-                duration: 2000
-              });
-              that.setData({
-                showSignature:false
-              })
-            },
-            fail: function (err) {
-              console.log('保存图片失败：', err);
+          that.setData({
+            showSignature:false
+          });
+          that.triggerEvent('completeSignature',res.tempFilePath);
+          // wx.saveImageToPhotosAlbum({
+          //   filePath: res.tempFilePath,
+          //   success: function (data) {
+          //     console.log('保存图片成功：', data);
+          //     this.triggerEvent('closeSignature');
+          //     wx.showToast({
+          //       title: '保存成功',
+          //       icon: 'success',
+          //       duration: 2000
+          //     });
+          //     that.setData({
+          //       showSignature:false
+          //     })
+          //   },
+          //   fail: function (err) {
+          //     console.log('保存图片失败：', err);
 
-              if (err.errMsg === "saveImageToPhotosAlbum:fail:auth denied" || err.errMsg === "saveImageToPhotosAlbum:fail auth deny") {
-                // 这边微信做过调整，必须要在按钮中触发，因此需要在弹框回调中进行调用
-                wx.showModal({
-                  title: '提示',
-                  content: '需要您授权保存相册',
-                  showCancel: false,
-                  success: modalSuccess => {
-                    wx.openSetting({
-                      success(settingdata) {
-                        console.log("settingdata", settingdata)
-                        if (settingdata.authSetting['scope.writePhotosAlbum']) {
-                          wx.showModal({
-                            title: '提示',
-                            content: '获取权限成功,再次点击图片即可保存',
-                            showCancel: false,
-                          })
-                        } else {
-                          wx.showModal({
-                            title: '提示',
-                            content: '获取权限失败，将无法保存到相册哦~',
-                            showCancel: false,
-                          })
-                        }
-                      },
-                      fail(failData) {
-                        console.log("failData", failData)
-                      },
-                      complete(finishData) {
-                        console.log("finishData", finishData)
-                      }
-                    })
-                  }
-                })
-              }
-            },
-            complete(res) {
-              console.log('保存图片complete');
-            }
-          })
+          //     if (err.errMsg === "saveImageToPhotosAlbum:fail:auth denied" || err.errMsg === "saveImageToPhotosAlbum:fail auth deny") {
+          //       // 这边微信做过调整，必须要在按钮中触发，因此需要在弹框回调中进行调用
+          //       wx.showModal({
+          //         title: '提示',
+          //         content: '需要您授权保存相册',
+          //         showCancel: false,
+          //         success: modalSuccess => {
+          //           wx.openSetting({
+          //             success(settingdata) {
+          //               console.log("settingdata", settingdata)
+          //               if (settingdata.authSetting['scope.writePhotosAlbum']) {
+          //                 wx.showModal({
+          //                   title: '提示',
+          //                   content: '获取权限成功,再次点击图片即可保存',
+          //                   showCancel: false,
+          //                 })
+          //               } else {
+          //                 wx.showModal({
+          //                   title: '提示',
+          //                   content: '获取权限失败，将无法保存到相册哦~',
+          //                   showCancel: false,
+          //                 })
+          //               }
+          //             },
+          //             fail(failData) {
+          //               console.log("failData", failData)
+          //             },
+          //             complete(finishData) {
+          //               console.log("finishData", finishData)
+          //             }
+          //           })
+          //         }
+          //       })
+          //     }
+          //   },
+          //   complete(res) {
+          //     console.log('保存图片complete');
+          //   }
+          // })
         }
       }, this)
+      
       // 上传
       // wx.canvasToTempFilePath({
       //   canvasId: 'handWriting',

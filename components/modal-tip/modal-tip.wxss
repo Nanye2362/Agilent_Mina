@@ -1,0 +1,70 @@
+/* components/modal-tip/modal-tip.wxss */
+
+/* shLoading */
+.shLoading-mask1{
+  top:0;
+  left:0;
+  background: #000; 
+  opacity: .6;
+  position: fixed; 
+  width: 100%; 
+  height: 100%; 
+  z-index: 9990;
+}
+.shLoading-title{
+ position: relative;
+ width: 100%;
+ height: 100rpx;
+ margin-top: -50rpx; 
+ border-top-left-radius: 12rpx;
+ border-top-right-radius: 12rpx;
+ text-align: center;
+ line-height: 100rpx;
+ background-color: #0085d5;
+  color: #fff;
+}
+.shLoading-panel{
+width:620rpx;
+padding-bottom:120rpx;
+top:300rpx;
+left:50%;
+margin-left:-310rpx;
+background:#fff;
+border:1px solid #666;
+position:fixed;
+z-index:9999;
+border-radius:12rpx;
+padding-top:50rpx;
+flex-direction:column;
+display:flex;
+align-items:center;
+}
+.shLoading-head-panel{
+ min-height:80rpx;
+ margin-bottom: 60rpx;
+ margin-top: 60rpx;
+ padding:30rpx;
+}
+.shLoading-title-img {
+  width: 60rpx;
+  height: 60rpx;
+  position: absolute;
+  right: -15rpx;
+  top: -20rpx;
+}
+.shLoading-btn-panel{
+ position:absolute;
+ bottom:3rpx;
+ height:100rpx;
+ width:100%;
+ border-top:1px solid #eee;
+}
+.shLoading-btn-ok{
+ display:inline-block;
+ width:100%;
+ line-height:100rpx;
+ text-align: center;
+ font-size:36rpx;
+}
+
+/* shLoading ending */

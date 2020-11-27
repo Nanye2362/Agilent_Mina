@@ -66,7 +66,12 @@
     "pages/html/openHtml",
     "pages/auth_login/auth_login",
     "pages/privacy-policy/privacy-policy",
-    "pages/system-update/system-update"
+    "pages/system-update/system-update",
+    "pages/safety_statement/safety_statement",
+    "pages/budget_confirm_info/budget_confirm_info",
+    "pages/repair_budget_confirm/repair_budget_confirm",
+    "pages/invoice_confirm_info/invoice_confirm_info",
+    "pages/invoice_list/invoice_list"
   ],
   "networkTimeout": {
     "request": 180000

@@ -1,26 +1,70 @@
-
-/* pages/trackingNo/trackingNo.wxss */
-@import '../labqc/labqc';
+/* pages/transport_info/transport_info.wxss */
 .trackingNo{
   padding: 60rpx 50rpx;
   font-size: 1.1rem;
   background: #fff;
   border-bottom: 1px solid #cacaca;
+  margin-bottom: 20rpx;
 }
-.rd-l{
-  flex: .2;
-  line-height: 40rpx;
-}
-.recordDetails{
-  margin-left: 20rpx;
-}
-.rd-r{
-  line-height: 40rpx;
-}
-.record{
+/*  */
+.tracking_content{
   background: #fff;
-  margin-top: 20rpx;
+  width: 100%;
+  padding: 20rpx;
 }
+.item_time{
+  font-size: 20rpx;
+  color: #cacaca;
+}
+.item_left{
+  flex:.2;
+}
+.item_middle{
+}
+.item_right{
+  border-left: 1rpx solid #d8d8d8;
+  padding-left:20rpx;
+  padding-bottom: 30rpx;
+}
+/* 圆点 */
+.circle_out {
+  height: 30rpx;
+  width: 30rpx;
+  border-radius: 50%;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+}
+
+.circle_in {
+  height: 15rpx;
+  width: 15rpx;
+  border-radius: 50%;
+  margin: 0 auto;
+}
+
+.blue_bg {
+  background-color: #0084d7;
+
+}
+
+.grey_bg {
+  background-color: #d8d8d8;
+  position: absolute;
+  left: 132rpx;
+  margin-top:8rpx;
+}
+
+.blue_border {
+  border: 1rpx solid #0084d7;
+  position: absolute;
+  left: 123rpx;
+}
+
+.grey_border {
+  border: 1rpx solid #d8d8d8;
+}
+/* 底部 */
 .check_repair{
   margin: 20rpx auto;
   width: 100%;

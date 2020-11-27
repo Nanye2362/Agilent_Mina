@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "健康安全声明",
+  "usingComponents": {
+    "signature":"/components/signature/signature"
+  }
+}

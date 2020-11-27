@@ -117,11 +117,18 @@ page{
     flex-direction: row;
     justify-content: space-between;
 }
-.signature_panel{
+.signature_img{
+  width: 265rpx;
+  height: 700rpx;
 }
-.signature_content{
-  width:100%;
-  height: 200rpx;
-  margin-top: 12rpx ;
-  border: 2rpx solid #cbcbcb;
+.add_btn_area{
+  display: flex;
+  justify-content: flex-end;
+  margin: 30rpx 0rpx 100rpx;
+}
+.add_btn{
+  border: 1rpx solid #00a6e4;
+  color: #00a6e4;
+  font-size: 28rpx;
+  padding: 10rpx 30rpx;
 }

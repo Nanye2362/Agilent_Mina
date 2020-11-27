@@ -1,0 +1,18 @@
+<!--components/modal-tip/modal-tip.wxml-->
+<!-- 蒙版 -->
+<view class="shLoading" wx:if="{{show}}">
+  <view class="shLoading-mask1">
+  </view>
+  <view class="shLoading-panel">
+    <view class='shLoading-title'>
+      提示
+      <image src='/images/close.png' class='shLoading-title-img' bindtap='cancelTap'></image>
+    </view>
+    <view class="shLoading-head-panel">
+      <slot></slot>
+    </view>
+    <view class="shLoading-btn-panel">
+      <view class="shLoading-btn-ok" bindtap="okTap">{{okBtnText}}</view>
+    </view>
+  </view>
+</view>

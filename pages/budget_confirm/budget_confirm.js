@@ -7,8 +7,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    showSignature:false,
-    nickName:'',
+    showSignature: false,
+    nickName: '',
     avatarUrl: '',
     transferAction: '',
     bqId: "",
@@ -32,18 +32,20 @@ Page({
       "bankName": "",
       "bankAccount": ""
     },
-    sendInfo:{
+    sendInfo: {
       "name": "",
       "telephone": "",
       "address": "",
     },
     PO: '',
-    needBill : '',
-    invoiceDetails:{},
-    currentInvoice:'',
+    needBill: '',
+    invoiceDetails: {},
+    currentInvoice: '',
     hasInvoice: true,
-    confirmShow:false,
-    objectid:''
+    confirmShow: false,
+    objectid: '',
+    isSignatured: false,
+    signatureImg: ''
   },
 
   /**
@@ -55,12 +57,12 @@ Page({
     var that = this;
     util.NetRequest({
       url: 'api/v1/wechat/get-global-group',//wechat-mini/get-global-group
-      method:"GET",
+      method: "GET",
       success: function (res) {
         app.globalData.sobotData = res.data;
         util.getUserInfoSobot();
         that.setData({
-          transferAction:util.sobotTransfer(4),
+          transferAction: util.sobotTransfer(4),
         });
       }
     });
@@ -71,37 +73,33 @@ Page({
     // util.getUserInfo(function (user) {
 
     // });
-    this.data.objectid=options.objectId;
+    this.data.objectid = options.objectId;
     util.NetRequest({
-      url: 'api/v1/sr/bq?objectid='+options.objectId,
-      // data: {
-      //   srId: options.srId,
-      //   objectId: options.objectId
-      // },
-      method:'GET',
+      url: 'api/v1/sr/bq?objectid=' + options.objectId,
+      method: 'GET',
       success: function (r) {
         console.log(r);
         var invoiceDetails = {},
-            currentInvoice = '';
+          currentInvoice = '';
         console.log(r.data.invoice)
-      
+
         if (r.data.status != false) {
-          if (r.data.invoice.length>0){
+          if (r.data.invoice.length > 0) {
             currentInvoice = r.data.invoice[0].type == 0 ? 'normalInvoice' : 'specialInvoice';
-          }else{
+          } else {
             that.setData({
               hasInvoice: false,
             })
           }
-          console.log(r.data.invoice);
-          console.log(currentInvoice);
-  
-          if (r.data.invoice.length!=''){
+          console.log('r.data.invoice:', r.data.invoice);
+          console.log('currentInvoice:', currentInvoice);
+
+          if (r.data.invoice.length != '') {
             //for (var i in r.data.InvoiceInfo){
-              that.setInvoiceInfo(r.data.invoice[0])
+            that.setInvoiceInfo(r.data.invoice[0])
             //}
             invoiceDetails = that.data.invoiceDetails
-            console.log(invoiceDetails);
+            console.log('invoiceDetails:', invoiceDetails);
             that.setData({
               invoiceInfo: invoiceDetails[currentInvoice].invoiceInfo,
               sendInfo: invoiceDetails[currentInvoice].sendInfo,
@@ -110,7 +108,7 @@ Page({
               currentInvoice: currentInvoice,
             })
           }
-          else{
+          else {
             // if (wx.getStorageSync('invoiceDetails') != '') {
             //   that.getInvoiceInfoStorage(that);
             // }
@@ -122,59 +120,59 @@ Page({
             bqId: options.objectId,
             isConfirm: r.data.is_confirmed,
             price: r.data.gross_value,
-            maxprice:r.data.max_price,
+            maxprice: r.data.max_price,
             approval_button_enable: r.data.approval_button_enable,
             item_description: r.data.item_description,
           })
-        }else if(r.data.status == false){
+        } else if (r.data.status == false) {
           that.setData({
             pageComplete: true,
             pageShow: false,
             bqId: options.objectId,
             isConfirm: r.data.is_confirmed,
             price: r.data.gross_value,
-            maxprice:r.data.max_price,
+            maxprice: r.data.max_price,
             approval_button_enable: r.data.approval_button_enable,
             item_description: r.data.item_description,
           })
-        } 
+        }
       }
     })
 
   },
-  setInvoiceInfo: function (info){
+  setInvoiceInfo: function (info) {
     var that = this;
     var invoiceDetails = that.data.invoiceDetails,
-        invoiceInfo = that.data.invoiceInfo,
-        sendInfo = that.data.sendInfo,
-        PO = that.data.PO,
-        invoiceType = that.data.invoiceType,
-        needBill = that.data.needBill;
-        invoiceInfo.title = info.title;
-        invoiceInfo.companyAddress = info.registered_address;
-        invoiceInfo.taxNumber = info.taxpayer_recognition_number;
-        invoiceInfo.bankName = info.bank;
-        invoiceInfo.bankAccount = info.bank_account;
-        invoiceInfo.telephone = info.registered_phone;
-        sendInfo.name = info.recipient;
-        sendInfo.address = info.address;
-        sendInfo.telephone = info.tel;
-        sendInfo.mail = info.mail;
-        PO = info.po_code;
-        needBill = info.sales_list == 0 ? 'false' : true,
-        invoiceType = info.type == 0 ? 'normalInvoice' : 'specialInvoice';
-        invoiceDetails[invoiceType] = {}
-        invoiceDetails[invoiceType].invoiceInfo = invoiceInfo;
-        invoiceDetails[invoiceType].sendInfo = sendInfo;
-        invoiceDetails[invoiceType].PO = PO;
-        invoiceDetails[invoiceType].needBill = needBill;
-        invoiceDetails[invoiceType].invoiceType = invoiceType;
-        wx.setStorageSync('invoiceDetails', invoiceDetails);
+      invoiceInfo = that.data.invoiceInfo,
+      sendInfo = that.data.sendInfo,
+      PO = that.data.PO,
+      invoiceType = that.data.invoiceType,
+      needBill = that.data.needBill;
+    invoiceInfo.title = info.title;
+    invoiceInfo.companyAddress = info.registered_address;
+    invoiceInfo.taxNumber = info.taxpayer_recognition_number;
+    invoiceInfo.bankName = info.bank;
+    invoiceInfo.bankAccount = info.bank_account;
+    invoiceInfo.telephone = info.registered_phone;
+    sendInfo.name = info.recipient;
+    sendInfo.address = info.address;
+    sendInfo.telephone = info.tel;
+    sendInfo.mail = info.mail;
+    PO = info.po_code;
+    needBill = info.sales_list == 0 ? 'false' : true,
+      invoiceType = info.type == 0 ? 'normalInvoice' : 'specialInvoice';
+    invoiceDetails[invoiceType] = {}
+    invoiceDetails[invoiceType].invoiceInfo = invoiceInfo;
+    invoiceDetails[invoiceType].sendInfo = sendInfo;
+    invoiceDetails[invoiceType].PO = PO;
+    invoiceDetails[invoiceType].needBill = needBill;
+    invoiceDetails[invoiceType].invoiceType = invoiceType;
+    wx.setStorageSync('invoiceDetails', invoiceDetails);
     that.setData({
       invoiceDetails: invoiceDetails
     })
   },
-  getInvoiceInfoStorage: function(that){
+  getInvoiceInfoStorage: function (that) {
     var currentInvoice = that.data.currentInvoice;
     invoiceDetails = wx.getStorageSync('invoiceDetails');
     console.log(invoiceDetails[currentInvoice]);
@@ -190,10 +188,10 @@ Page({
     console.log('radio发生change事件，携带value值为：', e.detail.value);
     var currentInvoice;
     var title = wx.getStorageSync('sobot_company');
-    
-    if(e.detail.value==0){
-      currentInvoice ='normalInvoice';
-    }else{
+
+    if (e.detail.value == 0) {
+      currentInvoice = 'normalInvoice';
+    } else {
       currentInvoice = 'specialInvoice';
     };
 
@@ -203,110 +201,133 @@ Page({
     this.changeInvoiceType();
   },
 
-  inputInvoice: function(){
-    if (this.data.currentInvoice!=''){
+  inputInvoice: function () {
+    if (this.data.currentInvoice != '') {
       wx.navigateTo({
         url: '../invoiceConfirm/invoiceConfirm?isConfirm=' + this.data.isConfirm + '&&currentInvoice=' + this.data.currentInvoice
       })
-    }else{
+    } else {
       this.changeInvoiceType();
     }
   },
-  changeInvoiceType: function(){
+  changeInvoiceType: function () {
     this.setData({
       shInputInfo: !this.data.shInputInfo,
     })
   },
-  contractConfirm:function(e){
+  contractConfirm: function (e) {
     this.setData({
-      checkBox: e.detail.value.length==1
+      checkBox: e.detail.value.length == 1
     })
   },
-  infoOkTap:function(){
-    var that=this;
+  infoOkTap: function () {
+    var that = this;
     console.log(invoiceDetails);
     console.log(Object.keys(invoiceDetails).length)
-
-    var invoicedetails = invoiceDetails;
-    var currentInvoice = this.data.currentInvoice;
-    console.log(invoicedetails);
-    invoicedetails[currentInvoice].needBill = invoiceDetails.needBill==true?1:0;
-    invoicedetails[currentInvoice].invoiceType = invoiceDetails[currentInvoice].invoiceType=='specialInvoice'?1:0;
-    util.NetRequest({
-      url: 'api/v1/sr/bq',
-      method:"POST",
-      data: {
-        objectid:that.data.objectid,
+    if (Object.keys(invoiceDetails).length != 0) {
+      var invoicedetails = invoiceDetails;
+      var currentInvoice = this.data.currentInvoice;
+      console.log('currentInvoice:', currentInvoice);
+      invoicedetails[currentInvoice].needBill = invoiceDetails.needBill == true ? 1 : 0;
+      invoicedetails[currentInvoice].invoiceType = invoiceDetails[currentInvoice].invoiceType == 'specialInvoice' ? 1 : 0;
+      var params = {
+        objectid: that.data.objectid,
         invoice: {
           "type": invoicedetails[currentInvoice].invoiceType,
           "title": invoicedetails[currentInvoice].invoiceInfo.title,
-          "taxpayer_recognition_number":invoicedetails[currentInvoice].invoiceInfo.taxNumber,
+          "taxpayer_recognition_number": invoicedetails[currentInvoice].invoiceInfo.taxNumber,
           "bank": invoicedetails[currentInvoice].invoiceInfo.bankName,
-          "bank_account":invoicedetails[currentInvoice].invoiceInfo.bankAccount, 
+          "bank_account": invoicedetails[currentInvoice].invoiceInfo.bankAccount,
           "registered_address": invoicedetails[currentInvoice].invoiceInfo.companyAddress,
           "registered_phone": invoicedetails[currentInvoice].invoiceInfo.telephone,
-          "recipient":invoicedetails[currentInvoice].sendInfo.name,
-          "mail":invoicedetails[currentInvoice].sendInfo.mail,
+          "recipient": invoicedetails[currentInvoice].sendInfo.name,
+          "mail": invoicedetails[currentInvoice].sendInfo.mail,
           "tel": invoicedetails[currentInvoice].sendInfo.telephone,
           "address": invoicedetails[currentInvoice].sendInfo.address,
           "po_code": invoicedetails[currentInvoice].PO,
-          "sales_list":invoicedetails[currentInvoice].needBill
+          "sales_list": invoicedetails[currentInvoice].needBill
+        },//有传，没有不传
+      };
+    } else {
+      var params = {
+        objectid: that.data.objectid
+      };
+    }
+    console.log('确认报价单params：', params);
+    if (that.data.approval_button_enable == 'Y') {
+      util.NetRequest({
+        url: 'api/v1/sr/bq',
+        method: "POST",
+        data: params,
+        success: function (r) {
+          if (r.status) {
+            wx.showToast({
+              title: '成功',
+              icon: 'success',
+              duration: 2000
+            })
+            that.setData({
+              isConfirm: 1,
+              confirmShow: false,
+            })
+            //wx.removeStorageSync('invoiceDetails');
+          } else {
+            wx.showToast({
+              title: '失败',
+              icon: 'fail',
+              duration: 2000
+            })
+            that.setData({
+              confirmShow: false,
+            })
+          }
         }
-        //JSON.stringify(invoicedetails[currentInvoice]),
-      },
-      success: function (r) {
-        if (r.status) {
-          wx.showToast({
-            title: '成功',
-            icon: 'success',
-            duration: 2000
-          })
-          that.setData({
-            isConfirm: 1,
-            confirmShow:false,
-          })
-          //wx.removeStorageSync('invoiceDetails');
-        } else {
-          wx.showToast({
-            title: '失败',
-            icon: 'fail',
-            duration: 2000
-          })
-          that.setData({
-            confirmShow:false,
-          })
-        }
-      }
-    })
+      })
+    } else {
+      let url = 'api/v1/sr/bq';
+      console.log('上传签名uploadFile：', url);
+      util.uploadFileRequest({
+        url:url,
+        data: params,
+        filePath:that.data.signatureImg,
+        fileName:'signature',
+        success:function(res){
+            console.log('上传签名成功后：', res);
+        },
+      })
+    }
+
 
   },
-  infoCancelTap:function(){
+  infoCancelTap: function () {
     this.setData({
-      confirmShow : false
+      confirmShow: false
     })
   },
-  confirm:function(){
-    if (!this.data.checkBox || Object.keys(invoiceDetails).length == 0){
+  confirm: function () {
+    // || Object.keys(invoiceDetails).length == 0
+    if (!this.data.checkBox) {
       wx.showModal({
         title: '提交失败',
         content: '请确认发票信息的完整，并勾选已阅读并接收此报价单',
       })
       return false;
-      //return false;
     }
     this.setData({
-      confirmShow : true
+      confirmShow: true
     })
   },
-  openPDF:function(){
-    // '/api/v1/sr/bq-file?objectid='+item.ServconfId+'&token='+token
-    // var url = util.Server + 'site/open-file?ServconfId=' + this.data.bqId;
-    var token=wx.getStorageSync('token');
-    var url = util.Server + 'api/v1/sr/bq-file?objectid=' + this.data.objectid+'&token='+token;
+  openPDF: function () {
+    var token = wx.getStorageSync('token');
+    // util.Server + 'api/v1/sr/bq-file?objectid=' + this.data.objectid + '&token=' + token;
+    var url = util.Server + 'api/v1/sr/bq-file?objectid=' + this.data.objectid
     console.log(url);
-    var downloadTask = wx.downloadFile({
+    const downloadTask = wx.downloadFile({
       url: url,
-      success: function success(res) {
+      header: {
+        'Authorization': "Bearer " + token
+      },
+      success: function (res) {
         console.log(res);
         var filePath = res.tempFilePath;
         console.log('filePath= ' + filePath);
@@ -323,7 +344,7 @@ Page({
               showCancel: false
             });
           }
-          })
+        })
       },
       complete: function complete() {
         wx.hideLoading();
@@ -337,13 +358,13 @@ Page({
       }
     })
   },
-  copyTBL:function(){
-    var token=wx.getStorageSync('token');
-    var url = util.Server + 'api/v1/sr/bq-file?objectid=' + this.data.objectid+'&token='+token;
-    var self=this;
+  copyTBL: function () {
+    var token = wx.getStorageSync('token');
+    var url = util.Server + 'api/v1/sr/bq-file?objectid=' + this.data.objectid + '&token=' + token;
+    var self = this;
     wx.setClipboardData({
       data: url,
-      success:function (res) {
+      success: function (res) {
         wx.hideToast();
         wx.showModal({
           title: '提示',
@@ -355,9 +376,25 @@ Page({
     });
   },
   // 签名
-  toSignature:function(){
+  toSignature: function () {
     this.setData({
-      showSignature:true
+      showSignature: true
+    })
+  },
+
+  // 关闭签名
+  closeSignature: function () {
+    this.setData({
+      showSignature: false
+    })
+  },
+  // 完成签名
+  completeSignature: function (e) {
+    console.log('completeSignature:', e);
+    this.setData({
+      showSignature: false,
+      isSignatured: true,
+      signatureImg: e.detail
     })
   },
   //检测工作时间
@@ -378,7 +415,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    if (this.data.currentInvoice != '' && wx.getStorageSync('invoiceDetails') != '' ) {
+    if (this.data.currentInvoice != '' && wx.getStorageSync('invoiceDetails') != '') {
       this.getInvoiceInfoStorage(this);
     }
   },

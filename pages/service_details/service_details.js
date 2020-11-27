@@ -113,7 +113,7 @@ Page({
     var deliveryno = e.currentTarget.dataset.deliveryno;
     var sn = e.currentTarget.dataset.sn;
     wx.navigateTo({
-      url: '../trackingNo/trackingNo?deliveryno=' + deliveryno + '&sn=' + sn
+      url: '../trackingNo/trackingNo?tracking_id=' + deliveryno + '&sn=' + sn
     })
   },
 

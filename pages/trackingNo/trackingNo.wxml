@@ -1,33 +1,37 @@
-<!--pages/trackingNo/trackingNo.wxml-->
+<!--pages/transport_info/transport_info.wxml-->
 <view class='trackingNo'>
-  顺丰快递：{{deliveryno}}
+  顺丰快递：{{tracking_id}}
 </view>
-<view id='recordOut' class='recordOut'>
-  <block wx:if='{{istracking}}' wx:for="{{tracking}}" wx:for-item="item" wx:key='unique' wx:for-index="idx">
-    <view class='record'>
-      <view class='recordCon'>
-        <!-- recordDetails -->
-        <view class="flex directionC recordDetails">
-          <view class="flex">
-              <view class="fs14 {{idx==0?'fc-blue':''}}">{{item.time}}</view>
-          </view> 
-          <view class="flex">
-            <view class=" fs13 rd-l">进度：</view>
-            <view class=" fs13 rd-r">{{item.context}}</view>
-          </view>           
-        </view>
-        <!-- recordLabel -->
-        <view class='{{idx==0?"firstLabel":"recordLabel"}}' ></view>        
-        <view class='{{idx==0?"secondLabel":""}}' ></view>
+<view class="tracking_content">
+  <view wx:for="{{trackingInfoList}}" class="tracking_item flex">
+    <view class="item_left">
+      <view class="item_date">
+        {{item.acceptTime}}
+      </view>
+      <!-- <view class="item_time">
+        {{item.time}}
+      </view> -->
+    </view>
+    <view class="item_middle">
+      <view wx:if="{{index==0}}" class="circle_out blue_border">
+        <view class="circle_in blue_bg"></view>
+      </view>
+      <view wx:else class="circle_in grey_bg"></view>
+    </view>
+    <view class="item_right">
+      <!-- <view class="item_status">
+        {{item.status}}
+      </view> -->
+      <view class="item_context fs12">
+        {{item.remark}}
       </view>
     </view>
-  </block>
-  <!-- <view wx:else >暂无快递信息</view>  -->
+  </view>
 </view>
 <button class="btn btn-primary" bindtap='goBack'>返回</button>
 <view class="check_repair" bindtap='gotoCheck'>
-    <view class="text-center fs12">如有任何疑问，请
-      <image src="/images/trackingNo.png" mode='widthFix'></image>
-      <text class='fc-blue'>查看送修服务介绍</text>
-    </view>
+  <view class="text-center fs12">如有任何疑问，请
+    <image src="/images/trackingNo.png" mode='widthFix'></image>
+    <text class='fc-blue'>查看送修服务介绍</text>
+  </view>
 </view>

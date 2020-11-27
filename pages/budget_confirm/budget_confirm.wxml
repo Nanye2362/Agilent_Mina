@@ -1,16 +1,20 @@
 <!--pages/budget_confirm/budget_confirm.wxml-->
-<signature showSignature="{{showSignature}}"></signature>
+<view wx:if="{{showSignature}}">
+	<signature showSignature="{{showSignature}}" bindcloseSignature='closeSignature' bindcompleteSignature='completeSignature'></signature>
+</view>
 <block wx:if="{{!pageComplete}}">
 	<view>{{info}}</view>
 </block>
-<block wx:if="{{pageComplete}}">
+<view wx:if="{{pageComplete&&!showSignature}}" class="budget_contain">
 	<view class="budget_confirm padding">
 		<view class="bc_title fs20 text-center">
 			<image src='/images/bq.png' mode='widthFix'></image>
 		</view>
-		<view class="bc_remind fc-777" wx:if="{{!isConfirm}}">当前报价已经生成，BQ编号为：<span>{{bqId}}</span>，请确保您已知晓并接受，以便我们安排工程师为您服务。</view>
+		<view class="bc_remind fc-777" wx:if="{{!isConfirm}}">当前报价已经生成，BQ编号为：<span>{{bqId}}</span>，请确保您已知晓并接受，以便我们安排工程师为您服务。
+		</view>
 		<view class="bc_remind fc-777" wx:else>
-			<image class="bc_order_icon2" src="/images/remind1.png" mode='widthFix'></image>上门维修报价单预计在您确认后6个工作日内上门,实际安排以您收到的微信小程序推送或短信为准。
+			<image class="bc_order_icon2" src="/images/remind1.png" mode='widthFix'></image>
+			上门维修报价单预计在您确认后6个工作日内上门,实际安排以您收到的微信小程序推送或短信为准。
 		</view>
 		<view class="bc_order fc-blue Pdf_link">
 			<view bindtap='openPDF'>
@@ -25,8 +29,10 @@
 		<view class="bc_order flex alignc" bindtap='inputInvoice' wx:if="{{pageShow}}">
 			<image class="bc_order_icon" src="/images/invoice.png" mode='widthFix'></image>
 			<view class='bc_order_con'>
-				<view class='invoiceInformation'>发票信息-<text class='fw {{invoiceInfo.title!=""?"":"fc-aaa"}}'>{{invoiceInfo.title!=''?currentInvoice=='normalInvoice'?'增值税普通发票':'增值税专用发票':'[未填写]'}}</text>
-					<text class='fc-blue changeType' wx:if='{{currentInvoice!=""&&isConfirm==0?true:false}}' catchtap='changeInvoiceType'>[更改发票类型]</text>
+				<view class='invoiceInformation'>发票信息-<text
+						class='fw {{invoiceInfo.title!=""?"":"fc-aaa"}}'>{{invoiceInfo.title!=''?currentInvoice=='normalInvoice'?'增值税普通发票':'增值税专用发票':'[未填写]'}}</text>
+					<text class='fc-blue changeType' wx:if='{{currentInvoice!=""&&isConfirm==0?true:false}}'
+						catchtap='changeInvoiceType'>[更改发票类型]</text>
 				</view>
 				<block wx:if='{{invoiceInfo.title!=""?true:false}}'>
 					<view class='fs12 invoiceD'>发票抬头：{{invoiceInfo.title}}</view>
@@ -39,62 +45,52 @@
 			</view>
 		</view>
 		<view class="bc_remind1" wx:if="{{!isConfirm}}">
-			<image class="bc_order_icon3" src="/images/remind1.png" mode='widthFix'></image>上门维修报价单预计在您确认后6个工作日内上门,实际安排以您收到的微信小程序推送或短信为准。
+			<image class="bc_order_icon3" src="/images/remind1.png" mode='widthFix'></image>
+			上门维修报价单预计在您确认后6个工作日内上门,实际安排以您收到的微信小程序推送或短信为准。
 		</view>
 	</view>
 
 	<view class="bq_status_panel" wx:if="{{pageShow}}">
-		<block wx:if="{{approval_button_enable=='Y'}}">
-			<block wx:if="{{isConfirm==0}}">
+		<!--approval_button_enable==Y 不需要签名  -->
+		<block wx:if="{{isConfirm==0}}">
+			<block wx:if="{{approval_button_enable=='N'}}">
 				<!-- 签名区域 -->
-				<view class='signature_panel padding'>
-					<label>联系人签字</label>
-					<view class="signature_content" bindtap="toSignature"></view>
+				<view class='signature_panel padding '>
+					<label class="signature_label">联系人签字</label>
+					<view wx:if="{{!isSignatured}}" class="signature_content" bindtap="toSignature"></view>
+					<block wx:else>
+						<view style="transform:rotate(270deg); height: 700rpx;width:265rpx;margin:0 auto;">
+							<image src="{{signatureImg}}" style="height:100%;width:100%;"></image>
+						</view>				
+						<view class="add_btn_area" bindtap="toSignature">
+							<view class="add_btn">重签</view>
+						</view>
+					</block>
 				</view>
-				<view class="bq_checkbox_panel">
-					<checkbox-group bindchange="contractConfirm">
-						<label class="checkbox">
-							<checkbox value="contract" checked="{{checkBox}}" style='transform:scale(.7);' />
-							<text class='fc-777 fs12'>我已阅读并接受此报价单</text>
-						</label>
-					</checkbox-group>
-				</view>
-				<button class="btn btn-primary" id="confirm" bindtap='confirm'>确认并接受</button>
 			</block>
-			<block wx:else>
-				<button class="btn btn-primary" disabled="disabled">您已确认</button>
-			</block>
+			<view class="bq_checkbox_panel">
+				<checkbox-group bindchange="contractConfirm">
+					<label class="checkbox">
+						<checkbox value="contract" checked="{{checkBox}}" style='transform:scale(.7);' />
+						<text class='fc-777 fs12'>我已阅读并接受此报价单</text>
+					</label>
+				</checkbox-group>
+			</view>
+			<button class="btn btn-primary" id="confirm" bindtap='confirm'>确认并接受</button>
 		</block>
 		<block wx:else>
-			<block>
-				<block wx:if="{{isConfirm==0}}">
-					<block wx:if="{{price>=maxprice}}">
-						<view class="bq_checkbox_panel" wx:if="{{maxprice == 30000}}">
-							预算报价大于3万元，请联系客服以确认
-						</view>
-						<view class="bq_checkbox_panel" wx:elif="{{maxprice == 69000}}">
-							预算报价大于6.9万元，请联系客服以确认
-						</view>
-					</block>
-					<block wx:else>
-						<view class="bq_checkbox_panel">
-							此类型服务暂不接受在线确认报价
-						</view>
-					</block>
-				</block>
-				<block wx:else>
-					<button class="btn btn-primary" disabled="disabled">您已确认</button>
-				</block>
-			</block>
+			<button class="btn btn-primary" disabled="disabled">您已确认</button>
 		</block>
 	</view>
 
-	<view class="bc_chat padding text-center fs12" wx:if="{{pageShow}}">如果对报价有任何问题，请<image class="chatimg" src="/images/wechat_b.png"></image>
-		<meiqiaBtn bindmeiqiaTap="MtaReport" btn-class="fc-blue bc_chat_btn btn-meiqia" handle-alert="{{true}}" session-from="W_bqobjectid:{{bqId}}|transferAction={{transferAction}}">
+	<view class="bc_chat padding text-center fs12" wx:if="{{pageShow}}">如果对报价有任何问题，请<image class="chatimg"
+			src="/images/wechat_b.png"></image>
+		<meiqiaBtn bindmeiqiaTap="MtaReport" btn-class="fc-blue bc_chat_btn btn-meiqia" handle-alert="{{true}}"
+			session-from="W_bqobjectid:{{bqId}}|transferAction={{transferAction}}">
 			发起会话
 		</meiqiaBtn>
 	</view>
-</block>
+</view>
 
 
 
