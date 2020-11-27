@@ -54,9 +54,6 @@ Page({
             console.log('welcome页面正在跳转');
           }, 3000);
       }
-    }else{
-      console.log('initiate没有token');
-      loginApi.login(getApp());
     }
   },
 
