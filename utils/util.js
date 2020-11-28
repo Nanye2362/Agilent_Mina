@@ -46,6 +46,10 @@ function uploadFileRequest({ url, data, filePath,fileName,success, fail }) {
   let requestUrl = config.Server + url;
   console.log('上传签名uploadFile：', requestUrl);
   let token = wx.getStorageSync('token');
+  wx.showLoading({
+    title: '加载中，请稍候',
+    mask: true
+  })
   wx.uploadFile({
     url: requestUrl, // 仅为示例，非真实的接口地址
     header: {
@@ -57,10 +61,21 @@ function uploadFileRequest({ url, data, filePath,fileName,success, fail }) {
     formData: data,
     success:res=> {
       console.log('上传签名成功res；', res);
-      success(res.data);
+      wx.hideLoading()
+      if(res.data.status){
+        success(res.data);
+      }else{
+        wx.showModal({
+          title: '提示',
+          content: res.data.error,
+          showCancel: false
+        });
+      }
     },
     fail(error){
       console.log('上传签名失败res；', error);
+      wx.hideLoading()
+      fail(error)
     }
   })
 }

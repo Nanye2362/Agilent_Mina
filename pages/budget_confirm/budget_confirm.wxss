@@ -124,7 +124,7 @@ page{
 .add_btn_area{
   display: flex;
   justify-content: flex-end;
-  margin: 30rpx 0rpx 100rpx;
+  margin-top: -384rpx;
 }
 .add_btn{
   border: 1rpx solid #00a6e4;

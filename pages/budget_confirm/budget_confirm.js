@@ -270,6 +270,7 @@ Page({
               isConfirm: 1,
               confirmShow: false,
             })
+            
             //wx.removeStorageSync('invoiceDetails');
           } else {
             wx.showToast({
@@ -286,16 +287,19 @@ Page({
     } else {
       let url = 'api/v1/sr/bq';
       console.log('上传签名uploadFile：', url);
+
       util.uploadFileRequest({
-        url:url,
+        url: url,
         data: params,
-        filePath:that.data.signatureImg,
-        fileName:'signature',
-        success:function(res){
-            console.log('上传签名成功后：', res);
+        filePath: that.data.signatureImg,
+        fileName: 'signature',
+        success: function (res) {
+          console.log('上传签名成功后：', res);
+
         },
       })
     }
+
 
 
   },
@@ -306,10 +310,17 @@ Page({
   },
   confirm: function () {
     // || Object.keys(invoiceDetails).length == 0
+    if (this.data.approval_button_enable == 'N'&&this.data.signatureImg=='') {
+      wx.showModal({
+        title: '提交失败',
+        content: '请确认签字',
+      })
+      return false;
+    }
     if (!this.data.checkBox) {
       wx.showModal({
         title: '提交失败',
-        content: '请确认发票信息的完整，并勾选已阅读并接收此报价单',
+        content: '请确认勾选已阅读并接受此报价单',
       })
       return false;
     }

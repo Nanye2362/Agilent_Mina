@@ -6,11 +6,11 @@
   <view wx:for="{{trackingInfoList}}" class="tracking_item flex">
     <view class="item_left">
       <view class="item_date">
-        {{item.acceptTime}}
+        {{item.date}}
       </view>
-      <!-- <view class="item_time">
+      <view class="item_time">
         {{item.time}}
-      </view> -->
+      </view>
     </view>
     <view class="item_middle">
       <view wx:if="{{index==0}}" class="circle_out blue_border">

@@ -28,8 +28,15 @@ Page({
       method: "GET",
       success: function (r) {
         console.log('物流信息：',r);
+        var trackingData=r.data.routes;
+        for(let i in trackingData){
+          trackingData[i].date=trackingData[i].acceptTime.substring(5,10);
+          trackingData[i].time=trackingData[i].acceptTime.substring(11,19);
+        }
+        trackingData.reverse();
+        console.log('trackingData:',trackingData);
         that.setData({
-          trackingInfoList:r.data.routes
+          trackingInfoList:trackingData
         })
       }
     })

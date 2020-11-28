@@ -12,16 +12,19 @@
   width: 100%;
   padding: 20rpx;
 }
+.item_date{
+  font-size: 28rpx;
+}
 .item_time{
   font-size: 20rpx;
   color: #cacaca;
 }
 .item_left{
-  flex:.2;
-}
-.item_middle{
+  width:16%;
+  padding-bottom:30rpx;
 }
 .item_right{
+  width:84%;
   border-left: 1rpx solid #d8d8d8;
   padding-left:20rpx;
   padding-bottom: 30rpx;
@@ -51,14 +54,14 @@
 .grey_bg {
   background-color: #d8d8d8;
   position: absolute;
-  left: 132rpx;
+  left: 17%;
   margin-top:8rpx;
 }
 
 .blue_border {
   border: 1rpx solid #0084d7;
   position: absolute;
-  left: 123rpx;
+  left: 16%;
 }
 
 .grey_border {

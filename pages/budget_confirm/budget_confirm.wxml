@@ -59,7 +59,7 @@
 					<label class="signature_label">联系人签字</label>
 					<view wx:if="{{!isSignatured}}" class="signature_content" bindtap="toSignature"></view>
 					<block wx:else>
-						<view style="transform:rotate(270deg); height: 700rpx;width:265rpx;margin:0 auto;">
+						<view style="transform:rotate(270deg); height: 700rpx;width:296rpx;margin:0 auto;position:relative;top:-196rpx;border:1px solid #cbcbcb;">
 							<image src="{{signatureImg}}" style="height:100%;width:100%;"></image>
 						</view>				
 						<view class="add_btn_area" bindtap="toSignature">
