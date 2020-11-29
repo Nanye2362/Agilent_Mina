@@ -89,8 +89,8 @@
         </view>
         <view class="sl_list_item_bottom">
                 <block wx:if="{{item.srStatus == 'WIP'}}">
-                     <meiqiaBtn bindmeiqiaTap="MtaReport" btn-class="sl_chat fs12 self-center" wx:if="{{item.unconfirmed == 0}}" style="width:30%;" handle-alert="{{true}}"  session-from="{{item.TECH+item.srId+item.SN+item.serialNo}}|transferAction={{item.transferAction}}"  sobotType="4">联系客服</meiqiaBtn>
-                     <meiqiaBtn bindmeiqiaTap="MtaReport" btn-class="sl_chat blue_status fs12 self-center" wx:if="{{item.header_status!='BQ_SENT'&&item.header_status!='DBQ_SENT'&&item.unconfirmed == 1}}" style="width:30%;" handle-alert="{{true}}"  session-from="{{item.TECH+item.srId+item.SN+item.serialNo}}|transferAction={{item.transferAction}}" sobotType="4">反馈结果</meiqiaBtn>
+                     <meiqiaBtn bindmeiqiaTap="MtaReport" btn-class="sl_chat fs12 self-center" wx:if="{{item.unconfirmed == 0}}" style="width:30%;" handle-alert="{{true}}"  session-from="{{item.TECH+item.srId+item.SN+item.serialNo}}|transferAction={{item.transferAction}}">联系客服</meiqiaBtn>
+                     <meiqiaBtn bindmeiqiaTap="MtaReport" btn-class="sl_chat blue_status fs12 self-center" wx:if="{{item.header_status!='BQ_SENT'&&item.header_status!='DBQ_SENT'&&item.unconfirmed == 1}}" style="width:30%;" handle-alert="{{true}}"  session-from="{{item.TECH+item.srId+item.SN+item.serialNo}}|transferAction={{item.transferAction}}">反馈结果</meiqiaBtn>
                      <!-- <view wx:if="{{item.Delivery_no!=''}}" class="sl_chat_btn blue_status fs12" data-Surveyid='{{item.surveyid}}' data-SrId='{{item.srId}}' bindtap='trackingNo' data-deliveryno='{{item.Delivery_no}}' data-sn='{{item.serialNo}}'>查看物流</view> -->
                 </block>
                 <block wx:elif="{{item.srStatus == 'CPLT'}}">

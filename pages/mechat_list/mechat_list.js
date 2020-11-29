@@ -29,12 +29,12 @@ Page({
     //showDesc:"",
     //showInfo:[false,false,false,false,false,false,false,false,false],
     list: [{ title: '分析仪器报修/咨询', img: 'repair', class: 'widthFix', color: 'blue', templete: 'inputTemplate1', checkfun: 'checkSales', tapfun: 'srTap', meqia: 'T', desc:'售后仪器操作，故障咨询'},
-      { title: '消耗品咨询/购买', id: '8', img: 'buy', class: 'widthFix', color: 'green', templete: 'inputTemplate2', checkfun: 'checkSales', tapfun: 'salesBATap', meqia: 'CB', desc: '购买消耗品相关问题咨询' ,robotid : 2},
-      { title: '色谱柱/前处理售后', id: '9', img: 'afterbuy', class: 'widthFix', color: 'green', templete: 'inputTemplate2', checkfun: 'checkSales', tapfun: 'salesBATap', class: 'widthFix', meqia: 'CA', desc: '消耗品应用相关咨询',robotid : 2 },
-      { title: '实验室仪器采购', id: '12', img: 'purchase', color: 'tree', templete: 'inputTemplate2', checkfun: 'checkSales', tapfun: 'salesTap', class: 'widthFix', meqia: 'K', desc: '实验室分析仪器购买咨询',robotid : 2},
+      { title: '消耗品咨询/购买', id: '8', img: 'buy', class: 'widthFix', color: 'green', templete: 'inputTemplate2', checkfun: 'checkSales', tapfun: 'salesBATap', meqia: 'CB', desc: '购买消耗品相关问题咨询' },
+      { title: '色谱柱/前处理售后', id: '9', img: 'afterbuy', class: 'widthFix', color: 'green', templete: 'inputTemplate2', checkfun: 'checkSales', tapfun: 'salesBATap', class: 'widthFix', meqia: 'CA', desc: '消耗品应用相关咨询' },
+      { title: '实验室仪器采购', id: '12', img: 'purchase', color: 'tree', templete: 'inputTemplate2', checkfun: 'checkSales', tapfun: 'salesTap', class: 'widthFix', meqia: 'K', desc: '实验室分析仪器购买咨询'},
       // { title: '实验室服务方案', img: 'solution', color: 'tree', templete: 'inputTemplate2', class: 'widthFix', checkfun: 'checkSales', tapfun: 'salesTap', meqia: 'S', desc: '实验室企业级服务、整体搬迁、法规认证、分析仪器维修/维护合同等' },
       { title: '电话工单补充图片', id: '7', desc: '已有服务单号快速入口', class: 'widthFix', templete: 'inputTemplate5', checkfun: 'checkOrder', tapfun: 'orderTap', meqia: 'N', img: 'solution', color: 'tree', },
-      { title: '售后服务合同', id: '11', img: 'contract', color: 'yellow', class: 'widthFix', templete: 'inputTemplate2', checkfun: 'checkSales', tapfun: 'salesTap', meqia: 'S', desc: '售后服务合同相关事项咨询',robotid : 2 },
+      { title: '售后服务合同', id: '11', img: 'contract', color: 'yellow', class: 'widthFix', templete: 'inputTemplate2', checkfun: 'checkSales', tapfun: 'salesTap', meqia: 'S', desc: '售后服务合同相关事项咨询' },
       { title: '实验室法规认证', id: '11',  img: 'OQ', color: 'yellow', templete: 'inputTemplate2', checkfun: 'checkSales', class: 'widthFix', tapfun: 'salesTap', meqia: 'S', desc: '实验室法规认证等咨询' },
       { title: '送修及翻新服务', id: '13', img: 'renew', color: 'orange', templete: 'inputTemplate2', checkfun: 'checkSales', class: 'widthFix', tapfun: 'repairTap', meqia: 'T', desc: '仪器送修及翻新等咨询'},
       { title: '安捷伦大学培训', id: '10', img: 'myclass', color: 'purple', templete: 'inputTemplate2', checkfun: 'checkSales', class: 'widthFix', tapfun: 'salesTap', meqia: 'E', desc: '培训名额、定制培训、课程注册等咨询' },
@@ -225,6 +225,7 @@ Page({
   },
   salesTap:function(e){
 
+    console.log(e);
     var that = this;
     that.setData({
       showTemplate: e.currentTarget.dataset.template,
@@ -232,8 +233,7 @@ Page({
       meqiaGroup: e.currentTarget.dataset.meqia,
       showDesc: e.currentTarget.dataset.desc,
       titleColor: e.currentTarget.dataset.color,
-      titleCon: e.currentTarget.dataset.title,
-      robotid : e.currentTarget.dataset.robotid,
+      titleCon: e.currentTarget.dataset.title
     })
     console.log(e.currentTarget.dataset.meqia)
     util.IsCertificate(function () {
@@ -259,7 +259,6 @@ Page({
       showDesc: e.currentTarget.dataset.desc,
       titleColor: e.currentTarget.dataset.color,
       titleCon: e.currentTarget.dataset.title,
-      robotid : e.currentTarget.dataset.robotid,
     })
     util.IsCertificate(function () {
       that.getCusInfo();
@@ -273,7 +272,7 @@ Page({
   getCusInfo: function(e){
     var that = this;
     util.NetRequest({
-      url: 'api/v1/wechat/sobot/user-info',//site-mini/meqia-getuserinfo   
+      url: 'api/v1/wechat/sobot/user-info',//site-mini/meqia-getuserinfo
       method:"GET",
       success: function (res) {
         console.log(res);
@@ -306,8 +305,7 @@ Page({
         meqiaGroup: e.currentTarget.dataset.meqia,
         titleColor: e.currentTarget.dataset.color,
         titleCon: e.currentTarget.dataset.title,
-        shLoading: true,
-        robotid : e.currentTarget.dataset.robotid,
+        shLoading: true
       })
       //未绑定，则跳转认证页面
     }, function () {

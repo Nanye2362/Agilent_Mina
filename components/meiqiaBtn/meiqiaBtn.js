@@ -1,7 +1,6 @@
 // components/meiqiaBtn/meiqiaBtn.js
 var workTime = require('../../utils/workTime.js');
 var util = require('../../utils/util.js');
-var config = require('../../config.js');
 
 
 Component({
@@ -16,9 +15,7 @@ Component({
     sessionFrom:String,
     meqiaGroup:String,
     disabled:String,
-    formType:String,
-    robotid:String,
-    sobotType:String
+    formType:String
   },
 
   /**
@@ -32,8 +29,7 @@ Component({
     nickName:'',
     avatarUrl:'',
     contactId:'',
-    sessionFromFormat:"",
-    sobotFrom:""
+    sessionFromFormat:""
   },
 
   lifetimes: {
@@ -42,7 +38,6 @@ Component({
         nickName: wx.getStorageSync("sobot_nickname"),
         avatarUrl:wx.getStorageSync("sobot_avatarUrl"),
         contactId:wx.getStorageSync("sobot_contactid"),
-        miniOpenId:wx.getStorageSync("mini_openid"),
       })
     }
   },
@@ -51,66 +46,15 @@ Component({
    */
   methods: {
     meiqiaBtnTap:function(e){
-      var robotid = 1;
-      var sobotType = ''; //接入类型
-      //目前指定到1号机器人
-      // if(this.data.robotid != undefined){
-      //   robotid = this.data.robotid
-      // }
-
-       if(this.data.sobotType != undefined){
-         sobotType = this.data.sobotType
-       }
 
       if (!this.data.canUse){
         this.setData({
           showModal:true
         })
       }else{
-        var url = config.sobotUrl;
-
-        var param = {
-          "name" : this.data.nickName,
-          "contactId" : this.data.contactId,
-          "from" : this.data.sobotFrom,
-          "transAction" : this.data.sessionFromFormat,
-        };
-        var paramJson = JSON.stringify(param);
-        var transfer_action = this.data.sessionFromFormat
-
-        let searchParams = {
-          sysnum : config.sobotSysnum,
-          partnerid : this.data.miniOpenId,
-          uname : this.data.nickName,
-          face: this.data.avatarUrl,
-          params: paramJson,
-          transfer_action : transfer_action,
-          robotid : robotid,
-          top_bar_flag:1,
-          type:sobotType
-        }
-
-        Object.keys(searchParams).map((key)=>{
-          url += key + '=' + searchParams[key] +'&';
-        })
-        url = url.substring(url.length-1,-1)
-        url = url.replace(/transferAction=/g, "")
-        url = encodeURI(url);
-
-        wx.navigateTo({
-          url: '/pages/sobot_html/openHtml?url='+encodeURIComponent(url),
-        });
-
-        // wx.setStorage({
-        //   key: "sobotHtmlUrl",
-        //   data: url,
-        //   success: function () {
-        //     wx.navigateTo({
-        //       url: '/pages/sobot_html/openHtml',
-        //     });
-        //   }
-        // })
-
+        workTime.handleWorkTime(this.data.handleAlert);
+        this.triggerEvent('meiqiaTap', e);
+        console.log('meiqiaBtnTap', e)
       }
     }
   },
@@ -137,23 +81,20 @@ Component({
   },
   observers: {
     'sessionFrom'(value) {
-
       var _this = this;
       _this.setData({
         sessionFromFormat: ''
       });
+      var strArr = value.split('|');
 
-      var strArr = [];
-      strArr = value.split('|');
-      this.setData({
-        sobotFrom: strArr[0]
-      });
-
+      var params = "{\"name\":\""+ _this.data.nickName+"\",\"contactId\":\""+ _this.data.contactId +"\",\"from\":\""+ strArr[0]+"\"}";
+      strArr[0] = params;
+      console.log('strArr:',strArr);
       console.log('sessionFrom value:',value);
-
       this.setData({
-        sessionFromFormat: strArr[1]
+        sessionFromFormat: strArr.join("|")
       });
+
 
       console.log('session:'+this.data.sessionFromFormat);
     },
