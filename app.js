@@ -103,7 +103,7 @@ App({
     // if(res.path != 'pages/initiate/initiate'){ //不是正常页进入
     //   that.wxlogin();
     // }
-    // await util.getUserInfoSobot();
+    await util.getUserInfoSobot();
 
     that.globalData.isFirstLunch = false;
     if(that.globalData.syncFlag == false){
