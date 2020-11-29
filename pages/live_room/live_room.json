@@ -1,6 +1,0 @@
-{
-  "navigationBarTitleText": "直播间",
-  "usingComponents": {
-    "tui-tag": "../../components/thorui/tag/tag"
-  }
-}

@@ -1,8 +1,6 @@
 {
   "pages": [
     "pages/initiate/initiate",
-    "pages/live_room/live_room",
-    "pages/play_back/play_back",
     "pages/login/login",
     "pages/sobot_html/openHtml",
     "pages/jump_page/jump_page",
