@@ -38,6 +38,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    isAddInvoice:0,
     sendWhom: [
       { name: 'me', value: '我自己',checked: 'true' },
       { name: 'other', value: '其他人' }
@@ -77,8 +78,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    // 获取发票还未处理 invoiceId
+    console.log('发票详情：',options);
     var app = getApp();
     var that = this;
+    if(typeof(options.isAddInvoice)!='undefined'){
+      this.data.isAddInvoice=options.isAddInvoice
+    }
     util.NetRequest({
       url: 'api/v1/wechat/get-global-group',//wechat-mini/get-global-group
       method:"GET",
@@ -201,20 +207,6 @@ Page({
   },
   //提交
   submit: function(){
-    // /api/v1/user/invoice POST
-    //  "type": invoicedetails[currentInvoice].invoiceType,
-    // "title": invoicedetails[currentInvoice].invoiceInfo.title,
-    // "taxpayer_recognition_number":invoicedetails[currentInvoice].invoiceInfo.taxNumber,
-    // "bank": invoicedetails[currentInvoice].invoiceInfo.bankName,
-    // "bank_account":invoicedetails[currentInvoice].invoiceInfo.bankAccount, 
-    // "registered_address": invoicedetails[currentInvoice].invoiceInfo.companyAddress,
-    // "registered_phone": invoicedetails[currentInvoice].invoiceInfo.telephone,
-    // "recipient":invoicedetails[currentInvoice].sendInfo.name,
-    // "mail":invoicedetails[currentInvoice].sendInfo.mail,
-    // "tel": invoicedetails[currentInvoice].sendInfo.telephone,
-    // "address": invoicedetails[currentInvoice].sendInfo.address,
-    // "po_code": invoicedetails[currentInvoice].PO,
-    // "sales_list":invoicedetails[currentInvoice].needBill
     var that = this;
     var checkObjInvoice = Object.keys(invoiceArry[this.data.currentInvoice]);
     if (this.data.currentInvoice =="normalInvoice"){
@@ -243,7 +235,7 @@ Page({
       invoiceDetails[currentInvoice].invoiceType = this.data.currentInvoice;
       wx.setStorageSync('invoiceDetails', invoiceDetails);
       wx.navigateTo({
-        url: '../invoiceConfirm/invoiceConfirm?url=invoiceDetails&&currentInvoice=' + currentInvoice
+        url: '../invoiceConfirm/invoiceConfirm?url=invoiceDetails&&currentInvoice=' + currentInvoice+'&isAddInvoice='+this.data.isAddInvoice
       })
     }
   },

@@ -135,6 +135,19 @@ Page({
             approval_button_enable: r.data.approval_button_enable,
             item_description: r.data.item_description,
           })
+          wx.showModal({
+            title: '请求失败',
+            content: r.data.error,
+            showCancel: false,
+            success: function (response) {
+              console.log('400:', response);
+              // if (response.confirm) {
+              //   wx.switchTab({
+              //     url: '../index/index',
+              //   })
+              // }
+            }
+          })
         }
       }
     })
@@ -222,9 +235,16 @@ Page({
   },
   infoOkTap: function () {
     var that = this;
-    console.log(invoiceDetails);
-    console.log(Object.keys(invoiceDetails).length)
-    if (Object.keys(invoiceDetails).length != 0) {
+    var pages=getCurrentPages();
+    var needCheckInvoice=false;
+    if(pages.length>1){
+      if(pages[pages.length-2]=='pages/invoiceConfirm/invoiceConfirm'){
+        needCheckInvoice=true;
+      }
+    }
+    console.log('提交bq：needCheckInvoice',needCheckInvoice,invoiceDetails);
+    console.log('提交bq：that.data.currentInvoice',that.data.currentInvoice);
+    if (that.data.currentInvoice != ''&&Object.keys(invoiceDetails).length != 0) {
       var invoicedetails = invoiceDetails;
       var currentInvoice = this.data.currentInvoice;
       console.log('currentInvoice:', currentInvoice);
@@ -270,7 +290,9 @@ Page({
               isConfirm: 1,
               confirmShow: false,
             })
-            
+            wx.switchTab({
+              url: '../index/index',
+            })
             //wx.removeStorageSync('invoiceDetails');
           } else {
             wx.showToast({
@@ -287,7 +309,6 @@ Page({
     } else {
       let url = 'api/v1/sr/bq';
       console.log('上传签名uploadFile：', url);
-
       util.uploadFileRequest({
         url: url,
         data: params,
@@ -295,13 +316,17 @@ Page({
         fileName: 'signature',
         success: function (res) {
           console.log('上传签名成功后：', res);
-
+          wx.showToast({
+            title: '成功',
+            icon: 'success',
+            duration: 2000
+          })
+          wx.switchTab({
+            url: '../index/index',
+          })
         },
       })
     }
-
-
-
   },
   infoCancelTap: function () {
     this.setData({
@@ -314,6 +339,7 @@ Page({
       wx.showModal({
         title: '提交失败',
         content: '请确认签字',
+        showCancel:false
       })
       return false;
     }
@@ -321,6 +347,7 @@ Page({
       wx.showModal({
         title: '提交失败',
         content: '请确认勾选已阅读并接受此报价单',
+        showCancel:false
       })
       return false;
     }

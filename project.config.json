@@ -302,10 +302,10 @@
           "scene": null
         },
         {
-          "id": 35,
+          "id": 34,
           "name": "pages/safety_statement/safety_statement",
           "pathName": "pages/safety_statement/safety_statement",
-          "query": "isConfirmed=0",
+          "query": "isConfirmed=0&objectId=3000435445",
           "scene": null
         },
         {
@@ -335,6 +335,13 @@
           "pathName": "pages/trackingNo/trackingNo",
           "query": "tracking_id=322829430310",
           "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/initiate/initiate",
+          "pathName": "pages/initiate/initiate",
+          "query": "",
+          "scene": 1005
         }
       ]
     }

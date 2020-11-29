@@ -20,7 +20,7 @@
         </label>
       </checkbox-group>
     </view>
-    <view wx:if="{{isConfirmed==0}}" class='confirm_area'>
+    <view wx:if="{{toConfirmed==1}}" class='confirm_area'>
       <label class="fs12">我承诺上诉信息属实，并且送修的仪器备件是安全无害的。</label>
       <!-- 签名区域 -->
       <!-- 签名区域 -->
@@ -41,6 +41,6 @@
 
   <!-- btn -->
   <view class="btn-area">
-    <button class="btn btn-primary" disabled="{{isConfirmed}}" bindtap='submit'>{{isConfirmed?'已确认':'提交'}}</button>
+    <button class="btn btn-primary" disabled="{{isConfirmed!=0}}" bindtap='submit'>{{isConfirmed==0?'提交':'已确认'}}</button>
   </view>
 </view>

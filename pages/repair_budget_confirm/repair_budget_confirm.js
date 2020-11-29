@@ -9,10 +9,10 @@ Page({
     showSignature: false,
     transferAction: '',
     objectid: '',
-    bqId: '',
     isSignatured: false,
     signatureImg: '',
-    safety_statement:[]
+    safety_statement:[],
+    checkBox:false
   },
 
   /**
@@ -21,8 +21,7 @@ Page({
   onLoad: function (options) {
     if (typeof (options.objectId) != 'undefined') {
       this.setData({
-        objectid: options.objectId,
-        bqId: options.objectId
+        objectid: options.objectId
       })
     }
   },
@@ -59,6 +58,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function (options) {
+    console.log('onShow:',this.data.objectid,this.data.safety_statement);
     //腾讯mat统计开始
     var app = getApp();
     var that = this;
@@ -101,7 +101,7 @@ Page({
           that.setData({
             pageComplete: true,
             pageShow: true,
-            bqId: options.objectId,
+            bqId: this.data.objectId,
             isConfirm: r.data.is_confirmed,
             price: r.data.gross_value,
             maxprice: r.data.max_price,
@@ -109,17 +109,39 @@ Page({
             item_description: r.data.item_description,
           })
         } else if (r.data.status == false) {
+          wx.showModal({
+            title: '请求失败',
+            content: r.data.error,
+            showCancel: false,
+            success: function (response) {
+              console.log('400:', response);
+              // if (response.confirm) {
+              //   wx.switchTab({
+              //     url: '../index/index',
+              //   })
+              // }
+            }
+          })
           that.setData({
             pageComplete: true,
             pageShow: false,
-            bqId: options.objectId,
             isConfirm: r.data.is_confirmed
           })
         }
       }
     })
   },
-  
+  toSafetyPage(){
+    wx.navigateTo({
+      url: '../safety_statement/safety_statement?objectId='+this.data.objectid,
+    })
+  },
+  // 勾选协议
+  contractConfirm: function (e) {
+    this.setData({
+      checkBox: e.detail.value.length == 1
+    })
+  },
   openPDF: function () {
     // '/api/v1/sr/bq-file?objectid='+item.ServconfId+'&token='+token
     // var url = util.Server + 'site/open-file?ServconfId=' + this.data.bqId;
@@ -162,49 +184,58 @@ Page({
       }
     })
   },
-  // submit: function () {
-  //   console.log('objectid:',this.data.objectid);
-  //   wx.navigateTo({
-  //     url: '../budget_confirm_info/budget_confirm_info?objectId=' + this.data.objectid,
-  //   })
-  // },
   submit() {
     // uploadFile
     // api/v1/sr/gen-pdf POST
     // objectid safety_statement:[] signature file
-    let url = util.Server + 'api/v1/sr/gen-pdf?objectid=' + this.data.objectid;
+    let url = util.Server + 'api/v1/sr/gen-pdf';
     var that = this;
     console.log('上传签名uploadFile：', url);
-    if (url) {
-      return
+    if (that.data.safety_statement.length<=0) {
+      wx.showModal({
+        title: '提交失败',
+        content: '请编辑确认送修仪器是否含有相关危险物质',
+        showCancel:false
+      })
+      return false;
+    }else if(that.data.signatureImg==''){
+      wx.showModal({
+        title: '提交失败',
+        content: '请确认签字',
+        showCancel:false
+      })
+      return false;
+    }else if(!that.data.checkBox) {
+      wx.showModal({
+        title: '提交失败',
+        content: '请确认勾选已阅读并签名确认以上文件内容',
+        showCancel:false
+      })
+      return false;
     } else {
-      wx.uploadFile({
-        url: url, // 仅为示例，非真实的接口地址
+      let url='api/v1/sr/gen-pdf';
+      var params={
+        objectid:that.data.objectid,
+        safety_statement:that.data.safety_statement,
+      };
+      util.uploadFileRequest({
+        url: url,
+        data: params,
         filePath: that.data.signatureImg,
-        name: 'signature',
-        formData: params,
-        success(res) {
-          console.log('上传签名成功res；', res);
+        fileName: 'signature',
+        success: function (res) {
+          console.log('上传签名成功后：', res);
+          wx.showToast({
+            title: '成功',
+            icon: 'success',
+            duration: 2000
+          })
           wx.navigateTo({
             url: '../budget_confirm_info/budget_confirm_info?objectId=' + that.data.objectid,
           })
-        }
+        },
       })
     }
-
-    //   wx.uploadFile({
-    //       url: 'api/v1/sr/gen-pdf', // 仅为示例，非真实的接口地址
-    //       filePath: res.tempFilePath,
-    //       name: 'signature',
-    //       formData: {
-    //         objectid: 'test',
-    //         safety_statement:[]
-    //       },
-    //       success(res) {
-    //         const data = res.data
-    //         // do something
-    //       }
-    //     })
   },
   /**
    * 生命周期函数--监听页面隐藏

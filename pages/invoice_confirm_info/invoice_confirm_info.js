@@ -25,7 +25,8 @@ Page({
       "address": "",
     },
     currentInvoice:'',
-    invoiceDetails:{}
+    invoiceDetails:{},
+    isConfirm:0
   },
 
   /**
@@ -59,7 +60,7 @@ Page({
       method: 'GET',
       success: function (r) {
         console.log(r);
-        var currentInvoice = that.data.currentInvoice;
+        var currentInvoice = '';
         if (r.data.status != false) {
           if (r.data.invoice.length > 0) {
             currentInvoice = r.data.invoice[0].type == 0 ? 'normalInvoice' : 'specialInvoice';
@@ -107,15 +108,55 @@ Page({
   },
   toSelectInvoice() {
     wx.navigateTo({
-      url: '../invoice_list/invoice_list',
+      url: '../invoice_list/invoice_list?objectId='+this.data.objectid,
     })
   },
   submit() {
+    var that =this;
     // api/v1/sr/fill-invoice POST objectid invoice{}
-    this.setData({
-      showModalTip: true,
-      tipText: '感谢您选择安捷伦送修，稍后您的专属调度将为您安排后续服务'
-    })
+    if(that.data.currentInvoice == ''||Object.keys(invoiceDetails).length == 0){
+      wx.showModal({
+        title: '提交失败',
+        content: '请选择发票',
+      })
+      return false;
+    }else if (that.data.currentInvoice != ''&&Object.keys(invoiceDetails).length != 0) {
+      var invoicedetails = invoiceDetails;
+      var currentInvoice = this.data.currentInvoice;
+      console.log('currentInvoice:', currentInvoice);
+      invoicedetails[currentInvoice].needBill = invoiceDetails.needBill == true ? 1 : 0;
+      invoicedetails[currentInvoice].invoiceType = invoiceDetails[currentInvoice].invoiceType == 'specialInvoice' ? 1 : 0;
+      var params = {
+        objectid: that.data.objectid,
+        invoice: {
+          "type": invoicedetails[currentInvoice].invoiceType,
+          "title": invoicedetails[currentInvoice].invoiceInfo.title,
+          "taxpayer_recognition_number": invoicedetails[currentInvoice].invoiceInfo.taxNumber,
+          "bank": invoicedetails[currentInvoice].invoiceInfo.bankName,
+          "bank_account": invoicedetails[currentInvoice].invoiceInfo.bankAccount,
+          "registered_address": invoicedetails[currentInvoice].invoiceInfo.companyAddress,
+          "registered_phone": invoicedetails[currentInvoice].invoiceInfo.telephone,
+          "recipient": invoicedetails[currentInvoice].sendInfo.name,
+          "mail": invoicedetails[currentInvoice].sendInfo.mail,
+          "tel": invoicedetails[currentInvoice].sendInfo.telephone,
+          "address": invoicedetails[currentInvoice].sendInfo.address,
+          "po_code": invoicedetails[currentInvoice].PO,
+          "sales_list": invoicedetails[currentInvoice].needBill
+        }
+      };
+      util.NetRequest({
+        url: 'api/v1/sr/fill-invoice',
+        method: "POST",
+        data: params,
+        success: function (r) {
+          console.log('提交发票信息：',r);
+          this.setData({
+            showModalTip: true,
+            tipText: '感谢您选择安捷伦送修，稍后您的专属调度将为您安排后续服务'
+          })
+        }
+      })
+    }   
   },
 
   /**

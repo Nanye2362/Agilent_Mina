@@ -11,7 +11,7 @@
     <view class="bc_remind">BQ编号为:{{objectid}}</view>
   </view>
   <view class="bc_content">
-    <view class="bc_item" bindtap='openPDF' style="margin-bottom:20rpx;">
+    <view class="bc_item" bindtap='openPDF' data-safe='0' style="margin-bottom:20rpx;">
       <view class="bc_item_left">
         <image class="bc_order_icon" src="/images/pdf.png" mode='widthFix'></image>
         <span class="fc-blue">安捷伦送修服务报价单</span>
@@ -21,7 +21,7 @@
         <span class="fc-blue">下载</span>
       </view>
     </view>
-    <view class="bc_item" bindtap='openPDF'>
+    <view class="bc_item" bindtap='openPDF' data-safe='1'>
       <view class="bc_item_left">
         <image class="bc_order_icon" src="/images/pdf.png" mode='widthFix'></image>
         <span class="fc-blue">安捷伦健康安全声明</span>

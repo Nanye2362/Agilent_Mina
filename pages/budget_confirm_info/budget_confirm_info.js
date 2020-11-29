@@ -7,32 +7,32 @@ Page({
    * 页面的初始数据
    */
   data: {
-    showModalTip:false,
-    tipText:'请尽快确认发票信息，以便安排后续送修服务',
-    objectid:''
+    showModalTip: false,
+    tipText: '请尽快确认发票信息，以便安排后续送修服务',
+    objectid: ''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log('options:',options);
-    if(typeof(options.objectId)!='undefined'){
+    console.log('options:', options);
+    if (typeof (options.objectId) != 'undefined') {
       this.setData({
-        objectid:options.objectId
+        objectid: options.objectId
       })
-    }  
+    }
     //腾讯mat统计开始
     var app = getApp();
     var that = this;
     util.NetRequest({
       url: 'api/v1/wechat/get-global-group',//wechat-mini/get-global-group
-      method:"GET",
+      method: "GET",
       success: function (res) {
         app.globalData.sobotData = res.data;
         util.getUserInfoSobot();
         that.setData({
-          transferAction:util.sobotTransfer(4),
+          transferAction: util.sobotTransfer(4),
         });
       }
     });
@@ -40,23 +40,23 @@ Page({
     app.mta.Page.init();
     //腾讯mat统计结束
   },
-// 签名
-toSignature:function(){
-  this.setData({
-    showSignature:true
-  })
-},
-// 关闭签名
-closeSignature:function(){
-  this.setData({
-    showSignature:false
-  })
-},
-//检测工作时间
-MtaReport: function () {
-  var app = getApp();
-  app.mta.Event.stat("meqia", { "group": 'NONTECH' });
-},
+  // 签名
+  toSignature: function () {
+    this.setData({
+      showSignature: true
+    })
+  },
+  // 关闭签名
+  closeSignature: function () {
+    this.setData({
+      showSignature: false
+    })
+  },
+  //检测工作时间
+  MtaReport: function () {
+    var app = getApp();
+    app.mta.Event.stat("meqia", { "group": 'NONTECH' });
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -70,18 +70,19 @@ MtaReport: function () {
   onShow: function () {
 
   },
-  openPDF:function(){
-    // '/api/v1/sr/bq-file?objectid='+item.ServconfId+'&token='+token
-    // var url = util.Server + 'site/open-file?ServconfId=' + this.data.bqId;
-    var token=wx.getStorageSync('token');
-    var url = util.Server + 'api/v1/sr/bq-file?objectid=' + this.data.objectid+'&token='+token;
+  openPDF: function (e) {
+    var token = wx.getStorageSync('token');
+    var url = util.Server + 'api/v1/sr/preview-pdf?objectid=' + this.data.objectid+'&is_safety='+e.currentTarget.dataset.safe;
     console.log(url);
     // url api/v1/sr/preview-pdf?objectid= &is_safety=1(1为安全声明) GET
     // return ['status' => false, 'error' => 'PDF生成中请稍后', 'no_error' => true];
     var downloadTask = wx.downloadFile({
       url: url,
+      header: {
+        'Authorization': "Bearer " + token
+      },
       success: function success(res) {
-        console.log(res);
+        console.log('下载pdf：',res);
         var filePath = res.tempFilePath;
         console.log('filePath= ' + filePath);
         wx.openDocument({
@@ -97,7 +98,7 @@ MtaReport: function () {
               showCancel: false
             });
           }
-          })
+        })
       },
       complete: function complete() {
         wx.hideLoading();
@@ -111,23 +112,27 @@ MtaReport: function () {
       }
     })
   },
-  submit:function(e){
-    if(e.currentTarget.dataset.confirm==0){
-      //  util.NetRequest({
-      // url: 'api/v1/sr/bq',
-      // method:"POST",
-      // data: {
-      //   objectid:that.data.objectid,
-      // },
-      this.setData({
-        showModalTip:true,
-        tipText:'请尽快确认发票信息，以便安排后续送修服务'
+  submit: function (e) {
+    var that = this;
+    if (e.currentTarget.dataset.confirm == 0) {
+      util.NetRequest({
+        url: 'api/v1/sr/bq',
+        method: "POST",
+        data: {
+          objectid: that.data.objectid,
+        },
+        success(r) {
+          this.setData({
+            showModalTip: true,
+            tipText: '请尽快确认发票信息，以便安排后续送修服务'
+          })
+        }
       })
-    }else{
+    } else {
       wx.navigateTo({
-        url: '../invoice_confirm_info/invoice_confirm_info?objectId='+this.data.objectid,
+        url: '../invoice_confirm_info/invoice_confirm_info?objectId=' + this.data.objectid,
       })
-    }  
+    }
   },
   /**
    * 生命周期函数--监听页面隐藏

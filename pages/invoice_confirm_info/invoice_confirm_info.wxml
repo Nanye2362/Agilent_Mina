@@ -30,7 +30,7 @@
     </view>
   </view>
   <view class="bc_btn_area">
-    <button class="btn bg-blue fc-fff" disabled="{{isConfirm}}" bindtap='submit'>提交发票信息</button>
+    <button class="btn bg-blue fc-fff" disabled="{{isConfirm!=0}}" bindtap='submit'>{{isConfirm==0?'提交发票信息':'已提交'}}</button>
   </view>
   <view class="bc_chat padding text-center fs12">如果对报价有任何问题，请<image class="chatimg" src="/images/wechat_b.png"></image>
     <meiqiaBtn bindmeiqiaTap="MtaReport" btn-class="fc-blue bc_chat_btn btn-meiqia" handle-alert="{{true}}"
