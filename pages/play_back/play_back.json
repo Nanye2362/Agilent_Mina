@@ -1,6 +1,0 @@
-{
-  "navigationBarTitleText": "回放",
-  "usingComponents": {
-    "tui-tag": "../../components/thorui/tag/tag"
-  }
-}
