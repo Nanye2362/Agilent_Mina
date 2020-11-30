@@ -21,7 +21,8 @@
 				<image class="bc_order_icon" src="/images/pdf.png" mode='widthFix'></image>
 				安捷伦维修收费标准说明书-报价单
 			</view>
-			<view bindtap="copyTBL">
+			<!-- copyTBL -->
+			<view bindtap="openPDF">
 				<image class="bc_order_icon1" src="/images/download.jpg" mode='widthFix'></image>
 				下载
 			</view>
