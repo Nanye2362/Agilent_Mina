@@ -59,3 +59,14 @@ checkbox .wx-checkbox-input {
   margin-top: -4rpx;
   margin-right: 10rpx;
 }
+.add_btn_area{
+  display: flex;
+  justify-content: flex-end;
+  margin-top: -384rpx;
+}
+.add_btn{
+  border: 1rpx solid #00a6e4;
+  color: #00a6e4;
+  font-size: 28rpx;
+  padding: 10rpx 30rpx;
+}

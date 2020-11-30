@@ -290,9 +290,6 @@ Page({
               isConfirm: 1,
               confirmShow: false,
             })
-            wx.switchTab({
-              url: '../index/index',
-            })
             //wx.removeStorageSync('invoiceDetails');
           } else {
             wx.showToast({
@@ -315,14 +312,15 @@ Page({
         filePath: that.data.signatureImg,
         fileName: 'signature',
         success: function (res) {
-          console.log('上传签名成功后：', res);
+          console.log('上传签名结束：',res);
           wx.showToast({
             title: '成功',
             icon: 'success',
             duration: 2000
           })
-          wx.switchTab({
-            url: '../index/index',
+          that.setData({
+            isConfirm: 1,
+            confirmShow: false,
           })
         },
       })

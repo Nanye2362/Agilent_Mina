@@ -60,16 +60,19 @@ function uploadFileRequest({ url, data, filePath,fileName,success, fail }) {
     name: fileName,
     formData: data,
     success:res=> {
-      console.log('上传签名成功res；', res);
+      console.log('上传签名成功res:', res);
       wx.hideLoading()
-      if(res.data.status){
-        success(res.data);
+      let data=JSON.parse(res.data);
+      console.log('上传签名成功后data：',data);
+      if(data.status){
+        success(data);
       }else{
         wx.showModal({
-          title: '提示',
-          content: res.data.error,
-          showCancel: false
-        });
+          title: '提交失败',
+          content: '上传失败，请联系客服',
+          showCancel:false
+        })
+        return false;
       }
     },
     fail(error){
