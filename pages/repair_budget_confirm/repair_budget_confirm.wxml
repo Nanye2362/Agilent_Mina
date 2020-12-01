@@ -3,10 +3,13 @@
   <signature showSignature="{{showSignature}}" bindcloseSignature='closeSignature'
     bindcompleteSignature='completeSignature'></signature>
 </view>
-<view class='budget_confirm_info' wx:if="{{!showSignature}}">
+<block wx:if="{{!pageComplete}}">
+	<view>加载中...</view>
+</block>
+<view class='budget_confirm_info' wx:if="{{!showSignature&&pageComplete}}">
   <view class="bc_header">
     <view class="bc_title fs20 text-center">
-      <image src='/images/bq.png' mode='widthFix'></image>
+      <image src='/images/repair_bq.jpg' mode='widthFix'></image>
     </view>
     <view class="bc_remind">您的送修报价单已经生成,BQ编号为:{{objectid}},请填写或确认开票信息，以便我们为您安排更多服务。</view>
   </view>
@@ -21,19 +24,17 @@
         <span class="fc-blue fs28">下载</span>
       </view>
     </view>
-    <view class="bc_item" bindtap='toSafetyPage'>
+    <view class="bc_item" bindtap="{{isConfirm==0?'toSafetyPage':''}}">
       <view class="bc_item_left">
         <image class="bc_order_icon" src="/images/pdf.png" mode='widthFix'></image>
         <span class="fc-blue fs28">请确认送修仪器是否含有相关危险物质</span>
       </view>
-      <view class="bc_item_right">
+      <view wx:if="{{isConfirm==0}}" class="bc_item_right">
         <image class="bc_order_icon" src="/images/edit-2.png" mode='widthFix'></image>
         <span class="fc-blue fs28">编辑</span>
       </view>
     </view>
   </view>
-  <!-- 签名区域 -->
-  <!-- 签名区域 -->
   <!-- 签名区域 -->
   <view class='signature_panel'>
     <label class="signature_label">联系人签字</label>
@@ -43,21 +44,21 @@
         style="transform:rotate(270deg); height: 700rpx;width:296rpx;margin:0 auto;position:relative;top:-196rpx;border:1px solid #cbcbcb;">
         <image src="{{signatureImg}}" style="height:100%;width:100%;"></image>
       </view>
-      <view class="add_btn_area" bindtap="toSignature">
-        <view class="add_btn">重签</view>
+      <view class="add_btn_area" bindtap="{{isConfirm==0?'toSignature':''}}">
+        <view class="{{isConfirm==0?'add_btn':''}}">{{isConfirm==0?'重签':''}}</view>
       </view>
     </block>
   </view>
   <view class="bq_checkbox_panel">
     <checkbox-group bindchange="contractConfirm">
       <label class="checkbox">
-        <checkbox value="contract" checked="{{checkBox}}" color='#0085d5' style='transform:scale(.7);' />
+        <checkbox value="contract" disabled="{{isConfirm==1}}" checked="{{checkBox}}" color='#0085d5' style='transform:scale(.7);' />
         <text class='fc-777 fs12'>我已阅读并签名确认以上文件内容</text>
       </label>
     </checkbox-group>
   </view>
   <view class="bc_btn_area">
-    <button class="btn bg-blue fc-fff" bindtap='submit'>确认</button>
+    <button class="btn bg-blue fc-fff" disabled="{{isConfirm==1}}" bindtap='submit'>{{isConfirm==1?'您已确认':'确认'}}</button>
   </view>
   <view class="bc_chat padding text-center fs12">如果对报价有任何问题，请<image class="chatimg" src="/images/wechat_b.png"></image>
     <meiqiaBtn bindmeiqiaTap="MtaReport" btn-class="fc-blue bc_chat_btn btn-meiqia" handle-alert="{{true}}"

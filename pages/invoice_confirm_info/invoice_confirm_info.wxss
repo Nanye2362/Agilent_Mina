@@ -27,6 +27,7 @@ page{
   vertical-align: sub;
   margin-right: 8rpx;
   align-self: flex-start;
+  margin-top: 8rpx;
 }
 .info_content{
   border-bottom: 1px solid #e2e2e2;

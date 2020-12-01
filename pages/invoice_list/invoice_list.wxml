@@ -14,8 +14,8 @@
           <view class="item_content" data-id='{{item.id}}'  bindtap="toEdit">
             <view class="invoiceT">发票信息-{{item.type==0?'增值税普通发票':'增值税专用发票'}}</view>
             <view class='fs12 invoiceD'>发票抬头：{{item.title}}</view>
-            <view class='fs12 invoiceD'>纳税人识别号：{{item.taxNumber}}</view>
-            <view class='fs12 invoiceD'>寄送人姓名：{{item.sendName}}</view>
+            <view class='fs12 invoiceD'>纳税人识别号：{{item.taxpayer_recognition_number}}</view>
+            <view class='fs12 invoiceD'>寄送人姓名：{{item.recipient}}</view>
           </view>
         </view>
         <view class="item_right" data-id='{{item.id}}' bindtap="toEdit">

@@ -49,9 +49,6 @@
 .stateInfo_item:not(:last-child) {
   border-bottom: 1px dashed #d8d8d8;
 }
-.btn-area{
-  
-}
 /* checkbox未选中时样式 */
 checkbox .wx-checkbox-input {
   height: 28rpx;

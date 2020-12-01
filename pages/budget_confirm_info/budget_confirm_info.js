@@ -106,7 +106,7 @@ Page({
       fail: function fail() {
         wx.showModal({
           title: '提示',
-          content: '报告下载失败，请检测网络。',
+          content: 'PDF生成中请稍后',
           showCancel: false
         });
       }

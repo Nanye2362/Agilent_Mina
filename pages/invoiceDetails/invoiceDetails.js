@@ -38,6 +38,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    invoiceId:'',
     isAddInvoice:0,
     sendWhom: [
       { name: 'me', value: '我自己',checked: 'true' },
@@ -84,6 +85,9 @@ Page({
     var that = this;
     if(typeof(options.isAddInvoice)!='undefined'){
       this.data.isAddInvoice=options.isAddInvoice
+    }
+    if (typeof (options.invoiceId) != 'undefined') {
+      this.data.invoiceId=options.invoiceId
     }
     util.NetRequest({
       url: 'api/v1/wechat/get-global-group',//wechat-mini/get-global-group
@@ -231,12 +235,21 @@ Page({
       invoiceDetails[currentInvoice].invoiceInfo = this.data.invoiceInfo;
       invoiceDetails[currentInvoice].sendInfo = this.data.sendInfo;
       invoiceDetails[currentInvoice].PO = this.data.PO;
+      console.log('提交发票：',currentInvoice);
       invoiceDetails[currentInvoice].needBill = this.data.needBill;
       invoiceDetails[currentInvoice].invoiceType = this.data.currentInvoice;
       wx.setStorageSync('invoiceDetails', invoiceDetails);
-      wx.navigateTo({
-        url: '../invoiceConfirm/invoiceConfirm?url=invoiceDetails&&currentInvoice=' + currentInvoice+'&isAddInvoice='+this.data.isAddInvoice
-      })
+      console.log('提交的发票数据:',invoiceDetails);
+      if(this.data.invoiceId!=''){
+        wx.navigateTo({
+          url: '../invoiceConfirm/invoiceConfirm?url=invoiceDetails&&currentInvoice=' + currentInvoice+'&isAddInvoice='+this.data.isAddInvoice+'&invoiceId='+this.data.invoiceId+'&isEdit=1'
+        })
+      }else{
+        wx.navigateTo({
+          url: '../invoiceConfirm/invoiceConfirm?url=invoiceDetails&&currentInvoice=' + currentInvoice+'&isAddInvoice='+this.data.isAddInvoice
+        })
+      }
+      
     }
   },
   checkEmpty: function (obj, arrInput){

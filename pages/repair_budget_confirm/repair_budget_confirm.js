@@ -6,13 +6,14 @@ Page({
    * 页面的初始数据
    */
   data: {
+    pageComplete:false,
     showSignature: false,
     transferAction: '',
     objectid: '',
     isSignatured: false,
     signatureImg: '',
-    safety_statement:[],
-    checkBox:false
+    safety_statement: [],
+    checkBox: false
   },
 
   /**
@@ -58,7 +59,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function (options) {
-    console.log('onShow:',this.data.objectid,this.data.safety_statement);
+    console.log('onShow:', this.data.objectid, this.data.safety_statement);
     //腾讯mat统计开始
     var app = getApp();
     var that = this;
@@ -75,40 +76,29 @@ Page({
     });
     app.mta.Page.init();
     util.NetRequest({
-      url: 'api/v1/sr/bq?objectid=' + this.data.objectid,
+      url: 'api/v1/sr/bq?objectid=' + that.data.objectid,
       method: 'GET',
       success: function (r) {
-        console.log(r);
-        if (r.data.status != false) {
-          if (r.data.invoice.length > 0) {
-            currentInvoice = r.data.invoice[0].type == 0 ? 'normalInvoice' : 'specialInvoice';
-          } else {
+        console.log('报修报价单数据：', r);
+        if (r.status != false) {
+          if (r.data.signature != '') {
             that.setData({
-              hasInvoice: false,
+              signatureImg: r.data.signature,
+              isSignatured: true,
+              checkBox:r.data.is_confirmed
             })
-          }
-          console.log('r.data.invoice:', r.data.invoice);
-          console.log('currentInvoice:', currentInvoice);
-
-          if (r.data.invoice.length != '') {
-            //for (var i in r.data.InvoiceInfo){
-            that.setInvoiceInfo(r.data.invoice[0])
-            //}           
-          }
-          else {
-            wx.setStorageSync('invoiceDetails', {});
           }
           that.setData({
             pageComplete: true,
             pageShow: true,
-            bqId: this.data.objectId,
+            bqId: that.data.objectId,
             isConfirm: r.data.is_confirmed,
             price: r.data.gross_value,
             maxprice: r.data.max_price,
             approval_button_enable: r.data.approval_button_enable,
             item_description: r.data.item_description,
           })
-        } else if (r.data.status == false) {
+        } else if (r.status == false) {
           wx.showModal({
             title: '请求失败',
             content: r.data.error,
@@ -131,9 +121,9 @@ Page({
       }
     })
   },
-  toSafetyPage(){
+  toSafetyPage() {
     wx.navigateTo({
-      url: '../safety_statement/safety_statement?objectId='+this.data.objectid,
+      url: '../safety_statement/safety_statement?objectId=' + this.data.objectid,
     })
   },
   // 勾选协议
@@ -146,7 +136,11 @@ Page({
     // '/api/v1/sr/bq-file?objectid='+item.ServconfId+'&token='+token
     // var url = util.Server + 'site/open-file?ServconfId=' + this.data.bqId;
     var token = wx.getStorageSync('token');
-    var url = util.Server + 'api/v1/sr/bq-file?objectid=' + this.data.objectid
+    if(this.data.isConfirm==0){
+      var url = util.Server + 'api/v1/sr/bq-file?objectid=' + this.data.objectid
+    }else{
+      var url = util.Server + 'api/v1/sr/preview-pdf?objectid=' + this.data.objectid+'&is_safety=0';
+    }
     console.log(url);
     var downloadTask = wx.downloadFile({
       url: url,
@@ -191,32 +185,32 @@ Page({
     let url = util.Server + 'api/v1/sr/gen-pdf';
     var that = this;
     console.log('上传签名uploadFile：', url);
-    if (that.data.safety_statement.length<=0) {
+    if (that.data.safety_statement.length <= 0) {
       wx.showModal({
         title: '提交失败',
         content: '请编辑确认送修仪器是否含有相关危险物质',
-        showCancel:false
+        showCancel: false
       })
       return false;
-    }else if(that.data.signatureImg==''){
+    } else if (that.data.signatureImg == '') {
       wx.showModal({
         title: '提交失败',
         content: '请确认签字',
-        showCancel:false
+        showCancel: false
       })
       return false;
-    }else if(!that.data.checkBox) {
+    } else if (!that.data.checkBox) {
       wx.showModal({
         title: '提交失败',
         content: '请确认勾选已阅读并签名确认以上文件内容',
-        showCancel:false
+        showCancel: false
       })
       return false;
     } else {
-      let url='api/v1/sr/gen-pdf';
-      var params={
-        objectid:that.data.objectid,
-        safety_statement:that.data.safety_statement,
+      let url = 'api/v1/sr/gen-pdf';
+      var params = {
+        objectid: that.data.objectid,
+        safety_statement: that.data.safety_statement,
       };
       util.uploadFileRequest({
         url: url,

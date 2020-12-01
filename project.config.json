@@ -342,6 +342,20 @@
           "pathName": "pages/initiate/initiate",
           "query": "",
           "scene": 1005
+        },
+        {
+          "id": 40,
+          "name": "pages/invoiceDetails/invoiceDetails",
+          "pathName": "pages/invoiceDetails/invoiceDetails",
+          "query": "currentInvoice=\"normalInvoice\"&isAddInvoice=1",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/invoice_confirm_info/invoice_confirm_info",
+          "pathName": "pages/invoice_confirm_info/invoice_confirm_info",
+          "query": "objectId=3000435445",
+          "scene": null
         }
       ]
     }

@@ -2,35 +2,41 @@
 <modalTip show="{{showModalTip}}">
   <text>{{tipText}}</text>
 </modalTip>
-<view class='budget_confirm_info'>
+<block wx:if="{{!pageComplete}}">
+	<view>加载中...</view>
+</block>
+<block wx:else>
+  <view class='budget_confirm_info'>
   <view class="bc_header">
     <view class="bc_title fs20 text-center">
-      <image src='/images/bq.png' mode='widthFix'></image>
+      <image src='/images/repair_bq.jpg' mode='widthFix'></image>
     </view>
     <view class="text-center fs38">请确认并填写发票信息</view>
     <view class="bc_remind">BQ编号为:{{objectid}}
       <view>请填写或确认发票信息，以便我们为您安排更多服务。</view>
     </view>
   </view>
-  <view class="info_content flex alignc justify-space" bindtap="toSelectInvoice">
+  <view class="info_content flex alignc justify-space" bindtap="{{isConfirm==0?'toSelectInvoice':''}}">
     <view class="invoice_info flex">
       <image class="bc_order_icon" src="/images/invoice.png" mode='widthFix'></image>
       <view class="info_title">
         发票信息-<text
           class='{{invoiceInfo.title!=""?"":"fc-aaa"}}'>{{invoiceInfo.title!=''?invoiceInfo.type==0?'增值税普通发票':'增值税专用发票':'[未填写]'}}</text>
+        <block wx:if='{{invoiceInfo.title!=""}}'>
+          <view class='fs12 invoiceD'>发票抬头：{{invoiceInfo.title}}</view>
+          <view class='fs12 invoiceD'>纳税人识别号：{{invoiceInfo.taxpayer_recognition_number}}</view>
+          <view class='fs12 invoiceD'>寄送人姓名：{{invoiceInfo.recipient}}</view>
+        </block>
       </view>
-      <block wx:if='{{invoiceInfo.title!=""}}'>
-        <view class='fs12 invoiceD'>发票抬头：{{invoiceInfo.title}}</view>
-        <view class='fs12 invoiceD'>纳税人识别号：{{invoiceInfo.taxNumber}}</view>
-        <view class='fs12 invoiceD'>寄送人姓名：{{sendInfo.name}}</view>
-      </block>
+
     </view>
-    <view class='bc_order_arrow'>
+    <view wx:if="{{isConfirm==0}}" class='bc_order_arrow'>
       <image src='/images/arrow_grey.png' mode='widthFix' style='width: 18rpx'></image>
     </view>
   </view>
   <view class="bc_btn_area">
-    <button class="btn bg-blue fc-fff" disabled="{{isConfirm!=0}}" bindtap='submit'>{{isConfirm==0?'提交发票信息':'已提交'}}</button>
+    <button class="btn bg-blue fc-fff" disabled="{{isConfirm!=0}}"
+      bindtap='submit'>{{isConfirm==0?'提交发票信息':'已提交'}}</button>
   </view>
   <view class="bc_chat padding text-center fs12">如果对报价有任何问题，请<image class="chatimg" src="/images/wechat_b.png"></image>
     <meiqiaBtn bindmeiqiaTap="MtaReport" btn-class="fc-blue bc_chat_btn btn-meiqia" handle-alert="{{true}}"
@@ -39,3 +45,4 @@
     </meiqiaBtn>
   </view>
 </view>
+</block>

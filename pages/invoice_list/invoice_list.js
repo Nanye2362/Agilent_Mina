@@ -8,26 +8,12 @@ Page({
   data: {
     showTypeModal: false,
     currentIdx: 0,
-    invoiceList: [
-      {
-        "id": 0,
-        "type": 0,
-        "title": "高知特信息技术有限公司",
-        "taxNumber": "9854325432500",
-        "sendName": "谢玉良"
-      },
-      {
-        "id": 1,
-        "type": 1,
-        "title": "上海张艺术有限公司",
-        "taxNumber": "79854325432500",
-        "sendName": "sunny"
-      }
-    ],
+    invoiceList: [],
     invoiceTypeList: [
       { name: '0', value: '增值税普通发票' },
       { name: '1', value: '增值税专用发票' },
     ],
+    currentInvoiceId:''
   },
 
   /**
@@ -35,18 +21,40 @@ Page({
    */
   onLoad: function (options) {
     console.log('发票列表options：', options);
+    if(typeof (options.invoiceId) != 'undefined'){
+      this.data.currentInvoiceId=options.invoiceId;
+    }
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function (options) {
+    var that = this;
+    that.getInvoiceList();
+  },
+  getInvoiceList() {
+    var that=this;
     util.NetRequest({
       url: 'api/v1/user/invoice-list',
       method: 'GET',
       success: function (r) {
-        console.log('发票list:',r);
-      }})
+        console.log('发票list:', r);
+        var invoiceList=r.data.list;
+        if(that.data.currentInvoiceId!=''){
+          for(let i in invoiceList){
+            if(invoiceList[i].id==that.data.currentInvoiceId){
+              that.setData({
+                currentIdx:i
+              })
+            }
+          }
+        }
+        that.setData({
+          invoiceList: invoiceList
+        })
+      }
+    })
   },
   // 去编辑某个发票
   toEdit(e) {
@@ -60,6 +68,7 @@ Page({
   toDelete(e) {
     console.log('删除某个发票:', e);
     var id = e.currentTarget.dataset.id;
+    var that = this;
     wx.showModal({
       title: '提示',
       content: '是否确认删除该发票？',
@@ -76,6 +85,7 @@ Page({
                 icon: 'success',
                 duration: 2000
               })
+              that.getInvoiceList();
             }
           })
         } else if (res.cancel) {
@@ -121,8 +131,19 @@ Page({
   },
   submit(e) {
     console.log('选中的发票：', this.data.invoiceList[this.data.currentIdx]);
-    wx.navigateTo({
-      url: '../invoice_confirm_info/invoice_confirm_info?invoice_id=' + this.data.currentIdx,
+    var that = this;
+    var pages = getCurrentPages();
+    var nums;
+    for (var i in pages) {
+      if (pages[i].route == 'pages/invoice_confirm_info/invoice_confirm_info') {
+        pages[i].setData({
+          invoiceInfo: that.data.invoiceList[this.data.currentIdx]
+        })
+        nums = parseInt(i) + 1;
+      }
+    }
+    wx.navigateBack({
+      delta: pages.length - nums
     })
   },
   /**

@@ -27,7 +27,7 @@
 				下载
 			</view>
 		</view>
-		<view class="bc_order flex alignc" bindtap='inputInvoice' wx:if="{{pageShow}}">
+		<view class="bc_order flex alignc" bindtap="{{isConfirm==0?'inputInvoice':''}}" wx:if="{{pageShow}}">
 			<image class="bc_order_icon" src="/images/invoice.png" mode='widthFix'></image>
 			<view class='bc_order_con'>
 				<view class='invoiceInformation'>发票信息-<text
@@ -41,7 +41,7 @@
 					<view class='fs12 invoiceD'>寄送人姓名：{{sendInfo.name}}</view>
 				</block>
 			</view>
-			<view class='bc_order_arrow' wx:if='{{hasInvoice==false&&isConfirm==1?false:true}}'>
+			<view class='bc_order_arrow' wx:if='{{isConfirm==0}}'>
 				<image src='/images/arrow_grey.png' mode='widthFix' style='width: 20rpx'></image>
 			</view>
 		</view>
