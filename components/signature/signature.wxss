@@ -80,3 +80,6 @@ page {
   text-align: center;
   justify-content: center;
 }
+.canvas-backend {
+  display: none;
+}

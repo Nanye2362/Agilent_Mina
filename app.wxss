@@ -204,7 +204,7 @@ button {
 }
 
 .fs18 {
-  font-size: 1.13rem;
+  font-size: 36rpx;
 }
 
 .fs20 {

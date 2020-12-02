@@ -59,12 +59,21 @@ align-items:center;
  width:100%;
  border-top:1px solid #eee;
 }
-.shLoading-btn-ok{
+.shLoading-btn-ok,.shLoading-btn-right{
  display:inline-block;
  width:100%;
  line-height:100rpx;
  text-align: center;
  font-size:36rpx;
 }
-
+.shLoading-btn-left,.shLoading-btn-right{
+  display:inline-block;
+  width:50%;
+  line-height:100rpx;
+  text-align: center;
+  font-size:36rpx;
+ }
+.fc-blue{
+  color: #0085d5;
+}
 /* shLoading ending */

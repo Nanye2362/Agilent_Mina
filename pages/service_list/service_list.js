@@ -31,10 +31,7 @@ Page({
     isFirst: true,
     transferAction: '',
     showBQSelectModal: false,
-    bqTypeList: [
-      { name: '0', value: '送修报价单' },
-      { name: '1', value: '上门服务报价单' },
-    ],
+    bqTypeList: [],
     objectId: ''
   },
   onShow: function () {
@@ -265,9 +262,8 @@ Page({
   //查看物流
   trackingNo: function (e) {
     var deliveryno = e.currentTarget.dataset.deliveryno;
-    var sn = e.currentTarget.dataset.sn;
     wx.navigateTo({
-      url: '../trackingNo/trackingNo?tracking_id=' + deliveryno + '&sn=' + sn
+      url: '../trackingNo/trackingNo?tracking_id=' + deliveryno 
     })
   },
 
@@ -398,11 +394,11 @@ Page({
     for (let i in bqsent) {
       if (bqsent[i].send_to_repair == 1) {
         this.data.bqTypeList.push(
-          { name: '0', value: '送修报价单' }
+          { name: 0, value: '送修报价单' }
         );
       } else {
         this.data.bqTypeList.push(
-          { name: '1', value: '上门服务报价单' }
+          { name: 1, value: '上门服务报价单' }
         );
       }
     }
@@ -425,4 +421,5 @@ Page({
       url: '../service_details/service_details?SrId=' + SrId
     })
   },
+   
 })

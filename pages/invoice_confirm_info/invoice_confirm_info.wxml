@@ -1,5 +1,5 @@
 <!--pages/invoice_confirm_info/invoice_confirm_info.wxml-->
-<modalTip show="{{showModalTip}}">
+<modalTip show="{{showModalTip}}" okBtnText="返回首页">
   <text>{{tipText}}</text>
 </modalTip>
 <block wx:if="{{!pageComplete}}">

@@ -13,7 +13,8 @@ Page({
     isSignatured: false,
     signatureImg: '',
     safety_statement: [],
-    checkBox: false
+    checkBox: false,
+    showBackendSignature:false
   },
 
   /**
@@ -81,8 +82,9 @@ Page({
       success: function (r) {
         console.log('报修报价单数据：', r);
         if (r.status != false) {
-          if (r.data.signature != '') {
+          if (typeof(r.data.signature)!='undefined'&&r.data.signature != '') {
             that.setData({
+              showBackendSignature:true,
               signatureImg: r.data.signature,
               isSignatured: true,
               checkBox:r.data.is_confirmed
@@ -210,7 +212,7 @@ Page({
       let url = 'api/v1/sr/gen-pdf';
       var params = {
         objectid: that.data.objectid,
-        safety_statement: that.data.safety_statement,
+        safety_statement: JSON.stringify(that.data.safety_statement),
       };
       util.uploadFileRequest({
         url: url,

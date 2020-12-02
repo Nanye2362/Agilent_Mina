@@ -3,6 +3,7 @@
   "usingComponents": {
     "meiqiaBtn": "/components/meiqiaBtn/meiqiaBtn",
     "blueQuestion": "/components/blueQuestion/blueQuestion",
-    "signature":"/components/signature/signature"
+    "signature":"/components/signature/signature",
+    "modalTip": "/components/modal-tip/modal-tip"
   }
 }

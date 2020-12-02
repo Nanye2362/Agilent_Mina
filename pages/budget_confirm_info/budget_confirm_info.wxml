@@ -1,5 +1,5 @@
 <!--pages/budget_confrim_info/budget_confirm_info.wxml-->
-<modalTip show="{{showModalTip}}">
+<modalTip show="{{showModalTip}}" okBtnText="返回首页">
   <text>{{tipText}}</text>
 </modalTip>
 <view class='budget_confirm_info'>

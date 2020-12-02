@@ -4,7 +4,7 @@
     bindcompleteSignature='completeSignature'></signature>
 </view>
 <block wx:if="{{!pageComplete}}">
-	<view>加载中...</view>
+  <view>加载中...</view>
 </block>
 <view class='budget_confirm_info' wx:if="{{!showSignature&&pageComplete}}">
   <view class="bc_header">
@@ -38,27 +38,36 @@
   <!-- 签名区域 -->
   <view class='signature_panel'>
     <label class="signature_label">联系人签字</label>
-    <view wx:if="{{!isSignatured}}" class="signature_content" bindtap="toSignature"></view>
+    <block wx:if="{{!showBackendSignature}}">
+      <view wx:if="{{!isSignatured}}" class="signature_content" bindtap="toSignature"></view>
+      <block wx:else>
+        <view
+          style="transform:rotate(270deg); height: 700rpx;width:296rpx;margin:0 auto;position:relative;top:-196rpx;border:1px solid #cbcbcb;">
+          <image src="{{signatureImg}}" style="height:100%;width:100%;"></image>
+        </view>
+        <view class="add_btn_area" bindtap="{{isConfirm==0?'toSignature':''}}">
+          <view class="{{isConfirm==0?'add_btn':''}}">{{isConfirm==0?'重签':''}}</view>
+        </view>
+      </block>
+    </block>
     <block wx:else>
-      <view
-        style="transform:rotate(270deg); height: 700rpx;width:296rpx;margin:0 auto;position:relative;top:-196rpx;border:1px solid #cbcbcb;">
+      <view style="width: 700rpx;height:296rpx;margin:0 auto;border:1px solid #cbcbcb;">
         <image src="{{signatureImg}}" style="height:100%;width:100%;"></image>
-      </view>
-      <view class="add_btn_area" bindtap="{{isConfirm==0?'toSignature':''}}">
-        <view class="{{isConfirm==0?'add_btn':''}}">{{isConfirm==0?'重签':''}}</view>
       </view>
     </block>
   </view>
   <view class="bq_checkbox_panel">
     <checkbox-group bindchange="contractConfirm">
       <label class="checkbox">
-        <checkbox value="contract" disabled="{{isConfirm==1}}" checked="{{checkBox}}" color='#0085d5' style='transform:scale(.7);' />
+        <checkbox value="contract" disabled="{{isConfirm==1}}" checked="{{checkBox}}" color='#0085d5'
+          style='transform:scale(.7);' />
         <text class='fc-777 fs12'>我已阅读并签名确认以上文件内容</text>
       </label>
     </checkbox-group>
   </view>
   <view class="bc_btn_area">
-    <button class="btn bg-blue fc-fff" disabled="{{isConfirm==1}}" bindtap='submit'>{{isConfirm==1?'您已确认':'确认'}}</button>
+    <button class="btn bg-blue fc-fff" disabled="{{isConfirm==1}}"
+      bindtap='submit'>{{isConfirm==1?'您已确认':'确认'}}</button>
   </view>
   <view class="bc_chat padding text-center fs12">如果对报价有任何问题，请<image class="chatimg" src="/images/wechat_b.png"></image>
     <meiqiaBtn bindmeiqiaTap="MtaReport" btn-class="fc-blue bc_chat_btn btn-meiqia" handle-alert="{{true}}"

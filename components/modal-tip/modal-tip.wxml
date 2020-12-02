@@ -12,7 +12,8 @@
       <slot></slot>
     </view>
     <view class="shLoading-btn-panel">
-      <view class="shLoading-btn-ok" bindtap="okTap">{{okBtnText}}</view>
+      <view class="{{showRightBtn?'shLoading-btn-left':'shLoading-btn-ok'}}" bindtap="{{showRightBtn?'leftTap':'okTap'}}">{{okBtnText}}</view>
+      <view wx:if="{{showRightBtn}}" class="shLoading-btn-right fc-blue" bindtap="rightTap">{{rightBtnText}}</view>
     </view>
   </view>
 </view>

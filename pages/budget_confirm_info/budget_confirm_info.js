@@ -9,7 +9,8 @@ Page({
   data: {
     showModalTip: false,
     tipText: '请尽快确认发票信息，以便安排后续送修服务',
-    objectid: ''
+    objectid: '',
+    bqId:''
   },
 
   /**
@@ -19,7 +20,8 @@ Page({
     console.log('options:', options);
     if (typeof (options.objectId) != 'undefined') {
       this.setData({
-        objectid: options.objectId
+        objectid: options.objectId,
+        bqId:options.objectId
       })
     }
     //腾讯mat统计开始
@@ -39,18 +41,6 @@ Page({
 
     app.mta.Page.init();
     //腾讯mat统计结束
-  },
-  // 签名
-  toSignature: function () {
-    this.setData({
-      showSignature: true
-    })
-  },
-  // 关闭签名
-  closeSignature: function () {
-    this.setData({
-      showSignature: false
-    })
   },
   //检测工作时间
   MtaReport: function () {
@@ -122,7 +112,7 @@ Page({
           objectid: that.data.objectid,
         },
         success(r) {
-          this.setData({
+          that.setData({
             showModalTip: true,
             tipText: '请尽快确认发票信息，以便安排后续送修服务'
           })
@@ -130,7 +120,7 @@ Page({
       })
     } else {
       wx.navigateTo({
-        url: '../invoice_confirm_info/invoice_confirm_info?objectId=' + this.data.objectid,
+        url: '../invoice_confirm_info/invoice_confirm_info?objectId=' + this.data.objectid+'&fromPage='+'budget_confirm_info',
       })
     }
   },

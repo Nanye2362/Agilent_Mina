@@ -8,14 +8,21 @@ Component({
     show: {
       type: Boolean,
       value: false
-    }
+    },
+    showRightBtn:{
+      type: Boolean,
+      value: false
+    },
+    okBtnText:String,
+    rightBtnText:String
   },
 
   /**
    * 组件的初始数据
    */
   data: {
-    okBtnText:'返回首页'
+    okBtnText:'返回首页',
+    rightBtnText:'确认发票信息'
   },
 
   /**
@@ -23,13 +30,15 @@ Component({
    */
   methods: {
     clickMask() {
-      this.setData({show: false})
-      
+      this.setData({show: false}) 
     },
-
-    cancelTap() {
+    leftTap(){
       this.setData({ show: false })
-      this.triggerEvent('cancel')
+      this.triggerEvent('leftTap')
+    },
+    rightTap() {
+      this.setData({ show: false })
+      this.triggerEvent('rightTap')
     },
 
     okTap() {

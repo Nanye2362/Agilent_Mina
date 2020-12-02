@@ -32,8 +32,7 @@ page {
   vertical-align: sub;
   margin-right: 8rpx;
   align-self: flex-start;
-  margin-top: 8rpx;
-
+  margin-top: 3rpx;
 }
 
 .bc_order_icon1 {
@@ -53,8 +52,8 @@ page {
 }
 
 .bc_order {
-  margin-top: 40rpx;
-  padding-bottom: 40rpx;
+  margin-top: 30rpx;
+  padding-bottom: 30rpx;
   border-bottom: 1px dashed #e2e2e2;
 }
 
@@ -156,4 +155,14 @@ page {
   color: #00a6e4;
   font-size: 28rpx;
   padding: 10rpx 30rpx;
+}
+/* 发票填写提示 */
+.bc_btn_tip{
+  margin-top:10rpx;
+}
+.fc-red {
+  color: #d81e06;
+}
+.fs30{
+  font-size:30rpx;
 }

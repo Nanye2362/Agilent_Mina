@@ -7,6 +7,7 @@ Page({
    */
   data: {
     btn_text: '保存',
+    showBackendSignature:false,
     isConfirmed: 0,
     toConfirmed: 0,
     needConfirm: true,
@@ -14,7 +15,7 @@ Page({
     isSignatured: false,
     objectid: '',
     signatureImg: '',
-    valuesList:[],
+    valuesList: [],
     stateList: [
       {
         id: 0,
@@ -66,11 +67,19 @@ Page({
       method: 'GET',
       success: function (r) {
         console.log(r);
+        if (typeof (r.data.signature) != 'undefined' && r.data.signature != '') {
           that.setData({
-            pageComplete: true,
-            pageShow: false,
-            isConfirmed: r.data.is_confirmed
+            showBackendSignature:true,
+            signatureImg: r.data.signature,
+            isSignatured: true,
+            checkBox: r.data.is_confirmed
           })
+        }
+        that.setData({
+          pageComplete: true,
+          pageShow: false,
+          isConfirmed: r.data.is_confirmed
+        })
       }
     })
   },
@@ -101,9 +110,9 @@ Page({
         }
       }
     }
-    this.data.stateList=items;
-    this.data.valuesList=values;
-    console.log('checkbox发生change事件stateList:',this.data.stateList);
+    this.data.stateList = items;
+    this.data.valuesList = values;
+    console.log('checkbox发生change事件stateList:', this.data.stateList);
   },
   // 签名
   toSignature: function () {
@@ -128,28 +137,31 @@ Page({
   },
   submit: function (e) {
     var that = this;
-    if(that.data.valuesList.length<=0){
+    console.log('that.data.valuesList:', that.data.valuesList);
+    console.log('提交的safety_statement:', that.data.stateList);
+
+    if (that.data.valuesList.length <= 0) {
       wx.showModal({
         title: '提交失败',
         content: '请确认勾选对应的安全声明',
-        showCancel:false
+        showCancel: false
       })
       return false;
     }
-    if (that.data.toConfirmed==1) {
+    if (that.data.toConfirmed == 1) {
       //上传签名并确认安全声明
-      if(that.data.signatureImg==''){
+      if (that.data.signatureImg == '') {
         wx.showModal({
           title: '提交失败',
           content: '请确认签字',
-          showCancel:false
+          showCancel: false
         })
         return false;
-      }else{
-        let url='api/v1/sr/fill-safety-statement   ';
-        var params={
-          objectid:that.data.objectid,
-          safety_statement:that.data.stateList,
+      } else {
+        let url = 'api/v1/sr/fill-safety-statement   ';
+        var params = {
+          objectid: that.data.objectid,
+          safety_statement: JSON.stringify(that.data.stateList),
         };
         util.uploadFileRequest({
           url: url,
@@ -176,7 +188,7 @@ Page({
         if (pages[i].route == 'pages/repair_budget_confirm/repair_budget_confirm') {
           pages[i].setData({
             safety_statement: that.data.stateList,
-            objectid:that.data.objectid
+            objectid: that.data.objectid
           })
           nums = i + 1;
         }

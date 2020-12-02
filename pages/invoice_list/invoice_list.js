@@ -135,7 +135,7 @@ Page({
     var pages = getCurrentPages();
     var nums;
     for (var i in pages) {
-      if (pages[i].route == 'pages/invoice_confirm_info/invoice_confirm_info') {
+      if (pages[i].route == 'pages/invoice_confirm_info/invoice_confirm_info'||pages[i].route == 'pages/budget_confirm/budget_confirm') {
         pages[i].setData({
           invoiceInfo: that.data.invoiceList[this.data.currentIdx]
         })

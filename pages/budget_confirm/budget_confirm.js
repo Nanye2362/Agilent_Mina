@@ -23,14 +23,19 @@ Page({
       { name: '1', value: '增值税专用发票' },
     ],
     invoiceInfo: {
-      "errMsg": "",
       "type": 0,
-      "title": "",
-      "taxNumber": "",
-      "companyAddress": "",
-      "telephone": "",
-      "bankName": "",
-      "bankAccount": ""
+      "title": '',
+      "taxpayer_recognition_number": '',
+      "bank": '',
+      "bank_account": '',
+      "registered_address": '',
+      "registered_phone": '',
+      "recipient": '',
+      "mail": '',
+      "tel": '',
+      "address": '',
+      "po_code": '',
+      "sales_list": ''
     },
     sendInfo: {
       "name": "",
@@ -45,7 +50,10 @@ Page({
     confirmShow: false,
     objectid: '',
     isSignatured: false,
-    signatureImg: ''
+    signatureImg: '',
+    showRightBtn: false,
+    rightBtnText: '',
+    showBackendSignature:false
   },
 
   /**
@@ -70,59 +78,34 @@ Page({
     app.mta.Page.init();
     //腾讯mat统计结束
     console.log(options);
-    // util.getUserInfo(function (user) {
-
-    // });
-    this.data.objectid = options.objectId;
+    that.data.objectid = options.objectId;
     util.NetRequest({
       url: 'api/v1/sr/bq?objectid=' + options.objectId,
       method: 'GET',
       success: function (r) {
         console.log(r);
-        var invoiceDetails = {},
-          currentInvoice = '';
         console.log(r.data.invoice)
 
         if (r.data.status != false) {
           if (r.data.invoice.length > 0) {
-            currentInvoice = r.data.invoice[0].type == 0 ? 'normalInvoice' : 'specialInvoice';
-          } else {
             that.setData({
-              hasInvoice: false,
+              invoiceInfo: r.data.invoice[0]
             })
           }
-          console.log('r.data.invoice:', r.data.invoice);
-          console.log('currentInvoice:', currentInvoice);
-
-          if (r.data.invoice.length != '') {
-            //for (var i in r.data.InvoiceInfo){
-            that.setInvoiceInfo(r.data.invoice[0])
-            //}
-            invoiceDetails = that.data.invoiceDetails
-            console.log('invoiceDetails:', invoiceDetails);
+          if (typeof (r.data.signature) != 'undefined' && r.data.signature != '') {
             that.setData({
-              invoiceInfo: invoiceDetails[currentInvoice].invoiceInfo,
-              sendInfo: invoiceDetails[currentInvoice].sendInfo,
-              needBill: invoiceDetails[currentInvoice].needBill,
-              PO: invoiceDetails[currentInvoice].PO,
-              currentInvoice: currentInvoice,
+              showBackendSignature:true,
+              signatureImg: r.data.signature,
+              isSignatured: true,
+              checkBox: r.data.is_confirmed
             })
-          }
-          else {
-            // if (wx.getStorageSync('invoiceDetails') != '') {
-            //   that.getInvoiceInfoStorage(that);
-            // }
-            wx.setStorageSync('invoiceDetails', {});
           }
           that.setData({
             pageComplete: true,
             pageShow: true,
-            bqId: options.objectId,
+            bqId: that.data.objectid,
             isConfirm: r.data.is_confirmed,
-            price: r.data.gross_value,
-            maxprice: r.data.max_price,
-            approval_button_enable: r.data.approval_button_enable,
-            item_description: r.data.item_description,
+            approval_button_enable: r.data.approval_button_enable
           })
         } else if (r.data.status == false) {
           that.setData({
@@ -130,10 +113,7 @@ Page({
             pageShow: false,
             bqId: options.objectId,
             isConfirm: r.data.is_confirmed,
-            price: r.data.gross_value,
-            maxprice: r.data.max_price,
-            approval_button_enable: r.data.approval_button_enable,
-            item_description: r.data.item_description,
+            approval_button_enable: r.data.approval_button_enable
           })
           wx.showModal({
             title: '请求失败',
@@ -153,120 +133,52 @@ Page({
     })
 
   },
-  setInvoiceInfo: function (info) {
-    var that = this;
-    var invoiceDetails = that.data.invoiceDetails,
-      invoiceInfo = that.data.invoiceInfo,
-      sendInfo = that.data.sendInfo,
-      PO = that.data.PO,
-      invoiceType = that.data.invoiceType,
-      needBill = that.data.needBill;
-    invoiceInfo.title = info.title;
-    invoiceInfo.companyAddress = info.registered_address;
-    invoiceInfo.taxNumber = info.taxpayer_recognition_number;
-    invoiceInfo.bankName = info.bank;
-    invoiceInfo.bankAccount = info.bank_account;
-    invoiceInfo.telephone = info.registered_phone;
-    sendInfo.name = info.recipient;
-    sendInfo.address = info.address;
-    sendInfo.telephone = info.tel;
-    sendInfo.mail = info.mail;
-    PO = info.po_code;
-    needBill = info.sales_list == 0 ? 'false' : true,
-      invoiceType = info.type == 0 ? 'normalInvoice' : 'specialInvoice';
-    invoiceDetails[invoiceType] = {}
-    invoiceDetails[invoiceType].invoiceInfo = invoiceInfo;
-    invoiceDetails[invoiceType].sendInfo = sendInfo;
-    invoiceDetails[invoiceType].PO = PO;
-    invoiceDetails[invoiceType].needBill = needBill;
-    invoiceDetails[invoiceType].invoiceType = invoiceType;
-    wx.setStorageSync('invoiceDetails', invoiceDetails);
-    that.setData({
-      invoiceDetails: invoiceDetails
-    })
-  },
-  getInvoiceInfoStorage: function (that) {
-    var currentInvoice = that.data.currentInvoice;
-    invoiceDetails = wx.getStorageSync('invoiceDetails');
-    console.log(invoiceDetails[currentInvoice]);
-    that.setData({
-      invoiceInfo: invoiceDetails[currentInvoice].invoiceInfo,
-      sendInfo: invoiceDetails[currentInvoice].sendInfo,
-      invoiceType: invoiceDetails[currentInvoice].invoiceType,
-      PO: invoiceDetails[currentInvoice].PO,
-      needBill: invoiceDetails[currentInvoice].needBill,
-    })
-  },
-  radioChange: function (e) {
-    console.log('radio发生change事件，携带value值为：', e.detail.value);
-    var currentInvoice;
-    var title = wx.getStorageSync('sobot_company');
-
-    if (e.detail.value == 0) {
-      currentInvoice = 'normalInvoice';
-    } else {
-      currentInvoice = 'specialInvoice';
-    };
-
-    wx.navigateTo({
-      url: '../invoiceDetails/invoiceDetails?currentInvoice=' + currentInvoice + '&title=' + title
-    })
-    this.changeInvoiceType();
-  },
 
   inputInvoice: function () {
-    if (this.data.currentInvoice != '') {
+    if (typeof (this.data.invoiceInfo.id) != 'undefined') {
       wx.navigateTo({
-        url: '../invoiceConfirm/invoiceConfirm?isConfirm=' + this.data.isConfirm + '&&currentInvoice=' + this.data.currentInvoice
+        url: '../invoice_list/invoice_list?invoiceId=' + this.data.invoiceInfo.id,
       })
     } else {
-      this.changeInvoiceType();
+      wx.navigateTo({
+        url: '../invoice_list/invoice_list'
+      })
     }
-  },
-  changeInvoiceType: function () {
-    this.setData({
-      shInputInfo: !this.data.shInputInfo,
-    })
+    // this.changeInvoiceType();
+
   },
   contractConfirm: function (e) {
     this.setData({
       checkBox: e.detail.value.length == 1
     })
   },
+  returnHome: function () {
+    util.NetRequest({
+      url: 'api/v1/sr/fill-invoice-remind',
+      method: "POST",
+      data: {
+        objectid: this.data.objectid
+      },
+      success: function (r) {
+        console.log('不提交发票返回首页：', r);
+        wx.switchTab({
+          url: '../index/index',
+        })
+      }
+    })
+  },
   infoOkTap: function () {
     var that = this;
-    var pages=getCurrentPages();
-    var needCheckInvoice=false;
-    if(pages.length>1){
-      if(pages[pages.length-2]=='pages/invoiceConfirm/invoiceConfirm'){
-        needCheckInvoice=true;
+    if (typeof (that.data.invoiceInfo.id) != 'undefined') {
+      console.log('提交报价单invoiceInfo:', that.data.invoiceInfo);
+      if(that.data.approval_button_enable == 'N'&&that.data.signatureImg != ''){
+        var invoiceData=JSON.stringify(that.data.invoiceInfo)
+      }else{
+        var invoiceData=that.data.invoiceInfo;
       }
-    }
-    console.log('提交bq：needCheckInvoice',needCheckInvoice,invoiceDetails);
-    console.log('提交bq：that.data.currentInvoice',that.data.currentInvoice);
-    if (that.data.currentInvoice != ''&&Object.keys(invoiceDetails).length != 0) {
-      var invoicedetails = invoiceDetails;
-      var currentInvoice = this.data.currentInvoice;
-      console.log('currentInvoice:', currentInvoice);
-      invoicedetails[currentInvoice].needBill = invoiceDetails.needBill == true ? 1 : 0;
-      invoicedetails[currentInvoice].invoiceType = invoiceDetails[currentInvoice].invoiceType == 'specialInvoice' ? 1 : 0;
       var params = {
         objectid: that.data.objectid,
-        invoice: {
-          "type": invoicedetails[currentInvoice].invoiceType,
-          "title": invoicedetails[currentInvoice].invoiceInfo.title,
-          "taxpayer_recognition_number": invoicedetails[currentInvoice].invoiceInfo.taxNumber,
-          "bank": invoicedetails[currentInvoice].invoiceInfo.bankName,
-          "bank_account": invoicedetails[currentInvoice].invoiceInfo.bankAccount,
-          "registered_address": invoicedetails[currentInvoice].invoiceInfo.companyAddress,
-          "registered_phone": invoicedetails[currentInvoice].invoiceInfo.telephone,
-          "recipient": invoicedetails[currentInvoice].sendInfo.name,
-          "mail": invoicedetails[currentInvoice].sendInfo.mail,
-          "tel": invoicedetails[currentInvoice].sendInfo.telephone,
-          "address": invoicedetails[currentInvoice].sendInfo.address,
-          "po_code": invoicedetails[currentInvoice].PO,
-          "sales_list": invoicedetails[currentInvoice].needBill
-        },//有传，没有不传
+        invoice: invoiceData
       };
     } else {
       var params = {
@@ -274,7 +186,7 @@ Page({
       };
     }
     console.log('确认报价单params：', params);
-    if (that.data.approval_button_enable == 'Y') {
+    if (that.data.approval_button_enable == 'Y' || that.data.signatureImg == '') {
       util.NetRequest({
         url: 'api/v1/sr/bq',
         method: "POST",
@@ -312,7 +224,7 @@ Page({
         filePath: that.data.signatureImg,
         fileName: 'signature',
         success: function (res) {
-          console.log('上传签名结束：',res);
+          console.log('上传签名结束：', res);
           wx.showToast({
             title: '成功',
             icon: 'success',
@@ -332,12 +244,18 @@ Page({
     })
   },
   confirm: function () {
-    // || Object.keys(invoiceDetails).length == 0
-    if (this.data.approval_button_enable == 'N'&&this.data.signatureImg=='') {
+    if (typeof (this.data.invoiceInfo.id) == 'undefined') {
+      this.setData({
+        showModalTip: true,
+        showRightBtn: true
+      })
+      return false;
+    }
+    if (this.data.approval_button_enable == 'N' && this.data.signatureImg == '') {
       wx.showModal({
         title: '提交失败',
         content: '请确认签字',
-        showCancel:false
+        showCancel: false
       })
       return false;
     }
@@ -345,7 +263,7 @@ Page({
       wx.showModal({
         title: '提交失败',
         content: '请确认勾选已阅读并接受此报价单',
-        showCancel:false
+        showCancel: false
       })
       return false;
     }
@@ -357,9 +275,9 @@ Page({
     var token = wx.getStorageSync('token');
     // util.Server + 'api/v1/sr/bq-file?objectid=' + this.data.objectid + '&token=' + token;
     // api/v1/sr/preview-pdf?objectid= &is_safety=1(1为安全声明) GET
-    if(this.data.isConfirm==1){
+    if (this.data.isConfirm == 1) {
       var url = util.Server + 'api/v1/sr/onsite-pdf?objectid=' + this.data.objectid
-    }else{
+    } else {
       var url = util.Server + 'api/v1/sr/bq-file?objectid=' + this.data.objectid
     }
     console.log(url);
@@ -372,20 +290,32 @@ Page({
         console.log(res);
         var filePath = res.tempFilePath;
         console.log('filePath= ' + filePath);
-        wx.openDocument({
-          filePath: filePath,
-          success: function success(res) {
-            console.log('打开文档成功');
-          },
-          fail: function fail(res) {
-            console.log(res);
+        if(res.statusCode==200){
+          wx.openDocument({
+            filePath: filePath,
+            success: function success(res) {
+              console.log('打开文档成功');
+            },
+            fail: function fail(res) {
+              console.log(res);
+              wx.showModal({
+                title: '提示',
+                content: '报告显示错误。如果需要此报告，请联系客服索取。',
+                showCancel: false
+              });
+            }
+          })
+        }else{
+          if(res.statusCode==400){
             wx.showModal({
               title: '提示',
-              content: '报告显示错误。如果需要此报告，请联系客服索取。',
+              content: 'PDF生成中请稍后',
               showCancel: false
             });
+            return false
           }
-        })
+        }
+        
       },
       complete: function complete() {
         wx.hideLoading();
@@ -456,9 +386,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    if (this.data.currentInvoice != '' && wx.getStorageSync('invoiceDetails') != '') {
-      this.getInvoiceInfoStorage(this);
-    }
+
   },
 
   /**

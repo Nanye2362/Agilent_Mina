@@ -430,31 +430,6 @@ Component({
           // })
         }
       }, this)
-      
-      // 上传
-      // wx.canvasToTempFilePath({
-      //   canvasId: 'handWriting',
-      //   fileType: 'png',
-      //   quality: 1, //图片质量
-      //   success(res) {
-      //     // console.log(res.tempFilePath, 'canvas生成图片地址');
-      //     //上传
-      //     wx.uploadFile({
-      //       url: 'https://example.weixin.qq.com/upload', // 仅为示例，非真实的接口地址
-      //       filePath: res.tempFilePath,
-      //       name: 'file_signature',
-      //       formData: {
-      //         user: 'test'
-      //       },
-      //       success(res) {
-      //         const data = res.data
-      //         // do something
-      //       }
-      //     })
-      //   }
-
-      // })
-
     }
   }
 })

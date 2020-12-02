@@ -1,8 +1,10 @@
 <!--pages/safety_statement/safety_statement.wxml-->
 <view wx:if="{{showSignature}}">
-	<signature showSignature="{{showSignature}}" bindcloseSignature='closeSignature' bindcompleteSignature='completeSignature'></signature>
+  <signature showSignature="{{showSignature}}" bindcloseSignature='closeSignature'
+    bindcompleteSignature='completeSignature'></signature>
 </view>
 <view wx:if="{{!showSignature}}" class="statement_contain">
+  <image src='/images/safety_header.png' style="width:100%" mode='widthFix'></image>
   <view class="statement_header">
     <view class="header_title">健康安全声明-请在仪器送修前完成</view>
     <view class="header_text">为了免于安捷伦的员工暴露在有害物质环境中，请您帮忙回答如下问题。如果不熟悉仪器操作请让仪器操作人员填写此声明。</view>
@@ -16,7 +18,7 @@
     <view class='stateInfo'>
       <checkbox-group class="checkbox-group" bindchange="checkboxChange">
         <label class="stateInfo_item" wx:for="{{stateList}}" wx:key='unique'>
-          <checkbox color='#0085d5' value="{{item.id}}" checked="{{item.checked}}" />{{item.value}}
+          <checkbox color='#0085d5' disabled="{{isConfirmed==1}}" value="{{item.id}}" checked="{{item.checked}}" />{{item.value}}
         </label>
       </checkbox-group>
     </view>
@@ -24,23 +26,32 @@
       <label class="fs12">我承诺上诉信息属实，并且送修的仪器备件是安全无害的。</label>
       <!-- 签名区域 -->
       <!-- 签名区域 -->
-				<view class='signature_panel'>
-					<label class="signature_label">联系人签字</label>
+      <view class='signature_panel'>
+        <label class="signature_label">联系人签字</label>
+        <block wx:if="{{!showBackendSignature}}">
 					<view wx:if="{{!isSignatured}}" class="signature_content" bindtap="toSignature"></view>
 					<block wx:else>
-						<view style="transform:rotate(270deg); height: 700rpx;width:265rpx;margin:0 auto;">
+						<view
+							style="transform:rotate(270deg); height: 700rpx;width:296rpx;margin:0 auto;position:relative;top:-196rpx;border:1px solid #cbcbcb;">
 							<image src="{{signatureImg}}" style="height:100%;width:100%;"></image>
-						</view>				
-						<view class="add_btn_area" bindtap="toSignature">
-							<view class="add_btn">重签</view>
+						</view>
+						<view class="add_btn_area" bindtap="{{isConfirm==0?'toSignature':''}}">
+							<view class="{{isConfirm==0?'add_btn':''}}">{{isConfirm==0?'重签':''}}</view>
 						</view>
 					</block>
-				</view>
+				</block>
+				<block wx:else>
+					<view style="width: 700rpx;height:296rpx;margin:0 auto;border:1px solid #cbcbcb;">
+						<image src="{{signatureImg}}" style="height:100%;width:100%;"></image>
+					</view>
+				</block>
+      </view>
     </view>
   </view>
 
   <!-- btn -->
   <view class="btn-area">
-    <button class="btn btn-primary" disabled="{{isConfirmed!=0}}" bindtap='submit'>{{isConfirmed==0?'提交':'已确认'}}</button>
+    <button class="btn btn-primary" disabled="{{isConfirmed!=0}}"
+      bindtap='submit'>{{isConfirmed==0?'提交':'已确认'}}</button>
   </view>
 </view>

@@ -111,9 +111,8 @@ Page({
   //查看物流
   trackingNo: function (e) {
     var deliveryno = e.currentTarget.dataset.deliveryno;
-    var sn = e.currentTarget.dataset.sn;
     wx.navigateTo({
-      url: '../trackingNo/trackingNo?tracking_id=' + deliveryno + '&sn=' + sn
+      url: '../trackingNo/trackingNo?tracking_id=' + deliveryno
     })
   },
 

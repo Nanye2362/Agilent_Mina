@@ -1,7 +1,12 @@
 <!--pages/budget_confirm/budget_confirm.wxml-->
 <view wx:if="{{showSignature}}">
-	<signature showSignature="{{showSignature}}" bindcloseSignature='closeSignature' bindcompleteSignature='completeSignature'></signature>
+	<signature showSignature="{{showSignature}}" bindcloseSignature='closeSignature'
+		bindcompleteSignature='completeSignature'></signature>
 </view>
+<modalTip show="{{showModalTip}}" showRightBtn="{{showRightBtn}}" okBtnText="稍后确认发票信息" rightBtnText="确认发票信息"
+	bindleftTap='returnHome' bindrightTap='inputInvoice'>
+	<text>请您尽快确认发票信息，以便安排后续送修服务</text>
+</modalTip>
 <block wx:if="{{!pageComplete}}">
 	<view>{{info}}</view>
 </block>
@@ -27,56 +32,67 @@
 				下载
 			</view>
 		</view>
-		<view class="bc_order flex alignc" bindtap="{{isConfirm==0?'inputInvoice':''}}" wx:if="{{pageShow}}">
-			<image class="bc_order_icon" src="/images/invoice.png" mode='widthFix'></image>
-			<view class='bc_order_con'>
-				<view class='invoiceInformation'>发票信息-<text
-						class='fw {{invoiceInfo.title!=""?"":"fc-aaa"}}'>{{invoiceInfo.title!=''?currentInvoice=='normalInvoice'?'增值税普通发票':'增值税专用发票':'[未填写]'}}</text>
-					<text class='fc-blue changeType' wx:if='{{currentInvoice!=""&&isConfirm==0?true:false}}'
-						catchtap='changeInvoiceType'>[更改发票类型]</text>
-				</view>
-				<block wx:if='{{invoiceInfo.title!=""?true:false}}'>
-					<view class='fs12 invoiceD'>发票抬头：{{invoiceInfo.title}}</view>
-					<view class='fs12 invoiceD'>纳税人识别号：{{invoiceInfo.taxNumber}}</view>
-					<view class='fs12 invoiceD'>寄送人姓名：{{sendInfo.name}}</view>
-				</block>
-			</view>
-			<view class='bc_order_arrow' wx:if='{{isConfirm==0}}'>
-				<image src='/images/arrow_grey.png' mode='widthFix' style='width: 20rpx'></image>
-			</view>
-		</view>
-		<view class="bc_remind1" wx:if="{{!isConfirm}}">
-			<image class="bc_order_icon3" src="/images/remind1.png" mode='widthFix'></image>
-			上门维修报价单预计在您确认后6个工作日内上门,实际安排以您收到的微信小程序推送或短信为准。
-		</view>
-	</view>
-
-	<view class="bq_status_panel" wx:if="{{pageShow}}">
-		<!--approval_button_enable==Y 不需要签名  -->
-		<block wx:if="{{isConfirm==0}}">
-			<block wx:if="{{approval_button_enable=='N'}}">
-				<!-- 签名区域 -->
-				<view class='signature_panel padding '>
-					<label class="signature_label">联系人签字</label>
-					<view wx:if="{{!isSignatured}}" class="signature_content" bindtap="toSignature"></view>
-					<block wx:else>
-						<view style="transform:rotate(270deg); height: 700rpx;width:296rpx;margin:0 auto;position:relative;top:-196rpx;border:1px solid #cbcbcb;">
-							<image src="{{signatureImg}}" style="height:100%;width:100%;"></image>
-						</view>				
-						<view class="add_btn_area" bindtap="toSignature">
-							<view class="add_btn">重签</view>
-						</view>
+		<view class="bc_order">
+			<view class="flex alignc" bindtap="{{isConfirm==0?'inputInvoice':''}}">
+				<image class="bc_order_icon" src="/images/invoice.png" mode='widthFix'></image>
+				<view class='bc_order_con'>
+					<view class='invoiceInformation'>发票信息-<text
+							class='fw {{invoiceInfo.title!=""?"":"fc-aaa"}}'>{{invoiceInfo.title!=''?invoiceInfo.type==0?'增值税普通发票':'增值税专用发票':'[未填写]'}}</text>
+						<!-- <text class='fc-blue changeType' wx:if='{{currentInvoice!=""&&isConfirm==0?true:false}}'
+						catchtap='changeInvoiceType'>[更改发票类型]</text> -->
+					</view>
+					<block wx:if='{{invoiceInfo.title!=""}}'>
+						<view class='fs12 invoiceD'>发票抬头：{{invoiceInfo.title}}</view>
+						<view class='fs12 invoiceD'>纳税人识别号：{{invoiceInfo.taxpayer_recognition_number}}</view>
+						<view class='fs12 invoiceD'>寄送人姓名：{{invoiceInfo.recipient}}</view>
 					</block>
 				</view>
-			</block>
-			<view class="bq_checkbox_panel">
-				<checkbox-group bindchange="contractConfirm">
-					<label class="checkbox">
-						<checkbox value="contract" checked="{{checkBox}}" style='transform:scale(.7);' />
-						<text class='fc-777 fs12'>我已阅读并接受此报价单</text>
-					</label>
-				</checkbox-group>
+				<view class='bc_order_arrow' wx:if='{{isConfirm==0}}'>
+					<image src='/images/arrow_grey.png' mode='widthFix' style='width: 20rpx'></image>
+				</view>
 			</view>
+			<view class="bc_btn_tip flex alignc">
+				<image class="bc_order_icon" src="/images/red_tip.png" mode="widthFix"></image>
+				<span class="fc-red fs30">您还需填写并确认发票信息以便安排后续服务</span>
+			</view>
+		</view>
+
+	</view>
+
+	<view class="bq_status_panel" wx:if="{{pageComplete}}">
+		<!--approval_button_enable==Y 不需要签名  -->
+		<block wx:if="{{approval_button_enable=='N'}}">
+			<!-- 签名区域 -->
+			<view class='signature_panel padding' style="padding-top:0rpx;">
+				<label class="signature_label">联系人签字</label>
+				<block wx:if="{{!showBackendSignature}}">
+					<view wx:if="{{!isSignatured}}" class="signature_content" bindtap="toSignature"></view>
+					<block wx:else>
+						<view
+							style="transform:rotate(270deg); height: 700rpx;width:296rpx;margin:0 auto;position:relative;top:-196rpx;border:1px solid #cbcbcb;">
+							<image src="{{signatureImg}}" style="height:100%;width:100%;"></image>
+						</view>
+						<view class="add_btn_area" bindtap="{{isConfirm==0?'toSignature':''}}">
+							<view class="{{isConfirm==0?'add_btn':''}}">{{isConfirm==0?'重签':''}}</view>
+						</view>
+					</block>
+				</block>
+				<block wx:else>
+					<view style="width: 700rpx;height:296rpx;margin:0 auto;border:1px solid #cbcbcb;">
+						<image src="{{signatureImg}}" style="height:100%;width:100%;"></image>
+					</view>
+				</block>
+			</view>
+		</block>
+		<view class="bq_checkbox_panel">
+			<checkbox-group bindchange="contractConfirm">
+				<label class="checkbox">
+					<checkbox disabled="{{isConfirm==1}}" value="contract" checked="{{checkBox}}" style='transform:scale(.7);' />
+					<text class='fc-777 fs12'>我已阅读并接受此报价单</text>
+				</label>
+			</checkbox-group>
+		</view>
+		<block wx:if="{{isConfirm==0}}">
 			<button class="btn btn-primary" id="confirm" bindtap='confirm'>确认并接受</button>
 		</block>
 		<block wx:else>
@@ -84,7 +100,7 @@
 		</block>
 	</view>
 
-	<view class="bc_chat padding text-center fs12" wx:if="{{pageShow}}">如果对报价有任何问题，请<image class="chatimg"
+	<view class="bc_chat padding text-center fs12" wx:if="{{pageComplete}}">如果对报价有任何问题，请<image class="chatimg"
 			src="/images/wechat_b.png"></image>
 		<meiqiaBtn bindmeiqiaTap="MtaReport" btn-class="fc-blue bc_chat_btn btn-meiqia" handle-alert="{{true}}"
 			session-from="W_bqobjectid:{{bqId}}|transferAction={{transferAction}}">
