@@ -67,6 +67,13 @@ Page({
       method: 'GET',
       success: function (r) {
         console.log(r);
+        if(r.data.is_confirmed){
+          if (typeof (r.data.safety_statement) != 'undefined') {
+            that.setData({
+              stateList:r.data.safety_statement
+            })
+          }
+        }
         if (typeof (r.data.signature) != 'undefined' && r.data.signature != '') {
           that.setData({
             showBackendSignature:true,
