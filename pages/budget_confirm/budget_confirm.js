@@ -281,6 +281,10 @@ Page({
       var url = util.Server + 'api/v1/sr/bq-file?objectid=' + this.data.objectid
     }
     console.log(url);
+    wx.showLoading({
+      title: '加载中，请稍候',
+      mask: true
+    })
     const downloadTask = wx.downloadFile({
       url: url,
       header: {

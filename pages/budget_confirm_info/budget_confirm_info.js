@@ -66,6 +66,10 @@ Page({
     console.log(url);
     // url api/v1/sr/preview-pdf?objectid= &is_safety=1(1为安全声明) GET
     // return ['status' => false, 'error' => 'PDF生成中请稍后', 'no_error' => true];
+    wx.showLoading({
+      title: '加载中，请稍候',
+      mask: true
+    })
     var downloadTask = wx.downloadFile({
       url: url,
       header: {

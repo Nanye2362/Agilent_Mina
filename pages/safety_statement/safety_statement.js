@@ -8,7 +8,7 @@ Page({
   data: {
     btn_text: '保存',
     showBackendSignature:false,
-    isConfirmed: 0,
+    isConfirm: 0,
     toConfirmed: 0,
     needConfirm: true,
     showSignature: false,
@@ -85,7 +85,7 @@ Page({
         that.setData({
           pageComplete: true,
           pageShow: false,
-          isConfirmed: r.data.is_confirmed
+          isConfirm: r.data.is_confirmed
         })
       }
     })

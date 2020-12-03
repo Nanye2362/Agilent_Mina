@@ -6,7 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    pageComplete:false,
+    pageComplete: false,
     showSignature: false,
     transferAction: '',
     objectid: '',
@@ -14,7 +14,7 @@ Page({
     signatureImg: '',
     safety_statement: [],
     checkBox: false,
-    showBackendSignature:false
+    showBackendSignature: false
   },
 
   /**
@@ -26,40 +26,6 @@ Page({
         objectid: options.objectId
       })
     }
-  },
-  // 签名
-  toSignature: function () {
-    this.setData({
-      showSignature: true
-    })
-  },
-
-  // 关闭签名
-  closeSignature: function () {
-    this.setData({
-      showSignature: false
-    })
-  },
-  // 完成签名
-  completeSignature: function (e) {
-    console.log('completeSignature:', e);
-    this.setData({
-      showSignature: false,
-      isSignatured: true,
-      signatureImg: e.detail
-    })
-  },
-  //检测工作时间
-  MtaReport: function () {
-    var app = getApp();
-    app.mta.Event.stat("meqia", { "group": 'NONTECH' });
-  },
-
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function (options) {
     console.log('onShow:', this.data.objectid, this.data.safety_statement);
     //腾讯mat统计开始
     var app = getApp();
@@ -82,12 +48,12 @@ Page({
       success: function (r) {
         console.log('报修报价单数据：', r);
         if (r.status != false) {
-          if (typeof(r.data.signature)!='undefined'&&r.data.signature != '') {
+          if (typeof (r.data.signature) != 'undefined' && r.data.signature != '') {
             that.setData({
-              showBackendSignature:true,
+              showBackendSignature: true,
               signatureImg: r.data.signature,
               isSignatured: true,
-              checkBox:r.data.is_confirmed
+              checkBox: r.data.is_confirmed
             })
           }
           that.setData({
@@ -123,6 +89,41 @@ Page({
       }
     })
   },
+  // 签名
+  toSignature: function () {
+    this.setData({
+      showSignature: true
+    })
+  },
+
+  // 关闭签名
+  closeSignature: function () {
+    this.setData({
+      showSignature: false
+    })
+  },
+  // 完成签名
+  completeSignature: function (e) {
+    console.log('completeSignature:', e);
+    this.setData({
+      showSignature: false,
+      isSignatured: true,
+      signatureImg: e.detail
+    })
+  },
+  //检测工作时间
+  MtaReport: function () {
+    var app = getApp();
+    app.mta.Event.stat("meqia", { "group": 'NONTECH' });
+  },
+
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function (options) {
+
+  },
   toSafetyPage() {
     wx.navigateTo({
       url: '../safety_statement/safety_statement?objectId=' + this.data.objectid,
@@ -138,12 +139,16 @@ Page({
     // '/api/v1/sr/bq-file?objectid='+item.ServconfId+'&token='+token
     // var url = util.Server + 'site/open-file?ServconfId=' + this.data.bqId;
     var token = wx.getStorageSync('token');
-    if(this.data.isConfirm==0){
+    if (this.data.isConfirm == 0) {
       var url = util.Server + 'api/v1/sr/bq-file?objectid=' + this.data.objectid
-    }else{
-      var url = util.Server + 'api/v1/sr/preview-pdf?objectid=' + this.data.objectid+'&is_safety=0';
+    } else {
+      var url = util.Server + 'api/v1/sr/preview-pdf?objectid=' + this.data.objectid + '&is_safety=0';
     }
     console.log(url);
+    wx.showLoading({
+      title: '加载中，请稍候',
+      mask: true
+    })
     var downloadTask = wx.downloadFile({
       url: url,
       header: {
