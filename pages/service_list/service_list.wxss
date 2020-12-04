@@ -422,3 +422,7 @@ border:none;
 .invoiceType:first-child{
   border-bottom: 1px dashed #e2e2e2;
 }
+.item-title{
+  white-space:pre-wrap;
+  word-break:break-all;
+}

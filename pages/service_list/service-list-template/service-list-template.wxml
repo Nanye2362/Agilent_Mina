@@ -73,13 +73,13 @@
                 <view class="placeholder">
                    <view class="fs18 margin-title">故障描述： {{item.srDesc}}</view>
                     <view class="fs13 fc-777">咨询单号：{{item.srId}}</view>
-                    <view wx:if="{{item.object_id!=null}}" class="fs13 fc-777">服务单号：{{item.object_id}}</view>
+                    <view wx:if="{{item.object_id!=null}}" class="fs13 fc-777">服务单号：{{(item.header_status=='BQ_SENT'||item.header_status=='DBQ_SENT')?(item.bq_sent.length>1?item.bq_sent[0].object_id+'/'+item.bq_sent[1].object_id:item.bq_sent[0].object_id):item.object_id}}</view>
                     <view class="fs13 marginb-3 fc-777">序列号：{{item.serialNo}}</view>
                     <view class='bulid_time marginb-9'>
                         <image src='/images/time.png' style='width:26rpx;' mode='widthFix'></image>
-                        <text class="fs13 fc-b0 marginL  text-alignC">{{item.creationDate}}</text>
+                        <span class="fs13 fc-b0 marginL">{{item.creationDate}}</span>
                         <span class='line_split'></span>
-                        <text class="fs13 fc-777 marginLs text-alignC">{{item.title}}</text>
+                        <span class="fs13 fc-777 marginLs item-title">{{item.title}}</span>
                     </view>
                 </view>
             </view>

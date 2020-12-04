@@ -6,8 +6,10 @@ Page({
    * 页面的初始数据
    */
   data: {
+    pageShow: false,//有无权限
+    pageComplete: false,
     btn_text: '保存',
-    showBackendSignature:false,
+    showBackendSignature: false,
     isConfirm: 0,
     toConfirmed: 0,
     needConfirm: true,
@@ -56,39 +58,55 @@ Page({
   onLoad: function (options) {
     console.log('健康安全声明options:', options);
     this.data.objectid = options.objectId;
+    var that = this;
     if (typeof (options.toConfirmed) != 'undefined') {
       this.setData({
         toConfirmed: options.toConfirmed
       })
-    }
-    var that = this;
-    util.NetRequest({
-      url: 'api/v1/sr/bq?objectid=' + this.data.objectid,
-      method: 'GET',
-      success: function (r) {
-        console.log(r);
-        if(r.data.is_confirmed){
-          if (typeof (r.data.safety_statement) != 'undefined') {
+      util.NetRequest({
+        url: 'api/v1/sr/bq?objectid=' + this.data.objectid,
+        method: 'GET',
+        success: function (r) {
+          console.log(r);
+          if (r.status != false) {
+            if (r.data.is_confirmed) {
+              if (typeof (r.data.safety_statement) != 'undefined') {
+                that.setData({
+                  stateList: r.data.safety_statement
+                })
+              }
+            }
+            if (typeof (r.data.signature) != 'undefined' && r.data.signature != '') {
+              that.setData({
+                showBackendSignature: true,
+                signatureImg: r.data.signature,
+                isSignatured: true,
+                checkBox: r.data.is_confirmed
+              })
+            }
             that.setData({
-              stateList:r.data.safety_statement
+              pageComplete: true,
+              pageShow: true,
+              isConfirm: r.data.is_confirmed
+            })
+          } else if (r.status == false) {
+            //  只能查看不能确认
+            that.setData({
+              pageComplete: true,
+              pageShow: false,
+              isConfirm: r.data.is_confirmed
             })
           }
+
         }
-        if (typeof (r.data.signature) != 'undefined' && r.data.signature != '') {
-          that.setData({
-            showBackendSignature:true,
-            signatureImg: r.data.signature,
-            isSignatured: true,
-            checkBox: r.data.is_confirmed
-          })
-        }
-        that.setData({
-          pageComplete: true,
-          pageShow: false,
-          isConfirm: r.data.is_confirmed
-        })
-      }
-    })
+      })
+    } else {
+      that.setData({
+        pageComplete: true,
+        pageShow: true
+      })
+    }
+
   },
 
   /**
@@ -109,15 +127,35 @@ Page({
     var items = this.data.stateList;
     var values = e.detail.value;
     for (let i = 0, lenI = items.length; i < lenI; ++i) {
-      for (let j = 0, lenJ = values.length; j < lenJ; ++j) {
-        items[i].checked = false;
-        if (items[i].id == values[j]) {
-          items[i].checked = true
-          break
+      if (values.length > 0) {
+        for (let j = 0, lenJ = values.length; j < lenJ; ++j) {
+          console.log('checkbox选中数组');
+          items[i].checked = false;
+          if (items[i].id == values[j]) {
+            items[i].checked = true
+            // 如果选择“无任何有害物质”，其他选项均为未选中
+            if (values[j] == 5) {
+              items[0].checked = false;
+              items[1].checked = false;
+              items[2].checked = false;
+              items[3].checked = false;
+              items[4].checked = false;
+            }
+            break
+          }
         }
+      } else {
+        items[0].checked = false;
+        items[1].checked = false;
+        items[2].checked = false;
+        items[3].checked = false;
+        items[4].checked = false;
+        items[5].checked = false;
       }
     }
-    this.data.stateList = items;
+    this.setData({
+      stateList: items
+    })
     this.data.valuesList = values;
     console.log('checkbox发生change事件stateList:', this.data.stateList);
   },

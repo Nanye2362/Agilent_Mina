@@ -53,7 +53,7 @@ Component({
       })
       /* 将canvas背景设置为 白底，不设置  导出的canvas的背景为透明 */
       // console.log(this, 'hahah');
-      this.setCanvasBg('#fff');
+      this.setCanvasBg('#FFFFFF');
     }).exec();
   },
   /**
@@ -355,7 +355,7 @@ Component({
       this.data.ctx.clearRect(0, 0, 700, 730)
       this.data.ctx.draw();
       //设置canvas背景
-      this.setCanvasBg("#fff");
+      this.setCanvasBg("#FFFFFF");
     },
     // 完成 上传图片
     subCanvas(e) {

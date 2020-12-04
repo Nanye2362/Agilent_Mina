@@ -28,7 +28,8 @@ Page({
     },
     invoiceDetails:{},
     isConfirm:0,
-    pageComplete:false
+    pageComplete: false,
+    pageShow: false, //本人显示，非本人不显示
   },
 
   /**
@@ -77,18 +78,21 @@ Page({
           if(r.data.is_confirmed==1){
             that.setData({
               isConfirm: r.data.fill_invoice?1:0,
-              pageComplete:true
+              pageComplete:true,
+              pageShow:true
             }) 
           }else{
             that.setData({
               isConfirm: 0,
-              pageComplete:true
+              pageComplete:true,
+              pageShow:true
             }) 
           } 
         } else if (r.data.status == false) {
           that.setData({
             isConfirm: r.data.is_confirmed,
-            pageComplete:true
+            pageComplete:true,
+            pageShow:false
           })
         }
       }

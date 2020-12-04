@@ -33,7 +33,7 @@
 			</view>
 		</view>
 		<view class="bc_order">
-			<view class="flex alignc" bindtap="{{isConfirm==0?'inputInvoice':''}}">
+			<view class="flex alignc" wx:if="{{pageShow}}" bindtap="{{isConfirm==0?'inputInvoice':''}}">
 				<image class="bc_order_icon" src="/images/invoice.png" mode='widthFix'></image>
 				<view class='bc_order_con'>
 					<view class='invoiceInformation'>发票信息-<text
@@ -59,7 +59,7 @@
 
 	</view>
 
-	<view class="bq_status_panel" wx:if="{{pageComplete}}">
+	<view class="bq_status_panel" wx:if="{{pageShow}}">
 		<!--approval_button_enable==Y 不需要签名  -->
 		<block wx:if="{{approval_button_enable=='N'}}">
 			<!-- 签名区域 -->
@@ -100,7 +100,7 @@
 		</block>
 	</view>
 
-	<view class="bc_chat padding text-center fs12" wx:if="{{pageComplete}}">如果对报价有任何问题，请<image class="chatimg"
+	<view class="bc_chat padding text-center fs12" wx:if="{{pageShow}}">如果对报价有任何问题，请<image class="chatimg"
 			src="/images/wechat_b.png"></image>
 		<meiqiaBtn bindmeiqiaTap="MtaReport" btn-class="fc-blue bc_chat_btn btn-meiqia" handle-alert="{{true}}"
 			session-from="W_bqobjectid:{{bqId}}|transferAction={{transferAction}}">

@@ -6,7 +6,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    pageComplete: false,
+    pageShow:false,//有无权限
+    pageComplete:false,
     showSignature: false,
     transferAction: '',
     objectid: '',
@@ -67,19 +68,7 @@ Page({
             item_description: r.data.item_description,
           })
         } else if (r.status == false) {
-          wx.showModal({
-            title: '请求失败',
-            content: r.data.error,
-            showCancel: false,
-            success: function (response) {
-              console.log('400:', response);
-              // if (response.confirm) {
-              //   wx.switchTab({
-              //     url: '../index/index',
-              //   })
-              // }
-            }
-          })
+        //  只能查看不能确认
           that.setData({
             pageComplete: true,
             pageShow: false,
@@ -135,14 +124,14 @@ Page({
       checkBox: e.detail.value.length == 1
     })
   },
-  openPDF: function () {
+  openPDF: function (e) {
     // '/api/v1/sr/bq-file?objectid='+item.ServconfId+'&token='+token
     // var url = util.Server + 'site/open-file?ServconfId=' + this.data.bqId;
     var token = wx.getStorageSync('token');
     if (this.data.isConfirm == 0) {
       var url = util.Server + 'api/v1/sr/bq-file?objectid=' + this.data.objectid
     } else {
-      var url = util.Server + 'api/v1/sr/preview-pdf?objectid=' + this.data.objectid + '&is_safety=0';
+      var url = util.Server + 'api/v1/sr/preview-pdf?objectid=' + this.data.objectid + '&is_safety='+e.currentTarget.dataset.safe;
     }
     console.log(url);
     wx.showLoading({

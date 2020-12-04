@@ -37,11 +37,11 @@ Page({
   onShow: function () {
     var that = this;
     console.log(this.data.isFirst);
-    if (!this.data.isFirst) {
-      //请求后台接口 data:{SrId:} site-mini/service-details
-      that.getServiceHistory();
-    }
-    this.data.isFirst = false;
+    // if (!this.data.isFirst) {
+    //   //请求后台接口 data:{SrId:} site-mini/service-details
+    //   that.getServiceHistory();
+    // }
+    // this.data.isFirst = false;
   },
   onLoad: function (option) {
     //腾讯mat统计开始
@@ -372,14 +372,14 @@ Page({
   },
   // 选择新增发票类型
   radioChange: function (e) {
-    console.log('radio发生change事件，携带value值为：', e.detail.value);
+    console.log('radio发生change事件，携带value值为：', e);
     if (e.detail.value == 0) {
       wx.navigateTo({
-        url: '../repair_budget_confirm/repair_budget_confirm?objectId=' + this.data.objectId
+        url: '../repair_budget_confirm/repair_budget_confirm?objectId=' + this.data.bqTypeList[e.detail.value].id
       })
     } else {
       wx.navigateTo({
-        url: '../budget_confirm/budget_confirm?objectId=' + this.data.objectId
+        url: '../budget_confirm/budget_confirm?objectId=' + this.data.bqTypeList[e.detail.value].id
       })
     };
 
@@ -388,20 +388,20 @@ Page({
   },
   //前往预估报价单确认页面
   clickToBudgetConfirm: function (e) {
-    this.data.objectId = e.currentTarget.dataset.objectid;
     var bqsent = e.currentTarget.dataset.bqsent;
     this.data.bqTypeList = [];
     for (let i in bqsent) {
       if (bqsent[i].send_to_repair == 1) {
         this.data.bqTypeList.push(
-          { name: 0, value: '送修报价单' }
+          { name:0,id: bqsent[i].object_id, value: '送修报价单'}
         );
       } else {
         this.data.bqTypeList.push(
-          { name: 1, value: '上门服务报价单' }
+          { name:1, id: bqsent[i].object_id, value: '上门服务报价单' }
         );
       }
     }
+    console.log('bqTypeList:',this.data.bqTypeList);
     this.setData({
       bqTypeList:this.data.bqTypeList
     })

@@ -50,7 +50,7 @@
   </view>
 
   <!-- btn -->
-  <view class="btn-area">
+  <view class="btn-area" wx:if="{{pageShow}}">
     <button class="btn btn-primary" disabled="{{isConfirm!=0}}"
       bindtap='submit'>{{isConfirm==0?'提交':'已确认'}}</button>
   </view>

@@ -115,19 +115,6 @@ Page({
             isConfirm: r.data.is_confirmed,
             approval_button_enable: r.data.approval_button_enable
           })
-          wx.showModal({
-            title: '请求失败',
-            content: r.data.error,
-            showCancel: false,
-            success: function (response) {
-              console.log('400:', response);
-              // if (response.confirm) {
-              //   wx.switchTab({
-              //     url: '../index/index',
-              //   })
-              // }
-            }
-          })
         }
       }
     })

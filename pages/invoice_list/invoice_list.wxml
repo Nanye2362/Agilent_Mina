@@ -28,8 +28,8 @@
     </view>
   </block>
 </view>
-<view class="add_btn_area" bindtap="showInvoiceType">
-  <view class="add_btn">新增发票及寄送人地址</view>
+<view class="add_btn_area">
+  <view class="add_btn" bindtap="showInvoiceType">新增发票及寄送人地址</view>
 </view>
 <view class="bc_btn_area">
   <button class="btn bg-blue fc-fff" bindtap='submit'>选择并确认</button>

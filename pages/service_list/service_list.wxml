@@ -133,7 +133,7 @@
 		<view class='shLoading-title blue'>选择发票类型</view>
 		<view class="shLoading-head-panel">
 			<radio-group class="radio-group flex directionC" bindchange="radioChange">
-				<label class="radio invoiceType" wx:for="{{invoiceTypeList}}">
+				<label class="radio invoiceType" wx:for="{{bqTypeList}}">
 					<radio color='#0085d5' value="{{item.name}}" checked="{{item.checked}}" />{{item.value}}
 				</label>
 			</radio-group>

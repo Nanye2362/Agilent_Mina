@@ -14,6 +14,7 @@ Page({
     name: '',
     company: '',
     aglNum:'',
+    sourse:'&sourse:repair',
     userInfo: {},
     TECH:'',
     NONTECH:'',
