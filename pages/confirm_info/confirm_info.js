@@ -14,7 +14,6 @@ Page({
     name: '',
     company: '',
     aglNum:'',
-    sourse:escape('&')+'sourse:repair',
     userInfo: {},
     TECH:'',
     NONTECH:'',
