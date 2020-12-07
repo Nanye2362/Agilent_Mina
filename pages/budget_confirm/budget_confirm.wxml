@@ -32,8 +32,8 @@
 				下载
 			</view>
 		</view>
-		<view class="bc_order">
-			<view class="flex alignc" wx:if="{{pageShow}}" bindtap="{{isConfirm==0?'inputInvoice':''}}">
+		<view class="bc_order" wx:if="{{pageShow}}">
+			<view class="flex alignc" bindtap="{{isConfirm==0?'inputInvoice':''}}">
 				<image class="bc_order_icon" src="/images/invoice.png" mode='widthFix'></image>
 				<view class='bc_order_con'>
 					<view class='invoiceInformation'>发票信息-<text
@@ -51,7 +51,7 @@
 					<image src='/images/arrow_grey.png' mode='widthFix' style='width: 20rpx'></image>
 				</view>
 			</view>
-			<view class="bc_btn_tip flex alignc">
+			<view  class="bc_btn_tip flex alignc">
 				<image class="bc_order_icon" src="/images/red_tip.png" mode="widthFix"></image>
 				<span class="fc-red fs30">您还需填写并确认发票信息以便安排后续服务</span>
 			</view>

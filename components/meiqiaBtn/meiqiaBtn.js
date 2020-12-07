@@ -70,7 +70,7 @@ Component({
         };
         var paramJson = JSON.stringify(param);
         var transfer_action = this.data.sessionFromFormat
-
+        console.log('paramJson:',paramJson);
         let searchParams = {
           sysnum : config.sobotSysnum,
           partnerid : this.data.miniOpenId,
@@ -81,13 +81,14 @@ Component({
           robotid : robotid,
           top_bar_flag:1
         }
-
+        console.log('searchParams:',searchParams);
         Object.keys(searchParams).map((key)=>{
           url += key + '=' + searchParams[key] +'&';
         })
         url = url.substring(url.length-1,-1)
         url = url.replace(/transferAction=/g, "")
         url = encodeURI(url);
+        console.log('sobotHtmlUrl:',url);
         wx.setStorage({
           key: "sobotHtmlUrl",
           data: url,
