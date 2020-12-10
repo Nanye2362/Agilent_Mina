@@ -18,40 +18,43 @@
     <view class='stateInfo'>
       <checkbox-group class="checkbox-group" bindchange="checkboxChange">
         <label class="stateInfo_item" wx:for="{{stateList}}" wx:key='unique'>
-          <checkbox color='#0085d5' disabled="{{isConfirm==1}}" value="{{item.id}}" checked="{{item.checked}}" />{{item.value}}
+          <checkbox color='#0085d5' disabled="{{isConfirm==1}}" value="{{item.id}}" checked="{{item.checked}}" />
+          {{item.value}}
         </label>
       </checkbox-group>
+    </view>
+    <view wx:if="{{hasSafty}}" class="bc_btn_tip flex alignc">
+      <image class="bc_order_icon" src="/images/remind1.png" mode="widthFix"></image>
+      <span class="fs28">您选择了有害物质，稍后客服人员将会和您联系。</span>
     </view>
     <view wx:if="{{toConfirmed==1}}" class='confirm_area'>
       <label class="fs12">我承诺上诉信息属实，并且送修的仪器备件是安全无害的。</label>
       <!-- 签名区域 -->
-      <!-- 签名区域 -->
       <view class='signature_panel'>
         <label class="signature_label">联系人签字</label>
         <block wx:if="{{!showBackendSignature}}">
-					<view wx:if="{{!isSignatured}}" class="signature_content" bindtap="toSignature"></view>
-					<block wx:else>
-						<view
-							style="transform:rotate(270deg); height: 700rpx;width:296rpx;margin:0 auto;position:relative;top:-196rpx;border:1px solid #cbcbcb;">
-							<image src="{{signatureImg}}" style="height:100%;width:100%;"></image>
-						</view>
-						<view class="add_btn_area" bindtap="{{isConfirm==0?'toSignature':''}}">
-							<view class="{{isConfirm==0?'add_btn':''}}">{{isConfirm==0?'重签':''}}</view>
-						</view>
-					</block>
-				</block>
-				<block wx:else>
-					<view style="width: 700rpx;height:296rpx;margin:0 auto;border:1px solid #cbcbcb;">
-						<image src="{{signatureImg}}" style="height:100%;width:100%;"></image>
-					</view>
-				</block>
+          <view wx:if="{{!isSignatured}}" class="signature_content" bindtap="toSignature"></view>
+          <block wx:else>
+            <view
+              style="transform:rotate(270deg); height: 700rpx;width:296rpx;margin:0 auto;position:relative;top:-196rpx;border:1px solid #cbcbcb;">
+              <image src="{{signatureImg}}" style="height:100%;width:100%;"></image>
+            </view>
+            <view class="add_btn_area" bindtap="{{isConfirm==0?'toSignature':''}}">
+              <view class="{{isConfirm==0?'add_btn':''}}">{{isConfirm==0?'重签':''}}</view>
+            </view>
+          </block>
+        </block>
+        <block wx:else>
+          <view style="width: 700rpx;height:296rpx;margin:0 auto;border:1px solid #cbcbcb;">
+            <image src="{{signatureImg}}" style="height:100%;width:100%;"></image>
+          </view>
+        </block>
       </view>
     </view>
   </view>
 
   <!-- btn -->
   <view class="btn-area" wx:if="{{pageShow}}">
-    <button class="btn btn-primary" disabled="{{isConfirm!=0}}"
-      bindtap='submit'>{{isConfirm==0?'提交':'已确认'}}</button>
+    <button class="btn btn-primary" disabled="{{isConfirm!=0}}" bindtap='submit'>{{isConfirm==0?'提交':'已确认'}}</button>
   </view>
 </view>
