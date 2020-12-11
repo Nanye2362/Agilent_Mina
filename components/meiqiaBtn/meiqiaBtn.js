@@ -9,39 +9,39 @@ Component({
    * 组件的属性列表
    */
   properties: {
-    handleAlert:{
+    handleAlert: {
       type: Boolean,
-      value:false
+      value: false
     },
-    sessionFrom:String,
-    meqiaGroup:String,
-    disabled:String,
-    formType:String,
-    robotid:String
+    sessionFrom: String,
+    meqiaGroup: String,
+    disabled: String,
+    formType: String,
+    robotid: String
   },
 
   /**
    * 组件的初始数据
    */
   data: {
-    isWork:true,
-    showModal:false,
-    canUse:true,
+    isWork: true,
+    showModal: false,
+    canUse: true,
     params: '',
-    nickName:'',
-    avatarUrl:'',
-    contactId:'',
-    sessionFromFormat:"",
-    sobotFrom:""
+    nickName: '',
+    avatarUrl: '',
+    contactId: '',
+    sessionFromFormat: "",
+    sobotFrom: ""
   },
 
   lifetimes: {
-    attached: function() {
+    attached: function () {
       this.setData({
         nickName: wx.getStorageSync("sobot_nickname"),
-        avatarUrl:wx.getStorageSync("sobot_avatarUrl"),
-        contactId:wx.getStorageSync("sobot_contactid"),
-        miniOpenId:wx.getStorageSync("mini_openid"),
+        avatarUrl: wx.getStorageSync("sobot_avatarUrl"),
+        contactId: wx.getStorageSync("sobot_contactid"),
+        miniOpenId: wx.getStorageSync("mini_openid"),
       })
     }
   },
@@ -49,46 +49,54 @@ Component({
    * 组件的方法列表
    */
   methods: {
-    meiqiaBtnTap:function(e){
+    meiqiaBtnTap: function (e) {
       var robotid = 1;
-      if(this.data.robotid != undefined){
+      if (this.data.robotid != undefined) {
         robotid = this.data.robotid
       }
 
-      if (!this.data.canUse){
+      if (!this.data.canUse) {
         this.setData({
-          showModal:true
+          showModal: true
         })
-      }else{
+      } else {
+      // 智齿原生会话
+        // console.log('美洽触发！！！！！')
+        // this.setData({
+        //   sessionFromFormat: this.data.sessionFromFormat,
+        //   isWork: true
+        // })
+        // console.log('sessionFromFormat', this.data.sessionFromFormat)
+        // this.triggerEvent('meiqiaTap', e);
+        // 智齿H5
         var url = config.sobotUrl;
-
         var param = {
-          "name" : this.data.nickName,
-          "contactId" : this.data.contactId,
-          "from" : this.data.sobotFrom,
-          "transAction" : this.data.sessionFromFormat,
+          "name": this.data.nickName,
+          "contactId": this.data.contactId,
+          "from": this.data.sobotFrom,
+          "transAction": this.data.sessionFromFormat,
         };
         var paramJson = JSON.stringify(param);
         var transfer_action = this.data.sessionFromFormat
-        console.log('paramJson:',paramJson);
+        console.log('paramJson:', paramJson);
         let searchParams = {
-          sysnum : config.sobotSysnum,
-          partnerid : this.data.miniOpenId,
-          uname : this.data.nickName,
+          sysnum: config.sobotSysnum,
+          partnerid: this.data.miniOpenId,
+          uname: this.data.nickName,
           face: this.data.avatarUrl,
           params: paramJson,
-          transfer_action : transfer_action,
-          robotid : robotid,
-          top_bar_flag:1
+          transfer_action: transfer_action,
+          robotid: robotid,
+          top_bar_flag: 1
         }
-        console.log('searchParams:',searchParams);
-        Object.keys(searchParams).map((key)=>{
-          url += key + '=' + searchParams[key] +'&';
+        console.log('searchParams:', searchParams);
+        Object.keys(searchParams).map((key) => {
+          url += key + '=' + searchParams[key] + '&';
         })
-        url = url.substring(url.length-1,-1)
+        url = url.substring(url.length - 1, -1)
         url = url.replace(/transferAction=/g, "")
         url = encodeURI(url);
-        console.log('sobotHtmlUrl:',url);
+        console.log('sobotHtmlUrl:', url);
         wx.setStorage({
           key: "sobotHtmlUrl",
           data: url,
@@ -103,8 +111,8 @@ Component({
     }
   },
   externalClasses: ['btn-class'],
-  attached:function(){
-     let that=this;
+  attached: function () {
+    let that = this;
     that.setData({
       isWork: true,
       canUse: true
@@ -120,30 +128,33 @@ Component({
        })
      }, this.__wxExparserNodeId__);*/
   },
-  detached:function(){
+  detached: function () {
     /*workTime.removeHandleArr(this.__wxExparserNodeId__);*/
   },
   observers: {
     'sessionFrom'(value) {
-
+      // 智齿原生会话
+      // this.setData({
+      //   sessionFromFormat: JSON.stringify(value)
+      // })
+      // 智齿H5
       var _this = this;
       _this.setData({
         sessionFromFormat: ''
-      });
-
+      });   
       var strArr = [];
       strArr = value.split('|');
       this.setData({
         sobotFrom: strArr[0]
       });
 
-      console.log('sessionFrom value:',value);
+      console.log('sessionFrom value:', value);
 
       this.setData({
         sessionFromFormat: strArr[1]
       });
 
-      console.log('session:'+this.data.sessionFromFormat);
+      console.log('session:' + this.data.sessionFromFormat);
     },
   }
 
