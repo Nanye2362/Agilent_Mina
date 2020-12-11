@@ -34,7 +34,10 @@ page {
   align-self: flex-start;
   margin-top: 3rpx;
 }
-
+.bc_order_icon_tip {
+  width: 32rpx;
+  margin-right: 8rpx;
+}
 .bc_order_icon1 {
   width: 44rpx;
   vertical-align: sub;

@@ -52,7 +52,7 @@
 				</view>
 			</view>
 			<view  class="bc_btn_tip flex alignc">
-				<image class="bc_order_icon" src="/images/red_tip.png" mode="widthFix"></image>
+				<image class="bc_order_icon_tip" src="/images/red_tip.png" mode="widthFix"></image>
 				<span class="fc-red fs30">您还需填写并确认发票信息以便安排后续服务</span>
 			</view>
 		</view>
