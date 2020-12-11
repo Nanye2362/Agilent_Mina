@@ -1,0 +1,16 @@
+<!--pages/file_list/file_list.wxml-->
+<view class="file">
+  <block wx:for="{{fileList}}">
+  <view class="file-item flex alignc justify-space">
+			<view class='fc-blue' bindtap='openPDF'>
+				<image class="bc_order_icon" src="/images/file.png" mode='widthFix'></image>
+				{{item.file_name}}
+			</view>
+			<view class='fc-blue' bindtap="openPDF">
+				<image class="bc_order_icon" src="/images/download.jpg" mode='widthFix'></image>
+				下载
+			</view>
+		</view>
+</block>
+</view>
+
