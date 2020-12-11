@@ -21,7 +21,11 @@ var invoiceArry = {
     "telephone":"注册电话",
   }
 };
-var invoiceDetails = wx.getStorageSync('invoiceDetails');
+if(wx.getStorageSync('invoiceDetails')){
+  var invoiceDetails = wx.getStorageSync('invoiceDetails');
+}else{
+  var invoiceDetails={};
+}
 
 var errText={
   "title": "发票抬头",
@@ -106,7 +110,12 @@ Page({
     var currentInvoice = options.currentInvoice;
     var title = options.title;
 
-    invoiceDetails = wx.getStorageSync('invoiceDetails');
+    // invoiceDetails = wx.getStorageSync('invoiceDetails');
+    if(wx.getStorageSync('invoiceDetails')){
+      invoiceDetails = wx.getStorageSync('invoiceDetails');
+    }else{
+      invoiceDetails={};
+    }
     if (invoiceDetails[currentInvoice]!=undefined){
       this.setData({
         invoiceInfo: invoiceDetails[currentInvoice].invoiceInfo,
@@ -221,7 +230,6 @@ Page({
 
     var checkInvoice = this.checkEmpty(this.data.invoiceInfo, checkObjInvoice);
     var checkSend = this.checkEmpty(this.data.sendInfo, checkObjSend);
-    console.log(typeof errText[checkInvoice.fieldName] );
     if (checkInvoice.isEmpty == true || checkSend.isEmpty ==true){
       wx.showModal({
         title: '提交失败',
@@ -231,6 +239,7 @@ Page({
     }else{
       var currentInvoice = this.data.currentInvoice;
       var invoiceDetails = this.data.invoiceDetails;
+      console.log('提交invoiceDetails:',invoiceDetails);
       invoiceDetails[currentInvoice] = {};
       invoiceDetails[currentInvoice].invoiceInfo = this.data.invoiceInfo;
       invoiceDetails[currentInvoice].sendInfo = this.data.sendInfo;

@@ -1,7 +1,7 @@
 
 var config = {
 
-  En: "QA",
+  En: "STG",
   // 下面的地址配合云端 Server 工作
   //Server: "https://devops.coffeelandcn.cn/",//UAT
   //https://qa.wechat.service.agilent.com/

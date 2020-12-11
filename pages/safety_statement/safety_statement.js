@@ -6,6 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    hasSafty: false,//有无勾选有害物质
     pageShow: false,//有无权限
     pageComplete: false,
     btn_text: '保存',
@@ -133,6 +134,7 @@ Page({
           items[i].checked = false;
           if (items[i].id == values[j]) {
             items[i].checked = true
+            this.data.hasSafty = true;// 判断是否勾选了有害物质
             // 如果选择“无任何有害物质”，其他选项均为未选中
             if (values[j] == 5) {
               items[0].checked = false;
@@ -140,6 +142,8 @@ Page({
               items[2].checked = false;
               items[3].checked = false;
               items[4].checked = false;
+              this.data.hasSafty = false;
+
             }
             break
           }
@@ -151,10 +155,15 @@ Page({
         items[3].checked = false;
         items[4].checked = false;
         items[5].checked = false;
+        this.data.hasSafty = false;
+
       }
     }
+
+
     this.setData({
-      stateList: items
+      stateList: items,
+      hasSafty: this.data.hasSafty
     })
     this.data.valuesList = values;
     console.log('checkbox发生change事件stateList:', this.data.stateList);

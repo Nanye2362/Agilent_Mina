@@ -97,7 +97,12 @@ Page({
       that.data.invoiceId = options.invoiceId;
       if(typeof (options.isEdit) != 'undefined'){
         var currentInvoice = options.currentInvoice;
-        invoiceDetails = wx.getStorageSync('invoiceDetails');
+        // invoiceDetails = wx.getStorageSync('invoiceDetails');
+        if(wx.getStorageSync('invoiceDetails')){
+          invoiceDetails = wx.getStorageSync('invoiceDetails');
+        }else{
+          invoiceDetails={};
+        }
         console.log('编辑的发票数据:',invoiceDetails);
         that.setData({
           invoiceInfo: invoiceDetails[currentInvoice].invoiceInfo,

@@ -67,3 +67,17 @@ checkbox .wx-checkbox-input {
   font-size: 28rpx;
   padding: 10rpx 30rpx;
 }
+/* 提示 */
+.bc_btn_tip{
+  margin-top:10rpx;
+}
+.bc_order_icon {
+  width: 32rpx;
+  vertical-align: sub;
+  margin-right: 8rpx;
+  align-self: flex-start;
+  margin-top: 3rpx;
+}
+.fs28{
+  font-size: 28rpx;
+}
