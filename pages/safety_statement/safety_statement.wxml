@@ -24,8 +24,8 @@
       </checkbox-group>
     </view>
     <view wx:if="{{hasSafty}}" class="bc_btn_tip flex alignc">
-      <image class="bc_order_icon" src="/images/remind1.png" mode="widthFix"></image>
-      <span class="fs28">您选择了有害物质，稍后客服人员将会和您联系。</span>
+      <image class="bc_order_icon" src="/images/red_tip.png" mode="widthFix"></image>
+      <span class="fc-D61 fs28">您选择了有害物质，稍后客服人员将会和您联系。</span>
     </view>
     <view wx:if="{{toConfirmed==1}}" class='confirm_area'>
       <label class="fs12">我承诺上诉信息属实，并且送修的仪器备件是安全无害的。</label>

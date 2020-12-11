@@ -134,7 +134,12 @@ Page({
       }   
     } else {
       var currentInvoice = options.currentInvoice;
-      invoiceDetails = wx.getStorageSync('invoiceDetails');
+      // invoiceDetails = wx.getStorageSync('invoiceDetails');
+      if(wx.getStorageSync('invoiceDetails')){
+        invoiceDetails = wx.getStorageSync('invoiceDetails');
+      }else{
+        invoiceDetails={};
+      }
       console.log('发票数据:',invoiceDetails);
       that.setData({
         invoiceInfo: invoiceDetails[currentInvoice].invoiceInfo,

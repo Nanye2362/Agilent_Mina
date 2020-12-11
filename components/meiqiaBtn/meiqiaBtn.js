@@ -13,6 +13,10 @@ Component({
       type: Boolean,
       value:false
     },
+    configType:{
+      type: Boolean,
+      value:false
+    },
     sessionFrom:String,
     meqiaGroup:String,
     disabled:String,
@@ -79,7 +83,8 @@ Component({
           params: paramJson,
           transfer_action : transfer_action,
           robotid : robotid,
-          top_bar_flag:1
+          top_bar_flag:1,
+          type:this.data.configType?2:''
         }
         console.log('searchParams:',searchParams);
         Object.keys(searchParams).map((key)=>{
