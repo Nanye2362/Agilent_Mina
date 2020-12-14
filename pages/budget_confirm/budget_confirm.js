@@ -93,6 +93,7 @@ Page({
             })
           }
           if (typeof (r.data.signature) != 'undefined' && r.data.signature != '') {
+            console.log('签名图片：',r.data.signature)
             that.setData({
               showBackendSignature:true,
               signatureImg: r.data.signature,

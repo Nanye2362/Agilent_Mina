@@ -31,13 +31,16 @@ Page({
         console.log('获取文件：',r);
         if(r.data.length<1){
           that.setData({
-            info:'暂无文件'
+            info:'暂无文件',
+            pageComplete:false
+          })
+        }else{
+          that.setData({
+            fileList:r.data,
+            pageComplete:true
           })
         }
-        that.setData({
-          fileList:r.data,
-          pageComplete:true
-        })
+        
       }})
   },
   openPDF: function (e) {
