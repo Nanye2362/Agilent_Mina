@@ -8,15 +8,9 @@ Page({
    */
   data: {
     id:'',
-    fileList:[{
-      file_name:'3000276650-LC报价单.pdf',
-      file_url:'https://agilent-aws-tst-26-kakao-eservice.s3-ap-northeast-1.amazonaws.com/web/upload_file/admin/sendToRepair/files/0/5fc9c66b9bded_3000276650-LC报价单.pdf',
-      id:0
-    },{
-      file_name:'3000276651-LC送修报价单.pdf',
-      file_url:'https://agilent-aws-tst-26-kakao-eservice.s3-ap-northeast-1.amazonaws.com/web/upload_file/admin/sendToRepair/files/0/5fc9c66b9bded_3000276650-LC报价单.pdf',
-      id:1
-    }]
+    fileList:[],
+    pageComplete:false,
+    info:'加载中...'
   },
 
   /**
@@ -31,15 +25,26 @@ Page({
   getBqList:function(){
     var that=this;
     util.NetRequest({
-      url: 'api/v1/sr/files?id='+that.data.id,
+      url: 'api/v1/sr/str-files/list?id='+that.data.id,
       method: 'GET',
       success: function (r) {
         console.log('获取文件：',r);
+        if(r.data.length<1){
+          that.setData({
+            info:'暂无文件'
+          })
+        }
+        that.setData({
+          fileList:r.data,
+          pageComplete:true
+        })
       }})
   },
-  openPDF: function () {
+  openPDF: function (e) {
+    console.log('openPDF:',e);
     var token = wx.getStorageSync('token');
-    var url = util.Server + 'api/v1/bq-pdf/open?objectid=' + this.data.
+    let id=e.currentTarget.dataset.id;
+    var url = util.Server + 'api/v1/sr/str-files/' + id
     wx.showLoading({
       title: '加载中，请稍候',
       mask: true
