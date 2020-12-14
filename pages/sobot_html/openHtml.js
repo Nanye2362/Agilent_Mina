@@ -12,15 +12,21 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var that=this;
-    wx.getStorage({
-      key: 'sobotHtmlUrl',
-      success: function (res) {
-        that.setData({
-          openHtmlUrl:res.data
-        })
-      }
+
+    this.setData({
+      openHtmlUrl:decodeURIComponent(options.url)
+     // openHtmlUrl:decodeURIComponent(url)
     })
+
+    // var that=this;
+    // wx.getStorage({
+    //   key: 'sobotHtmlUrl',
+    //   success: function (res) {
+    //     that.setData({
+    //       openHtmlUrl:res.data
+    //     })
+    //   }
+    // })
   },
 
   /**
