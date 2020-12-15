@@ -53,7 +53,7 @@ Page({
     signatureImg: '',
     showRightBtn: false,
     rightBtnText: '',
-    showBackendSignature:false
+    showBackendSignature: false
   },
 
   /**
@@ -92,14 +92,45 @@ Page({
               invoiceInfo: r.data.invoice[0]
             })
           }
-          if (typeof (r.data.signature) != 'undefined' && r.data.signature != '') {
-            console.log('签名图片：',r.data.signature)
-            that.setData({
-              showBackendSignature:true,
-              signatureImg: r.data.signature,
-              isSignatured: true,
-              checkBox: r.data.is_confirmed
+          if (typeof (r.data.bq_confirmed_id) != 'undefined' && r.data.bq_confirmed_id != '') {
+            console.log('已确认id：', r.data.bq_confirmed_id)       
+            let is_confirmed=r.data.is_confirmed;
+            var token = wx.getStorageSync('token');
+            let url=util.Server+'api/v1/sr/bq/sign-img?bq_confirmed_id=' + r.data.bq_confirmed_id;
+            console.log(url);
+            wx.showLoading({
+              title: '加载中，请稍候',
+              mask: true
             })
+            const downloadTask1 = wx.downloadFile({
+              url: url,
+              header: {
+                'Authorization': "Bearer " + token
+              },
+              success: function (res) {
+                console.log(res);
+                console.log('filePath= ' + res.tempFilePath);
+                if(res.tempFilePath){
+                  that.setData({
+                    showBackendSignature: true,
+                    signatureImg: res.tempFilePath,
+                    isSignatured: true,
+                    checkBox: is_confirmed
+                  })
+                }                        
+              },
+              complete: function complete() {
+                wx.hideLoading();
+              },
+              fail: function fail() {
+                wx.showModal({
+                  title: '提示',
+                  content: '签名生成中',
+                  showCancel: false
+                });
+              }
+            })
+            
           }
           that.setData({
             pageComplete: true,
@@ -159,10 +190,10 @@ Page({
     var that = this;
     if (typeof (that.data.invoiceInfo.id) != 'undefined') {
       console.log('提交报价单invoiceInfo:', that.data.invoiceInfo);
-      if(that.data.approval_button_enable == 'N'&&that.data.signatureImg != ''){
-        var invoiceData=JSON.stringify(that.data.invoiceInfo)
-      }else{
-        var invoiceData=that.data.invoiceInfo;
+      if (that.data.approval_button_enable == 'N' && that.data.signatureImg != '') {
+        var invoiceData = JSON.stringify(that.data.invoiceInfo)
+      } else {
+        var invoiceData = that.data.invoiceInfo;
       }
       var params = {
         objectid: that.data.objectid,
@@ -282,7 +313,7 @@ Page({
         console.log(res);
         var filePath = res.tempFilePath;
         console.log('filePath= ' + filePath);
-        if(res.statusCode==200){
+        if (res.statusCode == 200) {
           wx.openDocument({
             filePath: filePath,
             success: function success(res) {
@@ -297,8 +328,8 @@ Page({
               });
             }
           })
-        }else{
-          if(res.statusCode==400){
+        } else {
+          if (res.statusCode == 400) {
             wx.showModal({
               title: '提示',
               content: 'PDF生成中请稍后',
@@ -307,7 +338,7 @@ Page({
             return false
           }
         }
-        
+
       },
       complete: function complete() {
         wx.hideLoading();

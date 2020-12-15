@@ -49,13 +49,45 @@ Page({
       success: function (r) {
         console.log('报修报价单数据：', r);
         if (r.status != false) {
-          if (typeof (r.data.signature) != 'undefined' && r.data.signature != '') {
-            that.setData({
-              showBackendSignature: true,
-              signatureImg: r.data.signature,
-              isSignatured: true,
-              checkBox: r.data.is_confirmed
+          if (typeof (r.data.bq_confirmed_id) != 'undefined' && r.data.bq_confirmed_id != '') {
+            console.log('已确认id：', r.data.bq_confirmed_id)       
+            let is_confirmed=r.data.is_confirmed;
+            var token = wx.getStorageSync('token');
+            let url=util.Server+'api/v1/sr/bq/sign-img?bq_confirmed_id=' + r.data.bq_confirmed_id;
+            console.log(url);
+            wx.showLoading({
+              title: '加载中，请稍候',
+              mask: true
             })
+            const downloadTask1 = wx.downloadFile({
+              url: url,
+              header: {
+                'Authorization': "Bearer " + token
+              },
+              success: function (res) {
+                console.log(res);
+                console.log('filePath= ' + res.tempFilePath);
+                if(res.tempFilePath){
+                  that.setData({
+                    showBackendSignature: true,
+                    signatureImg: res.tempFilePath,
+                    isSignatured: true,
+                    checkBox: is_confirmed
+                  })
+                }                        
+              },
+              complete: function complete() {
+                wx.hideLoading();
+              },
+              fail: function fail() {
+                wx.showModal({
+                  title: '提示',
+                  content: '签名生成中',
+                  showCancel: false
+                });
+              }
+            })
+            
           }
           that.setData({
             pageComplete: true,
