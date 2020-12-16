@@ -159,38 +159,44 @@ Page({
     console.log('checkbox发生change事件，携带value值为：', e.detail.value)
     var items = this.data.stateList;
     var values = e.detail.value;
-    for (let i = 0, lenI = items.length; i < lenI; ++i) {
-      if (values.length > 0) {
-        for (let j = 0, lenJ = values.length; j < lenJ; ++j) {
-          console.log('checkbox选中数组');
-          items[i].checked = false;
-          if (items[i].id == values[j]) {
-            items[i].checked = true
-            this.data.hasSafty = true;// 判断是否勾选了有害物质
-            // 如果选择“无任何有害物质”，其他选项均为未选中
-            if (values[j] == 5) {
-              items[0].checked = false;
-              items[1].checked = false;
-              items[2].checked = false;
-              items[3].checked = false;
-              items[4].checked = false;
-              this.data.hasSafty = false;
-
+    // 最新选中的为“无害物质”则其他都不能选
+    if (values[values.length-1] == 5) {
+      items[0].checked = false;
+      items[1].checked = false;
+      items[2].checked = false;
+      items[3].checked = false;
+      items[4].checked = false;
+      items[5].checked = true;
+      this.data.hasSafty = false;
+    }else{
+      for (let i = 0, lenI = items.length; i < lenI; ++i) {
+        if (values.length > 0) {
+          for (let j = 0, lenJ = values.length; j < lenJ; ++j) {
+            console.log('checkbox选中数组');
+            items[i].checked = false;
+            if (items[i].id == values[j]) {
+              items[i].checked = true
+              this.data.hasSafty = true;// 判断是否勾选了有害物质
+              // 如果选择“无任何有害物质”，其他选项均为未选中
+              if (values[j] == 5&&j!=values.length-1) {
+                items[i].checked = false
+              }
+              break
             }
-            break
           }
+        } else {
+          items[0].checked = false;
+          items[1].checked = false;
+          items[2].checked = false;
+          items[3].checked = false;
+          items[4].checked = false;
+          items[5].checked = false;
+          this.data.hasSafty = false;
+  
         }
-      } else {
-        items[0].checked = false;
-        items[1].checked = false;
-        items[2].checked = false;
-        items[3].checked = false;
-        items[4].checked = false;
-        items[5].checked = false;
-        this.data.hasSafty = false;
-
       }
     }
+   
 
 
     this.setData({

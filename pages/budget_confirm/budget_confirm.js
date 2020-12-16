@@ -328,15 +328,13 @@ Page({
               });
             }
           })
-        } else {
-          if (res.statusCode == 400) {
+        } else {        
             wx.showModal({
               title: '提示',
               content: 'PDF生成中请稍后',
               showCancel: false
             });
             return false
-          }
         }
 
       },

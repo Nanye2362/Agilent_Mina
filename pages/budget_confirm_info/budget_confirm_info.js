@@ -79,20 +79,30 @@ Page({
         console.log('下载pdf：',res);
         var filePath = res.tempFilePath;
         console.log('filePath= ' + filePath);
-        wx.openDocument({
-          filePath: filePath,
-          success: function success(res) {
-            console.log('打开文档成功');
-          },
-          fail: function fail(res) {
-            console.log(res);
-            wx.showModal({
-              title: '提示',
-              content: '报告显示错误。如果需要此报告，请联系客服索取。',
-              showCancel: false
-            });
-          }
-        })
+        if(res.statusCode==200){
+          wx.openDocument({
+            filePath: filePath,
+            success: function success(res) {
+              console.log('打开文档成功');
+            },
+            fail: function fail(res) {
+              console.log(res);
+              wx.showModal({
+                title: '提示',
+                content: '报告显示错误。如果需要此报告，请联系客服索取。',
+                showCancel: false
+              });
+            }
+          })
+        }else{
+          wx.showModal({
+            title: '提示',
+            content: 'PDF生成中请稍后',
+            showCancel: false
+          });
+          return false
+        }
+       
       },
       complete: function complete() {
         wx.hideLoading();
