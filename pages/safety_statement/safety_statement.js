@@ -69,7 +69,7 @@ Page({
         method: 'GET',
         success: function (r) {
           console.log(r);
-          if (r.status != false) {
+          if (r.data.status != false) {
             if (r.data.is_confirmed) {
               if (typeof (r.data.safety_statement) != 'undefined') {
                 that.setData({
@@ -122,7 +122,7 @@ Page({
               pageShow: true,
               isConfirm: r.data.is_confirmed
             })
-          } else if (r.status == false) {
+          } else if (r.data.status == false) {
             //  只能查看不能确认
             that.setData({
               pageComplete: true,
