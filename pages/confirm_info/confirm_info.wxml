@@ -54,7 +54,7 @@
           </meiqiaBtn>
       </view>
       <view class='pd_btn' wx:if='{{CanRepair==1}}' >
-          <meiqiaBtn bindmeiqiaTap="MtaReport" btn-class="btn btn-primary" handle-alert="{{false}}" config-type='{{true}}' session-from="{{RTECH}}|transferAction={{transferAction}}">
+          <meiqiaBtn bindmeiqiaTap="MtaReport" btn-class="btn btn-primary" handle-alert="{{false}}" sobotType="2" session-from="{{RTECH}}|transferAction={{transferAction}}">
             送修绿色通道
             <image class='btn_img' mode='widthFix' src="../../images/repaire.png"></image> 
           </meiqiaBtn>

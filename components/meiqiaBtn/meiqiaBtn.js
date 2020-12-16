@@ -13,15 +13,12 @@ Component({
       type: Boolean,
       value: false
     },
-    configType:{
-      type: Boolean,
-      value:false
-    },
     sessionFrom:String,
     meqiaGroup:String,
     disabled:String,
     formType:String,
-    robotid:String
+    robotid:String,
+    sobotType:String
   },
 
   /**
@@ -55,11 +52,17 @@ Component({
   methods: {
     meiqiaBtnTap: function (e) {
       var robotid = 1;
-      if (this.data.robotid != undefined) {
-        robotid = this.data.robotid
-      }
-
-      if (!this.data.canUse) {
+      var sobotType = ''; //接入类型
+      //目前指定到1号机器人
+      // if(this.data.robotid != undefined){
+      //   robotid = this.data.robotid
+      // }
+      console.log('this.data.sobotType != undefined:',this.data.sobotType != undefined);
+       if(this.data.sobotType != undefined){
+         sobotType = this.data.sobotType
+       }
+       console.log('this.data.sobotType:',sobotType);
+      if (!this.data.canUse){
         this.setData({
           showModal: true
         })
@@ -92,7 +95,7 @@ Component({
           transfer_action : transfer_action,
           robotid : robotid,
           top_bar_flag:1,
-          type:this.data.configType?2:''
+          type:sobotType
         }
         console.log('searchParams:', searchParams);
         Object.keys(searchParams).map((key) => {
@@ -101,16 +104,20 @@ Component({
         url = url.substring(url.length - 1, -1)
         url = url.replace(/transferAction=/g, "")
         url = encodeURI(url);
-        console.log('sobotHtmlUrl:', url);
-        wx.setStorage({
-          key: "sobotHtmlUrl",
-          data: url,
-          success: function () {
-            wx.navigateTo({
-              url: '/pages/sobot_html/openHtml',
-            });
-          }
-        })
+
+        wx.navigateTo({
+          url: '/pages/sobot_html/openHtml?url='+encodeURIComponent(url),
+        });
+
+        // wx.setStorage({
+        //   key: "sobotHtmlUrl",
+        //   data: url,
+        //   success: function () {
+        //     wx.navigateTo({
+        //       url: '/pages/sobot_html/openHtml',
+        //     });
+        //   }
+        // })
 
       }
     }
