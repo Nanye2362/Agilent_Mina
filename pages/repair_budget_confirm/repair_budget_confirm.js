@@ -197,7 +197,7 @@ Page({
         }else{      
             wx.showModal({
               title: '提示',
-              content: 'PDF生成中请稍后',
+              content: 'PDF生成中请稍后查看',
               showCancel: false
             });
             return false

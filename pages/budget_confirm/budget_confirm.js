@@ -331,7 +331,7 @@ Page({
         } else {        
             wx.showModal({
               title: '提示',
-              content: 'PDF生成中请稍后',
+              content: 'PDF生成中请稍后查看',
               showCancel: false
             });
             return false
@@ -344,7 +344,7 @@ Page({
       fail: function fail() {
         wx.showModal({
           title: '提示',
-          content: 'PDF生成中请稍后',
+          content: '报告下载失败，请检测网络。',
           showCancel: false
         });
       }
