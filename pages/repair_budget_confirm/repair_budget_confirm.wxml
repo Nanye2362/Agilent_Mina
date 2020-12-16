@@ -34,7 +34,7 @@
         <span class="fc-blue fs28">下载</span>
       </view>
     </view>
-    <view wx:if="{{isConfirm==0}}" class="bc_item" bindtap="toSafetyPage">
+    <view wx:if="{{isConfirm==0&&pageShow}}" class="bc_item" bindtap="toSafetyPage">
       <view class="bc_item_left">
         <image class="bc_order_icon" src="/images/pdf.png" mode='widthFix'></image>
         <span class="fc-blue fs28">请确认送修仪器是否含有相关危险物质</span>

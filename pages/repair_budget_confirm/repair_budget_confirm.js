@@ -48,7 +48,7 @@ Page({
       method: 'GET',
       success: function (r) {
         console.log('报修报价单数据：', r);
-        if (r.status != false) {
+        if (r.data.status != false) {
           if (typeof (r.data.bq_confirmed_id) != 'undefined' && r.data.bq_confirmed_id != '') {
             console.log('已确认id：', r.data.bq_confirmed_id)       
             let is_confirmed=r.data.is_confirmed;
@@ -99,7 +99,7 @@ Page({
             approval_button_enable: r.data.approval_button_enable,
             item_description: r.data.item_description,
           })
-        } else if (r.status == false) {
+        } else if (r.data.status == false) {
         //  只能查看不能确认
           that.setData({
             pageComplete: true,
