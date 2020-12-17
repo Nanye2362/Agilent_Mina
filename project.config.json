@@ -50,12 +50,6 @@
   "simulatorType": "wechat",
   "simulatorPluginLibVersion": {},
   "condition": {
-    "search": {
-      "list": []
-    },
-    "conversation": {
-      "list": []
-    },
     "plugin": {
       "list": []
     },
@@ -294,10 +288,9 @@
           "scene": null
         },
         {
-          "id": 33,
           "name": "pages/budget_confirm/budget_confirm",
           "pathName": "pages/budget_confirm/budget_confirm",
-          "query": "objectId=3000435446",
+          "query": "objectId=3000435445",
           "scene": null
         },
         {
@@ -315,7 +308,6 @@
           "scene": null
         },
         {
-          "id": 36,
           "name": "pages/repair_budget_confirm/repair_budget_confirm",
           "pathName": "pages/repair_budget_confirm/repair_budget_confirm",
           "query": "objectId=3000435446",

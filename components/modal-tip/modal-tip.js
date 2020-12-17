@@ -32,6 +32,9 @@ Component({
     clickMask() {
       this.setData({show: false}) 
     },
+    cancelTap() {
+      this.setData({show: false}) 
+    },
     leftTap(){
       this.setData({ show: false })
       this.triggerEvent('leftTap')
@@ -40,7 +43,7 @@ Component({
       this.setData({ show: false })
       this.triggerEvent('rightTap')
     },
-
+    
     okTap() {
       this.setData({ show: false })
       wx.switchTab({

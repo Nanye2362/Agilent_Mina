@@ -46,7 +46,7 @@ Page({
     needBill: '',
     invoiceDetails: {},
     currentInvoice: '',
-    hasInvoice: true,
+    hasInvoice: false,
     confirmShow: false,
     objectid: '',
     isSignatured: false,
@@ -89,6 +89,7 @@ Page({
         if (r.data.status != false) {
           if (r.data.invoice.length > 0) {
             that.setData({
+              hasInvoice:true,
               invoiceInfo: r.data.invoice[0]
             })
           }
@@ -188,7 +189,7 @@ Page({
   },
   infoOkTap: function () {
     var that = this;
-    if (typeof (that.data.invoiceInfo.id) != 'undefined') {
+    if (typeof (that.data.invoiceInfo.id) != 'undefined'||that.data.hasInvoice==true) {
       console.log('提交报价单invoiceInfo:', that.data.invoiceInfo);
       if (that.data.approval_button_enable == 'N' && that.data.signatureImg != '') {
         var invoiceData = JSON.stringify(that.data.invoiceInfo)
@@ -263,7 +264,7 @@ Page({
     })
   },
   confirm: function () {
-    if (typeof (this.data.invoiceInfo.id) == 'undefined') {
+    if (typeof (this.data.invoiceInfo.id) == 'undefined'&&this.data.hasInvoice==false) {
       this.setData({
         showModalTip: true,
         showRightBtn: true
