@@ -32,17 +32,17 @@ Page({
       },
       {
         id: 2,
-        value: '对人体有害的化学物质',
+        value: '放射性物质(如ECO，同位素等)',
         checked: false
       },
       {
         id: 3,
-        value: '可成为有害的可生物降解材料',
+        value: '对人体有害的化学物质',
         checked: false
       },
       {
         id: 4,
-        value: '其他有害物质',
+        value: '可成为有害的可生物降解材料',
         checked: false
       },
       {
