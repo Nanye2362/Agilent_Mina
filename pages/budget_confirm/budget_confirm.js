@@ -296,7 +296,7 @@ Page({
     // util.Server + 'api/v1/sr/bq-file?objectid=' + this.data.objectid + '&token=' + token;
     // api/v1/sr/preview-pdf?objectid= &is_safety=1(1为安全声明) GET
     if (this.data.isConfirm == 1) {
-      var url = util.Server + 'api/v1/sr/onsite-pdf?objectid=' + this.data.objectid
+      var url = util.Server + 'api/v1/sr/sign-pdf?objectid=' + this.data.objectid
     } else {
       var url = util.Server + 'api/v1/sr/bq-file?objectid=' + this.data.objectid
     }

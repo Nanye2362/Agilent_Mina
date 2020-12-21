@@ -163,7 +163,7 @@ Page({
     if (this.data.isConfirm == 0) {
       var url = util.Server + 'api/v1/sr/bq-file?objectid=' + this.data.objectid
     } else {
-      var url = util.Server + 'api/v1/sr/preview-pdf?objectid=' + this.data.objectid + '&is_safety='+e.currentTarget.dataset.safe;
+      var url = util.Server + 'api/v1/sr/sign-pdf?objectid=' + this.data.objectid + '&is_safety='+e.currentTarget.dataset.safe;
     }
     console.log(url);
     wx.showLoading({
