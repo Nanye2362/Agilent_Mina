@@ -373,7 +373,7 @@ Page({
   // 选择新增发票类型
   radioChange: function (e) {
     console.log('radio发生change事件，携带value值为：', e);
-    if (e.detail.value == 0) {
+    if (this.data.bqTypeList[e.detail.value].send_to_repair == 1) {
       console.log('radio发生change事件bqType:',this.data.bqTypeList[e.detail.value])
       wx.navigateTo({
         url: '../repair_budget_confirm/repair_budget_confirm?objectId=' + this.data.bqTypeList[e.detail.value].id
@@ -394,11 +394,11 @@ Page({
     for (let i in bqsent) {
       if (bqsent[i].send_to_repair == 1) {
         this.data.bqTypeList.push(
-          { id: bqsent[i].object_id, value: '送修报价单'}
+          {send_to_repair:1, id: bqsent[i].object_id, value: '送修报价单'}
         );
       } else {
         this.data.bqTypeList.push(
-          { id: bqsent[i].object_id, value: '上门服务报价单' }
+          { send_to_repair:0,id: bqsent[i].object_id, value: '上门服务报价单' }
         );
       }
     }
