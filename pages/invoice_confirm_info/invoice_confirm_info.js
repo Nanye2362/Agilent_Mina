@@ -28,6 +28,7 @@ Page({
     },
     invoiceDetails:{},
     isConfirm:0,
+    hasInvoice:false,
     pageComplete: false,
     pageShow: false, //本人显示，非本人不显示
   },
@@ -72,7 +73,8 @@ Page({
           console.log('r.data.invoice:', r.data.invoice);
           if (r.data.invoice.length > 0) {
            that.setData({
-            invoiceInfo:r.data.invoice[0]
+            invoiceInfo:r.data.invoice[0],
+            hasInvoice:true
            })
           } 
           if(r.data.is_confirmed==1){
@@ -119,13 +121,13 @@ Page({
   submit() {
     var that =this;
     // api/v1/sr/fill-invoice POST objectid invoice{}
-    if(typeof(that.data.invoiceInfo.id)=='undefined'){
+    if(typeof(that.data.invoiceInfo.id)=='undefined'&&that.data.hasInvoice==false){
       wx.showModal({
         title: '提交失败',
         content: '请选择发票',
       })
       return false;
-    }else if (typeof(that.data.invoiceInfo.id)!='undefined') {
+    }else {
       var params = {
         objectid: that.data.objectid,
         invoice: that.data.invoiceInfo
