@@ -156,6 +156,55 @@ Page({
       checkBox: e.detail.value.length == 1
     })
   },
+  // 下载pdf
+  downloadPDF: function () {
+    var token = wx.getStorageSync('token');
+    // util.Server + 'api/v1/sr/bq-file?objectid=' + this.data.objectid + '&token=' + token;
+    // api/v1/sr/preview-pdf?objectid= &is_safety=1(1为安全声明) GET
+    if (this.data.isConfirm == 0) {
+      var url = util.Server + 'api/v1/sr/bq-file?objectid=' + this.data.objectid+'&type=png';
+    } else {
+      var url = util.Server + 'api/v1/sr/sign-pdf?objectid=' + this.data.objectid + '&is_safety='+e.currentTarget.dataset.safe+'&type=png';
+    }
+    console.log(url);
+    wx.showLoading({
+      title: '加载中，请稍候',
+      mask: true
+    })
+    const downloadTask2 = wx.downloadFile({
+      url: url,
+      header: {
+        'Authorization': "Bearer " + token
+      },
+      success: function (res) {
+        console.log(res);
+        var filePath = res.tempFilePath;
+        console.log('下载pdf的filePath=' + filePath);
+        if (res.statusCode == 200) {
+          util.saveImageToPhotos(filePath);
+        } else {        
+            wx.showModal({
+              title: '提示',
+              content: 'PDF生成中请稍后查看',
+              showCancel: false
+            });
+            return false
+        }
+
+      },
+      complete: function complete() {
+        wx.hideLoading();
+      },
+      fail: function fail() {
+        wx.showModal({
+          title: '提示',
+          content: '报告下载失败，请检测网络。',
+          showCancel: false
+        });
+      }
+    })
+  },
+  // 打开pdf
   openPDF: function (e) {
     // '/api/v1/sr/bq-file?objectid='+item.ServconfId+'&token='+token
     // var url = util.Server + 'site/open-file?ServconfId=' + this.data.bqId;

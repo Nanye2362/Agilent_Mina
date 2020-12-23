@@ -93,9 +93,8 @@ Page({
               invoiceInfo: r.data.invoice[0]
             })
           }
-          if (typeof (r.data.bq_confirmed_id) != 'undefined' && r.data.bq_confirmed_id != '') {
-            console.log('已确认id：', r.data.bq_confirmed_id)       
-            let is_confirmed=r.data.is_confirmed;
+          if (r.data.approval_button_enable == 'N'&&typeof (r.data.bq_confirmed_id) != 'undefined' && r.data.bq_confirmed_id != '') {
+            console.log('已确认id：', r.data.bq_confirmed_id)
             var token = wx.getStorageSync('token');
             let url=util.Server+'api/v1/sr/bq/sign-img?bq_confirmed_id=' + r.data.bq_confirmed_id;
             console.log(url);
@@ -116,7 +115,6 @@ Page({
                     showBackendSignature: true,
                     signatureImg: res.tempFilePath,
                     isSignatured: true,
-                    checkBox: is_confirmed
                   })
                 }                        
               },
@@ -138,6 +136,7 @@ Page({
             pageShow: true,
             bqId: that.data.objectid,
             isConfirm: r.data.is_confirmed,
+            checkBox: r.data.is_confirmed,
             approval_button_enable: r.data.approval_button_enable
           })
         } else if (r.data.status == false) {
@@ -291,6 +290,55 @@ Page({
       confirmShow: true
     })
   },
+  // 下载pdf
+  downloadPDF: function () {
+    var token = wx.getStorageSync('token');
+    // util.Server + 'api/v1/sr/bq-file?objectid=' + this.data.objectid + '&token=' + token;
+    // api/v1/sr/preview-pdf?objectid= &is_safety=1(1为安全声明) GET
+    if (this.data.isConfirm ==1) {
+      var url = util.Server + 'api/v1/sr/sign-pdf?objectid=' + this.data.objectid+'&type=png'
+    } else {
+      var url = util.Server + 'api/v1/sr/bq-file?objectid=' + this.data.objectid+'&type=png'
+    }
+    console.log(url);
+    wx.showLoading({
+      title: '加载中，请稍候',
+      mask: true
+    })
+    const downloadTask2 = wx.downloadFile({
+      url: url,
+      header: {
+        'Authorization': "Bearer " + token
+      },
+      success: function (res) {
+        console.log(res);
+        var filePath = res.tempFilePath;
+        console.log('下载pdf的filePath= ' + filePath);
+        if (res.statusCode == 200) {
+          util.saveImageToPhotos(filePath);
+        } else {        
+            wx.showModal({
+              title: '提示',
+              content: 'PDF生成中请稍后查看',
+              showCancel: false
+            });
+            return false
+        }
+
+      },
+      complete: function complete() {
+        wx.hideLoading();
+      },
+      fail: function fail() {
+        wx.showModal({
+          title: '提示',
+          content: '报告下载失败，请检测网络。',
+          showCancel: false
+        });
+      }
+    })
+  },
+  // 打开pdf
   openPDF: function () {
     var token = wx.getStorageSync('token');
     // util.Server + 'api/v1/sr/bq-file?objectid=' + this.data.objectid + '&token=' + token;
