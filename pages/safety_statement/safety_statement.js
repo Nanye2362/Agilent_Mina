@@ -250,7 +250,7 @@ Page({
         })
         return false;
       } else {
-        let url = 'api/v1/sr/fill-safety-statement   ';
+        let url = 'api/v1/sr/fill-safety-statement';
         var params = {
           objectid: that.data.objectid,
           safety_statement: JSON.stringify(that.data.stateList),

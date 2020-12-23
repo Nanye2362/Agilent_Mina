@@ -294,10 +294,9 @@
           "scene": null
         },
         {
-          "id": 34,
           "name": "pages/safety_statement/safety_statement",
           "pathName": "pages/safety_statement/safety_statement",
-          "query": "toConfirmed=1&objectId=3000435445",
+          "query": "toConfirmed=1&objectId=3000435446",
           "scene": null
         },
         {
