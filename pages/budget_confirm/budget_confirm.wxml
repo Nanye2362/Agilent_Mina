@@ -21,13 +21,13 @@
 			<image class="bc_order_icon2" src="/images/remind1.png" mode='widthFix'></image>
 			上门维修报价单预计在您确认后6个工作日内上门,实际安排以您收到的微信小程序推送或短信为准。
 		</view>
-		<view class="bc_order fc-blue Pdf_link">
-			<view bindtap='openPDF'>
+		<view class="bc_order Pdf_link">
+			<view bindtap='openPDF' class="fc-blue">
 				<image class="bc_order_icon" src="/images/pdf.png" mode='widthFix'></image>
 				安捷伦维修收费标准说明书-报价单
 			</view>
 			<!-- copyTBL -->
-			<view wx:if="{{isConfirm==1}}" bindtap="downloadPDF">
+			<view wx:if="{{isConfirm==1}}" class="fc-blue" bindtap="downloadPDF">
 				<image class="bc_order_icon1" src="/images/download.jpg" mode='widthFix'></image>
 				下载
 			</view>

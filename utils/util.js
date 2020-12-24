@@ -97,7 +97,6 @@ function saveImageToPhotos(tempFilePath){
             },
             fail: function (err) {
               console.log('保存图片失败：', err);
-
               if (err.errMsg === "saveImageToPhotosAlbum:fail:auth denied" || err.errMsg === "saveImageToPhotosAlbum:fail auth deny") {
                 // 这边微信做过调整，必须要在按钮中触发，因此需要在弹框回调中进行调用
                 wx.showModal({

@@ -157,7 +157,7 @@ Page({
     })
   },
   // 下载pdf
-  downloadPDF: function () {
+  downloadPDF: function (e) {
     var token = wx.getStorageSync('token');
     // util.Server + 'api/v1/sr/bq-file?objectid=' + this.data.objectid + '&token=' + token;
     // api/v1/sr/preview-pdf?objectid= &is_safety=1(1为安全声明) GET
@@ -193,7 +193,6 @@ Page({
 
       },
       complete: function complete() {
-        wx.hideLoading();
       },
       fail: function fail() {
         wx.showModal({
