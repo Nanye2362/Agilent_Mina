@@ -140,6 +140,7 @@ Page({
           data:params,
           success(r) {
             console.log('提交发票信息：',r);
+            that.data.isConfirm=1;
             that.setData({
               showModalTip: true,
               tipText: '感谢您选择安捷伦送修，稍后您的专属调度将为您安排后续服务'
@@ -182,9 +183,12 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-    wx.switchTab({
-      url: '../index/index',
-    })
+    if(this.data.isConfirm==1){
+      wx.switchTab({
+        url: '../index/index',
+      })
+    }
+   
   },
 
   /**

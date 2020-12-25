@@ -68,46 +68,46 @@ Component({
         })
       } else {
       // 智齿原生会话
-        // console.log('美洽触发！！！！！')
-        // this.setData({
-        //   sessionFromFormat: this.data.sessionFromFormat,
-        //   isWork: true
-        // })
-        // console.log('sessionFromFormat', this.data.sessionFromFormat)
-        // this.triggerEvent('meiqiaTap', e);
-        // 智齿H5
-        var url = config.sobotUrl;
-        var param = {
-          "name": this.data.nickName,
-          "contactId": this.data.contactId,
-          "from": this.data.sobotFrom,
-          "transAction": this.data.sessionFromFormat,
-        };
-        var paramJson = JSON.stringify(param);
-        var transfer_action = this.data.sessionFromFormat
-        console.log('paramJson:', paramJson);
-        let searchParams = {
-          sysnum: config.sobotSysnum,
-          partnerid: this.data.miniOpenId,
-          uname: this.data.nickName,
-          face: this.data.avatarUrl,
-          params: paramJson,
-          transfer_action : transfer_action,
-          robotid : robotid,
-          top_bar_flag:1,
-          type:sobotType
-        }
-        console.log('searchParams:', searchParams);
-        Object.keys(searchParams).map((key) => {
-          url += key + '=' + searchParams[key] + '&';
+        console.log('美洽触发！！！！！')
+        this.setData({
+          sessionFromFormat: this.data.sessionFromFormat,
+          isWork: true
         })
-        url = url.substring(url.length - 1, -1)
-        url = url.replace(/transferAction=/g, "")
-        url = encodeURI(url);
+        console.log('sessionFromFormat', this.data.sessionFromFormat)
+        this.triggerEvent('meiqiaTap', e);
+        // 智齿H5
+        // var url = config.sobotUrl;
+        // var param = {
+        //   "name": this.data.nickName,
+        //   "contactId": this.data.contactId,
+        //   "from": this.data.sobotFrom,
+        //   "transAction": this.data.sessionFromFormat,
+        // };
+        // var paramJson = JSON.stringify(param);
+        // var transfer_action = this.data.sessionFromFormat
+        // console.log('paramJson:', paramJson);
+        // let searchParams = {
+        //   sysnum: config.sobotSysnum,
+        //   partnerid: this.data.miniOpenId,
+        //   uname: this.data.nickName,
+        //   face: this.data.avatarUrl,
+        //   params: paramJson,
+        //   transfer_action : transfer_action,
+        //   robotid : robotid,
+        //   top_bar_flag:1,
+        //   type:sobotType
+        // }
+        // console.log('searchParams:', searchParams);
+        // Object.keys(searchParams).map((key) => {
+        //   url += key + '=' + searchParams[key] + '&';
+        // })
+        // url = url.substring(url.length - 1, -1)
+        // url = url.replace(/transferAction=/g, "")
+        // url = encodeURI(url);
 
-        wx.navigateTo({
-          url: '/pages/sobot_html/openHtml?url='+encodeURIComponent(url),
-        });
+        // wx.navigateTo({
+        //   url: '/pages/sobot_html/openHtml?url='+encodeURIComponent(url),
+        // });
 
         // wx.setStorage({
         //   key: "sobotHtmlUrl",
@@ -146,25 +146,35 @@ Component({
   observers: {
     'sessionFrom'(value) {
       // 智齿原生会话
-      // this.setData({
-      //   sessionFromFormat: JSON.stringify(value)
-      // })
-      // 智齿H5
       var _this = this;
       _this.setData({
         sessionFromFormat: ''
-      });   
-      var strArr = [];
-      strArr = value.split('|');
-      this.setData({
-        sobotFrom: strArr[0]
       });
+      var strArr = value.split('|');
 
-      console.log('sessionFrom value:', value);
-
+      var params = "{\"name\":\""+ _this.data.nickName+"\",\"contactId\":\""+ _this.data.contactId +"\",\"from\":\""+ strArr[0]+"\"}";
+      strArr[0] = params;
+      console.log('strArr:',strArr);
+      console.log('sessionFrom value:',value);
       this.setData({
-        sessionFromFormat: strArr[1]
-      });
+        sessionFromFormat: strArr.join("|")
+      })
+      // 智齿H5
+      // var _this = this;
+      // _this.setData({
+      //   sessionFromFormat: ''
+      // });   
+      // var strArr = [];
+      // strArr = value.split('|');
+      // this.setData({
+      //   sobotFrom: strArr[0]
+      // });
+
+      // console.log('sessionFrom value:', value);
+
+      // this.setData({
+      //   sessionFromFormat: strArr[1]
+      // });
 
       console.log('session:' + this.data.sessionFromFormat);
     },
