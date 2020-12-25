@@ -127,7 +127,7 @@ Page({
             if(!res.isworktime){//非工作时间
               wx.showModal({
                 title: '提交成功',
-                content: '信息提交成功！点击确定后返回上个页面。',
+                content: '提交成功，工作人员会尽快完成审核，请耐心等待公众号的完成通知',
                 showCancel: false,
                 success: function () {
                   wx.switchTab({
@@ -158,7 +158,7 @@ Page({
         fail: function (err) {
           wx.showModal({
             title: '提交失败',
-            content: '您已提交过信息，客服正在为您建档，建档成功后将通过电话或短信通知您',
+            content: '信息已提交，请勿重复提交。工作人员会尽快完成审核，请耐心等待公众号的完成通知。',
             success: function (res) {
               if (res.confirm) {
               }
