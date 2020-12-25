@@ -1,119 +1,171 @@
 /* pages/budget_confirm/budget_confirm.wxss */
-page{
+page {
   background: #fff;
 }
+
 .budget_confirm {
-    width: 100%;
+  width: 100%;
 }
 
 .bc_title {
-    margin: 40rpx 0;
+  margin: 40rpx 0;
 }
-.bc_title image{
+
+.bc_title image {
   width: 200rpx;
 }
 
 .bc_remind {
-    padding-bottom: 40rpx;
-    line-height:1.5;
-    border-bottom: 1px solid #e2e2e2;
+  padding-bottom: 40rpx;
+  line-height: 1.5;
+  border-bottom: 1px solid #e2e2e2;
 }
 
-.bc_remind1{
-    padding-top: 40rpx;
-    line-height:1.5;
-    font-size: 22rpx;
+.bc_remind1 {
+  padding-top: 40rpx;
+  line-height: 1.5;
+  font-size: 22rpx;
 }
 
 .bc_order_icon {
-    width: 44rpx;
-    vertical-align: sub;
-    margin-right: 8rpx;
-    align-self: flex-start;
+  width: 44rpx;
+  vertical-align: sub;
+  margin-right: 8rpx;
+  align-self: flex-start;
+  margin-top: 3rpx;
+}
+.bc_order_icon_tip {
+  width: 32rpx;
+  margin-right: 8rpx;
 }
 .bc_order_icon1 {
-    width: 44rpx;
-    vertical-align: sub;
-    margin-right: -5rpx;
-    align-self: flex-start;
+  width: 44rpx;
+  vertical-align: sub;
+  margin-right: -5rpx;
+  align-self: flex-start;
 }
+
 .bc_order_icon2 {
-    width: 30rpx;
+  width: 30rpx;
 }
+
 .bc_order_icon3 {
-    width: 20rpx;
-    margin-right: 10rpx;
+  width: 20rpx;
+  margin-right: 10rpx;
 }
 
 .bc_order {
-    margin-top: 40rpx;
-    padding-bottom: 40rpx;
-    border-bottom: 1px dashed #e2e2e2;
+  margin-top: 30rpx;
+  padding-bottom: 30rpx;
+  border-bottom: 1px dashed #e2e2e2;
 }
-.bc_order_con{
+
+.bc_order_con {
   flex: 1;
   line-height: 1;
   margin-left: 10rpx;
 }
-.bc_order_arrow{
+
+.bc_order_arrow {
   flex: .1;
   text-align: right;
   line-height: 1;
 }
 
-.bc_order_con view{
+.bc_order_con view {
   line-height: 40rpx;
 }
 
 .bc_confirm {
-    margin-bottom: 60rpx;
+  margin-bottom: 60rpx;
 }
 
 .bc_chat {
-    width: 100%;
-    height: 80rpx;
-    line-height: 80rpx;
+  width: 100%;
+  height: 80rpx;
+  line-height: 80rpx;
 }
 
 .bc_chat_btn {
-    text-decoration: underline;
+  text-decoration: underline;
 }
-.chatimg{ width: 50rpx; height: 38rpx; vertical-align: sub;margin-right: 6rpx; margin-left: 10rpx;}
+
+.chatimg {
+  width: 50rpx;
+  height: 38rpx;
+  vertical-align: sub;
+  margin-right: 6rpx;
+  margin-left: 10rpx;
+}
 
 #confirm:disabled {
-    background: #a6d5f1;
+  background: #a6d5f1;
 }
 
-.bq_checkbox_panel{
-  margin-top: 120rpx;
+.bq_checkbox_panel {
+  /* margin-top: 120rpx; */
   padding: 0 50rpx;
 }
 
 
-.invoiceType{
+.invoiceType {
   padding: 22rpx 0;
   width: 520rpx;
 }
-.invoiceType:first-child{
+
+.invoiceType:first-child {
   border-bottom: 1px solid #e2e2e2;
 }
-.invoiceD{
+
+.invoiceD {
   margin-bottom: 6rpx;
 }
-.invoiceInformation{
+
+.invoiceInformation {
   position: relative;
   margin-bottom: 10rpx;
 }
-.changeType{
+
+.changeType {
   position: absolute;
   right: -10rpx;
   top: 0;
 }
-.shLoading-panel{
-    top: 400rpx;
+
+.shLoading-panel {
+  top: 400rpx;
 }
-.Pdf_link{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+
+.Pdf_link {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.signature_img {
+  width: 265rpx;
+  height: 700rpx;
+}
+
+.add_btn_area {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: -384rpx;
+}
+
+.add_btn {
+  border: 1rpx solid #00a6e4;
+  color: #00a6e4;
+  font-size: 28rpx;
+  padding: 10rpx 30rpx;
+}
+/* 发票填写提示 */
+.bc_btn_tip{
+  margin-top:10rpx;
+}
+.fc-red {
+  color: #d81e06;
+}
+.fs30{
+  font-size:30rpx;
 }

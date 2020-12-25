@@ -1,10 +1,11 @@
 <!--components/meiqiaBtn/meiqiaBtn.wxml-->
-<!--<button class="btn-class" bindtap="meiqiaBtnTap" open-type='{{isWork?"contact":""}}' session-from='{{sessionFrom}}' data-group="{{meqiaGroup}}"
+<!-- 智齿原生会话 -->
+<button class="btn-class" bindtap="meiqiaBtnTap" open-type='{{isWork?"contact":""}}' session-from='sobot|{{nickName}}|{{avatarUrl}}|{{sessionFromFormat}}' data-group="{{meqiaGroup}}"
 formType="{{formType}}" disabled="{{disabled}}" >
   <slot></slot>
-</button>-->
-
-<button class="btn-class" 
+</button>
+<!-- 智齿H5 -->
+<!-- <button class="btn-class" 
         bindtap="meiqiaBtnTap" 
         open-type='{{isWork?"contact":""}}'
         session-from="sobot|{{nickName}}|{{avatarUrl}}|{{sessionFromFormat}}"
@@ -12,6 +13,6 @@ formType="{{formType}}" disabled="{{disabled}}" >
         formType="{{formType}}"
         disabled="{{disabled}}">
 <slot></slot>
-</button>
+</button> -->
 
  <meiqiaNoWorkModal showModal="{{showModal}}"></meiqiaNoWorkModal>

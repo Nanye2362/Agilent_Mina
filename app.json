@@ -64,7 +64,14 @@
     "pages/html/openHtml",
     "pages/auth_login/auth_login",
     "pages/privacy-policy/privacy-policy",
-    "pages/system-update/system-update"
+    "pages/system-update/system-update",
+    "pages/safety_statement/safety_statement",
+    "pages/budget_confirm_info/budget_confirm_info",
+    "pages/repair_budget_confirm/repair_budget_confirm",
+    "pages/invoice_confirm_info/invoice_confirm_info",
+    "pages/invoice_list/invoice_list",
+    "pages/file_list/file_list"
+
   ],
   "networkTimeout": {
     "request": 180000
@@ -88,7 +95,7 @@
         "pagePath": "pages/index/index",
         "text": "首页",
         "iconPath": "/images/home.png",
-        "selectedIconPath": "images/home_c.png"
+        "selectedIconPath": "/images/home_c.png"
       },
       {
         "pagePath": "pages/mechat_list/mechat_list",
@@ -105,8 +112,8 @@
       {
         "pagePath": "pages/myhome/myhome",
         "text": "我的",
-        "iconPath": "images/my.png",
-        "selectedIconPath": "images/my_c.png"
+        "iconPath": "/images/my.png",
+        "selectedIconPath": "/images/my_c.png"
       }
     ]
   },

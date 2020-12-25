@@ -21,7 +21,11 @@ var invoiceArry = {
     "telephone":"注册电话",
   }
 };
-var invoiceDetails = wx.getStorageSync('invoiceDetails');
+if(wx.getStorageSync('invoiceDetails')){
+  var invoiceDetails = wx.getStorageSync('invoiceDetails');
+}else{
+  var invoiceDetails={};
+}
 
 var errText={
   "title": "发票抬头",
@@ -38,6 +42,8 @@ Page({
    * 页面的初始数据
    */
   data: {
+    invoiceId:'',
+    isAddInvoice:0,
     sendWhom: [
       { name: 'me', value: '我自己',checked: 'true' },
       { name: 'other', value: '其他人' }
@@ -77,8 +83,16 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    // 获取发票还未处理 invoiceId
+    console.log('发票详情：',options);
     var app = getApp();
     var that = this;
+    if(typeof(options.isAddInvoice)!='undefined'){
+      this.data.isAddInvoice=options.isAddInvoice
+    }
+    if (typeof (options.invoiceId) != 'undefined') {
+      this.data.invoiceId=options.invoiceId
+    }
     util.NetRequest({
       url: 'api/v1/wechat/get-global-group',//wechat-mini/get-global-group
       method:"GET",
@@ -96,7 +110,12 @@ Page({
     var currentInvoice = options.currentInvoice;
     var title = options.title;
 
-    invoiceDetails = wx.getStorageSync('invoiceDetails');
+    // invoiceDetails = wx.getStorageSync('invoiceDetails');
+    if(wx.getStorageSync('invoiceDetails')){
+      invoiceDetails = wx.getStorageSync('invoiceDetails');
+    }else{
+      invoiceDetails={};
+    }
     if (invoiceDetails[currentInvoice]!=undefined){
       this.setData({
         invoiceInfo: invoiceDetails[currentInvoice].invoiceInfo,
@@ -211,7 +230,6 @@ Page({
 
     var checkInvoice = this.checkEmpty(this.data.invoiceInfo, checkObjInvoice);
     var checkSend = this.checkEmpty(this.data.sendInfo, checkObjSend);
-    console.log(typeof errText[checkInvoice.fieldName] );
     if (checkInvoice.isEmpty == true || checkSend.isEmpty ==true){
       wx.showModal({
         title: '提交失败',
@@ -221,16 +239,26 @@ Page({
     }else{
       var currentInvoice = this.data.currentInvoice;
       var invoiceDetails = this.data.invoiceDetails;
+      console.log('提交invoiceDetails:',invoiceDetails);
       invoiceDetails[currentInvoice] = {};
       invoiceDetails[currentInvoice].invoiceInfo = this.data.invoiceInfo;
       invoiceDetails[currentInvoice].sendInfo = this.data.sendInfo;
       invoiceDetails[currentInvoice].PO = this.data.PO;
+      console.log('提交发票：',currentInvoice);
       invoiceDetails[currentInvoice].needBill = this.data.needBill;
       invoiceDetails[currentInvoice].invoiceType = this.data.currentInvoice;
       wx.setStorageSync('invoiceDetails', invoiceDetails);
-      wx.navigateTo({
-        url: '../invoiceConfirm/invoiceConfirm?url=invoiceDetails&&currentInvoice=' + currentInvoice
-      })
+      console.log('提交的发票数据:',invoiceDetails);
+      if(this.data.invoiceId!=''){
+        wx.navigateTo({
+          url: '../invoiceConfirm/invoiceConfirm?url=invoiceDetails&&currentInvoice=' + currentInvoice+'&isAddInvoice='+this.data.isAddInvoice+'&invoiceId='+this.data.invoiceId+'&isEdit=1'
+        })
+      }else{
+        wx.navigateTo({
+          url: '../invoiceConfirm/invoiceConfirm?url=invoiceDetails&&currentInvoice=' + currentInvoice+'&isAddInvoice='+this.data.isAddInvoice
+        })
+      }
+      
     }
   },
   checkEmpty: function (obj, arrInput){

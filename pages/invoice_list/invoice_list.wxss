@@ -1,0 +1,120 @@
+/* pages/invoice_list/invoice_list.wxss */
+page{
+  background: #fff;
+  width: 94%;
+  margin:0 auto;
+}
+.circle_out {
+  height: 30rpx;
+  width: 30rpx;
+  border-radius: 50%;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+}
+
+.circle_in {
+  height: 15rpx;
+  width: 15rpx;
+  border-radius: 50%;
+  margin: 0 auto;
+}
+
+.blue_bg {
+  background-color: #0084d7;
+}
+
+.grey_bg {
+  background-color: #d8d8d8;
+}
+
+.blue_border {
+  border: 1rpx solid #0084d7;
+}
+
+.grey_border {
+  border: 1rpx solid #d8d8d8;
+}
+
+.bc_order_icon {
+  width: 44rpx;
+  vertical-align: sub;
+  margin-right: 32rpx;
+  align-self: flex-start;
+}
+
+.invoiceT {
+  font-weight: bold;
+  font-size: 28rpx;
+  margin-bottom: 10rpx;
+}
+.invoice_item{
+  border-bottom: 1rpx solid #d8d8d8;
+  padding:40rpx 0rpx 20rpx 0rpx;
+}
+.invoice_item:first-child{
+  border-top: 1rpx solid #d8d8d8 ;
+}
+.item_middle>.invoiceD:not(:last-child) {
+  margin-bottom: 6rpx;
+}
+.marginR{
+  margin-right: 12rpx;
+}
+.left_img{
+  margin-top: 4rpx;
+}
+.delete_area{
+  position:relative;
+  left:94%;
+  bottom:0rpx;
+}
+.btn {
+  border-radius: 12rpx;
+  text-align: center;
+  height: 90rpx;
+  width: 100%;
+  color: #fff;
+  line-height: 90rpx;
+  margin:20rpx auto;
+}
+.bc_chat {
+  width: 100%;
+  height: 80rpx;
+  line-height: 80rpx;
+}
+
+.bc_chat_btn {
+  text-decoration: underline;
+}
+.chatimg{ width: 50rpx; height: 38rpx; vertical-align: sub;margin-right: 6rpx; margin-left: 10rpx;}
+
+#confirm:disabled {
+    background: #a6d5f1;
+}
+
+.bq_checkbox_panel{
+  margin-top: 20rpx;
+}
+.add_btn_area{
+  display: flex;
+  justify-content: flex-end;
+  margin: 30rpx 0rpx 100rpx;
+}
+.add_btn{
+  border: 1rpx solid #00a6e4;
+  color: #00a6e4;
+  font-size: 28rpx;
+  padding: 10rpx 30rpx;
+}
+/* 弹窗 */
+.shLoading-panel{
+  top: 400rpx;
+}
+.invoiceType{
+  padding: 22rpx 0;
+  width: 520rpx;
+}
+.invoiceType:first-child{
+  border-bottom: 1px dashed #e2e2e2;
+}

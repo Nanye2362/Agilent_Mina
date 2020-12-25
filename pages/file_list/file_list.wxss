@@ -1,0 +1,20 @@
+/* pages/file_list/file_list.wxss */
+page{
+  background: #fff;
+}
+.file{
+  width: 92%;
+  margin:0 auto;
+}
+.bc_order_icon {
+  width: 44rpx;
+  vertical-align: sub;
+  margin-right: 8rpx;
+  align-self: flex-start;
+  margin-top: 3rpx;
+}
+.file-item{
+  margin-top: 30rpx;
+  padding-bottom: 30rpx;
+  border-bottom: 1px dashed #e2e2e2;
+}

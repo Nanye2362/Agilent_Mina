@@ -1,312 +1,360 @@
 {
-	"description": "项目配置文件",
-	"packOptions": {
-		"ignore": []
-	},
-	"setting": {
-		"urlCheck": false,
-		"es6": true,
-		"enhance": false,
-		"postcss": true,
-		"preloadBackgroundData": false,
-		"minified": true,
-		"newFeature": true,
-		"coverView": true,
-		"nodeModules": false,
-		"autoAudits": false,
-		"showShadowRootInWxmlPanel": true,
-		"scopeDataCheck": false,
-		"uglifyFileName": false,
-		"checkInvalidKey": true,
-		"checkSiteMap": true,
-		"uploadWithSourceMap": true,
-		"compileHotReLoad": false,
-		"babelSetting": {
-			"ignore": [],
-			"disablePlugins": [],
-			"outputPath": ""
-		},
-		"useIsolateContext": true,
-		"useCompilerModule": true,
-		"userConfirmedUseCompilerModuleSwitch": false,
-		"packNpmManually": false,
-		"packNpmRelationList": []
-	},
-	"compileType": "miniprogram",
-	"libVersion": "2.11.3",
-	"appid": "wx512a3f231610f039",
-	"projectname": "miniprogram-1",
-	"cloudfunctionTemplateRoot": "",
-	"debugOptions": {
-		"hidedInDevtools": []
-	},
-	"scripts": {},
-	"simulatorType": "wechat",
-	"simulatorPluginLibVersion": {},
-	"condition": {
-		"search": {
-			"current": -1,
-			"list": []
-		},
-		"conversation": {
-			"current": -1,
-			"list": []
-		},
-		"plugin": {
-			"current": -1,
-			"list": []
-		},
-		"game": {
-			"list": []
-		},
-		"gamePlugin": {
-			"current": -1,
-			"list": []
-		},
-		"miniprogram": {
-			"current": -1,
-			"list": [
-				{
-					"id": 0,
-					"name": "pages/install/install",
-					"pathName": "pages/install/install",
-					"query": "scene=id_1"
-				},
-				{
-					"id": 1,
-					"name": "labqc",
-					"pathName": "pages/labqc/labqc",
-					"query": "scene=000001",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "bqchange",
-					"pathName": "pages/budget_confirm/budget_confirm",
-					"query": "objectId=3000212942&srId=8101654924"
-				},
-				{
-					"id": 3,
-					"name": "invoiceDetails",
-					"pathName": "pages/budget_confirm/budget_confirm",
-					"query": "objectId=3000212942&srId=8101654924"
-				},
-				{
-					"id": -1,
-					"name": "second",
-					"pathName": "pages/second-buy/second-buy",
-					"query": "index=3"
-				},
-				{
-					"id": -1,
-					"name": "second",
-					"pathName": "pages/second-buy/second-buy",
-					"query": "index=3"
-				},
-				{
-					"id": -1,
-					"name": "pages/self_service/self_service",
-					"pathName": "pages/self_service/self_service",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": 7,
-					"name": "pages/budget_confirm/budget_confirm",
-					"pathName": "pages/budget_confirm/budget_confirm",
-					"query": "objectId=3000389376&srId=8102802722",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/invoiceDetails/invoiceDetails",
-					"pathName": "pages/invoiceDetails/invoiceDetails",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/service_list/service_list",
-					"pathName": "pages/service_list/service_list",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/service_details/service_details",
-					"pathName": "pages/service_details/service_details",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/self_service/self_service",
-					"pathName": "pages/self_service/self_service",
-					"query": "objectId=3000374433&srId=8102775285",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/service_list/service_list",
-					"pathName": "pages/service_list/service_list",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/service_list/service_list",
-					"pathName": "pages/service_list/service_list",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/service_list/service_list",
-					"pathName": "pages/service_list/service_list",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/service_list/service_list",
-					"pathName": "pages/service_list/service_list",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/service_list/service_list",
-					"pathName": "pages/service_list/service_list",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/service_list/service_list",
-					"pathName": "pages/service_list/service_list",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/service_list/service_list",
-					"pathName": "pages/service_list/service_list",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/service_list/service_list",
-					"pathName": "pages/service_list/service_list",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/service_list/service_list",
-					"pathName": "pages/service_list/service_list",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/service_list/service_list",
-					"pathName": "pages/service_list/service_list",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/service_list/service_list",
-					"pathName": "pages/service_list/service_list",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/service_list/service_list",
-					"pathName": "pages/service_list/service_list",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/service_list/service_list",
-					"pathName": "pages/service_list/service_list",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/service_list/service_list",
-					"pathName": "pages/service_list/service_list",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/service_list/service_list",
-					"pathName": "pages/service_list/service_list",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/fill_info/fill_info",
-					"pathName": "pages/fill_info/fill_info",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/self_service_new/self_service_new/self_service_new",
-					"pathName": "pages/self_service_new/self_service_new/self_service_new",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/self_service_new/self_service_index/self_service_index",
-					"pathName": "pages/self_service_new/self_service_index/self_service_index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/directional_push/directional_push_info/directional_push_info",
-					"pathName": "pages/directional_push/directional_push_info/directional_push_info",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/directional_push/directional_push_offer/directional_push_offer",
-					"pathName": "pages/directional_push/directional_push_offer/directional_push_offer",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/service_result/service_result",
-					"pathName": "pages/service_result/service_result",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/budget_confirm/budget_confirm",
-					"pathName": "pages/budget_confirm/budget_confirm",
-					"query": "objectId=3000383466&srId=8102836079",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/index/index",
-					"pathName": "pages/index/index",
-					"query": "objectId=3000383466&srId=8102836079",
-					"scene": null
-				}
-			]
-		}
-	}
+  "description": "项目配置文件",
+  "packOptions": {
+    "ignore": []
+  },
+  "setting": {
+    "urlCheck": false,
+    "es6": true,
+    "enhance": true,
+    "postcss": true,
+    "preloadBackgroundData": false,
+    "minified": true,
+    "newFeature": true,
+    "coverView": true,
+    "nodeModules": false,
+    "autoAudits": false,
+    "showShadowRootInWxmlPanel": true,
+    "scopeDataCheck": false,
+    "uglifyFileName": false,
+    "checkInvalidKey": true,
+    "checkSiteMap": true,
+    "uploadWithSourceMap": true,
+    "compileHotReLoad": false,
+    "useMultiFrameRuntime": false,
+    "useApiHook": true,
+    "babelSetting": {
+      "ignore": [],
+      "disablePlugins": [],
+      "outputPath": ""
+    },
+    "bundle": false,
+    "useIsolateContext": true,
+    "useCompilerModule": true,
+    "userConfirmedUseCompilerModuleSwitch": false,
+    "packNpmManually": false,
+    "packNpmRelationList": [],
+    "enableEngineNative": false,
+    "userConfirmedBundleSwitch": false,
+    "minifyWXSS": true
+  },
+  "compileType": "miniprogram",
+  "libVersion": "2.11.3",
+  "appid": "wx512a3f231610f039",
+  "projectname": "E-service",
+  "cloudfunctionTemplateRoot": "",
+  "debugOptions": {
+    "hidedInDevtools": []
+  },
+  "scripts": {},
+  "simulatorType": "wechat",
+  "simulatorPluginLibVersion": {},
+  "condition": {
+    "plugin": {
+      "list": []
+    },
+    "game": {
+      "list": []
+    },
+    "gamePlugin": {
+      "list": []
+    },
+    "miniprogram": {
+      "list": [
+        {
+          "id": 0,
+          "name": "pages/install/install",
+          "pathName": "pages/install/install",
+          "query": "scene=id_1"
+        },
+        {
+          "id": 1,
+          "name": "labqc",
+          "pathName": "pages/labqc/labqc",
+          "query": "scene=000001",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "bqchange",
+          "pathName": "pages/budget_confirm/budget_confirm",
+          "query": "objectId=3000212942&srId=8101654924"
+        },
+        {
+          "id": 3,
+          "name": "invoiceDetails",
+          "pathName": "pages/budget_confirm/budget_confirm",
+          "query": "objectId=3000212942&srId=8101654924"
+        },
+        {
+          "id": -1,
+          "name": "second",
+          "pathName": "pages/second-buy/second-buy",
+          "query": "index=3"
+        },
+        {
+          "id": -1,
+          "name": "second",
+          "pathName": "pages/second-buy/second-buy",
+          "query": "index=3"
+        },
+        {
+          "id": -1,
+          "name": "pages/self_service/self_service",
+          "pathName": "pages/self_service/self_service",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": 7,
+          "name": "pages/budget_confirm/budget_confirm",
+          "pathName": "pages/budget_confirm/budget_confirm",
+          "query": "objectId=3000386373",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/invoiceDetails/invoiceDetails",
+          "pathName": "pages/invoiceDetails/invoiceDetails",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/service_list/service_list",
+          "pathName": "pages/service_list/service_list",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/service_details/service_details",
+          "pathName": "pages/service_details/service_details",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/self_service/self_service",
+          "pathName": "pages/self_service/self_service",
+          "query": "objectId=3000374433&srId=8102775285",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/service_list/service_list",
+          "pathName": "pages/service_list/service_list",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/service_list/service_list",
+          "pathName": "pages/service_list/service_list",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/service_list/service_list",
+          "pathName": "pages/service_list/service_list",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/service_list/service_list",
+          "pathName": "pages/service_list/service_list",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/service_list/service_list",
+          "pathName": "pages/service_list/service_list",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/service_list/service_list",
+          "pathName": "pages/service_list/service_list",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/service_list/service_list",
+          "pathName": "pages/service_list/service_list",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/service_list/service_list",
+          "pathName": "pages/service_list/service_list",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/service_list/service_list",
+          "pathName": "pages/service_list/service_list",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/service_list/service_list",
+          "pathName": "pages/service_list/service_list",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/service_list/service_list",
+          "pathName": "pages/service_list/service_list",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/service_list/service_list",
+          "pathName": "pages/service_list/service_list",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/service_list/service_list",
+          "pathName": "pages/service_list/service_list",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/service_list/service_list",
+          "pathName": "pages/service_list/service_list",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/service_list/service_list",
+          "pathName": "pages/service_list/service_list",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/fill_info/fill_info",
+          "pathName": "pages/fill_info/fill_info",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/self_service_new/self_service_new/self_service_new",
+          "pathName": "pages/self_service_new/self_service_new/self_service_new",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/self_service_new/self_service_index/self_service_index",
+          "pathName": "pages/self_service_new/self_service_index/self_service_index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/directional_push/directional_push_info/directional_push_info",
+          "pathName": "pages/directional_push/directional_push_info/directional_push_info",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/directional_push/directional_push_offer/directional_push_offer",
+          "pathName": "pages/directional_push/directional_push_offer/directional_push_offer",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/service_result/service_result",
+          "pathName": "pages/service_result/service_result",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/budget_confirm/budget_confirm",
+          "pathName": "pages/budget_confirm/budget_confirm",
+          "query": "objectId=3000435445",
+          "scene": null
+        },
+        {
+          "name": "pages/safety_statement/safety_statement",
+          "pathName": "pages/safety_statement/safety_statement",
+          "query": "toConfirmed=1&objectId=3000435446",
+          "scene": null
+        },
+        {
+          "id": 35,
+          "name": "pages/budget_confirm_info/budget_confirm_info",
+          "pathName": "pages/budget_confirm_info/budget_confirm_info",
+          "query": "objectId=3000435446",
+          "scene": null
+        },
+        {
+          "name": "pages/repair_budget_confirm/repair_budget_confirm",
+          "pathName": "pages/repair_budget_confirm/repair_budget_confirm",
+          "query": "objectId=3000435446",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/invoice_list/invoice_list",
+          "pathName": "pages/invoice_list/invoice_list",
+          "query": "objectId=3000386373",
+          "scene": null
+        },
+        {
+          "id": 38,
+          "name": "pages/trackingNo/trackingNo",
+          "pathName": "pages/trackingNo/trackingNo",
+          "query": "tracking_id=322829430310",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/initiate/initiate",
+          "pathName": "pages/initiate/initiate",
+          "query": "",
+          "scene": 1005
+        },
+        {
+          "id": 40,
+          "name": "pages/invoiceDetails/invoiceDetails",
+          "pathName": "pages/invoiceDetails/invoiceDetails",
+          "query": "currentInvoice=\"normalInvoice\"&isAddInvoice=1",
+          "scene": null
+        },
+        {
+          "id": 41,
+          "name": "pages/invoice_confirm_info/invoice_confirm_info",
+          "pathName": "pages/invoice_confirm_info/invoice_confirm_info",
+          "query": "objectId=3000435445",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/file_list/file_list",
+          "pathName": "pages/file_list/file_list",
+          "query": "id=8,9",
+          "scene": null
+        }
+      ]
+    }
+  }
 }

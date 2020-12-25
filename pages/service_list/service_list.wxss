@@ -411,3 +411,18 @@ border:none;
   color:#0084d6;
   border:1rpx solid #0084d6;
 }
+/* 弹窗 */
+.shLoading-panel{
+  top: 400rpx;
+}
+.invoiceType{
+  padding: 22rpx 0;
+  width: 520rpx;
+}
+.invoiceType:first-child{
+  border-bottom: 1px dashed #e2e2e2;
+}
+.item-title{
+  white-space:pre-wrap;
+  word-break:break-all;
+}

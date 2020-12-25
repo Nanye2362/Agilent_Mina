@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "发票信息",
+  "usingComponents": {
+    "meiqiaBtn": "/components/meiqiaBtn/meiqiaBtn",
+    "modalTip": "/components/modal-tip/modal-tip"
+  }
+}

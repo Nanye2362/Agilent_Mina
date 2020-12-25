@@ -1,0 +1,75 @@
+/* pages/invoice_confirm_info/invoice_confirm_info.wxss */
+page{
+  background: #fff;
+}
+.budget_confirm_info {
+  padding: 0 20rpx 20rpx 20rpx;
+}
+.fs38{
+  font-size: 38rpx;
+}
+.bc_remind{
+  padding: 28rpx 0rpx;
+}
+.bc_header {
+  border-bottom: 1px solid #e2e2e2;
+}
+
+.bc_title {
+  margin: 40rpx 0;
+}
+
+.bc_title image {
+  width: 200rpx;
+}
+.bc_order_icon {
+  width: 44rpx;
+  vertical-align: sub;
+  margin-right: 8rpx;
+  align-self: flex-start;
+  margin-top: 3rpx;
+}
+.info_content{
+  border-bottom: 1px solid #e2e2e2;
+  padding: 20rpx;
+  margin-bottom: 60rpx;
+}
+.invoiceInformation{
+  position: relative;
+  margin-bottom: 10rpx;
+}
+.invoiceD{
+  margin-bottom: 6rpx;
+}
+/* .bc_order_arrow{
+  flex: .1;
+  text-align: right;
+  line-height: 1;
+} */
+.btn {
+  border-radius: 12rpx;
+  text-align: center;
+  height: 90rpx;
+  width: 100%;
+  color: #fff;
+  line-height: 90rpx;
+  margin:20rpx auto;
+}
+.bc_chat {
+  width: 100%;
+  height: 80rpx;
+  line-height: 80rpx;
+}
+
+.bc_chat_btn {
+  text-decoration: underline;
+}
+.chatimg{ width: 50rpx; height: 38rpx; vertical-align: sub;margin-right: 6rpx; margin-left: 10rpx;}
+
+#confirm:disabled {
+    background: #a6d5f1;
+}
+
+.bq_checkbox_panel{
+  margin-top: 20rpx;
+}

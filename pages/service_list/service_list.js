@@ -29,16 +29,19 @@ Page({
     SN: ';sn:',
     searchValue: '',
     isFirst: true,
-    transferAction: ''
+    transferAction: '',
+    showBQSelectModal: false,
+    bqTypeList: [],
+    objectId: ''
   },
   onShow: function () {
     var that = this;
     console.log(this.data.isFirst);
-    if (!this.data.isFirst) {
-      //请求后台接口 data:{SrId:} site-mini/service-details
-      that.getServiceHistory();
-    }
-    this.data.isFirst = false;
+    // if (!this.data.isFirst) {
+    //   //请求后台接口 data:{SrId:} site-mini/service-details
+    //   that.getServiceHistory();
+    // }
+    // this.data.isFirst = false;
   },
   onLoad: function (option) {
     //腾讯mat统计开始
@@ -259,9 +262,8 @@ Page({
   //查看物流
   trackingNo: function (e) {
     var deliveryno = e.currentTarget.dataset.deliveryno;
-    var sn = e.currentTarget.dataset.sn;
     wx.navigateTo({
-      url: '../trackingNo/trackingNo?deliveryno=' + deliveryno + '&sn=' + sn
+      url: '../trackingNo/trackingNo?tracking_id=' + deliveryno 
     })
   },
 
@@ -362,14 +364,52 @@ Page({
       searchValue: value
     })
   },
+  // 选择报价单弹窗显示
+  showBQType: function () {
+    this.setData({
+      showBQSelectModal: !this.data.showBQSelectModal,
+    })
+  },
+  // 选择新增发票类型
+  radioChange: function (e) {
+    console.log('radio发生change事件，携带value值为：', e);
+    if (this.data.bqTypeList[e.detail.value].send_to_repair == 1) {
+      console.log('radio发生change事件bqType:',this.data.bqTypeList[e.detail.value])
+      wx.navigateTo({
+        url: '../repair_budget_confirm/repair_budget_confirm?objectId=' + this.data.bqTypeList[e.detail.value].id
+      })
+    } else {
+      wx.navigateTo({
+        url: '../budget_confirm/budget_confirm?objectId=' + this.data.bqTypeList[e.detail.value].id
+      })
+    };
+
+
+    this.showBQType();
+  },
   //前往预估报价单确认页面
   clickToBudgetConfirm: function (e) {
-    var objectId = e.currentTarget.dataset.objectid;
-    console.log(objectId);
-    var srId = e.currentTarget.dataset.srid;
-    wx.navigateTo({
-      url: '../budget_confirm/budget_confirm?srId=' + srId + '&&objectId=' + objectId
+    var bqsent = e.currentTarget.dataset.bqsent;
+    this.data.bqTypeList = [];
+    for (let i in bqsent) {
+      if (bqsent[i].send_to_repair == 1) {
+        this.data.bqTypeList.push(
+          {send_to_repair:1, id: bqsent[i].object_id, value: '送修报价单'}
+        );
+      } else {
+        this.data.bqTypeList.push(
+          { send_to_repair:0,id: bqsent[i].object_id, value: '上门服务报价单' }
+        );
+      }
+    }
+    console.log('bqTypeList:',this.data.bqTypeList);
+    this.setData({
+      bqTypeList:this.data.bqTypeList
     })
+    this.showBQType();
+    // wx.navigateTo({
+    //   url: '../budget_confirm/budget_confirm?srId=' + srId + '&&objectId=' + objectId
+    // })
   },
   // 点击跳转历史详情 data:{SrId:} site-mini/service-details
   clickToDetail: function (e) {
@@ -382,4 +422,5 @@ Page({
       url: '../service_details/service_details?SrId=' + SrId
     })
   },
+   
 })

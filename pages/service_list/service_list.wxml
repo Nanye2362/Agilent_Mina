@@ -125,7 +125,21 @@
         </swiper-item>
     </swiper>
 
-<!-- <block wx:if='{{isSearch}}' wx:for="{{resultList}}" wx:for-item="item">
-                  <template is="sl-template" data="{{item}}"/>
-</block> -->
-
+<!-- 新增发票选择发票类型弹窗 -->
+<view class="shLoading" wx:if="{{showBQSelectModal}}">
+	<view class="shLoading-mask1" bindtap='showBQType'>
+	</view>
+	<view class="shLoading-panel flex alignc directionC">
+		<view class='shLoading-title blue'>选择发票类型</view>
+		<view class="shLoading-head-panel">
+			<radio-group class="radio-group flex directionC" bindchange="radioChange">
+				<label class="radio invoiceType" wx:for="{{bqTypeList}}">
+					<radio color='#0085d5' value="{{index}}" checked="{{item.checked}}" />{{item.value}}
+				</label>
+			</radio-group>
+		</view>
+		<view class="shLoading-btn-panel">
+			<view class="shLoading-cancel" bindtap="showBQType">取消</view>
+		</view>
+	</view>
+</view>

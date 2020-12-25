@@ -64,7 +64,7 @@ Page({
 
    if(typeof(options.aglNum) != 'undefined' && options.aglNum.length>0){
        this.setData({
-         aglNum: "&"+options.aglNum
+         aglNum: "&"+options.aglNum,
        })
    }
 

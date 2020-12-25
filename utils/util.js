@@ -16,11 +16,11 @@ function formatTime(date) {
 }
 
 function getUserInfoSobot(fun) {
-  var that=this;
+  var that = this;
   setTimeout(function () {
     request.NetRequest({
       url: 'api/v1/wechat/sobot/user-info?check_vip=1',//site-mini/sobot-getuserinfo
-      method:'GET',
+      method: 'GET',
       showload: false,
       success: function (res) {
         console.log(res);
@@ -28,8 +28,8 @@ function getUserInfoSobot(fun) {
         wx.setStorageSync('sobot_avatarUrl', res.data.avatarUrl);
         wx.setStorageSync('sobot_company', res.data.company);
         wx.setStorageSync('sobot_contactid', res.data.ContactId);
-        if(typeof(fun)=="function"){
-           fun();
+        if (typeof (fun) == "function") {
+          fun();
         }
       }
     })
@@ -42,6 +42,101 @@ function formatNumber(n) {
 }
 
 let Server = config.Server; //UAT
+// 上传文件接口封装
+function uploadFileRequest({ url, data, filePath,fileName,success, fail }) {
+  let requestUrl = config.Server + url;
+  console.log('上传签名uploadFile：', requestUrl);
+  let token = wx.getStorageSync('token');
+  wx.showLoading({
+    title: '加载中，请稍候',
+    mask: true
+  })
+  wx.uploadFile({
+    url: requestUrl, // 仅为示例，非真实的接口地址
+    header: {
+      'content-type': 'multipart/form-data',
+      'Authorization': "Bearer " + token
+    },
+    filePath: filePath,
+    name: fileName,
+    formData: data,
+    success:res=> {
+      console.log('上传签名成功res:', res);
+      wx.hideLoading()
+      let data=JSON.parse(res.data);
+      console.log('上传签名成功后data：',data);
+      if(data.status){
+        success(data);
+      }else{
+        wx.showModal({
+          title: '提交失败',
+          content: '上传失败，请联系客服',
+          showCancel:false
+        })
+        return false;
+      }
+    },
+    fail(error){
+      console.log('上传签名失败res；', error);
+      wx.hideLoading()
+      fail(error)
+    }
+  })
+}
+// 保存相册封装
+function saveImageToPhotos(tempFilePath){
+  wx.saveImageToPhotosAlbum({
+            filePath: tempFilePath,
+            success: function (data) {
+              console.log('保存图片成功：', data);
+              wx.showToast({
+                title: '保存成功',
+                icon: 'success',
+                duration: 2000
+              });
+            },
+            fail: function (err) {
+              console.log('保存图片失败：', err);
+              if (err.errMsg === "saveImageToPhotosAlbum:fail:auth denied" || err.errMsg === "saveImageToPhotosAlbum:fail auth deny") {
+                // 这边微信做过调整，必须要在按钮中触发，因此需要在弹框回调中进行调用
+                wx.showModal({
+                  title: '提示',
+                  content: '需要您授权保存相册',
+                  showCancel: false,
+                  success: modalSuccess => {
+                    wx.openSetting({
+                      success(settingdata) {
+                        console.log("settingdata", settingdata)
+                        if (settingdata.authSetting['scope.writePhotosAlbum']) {
+                          wx.showModal({
+                            title: '提示',
+                            content: '获取权限成功,再次点击图片即可保存',
+                            showCancel: false,
+                          })
+                        } else {
+                          wx.showModal({
+                            title: '提示',
+                            content: '获取权限失败，将无法保存到相册哦~',
+                            showCancel: false,
+                          })
+                        }
+                      },
+                      fail(failData) {
+                        console.log("failData", failData)
+                      },
+                      complete(finishData) {
+                        console.log("finishData", finishData)
+                      }
+                    })
+                  }
+                })
+              }
+            },
+            complete(res) {
+              console.log('保存图片complete');
+            }
+          })
+}
 
 //sobot传技能客服租逻辑2
 //transferAction:
@@ -49,9 +144,9 @@ let Server = config.Server; //UAT
 function sobotTransfer(id) {
   var app = getApp();
   var r = app.globalData.sobotData;
-  for(var i = 0; i < r.length; i++){
-    if(r[i]['id'] == id){
-      console.log('sobot-transfer:',r[i])
+  for (var i = 0; i < r.length; i++) {
+    if (r[i]['id'] == id) {
+      console.log('sobot-transfer:', r[i])
       return RtransferAction(r[i])
     }
   }
@@ -68,10 +163,10 @@ function RtransferAction(r) {
     var result = []
     var keys = Object.keys(r)
     console.log(keys);
-    if(keys.length <= 2) {
+    if (keys.length <= 2) {
       return JSON.stringify(result);
     } else {
-      var n = (keys.length -2) / 2;
+      var n = (keys.length - 2) / 2;
       console.log(n)
       for (var i = 1; i < n; i++) {
         var gn_type = 'g' + `${i}` + '_type';
@@ -116,28 +211,28 @@ function RtransferAction(r) {
 }
 
 
-function uploadImg(urlList,callback){
+function uploadImg(urlList, callback) {
   var token = wx.getStorageSync('token');
   if (token != "" && token != null) {
-    var header = { 'content-type': 'application/x-www-form-urlencoded', 'Authorization':"Bearer "+token }
+    var header = { 'content-type': 'application/x-www-form-urlencoded', 'Authorization': "Bearer " + token }
   } else {
     var header = { 'content-type': 'application/x-www-form-urlencoded' }
   }
-  
+
   var url = Server + "api/v1/reservation/upload-img";//api/upload-img
-  var completeNum=0;
-  var returnUrlList=[];
-  console.log('urlList:',urlList);
-  for (var i in urlList){
+  var completeNum = 0;
+  var returnUrlList = [];
+  console.log('urlList:', urlList);
+  for (var i in urlList) {
     wx.uploadFile({
       url: url,
       filePath: urlList[i],
       name: 'img',
-      formData:{
-          "key":i
+      formData: {
+        "key": i
       },
       header: header,
-      success:function(res){
+      success: function (res) {
         completeNum++;
         var obj = JSON.parse(res.data);
         returnUrlList[i] = obj.url;
@@ -157,10 +252,10 @@ function uploadImg(urlList,callback){
 
 
 //判断是否绑定,true为绑定，false为未绑定
-function IsCertificate(success,fail){
+function IsCertificate(success, fail) {
   request.NetRequest({
     url: 'api/v1/user/service-num',//auth/check-bind
-    method:'GET',
+    method: 'GET',
     success: function (res) {
       if (res.data.users.isBind) {
         success();
@@ -172,10 +267,10 @@ function IsCertificate(success,fail){
 }
 
 //判断是否为工作时间,true为是工作时间，false为非工作时间
-function checkWorktime(callBack, showload=true) {
+function checkWorktime(callBack, showload = true) {
   var reauestFail;
-  if (!showload){ //如果为false，基于后台请求，如遇网络错误不弹框提示
-    reauestFail=function(){
+  if (!showload) { //如果为false，基于后台请求，如遇网络错误不弹框提示
+    reauestFail = function () {
       console.log("request fail");
     }
   }
@@ -190,30 +285,30 @@ function checkWorktime(callBack, showload=true) {
   });
 }
 
-function checkEmpty(obj,arrInput){
-  var isEmpty=false;
-  for (var i in arrInput){
-    if (obj[arrInput[i]].trim().length==0){
-      isEmpty=true;
+function checkEmpty(obj, arrInput) {
+  var isEmpty = false;
+  for (var i in arrInput) {
+    if (obj[arrInput[i]].trim().length == 0) {
+      isEmpty = true;
       return isEmpty;
     }
   }
   return isEmpty;
 }
 
-function getUserInfo(cb){
-  var user=wx.getStorageSync('userInfo');
-  console.log("getUserInfo:",user);
-  if (user==""){//user不存在
+function getUserInfo(cb) {
+  var user = wx.getStorageSync('userInfo');
+  console.log("getUserInfo:", user);
+  if (user == "") {//user不存在
     request.NetRequest({
       // api/get-userinfo
-      url: "api/v1/user/service-num", 
-      method:"GET",
+      url: "api/v1/user/service-num",
+      method: "GET",
       success: function (res) {
         if (res.status) {
           user = res.data.users;
-          console.log("userInfo:",user);
-          wx.setStorageSync('userInfo',user);
+          console.log("userInfo:", user);
+          wx.setStorageSync('userInfo', user);
           cb(user);
         } else {
           wx.showModal({
@@ -231,13 +326,13 @@ function getUserInfo(cb){
         })
       }
     });
-  }else{
+  } else {
     cb(user);
   }
 }
 
 
-function backHome(){
+function backHome() {
   console.log('backHome')
   wx.switchTab({
     url: '../index/index',
@@ -245,39 +340,39 @@ function backHome(){
 }
 
 //检测是否存在，如存在就调用返回，不存在就直接跳转
-function chen_navigateTo(name,url){
-    var pages=getCurrentPages();
-    var backPageNum=0;
-    for(var i in pages){
-      if (pages[i].route == name){
-        backPageNum=pages.length-1-i;
-          break;
-       }
+function chen_navigateTo(name, url) {
+  var pages = getCurrentPages();
+  var backPageNum = 0;
+  for (var i in pages) {
+    if (pages[i].route == name) {
+      backPageNum = pages.length - 1 - i;
+      break;
     }
+  }
 
-    if(backPageNum>0){
-      wx.navigateBack({
-        delta: backPageNum
-      })
-    }else{
-      wx.navigateTo({
-          url:url
-      })
-    }
+  if (backPageNum > 0) {
+    wx.navigateBack({
+      delta: backPageNum
+    })
+  } else {
+    wx.navigateTo({
+      url: url
+    })
+  }
 }
 
-function submitFormId(formId){
+function submitFormId(formId) {
   return true;
-  if (formId.length == 0 || formId =="the formId is a mock one"){
+  if (formId.length == 0 || formId == "the formId is a mock one") {
     return false;
   }
-  let url=Server+"wechat-mini/save-formid";
+  let url = Server + "wechat-mini/save-formid";
   var session_id = wx.getStorageSync('PHPSESSID');//本地取存储的sessionID
-  var header = { 'content-type': 'application/x-www-form-urlencoded', 'Cookie': 'PHPSESSID=' + session_id}
+  var header = { 'content-type': 'application/x-www-form-urlencoded', 'Cookie': 'PHPSESSID=' + session_id }
   wx.request({
     url: url,
     method: "POST",
-    data: { formId:formId},
+    data: { formId: formId },
     header: header
   })
 }
@@ -295,7 +390,9 @@ module.exports = {
   checkWorktime: checkWorktime,
   backHome: backHome,
   chen_navigateTo: chen_navigateTo,
-  submitFormId:submitFormId,
+  submitFormId: submitFormId,
   RtransferAction: RtransferAction,
-  sobotTransfer: sobotTransfer
+  sobotTransfer: sobotTransfer,
+  uploadFileRequest:uploadFileRequest,
+  saveImageToPhotos:saveImageToPhotos
 }

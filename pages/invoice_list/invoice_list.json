@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "发票列表",
+  "usingComponents": {
+    "meiqiaBtn": "/components/meiqiaBtn/meiqiaBtn"
+  }
+}
