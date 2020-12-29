@@ -71,7 +71,6 @@
     "pages/invoice_confirm_info/invoice_confirm_info",
     "pages/invoice_list/invoice_list",
     "pages/file_list/file_list"
-
   ],
   "networkTimeout": {
     "request": 180000

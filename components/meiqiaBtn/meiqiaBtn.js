@@ -18,7 +18,8 @@ Component({
     disabled:String,
     formType:String,
     robotid:String,
-    sobotType:String
+    sobotType:String,
+    contactType:String
   },
 
   /**
@@ -51,6 +52,15 @@ Component({
    */
   methods: {
     meiqiaBtnTap: function (e) {
+      //咨询事件统计
+      var contactType = ''; //咨询类型
+      if(this.data.contactType != undefined){
+        contactType = this.data.contactType
+      }
+      console.log('咨询类型：',contactType);
+      wx.reportAnalytics('contact', {
+        type: contactType,
+      });
       var robotid = 1;
       var sobotType = ''; //接入类型
       //目前指定到1号机器人
