@@ -172,19 +172,22 @@ Page({
     })
   },
   returnHome: function () {
-    util.NetRequest({
-      url: 'api/v1/sr/fill-invoice-remind',
-      method: "POST",
-      data: {
-        objectid: this.data.objectid
-      },
-      success: function (r) {
-        console.log('不提交发票返回首页：', r);
-        wx.switchTab({
-          url: '../index/index',
-        })
-      }
+    wx.switchTab({
+      url: '../index/index',
     })
+    // util.NetRequest({
+    //   url: 'api/v1/sr/fill-invoice-remind',
+    //   method: "POST",
+    //   data: {
+    //     objectid: this.data.objectid
+    //   },
+    //   success: function (r) {
+    //     console.log('不提交发票返回首页：', r);
+    //     wx.switchTab({
+    //       url: '../index/index',
+    //     })
+    //   }
+    // })
   },
   infoOkTap: function () {
     var that = this;
