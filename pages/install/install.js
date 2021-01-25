@@ -69,18 +69,11 @@ Page({
   installReady: function(){
     var that = this;
     console.log('clickInstall')
-    if (that.data.pickerType!=-1){
-      wx.setStorage({
-        key: "openHtmlUrl",
-        data: "https://www.agilent.com/search/?Ntt=" + encodeURI(that.data.insType[that.data.pickerType] + '场地'),
-        //data: "https://devops.coffeelandcn.cn/files/5990-6321CHCN.pdf",
-        success: function () {
-          wx.navigateTo({
-            url: '../html/openHtml',
-          });
-        }
+
+      wx.navigateTo({
+        url: '../self_service_new/self_service_index/self_service_index',
       })
-    }   
+
   },
   skipToVideo:function(e){
     console.log('------dianji---',e)
